@@ -19,14 +19,12 @@ index.html, shelf.css                  서가 홈: 책장·검색, 대표 실험
 catalog.js                            생성된 책 목록(직접 수정하지 않음)
 book.json                             서가 메타데이터, 각 책의 book.json 목록
 roadmap.json                          준비 중인 책
-migration/books.json                  책마다 slug·서가 정보(표지 motif·색·서가 분야)와 원본 저장소, 주소 바꾸기 규칙
-migration/import-state.json           가져온 파일의 원본 커밋과 해시
+migration/books.json                  책마다 slug·서가 정보(표지 motif·색·서가 분야)와 원본 저장소, 가져올 때 쓴 주소 바꾸기 규칙
 shared/js/shelf.js                    서가 홈의 책장 렌더링·필터
 shared/js/covers.js                   SVG 책 표지(geniuskey/books 포털 코드)
 shared/js/book-shell.js               모든 책 상단 바·서랍의 ‘의학 서가’ 연결
 shared/img/sims/                      홈 ‘직접 해보기’의 시뮬레이터 화면
 {slug}/                               각 책의 본문, 계산 엔진, 3D 모델·그림(assets/), 책별 회귀 검사(scripts/)
-tools/import-books.py                 개별 저장소에서 가져오기(원본은 읽기만 함, 이 저장소의 수정은 덮어쓰지 않음)
 tools/sync-catalog.py                 catalog.js 생성(migration/books.json + roadmap.json, 장·시뮬레이터 수는 소스에서 셈)
 tools/sync-sitemap.py                 루트 사이트맵 생성
 tools/build.mjs                       정적 배포물(.book-dist/) 생성, 분석 태그 추가
@@ -54,14 +52,14 @@ BodyBook은 가져올 때의 canonical·Open Graph·구조화 데이터와 CDN �
 
 ## 가져온 책
 
-BodyBook은 2026-11-07에 개별 저장소에서 `tools/import-books.py --write`로 가져왔습니다. 지금부터는 이 저장소에서 직접 고칩니다. 가져올 때 바꾼 것은 다음뿐입니다.
+BodyBook은 2026-11-07에 개별 저장소에서 `tools/import-books.py --write`(지금은 지움)로 가져왔습니다. 지금부터는 이 저장소에서 직접 고칩니다. 가져올 때 바꾼 것은 다음뿐입니다.
 
 - 옛 주소(`https://bodybook.euiyun.com/`)를 `https://medical.euiyun.com/body/`로 바꾸고, 본문 링크는 `/body/…` 같은 사이트 안 경로로 바꿨습니다.
 - 다른 서가로 옮겨 간 책의 옛 주소를 새 주소로 바꿨습니다(`migration/books.json`의 `pathAliases`): MoneyBook → `money.euiyun.com/money/`, CarBook → `system.euiyun.com/car/`, SensorBook → `semi.euiyun.com/sensor/`, AIBook → `computing.euiyun.com/ai/`.
 - 쪽마다 `shared/css/book-shell.css`·`shared/js/book-shell.js`를 붙여 상단 바의 ‘전체 책’ 버튼을 ‘의학 서가’로 바꿨습니다. Cloudflare 비컨은 지우고 빌드가 분석 태그를 붙입니다.
 - 테마 저장 키를 `medical-theme`으로 바꿨습니다. 책의 `book.json`은 서가 주소·저장소·`basePath`로 바꿨습니다.
 
-원본 저장소를 지우기 전까지는 `npm run import:check`로 원본과 달라진 곳을 확인할 수 있습니다. 원본을 지운 뒤에는 MathBooks처럼 `tools/import-books.py`와 `migration/import-state.json`을 지우고, 서가 정보가 든 `migration/books.json`만 남깁니다.
+원본 저장소는 2026-11-07에 옛 주소의 같은 쪽으로 넘기는 리다이렉트 페이지만 남겼습니다. 그래서 MathBooks처럼 `tools/import-books.py`와 `migration/import-state.json`을 지우고, 서가 정보가 든 `migration/books.json`만 남겼습니다. 가져온 원본 커밋은 geniuskey/bodybook@70550fa이며, 파일별 해시는 첫 가져오기 커밋의 `migration/import-state.json`에 남아 있습니다.
 
 ## 라이선스
 

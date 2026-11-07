@@ -6,8 +6,7 @@
     "build": "node tools/build.mjs",
     "test": "node --test tools/katex.test.mjs && python3 tools/check.py && node tools/factcheck.cjs",
     "catalog": "python3 tools/sync-catalog.py",
-    "sitemap": "python3 tools/sync-sitemap.py",
-    "import:check": "python3 tools/import-books.py --check"
+    "sitemap": "python3 tools/sync-sitemap.py"
   },
   "engines": {
     "node": ">=20"
