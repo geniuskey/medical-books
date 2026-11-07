@@ -1,0 +1,901 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "밥을 먹으면 혈당은 어떻게 오르내리는가. 식후 혈당과 인슐린, 최소 모델, 인슐린 감수성과 분비, 인슐린 저항성과 당뇨병, 식후 걷기, 신장 역치, 하루 혈당과 HbA1c를 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>혈당과 인슐린 · BodyBook</title>
+<meta name="description" content="밥을 먹으면 혈당은 어떻게 오르내리는가. 식후 혈당과 인슐린, 최소 모델, 인슐린 감수성과 분비, 인슐린 저항성과 당뇨병, 식후 걷기, 신장 역치, 하루 혈당과 HbA1c를 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/glucose.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="혈당과 인슐린 · BodyBook">
+<meta property="og:description" content="밥을 먹으면 혈당은 어떻게 오르내리는가. 식후 혈당과 인슐린, 최소 모델, 인슐린 감수성과 분비, 인슐린 저항성과 당뇨병, 식후 걷기, 신장 역치, 하루 혈당과 HbA1c를 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/glucose.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/glucose.html#chapter","name":"혈당과 인슐린","headline":"혈당과 인슐린 · BodyBook","description":"밥을 먹으면 혈당은 어떻게 오르내리는가. 식후 혈당과 인슐린, 최소 모델, 인슐린 감수성과 분비, 인슐린 저항성과 당뇨병, 식후 걷기, 신장 역치, 하루 혈당과 HbA1c를 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/glucose.html","position":15,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"15. 혈당과 인슐린","item":"https://medical.euiyun.com/body/chapters/glucose.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<!--head:end-->
+<style>
+  .gl-steps { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 18px 0; }
+  .gl-steps span { font-size: 12.5px; padding: 2px 9px; border-radius: 999px; background: var(--surface); color: var(--text-dim); border: 1px solid var(--border); }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="glucose">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 15</div>
+    <h1>혈당과 인슐린</h1>
+    <p class="lead">피 1 L에는 포도당이 1 g쯤 녹아 있다. 온몸의 피를 다 합쳐도 각설탕 한두 개, 약 5 g이다. 그런데 점심 한 끼에 밥과 반찬으로 90 g의 탄수화물이 들어온다. 그 많은 포도당이 들어와도 혈당은 잠깐 오를 뿐 몇 시간 안에 제자리로 돌아온다. 이 장은 그 일을 해내는 호르몬 인슐린과, 그 조절이 느슨해질 때 생기는 인슐린 저항성과 당뇨병을 시뮬레이터로 따라간다. 다온의 점심 뒤 혈당과 대회 전 탄수화물도 계산한다.</p>
+    <ul class="objectives">
+      <li>식후 혈당과 인슐린 곡선을 읽고, 혈당이 제자리로 돌아오는 경로를 설명한다.</li>
+      <li>인슐린 감수성과 인슐린 분비, 두 손잡이로 정상·인슐린 저항성·제2형 당뇨병을 구별한다.</li>
+      <li>식사의 양·종류와 식후 걷기가 혈당 곡선을 어떻게 바꾸는지 본다.</li>
+      <li>혈당이 신장 역치를 넘으면 소변으로 새는 원리와 HbA1c가 평균 혈당을 반영하는 원리를 안다.</li>
+      <li>공복 혈당·HbA1c의 진단 경계값을 알고, 기준이 학회·시기에 따라 다르다는 것을 안다.</li>
+    </ul>
+  </header>
+
+  <section id="ogtt">
+    <h2>밥을 먹은 뒤 혈당 곡선</h2>
+    <p><span class="term">혈당</span><span class="en">(Blood glucose)</span>은 혈액 속 포도당 농도로, 보통 mg/dL로 잰다. 밤새 굶은 아침의 <span class="term">공복 혈당</span><span class="en">(Fasting plasma glucose)</span>은 약 70~99 mg/dL다. 이때는 간이 저장해 둔 글리코겐을 풀고 새로 포도당을 만들어 뇌가 쓰는 만큼 내보낸다.</p>
+    <p>탄수화물을 먹으면 장에서 흡수된 포도당이 혈액으로 쏟아진다. 혈당이 오르면 이자(췌장)의 <span class="term">베타 세포</span><span class="en">(β cell)</span>가 <span class="term">인슐린</span><span class="en">(Insulin)</span>을 내보낸다. 인슐린은 근육과 지방 세포에 포도당을 받아들이라고, 간에는 포도당을 그만 내보내고 글리코겐으로 저장하라고 신호한다. 병원에서는 포도당 75 g을 마시고 2시간 동안 혈당을 재는 <span class="term">경구 포도당 부하 검사</span><span class="en">(Oral glucose tolerance test, OGTT)</span>로 이 능력을 본다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-17-19.webp" width="1200" height="1686" loading="lazy" decoding="async" alt="고혈당에는 인슐린, 저혈당에는 글루카곤이 나와 혈당을 정상 범위로 되돌리는 조절 고리">
+      <figcaption><b>혈당 조절의 지도.</b> 가운데(START)가 정상 혈당 약 70~110 mg/dL이다. 혈당이 오르면(위) 이자의 베타세포가 인슐린을 내고, 인슐린은 몸 세포가 포도당을 받아들이게 하며 간이 포도당을 글리코겐으로 저장하게 한다. 혈당이 떨어지면(아래) 알파세포가 글루카곤을 내고, 글루카곤은 간이 글리코겐을 풀고(글리코겐 분해) 아미노산과 글리세롤로 새 포도당을 만들게(포도당 신생) 한다. 혈액 속 포도당은 겨우 5 g 남짓이라 한 끼 식사의 탄수화물이 들어오면 금방 넘친다. 근육은 가장 큰 흡수처이고, 뇌는 인슐린과 상관없이 늘 포도당을 쓴다.<span class="fig-words">Hyperglycemia 고혈당 · Hypoglycemia 저혈당 · Insulin/Glucagon release 인슐린/글루카곤 분비 · Beta/Alpha cells of pancreas 이자의 베타/알파 세포 · Glycogenolysis 글리코겐 분해 · Gluconeogenesis 포도당 신생 · Blood glucose concentration decreases/increases 혈당이 내려감/올라감</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/17-9-the-endocrine-pancreas">그림 17.19</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>혈당 조절의 두 주인공인 이자와 간이 몸 속 어디에 있는지 보자. 이자는 위 뒤에 가로로 누워 있어 앞에서는 잘 보이지 않는다. 창자에서 흡수된 포도당은 문맥을 타고 간을 먼저 지난 뒤 온몸으로 간다.</p>
+
+    <div class="sim model3d" id="sim-gl-3d" data-model="digestive" data-orbit="0deg 82deg auto" data-desc="실제 인체 데이터로 만든 소화 기관 3D 모델을 돌리며 위 뒤에 숨은 이자와 간, 창자의 위치 관계를 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 이자와 간</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="liver" title="포도당을 글리코겐으로 저장하고 다시 푼다">간</button><button type="button" data-part="stomach">위</button><button type="button" data-part="pancreas" title="인슐린(베타세포)과 글루카곤(알파세포)">이자</button><button type="button" data-part="gallbladder">쓸개</button><button type="button" data-part="duodenum">샘창자</button><button type="button" data-part="smallint" title="포도당이 흡수되는 곳">작은창자</button><button type="button" data-part="largeint">큰창자</button><button type="button" data-part="spleen">지라</button><button type="button" data-part="esophagus">식도</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="liver,stomach,smallint,largeint">앞쪽 기관 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① "앞쪽 기관 반투명"을 눌러 위 뒤의 이자를 찾는다. ② 이자의 머리가 샘창자의 C자 고리 안에 들어가 있는 것을 본다. ③ 간을 끄고 쓸개가 간 아래에 붙어 있던 자리를 본다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <p>아래에서 네 가지 몸에 포도당 75 g을 마시게 해 보자. 위는 혈당, 아래는 인슐린이다. 세로선을 끌면 그 순간의 값이 나온다.</p>
+
+    <div class="sim" id="sim-gl-ogtt" data-desc="포도당 75 g을 마신 뒤 정상, 인슐린 저항성, 제2형, 제1형 당뇨병에서 혈당과 인슐린 곡선이 어떻게 다른지 세로선을 끌어 읽는다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>포도당 부하 검사의 네 곡선</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="og-cv"></canvas><span class="hint">세로선을 끈다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>몸</span><div class="seg" id="og-p"><button data-value="normal" class="on">정상</button><button data-value="ir">인슐린 저항성</button><button data-value="t2">제2형</button><button data-value="t1">제1형</button></div></div>
+          <label class="check"><input type="checkbox" id="og-ref" checked> 정상 곡선 겹쳐 보기</label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--glu)"></i>혈당</span><span><i style="background:var(--ins)"></i>인슐린</span><span><i style="background:var(--text-faint)"></i>정상(비교)</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">공복</span><span class="v" id="og-o-f">—</span></div>
+        <div class="stat"><span class="k">최고 혈당</span><span class="v" id="og-o-p">—</span></div>
+        <div class="stat"><span class="k">2시간 혈당</span><span class="v" id="og-o-2">—</span></div>
+        <div class="stat"><span class="k">최고 인슐린</span><span class="v" id="og-o-i">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "정상"에서 혈당이 약 35분에 150 근처까지 올랐다가 2시간에 약 105로 내려온다. 인슐린은 혈당을 따라 약 65 µU/mL까지 오른다. ② "인슐린 저항성"을 고른다. 혈당 곡선은 정상과 비슷한데 인슐린이 약 200으로 세 배다. 몸이 인슐린을 많이 짜내서 겨우 버티는 상태다. ③ "제2형"은 공복부터 높고 2시간에도 200 근처에 머문다. ④ "제1형"은 인슐린이 0이라 혈당이 300을 넘고 내려오지 않는다. (버그만 최소 모델 + 장 흡수 + 인슐린 분비, 70 kg 성인. 교육용 모델이며 진단에 쓰지 않는다.)</div>
+    </div>
+
+    <p>2시간 혈당이 140 mg/dL 미만이면 정상, 140~199면 <span class="term">내당능장애</span><span class="en">(Impaired glucose tolerance)</span>, 200 이상이면 당뇨병 범위로 본다. 인슐린 저항성 곡선은 혈당만 보면 정상처럼 보인다. 혈당이 오르기 몇 년 전부터 인슐린이 먼저 오른다는 것이 이 장의 중요한 이야기 가운데 하나다.</p>
+  </section>
+
+  <section id="model">
+    <h2>되먹임 고리: 포도당, 인슐린, 인슐린의 작용</h2>
+    <p>혈당 조절을 가장 단순하게 쓴 수학 모델이 <span class="term">최소 모델</span><span class="en">(Minimal model)</span>이다. 1979년 버그만이 정맥 포도당 검사를 해석하려고 만들었다. 구획은 셋뿐이다. 혈당 \(G\), 혈중 인슐린 \(I\), 그리고 인슐린이 조직에 실제로 미치는 작용 \(X\)다. 인슐린은 혈관에서 조직 사이로 스며들어야 일을 하므로 \(X\)는 \(I\)보다 늦게 오르고 늦게 내려간다.</p>
+    <div class="formula">$$\frac{dG}{dt} = -\big(S_G + X\big)\,G + S_G\,G_b + \frac{R_a}{V_G}, \qquad \frac{dX}{dt} = -p_2\,X + p_2\,S_I\,(I - I_b)$$
+      <div class="where">\(G\) 혈당(mg/dL, 공복 \(G_b\) 약 90), \(S_G\) 포도당 자체의 효과(약 0.02 /min: 인슐린 없이도 혈당이 높으면 간이 덜 내보내고 조직이 더 받는다), \(R_a\) 장에서 들어오는 속도(mg/min), \(V_G\) 포도당이 퍼지는 부피(약 1.7 dL/kg), \(S_I\) 인슐린 감수성, \(p_2\) 작용이 오르내리는 속도(약 0.05 /min, 시간 상수 약 20분).</div>
+    </div>
+    <p>아래 애니메이션은 이 고리를 그대로 그린다. 점의 흐름은 포도당과 인슐린이 움직이는 속도에 비례한다. 재생해서 식사 뒤 4시간을 지켜보자.</p>
+
+    <div class="sim" id="sim-gl-loop" data-desc="장 → 혈당 → 이자 → 인슐린 → 인슐린 작용 → 조직 흡수로 이어지는 최소 모델의 구획과 흐름을 애니메이션으로 보며 식사 뒤 4시간을 따라간다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>최소 모델의 고리를 움직여 보기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="lp-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>식사 탄수화물 <output id="lp-g-out"></output></span><input type="range" id="lp-g" min="20" max="150" step="5" value="75"></label>
+          <label class="ctrl"><span>인슐린 감수성 <output id="lp-s-out"></output></span><input type="range" id="lp-s" min="0.2" max="1.5" step="0.05" value="1"></label>
+          <div class="btn-row"><button class="btn primary" id="lp-go">일시정지</button><button class="btn" id="lp-re">처음부터</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--glu)"></i>포도당</span><span><i style="background:var(--ins)"></i>인슐린</span><span><i style="background:var(--accent-2)"></i>인슐린 작용 X</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">식후</span><span class="v" id="lp-o-t">—</span></div>
+        <div class="stat"><span class="k">혈당 G</span><span class="v" id="lp-o-g">—</span></div>
+        <div class="stat"><span class="k">인슐린 I</span><span class="v" id="lp-o-i">—</span></div>
+        <div class="stat"><span class="k">작용 X</span><span class="v" id="lp-o-x">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 재생하며 순서를 본다. 장에서 포도당이 들어와 혈당이 먼저 오르고, 이자가 인슐린을 내고, 인슐린 작용 X는 그보다 늦게 최고에 이른다. ② 혈당이 다시 공복으로 돌아온 뒤에도 X가 한동안 남아 혈당이 살짝 공복 아래로 내려가는 것을 본다. 늦은 되먹임의 흔적이다. ③ 감수성을 0.3으로 낮춘다. 같은 인슐린으로 X가 작게 올라 혈당이 늦게 내려온다. (BD.glucose, 70 kg 성인. 시간은 1초에 약 10분.)</div>
+    </div>
+  </section>
+
+  <section id="knobs">
+    <h2>두 손잡이: 감수성과 분비</h2>
+    <p>혈당을 지키는 힘은 두 가지의 곱이다. 인슐린이 얼마나 잘 듣는가(<span class="term">인슐린 감수성</span><span class="en">(Insulin sensitivity)</span>)와 베타 세포가 인슐린을 얼마나 낼 수 있는가(<span class="term">인슐린 분비</span><span class="en">(Insulin secretion)</span>)다. 감수성이 떨어진 상태를 <span class="term">인슐린 저항성</span><span class="en">(Insulin resistance)</span>이라 한다. 복부 지방, 운동 부족, 수면 부족, 나이, 유전이 감수성을 낮춘다.</p>
+    <p>감수성이 떨어져도 베타 세포가 인슐린을 더 내면 혈당은 정상으로 유지된다. 이것을 <b>보상</b>이라 한다. 제2형 당뇨병은 보상하던 베타 세포가 지쳐 분비가 감수성을 따라가지 못할 때 드러난다. 아래 평면 위의 점을 끌어 두 손잡이를 함께 움직여 보자. 배경색은 그 자리의 혈당 판정이다.</p>
+    <div class="formula">$$\text{HOMA-IR} = \frac{\text{공복 혈당(mg/dL)} \times \text{공복 인슐린}(\mu\text{U/mL})}{405}$$
+      <div class="where">공복 값 두 개로 인슐린 저항성을 어림하는 지표. 정상은 대략 1~2 안팎이고, 약 2.5를 넘으면 저항성을 의심한다(기준은 인구 집단마다 다르다).</div>
+    </div>
+
+    <div class="sim" id="sim-gl-knobs" data-desc="인슐린 감수성(가로)과 분비(세로) 평면 위의 점을 끌어 정상, 보상된 인슐린 저항성, 당뇨 전단계, 제2형 당뇨병을 오가며 공복 혈당·인슐린, HOMA-IR, 2시간 혈당을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>감수성 × 분비 평면</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="kn-cv"></canvas><span class="hint">점을 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--ok)"></i>정상</span><span><i style="background:var(--warn)"></i>당뇨 전단계</span><span><i style="background:var(--bad)"></i>당뇨병 범위</span><span><i style="background:var(--text-faint)"></i>같은 처리 능력(감수성 × 분비) 곡선</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">공복 혈당</span><span class="v" id="kn-o-g">—</span></div>
+        <div class="stat"><span class="k">공복 인슐린</span><span class="v" id="kn-o-i">—</span></div>
+        <div class="stat"><span class="k">HOMA-IR</span><span class="v" id="kn-o-h">—</span></div>
+        <div class="stat"><span class="k">2시간 혈당</span><span class="v" id="kn-o-2">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 정상(1, 1)에서 왼쪽 위(감수성 0.3, 분비 3배)로 끈다. 혈당은 거의 정상인데 공복 인슐린과 HOMA-IR이 크게 오른다. 보상된 인슐린 저항성이다. ② 거기서 아래로 끌어 분비를 줄인다. 같은 감수성에서 분비가 무너지는 순간 노랑, 빨강으로 넘어간다. 제2형 당뇨병의 길이다. ③ 점선 곡선을 따라 움직인다. 감수성 × 분비가 같으면 판정도 거의 같다. 운동과 체중 감량이 감수성을 올리면 같은 베타 세포로도 오른쪽 아래(정상)로 돌아올 수 있다. (공복 값은 HOMA 모델을 거꾸로 풀어 얻고, 75 g 부하는 BD.glucose로 계산했다. 판정은 공복 100·126, 2시간 140·200 mg/dL 기준.)</div>
+    </div>
+
+    <p>인슐린 저항성은 혈당이 오르기 10년쯤 전부터 시작된다고 알려져 있다. 그동안 혈당 검사는 정상이고, 인슐린만 높다. 이 시기에 운동, 체중 감량, 수면 같은 생활 변화가 감수성을 올리면 베타 세포의 부담이 줄어 진행을 늦추거나 막을 수 있다는 것이 여러 대규모 연구의 결론이다.</p>
+  </section>
+
+  <section id="meal">
+    <h2>같은 탄수화물, 다른 곡선</h2>
+    <p>혈당 곡선의 높이는 탄수화물의 양뿐 아니라 흡수 속도로도 달라진다. 흰빵이나 단 음료처럼 빨리 소화되는 음식은 곡선이 높고 뾰족하고, 통곡물·콩·채소처럼 천천히 소화되는 음식은 낮고 넓다. 이 차이를 숫자로 나타낸 것이 <span class="term">혈당 지수</span><span class="en">(Glycemic index, GI)</span>다. 같은 탄수화물에 지방이나 단백질, 식이 섬유를 곁들이면 위에서 장으로 넘어가는 속도가 느려져 곡선이 낮아진다.</p>
+
+    <div class="sim" id="sim-gl-meal" data-desc="식사의 탄수화물 양, 흡수 속도(혈당 지수), 지방을 곁들이는지를 바꾸며 식후 혈당의 최고점과 곡선 아래 넓이(AUC)를 다온의 점심과 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>양, 속도, 지방</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ml-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>탄수화물 <output id="ml-g-out"></output></span><input type="range" id="ml-g" min="10" max="180" step="5" value="90"></label>
+          <label class="ctrl"><span>흡수 속도 <output id="ml-gi-out"></output></span><input type="range" id="ml-gi" min="0.5" max="2" step="0.1" value="1"></label>
+          <label class="check"><input type="checkbox" id="ml-fat"> 지방·단백질·섬유를 곁들임(위 배출 지연)</label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--glu)"></i>혈당</span><span><i style="background:var(--text-faint)"></i>다온의 점심(90 g, 보통 속도)</span><span><i style="background:var(--carb)"></i>장에서 들어오는 속도</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">최고 혈당</span><span class="v" id="ml-o-p">—</span></div>
+        <div class="stat"><span class="k">최고 시각(식후)</span><span class="v" id="ml-o-t">—</span></div>
+        <div class="stat"><span class="k">곡선 아래 넓이</span><span class="v" id="ml-o-a">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 값이 다온의 점심이다. 최고 약 163 mg/dL(식후 34분). ② 흡수 속도를 1.8배로 올린다(단 음료, 흰빵). 같은 90 g인데 최고가 약 210으로 뛴다. ③ 속도를 1로 돌리고 "곁들임"을 켠다. 최고가 약 136으로 내려간다. 넓이(총량)는 크게 줄지 않는다. 같은 포도당이 천천히 들어올 뿐이다. ④ 탄수화물을 180 g으로 올린다. 곡선은 양에 비례해 커진다. (다온 78 kg, 공복 98 mg/dL. 혈당 지수는 흡수 속도의 배율로 단순화했다.)</div>
+    </div>
+  </section>
+
+  <section id="walk">
+    <h2>식후 걷기</h2>
+    <p>근육은 수축할 때 인슐린과 상관없이 포도당 문(GLUT4)을 세포 표면으로 꺼내 놓는다. 그래서 식후에 걷기만 해도 근육이 혈액의 포도당을 직접 빨아들인다. 운동한 뒤 몇 시간은 인슐린 감수성 자체도 오른다. 아래 시간축의 걷기 막대를 끌어 시작 시각을 옮기고, 막대의 오른쪽 끝을 끌어 길이를 바꿔 보자.</p>
+
+    <div class="sim" id="sim-gl-walk" data-desc="식후 혈당 그래프 위의 걷기 막대를 끌어 시작 시각과 길이를 바꾸고, 걷기의 세기에 따라 다온의 식후 혈당 최고점과 넓이가 얼마나 줄어드는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>언제, 얼마나 걸을까</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="wk-cv"></canvas><span class="hint">걷기 막대를 끈다 · 오른쪽 끝은 길이</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>걷기 세기 <output id="wk-x-out"></output></span><input type="range" id="wk-x" min="0.1" max="1" step="0.05" value="0.4"></label>
+          <label class="ctrl"><span>점심 탄수화물 <output id="wk-g-out"></output></span><input type="range" id="wk-g" min="30" max="150" step="5" value="90"></label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--glu)"></i>걸었을 때</span><span><i style="background:var(--text-faint)"></i>앉아 있었을 때</span><span><i style="background:var(--seg-musc)"></i>걷기</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">최고 혈당</span><span class="v" id="wk-o-p">—</span></div>
+        <div class="stat"><span class="k">앉아 있을 때보다</span><span class="v" id="wk-o-d">—</span></div>
+        <div class="stat"><span class="k">넓이 감소</span><span class="v" id="wk-o-a">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 값(식후 15분부터 30분 걷기)에서 최고가 약 163에서 약 140으로 내려간다. ② 막대를 식후 90분 뒤로 끈다. 이미 최고점이 지나서 최고는 그대로이고 꼬리만 줄어든다. 식후 걷기는 일찍 시작할수록 최고를 낮춘다. ③ 세기를 1로 올린다. 아주 센 운동에서는 혈당이 공복 아래로 내려갈 수 있다(이 모델은 운동 중 간의 포도당 방출 증가를 넣지 않았다). (다온, 점심 90 g. 운동은 포도당 흡수와 인슐린 감수성을 함께 올리는 것으로 근사했다.)</div>
+    </div>
+  </section>
+
+  <section id="type1">
+    <h2>제1형 당뇨병: 인슐린을 밖에서 넣는다</h2>
+    <p><span class="term">제1형 당뇨병</span><span class="en">(Type 1 diabetes)</span>은 면역계가 베타 세포를 공격해 인슐린을 거의 만들지 못하는 병이다. 대개 어린 나이에 시작되며, 인슐린 주사나 펌프가 없으면 살 수 없다. 식사 인슐린은 양과 시각이 모두 중요하다. 피하에 넣은 속효성 인슐린은 혈액에 닿는 데 시간이 걸려 최고 작용이 약 1시간 뒤다. 그래서 너무 늦게 넣으면 식후 혈당이 치솟고, 너무 많이 넣으면 몇 시간 뒤 <span class="term">저혈당</span><span class="en">(Hypoglycemia)</span>이 온다.</p>
+
+    <div class="callout warn">
+      <strong>인슐린 용량은 스스로 바꾸지 않는다</strong>
+      아래 시뮬레이터의 "단위"는 교육용 모델 안의 숫자일 뿐 실제 인슐린 용량과 대응하지 않는다. 인슐린 용량과 시각은 사람마다, 식사·활동·질병에 따라 크게 다르며, 반드시 담당 의료진과 정한 계획을 따른다. 어떤 웹사이트나 계산기의 결과로도 용량을 바꾸지 않는다. 저혈당(70 mg/dL 미만)은 떨림, 식은땀, 혼란을 일으키고 심하면 의식을 잃을 수 있는 응급 상황이다.
+    </div>
+
+    <p>아래 그래프의 주사 표시(세로 막대)를 좌우로 끌면 주사 시각이, 위아래로 끌면 양이 바뀐다. 식사는 탄수화물 60 g이다.</p>
+
+    <div class="sim" id="sim-gl-t1" data-desc="제1형 당뇨병 모델에서 식사 인슐린 주사 표시를 끌어 시각과 양을 바꾸면 늦게 넣을 때의 고혈당과 많이 넣을 때의 저혈당(70 미만)이 어떻게 생기는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>식사 인슐린의 양과 시각</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="t1-cv"></canvas><span class="hint">주사 표시를 좌우·위아래로 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--glu)"></i>혈당</span><span><i style="background:var(--ins)"></i>혈중 인슐린</span><span><i style="background:var(--bad)"></i>저혈당 70 미만</span><span><i style="background:var(--warn)"></i>고혈당 180 초과</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">주사</span><span class="v" id="t1-o-d">—</span></div>
+        <div class="stat"><span class="k">최고 혈당</span><span class="v" id="t1-o-p">—</span></div>
+        <div class="stat"><span class="k">최저 혈당</span><span class="v" id="t1-o-m">—</span></div>
+        <div class="stat"><span class="k">70~180 안에 있던 시간</span><span class="v" id="t1-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 식사 30분 전에 10단위(처음 값)에서 최고가 약 135, 최저가 약 100이다. ② 같은 양을 식후 30분으로 끈다. 인슐린이 늦게 도착해 최고가 200을 훌쩍 넘고, 늦게 남은 인슐린 때문에 몇 시간 뒤 혈당이 더 내려간다. ③ 양을 위로 끌어 20단위 넘게 넣는다. 식후 2~3시간 무렵 빨간 저혈당 띠에 닿는다. 식후 혈당만 낮추려다 생기는 위험이다. (제1형 모델: 자체 인슐린 0, 기저 인슐린은 맞은 상태로 공복 120 mg/dL을 가정. "단위"는 모델 안의 상대 크기다.)</div>
+    </div>
+  </section>
+
+  <section id="kidney">
+    <h2>신장 역치: 혈당이 소변으로 샐 때</h2>
+    <p>콩팥은 하루 약 180 L의 혈장을 걸러 그 안의 포도당을 거의 전부 다시 흡수한다. 그런데 다시 흡수하는 운반체(SGLT2 등)의 처리 능력에는 한계가 있다. 혈당이 약 180~200 mg/dL을 넘으면 걸러진 포도당이 운반체의 최대 속도를 넘어서 소변으로 새기 시작한다. 이 경계를 <span class="term">신장 역치</span><span class="en">(Renal threshold)</span>라 한다. 당뇨병이라는 이름(소변에서 단맛이 나는 병)도, 소변이 많아지고 목이 마른 증상도 여기서 나온다(<a href="kidney.html">18장</a>).</p>
+
+    <div class="sim" id="sim-gl-kidney" data-desc="혈당 손잡이를 끌어 콩팥이 거르는 포도당, 다시 흡수하는 포도당, 소변으로 버리는 포도당을 비교하고, 약 180~200 mg/dL의 신장 역치에서 포도당이 새기 시작하는 것을 네프론 애니메이션으로 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>여과, 재흡수, 배설</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="kd-cv"></canvas><span class="hint">혈당 손잡이를 좌우로 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--text)"></i>걸러진 양</span><span><i style="background:var(--ok)"></i>다시 흡수</span><span><i style="background:var(--bad)"></i>소변으로 배설</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">혈당</span><span class="v" id="kd-o-g">—</span></div>
+        <div class="stat"><span class="k">걸러진 포도당</span><span class="v" id="kd-o-f">—</span></div>
+        <div class="stat"><span class="k">소변으로</span><span class="v" id="kd-o-e">—</span></div>
+        <div class="stat"><span class="k">하루로 치면</span><span class="v" id="kd-o-d">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 혈당 100에서는 분당 125 mg이 걸러져 전부 돌아간다. 소변에 포도당이 없다. ② 180~200으로 끈다. 처리 능력이 낮은 네프론부터 넘쳐 소변에 포도당이 비치기 시작한다(곡선이 꺾이는 "퍼짐"). ③ 300으로 끈다. 여과량은 375 mg/min이지만 네프론의 처리 능력이 분포하므로 재흡수는 약 347, 배설은 약 28 mg/min이다. 400에서는 재흡수가 약 374 mg/min으로 최대 수송량 375에 가까워지고 배설은 약 126 mg/min이다. 그 포도당이 물을 끌고 나가 소변이 많아진다. (GFR 125 mL/min, 최대 수송량 평균 375 ± 70 mg/min의 네프론 분포를 가정한 BD.renalGlucose.)</div>
+    </div>
+  </section>
+
+  <section id="a1c">
+    <h2>하루의 혈당과 HbA1c</h2>
+    <p>혈당은 하루에도 식사마다 오르내린다. 그래서 한 번 잰 혈당보다 몇 달의 평균을 보여 주는 지표가 쓸모 있다. 적혈구 속 헤모글로빈에는 혈당이 높을수록 포도당이 더 많이 들러붙는다. 이렇게 포도당이 붙은 헤모글로빈의 비율이 <span class="term">당화혈색소</span><span class="en">(HbA1c)</span>다. 적혈구가 약 120일 사는 동안 쌓이므로 지난 2~3개월의 평균 혈당을 반영한다.</p>
+    <div class="formula">$$\text{평균 혈당(mg/dL)} \approx 28.7 \times \text{HbA1c}(\%) - 46.7$$
+      <div class="where">HbA1c 5.6 %는 평균 약 114 mg/dL, 6.5 %는 약 140 mg/dL에 해당한다. 이는 집단의 회귀식이며 개인차를 ±15 mg/dL로 한정할 수 없다. ADAG 원 연구에서 HbA1c 7 %의 평균 혈당 추정치는 154 mg/dL였고, 표의 95 % 구간은 123~185 mg/dL였다. 적혈구 수명·빈혈 등으로 해석이 달라질 수 있다(<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2742903/">ADAG 원 연구</a>).</div>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>구분</th><th>공복 혈당(mg/dL)</th><th>75 g 부하 2시간(mg/dL)</th><th>HbA1c(%)</th></tr></thead>
+      <tbody>
+        <tr><td>정상</td><td class="num">70~99</td><td class="num">&lt; 140</td><td class="num">&lt; 5.7</td></tr>
+        <tr><td>당뇨 전단계</td><td class="num">100~125</td><td class="num">140~199</td><td class="num">5.7~6.4</td></tr>
+        <tr><td>당뇨병 범위</td><td class="num">≥ 126</td><td class="num">≥ 200</td><td class="num">≥ 6.5</td></tr>
+      </tbody>
+    </table></div>
+    <p>위 표는 국내 진료 지침에서 흔히 쓰는 경계값이다. 진단 기준은 학회와 시기에 따라 조금씩 다르고, 실제 진단은 검사를 반복하고 다른 정보와 함께 의료진이 내린다. 아래 시뮬레이터는 연속 혈당 측정기처럼 하루의 혈당을 그린다. 식사 표시를 좌우로 끌어 시각을, 위아래로 끌어 탄수화물 양을 바꿔 보자.</p>
+
+    <div class="sim" id="sim-gl-day" data-desc="연속 혈당 측정기처럼 24시간 혈당을 그리고, 세 끼와 간식의 시각·양을 끌어 바꾸고 저녁 운동을 더하면서 평균 혈당, 목표 범위 안 시간, 평균에 해당하는 HbA1c를 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>하루의 혈당과 평균</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view monitor"><canvas id="dy-cv"></canvas><span class="hint">식사 표시를 끈다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>몸</span><div class="seg" id="dy-p"><button data-value="daon" class="on">다온</button><button data-value="ir">인슐린 저항성</button><button data-value="t2">제2형</button></div></div>
+          <label class="check"><input type="checkbox" id="dy-ex" checked> 저녁 7시 40분 달리기</label>
+          <label class="check"><input type="checkbox" id="dy-snack" checked> 오후 간식</label>
+          <div class="btn-row"><button class="btn" id="dy-re">처음 식사로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">하루 평균</span><span class="v" id="dy-o-m">—</span></div>
+        <div class="stat"><span class="k">70~180 안</span><span class="v" id="dy-o-r">—</span></div>
+        <div class="stat"><span class="k">평균에 해당하는 HbA1c</span><span class="v" id="dy-o-a">—</span></div>
+        <div class="stat"><span class="k">새벽 공복</span><span class="v" id="dy-o-f">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 다온의 하루는 평균 약 106 mg/dL, 하루 종일 70~180 안이다. 평균을 환산한 HbA1c는 약 5.3 %로 검진의 5.6 %보다 조금 낮다. 하루 한 번의 계산은 석 달의 평균과 다르고, 환산식 자체에도 개인차가 있으며, 그 차이를 고정된 ±0.5 %포인트 한계로 볼 수는 없다. ② "제2형"을 고른다. 평균이 크게 오르고 식후마다 180을 넘는다. ③ 저녁 식사를 위로 끌어 탄수화물을 150 g으로 늘리고 달리기를 끈다. 한 끼의 큰 산이 평균을 얼마나 움직이는지 본다. (BD.glucose를 24시간 돌렸다. 하루로 계산한 HbA1c는 평균 혈당을 환산한 참고값이다. 실제 HbA1c는 2~3개월의 평균이다.)</div>
+    </div>
+
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델이며 진단이나 치료에 쓰지 않습니다. 목마름, 잦은 소변, 이유 없는 체중 감소 같은 증상이 있거나 혈당·HbA1c 수치가 걱정되면 의료진과 상담하세요.</p>
+  </section>
+
+  <section id="daon">
+    <h2>다온의 점심과 대회 전 탄수화물</h2>
+    <p>다온의 공복 혈당은 98 mg/dL로 정상 범위의 위쪽 끝, HbA1c는 5.6 %로 정상이지만 전단계(5.7 %) 바로 아래다. 사무실에서 앉아서 일하고 운동을 거의 하지 않던 생활의 흔적일 수 있다. 점심으로 탄수화물 90 g(밥 한 공기 반과 반찬)을 먹고 바로 자리에 앉으면 어떻게 될까. 그리고 대회 전날과 당일, 다온은 탄수화물을 얼마나 먹어야 할까.</p>
+    <p>아래 위쪽은 다온의 점심 혈당이다. 걷기 막대를 끌어 옮길 수 있다. 아래쪽은 대회 동안의 글리코겐 저장고다. 대회 전날의 탄수화물과 거리를 바꿔 보자.</p>
+
+    <div class="sim" id="sim-gl-daon" data-big data-desc="다온의 점심(탄수화물 90 g) 혈당 곡선에 식후 걷기를 끌어 넣고, 대회 전날 탄수화물 섭취와 거리(10 km, 하프, 풀코스)에 따라 근육·간 글리코겐이 대회 중 얼마나 남는지 계산한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>다온의 점심, 그리고 대회의 연료</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="dn-cv"></canvas><span class="hint">걷기 막대를 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>점심 탄수화물 <output id="dn-g-out"></output></span><input type="range" id="dn-g" min="30" max="150" step="5" value="90"></label>
+          <label class="check"><input type="checkbox" id="dn-walk" checked> 식후 30분 걷기</label>
+          <label class="ctrl"><span>대회 전날 탄수화물 <output id="dn-c-out"></output></span><input type="range" id="dn-c" min="2" max="12" step="0.5" value="5"></label>
+          <div class="ctrl"><span>거리</span><div class="seg" id="dn-d"><button data-value="10" class="on">10 km</button><button data-value="21">하프</button><button data-value="42">풀코스</button></div></div>
+          <label class="check"><input type="checkbox" id="dn-drink"> 달리는 중 시간당 탄수화물 40 g</label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--glu)"></i>혈당(걷기)</span><span><i style="background:var(--text-faint)"></i>앉아 있을 때</span><span><i style="background:var(--carb)"></i>근육 글리코겐</span><span><i style="background:var(--seg-meta)"></i>간 글리코겐</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">점심 최고 혈당</span><span class="v" id="dn-o-p">—</span></div>
+        <div class="stat"><span class="k">걷기 효과</span><span class="v" id="dn-o-w">—</span></div>
+        <div class="stat"><span class="k">대회 중 쓴 탄수화물</span><span class="v" id="dn-o-u">—</span></div>
+        <div class="stat"><span class="k">결승선의 글리코겐</span><span class="v" id="dn-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 걷기를 끄고 켠다. 점심 최고가 약 163에서 약 140 mg/dL로, 약 3시간 걸리던 회복도 줄어든다. ② 거리 10 km에서는 전날 탄수화물이 체중 1 kg당 5 g이어도 결승선에 글리코겐이 절반 넘게 남는다. 10 km에 "탄수화물 몰아 먹기"는 필요 없다. ③ 풀코스를 고른다. 33 km 근처에서 저장고가 바닥나며 "벽"에 부딪힌다. 전날 탄수화물을 10 g/kg으로 올리면 겨우, 달리는 중 탄수화물까지 켜면 여유 있게 결승선까지 버틴다. (점심은 BD.glucose, 다온 78 kg·공복 98. 글리코겐은 이 장에서 만든 어림 모델: 달리는 다리 근육 약 14 kg × (12 + 2 × 전날 g/kg) g/kg, 최대 30 g/kg, 그중 80 %를 꺼내 쓸 수 있다고 보고, 간 약 80 g, 뇌가 쓰는 포도당 약 0.08 g/min을 더했다. 연료 비율은 BD.steady의 RER로 계산했다.)</div>
+    </div>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 15장</span></div>
+      <h4>공복 혈당 98, HbA1c 5.6 %, 점심 뒤 최고 약 163 mg/dL</h4>
+      <p>다온의 공복 혈당 98 mg/dL은 정상(70~99)의 위쪽 끝, HbA1c 5.6 %는 평균 혈당 약 114 mg/dL에 해당하는 정상 값이다. 둘 다 당뇨 전단계 경계(100, 5.7 %) 바로 아래다. 점심으로 탄수화물 90 g을 먹고 앉아 있으면 혈당이 식후 약 34분에 <b>약 163 mg/dL</b>까지 올랐다가 약 3시간 뒤에 공복 수준으로 돌아온다. 식후 15분부터 30분 걸으면 최고가 <b>약 140 mg/dL</b>로 내려간다. 대회 속도(RER 약 0.90)에서는 연료의 약 3분의 2가 탄수화물이라 10 km 동안 약 120 g의 탄수화물을 쓴다. 평소 식사(전날 체중 1 kg당 5 g)로 채운, 꺼내 쓸 수 있는 약 330 g이면 충분하고 결승선에도 약 200 g이 남는다. 탄수화물을 며칠 몰아 먹는 전략은 90분 넘게 달리는 경기에서 의미가 있다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>다온의 혈당 조절은 정상이지만 경계에 가깝다. 식후 걷기와 12주 달리기 훈련은 인슐린 감수성을 올리는 쪽으로 작용한다. 10 km 대회에 필요한 탄수화물은 평소 식사로 채워진다.</div><div><b>아직 모르는 것</b>출발 신호에 몸이 반응하는 데 걸리는 시간과, 달리는 동안 심장·혈관·땀샘을 한꺼번에 움직이는 신경의 길.</div><div><b>다음 단계</b><a href="nerve.html">16장</a>에서 신경 신호가 다온의 다리까지 가는 길을 잰다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>공복 혈당은 약 70~99 mg/dL. 식사 뒤 혈당이 오르면 베타 세포가 인슐린을 내고, 인슐린은 근육·지방의 흡수와 간의 저장을 늘려 2~3시간 안에 혈당을 되돌린다.</li>
+      <li>최소 모델: 혈당 G, 인슐린 I, 인슐린 작용 X. X는 I보다 늦게 움직여 되먹임이 늦다.</li>
+      <li>혈당 조절 능력은 감수성 × 분비다. 인슐린 저항성은 분비가 보상하는 동안 혈당이 정상이고 인슐린만 높다. 분비가 따라가지 못하면 제2형 당뇨병이 드러난다. HOMA-IR = 공복 혈당 × 공복 인슐린 ÷ 405.</li>
+      <li>같은 탄수화물도 빨리 흡수되면 곡선이 높고 뾰족하다. 식후 걷기는 근육이 인슐린 없이 포도당을 받아들이게 해 최고점을 낮춘다.</li>
+      <li>혈당이 약 180~200 mg/dL을 넘으면 콩팥의 재흡수 능력을 넘어 포도당이 소변으로 샌다(신장 역치).</li>
+      <li>HbA1c는 2~3개월 평균 혈당을 반영한다. 평균 ≈ 28.7 × HbA1c − 46.7. 정상 &lt; 5.7 %, 당뇨병 범위 ≥ 6.5 %(기준은 학회·시기에 따라 다르다).</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>공복 혈당 99 mg/dL, 공복 인슐린 15 µU/mL인 사람의 HOMA-IR에 가장 가까운 것은?</p>
+        <div class="opts">
+          <button class="opt">약 1.0</button>
+          <button class="opt">약 2.0</button>
+          <button class="opt" data-correct>약 3.7</button>
+          <button class="opt">약 15</button>
+        </div>
+        <div class="quiz-exp">99 × 15 ÷ 405 = 1,485 ÷ 405 ≈ 3.7. 공복 혈당은 정상 범위지만 인슐린이 높아 HOMA-IR이 높다. 보상된 인슐린 저항성을 의심할 수 있는 모양이다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>HbA1c 7.0 %에 해당하는 평균 혈당에 가장 가까운 것은?</p>
+        <div class="opts">
+          <button class="opt" data-correct>약 154 mg/dL</button>
+          <button class="opt">약 126 mg/dL</button>
+          <button class="opt">약 200 mg/dL</button>
+          <button class="opt">약 70 mg/dL</button>
+        </div>
+        <div class="quiz-exp">28.7 × 7.0 − 46.7 = 200.9 − 46.7 ≈ 154 mg/dL.</div>
+      </div>
+      <div class="quiz-q">
+        <p>보상된 인슐린 저항성의 포도당 부하 검사 결과로 가장 알맞은 것은?</p>
+        <div class="opts">
+          <button class="opt">혈당과 인슐린이 모두 낮다</button>
+          <button class="opt">혈당이 매우 높고 인슐린은 0이다</button>
+          <button class="opt">혈당은 매우 높고 인슐린도 정상과 같다</button>
+          <button class="opt" data-correct>혈당은 정상에 가깝지만 인슐린이 정상의 몇 배다</button>
+        </div>
+        <div class="quiz-exp">감수성이 떨어진 만큼 베타 세포가 인슐린을 더 내서 혈당을 지킨다. 그래서 혈당만 보면 정상이다. 인슐린이 0인 것은 제1형 당뇨병의 모습이다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>식후에 걷기를 하면 혈당 최고점이 낮아지는 주된 이유는?</p>
+        <div class="opts">
+          <button class="opt">걷는 동안 장이 탄수화물 흡수를 멈춘다</button>
+          <button class="opt" data-correct>수축하는 근육이 인슐린과 상관없이 포도당을 받아들인다</button>
+          <button class="opt">걷기가 이자에서 글루카곤을 많이 내게 한다</button>
+          <button class="opt">땀으로 포도당이 빠져나간다</button>
+        </div>
+        <div class="quiz-exp">근육이 수축하면 포도당 운반체 GLUT4가 세포 표면으로 나와 인슐린 없이도 포도당을 흡수한다. 운동 뒤에는 인슐린 감수성도 몇 시간 올라간다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>GFR이 125 mL/min이고 혈당이 300 mg/dL일 때 1분에 걸러지는 포도당은? (재흡수 최대 약 375 mg/min)</p>
+        <div class="opts">
+          <button class="opt">약 125 mg/min, 모두 재흡수된다</button>
+          <button class="opt">약 300 mg/min, 모두 재흡수된다</button>
+          <button class="opt" data-correct>약 375 mg/min, 재흡수 한계에 걸려 일부가 소변으로 샌다</button>
+          <button class="opt">약 3,750 mg/min, 거의 다 소변으로 나간다</button>
+        </div>
+        <div class="quiz-exp">걸러지는 양 = GFR × 혈당 = 1.25 dL/min × 300 mg/dL = 375 mg/min. 평균 재흡수 한계와 같아, 처리 능력이 낮은 네프론부터 넘쳐 소변에 포도당이 나온다(모델에서 약 28 mg/min).</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  var DA = BD.DAON;
+  function f0(x) { return Math.round(x).toString(); }
+  function narrowOf(id, lim) { var el = document.getElementById(id); return el.parentElement.clientWidth < (lim || 560); }
+  function txt(ctx, s, x, y, o) {
+    o = o || {};
+    ctx.font = BB.font(o.size || 12, o.mono, o.weight); ctx.fillStyle = o.color || P().text;
+    ctx.textAlign = o.align || "left"; ctx.textBaseline = o.base || "alphabetic"; ctx.fillText(s, x, y);
+  }
+  function handle(ctx, x, y, col, r) {
+    var p = P(); ctx.fillStyle = p.bg; ctx.strokeStyle = col || p.text; ctx.lineWidth = 2.4;
+    ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }
+  var cache = {};
+  function glu(o) { var k = JSON.stringify(o); if (!cache[k]) cache[k] = BD.glucose(o); return cache[k]; }
+  /** 결과 r에서 시각 t(분)의 값 */
+  function at(r, key, t) { var dt = r.t[1] - r.t[0], i = Math.round(t / dt); return r[key][Math.max(0, Math.min(r[key].length - 1, i))]; }
+  function curve(r, key, off) { var out = []; for (var i = 0; i < r.t.length; i++) out.push([r.t[i] - (off || 0), r[key][i]]); return out; }
+  var GLU = function () { return BB.color("glu"); }, INS = function () { return BB.color("ins"); };
+  function lunch(g, walk, x, t0, len) { return glu({ kg: DA.weight, gb: DA.glucose, meals: [{ t: 30, g: g }], exercise: walk ? [{ t0: 30 + t0, t1: 30 + t0 + len, x: x }] : [], tstop: 300 }); }
+
+  /* ---------------------------------------------------------- 1. OGTT */
+  (function () {
+    var cur = 120, lay = null, cv;
+    var prof = BB.seg("og-p", function () { cv.redraw(); });
+    var ref = document.getElementById("og-ref"); ref.addEventListener("change", function () { cv.redraw(); });
+    function run(k) { return glu(Object.assign({ kg: 70, meals: [{ t: 10, g: 75 }], tstop: 190, dt: 0.5 }, BD.GLU_PROFILES[k])); }
+    cv = BB.canvas("#og-cv", function (ctx, w, h) {
+      var p = P(), k = prof(), r = run(k), n = run("normal");
+      var h1 = (h - 70) * 0.6, b1 = { x: 54, y: 14, w: w - 70, h: h1 }, b2 = { x: 54, y: 14 + h1 + 22, w: w - 70, h: h - h1 - 82 };
+      var ymax = Math.max(220, Math.ceil(r.peak / 50) * 50 + 20);
+      var c1 = BB.chart(ctx, b1, { x: [-10, 180], y: [50, ymax], xTicks: [0, 30, 60, 90, 120, 150, 180], xFmt: function () { return ""; }, yLabel: "혈당(mg/dL)",
+        bands: [], hlines: [{ y: 140, color: p.warn, label: "140" }, { y: 200, color: p.bad, label: "200" }],
+        series: [ref.checked && k !== "normal" ? { data: curve(n, "g", 10), color: p.faint, width: 1.8, dash: [5, 4] } : { data: [] }, { data: curve(r, "g", 10), color: GLU(), width: 2.8 }] });
+      var imax = k === "ir" ? 220 : 100;
+      var c2 = BB.chart(ctx, b2, { x: [-10, 180], y: [0, imax], xTicks: [0, 30, 60, 90, 120, 150, 180], xLabel: "포도당을 마신 뒤(분)", yLabel: "인슐린(µU/mL)",
+        series: [ref.checked && k !== "normal" ? { data: curve(n, "i", 10), color: p.faint, width: 1.6, dash: [5, 4] } : { data: [] }, { data: curve(r, "i", 10), color: INS(), width: 2.6 }] });
+      lay = c1;
+      // 2시간 표시
+      var g2 = at(r, "g", 130), cls = g2 >= 200 ? ["당뇨병 범위", p.bad] : g2 >= 140 ? ["내당능장애", p.warn] : ["정상", p.ok];
+      ctx.fillStyle = cls[1]; ctx.beginPath(); ctx.arc(c1.X(120), c1.Y(g2), 6, 0, Math.PI * 2); ctx.fill();
+      txt(ctx, "2시간 " + f0(g2) + " · " + cls[0], c1.X(120) + 10, c1.Y(g2) - 10, { size: 12, weight: 700, color: cls[1] });
+      txt(ctx, BD.GLU_PROFILES[k].name, b1.x + 8, b1.y + 14, { size: 12.5, weight: 700, color: GLU() });
+      // 커서
+      var X = c1.X(cur);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(X, b1.y); ctx.lineTo(X, b2.y + b2.h); ctx.stroke();
+      var g = at(r, "g", cur + 10), ii = at(r, "i", cur + 10);
+      ctx.fillStyle = GLU(); ctx.beginPath(); ctx.arc(X, c1.Y(g), 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = INS(); ctx.beginPath(); ctx.arc(X, c2.Y(Math.min(ii, imax)), 4.5, 0, Math.PI * 2); ctx.fill();
+      var right = X > b1.x + b1.w * 0.55;
+      txt(ctx, f0(cur) + "분: " + f0(g) + " mg/dL", X + (right ? -8 : 8), b1.y + b1.h - 10, { size: 11.5, mono: true, weight: 700, align: right ? "right" : "left" });
+      txt(ctx, f0(ii) + " µU/mL", X + (right ? -8 : 8), c2.Y(Math.min(ii, imax)) - 8, { size: 11.5, mono: true, color: INS(), align: right ? "right" : "left" });
+      handle(ctx, X, b2.y + b2.h, p.text, 6);
+      BB.stat("og-o-f", f0(r.g[0]) + "<small>mg/dL</small>");
+      BB.stat("og-o-p", f0(r.peak) + "<small>(" + f0(r.tPeak - 10) + "분)</small>");
+      BB.stat("og-o-2", f0(g2) + "<small>mg/dL</small>");
+      BB.stat("og-o-i", f0(Math.max.apply(null, r.i)) + "<small>µU/mL</small>");
+    }, { aspect: 0.75, minHeight: 380, maxHeight: 460 });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; cur = Math.round(BB.clamp(-10 + (x - lay.box.x) / lay.box.w * 190, 0, 180)); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 2. 최소 모델 고리 */
+  (function () {
+    var r, t = 0, playing = true, cv;
+    function calc() { r = glu({ kg: 70, si: 8 * getS(), meals: [{ t: 5, g: getG() }], tstop: 250, dt: 0.5 }); t = 0; }
+    var getG = BB.range("lp-g", function (v) { return v + " g"; }, BB.debounce(calc, 60));
+    var getS = BB.range("lp-s", function (v) { return "×" + v.toFixed(2); }, BB.debounce(calc, 60));
+    calc();
+    var btn = document.getElementById("lp-go");
+    btn.addEventListener("click", function () { playing = !playing; btn.textContent = playing ? "일시정지" : "재생"; });
+    document.getElementById("lp-re").addEventListener("click", function () { t = 0; });
+    var ph = 0;
+    cv = BB.canvas("#lp-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 520;
+      var G = at(r, "g", t), I = at(r, "i", t), X = at(r, "x", t), ra = at(r, "ra", t), up = at(r, "uptake", t) / (1.7 * 70);
+      var gb = BD.GLU.gb;
+      // 상자 배치
+      var bw = narrow ? 84 : 104, bh = 54;
+      var pos = narrow ? { gut: [12, 20], g: [w / 2 - bw / 2, 20], tis: [w - bw - 12, 20], pan: [w / 2 - bw / 2, 140], ins: [12, 140], x: [w - bw - 12, 140] }
+                       : { gut: [16, 30], g: [w * 0.36, 30], tis: [w - bw - 16, 30], pan: [w * 0.36, 160], ins: [16, 160], x: [w - bw - 16, 160] };
+      function box(k, label, val, col, fill) {
+        var q = pos[k];
+        ctx.fillStyle = BB.alpha(col, 0.12); BB.rrect(ctx, q[0], q[1], bw, bh, 9); ctx.fill();
+        if (fill != null) { var fh = (bh - 4) * BB.clamp(fill, 0, 1); ctx.fillStyle = BB.alpha(col, 0.45); BB.rrect(ctx, q[0] + 2, q[1] + bh - 2 - fh, bw - 4, fh, 7); ctx.fill(); }
+        ctx.strokeStyle = col; ctx.lineWidth = 1.6; BB.rrect(ctx, q[0], q[1], bw, bh, 9); ctx.stroke();
+        txt(ctx, label, q[0] + bw / 2, q[1] + 20, { size: 12, weight: 700, align: "center" });
+        txt(ctx, val, q[0] + bw / 2, q[1] + 40, { size: 12, mono: true, align: "center", color: p.dim });
+      }
+      function c(k, dx, dy) { var q = pos[k]; return [q[0] + bw / 2 + (dx || 0) * bw / 2, q[1] + bh / 2 + (dy || 0) * bh / 2]; }
+      var cg = GLU(), ci = INS(), cx = p.accent2;
+      // 흐름
+      function flow(a, b, rate, col, scale) { ctx.strokeStyle = BB.alpha(col, 0.35); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); if (rate > 0.02) BD.flowDots(ctx, [a, b], ph * rate * scale, { color: col, gap: 12, r: 2.8 }); }
+      flow(c("gut", 1, 0), c("g", -1, 0), ra, cg, 18);
+      flow(c("g", 1, 0), c("tis", -1, 0), Math.max(0, up - 0.0), cg, 12);
+      flow(c("g", 0, 1), c("pan", 0, -1), Math.max(0, G - gb) / 30, cg, 10);
+      flow(c("pan", -1, 0), c("ins", 1, 0), Math.max(0, I - 8) / 10, ci, 10);
+      flow(c("ins", 0, 0), c("x", -1, 0), Math.max(0, I - 8) / 12, cx, 8);
+      ctx.save(); ctx.setLineDash([4, 3]); flow(c("x", 0, -1), c("tis", 0, 1), X * 400, cx, 2); ctx.restore();
+      txt(ctx, "흡수", (c("gut", 1, 0)[0] + c("g", -1, 0)[0]) / 2, c("g")[1] - 8, { size: 10.5, color: p.dim, align: "center" });
+      txt(ctx, "섭취", (c("g", 1, 0)[0] + c("tis", -1, 0)[0]) / 2, c("g")[1] - 8, { size: 10.5, color: p.dim, align: "center" });
+      txt(ctx, "감지", c("g")[0] + 6, (c("g", 0, 1)[1] + c("pan", 0, -1)[1]) / 2 + 4, { size: 10.5, color: p.dim });
+      txt(ctx, "문을 연다", c("tis")[0] - 6, (c("x", 0, -1)[1] + c("tis", 0, 1)[1]) / 2 + 4, { size: 10.5, color: cx, align: "right" });
+      var gutLeft = Math.max(0, 1 - BD.sum(r.ra.slice(0, Math.round(t / (r.t[1] - r.t[0])))) * (r.t[1] - r.t[0]) * 1.7 * 70 / (getG() * 1000 * 0.9));
+      box("gut", "장", gutLeft > 0.02 ? Math.round(gutLeft * 100) + "% 남음" : "비었다", BB.color("carb"), gutLeft);
+      box("g", "혈당 G", f0(G) + " mg/dL", cg, (G - 50) / 200);
+      box("tis", "근육·간·지방", up.toFixed(1) + "/min", BB.color("seg-musc"), null);
+      box("pan", "이자 β 세포", G > gb + 2 ? "분비 중" : "쉼", ci, null);
+      box("ins", "인슐린 I", f0(I) + " µU/mL", ci, I / 80);
+      box("x", "작용 X", (X * 1e3).toFixed(1) + " ×10⁻³", cx, X / 0.04);
+      // 시간 기록
+      var tb = narrow ? { x: 46, y: 238, w: w - 60, h: h - 280 } : { x: 50, y: 248, w: w - 66, h: h - 290 };
+      var cc = BB.chart(ctx, tb, { x: [0, 250], y: [0, 1], yTicks: [], xTicks: [0, 60, 120, 180, 240], xFmt: function (v) { return v + "분"; },
+        series: [{ data: r.t.map(function (tt, i) { return [tt, (r.g[i] - 50) / 160]; }), color: cg, width: 2.2 }, { data: r.t.map(function (tt, i) { return [tt, r.i[i] / 90]; }), color: ci, width: 2 }, { data: r.t.map(function (tt, i) { return [tt, r.x[i] / 0.04]; }), color: cx, width: 2, dash: [4, 3] }] });
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(cc.X(t), tb.y); ctx.lineTo(cc.X(t), tb.y + tb.h); ctx.stroke();
+      txt(ctx, "G · I · X (각각 크기를 맞춤)", tb.x + 6, tb.y + 12, { size: 10.5, color: p.dim });
+      BB.stat("lp-o-t", f0(Math.max(0, t - 5)) + "<small>분</small>");
+      BB.stat("lp-o-g", f0(G) + "<small>mg/dL</small>");
+      BB.stat("lp-o-i", f0(I) + "<small>µU/mL</small>");
+      BB.stat("lp-o-x", (X * 1e3).toFixed(1) + "<small>×10⁻³/min</small>");
+    }, { get height() { return narrowOf("lp-cv", 520) ? 400 : 400; } });
+    BB.loop(document.getElementById("sim-gl-loop"), function (dt) { ph += dt; if (playing) { t += dt * 10; if (t > 250) t = 0; } cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 3. 감수성 × 분비 */
+  (function () {
+    var s = 1, b = 1, lay = null, grid = null, cv;
+    var SMIN = 0.15, SMAX = 1.5, BMIN = 0.2, BMAX = 3.2;
+    function fasting(s, b) { var IR = 1.74 / s, B = 115 * b; var G = (63 * B + Math.sqrt(Math.pow(63 * B, 2) + 4 * B * 145800 * IR)) / (2 * B); return { G: G, I: B * (G - 63) / 360 }; }
+    function run(s, b, dt) { var q = fasting(s, b); return glu({ kg: 70, gb: +q.G.toFixed(1), ib: +q.I.toFixed(2), si: +(8 * s).toFixed(3), gamma: +(0.02 * b).toFixed(4), first: +(0.6 * Math.min(1, b)).toFixed(3), meals: [{ t: 10, g: 75 }], tstop: 190, dt: dt || 0.5 }); }
+    function cls(fg, g2) { return fg >= 126 || g2 >= 200 ? 2 : fg >= 100 || g2 >= 140 ? 1 : 0; }
+    function build() {
+      grid = []; var NX = 24, NY = 16;
+      for (var i = 0; i < NX; i++) { grid.push([]); for (var j = 0; j < NY; j++) { var ss = SMIN + (i + 0.5) / NX * (SMAX - SMIN), bb = BMIN + (j + 0.5) / NY * (BMAX - BMIN), q = fasting(ss, bb), r = BD.glucose({ kg: 70, gb: q.G, ib: q.I, si: 8 * ss, gamma: 0.02 * bb, first: 0.6 * Math.min(1, bb), meals: [{ t: 10, g: 75 }], tstop: 140, dt: 1 }); grid[i].push(cls(q.G, at(r, "g", 130))); } }
+    }
+    cv = BB.canvas("#kn-cv", function (ctx, w, h) {
+      if (!grid) build();
+      var p = P(), narrow = w < 560;
+      var box = narrow ? { x: 52, y: 16, w: w - 66, h: 230 } : { x: 56, y: 16, w: w * 0.55 - 60, h: h - 62 };
+      var c = BB.chart(ctx, box, { x: [SMIN, SMAX], y: [BMIN, BMAX], xLabel: "인슐린 감수성(정상 = 1)", yLabel: "인슐린 분비(정상 = 1)" });
+      lay = c;
+      var cols = [p.ok, p.warn, p.bad], NX = grid.length, NY = grid[0].length, cw = box.w / NX, ch = box.h / NY;
+      for (var i = 0; i < NX; i++) for (var j = 0; j < NY; j++) { ctx.fillStyle = BB.alpha(cols[grid[i][j]], 0.2); ctx.fillRect(box.x + i * cw, box.y + box.h - (j + 1) * ch, cw + 0.5, ch + 0.5); }
+      // 같은 처리 능력 곡선
+      [0.3, 1, 3].forEach(function (di) {
+        ctx.strokeStyle = BB.alpha(p.text, 0.35); ctx.setLineDash([4, 4]); ctx.lineWidth = 1.2; ctx.beginPath(); var st = false;
+        for (var x = SMIN; x <= SMAX; x += 0.01) { var y = di / x; if (y < BMIN || y > BMAX) { st = false; continue; } st ? ctx.lineTo(c.X(x), c.Y(y)) : ctx.moveTo(c.X(x), c.Y(y)); st = true; }
+        ctx.stroke(); ctx.setLineDash([]);
+      });
+      txt(ctx, "정상", c.X(1.25), c.Y(0.6), { size: 12, weight: 700, color: p.ok, align: "center" });
+      txt(ctx, "보상된 저항성", c.X(0.42), c.Y(2.9), { size: 11.5, weight: 700, color: p.ok, align: "left" });
+      txt(ctx, "제2형", c.X(0.28), c.Y(0.45), { size: 12, weight: 700, color: p.bad, align: "center" });
+      ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(c.X(1), c.Y(1), 3, 0, Math.PI * 2); ctx.fill();
+      handle(ctx, c.X(s), c.Y(b), p.text, 8);
+      // 현재 점의 부하 곡선
+      var q = fasting(s, b), r = run(s, b), g2 = at(r, "g", 130), k = cls(q.G, g2);
+      var rb = narrow ? { x: 52, y: box.y + box.h + 62, w: w - 66, h: h - box.y - box.h - 108 } : { x: w * 0.6 + 30, y: 16, w: w * 0.4 - 46, h: h * 0.5 };
+      var ymax = Math.max(220, Math.ceil(r.peak / 50) * 50 + 10);
+      var cc = BB.chart(ctx, rb, { x: [-10, 180], y: [50, ymax], xTicks: [0, 60, 120, 180], yLabel: "혈당", hlines: [{ y: 140, color: p.warn }, { y: 200, color: p.bad }], series: [{ data: curve(r, "g", 10), color: GLU(), width: 2.6 }] });
+      var imax = Math.max(100, Math.ceil(Math.max.apply(null, r.i) / 50) * 50);
+      ctx.strokeStyle = INS(); ctx.lineWidth = 2; ctx.setLineDash([5, 3]); ctx.beginPath();
+      r.t.forEach(function (tt, i) { var X = cc.X(tt - 10), Y = rb.y + rb.h - r.i[i] / imax * rb.h; i ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); }); ctx.stroke(); ctx.setLineDash([]);
+      txt(ctx, "75 g 부하 · 인슐린(점선, 최고 " + f0(Math.max.apply(null, r.i)) + ")", rb.x + 4, rb.y - 4, { size: 11, color: p.dim });
+      var lab = ["정상", "당뇨 전단계", "당뇨병 범위"][k];
+      if (!narrow) {
+        var ty = rb.y + rb.h + 46;
+        txt(ctx, lab, rb.x, ty, { size: 16, weight: 700, color: cols[k] });
+        txt(ctx, "공복 " + f0(q.G) + " mg/dL · 인슐린 " + q.I.toFixed(1), rb.x, ty + 22, { size: 12, mono: true });
+        txt(ctx, "HOMA-IR " + BD.homa(q.G, q.I).toFixed(1) + " · 2시간 " + f0(g2), rb.x, ty + 40, { size: 12, mono: true });
+        txt(ctx, "감수성 ×" + s.toFixed(2) + ", 분비 ×" + b.toFixed(2), rb.x, ty + 58, { size: 11.5, color: p.dim });
+      } else txt(ctx, lab + " · HOMA-IR " + BD.homa(q.G, q.I).toFixed(1), rb.x, h - 10, { size: 13, weight: 700, color: cols[k] });
+      BB.stat("kn-o-g", f0(q.G) + "<small>mg/dL</small>");
+      BB.stat("kn-o-i", q.I.toFixed(1) + "<small>µU/mL</small>");
+      BB.stat("kn-o-h", BD.homa(q.G, q.I).toFixed(1));
+      BB.stat("kn-o-2", f0(g2) + "<small>mg/dL</small>");
+    }, { get height() { return narrowOf("kn-cv") ? 560 : 380; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var bx = lay.box; if (x > bx.x + bx.w + 20 || y > bx.y + bx.h + 10) return; s = Math.round(BB.clamp(SMIN + (x - bx.x) / bx.w * (SMAX - SMIN), SMIN, SMAX) * 20) / 20; b = Math.round(BB.clamp(BMIN + (bx.y + bx.h - y) / bx.h * (BMAX - BMIN), BMIN, BMAX) * 20) / 20; cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 4. 식사 */
+  (function () {
+    var cv = null;
+    function redraw() { if (cv) cv.redraw(); }
+    var getG = BB.range("ml-g", function (v) { return v + " g"; }, redraw);
+    var getGi = BB.range("ml-gi", function (v) { return "×" + v.toFixed(1); }, redraw);
+    var fat = document.getElementById("ml-fat"); fat.addEventListener("change", redraw);
+    cv = BB.canvas("#ml-cv", function (ctx, w, h) {
+      var p = P(), base = lunch(90, false), r = glu({ kg: DA.weight, gb: DA.glucose, meals: [{ t: 30, g: getG(), gi: getGi(), fat: fat.checked }], tstop: 300 });
+      var h1 = (h - 70) * 0.68, b1 = { x: 54, y: 14, w: w - 70, h: h1 }, b2 = { x: 54, y: 14 + h1 + 18, w: w - 70, h: h - h1 - 78 };
+      var ymax = Math.max(200, Math.ceil(r.peak / 50) * 50 + 10);
+      var c1 = BB.chart(ctx, b1, { x: [-30, 270], y: [70, ymax], xTicks: [0, 60, 120, 180, 240], xFmt: function () { return ""; }, yLabel: "혈당(mg/dL)",
+        series: [{ data: curve(base, "g", 30), color: p.faint, width: 1.8, dash: [5, 4] }, { data: curve(r, "g", 30), color: GLU(), width: 2.8, fill: BB.alpha(GLU(), 0.12) }] });
+      ctx.fillStyle = GLU(); ctx.beginPath(); ctx.arc(c1.X(r.tPeak - 30), c1.Y(r.peak), 5, 0, Math.PI * 2); ctx.fill();
+      txt(ctx, "최고 " + f0(r.peak), c1.X(r.tPeak - 30) + 8, c1.Y(r.peak) - 6, { size: 12, weight: 700, mono: true, color: GLU() });
+      txt(ctx, "다온의 점심 " + f0(base.peak), c1.X(base.tPeak - 30) + 8, c1.Y(base.peak) + 16, { size: 11, color: p.dim });
+      var rmax = Math.max(4, Math.ceil(Math.max.apply(null, r.ra) + 0.5));
+      BB.chart(ctx, b2, { x: [-30, 270], y: [0, rmax], yTicks: [0, rmax], xTicks: [0, 60, 120, 180, 240], xLabel: "식후(분)", yLabel: "흡수",
+        series: [{ data: curve(base, "ra", 30), color: p.faint, width: 1.4, dash: [4, 3] }, { data: curve(r, "ra", 30), color: BB.color("carb"), width: 2.2, fill: BB.alpha(BB.color("carb"), 0.2) }] });
+      txt(ctx, "장에서 혈액으로 들어오는 속도(mg/dL/min)", b2.x + 6, b2.y + 12, { size: 10.5, color: p.dim });
+      BB.stat("ml-o-p", f0(r.peak) + "<small>mg/dL</small>");
+      BB.stat("ml-o-t", f0(r.tPeak - 30) + "<small>분</small>");
+      BB.stat("ml-o-a", (r.auc / 1000).toFixed(1) + "<small>천 mg·min/dL (점심 " + (base.auc / 1000).toFixed(1) + ")</small>");
+    }, { aspect: 0.66, minHeight: 330, maxHeight: 420 });
+  })();
+
+  /* ---------------------------------------------------------- 5. 식후 걷기 */
+  (function () {
+    var w0 = 15, len = 30, lay = null, drag = null, cv = null;
+    function redraw() { if (cv) cv.redraw(); }
+    var getX = BB.range("wk-x", function (v) { return v < 0.3 ? "느리게" : v < 0.55 ? "보통 걸음" : v < 0.8 ? "빠른 걸음" : "달리기"; }, redraw);
+    var getG = BB.range("wk-g", function (v) { return v + " g"; }, redraw);
+    cv = BB.canvas("#wk-cv", function (ctx, w, h) {
+      var p = P(), sit = lunch(getG(), false), r = lunch(getG(), true, getX(), w0, len);
+      var box = { x: 54, y: 16, w: w - 70, h: h - 100 };
+      var c = BB.chart(ctx, box, { x: [-30, 240], y: [70, Math.max(200, Math.ceil(sit.peak / 50) * 50 + 10)], xTicks: [0, 60, 120, 180, 240], xFmt: function (v) { return v === 0 ? "식사" : v + "분"; }, yLabel: "혈당(mg/dL)",
+        hlines: [{ y: DA.glucose, color: p.faint, label: "공복 " + DA.glucose }],
+        series: [{ data: curve(sit, "g", 30), color: p.faint, width: 2, dash: [5, 4] }, { data: curve(r, "g", 30), color: GLU(), width: 2.8 }] });
+      // 줄어든 넓이 칠하기
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      ctx.fillStyle = BB.alpha(p.ok, 0.18); ctx.beginPath();
+      for (var i = 0; i < sit.t.length; i++) ctx.lineTo(c.X(sit.t[i] - 30), c.Y(sit.g[i]));
+      for (var j = r.t.length - 1; j >= 0; j--) ctx.lineTo(c.X(r.t[j] - 30), c.Y(r.g[j]));
+      ctx.closePath(); ctx.fill(); ctx.restore();
+      // 걷기 막대
+      var by = box.y + box.h + 26, x0 = c.X(w0), x1 = c.X(w0 + len);
+      ctx.fillStyle = BB.alpha(BB.color("seg-musc"), 0.8); BB.rrect(ctx, x0, by, x1 - x0, 24, 6); ctx.fill();
+      if (x1 - x0 > 70) txt(ctx, "걷기 " + len + "분", (x0 + x1) / 2, by + 16, { size: 11.5, weight: 700, color: BB.isDark() ? "#0b0d12" : "#fff", align: "center" });
+      else txt(ctx, "걷기 " + len + "분", x1 + 12, by + 16, { size: 11.5, weight: 700, color: BB.color("seg-musc") });
+      handle(ctx, x1, by + 12, BB.color("seg-musc"), 7);
+      ctx.fillStyle = BB.alpha(BB.color("seg-musc"), 0.08); ctx.fillRect(x0, box.y, x1 - x0, box.h);
+      ctx.strokeStyle = p.dim; ctx.setLineDash([2, 3]); ctx.beginPath(); ctx.moveTo(c.X(0), box.y + 16); ctx.lineTo(c.X(0), box.y + box.h); ctx.stroke(); ctx.setLineDash([]);
+      txt(ctx, "최고 " + f0(r.peak) + " (앉아 있으면 " + f0(sit.peak) + ")", box.x + box.w - 4, box.y + 14, { size: 12, weight: 700, color: GLU(), align: "right" });
+      if (Math.min.apply(null, r.g) < DA.glucose - 15) txt(ctx, "공복보다 낮아졌다: 실제로는 간이 포도당을 더 내보낸다", box.x + box.w - 4, box.y + box.h - 8, { size: 11, weight: 600, color: p.warn, align: "right" });
+      lay = { c: c, by: by, x0: x0, x1: x1 };
+      BB.stat("wk-o-p", f0(r.peak) + "<small>mg/dL</small>");
+      BB.stat("wk-o-d", "−" + f0(sit.peak - r.peak) + "<small>mg/dL</small>");
+      BB.stat("wk-o-a", Math.round((1 - r.auc / sit.auc) * 100) + "<small>%</small>");
+    }, { aspect: 0.6, minHeight: 320, maxHeight: 400 });
+    function tOf(x) { return -30 + (x - lay.c.box.x) / lay.c.box.w * 270; }
+    BB.drag(cv.canvas, {
+      start: function (x, y) { drag = null; if (!lay) return; if (Math.abs(x - lay.x1) < 12 && Math.abs(y - lay.by - 12) < 18) drag = { k: "len" }; else if (y > lay.by - 12 && y < lay.by + 36) drag = { k: "move", off: tOf(x) - w0 }; else if (y < lay.by) drag = { k: "move", off: len / 2 }; },
+      move: function (x) { if (!drag) return; var t = tOf(x); if (drag.k === "len") len = Math.round(BB.clamp(t - w0, 5, 90) / 5) * 5; else w0 = Math.round(BB.clamp(t - drag.off, -20, 200) / 5) * 5; cv.redraw(); },
+      end: function () { drag = null; },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 6. 제1형: 인슐린 */
+  (function () {
+    var tI = -30, u = 10, lay = null, cv;
+    var T1 = Object.assign({}, BD.GLU_PROFILES.t1, { gb: 120 });
+    cv = BB.canvas("#t1-cv", function (ctx, w, h) {
+      var p = P(), r = glu(Object.assign({ kg: 70, meals: [{ t: 60, g: 60 }], insulin: u > 0 ? [{ t: 60 + tI, u: u }] : [], tstop: 420, dt: 0.5 }, T1));
+      var none = glu(Object.assign({ kg: 70, meals: [{ t: 60, g: 60 }], tstop: 420, dt: 0.5 }, T1));
+      var narrow = w < 560;
+      var box = { x: 54, y: 16, w: w - (narrow ? 70 : 110), h: h - 140 };
+      var ymax = 320;
+      var c = BB.chart(ctx, box, { x: [-60, 360], y: [30, ymax], xTicks: [-60, 0, 60, 120, 180, 240, 300, 360], xFmt: function (v) { return v === 0 ? "식사" : (v > 0 ? "+" : "") + v; }, yLabel: "혈당(mg/dL)",
+        bands: [], series: [{ data: curve(none, "g", 60), color: p.faint, width: 1.6, dash: [5, 4] }, { data: curve(r, "g", 60), color: GLU(), width: 2.8 }] });
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      ctx.fillStyle = BB.alpha(p.bad, 0.16); ctx.fillRect(box.x, c.Y(70), box.w, box.y + box.h - c.Y(70));
+      ctx.fillStyle = BB.alpha(p.warn, 0.08); ctx.fillRect(box.x, box.y, box.w, c.Y(180) - box.y);
+      ctx.restore();
+      txt(ctx, "저혈당 < 70", box.x + 6, c.Y(70) + 14, { size: 11, weight: 700, color: p.bad });
+      txt(ctx, "고혈당 > 180", box.x + 6, c.Y(180) - 6, { size: 11, weight: 600, color: p.warn });
+      txt(ctx, "흐린 점선: 인슐린 없이", box.x + box.w - 4, box.y + 14, { size: 11, color: p.dim, align: "right" });
+      // 인슐린 곡선(아래 띠)
+      var ib = { x: box.x, y: box.y + box.h + 30, w: box.w, h: 54 }, imax = 60;
+      ctx.strokeStyle = p.grid; ctx.strokeRect(ib.x, ib.y, ib.w, ib.h);
+      ctx.strokeStyle = INS(); ctx.lineWidth = 2; ctx.beginPath();
+      r.t.forEach(function (tt, i) { var X = c.X(tt - 60), Y = ib.y + ib.h - Math.min(1, r.i[i] / imax) * ib.h; i ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); }); ctx.stroke();
+      txt(ctx, "혈중 인슐린", ib.x + ib.w - 4, ib.y + 12, { size: 10.5, color: INS(), align: "right" });
+      // 주사 표시(끌기): 위치 = 시각, 높이 = 양
+      var X = c.X(tI), Yu = ib.y + ib.h - (u / 30) * (ib.h + box.h * 0.4);
+      ctx.strokeStyle = INS(); ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(X, ib.y + ib.h); ctx.lineTo(X, Yu); ctx.stroke();
+      handle(ctx, X, Yu, INS(), 8);
+      txt(ctx, "주사 " + u + "단위 (" + (tI === 0 ? "식사 때" : tI < 0 ? "식전 " + (-tI) + "분" : "식후 " + tI + "분") + ")", X + (X > box.x + box.w * 0.6 ? -12 : 12), Yu + 4, { size: 12, weight: 700, color: INS(), align: X > box.x + box.w * 0.6 ? "right" : "left" });
+      // 판정
+      var mn = Math.min.apply(null, r.g), inR = r.g.filter(function (g, i) { return r.t[i] >= 60 && g >= 70 && g <= 180; }).length / r.g.filter(function (g, i) { return r.t[i] >= 60; }).length;
+      if (mn < 70) { var im = r.g.indexOf(mn); ctx.fillStyle = p.bad; ctx.beginPath(); ctx.arc(c.X(r.t[im] - 60), c.Y(mn), 6, 0, Math.PI * 2); ctx.fill(); txt(ctx, "저혈당 " + f0(mn) + " mg/dL", c.X(r.t[im] - 60) - 8, c.Y(mn) - 10, { size: 12.5, weight: 700, color: p.bad, align: "right" }); }
+      if (r.peak > 250) txt(ctx, "식후 고혈당 " + f0(r.peak), c.X(r.tPeak - 60) + 8, c.Y(Math.min(r.peak, ymax - 10)) + 4, { size: 12.5, weight: 700, color: p.warn });
+      lay = { c: c, ib: ib, box: box };
+      BB.stat("t1-o-d", u + "단위 · " + (tI <= 0 ? "식전 " + (-tI) : "식후 " + tI) + "<small>분</small>");
+      BB.stat("t1-o-p", f0(r.peak) + "<small>mg/dL</small>");
+      BB.stat("t1-o-m", f0(mn) + "<small>mg/dL</small>");
+      BB.stat("t1-o-r", Math.round(inR * 100) + "<small>%</small>");
+    }, { aspect: 0.62, minHeight: 380, maxHeight: 460 });
+    BB.drag(cv.canvas, { move: function (x, y) {
+      if (!lay) return; var c = lay.c, b = lay.box, ib = lay.ib;
+      tI = Math.round(BB.clamp(-60 + (x - b.x) / b.w * 420, -60, 120) / 5) * 5;
+      u = Math.round(BB.clamp((ib.y + ib.h - y) / (ib.h + b.h * 0.4) * 30, 0, 30));
+      cv.redraw();
+    } });
+  })();
+
+  /* ---------------------------------------------------------- 7. 신장 역치 */
+  (function () {
+    var G = 120, lay = null, ph = 0, cv;
+    cv = BB.canvas("#kd-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var box = narrow ? { x: 52, y: 16, w: w - 66, h: 220 } : { x: 56, y: 16, w: w * 0.58 - 60, h: h - 62 };
+      var F = [], R = [], E = [];
+      for (var g = 0; g <= 500; g += 5) { var q = BD.renalGlucose(g); F.push([g, q.filtered]); R.push([g, q.reabsorbed]); E.push([g, q.excreted]); }
+      var c = BB.chart(ctx, box, { x: [0, 500], y: [0, 600], xLabel: "혈당(mg/dL)", yLabel: "포도당(mg/min)", bands: [{ x0: 180, x1: 200, color: BB.alpha(p.warn, 0.15) }],
+        series: [{ data: F, color: p.text, width: 2 }, { data: R, color: p.ok, width: 2.6 }, { data: E, color: p.bad, width: 2.6 }] });
+      txt(ctx, "신장 역치", c.X(190), box.y + 14, { size: 11, weight: 700, color: p.warn, align: "center" });
+      txt(ctx, "최대 재흡수 약 375", c.X(495), c.Y(375) - 6, { size: 10.5, color: p.ok, align: "right" });
+      var q = BD.renalGlucose(G), X = c.X(G);
+      ctx.strokeStyle = p.text; ctx.setLineDash([3, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X, box.y); ctx.lineTo(X, box.y + box.h); ctx.stroke(); ctx.setLineDash([]);
+      [[q.filtered, p.text], [q.reabsorbed, p.ok], [q.excreted, p.bad]].forEach(function (d) { ctx.fillStyle = d[1]; ctx.beginPath(); ctx.arc(X, c.Y(d[0]), 4.5, 0, Math.PI * 2); ctx.fill(); });
+      handle(ctx, X, box.y + box.h, GLU(), 8);
+      txt(ctx, f0(G), X, box.y + box.h - 14, { size: 12, mono: true, weight: 700, align: "center" });
+      lay = c;
+      // 네프론 그림
+      var nx = narrow ? 30 : w * 0.62, ny = narrow ? box.y + box.h + 70 : 40, nw = narrow ? w - 60 : w * 0.34, nh = narrow ? 130 : h - 120;
+      var tubeY = ny + 30, endX = nx + nw - 20;
+      ctx.fillStyle = BB.alpha(BB.color("art"), 0.25); BB.rrect(ctx, nx, ny, 40, 50, 20); ctx.fill();
+      txt(ctx, "사구체", nx + 20, ny - 6, { size: 11, color: p.dim, align: "center" });
+      ctx.strokeStyle = p.border; ctx.lineWidth = 16; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(nx + 40, tubeY); ctx.lineTo(endX, tubeY); ctx.lineTo(endX, ny + nh - 20); ctx.stroke(); ctx.lineCap = "butt";
+      txt(ctx, "세뇨관(재흡수)", (nx + 40 + endX) / 2, tubeY - 14, { size: 11, color: p.dim, align: "center" });
+      var fr = q.filtered / 600, er = q.excreted / Math.max(1, q.filtered);
+      // 여과된 점
+      var n = Math.round(4 + fr * 18);
+      for (var i = 0; i < n; i++) {
+        var u = ((ph * 0.35 + i / n) % 1), gx = nx + 40 + (endX - nx - 40) * Math.min(1, u * 1.4);
+        var lost = (i / n) < er;
+        if (!lost && u > 0.25) {
+          // 재흡수: 아래로 빠져 혈관으로
+          var k = Math.min(1, (u - 0.25) / 0.45), rx = nx + 40 + (endX - nx - 40) * (0.25 + (i % 5) * 0.12);
+          ctx.fillStyle = p.ok; ctx.beginPath(); ctx.arc(rx, tubeY + 10 + k * 40, 3, 0, Math.PI * 2); ctx.fill();
+        } else if (lost && u > 0.71) {
+          var k2 = (u - 0.71) / 0.29; ctx.fillStyle = p.bad; ctx.beginPath(); ctx.arc(endX, tubeY + k2 * (ny + nh - 20 - tubeY), 3, 0, Math.PI * 2); ctx.fill();
+        } else { ctx.fillStyle = GLU(); ctx.beginPath(); ctx.arc(gx, tubeY, 3, 0, Math.PI * 2); ctx.fill(); }
+      }
+      ctx.strokeStyle = BB.alpha(BB.color("art"), 0.5); ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(nx + 40, tubeY + 52); ctx.lineTo(endX - 30, tubeY + 52); ctx.stroke();
+      txt(ctx, "혈액으로 돌아감", nx + 44, tubeY + 72, { size: 11, color: p.ok });
+      txt(ctx, "소변", endX, ny + nh, { size: 11.5, weight: 700, color: q.excreted > 1 ? p.bad : p.dim, align: "center" });
+      if (q.excreted > 1) txt(ctx, "소변에 포도당 " + f0(q.excreted) + " mg/min", endX - 14, ny + nh - 22, { size: 12, weight: 700, color: p.bad, align: "right" });
+      BB.stat("kd-o-g", f0(G) + "<small>mg/dL</small>");
+      BB.stat("kd-o-f", f0(q.filtered) + "<small>mg/min</small>");
+      BB.stat("kd-o-e", q.excreted.toFixed(q.excreted < 10 ? 1 : 0) + "<small>mg/min</small>");
+      BB.stat("kd-o-d", (q.excreted * 1440 / 1000).toFixed(q.excreted < 10 ? 1 : 0) + "<small>g/day</small>");
+    }, { get height() { return narrowOf("kd-cv") ? 500 : 340; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; if (y > lay.box.y + lay.box.h + 20) return; G = Math.round(BB.clamp((x - lay.box.x) / lay.box.w * 500, 40, 500) / 5) * 5; cv.redraw(); } });
+    BB.loop(document.getElementById("sim-gl-kidney"), function (dt) { ph += dt; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 8. 하루의 혈당 */
+  (function () {
+    var MEALS0 = [{ t: 7.5, g: 60, name: "아침" }, { t: 12.25, g: 90, name: "점심" }, { t: 15.5, g: 25, name: "간식" }, { t: 18.5, g: 80, name: "저녁" }];
+    var meals = MEALS0.map(function (m) { return Object.assign({}, m); }), lay = null, drag = null, cv = null;
+    function redraw() { if (cv) cv.redraw(); }
+    var prof = BB.seg("dy-p", redraw);
+    var ex = document.getElementById("dy-ex"), sn = document.getElementById("dy-snack");
+    ex.addEventListener("change", redraw); sn.addEventListener("change", redraw);
+    document.getElementById("dy-re").addEventListener("click", function () { meals = MEALS0.map(function (m) { return Object.assign({}, m); }); redraw(); });
+    function params() { var k = prof(); if (k === "daon") return { gb: DA.glucose }; var q = BD.GLU_PROFILES[k]; return { gb: q.gb, si: q.si, gamma: q.gamma, first: q.first, ib: q.ib }; }
+    function run() {
+      var ms = meals.filter(function (m) { return m.name !== "간식" || sn.checked; }).map(function (m) { return { t: Math.round(m.t * 60), g: m.g }; });
+      return glu(Object.assign({ kg: DA.weight, meals: ms, exercise: ex.checked ? [{ t0: 19 * 60, t1: 19 * 60 + 40, x: 0.8 }] : [], tstop: 1440, dt: 1 }, params()));
+    }
+    cv = BB.canvas("#dy-cv", function (ctx, w, h) {
+      var r = run(), narrow = w < 520;
+      var MON = { text: "#e6edf7", dim: "#9aa6bf", grid: "rgba(255,255,255,.07)" };
+      var tr = BB.trace(3), right = narrow ? 0 : 150;
+      var box = { x: 44, y: 18, w: w - 56 - right, h: h - (narrow ? 190 : 76) };
+      var X = function (t) { return box.x + t / 1440 * box.w; }, Y = function (g) { return box.y + box.h - (g - 40) / 260 * box.h; };
+      // 목표 범위
+      ctx.fillStyle = "rgba(80,200,120,.10)"; ctx.fillRect(box.x, Y(180), box.w, Y(70) - Y(180));
+      ctx.strokeStyle = MON.grid; ctx.lineWidth = 1;
+      [70, 100, 140, 180, 250].forEach(function (g) { ctx.beginPath(); ctx.moveTo(box.x, Y(g)); ctx.lineTo(box.x + box.w, Y(g)); ctx.stroke(); txt(ctx, String(g), box.x - 6, Y(g) + 4, { size: 10, mono: true, color: MON.dim, align: "right" }); });
+      for (var hh = 0; hh <= 24; hh += (narrow ? 6 : 3)) { ctx.beginPath(); ctx.moveTo(X(hh * 60), box.y); ctx.lineTo(X(hh * 60), box.y + box.h); ctx.stroke(); txt(ctx, hh + "시", X(hh * 60), box.y + box.h + 14, { size: 10, mono: true, color: MON.dim, align: hh === 0 ? "left" : hh === 24 ? "right" : "center" }); }
+      txt(ctx, "70~180 목표 범위", box.x + 6, Y(180) + 14, { size: 10.5, color: "#7ad69a" });
+      if (ex.checked) { ctx.fillStyle = "rgba(120,160,255,.15)"; ctx.fillRect(X(1140), box.y, X(1180) - X(1140), box.h); txt(ctx, "달리기", X(1160), box.y + 12, { size: 10.5, color: "#9db8ff", align: "center" }); }
+      // 곡선
+      ctx.strokeStyle = tr; ctx.lineWidth = 2.4; ctx.beginPath();
+      r.t.forEach(function (t, i) { var x = X(t), y = Y(Math.min(300, r.g[i])); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke();
+      // 식사 표시
+      lay = { X: X, box: box, pts: [] };
+      meals.forEach(function (m, k) {
+        if (m.name === "간식" && !sn.checked) return;
+        var x = X(m.t * 60), y = box.y + box.h - 8 - (m.g / 160) * (box.h * 0.35);
+        ctx.strokeStyle = "rgba(255,200,80,.6)"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x, box.y + box.h); ctx.lineTo(x, y); ctx.stroke();
+        ctx.fillStyle = "#0b0d12"; ctx.strokeStyle = "#ffc850"; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        txt(ctx, m.name + " " + m.g + "g", x, y - 11, { size: 10.5, color: "#ffc850", align: "center" });
+        lay.pts.push({ k: k, x: x, y: y });
+      });
+      function monGauge(ctx, cx, cy, R, v, M) {
+        var ang = function (x) { return Math.PI + BB.clamp((x - 4.5) / 4.5, 0, 1) * Math.PI; }, from = 4.5;
+        ctx.lineWidth = 9; [[5.7, "#3fb27f"], [6.5, "#e0a030"], [9, "#e0504a"]].forEach(function (z) { ctx.strokeStyle = z[1]; ctx.beginPath(); ctx.arc(cx, cy, R, ang(from), ang(z[0])); ctx.stroke(); from = z[0]; });
+        var a = ang(v); ctx.strokeStyle = M.text; ctx.lineWidth = 2.4; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(a) * R * 0.85, cy + Math.sin(a) * R * 0.85); ctx.stroke(); ctx.lineCap = "butt";
+        ctx.fillStyle = M.text; ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI * 2); ctx.fill();
+        txt(ctx, v.toFixed(1) + "%", cx, cy - R * 0.35, { size: 16, weight: 700, mono: true, color: M.text, align: "center" });
+        txt(ctx, "HbA1c 환산", cx, cy + 18, { size: 11, color: M.dim, align: "center" });
+        txt(ctx, "5.7", cx + Math.cos(ang(5.7)) * (R + 14), cy + Math.sin(ang(5.7)) * (R + 14), { size: 9.5, mono: true, color: M.dim, align: "center" });
+        txt(ctx, "6.5", cx + Math.cos(ang(6.5)) * (R + 14), cy + Math.sin(ang(6.5)) * (R + 14), { size: 9.5, mono: true, color: M.dim, align: "center" });
+      }
+      // 통계
+      var mean = BD.mean(r.g), tir = r.g.filter(function (g) { return g >= 70 && g <= 180; }).length / r.g.length, a1c = BD.a1cFromAvg(mean), fpg = at(r, "g", 6 * 60);
+      var nx = narrow ? 16 : w - right + 10, ny = narrow ? box.y + box.h + 30 : 26;
+      if (narrow) {
+        txt(ctx, "평균 " + f0(mean) + " mg/dL", nx, ny + 6, { size: 13, weight: 700, mono: true, color: tr });
+        txt(ctx, "범위 안 " + Math.round(tir * 100) + "%", nx, ny + 26, { size: 12, mono: true, color: MON.text });
+        monGauge(ctx, w - 80, ny + 74, 54, a1c, MON);
+      } else {
+        txt(ctx, "평균 혈당", nx, ny, { size: 11, color: MON.dim });
+        txt(ctx, f0(mean), nx, ny + 30, { size: 30, weight: 700, mono: true, color: tr });
+        txt(ctx, "mg/dL", nx + 64, ny + 30, { size: 11, color: MON.dim });
+        txt(ctx, "70~180 안", nx, ny + 58, { size: 11, color: MON.dim });
+        txt(ctx, Math.round(tir * 100) + "%", nx, ny + 84, { size: 24, weight: 700, mono: true, color: "#7ad69a" });
+        monGauge(ctx, nx + 62, ny + 170, 54, a1c, MON);
+      }
+      BB.stat("dy-o-m", f0(mean) + "<small>mg/dL</small>");
+      BB.stat("dy-o-r", Math.round(tir * 100) + "<small>%</small>");
+      BB.stat("dy-o-a", a1c.toFixed(1) + "<small>%</small>");
+      BB.stat("dy-o-f", f0(fpg) + "<small>mg/dL · " + BD.glucoseClass(fpg).label + "</small>");
+    }, { get height() { return narrowOf("dy-cv", 520) ? 480 : 330; } });
+    BB.drag(cv.canvas, {
+      start: function (x, y) { drag = null; if (!lay) return; lay.pts.forEach(function (q) { if (Math.hypot(x - q.x, y - q.y) < 16) drag = q.k; }); },
+      move: function (x, y) {
+        if (drag == null) return; var b = lay.box, m = meals[drag];
+        m.t = Math.round(BB.clamp((x - b.x) / b.w * 24, 0.5, 23) * 4) / 4;
+        m.g = Math.round(BB.clamp((b.y + b.h - 8 - y) / (b.h * 0.35) * 160, 10, 160) / 5) * 5;
+        cv.redraw();
+      },
+      end: function () { drag = null; },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 9. 다온: 점심과 대회 연료 */
+  (function () {
+    var w0 = 15, lay = null, drag = false, cv = null;
+    function redraw() { if (cv) cv.redraw(); }
+    var getG = BB.range("dn-g", function (v) { return v + " g"; }, redraw);
+    var walk = document.getElementById("dn-walk"); walk.addEventListener("change", redraw);
+    var getC = BB.range("dn-c", function (v) { return v + " g/kg"; }, redraw);
+    var dist = BB.seg("dn-d", redraw);
+    var drink = document.getElementById("dn-drink"); drink.addEventListener("change", redraw);
+    var LEG = 14, LIVER = 80;
+    function race() {
+      var km = +dist(), frac = km === 10 ? BD.racePlan(DA.vo2max, 0.6).frac : km === 21 ? 0.74 : 0.68;
+      var s = BD.steady(frac, { vo2max: DA.vo2max, lt: 0.6, kg: DA.weight }), kmh = BD.danielsSpeed(DA.vo2max * frac), dKm = km === 21 ? 21.1 : km === 42 ? 42.2 : 10;
+      var vo2L = s.vo2 * DA.weight / 1000, E = BD.weir(vo2L, vo2L * s.rer), cf = BD.carbFrac(s.rer);
+      var gpm = E * cf / 4 + 0.08, mins = dKm / kmh * 60;          // + 뇌가 쓰는 포도당(간에서) 약 0.08 g/min
+      var conc = Math.min(30, 12 + 2 * getC()), store = LEG * conc * 0.8 + LIVER;   // 근육 글리코겐의 약 80 %만 실제로 꺼내 쓴다고 본다
+      return { km: dKm, kmh: kmh, mins: mins, E: E, cf: cf, gpm: gpm, store: store, rer: s.rer, intake: drink.checked ? 40 / 60 : 0 };
+    }
+    cv = BB.canvas("#dn-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var sit = lunch(getG(), false), r = walk.checked ? lunch(getG(), true, 0.4, w0, 30) : sit;
+      // 위: 점심 혈당
+      var b1 = { x: 54, y: 16, w: w - 70, h: narrow ? 170 : (h - 80) * 0.5 };
+      var c1 = BB.chart(ctx, b1, { x: [-30, 240], y: [70, Math.max(200, Math.ceil(sit.peak / 50) * 50 + 10)], xTicks: [0, 60, 120, 180, 240], xFmt: function (v) { return v + "분"; }, yLabel: "혈당(mg/dL)",
+        hlines: [{ y: 140, color: p.warn }], series: [{ data: curve(sit, "g", 30), color: p.faint, width: 2, dash: [5, 4] }, { data: curve(r, "g", 30), color: GLU(), width: 2.8 }] });
+      ctx.fillStyle = GLU(); ctx.beginPath(); ctx.arc(c1.X(r.tPeak - 30), c1.Y(r.peak), 5, 0, Math.PI * 2); ctx.fill();
+      txt(ctx, "최고 " + f0(r.peak) + " (식후 " + f0(r.tPeak - 30) + "분)", c1.X(r.tPeak - 30) + 8, c1.Y(r.peak) - 6, { size: 12, weight: 700, color: GLU() });
+      if (walk.checked) {
+        var x0 = c1.X(w0), x1 = c1.X(w0 + 30);
+        ctx.fillStyle = BB.alpha(BB.color("seg-musc"), 0.12); ctx.fillRect(x0, b1.y, x1 - x0, b1.h);
+        ctx.fillStyle = BB.alpha(BB.color("seg-musc"), 0.85); BB.rrect(ctx, x0, b1.y + b1.h - 22, x1 - x0, 18, 5); ctx.fill();
+        txt(ctx, "걷기", (x0 + x1) / 2, b1.y + b1.h - 9, { size: 11, weight: 700, color: BB.isDark() ? "#0b0d12" : "#fff", align: "center" });
+      }
+      var back = sit.back != null ? sit.back - 30 : null;
+      txt(ctx, "점심 탄수화물 " + getG() + " g" + (back && !narrow ? " · 앉아 있으면 약 " + (back / 60).toFixed(1) + "시간 뒤 공복 수준" : ""), b1.x + 6, b1.y + 12, { size: 11, color: p.dim });
+      lay = { c1: c1, b1: b1 };
+      // 아래: 대회 글리코겐
+      var R = race(), top = b1.y + b1.h + 52;
+      var b2 = { x: 54, y: top, w: w - 70, h: h - top - 46 };
+      var T = Math.max(60, Math.ceil(R.mins / 30) * 30);
+      var ymax = Math.max(500, Math.ceil(R.store / 100) * 100);
+      var pts = [], liverPts = [], wall = null;
+      for (var t = 0; t <= R.mins; t += 1) {
+        var left = R.store - (R.gpm - R.intake) * t;
+        if (left <= 0 && wall == null) wall = t;
+        pts.push([t, Math.max(0, left)]);
+      }
+      var c2 = BB.chart(ctx, b2, { x: [0, T], y: [0, ymax], xLabel: "대회 시작부터(분)", yLabel: "글리코겐(g)",
+        series: [{ data: pts, color: BB.color("carb"), width: 2.8, fill: BB.alpha(BB.color("carb"), 0.22) }] });
+      ctx.strokeStyle = BB.color("seg-meta"); ctx.setLineDash([4, 3]); ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(b2.x, c2.Y(LIVER)); ctx.lineTo(b2.x + b2.w, c2.Y(LIVER)); ctx.stroke(); ctx.setLineDash([]);
+      txt(ctx, "간 글리코겐 약 " + LIVER + " g", b2.x + b2.w - 4, c2.Y(LIVER) - 5, { size: 10.5, color: BB.color("seg-meta"), align: "right" });
+      if (narrow) { txt(ctx, R.km + " km · " + R.kmh.toFixed(1) + " km/h · 약 " + f0(R.mins) + "분", b2.x, b2.y - 22, { size: 10.5, color: p.dim }); txt(ctx, "RER " + R.rer.toFixed(2) + " · 탄수화물 " + R.gpm.toFixed(1) + " g/min", b2.x, b2.y - 8, { size: 10.5, color: p.dim }); }
+      else txt(ctx, R.km + " km · " + R.kmh.toFixed(1) + " km/h · 약 " + f0(R.mins) + "분 · RER " + R.rer.toFixed(2) + " · 탄수화물 " + R.gpm.toFixed(1) + " g/min", b2.x + 6, b2.y - 8, { size: 11.5, color: p.dim });
+      txt(ctx, "출발 " + f0(R.store) + " g", c2.X(0) + 6, c2.Y(R.store) + 16, { size: 11.5, weight: 700, color: BB.color("carb") });
+      var X = c2.X(R.mins);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(X, b2.y); ctx.lineTo(X, b2.y + b2.h); ctx.stroke();
+      var endLeft = Math.max(0, R.store - (R.gpm - R.intake) * R.mins);
+      txt(ctx, "결승", X - 4, b2.y + 12, { size: 11, weight: 700, align: "right" });
+      if (wall != null) {
+        ctx.fillStyle = BB.alpha(p.bad, 0.15); ctx.fillRect(c2.X(wall), b2.y, X - c2.X(wall), b2.h);
+        txt(ctx, "벽: 약 " + (wall / 60 * R.kmh).toFixed(0) + " km에서 바닥", c2.X(wall) - 6, b2.y + b2.h - 12, { size: 12.5, weight: 700, color: p.bad, align: "right" });
+      } else txt(ctx, "결승선에 " + f0(endLeft) + " g 남음", X - 6, c2.Y(endLeft) - 8, { size: 12, weight: 700, color: p.ok, align: "right" });
+      BB.stat("dn-o-p", f0(r.peak) + "<small>mg/dL</small>");
+      BB.stat("dn-o-w", walk.checked ? "−" + f0(sit.peak - r.peak) + "<small>mg/dL</small>" : "—");
+      BB.stat("dn-o-u", f0(R.gpm * R.mins) + "<small>g</small>");
+      BB.stat("dn-o-r", wall != null ? "0<small>g (벽)</small>" : f0(endLeft) + "<small>g</small>");
+    }, { get height() { return narrowOf("dn-cv") ? 520 : 560; } });
+    function tOf(x) { return -30 + (x - lay.b1.x) / lay.b1.w * 270; }
+    BB.drag(cv.canvas, {
+      start: function (x, y) { drag = lay && walk.checked && y > lay.b1.y && y < lay.b1.y + lay.b1.h + 10; },
+      move: function (x) { if (!drag) return; w0 = Math.round(BB.clamp(tOf(x) - 15, -20, 180) / 5) * 5; cv.redraw(); },
+      end: function () { drag = false; },
+    });
+  })();
+})();
+</script>
+</body>
+</html>

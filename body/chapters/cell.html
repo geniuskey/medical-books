@@ -1,0 +1,867 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "모든 생리의 바닥인 세포막에서 일어나는 일. 확산 거리의 제곱 법칙, 피크의 법칙, 삼투와 적혈구의 부피, 네른스트 전위, GHK 휴지 막전위, 나트륨-칼륨 펌프를 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>세포: 확산, 삼투, 막전위 · BodyBook</title>
+<meta name="description" content="모든 생리의 바닥인 세포막에서 일어나는 일. 확산 거리의 제곱 법칙, 피크의 법칙, 삼투와 적혈구의 부피, 네른스트 전위, GHK 휴지 막전위, 나트륨-칼륨 펌프를 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/cell.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="세포: 확산, 삼투, 막전위 · BodyBook">
+<meta property="og:description" content="모든 생리의 바닥인 세포막에서 일어나는 일. 확산 거리의 제곱 법칙, 피크의 법칙, 삼투와 적혈구의 부피, 네른스트 전위, GHK 휴지 막전위, 나트륨-칼륨 펌프를 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/cell.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/cell.html#chapter","name":"세포: 확산, 삼투, 막전위","headline":"세포: 확산, 삼투, 막전위 · BodyBook","description":"모든 생리의 바닥인 세포막에서 일어나는 일. 확산 거리의 제곱 법칙, 피크의 법칙, 삼투와 적혈구의 부피, 네른스트 전위, GHK 휴지 막전위, 나트륨-칼륨 펌프를 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/cell.html","position":3,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"3. 세포: 확산, 삼투, 막전위","item":"https://medical.euiyun.com/body/chapters/cell.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<!--head:end-->
+<style>
+  .ce-ion { font-family: var(--mono); font-size: 13px; }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="cell">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 03</div>
+    <h1>세포: 확산, 삼투, 막전위</h1>
+    <p class="lead">심장이 피를 밀고 폐가 숨을 쉬는 것은 결국 세포 하나하나에 산소와 포도당을 대 주기 위해서다. 그런데 마지막 몇십 µm, 혈관 벽에서 세포 안까지는 어떤 펌프도 밀어 주지 않는다. 분자가 저절로 퍼지는 확산, 물이 저절로 옮겨 가는 삼투, 이온이 막을 사이에 두고 만드는 전압. 이 장은 생리학의 모든 장이 기대고 있는 이 세 가지 바닥 원리를 손으로 돌려 본다.</p>
+    <ul class="objectives">
+      <li>확산 시간이 거리의 제곱에 비례한다는 것을 무작위 걸음으로 보고, 왜 µm에서는 빠르고 cm에서는 느린지 설명한다.</li>
+      <li>피크의 법칙으로 막을 지나는 양이 넓이·농도 차·두께에 따라 어떻게 바뀌는지 계산한다.</li>
+      <li>삼투로 세포의 부피가 바뀌는 원리와, 적혈구가 터지거나 쭈그러드는 한계를 본다.</li>
+      <li>칼륨만 지나는 막에서 네른스트 전위가 생기는 이유, 여러 이온이 함께 정하는 휴지 막전위(GHK)를 설명한다.</li>
+      <li>나트륨-칼륨 펌프가 멈추면 기울기가 무너지고 세포가 붓는 이유를 이해한다.</li>
+    </ul>
+  </header>
+
+  <section id="membrane">
+    <h2>세포의 경계, 세포막</h2>
+    <p>세포는 두께 약 5 nm의 얇은 기름 막으로 둘러싸여 있다. 인지질 분자가 물을 좋아하는 머리를 바깥으로, 물을 싫어하는 꼬리를 안으로 두 겹 늘어선 <span class="term">지질 이중층</span><span class="en">(Lipid bilayer)</span>이다. 산소·이산화탄소처럼 작고 기름에 잘 녹는 분자는 이 막을 그냥 통과하지만, 나트륨·칼륨 같은 이온과 포도당은 막에 박힌 단백질 문을 거쳐야 한다.</p>
+
+    <figure class="photo">
+      <div class="fig-row"><img src="../assets/figures/openstax-ap-3-4.webp" width="875" height="400" loading="lazy" decoding="async" alt="지질 이중층에 막단백질, 통로 단백질, 콜레스테롤이 박힌 세포막"><img src="../assets/figures/openstax-ap-3-9.webp" width="1052" height="500" loading="lazy" decoding="async" alt="ATP를 써서 나트륨을 내보내고 칼륨을 들여오는 나트륨-칼륨 펌프"></div>
+      <figcaption><b>세포막과 그 위의 문들.</b> 왼쪽: 세포막은 인지질 두 겹(지질 이중층)에 단백질이 박힌 막이다. 산소처럼 작고 기름에 녹는 분자만 그냥 통과하고, 이온은 통로 단백질로, 포도당은 운반체 단백질로 지나간다. 오른쪽: 나트륨-칼륨 펌프는 ATP 하나를 써서 Na⁺ 3개를 내보내고 K⁺ 2개를 들여온다. 그래서 세포 안은 K⁺가, 세포 밖은 Na⁺가 많다(오른쪽 농도 막대).<span class="fig-words">Phospholipid bilayer 인지질 이중층 · Integral membrane protein 막관통 단백질 · Channel protein 통로 단백질 · Cholesterol 콜레스테롤 · Extracellular space 세포 밖 · Cytoplasm 세포질</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/3-1-the-cell-membrane">그림 3.4</a>, <a href="https://openstax.org/books/anatomy-and-physiology/pages/3-1-the-cell-membrane">그림 3.9</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>막 양쪽의 이온 농도는 크게 다르다. 칼륨은 세포 안이 약 30배 많고, 나트륨은 세포 밖이 약 12배 많다. 이 차이가 이 장의 주인공이다. 차이가 있으면 분자는 퍼지려 하고(확산), 물은 옮겨 가려 하고(삼투), 전하를 띤 이온은 전압을 만든다(막전위). 하나씩 보자.</p>
+  </section>
+
+  <section id="diffusion">
+    <h2>확산: 무작위 걸음의 법칙</h2>
+    <p>물에 잉크를 한 방울 떨어뜨리면 저어 주지 않아도 천천히 퍼진다. 잉크 분자 하나하나는 물 분자와 1초에 수십억 번 부딪히며 아무 방향으로나 비틀비틀 걷는다. 이 무작위 걸음의 결과가 <span class="term">확산</span><span class="en">(Diffusion)</span>이다. 누구도 밀지 않는데 분자들은 많은 곳에서 적은 곳으로 퍼진다. 퍼질 수 있는 길이 그쪽에 더 많기 때문이다.</p>
+    <p>무작위 걸음에는 놀라운 성질이 있다. 출발점에서 멀어지는 거리는 시간에 비례하지 않고 시간의 <b>제곱근</b>에 비례한다. 아래에서 분자 300개가 한가운데서 출발한다. 오른쪽 그래프는 출발점에서 떨어진 거리의 제곱을 평균한 값(평균 제곱 변위)이다.</p>
+
+    <div class="sim" id="sim-ce-walk" data-desc="분자 300개의 무작위 걸음을 보며 퍼진 거리의 제곱이 시간에 비례하는 것(평균 제곱 변위 = 4Dt)을 확인하고, 산소·포도당·단백질의 확산 속도를 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>무작위 걸음과 확산</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="wk-cv"></canvas><span class="hint">왼쪽 상자를 누르면 그 자리에 새로 떨어뜨린다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="wk-sp"><button data-value="2000" class="on">산소</button><button data-value="600">포도당</button><button data-value="70">단백질</button></div>
+          <div class="btn-row"><button class="btn primary" id="wk-re">다시 떨어뜨리기</button><button class="btn" id="wk-go">일시정지</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>분자</span><span><i style="background:var(--accent-2)"></i>이론 반지름 √(4Dt)</span><span><i style="background:var(--warn)"></i>측정한 평균 제곱 변위</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">흐른 시간</span><span class="v" id="wk-o-t">—</span></div>
+        <div class="stat"><span class="k">평균 거리(실측)</span><span class="v" id="wk-o-r">—</span></div>
+        <div class="stat"><span class="k">확산 계수 D</span><span class="v" id="wk-o-d">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 산소를 고르고 구름이 퍼지는 것을 본다. 오른쪽 점들이 직선(4Dt) 위에 놓인다. 거리의 제곱이 시간에 비례한다. ② 단백질로 바꾼다. 분자가 커서 D가 약 30분의 1이라 훨씬 느리게 퍼진다. ③ 퍼진 반지름이 2배가 되려면 시간이 4배 걸리는 것을 파란 원으로 확인한다. (2차원 무작위 걸음, 걸음마다 가우스 분포의 작은 이동. 화면은 실제보다 10배 느린 슬로 모션이다. 상자 한 변 160 µm.)</div>
+    </div>
+
+    <div class="formula">$$t \approx \frac{x^2}{2D}$$
+      <div class="where">\(t\) 확산으로 거리 \(x\)만큼 퍼지는 데 걸리는 시간(초), \(D\) 확산 계수(물속 산소 약 2×10⁻⁹ m²/s, 포도당 약 6×10⁻¹⁰ m²/s). 한 방향(1차원) 기준이며 3차원에서는 분모가 6D가 된다.</div>
+    </div>
+    <p>거리가 10배면 시간은 100배다. 아래 그래프에서 점을 끌어 거리를 바꿔 보자. 산소가 폐포 벽 0.5 µm를 건너는 데는 1 ms도 안 걸리지만 1 cm에는 7시간, 1 m에는 8년이 걸린다.</p>
+
+    <div class="sim" id="sim-ce-time" data-desc="확산 거리를 로그 눈금에서 끌어 산소·포도당·단백질이 그 거리를 퍼지는 데 걸리는 시간을 읽고, 시냅스·폐포 벽·세포·몸 크기의 거리를 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>거리의 제곱: µm는 순간, cm는 몇 시간</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="tm-cv"></canvas><span class="hint">선 위의 점을 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="tm-sp"><button data-value="2e-9" class="on">산소</button><button data-value="6e-10">포도당</button><button data-value="7e-11">단백질</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">거리</span><span class="v" id="tm-o-x">—</span></div>
+        <div class="stat"><span class="k">확산 시간</span><span class="v" id="tm-o-t">—</span></div>
+        <div class="stat"><span class="k">이 거리쯤</span><span class="v" id="tm-o-n" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 시냅스 틈(20 nm)에 놓는다. 신경 전달 물질이 건너는 데 0.1 µs 남짓이다. ② 세포 크기(10 µm)는 산소로 25 ms. 세포 안에는 펌프가 필요 없다. ③ 1 cm로 끈다. 약 7시간. 그래서 큰 몸에는 심장과 혈관이 있고, 모세혈관은 대부분의 세포에서 수십 µm 안에 있다. ④ 단백질로 바꾸면 선 전체가 위로 올라간다. (BD.diffTime: t = x²/(2D), 1차원 기준. 실제 조직에서는 막과 장애물 때문에 더 느리다.)</div>
+    </div>
+  </section>
+
+  <section id="fick">
+    <h2>피크의 법칙: 막을 건너는 양</h2>
+    <p>확산이 얼마나 많은 양을 나를 수 있는지는 1855년 아돌프 피크가 정리했다. 막을 지나는 양(플럭스)은 막의 넓이와 양쪽 농도 차이에 비례하고, 두께에 반비례한다. 이것이 <span class="term">피크의 법칙</span><span class="en">(Fick's law)</span>이다.</p>
+    <div class="formula">$$J = D \cdot A \cdot \frac{\Delta C}{\Delta x}$$
+      <div class="where">\(J\) 단위 시간에 지나는 양, \(D\) 확산 계수, \(A\) 막의 넓이(폐포 전체 약 70 m²), \(\Delta C\) 양쪽 농도(분압) 차(폐포 약 100 mmHg, 들어오는 정맥혈 약 40 mmHg), \(\Delta x\) 막 두께(폐포-모세혈관 벽 약 0.5 µm)</div>
+    </div>
+    <p>폐는 이 식의 모든 항을 최대로 만든 기관이다. 넓이는 테니스장 반 면, 두께는 종이의 200분의 1이다. 아래에서 막의 두께를 직접 끌어 보고, 넓이와 농도 차를 바꿔 보자.</p>
+
+    <div class="sim" id="sim-ce-fick" data-desc="막의 두께를 직접 끌고 넓이와 농도 차를 바꿔 피크의 법칙으로 막을 건너는 양이 어떻게 변하는지 보고, 폐섬유증·폐기종·운동 상태를 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>막을 건너는 양</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="fk-cv"></canvas><span class="hint">막 가장자리를 끌어 두께 조절</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>넓이 <output id="fk-a-out"></output></span><input type="range" id="fk-a" min="10" max="120" step="1" value="70"></label>
+          <label class="ctrl"><span>분압 차 <output id="fk-c-out"></output></span><input type="range" id="fk-c" min="5" max="100" step="1" value="60"></label>
+          <div class="btn-row"><button class="btn" data-p="norm">정상</button><button class="btn" data-p="fib">폐섬유증</button><button class="btn" data-p="emph">폐기종</button><button class="btn" data-p="ex">운동</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="fk-info">버튼으로 상태를 고르면 설명이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">막 두께</span><span class="v" id="fk-o-x">—</span></div>
+        <div class="stat"><span class="k">건너는 양(정상 = 100)</span><span class="v" id="fk-o-j">—</span></div>
+        <div class="stat"><span class="k">정상 대비</span><span class="v" id="fk-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 막을 3배 두껍게 끈다(1.5 µm). 건너는 양이 3분의 1이 된다. 폐가 굳고 두꺼워지는 폐섬유증이다. ② "폐기종"은 폐포 벽이 무너져 넓이가 줄어든 상태다. ③ "운동"을 누른다. 닫혀 있던 모세혈관이 열려 넓이가 늘고, 근육이 산소를 더 빼 가 정맥혈의 분압이 내려가 차이가 커진다. 두 효과가 곱해진다. (BD.fick: J = D·A·ΔC/Δx. D는 일정, 정상 폐를 100으로 맞춘 상대값이다. 실제 산소 섭취는 혈류에도 묶여 있다(9장).)</div>
+    </div>
+  </section>
+
+  <section id="osmosis">
+    <h2>삼투: 물은 녹아 있는 것을 따라간다</h2>
+    <p>세포막은 물은 쉽게 통과시키지만(아쿠아포린이라는 물 통로가 있다) 소금이나 단백질은 잘 통과시키지 않는다. 이런 막을 사이에 두고 한쪽에 녹아 있는 입자가 더 많으면, 입자는 못 건너는 대신 <b>물이 건너와</b> 농도를 맞추려 한다. 이것이 <span class="term">삼투</span><span class="en">(Osmosis)</span>다. 물을 끌어당기는 힘의 크기는 녹아 있는 입자의 개수, 곧 <span class="term">삼투 농도</span><span class="en">(Osmolality)</span>로 정해진다. 혈장은 약 290 mOsm/kg이다.</p>
+    <p>삼투의 힘은 생각보다 세다. 막 양쪽의 삼투 농도가 1 mOsm만 달라도 약 19 mmHg의 압력 차가 생긴다. 혈압의 수십 배에 해당하는 힘이 겨우 수십 mOsm의 차이에서 나온다. 아래에서 적혈구를 여러 용액에 넣어 보자.</p>
+
+    <div class="sim" id="sim-ce-osmo" data-desc="바깥 용액의 삼투 농도를 끌어 적혈구에 물이 드나드는 방향과 세포 부피를 보고, 증류수에서 터지고 진한 소금물에서 쭈그러드는 한계를 확인한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>적혈구와 세 가지 용액</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="os-cv"></canvas><span class="hint">아래 눈금의 손잡이를 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--water)"></i>물의 이동</span><span><i style="background:var(--art)"></i>적혈구</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">바깥 삼투 농도</span><span class="v" id="os-o-o">—</span></div>
+        <div class="stat"><span class="k">세포 부피</span><span class="v" id="os-o-v">—</span></div>
+        <div class="stat"><span class="k">처음 삼투압 차</span><span class="v" id="os-o-p">—</span></div>
+        <div class="stat"><span class="k">상태</span><span class="v" id="os-o-s" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 혈장과 같은 290 mOsm에서는 물이 드나드는 양이 같아 부피가 그대로다(등장액). 0.9 % 식염수가 이 근처다. ② 손잡이를 왼쪽 끝 쪽으로 끈다(저장액). 물이 들어와 세포가 동그랗게 부풀고, 약 150 mOsm(0.45 % 식염수) 아래에서는 막이 버티지 못해 터진다(용혈). ③ 오른쪽 끝(고장액, 3 % 식염수 근처)으로 끈다. 물이 빠져나가 세포가 가시 돋친 모양으로 쭈그러든다. (BD.cellVolume: 보일-반트호프 관계, 부피의 30 %는 삼투에 반응하지 않는다고 가정. 부피 1.65배에서 터진다고 어림했다.)</div>
+    </div>
+
+    <p>여기서 중요한 구분이 하나 있다. 삼투 농도는 녹아 있는 입자의 <b>총 개수</b>이지만, 세포의 부피를 실제로 바꾸는 것은 막을 <b>통과하지 못하는</b> 입자다. 요소는 막을 쉽게 통과하므로 혈장에 요소가 많아도 세포는 잘 붓지 않는다. 반면 나트륨은 펌프가 계속 내보내므로 사실상 세포 밖에 갇혀 있고, 그래서 혈장 나트륨 농도가 세포 부피를 정한다. 이 원리는 장 끝의 다온 이야기에서 다시 나온다.</p>
+  </section>
+
+  <section id="nernst">
+    <h2>막전위: 농도 차가 전압이 되는 순간</h2>
+    <p>이제 이온이 전하를 띤다는 사실을 더해 보자. 세포막에 칼륨만 지나는 통로가 열려 있다고 하자. 안에는 K⁺가 140 mM, 밖에는 4.5 mM이다. 농도 차 때문에 K⁺가 밖으로 새어 나간다. 그런데 K⁺는 양전하를 들고 나가고, 안에 남은 짝(음전하를 띤 단백질)은 막을 건너지 못한다. 몇 개만 빠져나가도 세포 안쪽 막 표면은 음전하로, 바깥쪽은 양전하로 덮인다.</p>
+    <p>이 전하가 만든 전압은 나가려는 K⁺를 다시 안으로 끌어당긴다. 농도가 밀어내는 힘과 전압이 당기는 힘이 똑같아지는 전압에서 알짜 이동이 멈춘다. 이 전압을 그 이온의 <span class="term">평형 전위</span><span class="en">(Equilibrium potential)</span>, 또는 식을 만든 사람의 이름을 따 <span class="term">네른스트 전위</span><span class="en">(Nernst potential)</span>라 한다.</p>
+
+    <div class="sim" id="sim-ce-nernst" data-desc="한 가지 이온만 지나는 막에서 이온이 새어 나가며 전하가 쌓이고, 농도의 힘과 전기의 힘이 같아지는 네른스트 전위에서 멈추는 과정을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>칼륨만 지나는 막</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ns-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="ns-ion"><button data-value="k" class="on">K⁺</button><button data-value="na">Na⁺</button><button data-value="cl">Cl⁻</button><button data-value="ca">Ca²⁺</button></div>
+          <label class="ctrl"><span>바깥 농도 배율 <output id="ns-m-out"></output></span><input type="range" id="ns-m" min="-1" max="1" step="0.05" value="0"></label>
+          <div class="btn-row"><button class="btn primary" id="ns-go">통로 다시 열기</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--warn)"></i>농도가 미는 힘</span><span><i style="background:var(--accent-2)"></i>전압이 당기는 힘</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">바깥 / 안 농도</span><span class="v" id="ns-o-c">—</span></div>
+        <div class="stat"><span class="k">지금 막전위</span><span class="v" id="ns-o-v">—</span></div>
+        <div class="stat"><span class="k">네른스트 전위</span><span class="v" id="ns-o-e">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① K⁺로 통로를 연다. 이온이 밖으로 새면서 막전위가 0에서 약 −92 mV로 내려가고, 두 화살표의 길이가 같아지면 멈춘다. ② Na⁺를 고른다. 이번에는 밖에서 안으로 들어와 안쪽이 양전하가 되어 약 +67 mV에서 멈춘다. ③ K⁺에서 바깥 농도 배율을 올린다(고칼륨혈증). 농도 차가 줄어 평형 전위가 0 쪽으로 올라간다. 10배 차이마다 약 61 mV씩 바뀐다. (BD.nernst, 37 °C. 실제로 막을 건너는 이온은 전체의 아주 작은 일부라 농도는 거의 바뀌지 않는다. 화면의 이동 점은 그 흐름을 크게 과장해 그린 것이다.)</div>
+    </div>
+
+    <div class="formula">$$E_{ion} = \frac{RT}{zF}\ln\frac{[ion]_{out}}{[ion]_{in}} \approx \frac{61.5}{z}\log_{10}\frac{[ion]_{out}}{[ion]_{in}}\ \text{mV}$$
+      <div class="where">\(R\) 기체 상수, \(T\) 절대 온도(37 °C = 310 K), \(z\) 이온의 전하(K⁺ +1, Ca²⁺ +2, Cl⁻ −1), \(F\) 패러데이 상수. K⁺: 61.5 × log(4.5/140) ≈ −92 mV, Na⁺: 61.5 × log(145/12) ≈ +67 mV</div>
+    </div>
+    <p>놀라운 것은 이 전압을 만드는 데 필요한 이온의 양이다. 지름 20 µm 세포가 −90 mV를 만들려면 안에 있는 K⁺ 10만 개 중 하나도 안 되는 양만 빠져나가면 된다. 그래서 막전위가 바뀌어도 농도는 거의 그대로이고, 막전위는 몇 ms 만에 크게 바뀔 수 있다. 신경과 심장이 전기로 신호를 보낼 수 있는 이유다.</p>
+  </section>
+
+  <section id="ghk">
+    <h2>휴지 막전위: 이온들의 줄다리기</h2>
+    <p>실제 세포막에는 칼륨 통로만 있지 않다. 쉬는 동안에도 나트륨과 염소가 조금씩 새어 다닌다. 그래서 세포의 실제 막전위는 여러 이온의 평형 전위 사이 어딘가에 놓이고, 막을 <b>더 잘 지나는</b> 이온 쪽으로 끌려간다. 이 줄다리기를 계산하는 식이 <span class="term">골드먼-호지킨-카츠 식</span><span class="en">(Goldman–Hodgkin–Katz equation, GHK)</span>이다.</p>
+    <div class="formula">$$V_m = 61.5 \log_{10}\frac{P_K[K]_o + P_{Na}[Na]_o + P_{Cl}[Cl]_i}{P_K[K]_i + P_{Na}[Na]_i + P_{Cl}[Cl]_o}\ \text{mV}$$
+      <div class="where">\(P\) 각 이온의 상대 투과도(쉬는 근육 세포 K : Na : Cl ≈ 1 : 0.04 : 0.45), \([\ ]_o\) 바깥 농도, \([\ ]_i\) 안 농도(mM). 음이온인 Cl⁻은 안팎이 뒤바뀐 자리에 들어간다.</div>
+    </div>
+    <p>쉬는 세포에서는 K⁺ 통로가 압도적으로 많이 열려 있어 막전위가 K⁺의 평형 전위(−92 mV) 가까이, 약 −74 mV에 놓인다. 아래 막대 높이를 끌어 투과도를 바꿔 보자. 막대가 높은 이온이 줄을 자기 쪽으로 당긴다.</p>
+
+    <div class="sim" id="sim-ce-ghk" data-desc="K⁺·Na⁺·Cl⁻의 투과도 막대를 끌어 휴지 막전위가 어느 이온의 평형 전위 쪽으로 끌려가는지 보고, 혈중 칼륨이 높아지면 막전위가 올라가는 것을 확인한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>세 이온의 줄다리기(GHK)</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="gk-cv"></canvas><span class="hint">막대 꼭대기를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>혈중 K⁺(바깥) <output id="gk-ko-out"></output></span><input type="range" id="gk-ko" min="1.5" max="10" step="0.1" value="4.5"></label>
+          <div class="btn-row"><button class="btn" data-p="rest">쉬는 상태</button><button class="btn" data-p="ap">활동 전위 정점</button><button class="btn" data-p="konly">K⁺만</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">막전위 Vm</span><span class="v" id="gk-o-v">—</span></div>
+        <div class="stat"><span class="k">E<sub>K</sub> / E<sub>Na</sub> / E<sub>Cl</sub></span><span class="v" id="gk-o-e">—</span></div>
+        <div class="stat"><span class="k">투과도 K : Na : Cl</span><span class="v" id="gk-o-p">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 값(1 : 0.04 : 0.45)에서 막전위는 약 −74 mV. ② Na⁺ 막대를 K⁺보다 높게 끈다(약 20배). 막전위가 +50 mV 근처로 뒤집힌다. 활동 전위의 정점에서 일어나는 일이다(16장). ③ 혈중 K⁺를 7 mM로 올린다(고칼륨혈증). 막전위가 약 −69 mV로 올라가 흥분하기 쉬워지고, 더 오르면 오히려 흥분하지 못하게 된다. 심장 리듬이 위험해지는 이유다. (BD.ghk, 37 °C. 안 농도 Na 12, K 140, Cl 4.2 mM, 바깥 Na 145, Cl 116 mM. 펌프의 전류는 넣지 않았다.)</div>
+    </div>
+
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 혈중 칼륨·나트륨 이상은 심장과 뇌에 위험할 수 있으며, 검사 수치가 걱정되거나 증상이 있으면 의료진과 상담하세요.</p>
+  </section>
+
+  <section id="pump">
+    <h2>나트륨-칼륨 펌프: 기울기를 지키는 비용</h2>
+    <p>막전위가 −74 mV인 세포에서 Na⁺는 농도 차와 전압 둘 다 안쪽을 향하는 힘을 받는다. 조금씩이라도 새어 들어오고, K⁺도 조금씩 새어 나간다. 내버려 두면 기울기는 언젠가 사라진다. 그것을 막는 것이 <span class="term">나트륨-칼륨 펌프</span><span class="en">(Na⁺/K⁺-ATPase)</span>다. ATP 하나를 써서 Na⁺ 3개를 내보내고 K⁺ 2개를 들여온다. 쉬는 몸이 쓰는 에너지의 약 20~25 %가 이 펌프에 들어간다(뇌에서는 절반이 넘는다).</p>
+    <p>펌프의 일은 하나 더 있다. 세포 안에는 막을 지나지 못하는 큰 음전하 분자(단백질, 핵산)가 가득하다. 이것들이 물을 끌어당기므로, 펌프가 Na⁺를 계속 밖으로 퍼내 바깥의 삼투 농도를 맞춰 주지 않으면 세포는 물을 먹고 붓는다. 아래에서 펌프를 멈춰 보자.</p>
+
+    <div class="sim" id="sim-ce-pump" data-desc="나트륨-칼륨 펌프(3 Na⁺ 밖, 2 K⁺ 안, ATP 1개)를 멈추면 이온 기울기가 천천히 무너지고 막전위가 0 쪽으로 올라가며 세포가 부어 터지는 과정을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>펌프를 멈추면</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="pm-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="btn-row"><button class="btn primary" id="pm-on">펌프 멈추기(ATP 고갈)</button><button class="btn" id="pm-re">처음으로</button></div>
+          <label class="ctrl"><span>시간 속도 <output id="pm-sp-out"></output></span><input type="range" id="pm-sp" min="1" max="30" step="1" value="10"></label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--warn)"></i>Na⁺</span><span><i style="background:var(--ins)"></i>K⁺</span><span><i style="background:var(--water)"></i>세포 부피</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">세포 안 Na⁺ / K⁺</span><span class="v" id="pm-o-c">—</span></div>
+        <div class="stat"><span class="k">막전위</span><span class="v" id="pm-o-v">—</span></div>
+        <div class="stat"><span class="k">세포 부피</span><span class="v" id="pm-o-w">—</span></div>
+        <div class="stat"><span class="k">흐른 시간</span><span class="v" id="pm-o-t">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 펌프가 도는 동안은 새는 양과 퍼내는 양이 같아 모든 값이 그대로다. ② "펌프 멈추기"를 누른다. Na⁺가 들어오고 K⁺가 나가며 막전위가 −70 mV에서 −20 mV 근처까지 올라간다. 신경과 근육이라면 더는 신호를 보낼 수 없다. ③ 계속 두면 Cl⁻과 물이 따라 들어와 세포가 부풀고 결국 터진다. 중간에 다시 펌프를 켜면 회복된다. 뇌졸중이나 심장마비로 산소가 끊긴 세포가 붓는 이유다. (Na⁺·K⁺·Cl⁻의 새는 흐름 + 3:2 펌프 + 막을 못 지나는 음이온을 넣은 교육용 모델. 시작 상태는 Cl⁻이 평형인 막전위 약 −70 mV다. 시간은 모델 단위이며 실제 세포에서는 수십 분~몇 시간이 걸린다.)</div>
+    </div>
+  </section>
+
+  <section id="daon">
+    <h2>다온의 세포: 대회 뒤의 물 한 병</h2>
+    <p>다온의 다리 근육 세포를 엔진으로 계산하면 휴지 막전위는 약 −74 mV다(`BD.ghk`). 이 값은 세포 안의 K⁺ 140 mM와 바깥의 4.5 mM, 그리고 펌프가 지키는 Na⁺ 기울기가 함께 만든다. 이제 이 장의 원리를 대회 날에 적용해 보자.</p>
+    <p>달리는 동안 다온은 땀을 흘린다. 땀은 혈장보다 묽은 소금물(나트륨 약 20~80 mmol/L)이다. 그런데 땀으로 잃은 만큼보다 훨씬 많은 <b>맹물</b>을 마시면 어떻게 될까. 몸의 물은 늘어나는데 나트륨은 줄었으니 혈장의 삼투 농도가 내려간다. 그러면 세포 밖이 저장액이 되고, 물이 세포 안으로 들어가 온몸의 세포가 붓는다. 다른 세포는 조금 부어도 괜찮지만, 단단한 머리뼈 안에 갇힌 뇌세포는 붓는 만큼 압력이 오른다.</p>
+
+    <div class="callout warn">
+      <strong>물을 지나치게 마시지 않는다</strong>
+      장시간 운동 중이나 뒤에 땀으로 잃은 양보다 훨씬 많은 맹물을 마시면 혈중 나트륨이 떨어지는 운동 관련 저나트륨혈증이 생길 수 있고, 심하면 두통·구토·혼란·발작으로 이어져 생명이 위험하다. 아래 시뮬레이터로만 실험하고 실제로 시험하지 않는다. 운동 중 수분 섭취는 갈증과 땀의 양을 기준으로 하고, 오래 운동할 때는 염분이 든 음료를 고려하며, 걱정되면 의료진과 상담한다.
+    </div>
+
+    <div class="sim" id="sim-ce-daon" data-big data-desc="다온의 10 km 대회에서 땀의 양·땀의 나트륨·마신 물의 양과 종류를 바꿔 혈장 나트륨과 삼투 농도, 세포 부피가 어떻게 변하는지 보고, 맹물을 지나치게 마시면 세포가 붓는 저나트륨혈증을 확인한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>대회 날의 물과 소금</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="dn-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="dn-drink"><button data-value="0" class="on">맹물</button><button data-value="20">스포츠음료</button><button data-value="60">경구 수분 보충액</button></div>
+          <label class="ctrl"><span>마신 양(대회 중 + 뒤 1시간) <output id="dn-dr-out"></output></span><input type="range" id="dn-dr" min="0" max="7" step="0.1" value="0.5"></label>
+          <label class="ctrl"><span>운동 시간 <output id="dn-t-out"></output></span><input type="range" id="dn-t" min="30" max="360" step="1" value="58"></label>
+          <label class="ctrl"><span>땀 속도 <output id="dn-sw-out"></output></span><input type="range" id="dn-sw" min="0.2" max="1.5" step="0.02" value="0.62"></label>
+          <label class="ctrl"><span>땀의 나트륨 <output id="dn-na-out"></output></span><input type="range" id="dn-na" min="20" max="80" step="1" value="40"></label>
+          <label class="check"><input type="checkbox" id="dn-adh"> 항이뇨 호르몬이 계속 높다(소변이 안 나옴)</label>
+          <div class="btn-row"><button class="btn" data-p="daon">다온의 대회</button><button class="btn" data-p="water3">맹물 3 L</button><button class="btn" data-p="slow">5시간 마라톤 + 7 L</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">가장 낮은 혈장 나트륨</span><span class="v" id="dn-o-na">—</span></div>
+        <div class="stat"><span class="k">가장 낮은 삼투 농도</span><span class="v" id="dn-o-os">—</span></div>
+        <div class="stat"><span class="k">세포 부피</span><span class="v" id="dn-o-v">—</span></div>
+        <div class="stat"><span class="k">몸의 물 변화</span><span class="v" id="dn-o-w">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "다온의 대회"(58분, 땀 약 0.6 L, 맹물 0.5 L)는 나트륨이 거의 그대로다. ② "맹물 3 L"를 누른다. 땀보다 2.4 L 더 마시자 나트륨이 약 134 mmol/L까지 내려가고(저나트륨혈증의 문턱 135 아래) 세포가 약 3 % 붓는다. 소변으로 남는 물을 버리며 천천히 회복한다. ③ "항이뇨 호르몬이 계속 높다"를 켠다. 소변이 나오지 않아 약 133에 머문다. ④ "5시간 마라톤 + 7 L"는 나트륨이 130 mmol/L 근처로 떨어지고 세포가 5 % 넘게 붓는다. 같은 양을 경구 수분 보충액으로 바꾸면 훨씬 덜 떨어진다. (몸의 물 46.8 L(BD.tbw(78)), 시작 삼투 농도 290. 땀의 오스몰 = 2 × 나트륨. 혈장 나트륨 ≈ 140 × 삼투 농도/290, 세포 부피 BD.cellVolume(그림의 크기 변화는 과장했다). 대회 뒤 삼투 농도가 285 아래면 묽은 소변을 시간당 최대 0.9 L 버린다고 가정했다. 18장에서 콩팥과 함께 다시 다룬다.)</div>
+    </div>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 3장</span></div>
+      <h4>근육 세포의 휴지 막전위 약 −74 mV. 맹물 3 L를 마시면 세포가 약 3~4 % 붓는다</h4>
+      <p>다온의 근육 세포는 안쪽 K⁺ 140 mM, 바깥 4.5 mM, 투과도 K : Na : Cl = 1 : 0.04 : 0.45에서 GHK로 약 −74 mV의 휴지 막전위를 갖는다. K⁺의 평형 전위(약 −92 mV)보다 조금 높은 것은 Na⁺가 조금씩 새어 들기 때문이고, 그 새는 Na⁺를 펌프가 ATP를 써서 퍼낸다. 대회 날(58분, 땀 약 0.6 L, 땀 나트륨 약 40 mmol/L) 다온이 물을 적당히(약 0.5 L) 마시면 혈장 나트륨은 약 140 mmol/L 그대로다. 그러나 맹물 3 L를 마시면 혈장 삼투 농도가 약 277 mOsm/kg으로, 나트륨이 약 134 mmol/L로 떨어지고 세포가 약 3 % 붓는다. 소변이 나오지 않는 상황이라면 약 133 mmol/L, 세포 부피 약 +4 %에 머문다. 삼투는 세포막 하나에서 일어나는 일이지만, 그 결과는 머리뼈 속 뇌의 부피로 나타난다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>휴지 막전위 −74 mV를 만드는 이온 기울기와 펌프. 땀과 맹물이 혈장 삼투 농도를 거쳐 세포 부피를 바꾸는 경로.</div><div><b>아직 모르는 것</b>달릴 때 심장은 이 세포들에 피를 얼마나 빨리 보내는가. 막전위가 어떻게 심장을 뛰게 하는가.</div><div><b>다음 단계</b><a href="heart.html">4장</a>에서 다온의 심장이 쉴 때와 달릴 때 내보내는 피의 양을 압력-부피 고리로 본다. 물과 소금의 조절은 <a href="kidney.html">18장</a>에서 다시 다룬다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>확산은 무작위 걸음의 결과이고, 퍼지는 시간은 거리의 제곱에 비례한다(t ≈ x²/2D). 산소는 10 µm를 약 25 ms에, 1 cm를 약 7시간에 퍼진다.</li>
+      <li>피크의 법칙: 막을 지나는 양 = D × 넓이 × 농도 차 / 두께. 폐는 넓이(약 70 m²)를 키우고 두께(약 0.5 µm)를 줄인 기관이다.</li>
+      <li>물은 막을 지나지 못하는 입자가 많은 쪽으로 옮겨 간다(삼투). 1 mOsm 차이가 약 19 mmHg의 힘을 만든다. 적혈구는 저장액에서 붓다 터지고, 고장액에서 쭈그러든다.</li>
+      <li>한 이온만 지나는 막은 그 이온의 네른스트 전위에서 평형을 이룬다(K⁺ 약 −92 mV, Na⁺ 약 +67 mV). 필요한 이온의 이동은 극히 작다.</li>
+      <li>휴지 막전위(약 −74 mV)는 투과도가 가장 큰 K⁺ 쪽으로 끌린 여러 이온의 줄다리기(GHK)이고, 혈중 K⁺가 오르면 막전위도 오른다.</li>
+      <li>나트륨-칼륨 펌프(ATP 1개로 3 Na⁺ 밖, 2 K⁺ 안)가 기울기와 세포 부피를 지킨다. 펌프가 멈추거나 혈장이 묽어지면 세포가 붓는다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>어떤 분자가 확산으로 10 µm를 퍼지는 데 20 ms가 걸린다. 같은 분자가 100 µm를 퍼지는 데 걸리는 시간에 가장 가까운 것은?</p>
+        <div class="opts">
+          <button class="opt">200 ms</button>
+          <button class="opt">약 0.6 s</button>
+          <button class="opt" data-correct>2 s</button>
+          <button class="opt">20 s</button>
+        </div>
+        <div class="quiz-exp">확산 시간은 거리의 제곱에 비례한다. 거리가 10배이면 시간은 100배, 20 ms × 100 = 2 s.</div>
+      </div>
+      <div class="quiz-q">
+        <p>폐포-모세혈관 벽이 정상의 3배로 두꺼워지고 넓이는 그대로라면, 같은 분압 차에서 확산으로 건너는 산소의 양은?</p>
+        <div class="opts">
+          <button class="opt" data-correct>약 1/3로 준다</button>
+          <button class="opt">약 1/9로 준다</button>
+          <button class="opt">3배로 는다</button>
+          <button class="opt">변하지 않는다</button>
+        </div>
+        <div class="quiz-exp">피크의 법칙 J = D·A·ΔC/Δx에서 두께 Δx가 분모에 있으므로 3배 두꺼우면 1/3이 된다. 시간과 달리 양은 두께에 1제곱으로 반비례한다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>적혈구를 증류수에 넣으면 어떻게 되는가?</p>
+        <div class="opts">
+          <button class="opt">물이 빠져나가 쭈그러든다</button>
+          <button class="opt">아무 변화가 없다</button>
+          <button class="opt">소금이 들어가 무거워진다</button>
+          <button class="opt" data-correct>물이 들어와 부풀다가 터진다</button>
+        </div>
+        <div class="quiz-exp">증류수는 삼투 농도가 0에 가까운 저장액이다. 세포 안의 입자(약 290 mOsm)가 물을 끌어들여 세포가 부풀고, 공 모양이 되어 더는 늘어날 수 없으면 막이 찢어진다(용혈).</div>
+      </div>
+      <div class="quiz-q">
+        <p>세포 밖 K⁺ 5 mM, 안 150 mM일 때 37 °C에서 K⁺의 평형 전위에 가장 가까운 것은? (log₁₀ 30 ≈ 1.48)</p>
+        <div class="opts">
+          <button class="opt">약 +91 mV</button>
+          <button class="opt">약 −30 mV</button>
+          <button class="opt" data-correct>약 −91 mV</button>
+          <button class="opt">약 −150 mV</button>
+        </div>
+        <div class="quiz-exp">E = 61.5 × log₁₀(5/150) = 61.5 × (−1.48) ≈ −91 mV. 안이 진한 양이온이 밖으로 새면 안쪽이 음전하를 띠므로 부호는 음이다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>혈중 칼륨 농도가 크게 오르면(고칼륨혈증) 휴지 막전위는 어떻게 되는가?</p>
+        <div class="opts">
+          <button class="opt">더 음(−)으로 내려간다</button>
+          <button class="opt" data-correct>0 mV 쪽으로 올라간다(탈분극)</button>
+          <button class="opt">변하지 않는다. 막전위는 나트륨이 정한다</button>
+          <button class="opt">+67 mV로 뒤집힌다</button>
+        </div>
+        <div class="quiz-exp">휴지 막전위는 투과도가 큰 K⁺의 평형 전위를 따라간다. 바깥 K⁺가 늘면 농도 차가 줄어 E<sub>K</sub>가 올라가고 막전위도 0 쪽으로 오른다. 심장 근육의 흥분성이 바뀌어 위험한 부정맥이 생길 수 있다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  function fmt0(x) { return Math.round(x).toLocaleString("en-US"); }
+  function narrowOf(id, bp) { var el = document.getElementById(id); return (el && el.parentElement.clientWidth < (bp || 560)); }
+  function handle(ctx, x, y, col, r) { var p = P(); ctx.fillStyle = p.bg; ctx.strokeStyle = col || p.accent; ctx.lineWidth = 2.6; ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); }
+  function dur(s) { return s < 1e-6 ? BB.fmt(s * 1e9, 2) + " ns" : s < 1e-3 ? BB.fmt(s * 1e6, 2) + " µs" : s < 1 ? BB.fmt(s * 1000, 2) + " ms" : s < 120 ? BB.fmt(s, 2) + " s" : s < 7200 ? BB.fmt(s / 60, 2) + " 분" : s < 2 * 86400 ? BB.fmt(s / 3600, 2) + " 시간" : s < 2 * 365 * 86400 ? BB.fmt(s / 86400, 2) + " 일" : BB.fmt(s / 86400 / 365, 2) + " 년"; }
+  function len(x) { return x >= 1 ? BB.fmt(x, 3) + " m" : x >= 1e-2 ? BB.fmt(x * 100, 3) + " cm" : x >= 1e-3 ? BB.fmt(x * 1000, 3) + " mm" : x >= 1e-6 ? BB.fmt(x * 1e6, 3) + " µm" : BB.fmt(x * 1e9, 3) + " nm"; }
+  function arrow(ctx, x0, y0, x1, y1, col, wd) {
+    var a = Math.atan2(y1 - y0, x1 - x0), L = Math.hypot(x1 - x0, y1 - y0); if (L < 2) return;
+    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = wd || 3; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1 - Math.cos(a) * 6, y1 - Math.sin(a) * 6); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x1 - 11 * Math.cos(a - 0.45), y1 - 11 * Math.sin(a - 0.45)); ctx.lineTo(x1 - 11 * Math.cos(a + 0.45), y1 - 11 * Math.sin(a + 0.45)); ctx.closePath(); ctx.fill();
+  }
+
+  /* ---------------------------------------------------------- 1. 무작위 걸음 */
+  (function () {
+    var N = 300, SIDE = 160, SLOW = 0.1, parts = [], t = 0, msd = [], playing = true, lay = null, g = BD.gauss(7);
+    var sp = BB.seg("wk-sp", function () { drop(0, 0); });
+    function drop(x0, y0) { parts = []; for (var i = 0; i < N; i++) parts.push([x0, y0, x0, y0]); t = 0; msd = []; }
+    drop(0, 0);
+    document.getElementById("wk-re").addEventListener("click", function () { drop(0, 0); });
+    var gb = document.getElementById("wk-go");
+    gb.addEventListener("click", function () { playing = !playing; gb.textContent = playing ? "일시정지" : "재생"; });
+    function step(dt) {
+      var D = Number(sp()), s = Math.sqrt(2 * D * dt);   // µm
+      for (var i = 0; i < N; i++) { parts[i][0] += s * g(); parts[i][1] += s * g(); }
+      t += dt;
+      var m = 0; for (var k = 0; k < N; k++) { var dx = parts[k][0] - parts[k][2], dy = parts[k][1] - parts[k][3]; m += dx * dx + dy * dy; }
+      m /= N;
+      if (!msd.length || t - msd[msd.length - 1][0] > 0.004) msd.push([t, m]);
+    }
+    var cv = BB.canvas("#wk-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 520, D = Number(sp());
+      var S = narrow ? Math.min(w - 32, 260) : Math.min(h - 40, w * 0.48), bx = narrow ? (w - S) / 2 : 16, by = 14;
+      var sc = S / SIDE, cx = bx + S / 2, cy = by + S / 2;
+      ctx.fillStyle = BB.alpha(BB.color("water"), 0.06); ctx.fillRect(bx, by, S, S); ctx.strokeStyle = p.border; ctx.strokeRect(bx, by, S, S);
+      ctx.save(); ctx.beginPath(); ctx.rect(bx, by, S, S); ctx.clip();
+      var ox = parts.length ? parts[0][2] : 0, oy = parts.length ? parts[0][3] : 0;
+      var R = Math.sqrt(4 * D * t) * sc;
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 2; ctx.setLineDash([5, 4]); ctx.beginPath(); ctx.arc(cx + ox * sc, cy + oy * sc, R, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = BB.alpha(p.accent, 0.75);
+      for (var i = 0; i < parts.length; i++) { ctx.beginPath(); ctx.arc(cx + parts[i][0] * sc, cy + parts[i][1] * sc, 2.1, 0, Math.PI * 2); ctx.fill(); }
+      ctx.restore();
+      ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(bx + 10, by + S - 10); ctx.lineTo(bx + 10 + 20 * sc, by + S - 10); ctx.stroke();
+      ctx.fillStyle = p.text; ctx.font = BB.font(10.5, true); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("20 µm", bx + 10, by + S - 14);
+      ctx.fillStyle = p.accent2; ctx.font = BB.font(11, true, 700); ctx.textAlign = "right"; ctx.textBaseline = "top"; ctx.fillText("√(4Dt) = " + (R / sc).toFixed(1) + " µm", bx + S - 6, by + 6);
+      // MSD 그래프
+      var box = narrow ? { x: 58, y: by + S + 22, w: w - 74, h: h - by - S - 96 } : { x: bx + S + 62, y: 16, w: w - bx - S - 78, h: h - 90 };
+      var tmax = Math.max(0.05, t * 1.05), ymax = Math.max(100, 4 * D * tmax * 1.15);
+      var c = BB.chart(ctx, box, { x: [0, tmax], y: [0, ymax], xLabel: "시간 t (s)", yLabel: "평균 제곱 변위 µm²", xFmt: function (v) { return v.toFixed(2); }, yFmt: function (v) { return v >= 1000 ? (v / 1000) + "k" : String(v); },
+        series: [{ data: [[0, 0], [tmax, 4 * D * tmax]], color: p.accent2, width: 2 }] });
+      ctx.fillStyle = p.warn; for (var k = 0; k < msd.length; k += Math.max(1, Math.floor(msd.length / 60))) { ctx.beginPath(); ctx.arc(c.X(msd[k][0]), c.Y(msd[k][1]), 3, 0, Math.PI * 2); ctx.fill(); }
+      ctx.fillStyle = p.accent2; ctx.font = BB.font(11.5, true, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("4Dt", box.x + 8, box.y + 6);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.fillText("직선 = 거리² ∝ 시간", box.x + 8, box.y + 22);
+      lay = { bx: bx, by: by, S: S, sc: sc };
+      var rms = msd.length ? Math.sqrt(msd[msd.length - 1][1]) : 0;
+      BB.stat("wk-o-t", (t * 1000).toFixed(0) + "<small>ms</small>");
+      BB.stat("wk-o-r", rms.toFixed(1) + "<small>µm</small>");
+      BB.stat("wk-o-d", D + "<small>µm²/s</small>");
+    }, { get height() { return narrowOf("wk-cv", 520) ? 520 : 330; } });
+    BB.drag(cv.canvas, { start: function (x, y) { if (!lay) return; if (x < lay.bx || x > lay.bx + lay.S || y < lay.by || y > lay.by + lay.S) return; drop((x - lay.bx - lay.S / 2) / lay.sc, (y - lay.by - lay.S / 2) / lay.sc); cv.redraw(); } });
+    BB.loop(document.getElementById("sim-ce-walk"), function (dt) { if (playing && t < 3) { for (var i = 0; i < 3; i++) step(dt * SLOW / 3); } cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 2. 확산 시간 */
+  (function () {
+    var lx = Math.log10(10e-6), lay = null;
+    var MARK = [[20e-9, "시냅스 틈"], [0.5e-6, "폐포 벽"], [10e-6, "세포"], [50e-6, "모세혈관 간격"], [1e-3, "1 mm"], [1e-2, "1 cm"], [0.3, "팔 길이"]];
+    var sp = BB.seg("tm-sp", function () { cv.redraw(); });
+    var cv = BB.canvas("#tm-cv", function (ctx, w, h) {
+      var p = P(), D = Number(sp()), narrow = w < 520, x = Math.pow(10, lx);
+      var box = { x: 66, y: 16, w: w - 82, h: h - 84 };
+      var tf = function (v) { return v >= 3.15e7 ? (v / 3.15e7).toPrecision(1) + "년" : v >= 3600 ? (v / 3600).toPrecision(1) + "h" : v >= 1 ? v + "s" : v >= 1e-3 ? (v * 1e3) + "ms" : v >= 1e-6 ? (v * 1e6) + "µs" : (v * 1e9) + "ns"; };
+      var xs = BD.logspace(1e-9, 1, 50);
+      var c = BB.chart(ctx, box, { x: [1e-9, 1], y: [1e-10, 1e10], logX: true, logY: true, xLabel: "거리(로그 눈금)", yLabel: "확산 시간",
+        xFmt: function (v) { return v >= 1 ? "1m" : v >= 1e-3 ? (v * 1000) + "mm" : v >= 1e-6 ? (v * 1e6) + "µm" : (v * 1e9) + "nm"; },
+        xTicks: [1e-9, 1e-6, 1e-3, 1], yTicks: [1e-9, 1e-6, 1e-3, 1, 3600, 3.15e7], yFmt: tf,
+        series: [{ data: xs.map(function (v) { return [v, BD.diffTime(v, 2e-9)]; }), color: BB.alpha(p.dim, 0.35), width: 1.2, dash: [4, 4] }, { data: xs.map(function (v) { return [v, BD.diffTime(v, D)]; }), color: p.accent, width: 2.6 }] });
+      // 기준 시간 띠
+      [[1, "1초"], [3600, "1시간"], [3.15e7, "1년"]].forEach(function (q) { ctx.strokeStyle = BB.alpha(p.warn, 0.5); ctx.setLineDash([3, 4]); ctx.beginPath(); ctx.moveTo(box.x, c.Y(q[0])); ctx.lineTo(box.x + box.w, c.Y(q[0])); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle = p.warn; ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText(q[1], box.x + 4, c.Y(q[0]) - 2); });
+      MARK.forEach(function (m, k) {
+        if (narrow && (k === 3 || k === 5)) return;
+        var X = c.X(m[0]), Y = c.Y(BD.diffTime(m[0], D));
+        ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(X, Y, 3, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText(m[1], X + 5, Y + 3);
+      });
+      var t = BD.diffTime(x, D), X = c.X(x), Y = c.Y(t);
+      ctx.strokeStyle = BB.alpha(p.text, 0.5); ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(X, box.y + box.h); ctx.lineTo(X, Y); ctx.lineTo(box.x, Y); ctx.stroke(); ctx.setLineDash([]);
+      handle(ctx, X, Y);
+      ctx.font = BB.font(13, true, 700); ctx.textAlign = X > box.x + box.w * 0.6 ? "right" : "left"; ctx.textBaseline = "bottom";
+      var lt = len(x) + " → " + dur(t), lw = ctx.measureText(lt).width, lx0 = X + (ctx.textAlign === "right" ? -12 : 12);
+      ctx.fillStyle = BB.alpha(p.bg, 0.9); ctx.fillRect(ctx.textAlign === "right" ? lx0 - lw - 4 : lx0 - 4, Y - 26, lw + 8, 19);
+      ctx.fillStyle = p.text; ctx.fillText(lt, lx0, Y - 8);
+      lay = c;
+      var nm = MARK.reduce(function (b, m) { return Math.abs(Math.log10(m[0]) - lx) < Math.abs(Math.log10(b[0]) - lx) ? m : b; }, MARK[0]);
+      BB.stat("tm-o-x", len(x)); BB.stat("tm-o-t", dur(t)); BB.stat("tm-o-n", nm[1]);
+    }, { get height() { return narrowOf("tm-cv", 520) ? 380 : 340; } });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; var b = lay.box; lx = BB.clamp(-9 + (x - b.x) / b.w * 9, -9, 0); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 3. 피크의 법칙 */
+  (function () {
+    var dx = 0.5, lay = null, parts = [], rng = BD.rng(3), ph = 0;
+    var J0 = BD.fick(1, 70, 60, 0.5);
+    var INFO = {
+      norm: [70, 60, 0.5, "<h4>정상 폐</h4><p>넓이 약 70 m², 벽 두께 약 0.5 µm, 폐포 산소 분압 100 mmHg와 들어오는 정맥혈 40 mmHg의 차이 60 mmHg.</p>"],
+      fib: [70, 60, 1.5, "<h4>폐섬유증</h4><p>폐포 벽에 섬유가 쌓여 두꺼워진다. 두께가 3배면 건너는 양은 1/3. 쉴 때는 버텨도 운동하면 산소 포화도가 떨어진다.</p>"],
+      emph: [25, 60, 0.5, "<h4>폐기종</h4><p>폐포 벽이 무너져 작은 방 여러 개가 큰 방 하나가 된다. 부피는 그대로인데 표면적이 크게 줄어든다.</p>"],
+      ex: [105, 90, 0.5, "<h4>운동</h4><p>닫혀 있던 모세혈관이 열려 넓이가 늘고, 근육이 산소를 더 빼 가 돌아오는 피의 산소 분압이 약 10~20 mmHg로 내려간다. 넓이와 분압 차가 함께 커진다.</p>"],
+    };
+    var getA = BB.range("fk-a", function (v) { return v + " m²"; }, function () { cv.redraw(); });
+    var getC = BB.range("fk-c", function (v) { return v + " mmHg"; }, function () { cv.redraw(); });
+    document.querySelectorAll("#sim-ce-fick [data-p]").forEach(function (b) { b.addEventListener("click", function () { var q = INFO[b.dataset.p]; getA.set(q[0]); getC.set(q[1]); dx = q[2]; document.getElementById("fk-info").innerHTML = q[3]; cv.redraw(); }); });
+    var cv = BB.canvas("#fk-cv", function (ctx, w, h) {
+      var p = P(), A = getA(), dC = getC(), J = BD.fick(1, A, dC, dx), rel = J / J0 * 100;
+      var mx = w * 0.42, mw = 30 * dx / 0.5, mh = (h - 120) * BB.clamp(A / 120, 0.1, 1), my = 40 + ((h - 120) - mh) / 2;
+      var o2 = BB.color("o2");
+      // 양쪽 영역
+      ctx.fillStyle = BB.alpha(o2, 0.06 + 0.18 * BB.clamp((dC + 40) / 140, 0, 1)); ctx.fillRect(10, 26, mx - 10, h - 92);
+      ctx.fillStyle = BB.alpha(o2, 0.05); ctx.fillRect(mx + mw, 26, w - mx - mw - 10, h - 92);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11.5, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "top";
+      ctx.fillText("폐포 공기 (높은 분압)", (10 + mx) / 2, 8); ctx.fillText("모세혈관 피 (낮은 분압)", (mx + mw + w - 10) / 2, 8);
+      // 막(전체 높이 중 넓이에 비례하는 부분만 열림)
+      ctx.fillStyle = BB.alpha(BB.color("fat"), 0.25); ctx.fillRect(mx, 26, mw, h - 92);
+      ctx.fillStyle = BB.alpha(BB.color("fat"), 0.75); ctx.fillRect(mx, my, mw, mh);
+      ctx.strokeStyle = BB.color("fat"); ctx.lineWidth = 1.2; ctx.strokeRect(mx, my, mw, mh);
+      handle(ctx, mx + mw, my + mh / 2, p.accent, 7);
+      ctx.fillStyle = p.text; ctx.font = BB.font(11, true, 700); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(dx.toFixed(2) + " µm", mx + mw / 2, my + mh + 6);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textBaseline = "bottom"; ctx.fillText("교환 넓이 " + A + " m²", mx + mw / 2, my - 6);
+      // 입자
+      parts.forEach(function (q) { var x = q.x, y = my + q.y * mh; ctx.fillStyle = o2; ctx.beginPath(); ctx.arc(x, y, 2.6, 0, Math.PI * 2); ctx.fill(); });
+      // 플럭스 막대
+      var bx = 20, by = h - 44, bw = w * 0.5;
+      ctx.fillStyle = p.surface; BB.rrect(ctx, bx, by, bw, 14, 6); ctx.fill();
+      ctx.fillStyle = rel < 50 ? p.bad : p.accent; BB.rrect(ctx, bx, by, bw * BB.clamp(rel / 300, 0, 1), 14, 6); ctx.fill();
+      ctx.strokeStyle = p.text; ctx.beginPath(); ctx.moveTo(bx + bw / 3, by - 3); ctx.lineTo(bx + bw / 3, by + 17); ctx.stroke();
+      ctx.fillStyle = p.text; ctx.font = BB.font(11, true, 700); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("건너는 양 " + Math.round(rel) + " (정상 100)", bx, by - 3);
+      lay = { mx: mx, my: my, mh: mh, mw: mw, rel: rel };
+      BB.stat("fk-o-x", dx.toFixed(2) + "<small>µm</small>");
+      BB.stat("fk-o-j", Math.round(rel));
+      BB.stat("fk-o-r", "×" + (rel / 100).toFixed(2));
+    }, { aspect: 0.62, minHeight: 300, maxHeight: 380 });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; dx = Math.round(BB.clamp((x - lay.mx) / 60 * 1, 0.2, 3) * 20) / 20; cv.redraw(); } });
+    BB.loop(document.getElementById("sim-ce-fick"), function (dt) {
+      if (!lay) return;
+      var rate = lay.rel / 100 * 40;
+      ph += rate * dt; while (ph > 1) { ph -= 1; parts.push({ x: lay.mx - 40 - rng() * 30, y: rng(), v: 60 + rng() * 40 }); }
+      parts.forEach(function (q) { q.x += q.v * dt * (q.x > lay.mx && q.x < lay.mx + lay.mw ? 0.35 / Math.max(0.3, dx) * 0.5 : 1); });
+      parts = parts.filter(function (q) { return q.x < cv.w - 14; });
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 4. 삼투: 적혈구 */
+  (function () {
+    var osm = 290, V = 1, lay = null, ph = 0, burst = false;
+    var LMIN = 20, LMAX = 1100;
+    var MARKS = [[20, "증류수"], [154, "0.45 %"], [290, "혈장·0.9 %"], [600, ""], [1026, "3 % 식염수"]];
+    var cv = BB.canvas("#os-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 520, target = BD.cellVolume(osm);
+      var water = BB.color("water"), art = BB.color("art");
+      // 용액
+      var ty = 12, th = h - 96;
+      ctx.fillStyle = BB.alpha(water, 0.04 + 0.22 * BB.clamp(osm / 1100, 0, 1)); BB.rrect(ctx, 14, ty, w - 28, th, 12); ctx.fill();
+      ctx.strokeStyle = p.border; ctx.lineWidth = 1.2; BB.rrect(ctx, 14, ty, w - 28, th, 12); ctx.stroke();
+      // 녹은 입자 점(바깥)
+      var rng = BD.rng(5), n = Math.round(osm / 12);
+      ctx.fillStyle = BB.alpha(p.dim, 0.5);
+      for (var i = 0; i < n; i++) { var x = 22 + rng() * (w - 44), y = ty + 8 + rng() * (th - 16); ctx.fillRect(x, y, 2, 2); }
+      // 세포
+      var cx = w / 2, cy = ty + th / 2, R0 = Math.min(th * 0.28, w * 0.18);
+      var k = Math.sqrt(V);  // 겉보기 크기
+      if (!burst) {
+        var round = BB.clamp((V - 1) / 0.6, 0, 1);         // 0: 원반, 1: 공
+        var cren = BB.clamp((0.9 - V) / 0.25, 0, 1);       // 쭈그러듦
+        ctx.beginPath();
+        var Rr = R0 * Math.pow(V, 1 / 3) * (1 - 0.06 * round);
+        for (var a = 0; a <= Math.PI * 2 + 0.01; a += 0.02) {
+          var r = Rr * (1 + cren * 0.12 * Math.max(0, Math.sin(a * 14)) ** 3 - cren * 0.08);
+          var xx = cx + Math.cos(a) * r, yy = cy + Math.sin(a) * r;
+          a === 0 ? ctx.moveTo(xx, yy) : ctx.lineTo(xx, yy);
+        }
+        ctx.closePath();
+        ctx.fillStyle = BB.alpha(art, 0.8); ctx.fill(); ctx.strokeStyle = art; ctx.lineWidth = 2; ctx.stroke();
+        // 가운데 오목(원반일수록 진함)
+        var pallor = BB.clamp(1 - round, 0, 1) * (1 - cren * 0.6);
+        if (pallor > 0.02) { ctx.fillStyle = BB.alpha("#ffffff", 0.35 * pallor); ctx.beginPath(); ctx.arc(cx, cy, Rr * 0.42, 0, Math.PI * 2); ctx.fill(); }
+        // 물 화살표
+        var flow = target - V;
+        if (Math.abs(flow) > 0.004 || Math.abs(osm - 290) > 15) {
+          var inward = osm < 290;
+          for (var j = 0; j < 8; j++) {
+            var an = j * Math.PI / 4 + 0.2, f = ((ph * 0.8 + j * 0.13) % 1);
+            var r1 = Rr + 34, r2 = Rr + 8;
+            var s0 = inward ? r1 - (r1 - r2) * f : r2 + (r1 - r2) * f;
+            ctx.fillStyle = BB.alpha(water, 0.85 * (1 - Math.abs(f - 0.5) * 1.6));
+            ctx.beginPath(); ctx.arc(cx + Math.cos(an) * s0, cy + Math.sin(an) * s0, 3, 0, Math.PI * 2); ctx.fill();
+          }
+          ctx.fillStyle = water; ctx.font = BB.font(12, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "top";
+          ctx.fillText(inward ? "물이 들어간다" : "물이 빠져나간다", cx, cy + Rr + 40 > ty + th - 18 ? ty + 6 : cy + Rr + 40);
+        }
+      } else {
+        // 터진 세포: 막 조각
+        ctx.strokeStyle = BB.alpha(art, 0.6); ctx.lineWidth = 2;
+        for (var q = 0; q < 7; q++) { var a0 = q * 0.9; ctx.beginPath(); ctx.arc(cx + Math.cos(a0) * 10, cy + Math.sin(a0) * 10, R0 * 1.1, a0, a0 + 0.5); ctx.stroke(); }
+        ctx.fillStyle = BB.alpha(art, 0.15); ctx.beginPath(); ctx.arc(cx, cy, R0 * 1.4, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = p.bad; ctx.font = BB.font(14, false, 800); ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("용혈: 막이 터졌다", cx, cy);
+      }
+      ctx.fillStyle = p.text; ctx.font = BB.font(narrow ? 11 : 12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      var lab = osm < 270 ? "저장액" : osm > 310 ? "고장액" : "등장액";
+      ctx.fillText(lab + " · " + Math.round(osm) + " mOsm", 24, ty + 8);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.fillText("세포 안 290 mOsm", 24, ty + 26);
+      ctx.textAlign = "right"; ctx.fillStyle = p.text; ctx.font = BB.font(12, true, 700); ctx.fillText("부피 ×" + V.toFixed(2), w - 24, ty + 8);
+      // 눈금 자
+      var rx = 30, rw = w - 60, ry = h - 52;
+      var X = function (o) { return rx + (o - LMIN) / (LMAX - LMIN) * rw; };
+      var grad = ctx.createLinearGradient(rx, 0, rx + rw, 0);
+      grad.addColorStop(0, BB.alpha(water, 0.15)); grad.addColorStop(1, BB.alpha(water, 0.6));
+      ctx.fillStyle = grad; BB.rrect(ctx, rx, ry - 5, rw, 10, 5); ctx.fill();
+      ctx.fillStyle = BB.alpha(p.bad, 0.3); ctx.fillRect(rx, ry - 5, X(150) - rx, 10);
+      MARKS.forEach(function (m, i) { var mxp = X(m[0]); ctx.fillStyle = p.dim; ctx.fillRect(mxp - 0.5, ry - 9, 1, 18); if (m[1] && (!narrow || i !== 1)) { ctx.font = BB.font(10.5); ctx.textAlign = i === 0 ? "left" : i === MARKS.length - 1 ? "right" : "center"; ctx.textBaseline = "top"; ctx.fillText(m[1], BB.clamp(mxp, rx, rx + rw), ry + 11); } });
+      ctx.fillStyle = p.bad; ctx.font = BB.font(10); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("터짐", rx + 2, ry - 7);
+      handle(ctx, X(osm), ry, p.accent, 8);
+      lay = { rx: rx, rw: rw, ry: ry };
+      var st = burst ? "용혈(터짐)" : V > 1.15 ? "부풂" : V < 0.85 ? "쭈그러듦" : "정상 모양";
+      BB.stat("os-o-o", Math.round(osm) + "<small>mOsm/kg</small>");
+      BB.stat("os-o-v", burst ? "—" : "×" + V.toFixed(2));
+      BB.stat("os-o-p", fmt0(BD.osmoticP(Math.abs(290 - osm))) + "<small>mmHg</small>");
+      BB.stat("os-o-s", st);
+    }, { get height() { return narrowOf("os-cv", 520) ? 330 : 320; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay || y < lay.ry - 40) return; osm = BB.clamp(LMIN + (x - lay.rx) / lay.rw * (LMAX - LMIN), LMIN, LMAX); if (BD.cellVolume(osm) < 1.65) burst = false; cv.redraw(); } });
+    BB.loop(document.getElementById("sim-ce-osmo"), function (dt) {
+      ph += dt;
+      var target = BD.cellVolume(osm);
+      if (!burst) { V += (Math.min(target, 1.7) - V) * Math.min(1, dt * 1.6); if (V >= 1.65) burst = true; }
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 5. 네른스트 */
+  (function () {
+    var ION = { k: { n: "K⁺", z: 1, o: 4.5, i: 140, c: "ins" }, na: { n: "Na⁺", z: 1, o: 145, i: 12, c: "warn" }, cl: { n: "Cl⁻", z: -1, o: 116, i: 4.2, c: "glu" }, ca: { n: "Ca²⁺", z: 2, o: 1.2, i: 0.0001, c: "ok" } };
+    var V = 0, movers = [], rng = BD.rng(11), ph = 0;
+    var ion = BB.seg("ns-ion", function () { V = 0; movers = []; upd(); });
+    var getM = BB.range("ns-m", function (v) { return "×" + BB.fmt(Math.pow(10, v), 2); }, function () { upd(); });
+    document.getElementById("ns-go").addEventListener("click", function () { V = 0; movers = []; });
+    function cur() { var I = ION[ion()]; var o = I.o * Math.pow(10, getM()); return { I: I, o: o, i: I.i, E: BD.nernst(I.z, o, I.i) }; }
+    function upd() { var c = cur(); BB.stat("ns-o-c", BB.fmt(c.o, 3) + " / " + BB.fmt(c.i, 3) + "<small>mM</small>"); BB.stat("ns-o-e", (c.E > 0 ? "+" : "") + c.E.toFixed(1) + "<small>mV</small>"); }
+    upd();
+    var cv = BB.canvas("#ns-cv", function (ctx, w, h) {
+      var p = P(), c = cur(), col = p[c.I.c] || BB.color(c.I.c), narrow = w < 520;
+      var mx = w * (narrow ? 0.5 : 0.42), top = 30, bot = h - (narrow ? 130 : 30), mw = 14;
+      // 영역
+      ctx.fillStyle = BB.alpha(p.accent2, 0.06); ctx.fillRect(10, top, mx - mw / 2 - 10, bot - top);
+      ctx.fillStyle = BB.alpha(p.dim, 0.05); ctx.fillRect(mx + mw / 2, top, (narrow ? w - 10 : w * 0.78) - mx - mw / 2, bot - top);
+      var ox = narrow ? w - 10 : w * 0.78;
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+      ctx.fillText("세포 안 " + BB.fmt(c.i, 3) + " mM", (10 + mx) / 2, top - 6); ctx.fillText("세포 밖 " + BB.fmt(c.o, 3) + " mM", (mx + ox) / 2, top - 6);
+      // 이온 점(농도의 로그에 비례한 밀도)
+      var dens = function (cc) { return Math.round(BB.clamp(12 * (Math.log10(cc) + 4.5), 2, 90)); };
+      var r1 = BD.rng(21);
+      ctx.fillStyle = BB.alpha(col, 0.8);
+      for (var a = 0; a < dens(c.i); a++) { ctx.beginPath(); ctx.arc(14 + r1() * (mx - mw / 2 - 22), top + 6 + r1() * (bot - top - 12), 2.6, 0, Math.PI * 2); ctx.fill(); }
+      for (var b = 0; b < dens(c.o); b++) { ctx.beginPath(); ctx.arc(mx + mw / 2 + 6 + r1() * (ox - mx - mw / 2 - 12), top + 6 + r1() * (bot - top - 12), 2.6, 0, Math.PI * 2); ctx.fill(); }
+      // 막과 통로
+      ctx.fillStyle = BB.alpha(BB.color("fat"), 0.7); ctx.fillRect(mx - mw / 2, top, mw, bot - top);
+      var chY = (top + bot) / 2;
+      ctx.fillStyle = p.bg; ctx.fillRect(mx - mw / 2, chY - 12, mw, 24); ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.strokeRect(mx - mw / 2, chY - 12, mw, 24);
+      // 전하 층: 막 양쪽의 +/− 개수 ∝ |V|
+      var nq = Math.round(Math.abs(V) / 12), qIn = V < 0 ? "−" : "+", qOut = V < 0 ? "+" : "−";
+      ctx.font = BB.font(13, true, 800); ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      for (var q = 0; q < nq; q++) {
+        var yy = top + 14 + q * (bot - top - 28) / Math.max(1, nq - 1);
+        if (Math.abs(yy - chY) < 16) continue;
+        ctx.fillStyle = qIn === "−" ? p.accent2 : p.accent; ctx.fillText(qIn, mx - mw / 2 - 8, yy);
+        ctx.fillStyle = qOut === "+" ? p.accent : p.accent2; ctx.fillText(qOut, mx + mw / 2 + 8, yy);
+      }
+      // 이동 중인 이온
+      movers.forEach(function (m) { ctx.fillStyle = col; ctx.beginPath(); ctx.arc(m.x, chY + m.y, 3.4, 0, Math.PI * 2); ctx.fill(); });
+      // 힘 화살표(통로 위)
+      var sc = 0.9, chem = c.E, ay = top + 22;   // 농도의 힘: 양이온이 밖으로(+x) 나가려는 정도 = −E·z 부호
+      var dirChem = c.I.z * (c.i > c.o ? 1 : -1) * (c.I.z > 0 ? 1 : -1); // +1 → 밖으로
+      dirChem = (c.i > c.o ? 1 : -1);
+      var Lc = Math.min(100, Math.abs(c.E) * sc), Le = Math.min(100, Math.abs(V) * sc);
+      arrow(ctx, mx, chY - 30, mx + dirChem * Lc, chY - 30, p.warn, 4);
+      arrow(ctx, mx, chY + 34, mx - dirChem * Le, chY + 34, p.accent2, 4);
+      ctx.font = BB.font(10.5, false, 700); ctx.textBaseline = "bottom"; ctx.textAlign = "center";
+      ctx.fillStyle = p.warn; ctx.fillText("농도의 힘", mx + dirChem * Lc / 2, chY - 36);
+      ctx.fillStyle = p.accent2; ctx.textBaseline = "top"; ctx.fillText("전압의 힘", mx - dirChem * Math.max(Le, 40) / 2, chY + 42);
+      // 전압계
+      var gx = narrow ? w / 2 : w * 0.89, gy = narrow ? h - 34 : h * 0.55, gr = narrow ? 64 : Math.min(54, w * 0.09);
+      var lim = Math.max(100, Math.ceil(Math.abs(c.E) / 20) * 20 + 20);
+      BD.gauge(ctx, gx, gy, gr, V, { min: -lim, max: lim, zones: [{ to: 0, color: BB.alpha(p.accent2, 0.35) }, { to: lim, color: BB.alpha(p.accent, 0.35) }], text: (V > 0 ? "+" : "") + V.toFixed(0) + " mV" });
+      var ea = Math.PI + (c.E + lim) / (2 * lim) * Math.PI;
+      ctx.strokeStyle = p.warn; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(gx + Math.cos(ea) * (gr - 10), gy + Math.sin(ea) * (gr - 10)); ctx.lineTo(gx + Math.cos(ea) * (gr + 10), gy + Math.sin(ea) * (gr + 10)); ctx.stroke();
+      ctx.fillStyle = p.warn; ctx.font = BB.font(10.5, true, 700); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText("E = " + (c.E > 0 ? "+" : "") + c.E.toFixed(0), gx, gy + 6);
+      var done = Math.abs(V - c.E) < 1.5;
+      if (done) { ctx.fillStyle = p.ok; ctx.font = BB.font(12, false, 800); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText("평형: 알짜 이동 0", mx, bot + 6); }
+      BB.stat("ns-o-v", (V > 0 ? "+" : "") + V.toFixed(1) + "<small>mV</small>");
+    }, { get height() { return narrowOf("ns-cv", 520) ? 430 : 330; } });
+    BB.loop(document.getElementById("sim-ce-nernst"), function (dt) {
+      var c = cur(), d = c.E - V;
+      V += d * Math.min(1, dt / 1.2);
+      ph += Math.abs(d) * dt * 0.12;
+      var dir = (c.i > c.o ? 1 : -1);   // 알짜 이동 방향(+1: 안 → 밖)
+      while (ph > 1) { ph -= 1; movers.push({ x: cv.w * (cv.w < 520 ? 0.5 : 0.42) - dir * 22, y: (rng() - 0.5) * 14, v: dir * 60 }); }
+      movers.forEach(function (m) { m.x += m.v * dt; });
+      var mxx = cv.w * (cv.w < 520 ? 0.5 : 0.42);
+      movers = movers.filter(function (m) { return Math.abs(m.x - mxx) < 50; });
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 6. GHK */
+  (function () {
+    var Pm = { k: 1, na: 0.04, cl: 0.45 }, lay = null, LOG0 = -3, LOG1 = 1.5;
+    var C0 = { ki: 140, nao: 145, nai: 12, clo: 116, cli: 4.2 };
+    var getKo = BB.range("gk-ko", function (v) { return v.toFixed(1) + " mM"; }, function () { cv.redraw(); });
+    var PRE = { rest: { k: 1, na: 0.04, cl: 0.45 }, ap: { k: 1, na: 20, cl: 0.45 }, konly: { k: 1, na: 0.001, cl: 0.001 } };
+    document.querySelectorAll("#sim-ce-ghk [data-p]").forEach(function (b) { b.addEventListener("click", function () { var q = PRE[b.dataset.p]; Pm = { k: q.k, na: q.na, cl: q.cl }; if (b.dataset.p === "rest") getKo.set(4.5); cv.redraw(); }); });
+    var cv = BB.canvas("#gk-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 520, ko = getKo();
+      var c = Object.assign({ ko: ko }, C0);
+      var Vm = BD.ghk(Pm, c), Ek = BD.nernst(1, ko, c.ki), Ena = BD.nernst(1, c.nao, c.nai), Ecl = BD.nernst(-1, c.clo, c.cli);
+      var cols = { k: BB.color("ins"), na: p.warn, cl: BB.color("glu") };
+      // 막대(투과도, 로그)
+      var bx0 = 34, bh = narrow ? 150 : h - 110, by0 = 34, bw = narrow ? 50 : 46, gap = narrow ? 30 : 24;
+      var Yp = function (v) { return by0 + bh - (Math.log10(v) - LOG0) / (LOG1 - LOG0) * bh; };
+      ctx.strokeStyle = p.grid; ctx.fillStyle = p.faint; ctx.font = BB.font(9.5, true); ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      [0.001, 0.01, 0.1, 1, 10].forEach(function (v) { ctx.beginPath(); ctx.moveTo(bx0, Yp(v)); ctx.lineTo(bx0 + 3 * (bw + gap) - gap, Yp(v)); ctx.stroke(); ctx.fillText(v < 1 ? String(v) : String(v), bx0 - 3, Yp(v)); });
+      var bars = [["k", "K⁺"], ["na", "Na⁺"], ["cl", "Cl⁻"]];
+      var barX = {};
+      bars.forEach(function (b, i) {
+        var x = bx0 + 6 + i * (bw + gap), y = Yp(Pm[b[0]]);
+        barX[b[0]] = x;
+        ctx.fillStyle = BB.alpha(cols[b[0]], 0.7); ctx.fillRect(x, y, bw, by0 + bh - y);
+        handle(ctx, x + bw / 2, y, cols[b[0]], 7);
+        ctx.fillStyle = p.text; ctx.font = BB.font(13, false, 800); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(b[1], x + bw / 2, by0 + bh + 6);
+        ctx.fillStyle = p.dim; ctx.font = BB.font(10.5, true); ctx.fillText(BB.fmt(Pm[b[0]], 2), x + bw / 2, by0 + bh + 24);
+      });
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("상대 투과도(로그)", bx0, by0 - 8);
+      // 전압 축
+      var ax = narrow ? 30 : bx0 + 3 * (bw + gap) + 34, aw = w - ax - 34, ay = narrow ? by0 + bh + 130 : h * 0.52;
+      var VX = function (v) { return ax + (v + 110) / 190 * aw; };
+      ctx.strokeStyle = p.axis; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(ax + aw, ay); ctx.stroke();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10, true); ctx.textAlign = "center"; ctx.textBaseline = "top";
+      for (var v = -100; v <= 80; v += 20) { ctx.fillRect(VX(v) - 0.5, ay - 4, 1, 8); if (v % 40 === 0) ctx.fillText(v, VX(v), ay + 6); }
+      ctx.textAlign = "right"; ctx.fillText("mV", ax + aw + 26, ay + 6);
+      ctx.strokeStyle = BB.alpha(p.dim, 0.6); ctx.setLineDash([2, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(VX(-55), ay); ctx.lineTo(VX(-55), ay - 44); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(9.5); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("역치 약 −55", VX(-55) + 3, ay - 36);
+      var pinY = ay - 22;
+      [["k", Ek, "E_K"], ["na", Ena, "E_Na"], ["cl", Ecl, "E_Cl"]].forEach(function (e, i) {
+        var x = VX(BB.clamp(e[1], -110, 80)), wgt = Pm[e[0]] * ({ k: c.ko + c.ki, na: c.nao + c.nai, cl: c.clo + c.cli })[e[0]];
+        var th = BB.clamp(1 + Math.log10(1 + wgt) * 2.2, 1, 9);
+        ctx.strokeStyle = BB.alpha(cols[e[0]], 0.8); ctx.lineWidth = th; ctx.beginPath(); ctx.moveTo(VX(Vm), pinY); ctx.lineTo(x, pinY - (i - 1) * 9); ctx.stroke();
+        ctx.fillStyle = cols[e[0]]; ctx.beginPath(); ctx.moveTo(x, ay + 22); ctx.lineTo(x - 6, ay + 32); ctx.lineTo(x + 6, ay + 32); ctx.closePath(); ctx.fill();
+        ctx.font = BB.font(10.5, true, 700); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(e[2] + " " + e[1].toFixed(0), BB.clamp(x, ax + 24, ax + aw - 10), ay + 35 + (i === 2 ? 15 : 0));
+      });
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(VX(Vm), pinY); ctx.lineTo(VX(Vm), ay); ctx.stroke();
+      ctx.fillStyle = p.bg; ctx.strokeStyle = p.text; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(VX(Vm), pinY, 8, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = p.text; ctx.font = BB.font(narrow ? 17 : 20, true, 800); ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+      ctx.fillText("Vm " + (Vm > 0 ? "+" : "") + Vm.toFixed(1) + " mV", ax, ay - 66);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.fillText("줄이 굵을수록 그 이온이 세게 당긴다", ax, ay - 50);
+      if (ko >= 6.5) { ctx.fillStyle = p.bad; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("고칼륨혈증: 막전위가 올라간다", ax, ay + 70); }
+      lay = { Yp: Yp, barX: barX, bw: bw, by0: by0, bh: bh };
+      BB.stat("gk-o-v", (Vm > 0 ? "+" : "") + Vm.toFixed(1) + "<small>mV</small>");
+      BB.stat("gk-o-e", Ek.toFixed(0) + " / +" + Ena.toFixed(0) + " / " + Ecl.toFixed(0));
+      BB.stat("gk-o-p", "1 : " + BB.fmt(Pm.na / Pm.k, 2) + " : " + BB.fmt(Pm.cl / Pm.k, 2));
+    }, { get height() { return narrowOf("gk-cv", 520) ? 480 : 330; } });
+    var dragK = null;
+    BB.drag(cv.canvas, {
+      start: function (x, y) { dragK = null; if (!lay || y > lay.by0 + lay.bh + 40) return; Object.keys(lay.barX).forEach(function (k) { if (x > lay.barX[k] - 12 && x < lay.barX[k] + lay.bw + 12) dragK = k; }); },
+      move: function (x, y) { if (!lay || !dragK) return; var f = (lay.by0 + lay.bh - y) / lay.bh, lv = LOG0 + BB.clamp(f, 0, 1) * (LOG1 - LOG0); Pm[dragK] = Math.pow(10, lv); cv.redraw(); },
+      end: function () { dragK = null; },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 7. 나트륨-칼륨 펌프 */
+  (function () {
+    var NAO = 145, KO = 4.5, CLO = 116, CLI0 = 4.2, s, X, hist, pumpOn = true, burst = false, ph = 0;
+    for (var it = 0; it < 50; it++) { var v0 = BD.ghk({}, { nai: 12, ki: 140, cli: CLI0, clo: CLO, nao: NAO, ko: KO }); CLI0 = CLO * Math.exp(v0 / 26.71); }
+    var V0 = BD.ghk({}, { nai: 12, ki: 140, cli: CLI0, clo: CLO, nao: NAO, ko: KO });
+    var gNa = 3 / (BD.nernst(1, NAO, 12) - V0), gK = 2 / (V0 - BD.nernst(1, KO, 140)), gCl = 0.05;
+    var hpump = function (c) { return Math.pow(c / (c + 10), 3) / Math.pow(12 / 22, 3); };
+    function reset() { s = { t: 0, Na: 12, K: 140, Cl: CLI0 }; X = 290 - 12 - 140 - CLI0; hist = []; burst = false; pumpOn = true; btn.textContent = "펌프 멈추기(ATP 고갈)"; }
+    var btn = document.getElementById("pm-on");
+    btn.addEventListener("click", function () { if (burst) return; pumpOn = !pumpOn; btn.textContent = pumpOn ? "펌프 멈추기(ATP 고갈)" : "펌프 다시 켜기"; });
+    document.getElementById("pm-re").addEventListener("click", reset);
+    var getSp = BB.range("pm-sp", function (v) { return "1초에 " + v + "분"; });
+    reset();
+    function state() { var W = (s.Na + s.K + s.Cl + X) / 290; var c = { nai: s.Na / W, ki: s.K / W, cli: s.Cl / W }; return { W: W, c: c, V: BD.ghk({}, { nai: c.nai, ki: c.ki, cli: c.cli, nao: NAO, ko: KO, clo: CLO }) }; }
+    function step(dt) {
+      if (burst) return;
+      var q = state(), c = q.c, V = q.V;
+      var J = pumpOn ? hpump(c.nai) : 0;
+      s.Na += (gNa * (BD.nernst(1, NAO, c.nai) - V) - 3 * J) * dt;
+      s.K += (-gK * (V - BD.nernst(1, KO, c.ki)) + 2 * J) * dt;
+      s.Cl += gCl * (V - BD.nernst(-1, CLO, c.cli)) * dt;
+      s.K = Math.max(1, s.K); s.Na = Math.max(1, s.Na);
+      s.t += dt;
+      if (q.W >= 1.65) burst = true;
+      if (!hist.length || s.t - hist[hist.length - 1][0] >= 1) hist.push([s.t, V, c.nai, c.ki, q.W]);
+    }
+    var cv = BB.canvas("#pm-cv", function (ctx, w, h) {
+      var p = P(), q = state(), narrow = w < 520, na = p.warn, kc = BB.color("ins"), water = BB.color("water");
+      // 세포 그림
+      var R0 = narrow ? 62 : Math.min(80, h * 0.24), cx = narrow ? w / 2 : R0 * 1.4 + 20, cy = R0 * 1.3 + 14;
+      var R = R0 * Math.pow(q.W, 1 / 3);
+      if (!burst) {
+        ctx.fillStyle = BB.alpha(water, 0.12 + 0.1 * (q.W - 1)); ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = BB.color("fat"); ctx.lineWidth = 4; ctx.stroke();
+      } else {
+        ctx.strokeStyle = BB.alpha(BB.color("fat"), 0.7); ctx.lineWidth = 3;
+        for (var f = 0; f < 6; f++) { var a0 = f * 1.05; ctx.beginPath(); ctx.arc(cx, cy, R * 1.05, a0, a0 + 0.6); ctx.stroke(); }
+        ctx.fillStyle = p.bad; ctx.font = BB.font(14, false, 800); ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("세포가 터졌다", cx, cy);
+      }
+      ctx.strokeStyle = BB.alpha(p.dim, 0.6); ctx.setLineDash([3, 4]); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, R0, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+      if (!burst) {
+        var r1 = BD.rng(4), nNa = Math.round(q.c.nai / 4), nK = Math.round(q.c.ki / 4);
+        for (var i = 0; i < nNa + nK; i++) { var a = r1() * Math.PI * 2, rr = Math.sqrt(r1()) * (R - 8); ctx.fillStyle = i < nNa ? na : kc; ctx.beginPath(); ctx.arc(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr, 2.4, 0, Math.PI * 2); ctx.fill(); }
+        // 펌프
+        var pa = -Math.PI / 4, px = cx + Math.cos(pa) * R, py = cy + Math.sin(pa) * R;
+        ctx.save(); ctx.translate(px, py); ctx.rotate(pumpOn ? ph * 3 : 0);
+        ctx.fillStyle = pumpOn ? p.accent : p.faint; BB.rrect(ctx, -11, -11, 22, 22, 6); ctx.fill(); ctx.restore();
+        ctx.fillStyle = pumpOn ? p.accent : p.dim; ctx.font = BB.font(10.5, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "middle";
+        ctx.fillText(pumpOn ? "펌프: 3 Na⁺ 밖, 2 K⁺ 안" : "펌프 멈춤", px + 16, py - 14);
+        if (pumpOn) { var f2 = (ph * 1.2) % 1; ctx.fillStyle = na; ctx.beginPath(); ctx.arc(px + 8 + f2 * 24, py - 4 - f2 * 20, 3, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = kc; ctx.beginPath(); ctx.arc(px + 30 - f2 * 24, py + 18 - f2 * 16, 3, 0, Math.PI * 2); ctx.fill(); }
+      }
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, true, 700); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText("부피 ×" + q.W.toFixed(2), cx, cy + R0 * 1.3 - 2 > h - 20 ? h - 20 : cy + R + 8);
+      // 기록
+      var box = narrow ? { x: 56, y: cy + R0 * 1.3 + 30, w: w - 72, h: h - cy - R0 * 1.3 - 72 } : { x: cx + R0 * 1.4 + 70, y: 16, w: w - cx - R0 * 1.4 - 86, h: h - 58 };
+      var tmax = Math.max(120, s.t);
+      var c1 = BB.chart(ctx, box, { x: [0, tmax], y: [0, 160], xLabel: "시간(모델 분)", yLabel: "세포 안 농도 mM", xFmt: function (v) { return Math.round(v); },
+        series: [{ data: hist.map(function (r) { return [r[0], r[2]]; }), color: na, width: 2.2 }, { data: hist.map(function (r) { return [r[0], r[3]]; }), color: kc, width: 2.2 }, { data: hist.map(function (r) { return [r[0], -r[1] * 1.6]; }), color: p.text, width: 1.6, dash: [5, 3] }] });
+      ctx.font = BB.font(10.5); ctx.textAlign = "right"; ctx.textBaseline = "top";
+      ctx.fillStyle = kc; ctx.fillText("K⁺ 안", box.x + box.w - 4, box.y + 4); ctx.fillStyle = na; ctx.fillText("Na⁺ 안", box.x + box.w - 4, box.y + 18); ctx.fillStyle = p.text; ctx.fillText("점선: −막전위 × 1.6", box.x + box.w - 4, box.y + 32);
+      BB.stat("pm-o-c", q.c.nai.toFixed(0) + " / " + q.c.ki.toFixed(0) + "<small>mM</small>");
+      BB.stat("pm-o-v", q.V.toFixed(1) + "<small>mV</small>");
+      BB.stat("pm-o-w", burst ? "터짐" : "×" + q.W.toFixed(2));
+      BB.stat("pm-o-t", Math.round(s.t) + "<small>분</small>");
+    }, { get height() { return narrowOf("pm-cv", 520) ? 480 : 320; } });
+    BB.loop(document.getElementById("sim-ce-pump"), function (dt) { ph += dt; var n = 10, tot = dt * getSp(); for (var i = 0; i < n; i++) step(tot / n); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 8. 다온: 땀과 물 */
+  (function () {
+    var TBW0 = BD.tbw(BD.DAON.weight), res = null, tNow = 0, cv = null;
+    function run() {
+      var T = getT(), sw = getSw(), na = getNa(), dr = getDr(), dna = Number(kind()), adh = document.getElementById("dn-adh").checked;
+      var TBW = TBW0, Osm = 290 * TBW0, out = { t: [], posm: [], na: [], v: [], tbw: [], urine: 0 }, tend = T + 180;
+      for (var t = 0; t <= tend; t++) {
+        if (t < T) { var r = sw / 60; TBW -= r; Osm -= r * 2 * na; }
+        if (t < T + 60) { var d = dr / (T + 60); TBW += d; Osm += d * 2 * dna; }
+        var P0 = Osm / TBW;
+        if (t >= T && !adh) { var u = BB.clamp((285 - P0) / 8, 0, 1) * 0.9 / 60; TBW -= u; Osm -= u * 50; out.urine += u; }
+        var Po = Osm / TBW;
+        out.t.push(t); out.posm.push(Po); out.na.push(140 * Po / 290); out.v.push(BD.cellVolume(Po)); out.tbw.push(TBW);
+      }
+      out.T = T; out.tend = tend;
+      return out;
+    }
+    function calc() {
+      res = run();
+      var mn = Math.min.apply(null, res.posm), i = res.posm.indexOf(mn);
+      BB.stat("dn-o-na", (140 * mn / 290).toFixed(1) + "<small>mmol/L</small>");
+      BB.stat("dn-o-os", mn.toFixed(0) + "<small>mOsm/kg</small>");
+      BB.stat("dn-o-v", "+" + ((BD.cellVolume(mn) - 1) * 100).toFixed(1) + "<small>%</small>");
+      var dW = res.tbw[res.tbw.length - 1] - TBW0;
+      BB.stat("dn-o-w", (dW >= 0 ? "+" : "") + dW.toFixed(2) + "<small>L</small>");
+      tNow = 0;
+    }
+    var kind = BB.seg("dn-drink", calc);
+    var getDr = BB.range("dn-dr", function (v) { return v.toFixed(1) + " L"; }, calc);
+    var getT = BB.range("dn-t", function (v) { return v >= 60 ? Math.floor(v / 60) + "시간 " + (v % 60) + "분" : v + "분"; }, calc);
+    var getSw = BB.range("dn-sw", function (v) { return v.toFixed(2) + " L/h"; }, calc);
+    var getNa = BB.range("dn-na", function (v) { return v + " mmol/L"; }, calc);
+    document.getElementById("dn-adh").addEventListener("change", calc);
+    var PRE = { daon: [0.5, 58, 0.62, 40, "0", false], water3: [3, 58, 0.62, 40, "0", false], slow: [7, 300, 0.8, 50, "0", false] };
+    document.querySelectorAll("#sim-ce-daon [data-p]").forEach(function (b) { b.addEventListener("click", function () { var q = PRE[b.dataset.p]; kind.set(q[4], false); document.getElementById("dn-adh").checked = q[5]; getDr.set(q[0]); getT.set(q[1]); getSw.set(q[2]); getNa.set(q[3]); calc(); }); });
+    calc();
+    cv = BB.canvas("#dn-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, n = Math.max(2, Math.min(res.t.length, Math.floor(tNow))), i = n - 1;
+      var box = narrow ? { x: 56, y: 16, w: w - 72, h: 220 } : { x: 56, y: 16, w: w * 0.62 - 70, h: h - 58 };
+      var lo = Math.min(124, Math.floor(Math.min.apply(null, res.na)) - 1);
+      var c = BB.chart(ctx, box, { x: [0, res.tend], y: [lo, 143], xLabel: "대회 시작부터(분)", yLabel: "혈장 나트륨 mmol/L", xFmt: function (v) { return Math.round(v); },
+        bands: [], hlines: [{ y: 135, color: p.warn, label: "135 저나트륨혈증" }, { y: 125, color: p.bad, label: "125 심함" }],
+        series: [{ data: res.t.slice(0, n).map(function (t, k) { return [t, res.na[k]]; }), color: BB.color("water"), width: 2.6 }] });
+      ctx.fillStyle = BB.alpha(BB.color("heat"), 0.1); ctx.fillRect(c.X(0), box.y, c.X(res.T) - c.X(0), box.h);
+      ctx.fillStyle = BB.color("heat"); ctx.font = BB.font(10.5, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("달리는 동안", c.X(0) + 4, box.y + 4);
+      ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(c.X(res.t[i]), c.Y(res.na[i]), 4.5, 0, Math.PI * 2); ctx.fill();
+      // 세포(뇌세포) 그림
+      var V = res.v[i], cx = narrow ? w / 2 : w * 0.82, cy = narrow ? box.y + box.h + 120 : h * 0.42, R0 = narrow ? 52 : Math.min(62, w * 0.1);
+      // 머리뼈 원
+      ctx.strokeStyle = p.dim; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, R0 * 1.22, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "center"; ctx.textBaseline = "bottom"; ctx.fillText("머리뼈 안의 뇌세포", cx, cy - R0 * 1.22 - 6);
+      var R = R0 * Math.pow(V, 1 / 3) * 1.0 + (V - 1) * R0 * 1.6;
+      var col = V > 1.03 ? p.bad : V > 1.01 ? p.warn : BB.color("nerve");
+      ctx.fillStyle = BB.alpha(col, 0.35); ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(cx, cy, Math.min(R, R0 * 1.2), 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.strokeStyle = BB.alpha(p.dim, 0.6); ctx.setLineDash([3, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, R0, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+      // 물 화살표(들어가면 안쪽)
+      if (V > 1.004) for (var k = 0; k < 6; k++) { var an = k * Math.PI / 3 + 0.3, f = (tNow * 0.03 + k * 0.17) % 1; ctx.fillStyle = BB.alpha(BB.color("water"), 0.9 * (1 - f)); ctx.beginPath(); ctx.arc(cx + Math.cos(an) * (R0 * 1.15 - f * 20), cy + Math.sin(an) * (R0 * 1.15 - f * 20), 3, 0, Math.PI * 2); ctx.fill(); }
+      ctx.fillStyle = p.text; ctx.font = BB.font(13, true, 800); ctx.textAlign = "center"; ctx.textBaseline = "top";
+      ctx.fillText("세포 부피 " + (V >= 1 ? "+" : "") + ((V - 1) * 100).toFixed(1) + "%", cx, cy + R0 * 1.22 + 8);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.fillText("삼투 농도 " + res.posm[i].toFixed(0) + " mOsm", cx, cy + R0 * 1.22 + 26);
+      if (res.na[i] < 130) { ctx.fillStyle = p.bad; ctx.font = BB.font(12, false, 800); ctx.fillText("두통·구토·혼란 위험", cx, cy + R0 * 1.22 + 44); }
+    }, { get height() { return narrowOf("dn-cv") ? 520 : 380; } });
+    BB.loop(document.getElementById("sim-ce-daon"), function (dt) { if (tNow < res.t.length) { tNow = Math.min(res.t.length, tNow + dt * res.t.length / 6); cv.redraw(); } });
+  })();
+})();
+</script>
+</body>
+</html>

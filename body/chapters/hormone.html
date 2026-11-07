@@ -1,0 +1,1052 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "호르몬은 피를 타고 온몸에 방송하는 느린 신호다. 반감기와 용량-반응, 시상하부-뇌하수체-부신 축의 피드백 루프, 코르티솔의 하루 리듬과 시차, 스트레스 반응, 갑상선과 TSH를 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>호르몬과 피드백 루프 · BodyBook</title>
+<meta name="description" content="호르몬은 피를 타고 온몸에 방송하는 느린 신호다. 반감기와 용량-반응, 시상하부-뇌하수체-부신 축의 피드백 루프, 코르티솔의 하루 리듬과 시차, 스트레스 반응, 갑상선과 TSH를 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/hormone.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="호르몬과 피드백 루프 · BodyBook">
+<meta property="og:description" content="호르몬은 피를 타고 온몸에 방송하는 느린 신호다. 반감기와 용량-반응, 시상하부-뇌하수체-부신 축의 피드백 루프, 코르티솔의 하루 리듬과 시차, 스트레스 반응, 갑상선과 TSH를 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/hormone.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/hormone.html#chapter","name":"호르몬과 피드백 루프","headline":"호르몬과 피드백 루프 · BodyBook","description":"호르몬은 피를 타고 온몸에 방송하는 느린 신호다. 반감기와 용량-반응, 시상하부-뇌하수체-부신 축의 피드백 루프, 코르티솔의 하루 리듬과 시차, 스트레스 반응, 갑상선과 TSH를 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/hormone.html","position":17,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"17. 호르몬과 피드백 루프","item":"https://medical.euiyun.com/body/chapters/hormone.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<!--head:end-->
+<style>
+  .sim-view:has(> .hint) { padding-bottom: 26px; }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="hormone">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 17</div>
+    <h1>호르몬과 피드백 루프</h1>
+    <p class="lead">신경이 전화라면 호르몬은 방송이다. 작은 샘이 피 속에 화학 물질을 풀면 그것은 1분 안에 온몸을 돌고, 그 물질을 알아보는 수용체를 가진 세포만 반응한다. 신경보다 느리지만 멀리, 오래 간다. 그리고 거의 모든 호르몬은 자기 결과를 다시 재서 분비를 조절하는 고리, 피드백 루프 안에 있다. 이 장은 호르몬이 얼마나 오래 남는지, 얼마나 있어야 효과가 나는지, 고리가 어떻게 하루 리듬을 만들고 어떻게 무너지는지 직접 돌려 본다.</p>
+    <ul class="objectives">
+      <li>신경 신호와 호르몬 신호의 속도·범위·지속 시간을 비교한다.</li>
+      <li>반감기로 호르몬의 농도 변화와 반복 분비 시의 누적을 계산한다.</li>
+      <li>용량-반응 곡선의 EC50과 기울기, 수용체 수가 반응에 미치는 영향을 설명한다.</li>
+      <li>시상하부-뇌하수체-부신 축의 음성 피드백, 코르티솔의 하루 리듬, 외부 스테로이드의 효과를 설명한다.</li>
+      <li>TSH와 FT4의 관계로 갑상선 기능 검사를 읽고, 약 용량을 바꾼 뒤 6주쯤 기다려 검사하는 이유를 안다.</li>
+    </ul>
+  </header>
+
+  <section id="signals">
+    <h2>전선과 방송: 신경과 호르몬</h2>
+    <p><a href="nerve.html">16장</a>의 신경은 정해진 세포 하나에 수 밀리초 만에 신호를 꽂는다. <span class="term">호르몬</span><span class="en">(Hormone)</span>은 다르다. <span class="term">내분비샘</span><span class="en">(Endocrine gland)</span>이 피 속으로 내보내면 심장이 약 1분 만에 그것을 온몸에 돌린다. 신호를 받을지 말지는 세포가 정한다. 그 호르몬에 맞는 <span class="term">수용체</span><span class="en">(Receptor)</span>를 가진 세포만 반응한다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-17-2.webp" width="1200" height="1082" loading="lazy" decoding="async" alt="주요 내분비샘의 위치: 솔방울샘, 뇌하수체, 갑상선과 부갑상선, 가슴샘, 부신, 이자, 난소, 고환">
+      <figcaption><b>몸의 방송국들.</b> 시상하부와 뇌하수체가 지휘하고, 갑상선·부신·생식샘이 연주한다. 이자의 인슐린과 글루카곤은 15장, 콩팥의 물을 조절하는 항이뇨 호르몬(ADH)은 18장에서 본다.<span class="fig-words">Pineal gland 솔방울샘 · Thalamus 시상 · Pituitary gland 뇌하수체 · Thyroid gland 갑상선 · Parathyroid glands 부갑상선 · Thymus 가슴샘 · Adrenal glands 부신 · Pancreas 이자 · Ovaries 난소 · Testes 고환 · Uterus 자궁</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/17-1-an-overview-of-the-endocrine-system">그림 17.2</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>방송국들의 실제 자리를 3D로 찾아보자. 시상하부와 뇌하수체는 뇌 한가운데 아래쪽에 붙어 있고, 부신은 콩팥 위에 모자처럼 얹혀 있다. 원본 데이터에 갑상선 모델이 없어 이 모델에서는 빠졌다(목 앞, 기관 양옆에 있다).</p>
+
+    <div class="sim model3d" id="sim-hm-3d" data-model="endocrine" data-orbit="0deg 85deg auto" data-desc="실제 인체 데이터로 만든 3D 모델에서 시상하부, 뇌하수체, 솔방울샘, 가슴샘, 부신, 이자, 고환의 위치를 돌려 보며 찾는다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 내분비샘</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="hypothalamus" title="CRH, TRH 등으로 뇌하수체를 지휘">시상하부</button><button type="button" data-part="pituitary" title="ACTH, TSH, ADH 등">뇌하수체</button><button type="button" data-part="pineal" title="멜라토닌">솔방울샘</button><button type="button" data-part="thymus">가슴샘</button><button type="button" data-part="adrenal" title="코르티솔(겉질), 아드레날린(속질)">부신</button><button type="button" data-part="pancreas" title="인슐린, 글루카곤">이자</button><button type="button" data-part="testes" title="테스토스테론">고환</button><button type="button" data-part="kidneys">콩팥</button><button type="button" data-part="brain">뇌</button><button type="button" data-part="skin">피부</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 머리 쪽으로 확대해 시상하부(분홍)와 그 아래 매달린 뇌하수체를 찾는다. 둘 사이의 짧은 줄기로 신호가 내려간다. ② 피부와 뇌를 끄고 부신이 콩팥 위에 얹힌 모습을 본다. HPA 축의 세 정거장이 머리와 배에 떨어져 있고, 그 사이를 피가 잇는다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <p>아래에서 신호의 종류를 고르고 "보내기"를 눌러 보자. 신경은 한 곳에만 닿고, 호르몬은 피를 타고 퍼지며 수용체가 있는 장기만 밝힌다. 오른쪽 시간 축은 1 ms부터 한 달까지를 한 줄에 담은 로그 눈금이다.</p>
+
+    <div class="sim" id="sim-hm-wire" data-desc="신경(전선)과 아드레날린·코르티솔·갑상선 호르몬(방송)을 보내 보고, 닿는 범위와 닿기까지 걸리는 시간, 효과가 이어지는 시간을 1 ms~한 달 로그 눈금 위에서 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>전선으로 보낼까, 방송할까</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="wr-cv"></canvas><span class="hint">시간 축의 막대를 눌러도 고른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="wr-kind"><button data-value="nerve">신경</button><button data-value="adr" class="on">아드레날린</button><button data-value="cort">코르티솔</button><button data-value="t4">갑상선</button></div>
+          <div class="btn-row"><button class="btn primary" id="wr-go">신호 보내기</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">닿기까지</span><span class="v" id="wr-o-on">—</span></div>
+        <div class="stat"><span class="k">효과가 이어지는 시간</span><span class="v" id="wr-o-dur">—</span></div>
+        <div class="stat"><span class="k">반응하는 장기</span><span class="v" id="wr-o-n">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 신경과 아드레날린을 번갈아 보낸다. 신경은 심장 하나에 약 0.02초 만에, 아드레날린은 피를 한 바퀴 돌아 약 15초 뒤 심장·폐·간·근육에 한꺼번에 닿는다. ② 코르티솔을 고른다. 거의 모든 세포가 수용체를 갖지만 유전자를 거쳐 작용해 효과가 나타나는 데 수십 분, 이어지는 데 몇 시간이 걸린다. ③ 갑상선 호르몬은 며칠에 걸쳐 나타나 몇 주를 간다. (시간 값은 교과서 범위의 대표값. 그림의 움직임은 실제 시간이 아니라 순서를 보여 준다.)</div>
+    </div>
+
+    <p>호르몬이 느린 데는 이유가 있다. 피를 한 바퀴 도는 데 약 1분이 걸리고, 물에 녹는 <b>펩타이드·아민 호르몬</b>(아드레날린, 인슐린, ACTH)은 세포막의 수용체에 붙어 세포 안의 2차 전달자를 움직이니 수 초~수 분 안에 효과가 난다. 기름에 녹는 <b>스테로이드·갑상선 호르몬</b>(코르티솔, T4)은 막을 통과해 세포 안 수용체와 함께 유전자를 켜고 끄므로 새 단백질이 만들어질 때까지 몇 시간~며칠이 걸린다.</p>
+
+    <figure class="photo">
+      <div class="fig-row"><img src="../assets/figures/openstax-ap-17-5.webp" width="965" height="731" loading="lazy" decoding="async" alt="물에 녹는 호르몬이 막 수용체, G 단백질, cAMP, 단백질 인산화 효소를 거쳐 작용하는 과정"><img src="../assets/figures/openstax-ap-17-4.webp" width="937" height="621" loading="lazy" decoding="async" alt="기름에 녹는 호르몬이 막을 통과해 세포 안 수용체와 결합하고 핵에서 유전자 전사를 바꾸는 과정"></div>
+      <figcaption><b>두 가지 작용 방식.</b> 왼쪽: 물에 녹는 호르몬은 막을 통과하지 못해 막 바깥의 수용체를 두드린다. 수용체가 G 단백질을, G 단백질이 아데닐산 고리화 효소를 켜 ATP를 cAMP(2차 전달자)로 바꾸고, cAMP가 단백질 인산화 효소를 켜 세포 안 단백질을 바꾼다. 단계마다 신호가 불어나 빠르고 짧게 작용한다. 오른쪽: 기름에 녹는 호르몬은 막을 통과해 세포 안 수용체와 결합하고, 함께 핵으로 들어가 유전자 전사를 바꾼다. 새 단백질이 만들어져야 하므로 느리고 길게 작용한다.<span class="fig-words">Water-soluble/Lipid-soluble hormone 물/기름에 녹는 호르몬 · Cell membrane receptor 막 수용체 · G protein G 단백질 · Adenylyl cyclase 아데닐산 고리화 효소 · Protein kinase 단백질 인산화 효소 · Receptor–hormone complex 수용체-호르몬 복합체 · Transcription 전사 · Translation 번역</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/17-2-hormones">그림 17.5</a>, <a href="https://openstax.org/books/anatomy-and-physiology/pages/17-2-hormones">그림 17.4</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+  </section>
+
+  <section id="halflife">
+    <h2>반감기: 얼마나 오래 남는가</h2>
+    <p>피 속의 호르몬은 간과 콩팥에서 끊임없이 분해되고 걸러진다. 대부분은 남은 양에 비례해 사라지므로, 양이 절반이 되는 시간이 일정하다. 이것이 <span class="term">반감기</span><span class="en">(Half-life)</span>다. 아드레날린은 약 2분, 코르티솔은 약 1시간, T4는 약 1주다.</p>
+
+    <div class="formula">$$C(t) = C_0\, e^{-kt}, \qquad k = \frac{\ln 2}{t_{1/2}}$$
+      <div class="where">\(C_0\) 처음 농도, \(t_{1/2}\) 반감기(아드레날린 약 2분, 코르티솔 약 70분, T4 약 7일), \(k\) 제거 속도 상수. 반감기 1번이면 50 %, 2번이면 25 %, 3.3번이면 10 %가 남는다.</div>
+    </div>
+
+    <p>위쪽 사다리에서 호르몬을 고르고, 아래 그래프를 눌러 그 시각에 같은 양을 한 번 더 분비해 보자. "규칙적으로"를 켜면 정해진 간격마다 분비한다.</p>
+
+    <div class="sim" id="sim-hm-half" data-desc="호르몬마다 다른 반감기(아드레날린 2분 ~ T4 7일)를 사다리에서 고르고, 그래프를 눌러 분비를 더하거나 규칙적으로 분비해 농도가 쌓이고 정상 상태에 이르는 모습을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>반감기 사다리와 쌓이는 농도</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="hl-cv"></canvas><span class="hint">사다리를 눌러 고르고, 그래프를 눌러 분비를 더한다</span></div>
+        <div class="sim-controls">
+          <label class="check"><input type="checkbox" id="hl-reg"> 규칙적으로 분비</label>
+          <label class="ctrl"><span>분비 간격 <output id="hl-iv-out"></output></span><input type="range" id="hl-iv" min="0.25" max="4" step="0.25" value="1"></label>
+          <div class="btn-row"><button class="btn" id="hl-clr">분비 지우기</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">반감기</span><span class="v" id="hl-o-th">—</span></div>
+        <div class="stat"><span class="k">90 % 사라지는 시간</span><span class="v" id="hl-o-90">—</span></div>
+        <div class="stat"><span class="k">정상 상태 최고 / 한 번 분비</span><span class="v" id="hl-o-acc">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 아드레날린과 T4를 번갈아 고른다. 모양은 똑같고 시간 축의 단위만 분에서 일로 바뀐다. 반감기는 "얼마나 빨리"의 눈금이다. ② "규칙적으로"를 켜고 간격을 반감기 1배로 둔다. 농도가 쌓여 한 번 분비할 때의 약 2배에서 오르내린다. ③ 간격을 0.25배로 줄인다. 약 6배까지 쌓인다. 반감기보다 자주 분비하면 쌓이고, 정상 상태에 닿는 데는 반감기의 약 4~5배가 걸린다. (1구획 모델, 분비는 즉시 피에 퍼진다고 가정. BD.pkBolus, BD.HORMONES.)</div>
+    </div>
+
+    <p>반감기는 신호의 성격을 정한다. 아드레날린처럼 반감기가 짧은 호르몬은 분비를 멈추면 금세 사라지므로 순간순간의 상황을 알리는 데 맞다. T4처럼 반감기가 긴 호르몬은 하루하루의 출렁임을 걸러 내고 몸의 기본 속도를 일정하게 유지한다. 대신 바꾸려 해도 몇 주가 걸린다. 이 점은 뒤에서 갑상선 약을 다룰 때 다시 만난다.</p>
+  </section>
+
+  <section id="receptor">
+    <h2>용량-반응: 얼마나 있어야 듣는가</h2>
+    <p>호르몬의 효과는 농도에 비례하지 않는다. 낮은 농도에서는 거의 반응이 없다가 어느 범위에서 가파르게 오르고, 높은 농도에서는 더 늘지 않는다. 이 S자 곡선을 <span class="term">용량-반응 곡선</span><span class="en">(Dose–response curve)</span>이라 하고, 최대 반응의 절반이 나는 농도를 <span class="term">EC50</span>이라 한다.</p>
+    <div class="formula">$$E = E_{max}\,\frac{C^n}{EC_{50}^{\,n} + C^n}$$
+      <div class="where">\(E\) 반응, \(E_{max}\) 최대 반응, \(C\) 농도, \(EC_{50}\) 반응이 절반일 때의 농도, \(n\) 힐 계수(곡선의 가파름, 보통 1~3)</div>
+    </div>
+    <p>흥미로운 점은 반응이 절반일 때 수용체가 절반 차 있는 것이 아니라는 사실이다. 세포 안 신호가 크게 증폭되기 때문에 수용체의 몇 %만 차도 최대 반응에 가깝게 갈 수 있다. 이런 여유분을 <b>예비 수용체</b>라 한다. 아래에서 수용체 수를 줄여 보자.</p>
+
+    <div class="sim" id="sim-hm-dose" data-desc="농도 점을 끌어 S자 용량-반응 곡선을 따라가고, 힐 계수와 수용체 수를 바꿔 수용체가 줄면 곡선이 오른쪽으로 밀렸다가 결국 최대 반응까지 낮아지는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>수용체가 줄면 곡선이 밀린다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="dr-cv"></canvas><span class="hint">곡선 위의 점을 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>수용체 수 <output id="dr-r-out"></output></span><input type="range" id="dr-r" min="0.02" max="1" step="0.01" value="1"></label>
+          <label class="ctrl"><span>힐 계수(가파름) <output id="dr-n-out"></output></span><input type="range" id="dr-n" min="0.5" max="3" step="0.1" value="1"></label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>반응</span><span><i style="background:var(--accent-2)"></i>수용체 점유율</span><span><i style="background:var(--text-faint)"></i>수용체 100 %일 때 반응</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">EC50</span><span class="v" id="dr-o-ec">—</span></div>
+        <div class="stat"><span class="k">최대 반응</span><span class="v" id="dr-o-em">—</span></div>
+        <div class="stat"><span class="k">이 농도의 점유율</span><span class="v" id="dr-o-oc">—</span></div>
+        <div class="stat"><span class="k">이 농도의 반응</span><span class="v" id="dr-o-e">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 끌어 농도 1(해리 상수 Kd와 같은 농도)에 둔다. 수용체는 절반만 찼는데 반응은 90 %를 넘는다. ② 수용체 수를 30 %로 줄인다. 최대 반응은 거의 그대로인데 곡선이 오른쪽으로 밀린다. 같은 효과를 얻으려면 더 많은 호르몬이 필요하다. ③ 10 % 아래로 줄이면 아무리 많아도 최대 반응에 닿지 못한다. 높은 농도에 오래 노출된 세포가 수용체를 줄이는 하향 조절이 이렇게 내성을 만든다. (점유율 = C/(C + Kd), Kd = 1. 반응 = 신호^n/(신호^n + 0.03^n), 신호 = 수용체 수 × 점유율인 증폭 모델.)</div>
+    </div>
+
+    <p>수용체 수는 고정되어 있지 않다. 호르몬이 계속 높으면 세포는 수용체를 줄여 둔감해지고(하향 조절), 낮으면 늘려 민감해진다(상향 조절). 인슐린이 늘 높은 상태에서 인슐린이 덜 듣게 되는 것(<a href="glucose.html">15장</a>의 인슐린 저항성)도 이와 같은 계열의 현상이다. 같은 호르몬 농도라도 세포가 얼마나 들을 준비가 되어 있느냐에 따라 효과가 달라진다.</p>
+  </section>
+
+  <section id="hpa">
+    <h2>시상하부-뇌하수체-부신 축: 스스로 끄는 고리</h2>
+    <p>스트레스 호르몬 <span class="term">코르티솔</span><span class="en">(Cortisol)</span>은 세 단계의 명령으로 나온다. 뇌의 <span class="term">시상하부</span><span class="en">(Hypothalamus)</span>가 CRH를 내면, 바로 아래의 <span class="term">뇌하수체</span><span class="en">(Pituitary gland)</span> 앞엽이 ACTH를 피로 보내고, ACTH가 콩팥 위의 <span class="term">부신</span><span class="en">(Adrenal gland)</span> 겉질에서 코르티솔을 짜낸다. 이 세 단계를 묶어 <span class="term">HPA 축</span><span class="en">(Hypothalamic–pituitary–adrenal axis)</span>이라 한다.</p>
+    <p>핵심은 마지막 화살표다. 코르티솔은 시상하부와 뇌하수체로 거슬러 올라가 CRH와 ACTH 분비를 누른다. 코르티솔이 많으면 명령이 줄고, 적으면 명령이 는다. 이 <span class="term">음성 피드백</span><span class="en">(Negative feedback)</span>이 코르티솔을 정해진 범위 안에 묶어 둔다. 여기에 시상하부의 생체 시계가 새벽마다 명령을 키워 아침에 높고 밤에 낮은 하루 리듬을 얹는다.</p>
+    <p>아래 시뮬레이터에서 피드백 세기, 지연, 외부 스테로이드를 바꾸고, 커서가 지나는 시각에 스트레스를 넣어 보자. 흐린 점선은 정상 상태다.</p>
+
+    <div class="sim" id="sim-loop" data-big data-desc="시상하부(CRH) → 뇌하수체(ACTH) → 부신(코르티솔)과 거슬러 오르는 음성 피드백을 움직이는 그림으로 보고, 피드백을 끊거나 늦추고 스트레스·외부 스테로이드를 넣어 48시간 ACTH·코르티솔 리듬이 어떻게 바뀌는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>HPA 축 피드백 루프</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="lp-cv"></canvas><span class="hint">오른쪽 그래프를 끌어 시각을 고른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>피드백 세기 <output id="lp-fb-out"></output></span><input type="range" id="lp-fb" min="0" max="2" step="0.05" value="1"></label>
+          <label class="ctrl"><span>피드백 지연 <output id="lp-dl-out"></output></span><input type="range" id="lp-dl" min="5" max="180" step="5" value="15"></label>
+          <label class="ctrl"><span>외부 스테로이드(코르티솔 상당) <output id="lp-st-out"></output></span><input type="range" id="lp-st" min="0" max="20" step="1" value="0"></label>
+          <div class="btn-row"><button class="btn primary" id="lp-add">지금 시각에 스트레스</button><button class="btn" id="lp-clr">스트레스 지우기</button><button class="btn" id="lp-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">오전 8시 코르티솔</span><span class="v" id="lp-o-am">—</span></div>
+        <div class="stat"><span class="k">자정 코르티솔</span><span class="v" id="lp-o-pm">—</span></div>
+        <div class="stat"><span class="k">오전 8시 ACTH</span><span class="v" id="lp-o-acth">—</span></div>
+        <div class="stat"><span class="k">고리의 상태</span><span class="v" id="lp-o-st" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 상태에서 코르티솔이 오전 7~8시에 약 16 µg/dL로 가장 높고 자정 무렵 약 3으로 낮은 하루 리듬을 확인한다. ② 피드백 세기를 0으로 내린다. 고리가 끊겨 아침 코르티솔이 약 4배로 치솟는다. 브레이크 없이 가속 페달만 남은 셈이다. ③ 처음으로 돌려 외부 스테로이드를 10으로 올린다. 피 속 코르티솔의 총량은 늘지만 ACTH가 눌려 부신이 스스로 만드는 몫이 줄어든다. ④ 오후 2시쯤에 커서가 올 때 스트레스를 넣는다. ACTH가 먼저, 코르티솔이 수십 분 늦게 오르고 피드백이 다시 끌어내린다. (BD.hpa: CRH·ACTH·코르티솔 반감기 9·12·75분, 새벽 6시 반을 정점으로 한 하루 주기 구동, 코르티솔이 시상하부와 뇌하수체를 억제하는 지연 피드백. 교육용 모델.)</div>
+    </div>
+
+    <p>피드백을 끄면 리듬은 남지만 크기가 무너진다. 실제로 뇌하수체에 종양이 생겨 코르티솔의 억제를 무시하고 ACTH를 계속 내거나, 부신 종양이 혼자 코르티솔을 만들면 코르티솔이 늘 높은 상태가 된다(쿠싱 증후군). 혈당과 혈압이 오르고, 근육이 줄고, 배와 얼굴에 지방이 붙는다. 반대로 부신이 망가지면 코르티솔이 모자라 ACTH가 치솟는다(애디슨병).</p>
+    <p>외부 스테로이드는 고리가 그것을 자기 코르티솔로 착각한다는 점이 중요하다. 천식, 관절염, 자가 면역 질환에 쓰는 스테로이드 약을 몇 주 이상 먹으면 ACTH가 눌린 채 부신이 쉬다가 작아진다. 이때 약을 갑자기 끊으면 부신이 곧바로 일을 재개하지 못한다.</p>
+    <div class="callout warn">
+      <strong>스테로이드 약은 스스로 끊거나 줄이지 않는다</strong>
+      오래 먹던 스테로이드 약을 갑자기 끊으면 쉬고 있던 부신이 코르티솔을 충분히 만들지 못해 심한 피로, 저혈압, 저혈당, 쇼크(부신 위기)가 올 수 있다. 의료진은 부신이 회복할 시간을 두고 여러 주에 걸쳐 용량을 줄인다. 시뮬레이터는 원리를 보여 줄 뿐이며 의학적 조언이 아니다. 용량을 바꾸거나 끊는 일은 반드시 처방한 의료진과 상의한다.
+    </div>
+  </section>
+
+  <section id="circadian">
+    <h2>하루 리듬과 시차</h2>
+    <p>코르티솔의 하루 리듬은 시상하부의 <span class="term">생체 시계</span><span class="en">(Circadian clock)</span>가 만든다. 시계는 아침 빛으로 매일 맞춰지고, 잠에서 깨기 1~2시간 전부터 코르티솔을 올려 몸을 깨울 준비를 한다. 깨고 30분쯤 뒤에 한 번 더 솟는 <b>기상 반응</b>도 있다. 그런데 생활 시간을 갑자기 옮기면(늦잠, 밤샘, 해외여행) 시계는 따라오는 데 며칠이 걸린다. 시계는 하루에 약 1시간 늦출 수 있지만 당기기는 더 어렵다.</p>
+
+    <div class="sim" id="sim-hm-clock" data-desc="24시간 시계판 위에서 기상 시각 손잡이를 돌려 생활 시간을 옮기고, 며칠이 지나야 몸의 코르티솔 리듬이 따라오는지와 그동안 기상 때 코르티솔이 얼마나 어긋나는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>생활 시간을 옮기면 몸시계는 며칠 늦게 온다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ck-cv"></canvas><span class="hint">시계판의 기상 손잡이를 돌리고, 오른쪽 그래프를 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>생활 시간 이동 <output id="ck-s-out"></output></span><input type="range" id="ck-s" min="-8" max="8" step="0.5" value="2"></label>
+          <label class="ctrl"><span>옮긴 뒤 지난 날 <output id="ck-d-out"></output></span><input type="range" id="ck-d" min="0" max="12" step="0.5" value="0"></label>
+          <div class="seg" id="ck-pre"><button data-value="2" class="on">주말 늦잠(+2시간)</button><button data-value="-7">동쪽 여행(−7시간)</button><button data-value="7">서쪽 여행(+7시간)</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">기상 시각</span><span class="v" id="ck-o-wk">—</span></div>
+        <div class="stat"><span class="k">몸시계 이동</span><span class="v" id="ck-o-in">—</span></div>
+        <div class="stat"><span class="k">어긋남</span><span class="v" id="ck-o-mis">—</span></div>
+        <div class="stat"><span class="k">기상 때 코르티솔</span><span class="v" id="ck-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "주말 늦잠"에서 지난 날을 0에 둔다. 몸시계는 그대로인데 2시간 늦게 일어나니 이미 코르티솔이 내려가는 중에 깬다. 반대로 월요일에 다시 일찍 일어나면 몸은 아직 새벽이다. ② "동쪽 여행(−7시간)"에서 지난 날을 늘린다. 하루 약 2/3시간씩만 당겨져 10일 넘게 걸린다. ③ "서쪽 여행"은 하루 약 1시간씩 늦춰져 조금 빠르다. (몸시계 이동 속도: 늦출 때 1시간/일, 당길 때 0.67시간/일로 단순화. 코르티솔 곡선은 BD.hpa의 하루 주기 정점을 옮겨 계산했다.)</div>
+    </div>
+
+    <p>시차 피로의 정체는 몸 안의 여러 시계가 서로, 그리고 바깥 시간과 어긋난 상태다. 코르티솔이 바닥일 때 일어나야 하고, 코르티솔이 오를 때 자려 한다. 아침 햇빛을 새 시간대에 맞춰 쬐는 것이 시계를 가장 빨리 옮긴다. 늦은 취침과 주말 늦잠의 반복도 작은 시차(사회적 시차)를 매주 만든다.</p>
+  </section>
+
+  <section id="stress">
+    <h2>스트레스: 초 단위와 시간 단위의 두 응답</h2>
+    <p>깜짝 놀라면 몸은 두 갈래로 반응한다. 먼저 교감 신경과 부신 속질의 <span class="term">아드레날린</span><span class="en">(Adrenaline, epinephrine)</span>이 몇 초 만에 심박수와 혈당을 올린다. 그다음 HPA 축이 움직여 코르티솔이 수십 분 뒤에 정점에 이르고 몇 시간 동안 에너지를 공급하고 염증을 누른다. 아래 그래프의 가로축을 로그 눈금으로 두면 1초와 4시간을 한 화면에 볼 수 있다.</p>
+
+    <div class="sim" id="sim-hm-stress" data-desc="같은 스트레스에 아드레날린과 심박수는 초 단위로, 코르티솔은 수십 분 단위로 반응하는 것을 1초~4시간 로그 시간 축에서 비교하고 커서를 끌어 각 시점의 값을 읽는다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>아드레날린은 초, 코르티솔은 시간</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="sr-cv"></canvas><span class="hint">그래프를 끌어 시점을 읽는다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="sr-ax"><button data-value="log" class="on">로그 시간</button><button data-value="lin">보통 시간</button></div>
+          <label class="ctrl"><span>스트레스 세기 <output id="sr-a-out"></output></span><input type="range" id="sr-a" min="0.3" max="2" step="0.1" value="1"></label>
+          <label class="ctrl"><span>스트레스 지속 <output id="sr-d-out"></output></span><input type="range" id="sr-d" min="1" max="60" step="1" value="10"></label>
+          <label class="check"><input type="checkbox" id="sr-rep"> 1시간 뒤 같은 스트레스 한 번 더</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">아드레날린 최고</span><span class="v" id="sr-o-a">—</span></div>
+        <div class="stat"><span class="k">심박수 최고</span><span class="v" id="sr-o-hr">—</span></div>
+        <div class="stat"><span class="k">코르티솔 최고</span><span class="v" id="sr-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 로그 시간에서 세 곡선이 오르는 시점을 비교한다. 심박수는 1~2초 만에 뛰어오르고, 아드레날린은 1~2분에 걸쳐 오르며, 코르티솔은 스트레스가 시작되고 40분~1시간 뒤에야 정점이다. ② 지속을 1분으로 줄인다. 아드레날린은 몇 분 만에 사라지지만 코르티솔은 그 뒤 몇 시간 높게 남는다. ③ "한 번 더"를 켜고 보통 시간으로 바꾼다. 두 번째 스트레스는 이미 높은 코르티솔 위에 얹힌다. 스트레스가 잦으면 코르티솔이 내려올 틈이 없다. (아드레날린: 반감기 2분, 신경 자극은 약 2초에 켜짐. 심박수는 교감 신경과 아드레날린의 합으로 어림. 코르티솔: 오후 2시에 스트레스를 넣은 BD.hpa. 교육용 모델.)</div>
+    </div>
+
+    <p>코르티솔은 흔히 "스트레스 호르몬"이라 불리지만 해로운 물질이 아니다. 간에서 포도당을 만들게 하고, 지방을 분해해 연료를 내고, 염증이 지나치지 않게 누른다. 문제는 오래 높을 때다. 잠이 모자라고 스트레스가 계속되면 저녁에도 코르티솔이 내려가지 않아 혈당이 오르고, 회복과 수면이 방해받는다. 운동도 하나의 스트레스다. 고강도 훈련 뒤에 코르티솔이 오르고 회복하며 내려오는 과정이 반복될 때 몸이 강해진다.</p>
+  </section>
+
+  <section id="thyroid">
+    <h2>갑상선과 TSH: 작은 변화를 키우는 확대경</h2>
+    <p>갑상선 호르몬 <span class="term">T4</span><span class="en">(Thyroxine)</span>와 그 활성형 T3는 거의 모든 세포의 대사 속도를 정한다. 같은 고리 구조다. 시상하부의 TRH가 뇌하수체의 <span class="term">TSH</span><span class="en">(Thyroid-stimulating hormone)</span>를 내게 하고, TSH가 갑상선에서 T4를 만들게 하며, 피 속의 유리 T4(<span class="term">FT4</span><span class="en">(Free T4)</span>)가 다시 TSH를 누른다.</p>
+    <p>이 고리의 정상 상태는 두 곡선의 교점이다. 하나는 "FT4가 이만큼이면 뇌하수체가 TSH를 이만큼 낸다"는 뇌하수체 곡선, 다른 하나는 "TSH가 이만큼이면 갑상선이 FT4를 이만큼 만든다"는 갑상선 곡선이다. 아래 그래프의 세로축(TSH)은 로그 눈금이다.</p>
+
+    <div class="formula">$$TSH \approx 10^{\,2.37 - 0.137\,\times\,FT4}$$
+      <div class="where">뇌하수체 곡선(교육용 근사). \(FT4\) 유리 T4(pmol/L, 정상 약 12~22), \(TSH\)(mU/L, 정상 약 0.4~4). FT4가 1 pmol/L 오르면 TSH는 약 27 % 줄고, 5 pmol/L 오르면 약 5분의 1이 된다.</div>
+    </div>
+
+    <div class="sim" id="sim-hm-hpt" data-desc="뇌하수체 곡선과 갑상선 곡선의 교점으로 TSH·FT4 정상 상태를 찾고, 교점을 끌어 갑상선 기능을 바꾸거나 자극 항체(그레이브스병)를 넣어 TSH가 FT4의 작은 변화를 크게 키우는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>두 곡선의 교점이 검사 결과다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="tp-cv"></canvas><span class="hint">교점을 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>갑상선 기능 <output id="tp-g-out"></output></span><input type="range" id="tp-g" min="0.1" max="1.6" step="0.01" value="1"></label>
+          <label class="ctrl"><span>자극 항체(TRAb) <output id="tp-ab-out"></output></span><input type="range" id="tp-ab" min="0" max="25" step="0.5" value="0"></label>
+          <div class="seg" id="tp-pre"><button data-value="norm" class="on">정상</button><button data-value="sub">초기 기능 저하</button><button data-value="hypo">기능 저하</button><button data-value="graves">그레이브스병</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>뇌하수체 곡선(FT4 → TSH)</span><span><i style="background:var(--accent-2)"></i>갑상선 곡선(TSH → FT4)</span><span><i style="background:var(--ok)"></i>정상 범위</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">TSH</span><span class="v" id="tp-o-tsh">—</span></div>
+        <div class="stat"><span class="k">FT4</span><span class="v" id="tp-o-ft4">—</span></div>
+        <div class="stat"><span class="k">판정(교육용)</span><span class="v" id="tp-o-dx" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 교점을 왼쪽으로 조금 끌어 FT4를 16에서 13으로 낮춘다. FT4는 아직 정상 범위인데 TSH는 1.5에서 약 4로 2.5배가 된다. TSH가 먼저 갑상선 기능 변화를 알린다. ② "초기 기능 저하"를 고른다. FT4는 정상, TSH만 높은 상태(무증상 기능 저하). ③ "그레이브스병"은 항체가 TSH 대신 갑상선을 자극해 갑상선 곡선이 오른쪽으로 밀린다. FT4가 오르고 TSH는 거의 0으로 눌린다. (BD.pituitaryTSH, BD.thyroidFT4, BD.hptEquilibrium. 판정 기준은 교육용이며 실제 기준은 검사실·학회에 따라 다르다.)</div>
+    </div>
+
+    <p>TSH가 검사의 첫 줄에 오는 이유가 여기 있다. 뇌하수체는 FT4의 작은 변화에 TSH를 몇 배씩 바꿔 반응하므로, TSH는 FT4보다 훨씬 예민한 확대경이다. 갑상선이 약해지기 시작하면 FT4가 정상 범위 안에서 조금 내려가는 동안 TSH가 먼저 높아진다. 다만 이 논리는 뇌하수체가 정상일 때만 맞다. 뇌하수체 자체가 고장 나면 TSH와 FT4가 함께 낮아진다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>상태</th><th>TSH</th><th>FT4</th><th>고리에서 일어난 일</th></tr></thead>
+      <tbody>
+        <tr><td>정상</td><td class="num">약 0.4~4</td><td class="num">약 12~22</td><td>두 곡선이 정상 상자 안에서 만난다</td></tr>
+        <tr><td>갑상선 기능 저하(갑상선 원인)</td><td>높음</td><td>낮음</td><td>갑상선 곡선이 왼쪽으로, TSH가 올려 보상하려 한다</td></tr>
+        <tr><td>무증상 기능 저하</td><td>조금 높음</td><td>정상</td><td>TSH 확대경이 먼저 반응한 단계</td></tr>
+        <tr><td>그레이브스병(항진)</td><td>매우 낮음</td><td>높음</td><td>항체가 TSH 없이 갑상선을 자극, 뇌하수체는 꺼진다</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>약을 바꾸면 왜 6주를 기다리는가</h3>
+    <p>갑상선 기능 저하로 T4 약을 먹기 시작하거나 용량을 바꾸면, 의료진은 보통 6~8주 뒤에 다시 피검사를 한다. T4의 반감기가 약 7일이어서 새 정상 상태에 닿는 데 반감기의 4~5배, 곧 한 달 넘게 걸리기 때문이다. 아래에서 검사일 표시를 끌어 너무 일찍 검사하면 어떻게 보이는지 확인해 보자.</p>
+
+    <div class="sim" id="sim-hm-t4" data-desc="갑상선 기능이 떨어진 사람이 T4 보충을 시작했을 때 FT4와 TSH가 몇 주에 걸쳐 새 정상 상태로 가는 모습을 보고, 검사일을 끌어 2주와 6주 검사의 차이를 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>T4 반감기 7일: 검사 시점 고르기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="t4-cv"></canvas><span class="hint">검사일 손잡이를 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>보충량(FT4 상당) <output id="t4-dose-out"></output></span><input type="range" id="t4-dose" min="0" max="14" step="0.5" value="8"></label>
+          <label class="check"><input type="checkbox" id="t4-bump"> 50일째 용량을 1.5배로 올림</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">검사일</span><span class="v" id="t4-o-d">—</span></div>
+        <div class="stat"><span class="k">FT4</span><span class="v" id="t4-o-f">—</span></div>
+        <div class="stat"><span class="k">TSH</span><span class="v" id="t4-o-t">—</span></div>
+        <div class="stat"><span class="k">최종 변화 중 도달</span><span class="v" id="t4-o-p">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 검사일을 14일에 둔다. FT4는 아직 오르는 중이고 TSH도 높다. 이 결과로 용량을 올리면 지나치게 된다. ② 42일(6주)로 옮긴다. 변화의 90 % 넘게 도달해 결과를 믿을 만하다. ③ "용량을 1.5배로"를 켠다. 바꾼 뒤에도 다시 몇 주가 걸린다. (BD.hptDynamics: 갑상선 기능 30 %로 떨어진 상태에서 시작, FT4 반감기 7일, TSH는 몇 시간 안에 따라간다. 보충량은 약의 양이 아니라 FT4에 더해지는 몫으로 나타낸 교육용 단위다.)</div>
+    </div>
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 피로, 체중 변화, 두근거림, 추위·더위를 심하게 타는 증상이 있거나 호르몬 검사 결과가 걱정되면 의료진과 상담하세요. 검사 기준은 검사실과 학회, 시기에 따라 다릅니다.</p>
+  </section>
+
+  <section id="loops">
+    <h2>피드백 루프의 설계도</h2>
+    <p>HPA 축과 HPT 축, <a href="homeostasis.html">2장</a>의 압반사, <a href="thermo.html">19장</a>의 체온 조절은 모두 같은 설계도를 따른다. 조절할 변수, 그것을 재는 <b>감지기</b>, 목표값(<span class="term">설정점</span><span class="en">(Set point)</span>)과 비교하는 <b>조절 중추</b>, 변수를 움직이는 <b>효과기</b>. 고리의 성질은 두 숫자가 크게 정한다. 얼마나 세게 고치는가(<b>이득</b>)와 얼마나 늦게 알아차리는가(<b>지연</b>)다.</p>
+
+    <div class="sim" id="sim-hm-builder" data-desc="음성·양성·열린 고리를 고르고 이득과 지연을 바꾸며, 방해(빨간 손잡이)를 끌어 넣었을 때 고리가 제자리로 돌아오는지, 출렁이는지, 한쪽 끝까지 달리는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>이득과 지연으로 고리 만들기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="fb-cv"></canvas><span class="hint">빨간 방해 손잡이를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="fb-kind"><button data-value="neg" class="on">음성 피드백</button><button data-value="pos">양성 피드백</button><button data-value="open">열린 고리</button></div>
+          <label class="ctrl"><span>이득(고치는 세기) <output id="fb-g-out"></output></span><input type="range" id="fb-g" min="0" max="12" step="0.5" value="4"></label>
+          <label class="ctrl"><span>지연 <output id="fb-d-out"></output></span><input type="range" id="fb-d" min="0" max="10" step="0.5" value="1"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">남은 오차</span><span class="v" id="fb-o-err">—</span></div>
+        <div class="stat"><span class="k">가장 크게 벗어남</span><span class="v" id="fb-o-max">—</span></div>
+        <div class="stat"><span class="k">판정</span><span class="v" id="fb-o-k" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 이득을 0, 1, 4, 12로 바꾼다. 이득이 클수록 남는 오차가 작아진다(오차 ≈ 방해 ÷ (1 + 이득)). ② 이득 4에서 지연을 5로 늘린다. 늦게 알아차린 만큼 지나치게 고쳐 출렁이고, 이득 8이면 출렁임이 커지며 멈추지 않는다. 호르몬 고리가 느린 반감기와 지연에도 안정한 것은 이득을 적당히 낮게 두기 때문이다. ③ 양성 피드백으로 바꾼다. 작은 방해에도 한쪽 끝까지 달려 효과기의 한계에서 멈춘다. 분만 때의 옥시토신, 배란 직전의 LH 급증이 이런 고리다. (BD.feedback: 조절 변수의 시간 상수 10, 설정점 37, 효과기 출력 한계 ±40. 시간 단위는 임의.)</div>
+    </div>
+
+    <p>설계도로 보면 몸의 고리들은 공통된 타협을 한다. 너무 약하면 방해에 밀리고, 너무 세거나 늦으면 출렁인다. 호르몬 고리는 대체로 느리고 부드럽게, 신경 반사 고리는 빠르고 날카롭게 만들어져 있다. 그리고 몸은 같은 변수를 신경(빠른 조정)과 호르몬(느리고 오래가는 조정)이라는 두 고리로 함께 붙잡는 경우가 많다. 혈압, 혈당, 체온이 모두 그렇다.</p>
+  </section>
+
+  <section id="daon">
+    <h2>다온의 대회 날 호르몬</h2>
+    <p>오전 8시 출발. 다온은 5시 반에 일어난다. 몸은 이미 준비하고 있었다. 새벽부터 시상하부의 시계가 CRH를 늘려 코르티솔이 하루 중 가장 높은 구간에 들어서 있고, 출발선에서 긴장과 함께 아드레날린이 솟는다. 그런데 대회 전 주말에 늦게 자고 늦게 일어났다면 사정이 달라진다.</p>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 17장</span></div>
+      <h4>대회 날 아침 코르티솔 약 16 µg/dL, 늦잠 주말 뒤라면 기상 때 약 13</h4>
+      <p>평소 몸시계(정점 약 6시 반)라면 5시 반 기상 때 코르티솔은 약 16 µg/dL, 출발 시각 8시에도 약 16으로 하루 중 가장 높은 구간이다(BD.hpa). 이 코르티솔이 간의 포도당 생산과 지방 분해를 미리 켜 두어 달리기에 쓸 연료를 준비한다. 출발 몇 분 전부터는 긴장으로 아드레날린이 쉴 때의 몇 배로 오르고, 반감기 약 2분으로 빠르게 오르내리며 심박수와 혈당을 끌어올린다. 대회 1시간을 스트레스로 넣으면 코르티솔은 9시 반쯤 약 20으로 정점을 찍고 오후에 내려온다. 반면 대회 전 일주일 동안 새벽 3시에 자고 10시 반에 일어났다면 몸시계가 약 2시간 밀려, 5시 반에 깰 때 코르티솔은 약 13에 그친다. 몸이 아직 새벽인 채로 출발선에 서는 셈이다. 갑상선 검사는 TSH 1.5 mU/L, FT4 약 16 pmol/L로 두 곡선이 정상 상자 한가운데서 만난다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>아침 코르티솔 리듬과 늦잠이 만드는 2시간의 어긋남, 출발 직전 아드레날린(초 단위)과 대회 뒤 코르티솔(시간 단위), 정상 갑상선 고리.</div><div><b>아직 모르는 것</b>대회 중 땀으로 잃는 물과 소금을 몸은 어떻게 알아채고 지키는가. 항이뇨 호르몬이라는 또 하나의 호르몬 고리.</div><div><b>다음 단계</b><a href="kidney.html">18장</a>에서 콩팥과 체액, 땀 0.6 L가 혈장 삼투압과 ADH를 어떻게 바꾸는지 본다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>신경은 정해진 표적에 밀리초로, 호르몬은 피를 타고 수용체를 가진 모든 세포에 초~일 단위로 신호를 보낸다. 물에 녹는 호르몬은 막 수용체로 빠르게, 스테로이드·갑상선 호르몬은 유전자를 거쳐 느리고 길게 작용한다.</li>
+      <li>반감기는 신호의 시간 눈금이다(아드레날린 약 2분, 코르티솔 약 1시간, T4 약 7일). 반감기보다 자주 분비하면 쌓이고, 정상 상태까지 반감기의 4~5배가 걸린다.</li>
+      <li>용량-반응은 S자 곡선이고 EC50과 힐 계수로 요약된다. 수용체가 줄면(하향 조절) 곡선이 오른쪽으로 밀리고, 더 줄면 최대 반응도 떨어진다.</li>
+      <li>HPA 축은 CRH → ACTH → 코르티솔과 코르티솔의 음성 피드백으로 이루어지고, 생체 시계가 아침에 높고(약 16 µg/dL) 밤에 낮은(약 3) 리듬을 얹는다. 외부 스테로이드는 ACTH를 눌러 부신을 쉬게 하므로 스스로 끊으면 위험하다.</li>
+      <li>TSH는 FT4의 작은 변화를 크게 키우는 확대경이다. T4 반감기가 길어 약 용량을 바꾸면 6~8주 뒤에 검사한다.</li>
+      <li>피드백 고리의 성질은 이득과 지연이 정한다. 이득이 크면 오차가 작지만, 지연과 함께 커지면 출렁인다. 양성 피드백은 한쪽 끝까지 달린다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>반감기가 7일인 T4의 분비가 갑자기 멈췄다면 3주 뒤 피 속에 남는 양은 처음의 몇 %인가?</p>
+        <div class="opts">
+          <button class="opt">약 33 %</button>
+          <button class="opt">약 25 %</button>
+          <button class="opt" data-correct>약 12.5 %</button>
+          <button class="opt">약 3 %</button>
+        </div>
+        <div class="quiz-exp">3주 = 반감기 3번. 1/2 × 1/2 × 1/2 = 1/8 = 12.5 %. 실제로는 갑상선이 계속 일부를 만들고 TSH가 올라 보상하지만, 반감기만 보면 이렇다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>천식 때문에 스테로이드 약을 두 달째 먹고 있는 사람의 HPA 축에 대한 설명으로 옳은 것은?</p>
+        <div class="opts">
+          <button class="opt" data-correct>ACTH가 눌려 부신이 스스로 만드는 코르티솔이 줄어 있다</button>
+          <button class="opt">ACTH가 크게 늘어 부신이 커져 있다</button>
+          <button class="opt">피드백은 외부 스테로이드와 상관없이 그대로다</button>
+          <button class="opt">약을 언제 끊어도 부신이 바로 일을 재개한다</button>
+        </div>
+        <div class="quiz-exp">시상하부와 뇌하수체는 외부 스테로이드를 자기 코르티솔로 여겨 CRH·ACTH를 줄인다. 오래 눌린 부신은 쉬며 작아지므로, 약은 의료진의 계획에 따라 천천히 줄여야 한다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>TSH가 높고 FT4가 낮다. 고리에서 가장 먼저 의심할 곳은?</p>
+        <div class="opts">
+          <button class="opt">뇌하수체가 TSH를 너무 많이 만드는 종양</button>
+          <button class="opt">자극 항체가 갑상선을 자극하는 그레이브스병</button>
+          <button class="opt">FT4가 너무 높아 TSH를 누르는 상태</button>
+          <button class="opt" data-correct>갑상선 자체의 기능이 떨어져 뇌하수체가 TSH를 올려 보상하는 상태</button>
+        </div>
+        <div class="quiz-exp">갑상선 곡선이 왼쪽으로 밀리면 FT4가 내려가고, 피드백이 약해진 뇌하수체는 TSH를 크게 올린다. 그레이브스병은 반대로 FT4가 높고 TSH가 눌린다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>호르몬이 계속 높은 탓에 표적 세포의 수용체가 줄었다. 용량-반응 곡선의 변화로 알맞은 것은?</p>
+        <div class="opts">
+          <button class="opt">곡선이 왼쪽으로 옮겨 더 적은 양으로도 듣는다</button>
+          <button class="opt" data-correct>곡선이 오른쪽으로 옮겨 같은 효과에 더 많은 양이 필요하고, 심하면 최대 반응도 낮아진다</button>
+          <button class="opt">곡선의 모양과 위치는 그대로다</button>
+          <button class="opt">최대 반응만 높아진다</button>
+        </div>
+        <div class="quiz-exp">예비 수용체가 많을 때는 수용체가 줄어도 최대 반응은 유지되고 EC50만 커진다(오른쪽 이동). 예비분이 바닥나면 최대 반응 자체가 떨어진다. 하향 조절이 내성을 만드는 방식이다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>반감기가 1시간인 호르몬을 1시간마다 같은 양씩 분비하면, 정상 상태에서 분비 직후의 최고 농도는 한 번만 분비했을 때의 몇 배인가?</p>
+        <div class="opts">
+          <button class="opt">1배</button>
+          <button class="opt" data-correct>2배</button>
+          <button class="opt">4배</button>
+          <button class="opt">끝없이 늘어난다</button>
+        </div>
+        <div class="quiz-exp">간격마다 남는 비율은 1/2이므로 최고 농도는 1 + 1/2 + 1/4 + … = 1/(1 − 1/2) = 2배에 수렴한다. 반감기보다 자주 분비할수록 이 배수가 커진다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  var REG = function () { return BB.color("seg-reg"); };
+  function nar(id, bp) { var el = document.getElementById(id); return ((el && el.parentElement.clientWidth) || 600) < (bp || 560); }
+  function hopt(id, wide, narrow, bp) { return { get height() { return nar(id, bp) ? narrow : wide; } }; }
+  function txt(ctx, s, x, y, o) {
+    o = o || {};
+    ctx.font = BB.font(o.size || 11, o.mono, o.weight);
+    ctx.fillStyle = o.color || P().dim; ctx.textAlign = o.align || "left"; ctx.textBaseline = o.base || "alphabetic";
+    ctx.fillText(s, x, y);
+  }
+  function handle(ctx, x, y, col, r) { var p = P(); ctx.fillStyle = p.bg; ctx.strokeStyle = col || p.text; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); }
+  function idxOf(ts, t) { var lo = 0, hi = ts.length - 1; if (t <= ts[0]) return 0; if (t >= ts[hi]) return hi; while (hi - lo > 1) { var m = (lo + hi) >> 1; if (ts[m] < t) lo = m; else hi = m; } return t - ts[lo] < ts[hi] - t ? lo : hi; }
+  function maxOf(a) { var m = -Infinity; for (var i = 0; i < a.length; i++) if (a[i] > m) m = a[i]; return m; }
+  function minOf(a) { var m = Infinity; for (var i = 0; i < a.length; i++) if (a[i] < m) m = a[i]; return m; }
+  function fmtDur(h) {
+    if (h < 1 / 3600) return (h * 3600 * 1000).toFixed(0) + " ms";
+    if (h < 1 / 60) return (h * 3600).toFixed(0) + "초";
+    if (h < 1) return (h * 60).toFixed(0) + "분";
+    if (h < 48) return (h % 1 ? h.toFixed(1) : h.toFixed(0)) + "시간";
+    return (h / 24).toFixed(h / 24 < 10 ? 1 : 0) + "일";
+  }
+  function hourLabel(hh) { hh = ((hh % 24) + 24) % 24; var H = Math.floor(hh), M = Math.round((hh - H) * 60); if (M === 60) { H = (H + 1) % 24; M = 0; } return H + ":" + (M < 10 ? "0" : "") + M; }
+
+  /* ---------------------------------------------------------- 1. 전선과 방송 */
+  (function () {
+    var K = {
+      nerve: { name: "신경", on: 0.02, dur: 0.1, reach: ["heart"], src: "brain", unitOn: "약 0.02초", unitDur: "약 0.1초" },
+      adr: { name: "아드레날린", on: 15, dur: 180, reach: ["heart", "lungs", "liver", "muscle", "gut", "skin"], src: "adrenal", unitOn: "약 15초", unitDur: "약 3분" },
+      cort: { name: "코르티솔", on: 1800, dur: 6 * 3600, reach: ["heart", "lungs", "liver", "muscle", "gut", "skin", "brain", "kidneys", "stomach", "pancreas"], src: "adrenal", unitOn: "약 30분", unitDur: "몇 시간" },
+      t4: { name: "갑상선 호르몬", on: 2 * 86400, dur: 30 * 86400, reach: ["heart", "lungs", "liver", "muscle", "gut", "skin", "brain", "kidneys", "stomach", "pancreas"], src: "thyroid", unitOn: "며칠", unitDur: "몇 주" },
+    };
+    var ORDER = ["nerve", "adr", "cort", "t4"];
+    var prog = -1, cv = null, lay = null, parts = [], rnd = BB.rng(4);
+    var getK = BB.seg("wr-kind", function () { prog = -1; upd(); });
+    function upd() {
+      var k = K[getK()];
+      BB.stat("wr-o-on", k.unitOn); BB.stat("wr-o-dur", k.unitDur);
+      BB.stat("wr-o-n", k.reach.length + "<small>곳" + (getK() === "nerve" ? "(한 곳만)" : "") + "</small>");
+      if (cv) cv.redraw();
+    }
+    document.getElementById("wr-go").addEventListener("click", function () {
+      prog = 0; parts = [];
+      for (var i = 0; i < 60; i++) parts.push({ a: rnd() * Math.PI * 2, r: 0.3 + rnd() * 0.7, d: rnd() * 0.25, s: 0.7 + rnd() * 0.6 });
+    });
+    upd();
+    cv = BB.canvas("#wr-cv", function (ctx, w, h) {
+      var p = P(), key = getK(), k = K[key], narrow = w < 500, reg = REG(), nv = BB.color("nerve");
+      var A = narrow ? { x: 0, y: 0, w: w, h: 270 } : { x: 0, y: 0, w: w * 0.42, h: h };
+      var H = A.h - 46, cx = A.x + A.w / 2, top = A.y + 40;
+      var ALL = ["brain", "thyroid", "lungs", "heart", "liver", "stomach", "pancreas", "adrenal", "kidneys", "gut", "muscle", "skin"];
+      var show = prog >= 0 && (key === "nerve" ? prog > 0.45 : prog > 0.4);
+      var org = {};
+      ALL.forEach(function (o) { var hit = k.reach.indexOf(o) >= 0; org[o] = show && hit ? (key === "nerve" ? nv : p.accent) : BB.alpha(p.dim, 0.35); });
+      org[k.src] = reg;
+      if (!org.skin || org.skin.indexOf("rgba") === 0 && !(show && k.reach.indexOf("skin") >= 0)) org.skin = false;
+      var pos = BD.body(ctx, cx, top, H, { organs: org, alpha: 0.5 });
+      var src = pos[k.src];
+      if (key === "nerve") {
+        var path = [[pos.brain.x, pos.brain.y], [cx, top + H * 0.17], [cx, top + H * 0.27], [pos.heart.x, pos.heart.y]];
+        ctx.strokeStyle = BB.alpha(nv, 0.7); ctx.lineWidth = 2.2; ctx.beginPath(); path.forEach(function (q, i) { i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); }); ctx.stroke();
+        if (prog >= 0 && prog < 0.45) {
+          var f = prog / 0.45, L = [], tot = 0; for (var i = 1; i < path.length; i++) { var d = Math.hypot(path[i][0] - path[i - 1][0], path[i][1] - path[i - 1][1]); L.push(d); tot += d; }
+          var s = f * tot, j = 0; while (j < L.length - 1 && s > L[j]) { s -= L[j]; j++; }
+          var x = path[j][0] + (path[j + 1][0] - path[j][0]) * s / L[j], y = path[j][1] + (path[j + 1][1] - path[j][1]) * s / L[j];
+          ctx.fillStyle = BB.alpha(nv, 0.35); ctx.beginPath(); ctx.arc(x, y, 10, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = nv; ctx.beginPath(); ctx.arc(x, y, 4.5, 0, Math.PI * 2); ctx.fill();
+        }
+      } else if (prog >= 0) {
+        var srcX = key === "adrenal" ? src.x : src.x, srcY = src.y;
+        parts.forEach(function (q) {
+          var f2 = BB.clamp((prog - q.d) / 0.6, 0, 1); if (f2 <= 0) return;
+          var R = f2 * H * 0.42 * q.r * q.s;
+          var x = srcX + Math.cos(q.a) * R * 0.55, y = srcY + Math.sin(q.a) * R;
+          x = BB.clamp(x, cx - H * 0.15, cx + H * 0.15); y = BB.clamp(y, top + H * 0.05, top + H * 0.9);
+          ctx.fillStyle = BB.alpha(reg, 0.85 * (1 - 0.5 * f2)); ctx.beginPath(); ctx.arc(x, y, 2.6, 0, Math.PI * 2); ctx.fill();
+        });
+      }
+      txt(ctx, (key === "nerve" ? "출발: 뇌 → 심장 한 곳" : "출발: " + pos[k.src].name + " → 피 → 온몸"), A.x + 8, A.y + 16, { size: 11.5, weight: 700, color: key === "nerve" ? nv : reg });
+      if (show) txt(ctx, key === "nerve" ? "심장에만 닿는다" : k.reach.length + "곳이 반응", A.x + 8, A.y + 32, { size: 11, color: p.accent, weight: 600 });
+      // 시간 축(로그)
+      var T = narrow ? { x: 14, y: A.h + 26, w: w - 28, h: h - A.h - 40 } : { x: w * 0.45, y: 34, w: w * 0.55 - 14, h: h - 60 };
+      var lo = -3, hi = 7.5, TX = function (sec) { return T.x + (Math.log10(sec) - lo) / (hi - lo) * T.w; };
+      txt(ctx, "닿기까지(점)와 효과가 이어지는 시간(막대)", T.x, T.y - 12, { size: 11.5, weight: 700, color: p.text });
+      var rowH = Math.min(46, (T.h - 34) / 4);
+      var ticks = [[1e-3, "1 ms"], [1, "1초"], [60, "1분"], [3600, "1시간"], [86400, "1일"], [2.6e6, "1달"]];
+      ticks.forEach(function (tk) { var x = TX(tk[0]); ctx.strokeStyle = p.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x, T.y); ctx.lineTo(x, T.y + 4 * rowH); ctx.stroke(); txt(ctx, tk[1], x, T.y + 4 * rowH + 14, { size: 10.5, align: "center", mono: false }); });
+      lay = { T: T, rowH: rowH };
+      ORDER.forEach(function (kk, i) {
+        var q = K[kk], y = T.y + i * rowH + rowH * 0.55, on = kk === key, col = kk === "nerve" ? nv : reg;
+        ctx.fillStyle = BB.alpha(col, on ? 0.75 : 0.25); BB.rrect(ctx, TX(q.on), y - 6, TX(q.on + q.dur) - TX(q.on), 12, 5); ctx.fill();
+        ctx.fillStyle = col; ctx.beginPath(); ctx.arc(TX(q.on), y, on ? 6 : 4, 0, Math.PI * 2); ctx.fill();
+        var lx = TX(q.on + q.dur) + 6, right = lx + 70 > T.x + T.w;
+        txt(ctx, q.name, right ? TX(q.on) - 8 : lx, y + 4, { size: 11, weight: on ? 700 : 400, color: on ? p.text : p.dim, align: right ? "right" : "left" });
+      });
+    }, hopt("wr-cv", 340, 500, 500));
+    BB.drag(cv.canvas, { start: function (x, y) { if (!lay) return; var T = lay.T; if (x < T.x - 10 || y < T.y || y > T.y + 4 * lay.rowH) return; var i = Math.floor((y - T.y) / lay.rowH); if (i >= 0 && i < 4) getK.set(ORDER[i]); } });
+    BB.loop(document.getElementById("sim-hm-wire"), function (dt) { if (prog >= 0) { prog += dt / 3.2; if (prog > 1.6) prog = 1.6; } cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 2. 반감기 */
+  (function () {
+    var H = BD.HORMONES, sel = 4, doses = [{ t: 0, amt: 1 }], cv = null, lay = null;
+    var regEl = document.getElementById("hl-reg");
+    var getIv = BB.range("hl-iv", function (v) { return "반감기의 " + v + "배"; }, function () { upd(); });
+    regEl.addEventListener("change", upd);
+    document.getElementById("hl-clr").addEventListener("click", function () { doses = [{ t: 0, amt: 1 }]; regEl.checked = false; upd(); });
+    function unit(th) { return th < 1 ? { f: 60, l: "분" } : th <= 30 ? { f: 1, l: "시간" } : { f: 1 / 24, l: "일" }; }
+    function allDoses() {
+      var th = H[sel].half, out = doses.slice();
+      if (regEl.checked) { out = []; for (var t = 0; t <= 8 * th; t += getIv() * th) out.push({ t: t, amt: 1 }); }
+      return out;
+    }
+    function upd() {
+      var th = H[sel].half;
+      BB.stat("hl-o-th", fmtDur(th));
+      BB.stat("hl-o-90", fmtDur(th * Math.log2(10)));
+      BB.stat("hl-o-acc", regEl.checked ? "×" + (1 / (1 - Math.pow(0.5, getIv()))).toFixed(2) : "규칙 분비 끔");
+      if (cv) cv.redraw();
+    }
+    upd();
+    cv = BB.canvas("#hl-cv", function (ctx, w, h) {
+      var p = P(), reg = REG(), th = H[sel].half, u = unit(th), narrow = w < 480;
+      // 사다리
+      var L = { x: 22, y: 30, w: w - 44 }, lo = Math.log10(1 / 60), hi = Math.log10(24 * 30);
+      var LX = function (hh) { return L.x + (Math.log10(hh) - lo) / (hi - lo) * L.w; };
+      txt(ctx, "반감기 사다리(눌러서 고르기)", L.x, 16, { size: 11.5, weight: 700, color: p.text });
+      ctx.strokeStyle = p.axis; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(L.x, L.y + 18); ctx.lineTo(L.x + L.w, L.y + 18); ctx.stroke();
+      [[1 / 60, "1분"], [1, "1시간"], [24, "1일"], [24 * 7, "1주"]].forEach(function (tk) { var x = LX(tk[0]); ctx.beginPath(); ctx.moveTo(x, L.y + 14); ctx.lineTo(x, L.y + 22); ctx.stroke(); txt(ctx, tk[1], x, L.y + (narrow ? 78 : 52), { size: 10, align: "center", color: p.faint }); });
+      var marks = [], rowEnd = [-1e9, -1e9, -1e9];
+      H.forEach(function (hm, i) {
+        var x = LX(hm.half), on = i === sel; ctx.font = BB.font(narrow ? 9.5 : 10.5, false, on ? 700 : 400); var tw = ctx.measureText(hm.name).width, row = 0; while (row < 2 && rowEnd[row] > x - tw / 2 - 4) row++; rowEnd[row] = x + tw / 2;
+        ctx.fillStyle = on ? p.accent : reg; ctx.beginPath(); ctx.arc(x, L.y + 18, on ? 7 : 5, 0, Math.PI * 2); ctx.fill();
+        txt(ctx, hm.name, x, [L.y + 6, L.y + 36, L.y + 64][row], { size: narrow ? 9.5 : 10.5, align: "center", color: on ? p.accent : p.dim, weight: on ? 700 : 400 });
+        marks.push(x);
+      });
+      // 농도
+      var B = { x: 54, y: L.y + 100, w: w - 70, h: h - (L.y + 100) - 46 };
+      var tmax = 8 * th, ds = allDoses();
+      var ts = BD.linspace(0, tmax, 400), cs = BD.pkBolus(ds, th, ts);
+      var ymax = Math.max(1.2, Math.ceil(maxOf(cs) * 1.15 * 2) / 2);
+      var data = ts.map(function (t, i) { return [t * u.f, cs[i]]; });
+      var c = BB.chart(ctx, B, { x: [0, tmax * u.f], y: [0, ymax], xLabel: "시간(" + u.l + ")", yLabel: "농도(한 번 분비 = 1)",
+        vlines: [{ x: th * u.f, color: p.faint, label: "t½" }, { x: 2 * th * u.f, color: p.faint, label: "2t½" }],
+        hlines: [{ y: 0.5, color: p.faint, label: "50 %" }, { y: 0.25, color: p.faint, label: "25 %" }],
+        series: [{ data: data, color: p.accent, width: 2.6, fill: BB.alpha(p.accent, 0.1) }] });
+      if (regEl.checked) { var cmax = 1 / (1 - Math.pow(0.5, getIv())); ctx.strokeStyle = BB.alpha(p.warn, 0.8); ctx.setLineDash([5, 4]); ctx.beginPath(); ctx.moveTo(B.x, c.Y(cmax)); ctx.lineTo(B.x + B.w, c.Y(cmax)); ctx.stroke(); ctx.setLineDash([]); txt(ctx, "정상 상태 최고 ×" + cmax.toFixed(2), B.x + 6, c.Y(cmax) - 5, { size: 11, color: p.warn, weight: 700 }); }
+      ds.forEach(function (d) { ctx.fillStyle = reg; ctx.beginPath(); ctx.moveTo(c.X(d.t * u.f), B.y + B.h); ctx.lineTo(c.X(d.t * u.f) - 5, B.y + B.h + 8); ctx.lineTo(c.X(d.t * u.f) + 5, B.y + B.h + 8); ctx.fill(); });
+      txt(ctx, H[sel].name + " · " + H[sel].gland + " · 반감기 " + fmtDur(th), B.x + B.w, B.y - 8, { size: 12, weight: 700, align: "right", color: p.accent });
+      lay = { L: L, marks: marks, B: B, tmax: tmax, th: th };
+    }, hopt("hl-cv", 380, 400, 480));
+    BB.drag(cv.canvas, {
+      start: function (x, y) {
+        if (!lay) return;
+        if (y < lay.L.y + 56) { var best = 0, bd = 1e9; lay.marks.forEach(function (mx, i) { if (Math.abs(mx - x) < bd) { bd = Math.abs(mx - x); best = i; } }); if (bd < 30) { sel = best; doses = [{ t: 0, amt: 1 }]; upd(); } return; }
+        if (y > lay.B.y && x > lay.B.x && !regEl.checked) { var t = (x - lay.B.x) / lay.B.w * lay.tmax; if (t > 0 && t < lay.tmax && doses.length < 12) { doses.push({ t: t, amt: 1 }); upd(); } }
+      },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 3. 용량-반응 */
+  (function () {
+    var c = 1, cv = null, lay = null, KE = 0.03;
+    var getR = BB.range("dr-r", function (v) { return Math.round(v * 100) + "%"; }, function () { upd(); });
+    var getN = BB.range("dr-n", function (v) { return v.toFixed(1); }, function () { upd(); });
+    function resp(cc, R, n) { var s = R * BD.occupancy(cc, 1); return BD.hill(s, KE, n); }
+    function ec50(R, n) { var em = resp(1e6, R, n), lo = -4, hi = 6; for (var i = 0; i < 50; i++) { var m = (lo + hi) / 2; if (resp(Math.pow(10, m), R, n) < em / 2) lo = m; else hi = m; } return { ec: Math.pow(10, (lo + hi) / 2), em: em }; }
+    function upd() {
+      var R = getR(), n = getN(), e = ec50(R, n);
+      BB.stat("dr-o-ec", BB.fmt(e.ec, 2) + "<small>× Kd</small>");
+      BB.stat("dr-o-em", Math.round(e.em * 100) + "<small>%</small>");
+      BB.stat("dr-o-oc", Math.round(BD.occupancy(c, 1) * 100) + "<small>%</small>");
+      BB.stat("dr-o-e", Math.round(resp(c, R, n) * 100) + "<small>%</small>");
+      if (cv) cv.redraw();
+    }
+    upd();
+    cv = BB.canvas("#dr-cv", function (ctx, w, h) {
+      var p = P(), R = getR(), n = getN(), xs = BD.logspace(0.001, 1000, 160);
+      var box = { x: 54, y: 16, w: w - 70, h: h - 62 };
+      var e = ec50(R, n), e0 = ec50(1, n);
+      var ch = BB.chart(ctx, box, { logX: true, x: [0.001, 1000], y: [0, 105], yTicks: [0, 25, 50, 75, 100], xLabel: "호르몬 농도(Kd의 배수, 로그)", yLabel: "%",
+        xFmt: function (v) { return v >= 1 ? String(v) : String(v); },
+        vlines: [{ x: e.ec, color: p.accent, label: "EC50" }],
+        series: [
+          { data: xs.map(function (x) { return [x, resp(x, 1, n) * 100]; }), color: p.faint, width: 1.6, dash: [5, 4] },
+          { data: xs.map(function (x) { return [x, BD.occupancy(x, 1) * 100]; }), color: p.accent2, width: 2, dash: [3, 3] },
+          { data: xs.map(function (x) { return [x, resp(x, R, n) * 100]; }), color: p.accent, width: 2.8 },
+        ] });
+      var y = resp(c, R, n) * 100;
+      ctx.strokeStyle = BB.alpha(p.text, 0.35); ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(ch.X(c), box.y + box.h); ctx.lineTo(ch.X(c), ch.Y(y)); ctx.lineTo(box.x, ch.Y(y)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = p.accent2; ctx.beginPath(); ctx.arc(ch.X(c), ch.Y(BD.occupancy(c, 1) * 100), 4.5, 0, Math.PI * 2); ctx.fill();
+      handle(ctx, ch.X(c), ch.Y(y), p.accent, 7);
+      txt(ctx, "반응 " + Math.round(y) + " % · 점유 " + Math.round(BD.occupancy(c, 1) * 100) + " %", Math.min(ch.X(c) + 10, box.x + box.w - 150), ch.Y(y) - 10, { size: 11.5, weight: 700, color: p.text });
+      if (e.ec > e0.ec * 1.5) {
+        ctx.strokeStyle = p.warn; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(ch.X(e0.ec), ch.Y(e0.em * 50)); ctx.lineTo(ch.X(e.ec) - 6, ch.Y(e0.em * 50)); ctx.stroke();
+        ctx.fillStyle = p.warn; ctx.beginPath(); ctx.moveTo(ch.X(e.ec), ch.Y(e0.em * 50)); ctx.lineTo(ch.X(e.ec) - 8, ch.Y(e0.em * 50) - 5); ctx.lineTo(ch.X(e.ec) - 8, ch.Y(e0.em * 50) + 5); ctx.fill();
+        txt(ctx, "×" + (e.ec / e0.ec).toFixed(1) + " 더 필요", (ch.X(e0.ec) + ch.X(e.ec)) / 2, ch.Y(e0.em * 50) + 16, { size: 11, align: "center", color: p.warn, weight: 700 });
+      }
+      if (e.em < 0.8) txt(ctx, "수용체가 모자라 최대 반응이 " + Math.round(e.em * 100) + " %로 떨어졌다", box.x + 8, box.y + 14, { size: 12, weight: 700, color: p.bad });
+      lay = ch;
+    }, hopt("dr-cv", 340, 340, 480));
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; var b = lay.box; c = Math.pow(10, BB.clamp(-3 + (x - b.x) / b.w * 6, -3, 3)); upd(); } });
+  })();
+
+  /* ---------------------------------------------------------- 4. HPA 축 (sim-loop) */
+  (function () {
+    var res = null, base = null, cur = 6, lastDrag = -10, clock = 0, phase = 0, stress = [], cv = null, lay = null;
+    var getFb = BB.range("lp-fb", function (v) { return v === 0 ? "끊김" : "×" + v.toFixed(2); }, BB.debounce(run, 50));
+    var getDl = BB.range("lp-dl", function (v) { return v + "분"; }, BB.debounce(run, 50));
+    var getSt = BB.range("lp-st", function (v) { return v === 0 ? "없음" : v + " µg/dL"; }, BB.debounce(run, 50));
+    document.getElementById("lp-add").addEventListener("click", function () { if (stress.length < 8) stress.push(Math.round(cur * 4) / 4); run(); });
+    document.getElementById("lp-clr").addEventListener("click", function () { stress = []; run(); });
+    document.getElementById("lp-re").addEventListener("click", function () { stress = []; getFb.el.value = 1; getDl.el.value = 15; getSt.el.value = 0; getFb.set(1); getDl.set(15); getSt.set(0); });
+    function slice(r) {
+      var k0 = idxOf(r.t, 1440), out = { T: [], a: [], c: [], h: [] };
+      for (var i = k0; i < r.t.length; i++) { out.T.push((r.t[i] - 1440) / 60); out.a.push(r.a[i]); out.c.push(r.c[i]); out.h.push(r.h[i]); }
+      return out;
+    }
+    function at(r, arr, hh) { return r[arr][idxOf(r.T, hh)]; }
+    function run() {
+      res = slice(BD.hpa({ days: 3, fb: getFb(), delay: getDl(), steroid: getSt(), stress: stress.map(function (hh) { return { t: 1440 + hh * 60, dur: 30, amp: 3 }; }) }));
+      var am = at(res, "c", 32), pm = at(res, "c", 24), acth = at(res, "a", 32);
+      BB.stat("lp-o-am", am.toFixed(1) + "<small>µg/dL</small>");
+      BB.stat("lp-o-pm", pm.toFixed(1) + "<small>µg/dL</small>");
+      BB.stat("lp-o-acth", acth.toFixed(0) + "<small>pg/mL</small>");
+      var st = getFb() < 0.35 ? "피드백 약함: 코르티솔 폭주" : getSt() >= 6 ? "ACTH 억제: 부신이 쉰다" : getDl() >= 90 ? "늦은 피드백: 리듬이 일그러짐" : getFb() > 1.6 ? "센 피드백: 낮게 묶임" : "정상 리듬";
+      BB.stat("lp-o-st", st);
+      if (cv) cv.redraw();
+    }
+    base = slice(BD.hpa({ days: 3 }));
+    var hMax = maxOf(base.h), aMax = maxOf(base.a), cMax = maxOf(base.c);
+    run();
+    function arrow(ctx, x1, y1, x2, y2, col, wd) {
+      ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      var a = Math.atan2(y2 - y1, x2 - x1); ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x2 - 9 * Math.cos(a - 0.4), y2 - 9 * Math.sin(a - 0.4)); ctx.lineTo(x2 - 9 * Math.cos(a + 0.4), y2 - 9 * Math.sin(a + 0.4)); ctx.closePath(); ctx.fill();
+    }
+    cv = BB.canvas("#lp-cv", function (ctx, w, h) {
+      var p = P(), reg = REG(), narrow = w < 600, i = idxOf(res.T, cur);
+      var H = res.h[i], A = res.a[i], C = res.c[i], fb = getFb(), ster = getSt();
+      // 그림
+      var D = narrow ? { x: 6, y: 6, w: w - 12, h: 262 } : { x: 8, y: 8, w: w * 0.37, h: h - 16 };
+      var bw = Math.min(170, D.w * 0.56), bh = narrow ? 42 : 48, bx = D.x + D.w * 0.36 - bw / 2;
+      var ys = narrow ? [D.y + 22, D.y + 98, D.y + 174] : [D.y + D.h * 0.07, D.y + D.h * 0.36, D.y + D.h * 0.65];
+      var boxes = [
+        { name: "시상하부", sub: "CRH", val: H / hMax, txt: (H / hMax * 100).toFixed(0) + "%" },
+        { name: "뇌하수체 앞엽", sub: "ACTH", val: A / aMax, txt: A.toFixed(0) + " pg/mL" },
+        { name: "부신 겉질", sub: "코르티솔", val: C / cMax, txt: C.toFixed(1) + " µg/dL" },
+      ];
+      // 아래 화살표와 흐르는 점
+      [[0, H / hMax], [1, A / aMax]].forEach(function (q) {
+        var x = bx + bw * 0.4, y1 = ys[q[0]] + bh, y2 = ys[q[0] + 1];
+        arrow(ctx, x, y1 + 2, x, y2 - 3, BB.alpha(reg, 0.7), 2.4);
+        BD.flowDots(ctx, [[x, y1 + 2], [x, y2 - 6]], phase * 40 * (0.2 + q[1]), { color: reg, gap: 11, r: 2.4 });
+        txt(ctx, q[0] === 0 ? "CRH" : "ACTH", x - 10, (y1 + y2) / 2 + 4, { size: 11, weight: 700, align: "right", color: reg });
+      });
+      // 코르티솔 → 몸
+      var yb = ys[2] + bh, yT = narrow ? D.y + D.h - 10 : D.y + D.h * 0.92;
+      arrow(ctx, bx + bw * 0.4, yb + 2, bx + bw * 0.4, yT - 14, BB.alpha(p.accent, 0.7), 2.4);
+      BD.flowDots(ctx, [[bx + bw * 0.4, yb + 2], [bx + bw * 0.4, yT - 16]], phase * 40 * (0.2 + C / cMax), { color: p.accent, gap: 11, r: 2.4 });
+      txt(ctx, "온몸의 세포: 포도당 ↑ 염증 ↓", bx + bw * 0.4, yT, { size: 11, align: "center", color: p.dim });
+      // 피드백 선
+      var fx = bx + bw + Math.min(46, D.w * 0.16), fcol = fb < 0.35 ? BB.alpha(p.bad, 0.35) : p.bad;
+      ctx.strokeStyle = fcol; ctx.lineWidth = 1 + 2 * fb; ctx.setLineDash([6, 4]);
+      ctx.beginPath(); ctx.moveTo(bx + bw, ys[2] + bh / 2); ctx.lineTo(fx, ys[2] + bh / 2); ctx.lineTo(fx, ys[0] + bh / 2); ctx.lineTo(bx + bw + 8, ys[0] + bh / 2); ctx.moveTo(fx, ys[1] + bh / 2); ctx.lineTo(bx + bw + 8, ys[1] + bh / 2); ctx.stroke(); ctx.setLineDash([]);
+      if (fb > 0.02) BD.flowDots(ctx, [[fx, ys[2] + bh / 2], [fx, ys[0] + bh / 2]], phase * 30 * fb * (0.3 + C / cMax), { color: p.bad, gap: 13, r: 2.2 });
+      [0, 1].forEach(function (k) { var yy = ys[k] + bh / 2; ctx.fillStyle = p.bg; ctx.strokeStyle = fcol; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(bx + bw + 8, yy, 8, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); txt(ctx, "−", bx + bw + 8, yy + 5, { size: 14, weight: 800, align: "center", color: fcol }); });
+      txt(ctx, fb < 0.35 ? "피드백 끊김" : "음성 피드백", fx + 4, ys[1] - 8, { size: 10.5, color: p.bad, weight: 700 });
+      if (fb < 0.35) { ctx.strokeStyle = p.bad; ctx.lineWidth = 3; var my = (ys[1] + ys[2]) / 2 + bh / 2; ctx.beginPath(); ctx.moveTo(fx - 8, my - 8); ctx.lineTo(fx + 8, my + 8); ctx.moveTo(fx + 8, my - 8); ctx.lineTo(fx - 8, my + 8); ctx.stroke(); }
+      if (ster > 0) {
+        var px = Math.min(fx + 18, D.x + D.w - 34), py = ys[2] - 6;
+        ctx.fillStyle = p.warn; BB.rrect(ctx, px, py - 7, 30, 14, 7); ctx.fill();
+        txt(ctx, "약 +" + ster, px + 15, py + 22, { size: 10.5, align: "center", color: p.warn, weight: 700 });
+        arrow(ctx, px + 4, py, fx + 3, py + 4, p.warn, 1.6);
+      }
+      // 상자
+      boxes.forEach(function (b, k) {
+        var y = ys[k], lvl = BB.clamp(b.val, 0, 2.5);
+        ctx.fillStyle = BB.alpha(reg, 0.12 + 0.38 * Math.min(1, lvl)); ctx.strokeStyle = lvl > 1.6 ? p.bad : reg; ctx.lineWidth = lvl > 1.6 ? 2.4 : 1.5;
+        BB.rrect(ctx, bx, y, bw, bh, 9); ctx.fill(); ctx.stroke();
+        txt(ctx, b.name, bx + 8, y + 17, { size: narrow ? 11 : 12, weight: 700, color: p.text });
+        txt(ctx, b.sub + " " + b.txt, bx + 8, y + bh - 9, { size: narrow ? 10.5 : 11, mono: false, color: p.text });
+      });
+      // 시계
+      var ccx = D.x + D.w - 26, ccy = narrow ? D.y + D.h - 40 : D.y + D.h * 0.84, cr = 18, hh = cur % 24;
+      ctx.strokeStyle = p.dim; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(ccx, ccy, cr, 0, Math.PI * 2); ctx.stroke();
+      var ang = -Math.PI / 2 + hh / 24 * Math.PI * 2; ctx.strokeStyle = p.text; ctx.lineWidth = 2.4; ctx.beginPath(); ctx.moveTo(ccx, ccy); ctx.lineTo(ccx + Math.cos(ang) * cr * 0.8, ccy + Math.sin(ang) * cr * 0.8); ctx.stroke();
+      txt(ctx, hourLabel(hh), ccx, ccy - cr - 6, { size: 11, mono: true, align: "center", weight: 700, color: p.text });
+      txt(ctx, (cur < 24 ? "첫째 날" : "둘째 날") + (hh >= 22 || hh < 6 ? " · 밤" : ""), ccx, ccy + cr + 14, { size: 10, align: "center" });
+      // 그래프
+      var G = narrow ? { x: 52, y: D.y + D.h + 22, w: w - 64, h: h - D.h - 80 } : { x: w * 0.41 + 46, y: 18, w: w * 0.59 - 60, h: h - 64 };
+      var gh = (G.h - 22) / 2;
+      var b1 = { x: G.x, y: G.y, w: G.w, h: gh }, b2 = { x: G.x, y: G.y + gh + 22, w: G.w, h: gh };
+      var nights = [{ x0: 0, x1: 6, color: BB.alpha(p.text, 0.05) }, { x0: 22, x1: 30, color: BB.alpha(p.text, 0.05) }, { x0: 46, x1: 48, color: BB.alpha(p.text, 0.05) }];
+      var xt = [0, 6, 12, 18, 24, 30, 36, 42, 48], xf = function (v) { return (v % 24) + "시"; };
+      var aTop = Math.max(60, Math.ceil(maxOf(res.a) * 1.1 / 20) * 20), cTop = Math.max(25, Math.ceil(maxOf(res.c) * 1.1 / 5) * 5);
+      var c1 = BB.chart(ctx, b1, { x: [0, 48], y: [0, aTop], xTicks: xt, xFmt: function () { return ""; }, yLabel: "ACTH pg/mL", bands: nights,
+        series: [{ data: base.T.map(function (t, k) { return [t, base.a[k]]; }), color: p.faint, width: 1.4, dash: [4, 3] }, { data: res.T.map(function (t, k) { return [t, res.a[k]]; }), color: reg, width: 2.4 }] });
+      var c2 = BB.chart(ctx, b2, { x: [0, 48], y: [0, cTop], xTicks: xt, xFmt: xf, yLabel: "코르티솔 µg/dL", xLabel: "시각(이틀)", bands: nights,
+        series: [{ data: base.T.map(function (t, k) { return [t, base.c[k]]; }), color: p.faint, width: 1.4, dash: [4, 3] }, { data: res.T.map(function (t, k) { return [t, res.c[k]]; }), color: p.accent, width: 2.6 }] });
+      if (ster > 0) { ctx.strokeStyle = BB.alpha(p.warn, 0.8); ctx.setLineDash([2, 3]); ctx.beginPath(); ctx.moveTo(b2.x, c2.Y(ster)); ctx.lineTo(b2.x + b2.w, c2.Y(ster)); ctx.stroke(); ctx.setLineDash([]); txt(ctx, "약으로 들어온 몫", b2.x + b2.w - 4, c2.Y(ster) + 13, { size: 10.5, align: "right", color: p.warn }); }
+      stress.forEach(function (sh) { [c1, c2].forEach(function (cc, k) { var bb = k ? b2 : b1; ctx.fillStyle = p.warn; ctx.beginPath(); ctx.moveTo(cc.X(sh), bb.y + bb.h); ctx.lineTo(cc.X(sh) - 5, bb.y + bb.h - 9); ctx.lineTo(cc.X(sh) + 5, bb.y + bb.h - 9); ctx.fill(); }); });
+      txt(ctx, "ACTH", b1.x + 6, b1.y + 13, { size: 11.5, weight: 700, color: reg });
+      txt(ctx, "코르티솔 · 점선: 정상", b2.x + 6, b2.y + 13, { size: 11.5, weight: 700, color: p.accent });
+      if (getFb() < 0.35) txt(ctx, "브레이크 없는 고리: 코르티솔 폭주", b2.x + b2.w - 4, b2.y + 13, { size: 12, weight: 700, align: "right", color: p.bad });
+      var x = c2.X(cur);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x, b1.y); ctx.lineTo(x, b2.y + b2.h); ctx.stroke();
+      handle(ctx, x, c1.Y(A), reg, 5.5); handle(ctx, x, c2.Y(C), p.accent, 6.5);
+      lay = { G: G, c2: c2 };
+    }, hopt("lp-cv", 440, 640, 600));
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.c2.box; if (x < b.x - 10 || y < lay.G.y - 10) return; cur = BB.clamp((x - b.x) / b.w * 48, 0, 47.9); lastDrag = clock; cv.redraw(); } });
+    BB.loop(document.getElementById("sim-loop"), function (dt) { clock += dt; phase += dt; if (clock - lastDrag > 3) { cur += dt * 2.4; if (cur >= 48) cur = 0; } cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 5. 하루 리듬과 시차 */
+  (function () {
+    var cv = null, lay = null, res = null, base = null, cache = {};
+    var getS = BB.range("ck-s", function (v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "시간"; }, function () { upd(); });
+    var getD = BB.range("ck-d", function (v) { return v + "일"; }, function () { upd(); });
+    var getPre = BB.seg("ck-pre", function (v) { getS.set(+v); getD.set(0); });
+    function internal(S, d) { var rate = S > 0 ? 1 : 0.67; return Math.sign(S) * Math.min(Math.abs(S), rate * d); }
+    function curve(peak) {
+      var k = peak.toFixed(2);
+      if (!cache[k]) { var r = BD.hpa({ days: 2, peakHr: peak }); var out = []; for (var hh = 0; hh <= 24; hh += 0.25) { var i = idxOf(r.t, 1440 + hh * 60); out.push(r.c[i]); } cache[k] = out; }
+      return cache[k];
+    }
+    function cAt(arr, hh) { hh = ((hh % 24) + 24) % 24; return arr[Math.round(hh * 4)]; }
+    function upd() {
+      var S = getS(), d = getD(), I = internal(S, d);
+      res = curve(6.5 + I); base = curve(6.5);
+      var wake = 7 + S, mis = S - I;
+      BB.stat("ck-o-wk", hourLabel(wake));
+      BB.stat("ck-o-in", (I >= 0 ? "+" : "−") + Math.abs(I).toFixed(1) + "<small>시간</small>");
+      BB.stat("ck-o-mis", Math.abs(mis).toFixed(1) + "<small>시간</small>");
+      BB.stat("ck-o-c", cAt(res, wake).toFixed(1) + "<small>µg/dL(평소 " + cAt(base, 7).toFixed(1) + ")</small>");
+      if (cv) cv.redraw();
+    }
+    upd();
+    cv = BB.canvas("#ck-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 500, S = getS(), d = getD(), I = internal(S, d), reg = REG();
+      var R = narrow ? Math.min(w * 0.42, 128) : Math.min(h * 0.4, w * 0.24), cx = narrow ? w / 2 : R + 30, cy = narrow ? R + 26 : h / 2;
+      var R0 = R * 0.36, span = R * 0.5;
+      var ang = function (hh) { return -Math.PI / 2 + hh / 24 * Math.PI * 2; };
+      // 시계판
+      ctx.strokeStyle = p.grid; ctx.lineWidth = 1;
+      [R0, R0 + span * 0.5, R0 + span].forEach(function (rr) { ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2); ctx.stroke(); });
+      for (var hh = 0; hh < 24; hh += 3) { var a = ang(hh); ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * R0, cy + Math.sin(a) * R0); ctx.lineTo(cx + Math.cos(a) * (R + 2), cy + Math.sin(a) * (R + 2)); ctx.stroke(); txt(ctx, hh + "시", cx + Math.cos(a) * (R + 14), cy + Math.sin(a) * (R + 14) + 4, { size: 10.5, align: "center", mono: false }); }
+      // 수면 띠
+      var bed = 23.5 + S, wake = 7 + S;
+      ctx.strokeStyle = BB.alpha(p.accent2, 0.45); ctx.lineWidth = 9; ctx.beginPath(); ctx.arc(cx, cy, R - 3, ang(bed), ang(wake + (wake < bed ? 24 : 0))); ctx.stroke();
+      // 곡선
+      function radial(arr, col, wd, dash) {
+        ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.setLineDash(dash || []); ctx.beginPath();
+        for (var k = 0; k <= 96; k++) { var a = ang(k / 4), r = R0 + BB.clamp(arr[k] / 20, 0, 1.1) * span; k ? ctx.lineTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r) : ctx.moveTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r); }
+        ctx.closePath(); ctx.stroke(); ctx.setLineDash([]);
+      }
+      radial(base, p.faint, 1.4, [4, 3]);
+      radial(res, p.accent, 2.6);
+      // 몸시계 정점
+      var pk = 6.5 + I, pa = ang(pk + 0.5), pr = R0 + cAt(res, pk + 0.5) / 20 * span;
+      ctx.fillStyle = p.accent; ctx.beginPath(); ctx.arc(cx + Math.cos(pa) * pr, cy + Math.sin(pa) * pr, 4.5, 0, Math.PI * 2); ctx.fill();
+      // 기상 손잡이
+      var wa = ang(wake);
+      handle(ctx, cx + Math.cos(wa) * (R - 3), cy + Math.sin(wa) * (R - 3), p.accent2, 8);
+      txt(ctx, "기상", cx + Math.cos(wa) * (R - 22), cy + Math.sin(wa) * (R - 22) + 4, { size: 10.5, align: "center", color: p.accent2, weight: 700 });
+      var mis = S - I;
+      txt(ctx, "어긋남", cx, cy - 4, { size: 10.5, align: "center" });
+      txt(ctx, Math.abs(mis).toFixed(1) + "시간", cx, cy + 14, { size: 13, mono: false, weight: 800, align: "center", color: Math.abs(mis) > 2 ? p.bad : Math.abs(mis) > 0.5 ? p.warn : p.ok });
+      // 적응 그래프
+      var B = narrow ? { x: 52, y: 2 * R + 76, w: w - 66, h: h - (2 * R + 76) - 46 } : { x: 2 * R + 112, y: 30, w: w - 2 * R - 126, h: h - 76 };
+      txt(ctx, "날마다 따라오는 몸시계", B.x, B.y - 12, { size: 11.5, weight: 700, color: p.text });
+      var ymin = Math.min(-1, Math.floor(S) - 1), ymax = Math.max(1, Math.ceil(S) + 1);
+      var dd = BD.linspace(0, 12, 49);
+      var c = BB.chart(ctx, B, { x: [0, 12], y: [ymin, ymax], xLabel: "옮긴 뒤 지난 날", yLabel: "이동(시간)",
+        series: [{ data: dd.map(function (q) { return [q, S]; }), color: p.accent2, width: 2, dash: [5, 4] }, { data: dd.map(function (q) { return [q, internal(S, q)]; }), color: p.accent, width: 2.6 }],
+        hlines: [{ y: 0, color: p.faint }] });
+      txt(ctx, "생활 시간", B.x + B.w - 4, c.Y(S) + (S >= 0 ? -6 : 14), { size: 11, align: "right", color: p.accent2, weight: 600 });
+      txt(ctx, "몸시계", c.X(1.2), c.Y(internal(S, 1.2)) + (S >= 0 ? 16 : -8), { size: 11, color: p.accent, weight: 600 });
+      ctx.fillStyle = BB.alpha(p.bad, 0.15); ctx.fillRect(c.X(d) - 2, Math.min(c.Y(S), c.Y(I)), 4, Math.abs(c.Y(S) - c.Y(I)));
+      handle(ctx, c.X(d), c.Y(I), p.accent, 7);
+      lay = { cx: cx, cy: cy, R: R, B: B };
+    }, hopt("ck-cv", 330, 560, 500));
+    var mode = null;
+    BB.drag(cv.canvas, {
+      start: function (x, y) { if (!lay) return; mode = Math.hypot(x - lay.cx, y - lay.cy) < lay.R + 20 ? "dial" : x > lay.B.x - 10 && y > lay.B.y - 10 ? "days" : null; },
+      move: function (x, y) {
+        if (!lay || !mode) return;
+        if (mode === "dial") { var a = Math.atan2(y - lay.cy, x - lay.cx) + Math.PI / 2; var hh = ((a / (Math.PI * 2)) * 24 + 24) % 24; var S = hh - 7; if (S > 12) S -= 24; if (S < -12) S += 24; getS.set(BB.clamp(Math.round(S * 2) / 2, -8, 8)); }
+        else getD.set(BB.clamp(Math.round((x - lay.B.x) / lay.B.w * 12 * 2) / 2, 0, 12));
+      },
+      end: function () { mode = null; },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 6. 급성 스트레스 */
+  (function () {
+    var cv = null, data = null, curT = 60, base = null;
+    var getAx = BB.seg("sr-ax", function () { cv.redraw(); });
+    var getA = BB.range("sr-a", function (v) { return "×" + v.toFixed(1); }, BB.debounce(run, 60));
+    var getD = BB.range("sr-d", function (v) { return v + "분"; }, BB.debounce(run, 60));
+    var repEl = document.getElementById("sr-rep"); repEl.addEventListener("change", run);
+    var baseH = BD.hpa({ days: 2 });
+    function run() {
+      var amp = getA(), dur = getD() * 60, ev = [[0, dur]];
+      if (repEl.checked) ev.push([3600, 3600 + dur]);
+      var on = function (t) { for (var i = 0; i < ev.length; i++) if (t >= ev[i][0] && t < ev[i][1]) return 1; return 0; };
+      var k = Math.LN2 / 120, A = 30, n = 0, nf = 0, dt = 0.25, out = { t: [], a: [], hr: [], c: [] };
+      var r = BD.hpa({ days: 2, stress: ev.map(function (e) { return { t: 1440 + 14 * 60 + e[0] / 60, dur: (e[1] - e[0]) / 60, amp: 3 * amp }; }) });
+      for (var t = 0; t <= 14400; t += dt) {
+        var o = on(t);
+        n += (o - n) / 2 * dt; nf += (o - nf) / 1 * dt;
+        A += k * (30 + 170 * amp * n - A) * dt;
+        if (t < 1 || (t < 120 && Math.abs(t * 2 - Math.round(t * 2)) < 1e-6) || Math.abs(t / 10 - Math.round(t / 10)) < 1e-6) {
+          var ci = idxOf(r.t, 1440 + 14 * 60 + t / 60);
+          var hr = 72 + 45 * amp * nf * 0.6 + 40 * (A - 30) / 170;
+          out.t.push(Math.max(t, 0.5)); out.a.push(A); out.hr.push(Math.min(200, hr)); out.c.push(r.c[ci]);
+        }
+      }
+      data = out;
+      var ia = out.a.indexOf(maxOf(out.a)), ih = out.hr.indexOf(maxOf(out.hr)), ic = out.c.indexOf(maxOf(out.c));
+      BB.stat("sr-o-a", Math.round(out.a[ia]) + "<small>pg/mL · " + fmtDur(out.t[ia] / 3600) + "</small>");
+      BB.stat("sr-o-hr", Math.round(out.hr[ih]) + "<small>bpm · " + fmtDur(out.t[ih] / 3600) + "</small>");
+      BB.stat("sr-o-c", out.c[ic].toFixed(1) + "<small>µg/dL · " + fmtDur(out.t[ic] / 3600) + "</small>");
+      if (cv) cv.redraw();
+    }
+    run();
+    var lay = null;
+    cv = BB.canvas("#sr-cv", function (ctx, w, h) {
+      var p = P(), log = getAx() === "log", reg = REG();
+      var xr = log ? [1, 14400] : [0, 14400];
+      var xt = log ? [1, 10, 60, 600, 3600, 14400] : [0, 3600, 7200, 10800, 14400];
+      var xf = function (v) { return v < 60 ? v + "초" : v < 3600 ? v / 60 + "분" : v / 3600 + "시간"; };
+      var gh = (h - 34 - 50) / 3, rows = [0, 1, 2].map(function (k) { return { x: 58, y: 16 + k * (gh + 9), w: w - 72, h: gh }; });
+      var amp = getA(), dur = getD() * 60, bands = [{ x0: log ? 1 : 0, x1: dur, color: BB.alpha(p.warn, 0.14) }];
+      if (repEl.checked) bands.push({ x0: 3600, x1: 3600 + dur, color: BB.alpha(p.warn, 0.14) });
+      var mk = function (arr) { return data.t.map(function (t, i) { return [t, arr[i]]; }).filter(function (q) { return !log || q[0] >= 1; }); };
+      var c0 = BB.chart(ctx, rows[0], { logX: log, x: xr, y: [70, 200], yTicks: [80, 120, 160, 200], xTicks: xt, xFmt: function () { return ""; }, bands: bands, series: [{ data: mk(data.hr), color: p.ok, width: 2.2 }] });
+      var aTop = Math.max(100, Math.ceil(maxOf(data.a) * 1.1 / 50) * 50);
+      var c1 = BB.chart(ctx, rows[1], { logX: log, x: xr, y: [0, aTop], xTicks: xt, xFmt: function () { return ""; }, bands: bands, series: [{ data: mk(data.a), color: p.warn, width: 2.4 }] });
+      var cTop = Math.max(15, Math.ceil(maxOf(data.c) * 1.15 / 5) * 5);
+      var c2 = BB.chart(ctx, rows[2], { logX: log, x: xr, y: [0, cTop], xTicks: xt, xFmt: xf, xLabel: log ? "스트레스 시작부터(로그 눈금)" : "스트레스 시작부터", bands: bands, series: [{ data: mk(data.c), color: p.accent, width: 2.6 }] });
+      txt(ctx, "심박수 bpm", rows[0].x + 6, rows[0].y + 13, { size: 11.5, weight: 700, color: p.ok });
+      txt(ctx, "아드레날린 pg/mL", rows[1].x + 6, rows[1].y + 13, { size: 11.5, weight: 700, color: p.warn });
+      txt(ctx, "코르티솔 µg/dL(오후 2시 시작)", rows[2].x + 6, rows[2].y + 13, { size: 11.5, weight: 700, color: p.accent });
+      txt(ctx, "스트레스", c2.X(log ? Math.sqrt(Math.max(1, dur)) : dur / 2), rows[0].y - 4, { size: 10.5, align: "center", color: p.warn, weight: 700 });
+      // 커서
+      var tc = log ? Math.max(1, curT) : curT, i = idxOf(data.t, tc), x = c2.X(data.t[i]);
+      ctx.strokeStyle = BB.alpha(p.text, 0.6); ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(x, rows[0].y); ctx.lineTo(x, rows[2].y + rows[2].h); ctx.stroke();
+      handle(ctx, x, c0.Y(data.hr[i]), p.ok, 5); handle(ctx, x, c1.Y(data.a[i]), p.warn, 5); handle(ctx, x, c2.Y(data.c[i]), p.accent, 5);
+      var lab = fmtDur(data.t[i] / 3600) + " · " + Math.round(data.hr[i]) + " bpm · " + Math.round(data.a[i]) + " pg/mL · " + data.c[i].toFixed(1) + " µg/dL";
+      var right = x > rows[0].x + rows[0].w * 0.55;
+      ctx.font = BB.font(11, false, 700); var tw = ctx.measureText(lab).width + 10;
+      var lx = right ? Math.max(rows[0].x, x - tw - 6) : Math.min(x + 6, rows[0].x + rows[0].w - tw);
+      ctx.fillStyle = BB.alpha(p.bg, 0.88); ctx.fillRect(lx, rows[0].y + rows[0].h - 22, tw, 18);
+      txt(ctx, lab, lx + 5, rows[0].y + rows[0].h - 9, { size: 11, weight: 700, color: p.text });
+      lay = { c2: c2, log: log };
+    }, hopt("sr-cv", 420, 460, 500));
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; var b = lay.c2.box, f = BB.clamp((x - b.x) / b.w, 0, 1); curT = lay.log ? Math.pow(10, f * Math.log10(14400)) : f * 14400; cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 7. HPT 평형 */
+  (function () {
+    var cv = null, lay = null, eq = null;
+    var getG = BB.range("tp-g", function (v) { return Math.round(v * 100) + "%"; }, function () { upd(); });
+    var getAb = BB.range("tp-ab", function (v) { return v === 0 ? "없음" : v.toFixed(1); }, function () { upd(); });
+    var PRE = { norm: [1, 0], sub: [0.7, 0], hypo: [0.3, 0], graves: [1, 12] };
+    var getPre = BB.seg("tp-pre", function (v) { getG.el.value = PRE[v][0]; getAb.el.value = PRE[v][1]; getG.set(PRE[v][0]); getAb.set(PRE[v][1]); });
+    function dx(tsh, ft4) {
+      if (tsh > 4 && ft4 < 12) return ["갑상선 기능 저하", "bad"];
+      if (tsh > 4) return ["무증상 기능 저하", "warn"];
+      if (tsh < 0.4 && ft4 > 22) return ["갑상선 기능 항진", "bad"];
+      if (tsh < 0.4) return ["무증상 기능 항진", "warn"];
+      return ["정상 범위", "ok"];
+    }
+    function upd() {
+      eq = BD.hptEquilibrium(getG(), getAb());
+      BB.stat("tp-o-tsh", (eq.tsh < 0.1 ? eq.tsh.toFixed(3) : eq.tsh < 10 ? eq.tsh.toFixed(2) : eq.tsh.toFixed(1)) + "<small>mU/L</small>");
+      BB.stat("tp-o-ft4", eq.ft4.toFixed(1) + "<small>pmol/L</small>");
+      BB.stat("tp-o-dx", dx(eq.tsh, eq.ft4)[0]);
+      if (cv) cv.redraw();
+    }
+    upd();
+    cv = BB.canvas("#tp-cv", function (ctx, w, h) {
+      var p = P(), g = getG(), ab = getAb();
+      var box = { x: 58, y: 16, w: w - 74, h: h - 62 };
+      var pit = [], thy = [], thy0 = [];
+      for (var f = 0; f <= 40; f += 0.25) pit.push([f, BD.pituitaryTSH(f)]);
+      BD.logspace(0.005, 150, 160).forEach(function (s) { thy.push([BD.thyroidFT4(s, g, ab), s]); thy0.push([BD.thyroidFT4(s, 1, 0), s]); });
+      var c = BB.chart(ctx, box, { x: [0, 40], y: [0.005, 100], logY: true, xLabel: "FT4(pmol/L)", yLabel: "TSH(mU/L, 로그)",
+        yFmt: function (v) { return v < 1 ? String(v) : String(v); },
+        series: [{ data: thy0, color: p.faint, width: 1.4, dash: [4, 3] }, { data: pit, color: p.accent, width: 2.6 }, { data: thy, color: p.accent2, width: 2.6 }] });
+      ctx.fillStyle = BB.alpha(p.ok, 0.12); ctx.strokeStyle = BB.alpha(p.ok, 0.7); ctx.lineWidth = 1.2;
+      ctx.fillRect(c.X(12), c.Y(4), c.X(22) - c.X(12), c.Y(0.4) - c.Y(4)); ctx.strokeRect(c.X(12), c.Y(4), c.X(22) - c.X(12), c.Y(0.4) - c.Y(4));
+      txt(ctx, "정상 범위", c.X(22) + 4, c.Y(4) + 12, { size: 11, color: p.ok, weight: 600 });
+      txt(ctx, "뇌하수체", c.X(3), c.Y(BD.pituitaryTSH(3)) + 2, { size: 11, color: p.accent, weight: 700, align: "left" });
+      var ty = 60; txt(ctx, "갑상선", Math.min(c.X(BD.thyroidFT4(ty, g, ab)) + 6, box.x + box.w - 44), c.Y(ty) + 4, { size: 11, color: p.accent2, weight: 700 });
+      // 확대경 표시: FT4 ±1
+      var f1 = eq.ft4 - 1, f2 = eq.ft4 + 1;
+      if (f1 > 0 && eq.tsh > 0.006) {
+        ctx.strokeStyle = BB.alpha(p.warn, 0.9); ctx.lineWidth = 1.4; ctx.setLineDash([3, 3]);
+        [f1, f2].forEach(function (f) { ctx.beginPath(); ctx.moveTo(c.X(f), box.y + box.h); ctx.lineTo(c.X(f), c.Y(BD.pituitaryTSH(f))); ctx.lineTo(box.x, c.Y(BD.pituitaryTSH(f))); ctx.stroke(); });
+        ctx.setLineDash([]);
+        txt(ctx, "FT4 ±1 → TSH ×" + (BD.pituitaryTSH(f1) / BD.pituitaryTSH(f2)).toFixed(2) + " 차이", box.x + 6, box.y + box.h - (w < 480 ? 26 : 8), { size: 11, color: p.warn, weight: 700 });
+      }
+      handle(ctx, c.X(eq.ft4), c.Y(Math.max(0.006, eq.tsh)), p.text, 8);
+      var d = dx(eq.tsh, eq.ft4);
+      ctx.font = BB.font(12, false, 700); var sw = ctx.measureText(d[0] + ": TSH 0.000, FT4 00.0").width + 8; ctx.fillStyle = BB.alpha(p.bg, 0.85); ctx.fillRect(box.x + box.w - sw, box.y + box.h - 22, sw, 18);
+      txt(ctx, d[0] + ": TSH " + (eq.tsh < 0.1 ? eq.tsh.toFixed(3) : eq.tsh.toFixed(2)) + ", FT4 " + eq.ft4.toFixed(1), box.x + box.w - 4, box.y + box.h - 8, { size: 12, weight: 700, align: "right", color: p[d[1]] });
+      lay = c;
+    }, hopt("tp-cv", 380, 380, 480));
+    BB.drag(cv.canvas, {
+      move: function (x) {
+        if (!lay) return; var b = lay.box, f = BB.clamp((x - b.x) / b.w * 40, 4, 38), ab = getAb();
+        var s = BD.pituitaryTSH(f), g = (f - ab) / (BD.HPT.gt * s / (s + BD.HPT.km));
+        if (!isFinite(g) || g <= 0) g = 0.1;
+        g = BB.clamp(g, 0.1, 1.6); getG.el.value = g; getG.set(Math.round(g * 100) / 100);
+      },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 8. T4 동역학 */
+  (function () {
+    var cv = null, lay = null, res = null, testDay = 14;
+    var bumpEl = document.getElementById("t4-bump");
+    var getDose = BB.range("t4-dose", function (v) { return v.toFixed(1); }, BB.debounce(run, 40));
+    bumpEl.addEventListener("change", run);
+    var eq0 = BD.hptEquilibrium(0.3);
+    function run() {
+      var dose = getDose(), bump = bumpEl.checked;
+      var r = BD.hptDynamics({ days: 120, gland: function () { return 0.3; }, ft4: eq0.ft4, tsh: eq0.tsh, dose: function (dd) { return dd >= 10 ? (bump && dd >= 60 ? dose * 1.5 : dose) : 0; } });
+      res = { day: r.day.map(function (x) { return x - 10; }), ft4: r.ft4, tsh: r.tsh };
+      stats();
+      if (cv) cv.redraw();
+    }
+    function stats() {
+      var i = idxOf(res.day, testDay), iF = idxOf(res.day, 49), i0 = idxOf(res.day, 0);
+      var f0 = res.ft4[i0], fF = res.ft4[iF], pr = Math.abs(fF - f0) < 0.05 ? 1 : (res.ft4[i] - f0) / (fF - f0);
+      BB.stat("t4-o-d", testDay.toFixed(0) + "<small>일째(" + (testDay / 7).toFixed(1) + "주)</small>");
+      BB.stat("t4-o-f", res.ft4[i].toFixed(1) + "<small>pmol/L</small>");
+      BB.stat("t4-o-t", res.tsh[i].toFixed(2) + "<small>mU/L</small>");
+      BB.stat("t4-o-p", testDay < 0 ? "시작 전" : Math.round(BB.clamp(pr, 0, 1.2) * 100) + "<small>%</small>");
+    }
+    run();
+    cv = BB.canvas("#t4-cv", function (ctx, w, h) {
+      var p = P(), gh = (h - 22 - 62) / 2;
+      var b1 = { x: 56, y: 16, w: w - 70, h: gh }, b2 = { x: 56, y: 16 + gh + 22, w: w - 70, h: gh };
+      var bands = [{ x0: 42, x1: 56, color: BB.alpha(p.ok, 0.12) }];
+      var c1 = BB.chart(ctx, b1, { x: [-10, 110], y: [0, 25], yTicks: [0, 12, 22], xTicks: [0, 14, 28, 42, 56, 70, 84, 98], xFmt: function () { return ""; }, bands: bands,
+        hlines: [{ y: 12, color: BB.alpha(p.ok, 0.7) }, { y: 22, color: BB.alpha(p.ok, 0.7) }],
+        series: [{ data: res.day.map(function (d, k) { return [d, res.ft4[k]]; }), color: p.accent2, width: 2.6 }] });
+      var c2 = BB.chart(ctx, b2, { x: [-10, 110], y: [0.1, 50], logY: true, xTicks: [0, 14, 28, 42, 56, 70, 84, 98], xLabel: "약을 시작한 뒤 날(일)", bands: bands,
+        hlines: [{ y: 0.4, color: BB.alpha(p.ok, 0.7) }, { y: 4, color: BB.alpha(p.ok, 0.7) }],
+        series: [{ data: res.day.map(function (d, k) { return [d, res.tsh[k]]; }), color: p.accent, width: 2.6 }] });
+      txt(ctx, "FT4 pmol/L(정상 12~22)", b1.x + 6, b1.y + 13, { size: 11.5, weight: 700, color: p.accent2 });
+      txt(ctx, "TSH mU/L(로그, 정상 0.4~4)", b2.x + 6, b2.y + 13, { size: 11.5, weight: 700, color: p.accent });
+      txt(ctx, "6~8주", c1.X(49), b1.y + b1.h - 6, { size: 10.5, align: "center", color: p.ok, weight: 700 });
+      ctx.strokeStyle = BB.alpha(p.text, 0.25); ctx.setLineDash([2, 3]); ctx.beginPath(); ctx.moveTo(c1.X(0), b1.y); ctx.lineTo(c1.X(0), b2.y + b2.h); ctx.stroke(); ctx.setLineDash([]);
+      txt(ctx, "약 시작", c1.X(0) + 4, b1.y + 42, { size: 10.5 });
+      if (bumpEl.checked) txt(ctx, "용량 ↑", c1.X(50) + 4, b1.y + 28, { size: 10.5, color: p.warn, weight: 700 });
+      var i = idxOf(res.day, testDay), x = c1.X(testDay);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(x, b1.y); ctx.lineTo(x, b2.y + b2.h); ctx.stroke();
+      handle(ctx, x, c1.Y(res.ft4[i]), p.accent2, 6); handle(ctx, x, c2.Y(BB.clamp(res.tsh[i], 0.1, 50)), p.accent, 6);
+      txt(ctx, "검사일", x + (x > b1.x + b1.w * 0.8 ? -6 : 6), b2.y - 6, { size: 11, weight: 700, color: p.text, align: x > b1.x + b1.w * 0.8 ? "right" : "left" });
+      lay = c1;
+    }, hopt("t4-cv", 380, 420, 480));
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; var b = lay.box; testDay = Math.round(BB.clamp(-10 + (x - b.x) / b.w * 120, -5, 105)); stats(); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 9. 고리 설계도 */
+  (function () {
+    var cv = null, lay = null, res = null, D = -6, phase = 0, dragging = false;
+    var getK = BB.seg("fb-kind", function () { run(); });
+    var getG = BB.range("fb-g", function (v) { return v.toFixed(1); }, BB.debounce(run, 30));
+    var getDl = BB.range("fb-d", function (v) { return v.toFixed(1); }, BB.debounce(run, 30));
+    var verdict = "";
+    function run() {
+      var kind = getK(), Dv = D;
+      res = BD.feedback({ sp: 37, y0: 37, base: 37, gain: getG(), delay: getDl(), tau: 10, kind: kind, dist: function (t) { return t >= 20 ? Dv : 0; }, tstop: 200 });
+      var n = res.y.length, end = res.y[n - 1], tail = res.y.slice(Math.round(n * 0.75));
+      var rng = maxOf(tail) - minOf(tail), dev = 0; res.y.forEach(function (y) { dev = Math.max(dev, Math.abs(y - 37)); });
+      var err = Math.abs(end - 37);
+      if (kind === "open") verdict = "열린 고리: 방해만큼 밀린다";
+      else if (kind === "pos") verdict = err > 8 ? "양성 피드백: 한쪽 끝까지" : "양성: 아직 버팀";
+      else if (rng > 1) verdict = "계속 출렁임(불안정)";
+      else if (dev > Math.abs(D) / (1 + getG()) * 1.4 && dev > 0.6) verdict = "출렁이다 안정";
+      else verdict = "안정";
+      BB.stat("fb-o-err", (rng > 1 ? "±" + (rng / 2).toFixed(1) : err.toFixed(2)));
+      BB.stat("fb-o-max", dev.toFixed(1));
+      BB.stat("fb-o-k", verdict);
+      if (cv) cv.redraw();
+    }
+    run();
+    cv = BB.canvas("#fb-cv", function (ctx, w, h) {
+      var p = P(), kind = getK(), narrow = w < 500, reg = REG();
+      // 블록 그림
+      var top = 10, bh = 30, by = top + 8, n = 4, gap = narrow ? 6 : 14, bw = (w - 24 - gap * (n - 1)) / n;
+      var names = ["설정점 비교", "효과기", "조절 변수", "감지기"];
+      var cols = [reg, p.accent, p.accent2, p.ok];
+      var xs = []; for (var k = 0; k < n; k++) xs.push(12 + k * (bw + gap));
+      names.forEach(function (nm, k) { ctx.fillStyle = BB.alpha(cols[k], 0.15); ctx.strokeStyle = cols[k]; ctx.lineWidth = 1.5; BB.rrect(ctx, xs[k], by, bw, bh, 7); ctx.fill(); ctx.stroke(); txt(ctx, nm, xs[k] + bw / 2, by + bh / 2 + 4, { size: narrow ? 10 : 11.5, weight: 700, align: "center", color: p.text }); });
+      for (var k2 = 0; k2 < 3; k2++) { ctx.strokeStyle = p.dim; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(xs[k2] + bw, by + bh / 2); ctx.lineTo(xs[k2 + 1] - 2, by + bh / 2); ctx.stroke(); }
+      var ly = by + bh + 18, open = kind === "open";
+      ctx.strokeStyle = open ? BB.alpha(p.dim, 0.35) : kind === "pos" ? p.bad : p.ok; ctx.lineWidth = 2; ctx.setLineDash(open ? [4, 4] : []);
+      ctx.beginPath(); ctx.moveTo(xs[3] + bw / 2, by + bh); ctx.lineTo(xs[3] + bw / 2, ly); ctx.lineTo(xs[0] + bw / 2, ly); ctx.lineTo(xs[0] + bw / 2, by + bh + 2); ctx.stroke(); ctx.setLineDash([]);
+      if (!open) BD.flowDots(ctx, [[xs[3] + bw / 2, by + bh], [xs[3] + bw / 2, ly], [xs[0] + bw / 2, ly], [xs[0] + bw / 2, by + bh + 2]], phase * 40, { color: kind === "pos" ? p.bad : p.ok, gap: 16, r: 2.4 });
+      var lab = open ? "고리가 끊겼다" : (kind === "pos" ? "(+) 벗어난 쪽으로 더 민다" : "(−) 벗어난 반대쪽으로 민다") + " · 지연 " + getDl().toFixed(1);
+      ctx.font = BB.font(10.5, false, 600); var tw = ctx.measureText(lab).width + 10, lx = (xs[0] + xs[3] + bw) / 2 - tw / 2;
+      ctx.fillStyle = p.bg; ctx.fillRect(lx, ly - 8, tw, 16);
+      txt(ctx, lab, lx + 5, ly + 4, { size: 10.5, weight: 600, color: open ? p.dim : kind === "pos" ? p.bad : p.ok });
+      // 응답
+      var B = { x: 54, y: ly + 30, w: w - 68, h: h - (ly + 30) - 46 };
+      var yd = res.t.map(function (t, i) { return [t, res.y[i]]; });
+      var c = BB.chart(ctx, B, { x: [0, 200], y: [22, 52], yTicks: [25, 30, 37, 45, 50], xLabel: "시간", yLabel: "조절 변수",
+        hlines: [{ y: 37, color: reg, label: "설정점 37" }], bands: [{ x0: 20, x1: 200, color: BB.alpha(p.bad, 0.04) }],
+        series: [{ data: res.t.map(function (t, i) { return [t, 37 + (res.u[i] - 37) * 0.25]; }), color: BB.alpha(p.accent, 0.5), width: 1.3, dash: [3, 3] }, { data: yd, color: p.accent2, width: 2.6 }] });
+      var hitEdge = res.y.some(function (y) { return y > 51.5 || y < 22.5; });
+      if (hitEdge) txt(ctx, "그래프 밖으로 달아난다", B.x + B.w - 4, B.y + 14, { size: 12, weight: 700, align: "right", color: p.bad });
+      // 방해 손잡이
+      ctx.strokeStyle = p.bad; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(c.X(20), c.Y(37)); ctx.lineTo(c.X(20), c.Y(37 + D)); ctx.stroke();
+      handle(ctx, c.X(20), c.Y(37 + D), p.bad, 7);
+      txt(ctx, "방해 " + (D > 0 ? "+" : "") + D.toFixed(1), c.X(20) + 10, c.Y(37 + D) + 4, { size: 11, weight: 700, color: p.bad });
+      txt(ctx, "점선: 효과기 출력(¼ 축소)", B.x + 6, B.y + B.h - 8, { size: 10.5, color: p.accent });
+      lay = c;
+    }, hopt("fb-cv", 400, 420, 500));
+    BB.drag(cv.canvas, {
+      start: function (x, y) { if (!lay) return; dragging = Math.abs(x - lay.X(20)) < 30 && y > lay.box.y - 10; },
+      move: function (x, y) { if (!lay || !dragging) return; var v = 22 + (lay.box.y + lay.box.h - y) / lay.box.h * 30; D = Math.round(BB.clamp(v - 37, -10, 10) * 2) / 2; run(); },
+      end: function () { dragging = false; },
+    });
+    BB.loop(document.getElementById("sim-hm-builder"), function (dt) { phase += dt; cv.redraw(); });
+  })();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1095 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "혈압은 무엇이 정하는가. 반지름의 네제곱 법칙, 병렬로 이어진 장기, 순환을 따라 떨어지는 압력과 느려지는 피, 동맥의 탄성과 맥압, 커프 혈압 측정, 혈압 분류, 일어설 때의 중력과 압반사, 모세혈관의 스탈링 힘을 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>혈관과 혈압 · BodyBook</title>
+<meta name="description" content="혈압은 무엇이 정하는가. 반지름의 네제곱 법칙, 병렬로 이어진 장기, 순환을 따라 떨어지는 압력과 느려지는 피, 동맥의 탄성과 맥압, 커프 혈압 측정, 혈압 분류, 일어설 때의 중력과 압반사, 모세혈관의 스탈링 힘을 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/vessels.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="혈관과 혈압 · BodyBook">
+<meta property="og:description" content="혈압은 무엇이 정하는가. 반지름의 네제곱 법칙, 병렬로 이어진 장기, 순환을 따라 떨어지는 압력과 느려지는 피, 동맥의 탄성과 맥압, 커프 혈압 측정, 혈압 분류, 일어설 때의 중력과 압반사, 모세혈관의 스탈링 힘을 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/vessels.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/vessels.html#chapter","name":"혈관과 혈압","headline":"혈관과 혈압 · BodyBook","description":"혈압은 무엇이 정하는가. 반지름의 네제곱 법칙, 병렬로 이어진 장기, 순환을 따라 떨어지는 압력과 느려지는 피, 동맥의 탄성과 맥압, 커프 혈압 측정, 혈압 분류, 일어설 때의 중력과 압반사, 모세혈관의 스탈링 힘을 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/vessels.html","position":6,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"6. 혈관과 혈압","item":"https://medical.euiyun.com/body/chapters/vessels.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<!--head:end-->
+<style>
+  .vs-note-row { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="vessels">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 06</div>
+    <h1>혈관과 혈압</h1>
+    <p class="lead">심장이 하루에 내보내는 피는 약 7,000 L다. 그 피는 굵기가 엄지손가락만 한 대동맥에서 시작해 머리카락보다 가는 모세혈관 수십억 개로 갈라졌다가 다시 모인다. 이 관들의 굵기와 탄성이 혈압을 정하고, 혈압은 다시 어느 장기에 피가 얼마나 갈지를 정한다. 이 장은 혈관을 흐르는 피의 물리학, 혈압을 재는 방법과 숫자의 의미, 그리고 일어설 때마다 몸이 혈압을 지켜 내는 반사를 직접 돌려 본다.</p>
+    <ul class="objectives">
+      <li>푸아죄유 법칙으로 혈관 반지름이 조금만 바뀌어도 흐름이 크게 바뀌는 이유를 설명한다.</li>
+      <li>장기들이 병렬로 이어져 있어 각 장기가 자기 혈류를 따로 조절할 수 있음을 안다.</li>
+      <li>순환을 따라 압력이 어디서 가장 많이 떨어지는지, 모세혈관에서 피가 왜 느린지 말한다.</li>
+      <li>동맥의 탄성이 맥압을 정하는 원리와 커프로 혈압을 재는 원리를 이해하고, 혈압 숫자를 분류한다.</li>
+      <li>일어설 때 중력이 만드는 압력 차와 압반사, 모세혈관의 스탈링 힘과 부종을 설명한다.</li>
+    </ul>
+  </header>
+
+  <section id="poiseuille">
+    <h2>반지름의 네제곱: 조금 좁아지면 많이 줄어든다</h2>
+    <p>피가 관을 흐르는 양은 관 양 끝의 압력 차에 비례하고, 흐름을 방해하는 <span class="term">저항</span><span class="en">(Resistance)</span>에 반비례한다. 전기의 옴 법칙과 같은 모양이다. 혈관 전체로 보면 \(CO = (MAP - CVP) / TPR\), 즉 심박출량은 평균 동맥압과 중심 정맥압의 차이를 <span class="term">총 말초 저항</span><span class="en">(Total peripheral resistance, TPR)</span>으로 나눈 값이다.</p>
+    <p>저항을 정하는 것은 무엇일까. 19세기 의사 푸아죄유가 가는 유리관에 물을 흘려 찾은 답은 놀랍다. 관이 길수록, 액체가 끈적할수록 저항이 커지지만, 무엇보다 <b>반지름의 네제곱</b>에 반비례한다.</p>
+    <div class="formula">$$Q = \frac{\pi r^4 \Delta P}{8 \eta L}, \qquad R = \frac{8 \eta L}{\pi r^4}$$
+      <div class="where">\(Q\) 유량(mL/s), \(\Delta P\) 압력 차(mmHg), \(r\) 반지름(작은 동맥 약 1 mm), \(L\) 길이, \(\eta\) 점도(혈액은 물의 약 3~4배). 반지름이 10 % 줄면 \(0.9^4 \approx 0.66\), 흐름은 약 34 % 준다.</div>
+    </div>
+    <p>아래 혈관의 위쪽 벽을 끌어 반지름을 바꿔 보자. 피의 속도는 벽에서 0이고 가운데에서 가장 빠른 포물선 모양이다.</p>
+
+    <div class="sim" id="sim-r4" data-desc="혈관 벽을 직접 끌어 반지름을 바꾸면 흐름이 반지름의 네제곱으로 변한다: 10 % 좁아지면 흐름이 약 34 % 줄고, 포물선 속도 분포와 흐르는 피를 함께 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>혈관 벽을 끌어 반지름 바꾸기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="r4-cv"></canvas><span class="hint">위쪽 벽의 손잡이를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>양 끝 압력 차 <output id="r4-dp-out"></output></span><input type="range" id="r4-dp" min="2" max="20" step="1" value="10"></label>
+          <div class="btn-row"><button class="btn" id="r4-90">10 % 좁히기</button><button class="btn" id="r4-50">반으로</button><button class="btn" id="r4-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">반지름</span><span class="v" id="r4-o-r">—</span></div>
+        <div class="stat"><span class="k">흐름</span><span class="v" id="r4-o-q">—</span></div>
+        <div class="stat"><span class="k">처음 대비 흐름</span><span class="v" id="r4-o-pct">—</span></div>
+        <div class="stat"><span class="k">저항 배율</span><span class="v" id="r4-o-res">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "10 % 좁히기"를 누른다. 반지름은 겨우 0.1 mm 줄었는데 흐름은 약 66 %로 준다. ② "반으로"를 누른다. 흐름이 1/16, 약 6 %로 떨어진다. 같은 흐름을 지키려면 압력 차를 16배로 올려야 한다. ③ 벽을 120 %까지 넓힌다. 흐름이 두 배 넘게 는다. 운동하는 근육의 세동맥이 하는 일이다. (BD.poiseuille: 길이 5 cm, 점도 3.5 cP의 곧은 관, 층흐름 가정. 실제 혈관은 탄성이 있고 피에는 세포가 있어 아주 가는 관에서는 어긋난다.)</div>
+    </div>
+
+    <p>네제곱 법칙은 몸에게 강력한 손잡이다. 혈관 벽의 <span class="term">민무늬근</span><span class="en">(Smooth muscle)</span>이 조금만 조이거나 풀어도 흐름이 몇 배씩 바뀐다. 이 손잡이가 가장 촘촘하게 달린 곳이 동맥의 마지막 가지인 <span class="term">세동맥</span><span class="en">(Arteriole)</span>이다. 반대로 동맥 경화반이 혈관 안쪽을 반만 막으면(반지름 50 %) 같은 압력에서 흐름은 1/16로 준다. 가슴 통증(협심증)이 증상으로 나타날 때쯤이면 관상동맥이 이미 꽤 좁아져 있는 이유다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-20-3.webp" width="1200" height="705" loading="lazy" decoding="async" alt="동맥과 정맥의 벽 구조: 외막, 중막, 내막, 민무늬근, 탄성막, 내피">
+      <figcaption><b>혈관마다 맡은 일이 벽에 쓰여 있다.</b> (a) 동맥은 민무늬근이 두꺼운 중막과 탄성막이 있어 수축기에 늘어나며 압력을 저장하고, 가는 동맥과 세동맥에서는 이 민무늬근이 저항을 조절하는 꼭지가 된다. (b) 정맥은 같은 굵기의 동맥보다 벽이 얇고 안이 넓어 잘 늘어나므로 피의 저장고가 된다. 모세혈관은 이 가운데 내피 한 겹만 남은 관이라 물질이 드나든다.<span class="fig-words">Tunica externa 외막 · Tunica media 중막 · Tunica intima 내막 · Smooth muscle 민무늬근 · Internal/External elastic membrane 속/바깥 탄성막 · Endothelium 내피 · Vasa vasorum 혈관벽의 혈관</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/20-1-structure-and-function-of-blood-vessels">그림 20.3</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 원본의 현미경 사진(c)은 다른 라이선스라 빼고 (a)(b)만 실었다.</span></figcaption>
+    </figure>
+  </section>
+
+  <section id="parallel">
+    <h2>장기는 병렬로 이어져 있다</h2>
+    <p>대동맥에서 갈라진 동맥은 뇌, 심장 자신, 소화관과 간, 콩팥, 근육, 피부로 각각 따로 간다. 전기 회로로 치면 장기들은 <b>병렬</b>로 이어져 있다. 그래서 모든 장기는 거의 같은 압력(평균 동맥압 약 93 mmHg)의 피를 받고, 각자 자기 세동맥을 조이거나 풀어 받을 양을 정한다. 병렬 저항은 역수로 더하므로 \(1/R_{total} = \sum 1/R_i\)가 되어, 전체 저항은 가장 작은 저항 하나보다도 작다.</p>
+    <p>아래 회로에서 장기의 꼭지(세동맥)를 좌우로 끌어 저항을 바꿔 보자. 직렬이었다면 어떻게 될지도 비교한다.</p>
+
+    <div class="sim" id="sim-parallel" data-desc="뇌·심장·소화관·콩팥·근육·피부를 병렬로 이은 회로에서 장기마다 세동맥을 끌어 조이고 풀며, 혈류 배분과 총 말초 저항, 직렬이었다면 생길 일을 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>병렬 회로: 장기마다 따로 여닫는 꼭지</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="pl-cv"></canvas><span class="hint">꼭지(원)를 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="pl-mode"><button data-value="par" class="on">병렬(실제 몸)</button><button data-value="ser">직렬(가상)</button></div>
+          <label class="check"><input type="checkbox" id="pl-hold" checked> 심장이 혈압을 지킨다(압반사)</label>
+          <div class="btn-row"><button class="btn" id="pl-run">근육 혈관 열기</button><button class="btn" id="pl-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">총 말초 저항</span><span class="v" id="pl-o-r">—</span></div>
+        <div class="stat"><span class="k">심박출량</span><span class="v" id="pl-o-co">—</span></div>
+        <div class="stat"><span class="k">평균 동맥압</span><span class="v" id="pl-o-map">—</span></div>
+        <div class="stat"><span class="k">뇌 혈류</span><span class="v" id="pl-o-br">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 근육의 꼭지를 오른쪽 끝까지 연다("근육 혈관 열기"). 근육 혈류만 크게 늘고 다른 장기는 그대로다. 대신 심장이 그만큼 더 내보내야 한다. ② "심장이 혈압을 지킨다"를 끄고 다시 근육을 연다. 심박출량이 그대로면 평균 동맥압이 떨어지고 뇌 혈류까지 준다. ③ "직렬"로 바꾼다. 모든 저항이 더해져 같은 압력으로 흐르는 피가 분당 0.1 L도 안 된다. (평균 동맥압 93, 중심 정맥압 3 mmHg, 안정 시 배분은 교과서 대표값. 각 장기의 저항 = 압력 차 ÷ 혈류.)</div>
+    </div>
+    <p>병렬 배치 덕분에 운동할 때 근육은 다른 장기와 다투지 않고 자기 꼭지를 열 수 있다. 하지만 꼭지를 연 만큼 전체 저항이 떨어지므로 심장이 더 내보내지 않으면 혈압이 떨어진다. 그래서 운동은 늘 심장과 혈관이 함께 하는 일이다(<a href="flow.html">7장</a>).</p>
+    <p>장기가 병렬로 이어져 있다는 말을 실제 혈관 지도로 보자. 대동맥에서 갈라진 동맥이 머리, 팔, 장기, 다리로 나란히 나뉘고, 정맥이 같은 길을 거슬러 위·아래 대정맥으로 모인다.</p>
+
+    <div class="sim model3d" id="sim-vs-3d" data-model="vessels" data-orbit="0deg 85deg auto" data-desc="실제 인체 데이터로 만든 동맥·정맥 3D 모델을 돌려 보며 대동맥에서 갈라진 동맥이 장기와 팔다리로 병렬로 나뉘는 모습을 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 온몸의 혈관</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="arteries" title="심장에서 나가는 피">동맥</button><button type="button" data-part="veins" title="심장으로 돌아오는 피">정맥</button><button type="button" data-part="heart">심장</button><button type="button" data-part="skin">피부</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 정맥을 끄고 대동맥에서 장기와 다리로 갈라지는 가지를 따라간다. ② 동맥을 끄고 정맥만 본다. 다리의 정맥이 심장까지 올라오려면 근육 펌프와 판막이 필요하다(일어서기 절). ③ 팔과 다리의 같은 자리에 동맥과 정맥이 나란히 달리는 것을 본다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+  </section>
+
+  <section id="circuit">
+    <h2>순환을 따라: 압력은 어디서 떨어지는가</h2>
+    <p>대동맥에서 약 100 mmHg이던 평균 압력은 대정맥에 이르면 거의 0이 된다. 그런데 떨어지는 모양이 고르지 않다. 큰 동맥에서는 거의 떨어지지 않고, <b>세동맥을 지나는 짧은 구간에서 절반 넘게</b> 떨어진다. 저항이 가장 큰 곳이 세동맥이기 때문이다. 맥박처럼 출렁이던 압력도 세동맥을 지나며 잔잔해진다.</p>
+    <p>속도는 또 다르다. 모세혈관 하나는 가장 가늘지만 수십억 개가 나란히 있어 <b>모두 합친 단면적</b>은 대동맥의 약 1,000배다. 같은 양의 피가 넓은 길을 지나니 아주 느려진다. 아래에서 커서를 끌며 구간마다 압력·단면적·속도를 읽어 보자.</p>
+
+    <div class="sim" id="sim-circuit" data-desc="대동맥에서 대정맥까지 순환을 따라가며 평균·맥압, 총 단면적, 피의 속도가 어떻게 변하는지 본다: 압력은 세동맥에서 가장 많이 떨어지고 모세혈관에서는 피가 1,000배 느려진다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>대동맥에서 대정맥까지</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="ci-cv"></canvas><span class="hint">좌우로 끌어 구간을 고른다</span></div>
+      </div>
+      <div class="info-panel" id="ci-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">압력(평균)</span><span class="v" id="ci-o-p">—</span></div>
+        <div class="stat"><span class="k">총 단면적</span><span class="v" id="ci-o-a">—</span></div>
+        <div class="stat"><span class="k">평균 속도</span><span class="v" id="ci-o-v">—</span></div>
+        <div class="stat"><span class="k">담긴 피</span><span class="v" id="ci-o-vol">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 커서를 세동맥으로 옮긴다. 평균 압력이 약 85에서 35 mmHg로 떨어지고 맥압(분홍 띠)이 사라진다. ② 모세혈관에서는 총 단면적이 약 2,500 cm², 속도는 초당 1 mm도 안 된다. 그 느림이 산소와 영양을 내줄 시간(약 1~2초)을 만든다. ③ 정맥에는 압력이 낮지만 피의 약 2/3가 담겨 있다. (Guyton·Hall 교과서의 대표값을 쓴 그림. 흐르는 점의 속도는 눈에 보이게 로그로 줄였다.)</div>
+    </div>
+    <p>심박출량은 어느 단면에서나 같다(초당 약 83 mL). 그래서 \(v = Q / A\), 속도는 총 단면적에 반비례한다. 대동맥에서 초당 약 30 cm로 달리던 피가 모세혈관에서 초당 약 0.3 mm로 거의 멈추듯 지나가며 물질을 주고받은 뒤, 정맥에서 다시 빨라져 심장으로 돌아온다.</p>
+  </section>
+
+  <section id="compliance">
+    <h2>동맥의 탄성과 맥압</h2>
+    <p>심장은 박출기(약 0.3초)에만 피를 내보내고 나머지 시간에는 쉰다. 그런데도 몸의 피는 끊기지 않고 흐른다. 대동맥이 고무풍선처럼 수축기에 늘어나 피 일부를 품었다가 이완기에 줄어들며 밀어내기 때문이다. 이것을 소방 펌프의 공기 탱크에 빗대 <span class="term">윈드케셀</span><span class="en">(Windkessel)</span> 효과라 한다.</p>
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-20-10.webp" width="1200" height="836" loading="lazy" decoding="async" alt="대동맥에서 대정맥까지 혈관을 따라 수축기·확장기·평균 동맥압과 맥압이 바뀌는 그래프">
+      <figcaption><b>동맥압 파형 읽기.</b> 대동맥에서 혈압은 수축기 혈압(꼭대기)과 확장기 혈압(바닥) 사이를 오르내린다. 둘의 차이가 맥압이고, 한 주기 동안의 평균이 평균 동맥압이다. 이완기가 수축기보다 길어 평균은 확장기 쪽에 가깝다. 압력은 세동맥을 지나며 가장 크게 떨어지고, 모세혈관에 이르면 맥동이 거의 사라진다. 다온의 검진 혈압 128/82 mmHg는 맨 왼쪽 대동맥 근처의 꼭대기와 바닥에 해당한다.<span class="fig-words">Systolic/Diastolic pressure 수축기/확장기 혈압 · Mean arterial pressure 평균 동맥압 · Pulse pressure 맥압 · Elastic/Muscular arteries 탄성/근육 동맥 · Arterioles 세동맥 · Capillaries 모세혈관 · Venules 세정맥 · Venae cavae 대정맥</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/20-2-blood-flow-blood-pressure-and-resistance">그림 20.10</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+    <p>대동맥이 잘 늘어날수록(탄성, <span class="term">순응도</span><span class="en">(Compliance)</span>가 클수록) 같은 박출량을 받아도 압력이 덜 오르고, 이완기에 더 오래 밀어 준다. 나이가 들면 동맥벽의 탄성 섬유가 끊기고 콜라겐과 칼슘이 쌓여 동맥이 뻣뻣해진다. 아래에서 동맥의 나이를 올려 보자.</p>
+
+    <div class="sim" id="sim-windkessel" data-desc="동맥의 나이(탄성)와 말초 저항을 바꾸며 윈드케셀 모델의 혈압 파형과 늘어났다 줄어드는 대동맥을 본다: 뻣뻣한 동맥은 수축기 혈압만 올리고 확장기 혈압을 낮춰 맥압을 키운다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>늘어나는 대동맥: 탄성과 맥압</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="wk-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>동맥의 나이 <output id="wk-age-out"></output></span><input type="range" id="wk-age" min="20" max="85" step="1" value="34"></label>
+          <label class="ctrl"><span>말초 저항 <output id="wk-r-out"></output></span><input type="range" id="wk-r" min="0.6" max="1.6" step="0.05" value="1"></label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--art)"></i>지금 동맥압</span><span><i style="background:var(--text-faint)"></i>20세 동맥(같은 저항)</span><span><i style="background:var(--accent)"></i>심장에서 들어오는 흐름</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">혈압</span><span class="v" id="wk-o-bp">—</span></div>
+        <div class="stat"><span class="k">맥압</span><span class="v" id="wk-o-pp">—</span></div>
+        <div class="stat"><span class="k">평균 동맥압</span><span class="v" id="wk-o-map">—</span></div>
+        <div class="stat"><span class="k">탄성 · 시정수 RC</span><span class="v" id="wk-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 나이를 80으로 올린다. 평균 동맥압은 그대로인데 수축기 혈압이 오르고 확장기 혈압은 내려간다. 맥압이 두 배 가까이 벌어진다(고립성 수축기 고혈압). ② 나이는 34에 두고 말초 저항을 1.5로 올린다. 이번에는 수축기와 확장기가 함께 오른다. 젊은 사람의 고혈압에 흔한 모양이다. ③ 왼쪽 대동맥 그림에서 뻣뻣한 동맥은 덜 늘어나고 이완기에 덜 밀어 주는 것을 본다. (BD.windkessel 3요소 모델, 심박수 72, 박출량 72 mL. 나이 → 탄성은 장 안에서 어림한 지수 감소식.)</div>
+    </div>
+  </section>
+
+  <section id="measure">
+    <h2>커프로 혈압 재기</h2>
+    <p>팔에 감은 커프(공기 주머니)를 수축기 혈압보다 높게 부풀리면 위팔 동맥이 납작하게 눌려 피가 멈춘다. 공기를 천천히 빼다가 커프 압력이 수축기 혈압 아래로 내려가는 순간, 박동의 꼭대기에서만 피가 좁은 틈으로 뿜어져 나가며 소용돌이가 "툭, 툭" 소리를 낸다. 이것이 <span class="term">코로트코프 소리</span><span class="en">(Korotkoff sounds)</span>다. 커프 압력이 확장기 혈압 아래로 내려가면 동맥이 내내 열려 있어 소리가 사라진다.</p>
+
+    <div class="sim" id="sim-cuff" data-desc="커프에서 공기를 빼며 동맥이 열리고 닫히는 모습과 코로트코프 소리를 보고, 소리가 처음 들릴 때와 사라질 때의 커프 압력으로 수축기·확장기 혈압을 직접 읽는다. 공기를 너무 빨리 빼면 오차가 커진다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>코로트코프 소리로 혈압 읽기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cf-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="cf-who"><button data-value="daon" class="on">다온</button><button data-value="norm">정상 예</button><button data-value="high">높은 예</button></div>
+          <label class="ctrl"><span>공기 빼는 속도 <output id="cf-sp-out"></output></span><input type="range" id="cf-sp" min="2" max="12" step="1" value="3"></label>
+          <div class="btn-row"><button class="btn primary" id="cf-go">측정 시작</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">커프 압력</span><span class="v" id="cf-o-cuff">—</span></div>
+        <div class="stat"><span class="k">첫 소리 → 수축기</span><span class="v" id="cf-o-s">—</span></div>
+        <div class="stat"><span class="k">소리 사라짐 → 확장기</span><span class="v" id="cf-o-d">—</span></div>
+        <div class="stat"><span class="k">실제 값과 차이</span><span class="v" id="cf-o-err">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "측정 시작"을 누르고 위쪽 커프 압력선(굵은 선)이 동맥압 파형의 꼭대기 아래로 내려가는 순간 첫 소리(노란 막대)가 나는 것을 본다. ② 소리가 마지막으로 들린 커프 압력이 확장기 혈압이다. 실제 값과 차이를 확인한다. ③ 속도를 초당 10 mmHg로 올려 다시 잰다. 박동과 박동 사이(약 0.8초)에 커프가 8 mmHg씩 내려가 버려 수축기는 낮게, 확장기는 높게 읽기 쉽다. 그래서 초당 2~3 mmHg로 천천히 뺀다. (동맥압 파형은 윈드케셀 모양을 각 사람의 혈압에 맞춘 것. 소리 크기는 커프 압력이 두 혈압 사이 어디인지로 어림했다.)</div>
+    </div>
+    <p>자동 혈압계는 소리 대신 커프 안 공기의 미세한 출렁임(진동)을 재서 계산한다. 어느 방식이든 한 번의 측정은 흔들린다. 진료실에서는 긴장해서 높게 나오기도 한다(백의 고혈압). 그래서 5분 쉬고 앉은 자세로, 팔을 심장 높이에 두고, 1~2분 간격으로 두 번 이상 재서 평균을 내고, 집에서도 아침저녁으로 재 보는 것이 권장된다.</p>
+  </section>
+
+  <section id="classify">
+    <h2>혈압 숫자의 의미</h2>
+    <p>혈압은 연속적인 값이지만 진료에서는 구간으로 나눈다. 높은 혈압이 오래 이어질수록 뇌졸중, 심장병, 콩팥병 위험이 꾸준히 커지기 때문이다. 수축기·확장기 중 <b>더 높은 쪽 등급</b>을 따른다. 아래 지도에서 점을 끌어 보자.</p>
+
+    <div class="sim" id="sim-bpclass" data-desc="수축기·확장기 혈압 지도 위의 점을 끌어 정상·주의·고혈압 전단계·고혈압 1·2기 구간을 읽고, 다온의 128/82가 어디인지와 평균 동맥압·맥압을 계산한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>혈압 지도: 두 숫자가 만드는 구간</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="bc-cv"></canvas><span class="hint">점을 끌어 혈압을 바꾼다</span></div>
+        <div class="sim-controls">
+          <div class="btn-row"><button class="btn" id="bc-daon">다온 128/82</button><button class="btn" id="bc-ex">운동 효과 보기</button></div>
+          <label class="ctrl"><span>나이에 따른 맥압 예</span><select id="bc-ex2"><option value="">고르기</option><option value="118/76">25세 예 118/76</option><option value="155/72">75세 예 155/72(고립성 수축기)</option><option value="142/94">45세 예 142/94</option><option value="88/58">저혈압 예 88/58</option></select></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">혈압</span><span class="v" id="bc-o-bp">—</span></div>
+        <div class="stat"><span class="k">분류</span><span class="v" id="bc-o-cls" style="font-family:var(--font);font-size:15px">—</span></div>
+        <div class="stat"><span class="k">평균 동맥압</span><span class="v" id="bc-o-map">—</span></div>
+        <div class="stat"><span class="k">맥압</span><span class="v" id="bc-o-pp">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "다온 128/82"를 누른다. 수축기만 보면 '주의 혈압'이지만 확장기 82가 80을 넘어 '고혈압 전단계'가 된다. ② "운동 효과 보기"는 규칙적 유산소 운동의 평균 효과(수축기 약 −5, 확장기 약 −3 mmHg)를 화살표로 보여 준다. ③ 75세 예를 고른다. 확장기는 정상인데 수축기만 높다. 뻣뻣한 동맥의 지문이다. (분류는 BD.bpClass: 대한고혈압학회 2026 진료실 혈압 분류. 학회와 시기에 따라 기준과 이름이 다르다.)</div>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>분류</th><th class="num">수축기(mmHg)</th><th></th><th class="num">확장기(mmHg)</th></tr></thead>
+      <tbody>
+        <tr><td>정상 혈압</td><td class="num">120 미만</td><td>그리고</td><td class="num">80 미만</td></tr>
+        <tr><td>주의 혈압</td><td class="num">120~129</td><td>그리고</td><td class="num">80 미만</td></tr>
+        <tr><td>고혈압 전단계</td><td class="num">130~139</td><td>또는</td><td class="num">80~89</td></tr>
+        <tr><td>고혈압 1기</td><td class="num">140~159</td><td>또는</td><td class="num">90~99</td></tr>
+        <tr><td>고혈압 2기</td><td class="num">160 이상</td><td>또는</td><td class="num">100 이상</td></tr>
+      </tbody>
+    </table></div>
+    <p>기준은 학회와 시기에 따라 다르다. 국내 지침은 위 표처럼 140/90부터 고혈압으로 보지만, 미국 AHA/ACC 지침(2025)은 130/80부터 '1단계 고혈압'이라 부른다. 국내 표와 시뮬레이터에서 180/110도 2기에 포함하며, 혈압 등급만으로 응급 상황을 확정하지 않는다. 수축기 180 또는 확장기 120 mmHg를 넘는 매우 높은 혈압이 다시 측정해도 지속되면 신속히 의료진에게 연락하고, 흉통·호흡곤란·마비·말하기 어려움 등이 동반되면 119에 연락한다(<a href="https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/when-to-call-911-for-high-blood-pressure">AHA</a>). 숫자 하나보다 여러 번 잰 평균과 다른 위험 요인(흡연, 당뇨, 콜레스테롤, 가족력)을 함께 본다.</p>
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 혈압이 반복해서 높게 나오거나, 일어설 때 자주 어지럽고 쓰러질 것 같거나, 다리가 계속 붓는다면 의료진과 상담하세요. 혈압약은 스스로 끊거나 양을 바꾸지 않습니다.</p>
+  </section>
+
+  <section id="gravity">
+    <h2>일어서면 중력이 피를 끌어내린다</h2>
+    <p>누워 있을 때는 머리에서 발까지 혈관이 모두 심장 높이에 있다. 일어서면 피의 기둥 무게가 더해진다. 피 1 cm 기둥의 무게는 약 0.78 mmHg다(\(\rho g h\)). 키 175 cm인 사람의 발은 심장보다 약 1.2 m 아래에 있으니, 서 있는 동안 발의 동맥과 정맥에는 약 90 mmHg가 더 걸린다. 머리는 심장보다 약 45 cm 위라 그만큼 압력이 낮다.</p>
+    <p>더 큰 문제는 정맥이다. 벽이 얇은 다리 정맥은 늘어난 압력에 부풀어 피를 약 0.5 L 더 담는다. 그만큼 심장으로 돌아오는 피가 줄어 1회 박출량이 떨어진다. 아래에서 침대를 끌어 일으켜 보자(기울기 검사대).</p>
+
+    <div class="sim" id="sim-tilt" data-desc="누운 몸을 끌어 세우면 피 기둥의 무게(ρgh)로 머리와 발의 압력이 달라지고 다리 정맥에 피가 고인다: 종아리 근육 펌프가 정맥압을 낮추는 것도 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>기울기 검사대: 중력과 피 기둥</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="hs-cv"></canvas><span class="hint">머리 쪽 손잡이를 끌어 세운다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>기울기 <output id="hs-a-out"></output></span><input type="range" id="hs-a" min="0" max="90" step="1" value="0"></label>
+          <label class="check"><input type="checkbox" id="hs-pump"> 걷기(종아리 근육 펌프)</label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--art)"></i>동맥 압력</span><span><i style="background:var(--ven)"></i>정맥 압력</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">뇌 동맥압</span><span class="v" id="hs-o-head">—</span></div>
+        <div class="stat"><span class="k">발 동맥압</span><span class="v" id="hs-o-foot">—</span></div>
+        <div class="stat"><span class="k">발 정맥압</span><span class="v" id="hs-o-ven">—</span></div>
+        <div class="stat"><span class="k">다리에 고인 피</span><span class="v" id="hs-o-pool">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 손잡이를 끌어 90°로 세운다. 심장 높이의 평균 동맥압(93)은 그대로라고 두어도 뇌는 약 60, 발은 약 185 mmHg가 된다. ② 다리 정맥압이 약 95 mmHg로 오르고 피 약 0.5 L가 고인다. ③ "걷기"를 켠다. 종아리 근육이 수축할 때마다 정맥을 짜서 피를 위로 올리고, 판막이 거꾸로 흐르지 못하게 막아 발 정맥압이 약 25 mmHg로 내려간다. 오래 가만히 서 있으면 어지러운 이유다. (피 밀도 1.06 g/mL → 0.78 mmHg/cm, 심장 위 46 cm(뇌), 아래 120 cm(발). 반사 보상은 다음 시뮬레이터에서 본다.)</div>
+    </div>
+    <div class="callout warn">
+      <strong>'기절 놀이'나 일부러 일어서서 어지럼을 만드는 실험은 하지 말 것</strong>
+      쪼그려 앉아 숨을 몰아쉰 뒤 벌떡 일어나거나 가슴을 누르는 장난은 뇌로 가는 피를 순간적으로 끊어 실신과 경련, 넘어지며 다치는 사고를 일으킨다. 실제로 목숨을 잃은 사례도 있다. 기립에 따른 혈압 변화는 위와 아래의 시뮬레이터로만 확인한다.
+    </div>
+  </section>
+
+  <section id="capillary">
+    <h2>모세혈관: 물이 드나드는 문</h2>
+    <p>모세혈관 벽은 세포 한 겹이고 그 사이에 틈이 있어 물과 작은 분자는 드나들지만 큰 단백질(알부민)은 거의 못 나간다. 물을 밖으로 미는 힘은 혈관 안의 <b>정수압</b>(혈압)이고, 안으로 당기는 힘은 혈장 단백질이 만드는 <span class="term">교질 삼투압</span><span class="en">(Oncotic pressure)</span>이다. 두 힘의 균형을 <span class="term">스탈링 힘</span><span class="en">(Starling forces)</span>이라 한다.</p>
+    <div class="formula">$$J_v = K_f \left[ (P_c - P_i) - \sigma (\pi_c - \pi_i) \right]$$
+      <div class="where">\(J_v\) 순 여과량, \(K_f\) 벽의 투과성, \(P_c\) 모세혈관 정수압(동맥 쪽 약 35 → 정맥 쪽 약 15 mmHg), \(P_i\) 조직 압력(약 0), \(\pi_c\) 혈장 교질 삼투압(약 25 mmHg), \(\pi_i\) 조직액 교질 삼투압(약 1), \(\sigma\) 단백질 반사 계수(약 0.9~1).</div>
+    </div>
+    <p>모세혈관 앞쪽에서는 정수압이 이겨 물이 나가고, 뒤쪽에서는 삼투압이 이겨 대부분 돌아온다. 남는 몫(하루 약 2~3 L)은 <span class="term">림프관</span><span class="en">(Lymphatic vessel)</span>이 거둬 정맥으로 돌려보낸다. 이 균형이 깨지면 조직에 물이 고인다. 그것이 <span class="term">부종</span><span class="en">(Edema)</span>이다.</p>
+
+    <div class="sim" id="sim-capillary" data-desc="모세혈관을 따라 정수압과 교질 삼투압을 비교해 물이 나가고 들어오는 곳을 화살표로 보고, 정맥압 상승·알부민 감소·염증 누출이 림프 용량을 넘겨 부종을 만드는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>스탈링 힘과 부종</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="sc-cv"></canvas><span class="hint">정수압 선의 양 끝 손잡이를 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>혈장 알부민(교질 삼투압) <output id="sc-pi-out"></output></span><input type="range" id="sc-pi" min="8" max="30" step="1" value="25"></label>
+          <label class="check"><input type="checkbox" id="sc-leak"> 염증(벽이 새고 단백질이 나감)</label>
+          <div class="btn-row"><button class="btn" id="sc-hf">정맥압 올리기(오래 서기·심부전)</button><button class="btn" id="sc-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--art)"></i>정수압 P<sub>c</sub></span><span><i style="background:var(--accent)"></i>교질 삼투압 π</span><span><i style="background:var(--warn)"></i>밖으로(여과)</span><span><i style="background:var(--ven)"></i>안으로(재흡수)</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">순 여과</span><span class="v" id="sc-o-j">—</span></div>
+        <div class="stat"><span class="k">림프가 거둘 수 있는 양</span><span class="v" id="sc-o-l">—</span></div>
+        <div class="stat"><span class="k">조직의 물</span><span class="v" id="sc-o-e" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 상태에서 앞쪽은 노란 화살표(나감), 뒤쪽은 파란 화살표(들어옴)다. 남는 양은 림프관(초록 점)이 가져간다. ② "정맥압 올리기"를 누른다. 정수압 선의 뒤쪽 끝이 올라가 재흡수가 줄고 여과가 림프 용량을 넘는다. 조직이 붓기 시작한다. 오래 서 있으면 발목이 붓는 이유다. ③ 처음으로 돌린 뒤 알부민을 12로 내린다(영양 결핍, 간·콩팥병). ④ 염증을 켠다. 벽이 새면 단백질이 빠져나가 당기는 힘이 약해진다. (순 여과 하루 약 2 L, 림프 최대 약 8 L로 맞춘 교육용 모델. 모세혈관 한 개를 대표로 그렸다.)</div>
+    </div>
+  </section>
+
+  <section id="baroreflex">
+    <h2>압반사: 일어설 때 혈압을 지키는 고리</h2>
+    <p>일어서면 다리에 피가 고여 박출량이 줄고, 혈압이 떨어지려 한다. 목의 <span class="term">경동맥동</span><span class="en">(Carotid sinus)</span>과 대동맥궁 벽에는 늘어남을 재는 <span class="term">압수용기</span><span class="en">(Baroreceptor)</span>가 있다. 혈압이 떨어져 벽이 덜 늘어나면 신호가 줄고, 뇌줄기는 1~2초 안에 미주 신경을 풀고 교감 신경을 올린다. 심박수와 수축력이 오르고, 세동맥과 정맥이 조여 혈압이 돌아온다. 이 전체를 <span class="term">압반사</span><span class="en">(Baroreflex)</span>라 한다. <a href="homeostasis.html">2장</a>에서 본 음성 피드백의 대표다.</p>
+    <p>다온이 회의실 의자에서 일어설 때를 모니터로 보자. 반사의 세기를 낮추면 몸이 어떻게 되는지도 비교한다.</p>
+
+    <div class="sim" id="sim-baroreflex" data-big data-desc="환자 모니터에서 일어서기와 출혈 1 L를 걸어 압반사가 심박수·혈관 저항으로 혈압을 지켜 내는 과정을 실시간으로 본다: 반사 이득을 낮추면 혈압이 떨어진 채 돌아오지 않는다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>모니터로 보는 압반사: 일어서기와 출혈</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view monitor"><canvas id="br-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="br-ev"><button data-value="stand" class="on">일어서기</button><button data-value="bleed">출혈 1 L</button><button data-value="fluid">출혈 + 수액</button></div>
+          <label class="ctrl"><span>압반사 이득 <output id="br-g-out"></output></span><input type="range" id="br-g" min="0" max="2" step="0.1" value="1"></label>
+          <label class="ctrl"><span>재생 속도 <output id="br-sp-out"></output></span><input type="range" id="br-sp" min="1" max="6" step="1" value="2"></label>
+          <div class="btn-row"><button class="btn primary" id="br-go">처음부터</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">가장 낮은 평균 동맥압</span><span class="v" id="br-o-min">—</span></div>
+        <div class="stat"><span class="k">마지막 평균 동맥압</span><span class="v" id="br-o-end">—</span></div>
+        <div class="stat"><span class="k">심박수 변화</span><span class="v" id="br-o-hr">—</span></div>
+        <div class="stat"><span class="k">1회 박출량 변화</span><span class="v" id="br-o-sv">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "일어서기"(10초에 일어남)를 본다. 평균 동맥압이 몇 mmHg 떨어지지만 몇 초 만에 심박수가 오르며 대부분 돌아온다. 박출량은 줄어든 채로, 심박수와 혈관 저항이 메운다. ② 이득을 0으로 두고 처음부터. 혈압이 약 75 mmHg로 떨어진 채 회복되지 않는다(경보). 자율신경이 손상된 사람의 기립성 저혈압과 닮았다. ③ "출혈 1 L"는 심박수가 크게 올라 혈압을 받치고, "출혈 + 수액"은 40초에 1 L를 다시 넣어 회복시킨다. ④ 이득을 2로 올리면 더 빨리 잡지만 조금 출렁인다. (BD.baroLoop 덩어리 모델: 엔진의 표준 몸(안정 MAP 93, 심박 70), 반사 지연 1초. 파형은 각 순간의 수축기·확장기 값으로 그렸다.)</div>
+    </div>
+
+    <p>일어선 직후 잠깐 눈앞이 캄캄해지는 것은 반사가 따라잡기 전 몇 초의 틈이다. 탈수, 오래 누워 있던 뒤, 더운 날, 술을 마신 뒤, 일부 혈압약을 먹을 때는 이 틈이 커진다. 일어서서 3분 안에 수축기 혈압이 20 mmHg 이상 떨어지면 <span class="term">기립성 저혈압</span><span class="en">(Orthostatic hypotension)</span>이라 한다.</p>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 6장</span></div>
+      <h4>혈압 128/82: 고혈압 전단계, 평균 동맥압 약 97 mmHg</h4>
+      <p>다온의 검진 혈압 128/82는 수축기만 보면 '주의 혈압'이지만 확장기가 80을 넘어 '고혈압 전단계'다(국내 지침 기준, 미국 지침이라면 1단계 고혈압). 평균 동맥압은 82 + 46/3 ≈ 97 mmHg, 맥압은 46 mmHg다. 34세에 확장기가 함께 높은 모양은 동맥이 뻣뻣해서라기보다 <b>세동맥이 조금 조여 말초 저항이 높은</b> 쪽을 가리킨다(4장의 다온 심장 모델도 말초 저항을 표준보다 약 10 % 높게 잡았다). 여러 연구를 모은 분석들은 규칙적인 유산소 운동이 수축기 혈압을 평균 약 5 mmHg(확장기 약 3 mmHg) 낮춘다고 요약한다. 의자에서 일어설 때 다온의 평균 동맥압은 압반사 덕분에 몇 mmHg 출렁이다 몇 초 만에 회복된다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>다온의 혈압 분류와 평균 동맥압, 원인으로 짐작되는 말초 저항, 기립 시 압반사가 정상으로 작동함.</div><div><b>아직 모르는 것</b>달릴 때 심박수와 혈류는 어떻게 바뀌는가. 근육의 꼭지를 열면 심장은 얼마나 더 내보내야 하는가.</div><div><b>다음 단계</b><a href="flow.html">7장</a>에서 심박수와 심박출량, 다온의 심박 구간과 운동 중 혈류 배분을 정한다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>흐름 = 압력 차 ÷ 저항. 저항은 반지름의 네제곱에 반비례해, 10 % 좁아지면 흐름이 약 34 % 줄고 반으로 좁아지면 1/16이 된다.</li>
+      <li>장기는 병렬로 이어져 같은 동맥압을 받고 각자 세동맥으로 혈류를 조절한다. 한 장기가 꼭지를 열면 전체 저항이 떨어져 심장이 더 내보내야 혈압이 유지된다.</li>
+      <li>압력은 세동맥에서 가장 많이 떨어진다. 모세혈관은 총 단면적이 가장 넓어 피가 가장 느리고(초당 1 mm 미만), 정맥은 피의 약 2/3를 담는다.</li>
+      <li>평균 동맥압 ≈ 확장기 + 맥압/3. 동맥이 뻣뻣해지면 수축기는 오르고 확장기는 내려가 맥압이 커진다. 커프 혈압은 코로트코프 소리가 처음 들릴 때(수축기)와 사라질 때(확장기)의 압력이다.</li>
+      <li>서 있으면 피 기둥 1 cm당 약 0.78 mmHg가 더해져 발 정맥에 피가 고이고, 압반사가 심박수와 혈관 긴장을 올려 몇 초 안에 혈압을 되찾는다. 근육 펌프가 정맥 환류를 돕는다.</li>
+      <li>모세혈관에서 정수압은 물을 밀어내고 교질 삼투압은 당긴다. 남는 몫은 림프가 거두며, 정맥압 상승·알부민 감소·벽 누출로 균형이 깨지면 부종이 생긴다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>압력 차는 그대로인데 혈관의 반지름이 절반으로 줄었다. 흐름은 처음의 몇 배가 되는가?</p>
+        <div class="opts">
+          <button class="opt">1/2</button>
+          <button class="opt">1/4</button>
+          <button class="opt" data-correct>1/16</button>
+          <button class="opt">1/8</button>
+        </div>
+        <div class="quiz-exp">흐름은 반지름의 네제곱에 비례한다. (1/2)⁴ = 1/16, 약 6 %. 같은 흐름을 지키려면 압력 차가 16배 필요하다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>혈압이 130/85 mmHg인 사람의 평균 동맥압에 가장 가까운 것은?</p>
+        <div class="opts">
+          <button class="opt" data-correct>100 mmHg</button>
+          <button class="opt">107.5 mmHg</button>
+          <button class="opt">85 mmHg</button>
+          <button class="opt">115 mmHg</button>
+        </div>
+        <div class="quiz-exp">맥압 = 130 − 85 = 45. 평균 동맥압 ≈ 85 + 45/3 = 100 mmHg. 이완기가 더 길어 단순 평균(107.5)보다 확장기 쪽에 가깝다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>순환에서 평균 압력이 가장 크게 떨어지는 구간은?</p>
+        <div class="opts">
+          <button class="opt">대동맥</button>
+          <button class="opt" data-correct>세동맥</button>
+          <button class="opt">모세혈관</button>
+          <button class="opt">대정맥</button>
+        </div>
+        <div class="quiz-exp">세동맥은 안지름에 비해 민무늬근이 두꺼워 저항이 가장 크다. 평균 압력이 약 85에서 35 mmHg로 떨어지고 맥박의 출렁임도 사라진다. 모세혈관은 하나하나는 가늘어도 수가 엄청나 병렬 저항이 작다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>75세의 혈압이 158/70 mmHg이다. 가장 그럴듯한 주된 원인은?</p>
+        <div class="opts">
+          <button class="opt">세동맥 수축으로 말초 저항만 높아졌다</button>
+          <button class="opt">혈액량이 크게 줄었다</button>
+          <button class="opt">심박수가 너무 느리다</button>
+          <button class="opt" data-correct>큰 동맥이 뻣뻣해져 탄성(순응도)이 줄었다</button>
+        </div>
+        <div class="quiz-exp">수축기만 높고 확장기는 낮아 맥압(88)이 크다. 뻣뻣한 동맥은 수축기에 덜 늘어나 압력이 치솟고, 이완기에 덜 밀어 줘 확장기가 내려간다(고립성 수축기 고혈압). 말초 저항만 높으면 두 값이 함께 오른다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>오래 서 있던 날 저녁에 발목이 붓는 가장 직접적인 이유는?</p>
+        <div class="opts">
+          <button class="opt">혈장 알부민이 하루 사이에 줄어서</button>
+          <button class="opt" data-correct>다리 정맥압이 올라 모세혈관 정수압이 높아지고 여과가 재흡수와 림프 용량을 넘어서</button>
+          <button class="opt">다리 동맥이 좁아져 피가 덜 가서</button>
+          <button class="opt">압반사가 다리 혈관을 넓혀서</button>
+        </div>
+        <div class="quiz-exp">서 있으면 피 기둥 무게 때문에 발의 정맥압과 모세혈관 정수압이 크게 오른다. 근육 펌프가 쉬면 더 그렇다. 밀어내는 힘이 당기는 힘을 이기는 구간이 길어져 조직에 물이 고인다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  function viewW(id) { return document.getElementById(id).parentElement.clientWidth; }
+  function fmt0(x) { return Math.round(x).toString(); }
+  function txt(ctx, s, x, y, o) {
+    o = o || {};
+    ctx.font = BB.font(o.size || 11, o.mono, o.weight); ctx.fillStyle = o.color || P().dim;
+    ctx.textAlign = o.align || "left"; ctx.textBaseline = o.base || "middle"; ctx.fillText(s, x, y);
+  }
+  function handle(ctx, x, y, col, r) {
+    var p = P(); ctx.fillStyle = p.bg; ctx.strokeStyle = col || p.text; ctx.lineWidth = 2.2;
+    ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }
+  /** 동맥압 파형 모양(0~1): 윈드케셀 한 박동을 정규화 */
+  var WK0 = BD.windkessel({ hr: 60, sv: 70 });
+  var WKn = WK0.p.map(function (v) { return (v - WK0.dbp) / WK0.pp; });
+  function pShape(frac) { frac = ((frac % 1) + 1) % 1; return BD.interp(WK0.t.map(function (x) { return x / WK0.T; }), WKn, frac); }
+  var SHX = WK0.t.map(function (x) { return x / WK0.T; });
+  function pShapeFast(frac) { frac = ((frac % 1) + 1) % 1; return BD.interp(SHX, WKn, frac); }
+
+  /* ---------------------------------------------------------- 1. 반지름 네제곱 */
+  (function () {
+    var R0 = 0.1, rf = 1, lanes = [], lay = null, cv = null, dragging = false;
+    for (var i = 0; i < 9; i++) lanes.push({ y: -0.88 + (i * 1.76) / 8, ph: Math.random() * 20 });
+    function out() {
+      var q = BD.poiseuille(R0 * rf, 5, getDp()) * 60, q0 = BD.poiseuille(R0, 5, 10) * 60;
+      BB.stat("r4-o-r", (R0 * rf * 10).toFixed(2) + "<small>mm (" + Math.round(rf * 100) + "%)</small>");
+      BB.stat("r4-o-q", fmt0(q) + "<small>mL/min</small>");
+      BB.stat("r4-o-pct", "<span class='" + (q / q0 < 0.5 ? "bad-t" : "") + "'>" + Math.round((q / q0) * 100) + "</span><small>%</small>");
+      BB.stat("r4-o-res", "×" + (1 / Math.pow(rf, 4)).toFixed(2));
+    }
+    var getDp = BB.range("r4-dp", function (v) { return v + " mmHg"; }, out);
+    function setR(v) { rf = BB.clamp(v, 0.3, 1.25); out(); }
+    document.getElementById("r4-90").addEventListener("click", function () { setR(0.9); });
+    document.getElementById("r4-50").addEventListener("click", function () { setR(0.5); });
+    document.getElementById("r4-re").addEventListener("click", function () { getDp.set(10); setR(1); });
+    out();
+    cv = BB.canvas("#r4-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, art = BB.color("art");
+      var vw = narrow ? w - 24 : w * 0.52, vx = 12, cy = narrow ? 104 : h / 2, Rpx = narrow ? 64 : Math.min(84, h * 0.3);
+      var rp = Rpx * rf;
+      // 혈관 벽
+      ctx.fillStyle = BB.alpha(art, 0.08); ctx.fillRect(vx, cy - rp, vw, 2 * rp);
+      ctx.strokeStyle = BB.alpha(p.dim, 0.35); ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
+      [cy - Rpx, cy + Rpx].forEach(function (y) { ctx.beginPath(); ctx.moveTo(vx, y); ctx.lineTo(vx + vw, y); ctx.stroke(); }); ctx.setLineDash([]);
+      ctx.fillStyle = BB.alpha(BB.color("prot"), 0.45);
+      ctx.fillRect(vx, cy - rp - 12, vw, 12); ctx.fillRect(vx, cy + rp, vw, 12);
+      txt(ctx, "점선: 처음 반지름", vx + vw - 4, cy - Rpx - 8, { size: 10.5, align: "right" });
+      // 흐르는 피(포물선 속도)
+      var vmax = Math.pow(rf, 2) * getDp() / 10;
+      ctx.save(); ctx.beginPath(); ctx.rect(vx, cy - rp, vw, 2 * rp); ctx.clip();
+      lanes.forEach(function (L) {
+        var y = cy + L.y * rp, s = 1 - L.y * L.y;
+        BD.flowDots(ctx, [[vx - 20, y], [vx + vw + 20, y]], L.ph, { color: BB.alpha(art, 0.85), gap: 26, r: Math.max(1.8, 3.2 * rf) });
+      });
+      ctx.restore();
+      // 속도 분포 화살표
+      var px = vx + vw * 0.72;
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(px, cy - rp); ctx.lineTo(px, cy + rp); ctx.stroke();
+      ctx.beginPath();
+      for (var k = -1; k <= 1.0001; k += 0.05) { var len = (1 - k * k) * vmax * 70; var yy = cy + k * rp; k === -1 ? ctx.moveTo(px + len, yy) : ctx.lineTo(px + len, yy); }
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 2; ctx.stroke();
+      for (var k2 = -0.75; k2 <= 0.76; k2 += 0.375) { var l2 = (1 - k2 * k2) * vmax * 70, y2 = cy + k2 * rp; if (l2 < 4) continue; ctx.strokeStyle = p.accent; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(px, y2); ctx.lineTo(px + l2, y2); ctx.lineTo(px + l2 - 5, y2 - 3); ctx.moveTo(px + l2, y2); ctx.lineTo(px + l2 - 5, y2 + 3); ctx.stroke(); }
+      txt(ctx, "속도 분포", px + 4, cy + rp + 24, { size: 11, color: p.accent });
+      // 손잡이
+      var hx = vx + vw * 0.3; handle(ctx, hx, cy - rp - 6, p.accent2, 8);
+      txt(ctx, "r = " + (R0 * rf * 10).toFixed(2) + " mm", hx + 14, cy - rp - 22, { size: 12, weight: 700, color: p.accent2 });
+      lay = { hx: hx, cy: cy, Rpx: Rpx };
+      // 오른쪽(아래): 흐름 vs 반지름
+      var box = narrow ? { x: 52, y: cy + Rpx + 56, w: w - 70, h: h - (cy + Rpx + 56) - 64 } : { x: w * 0.52 + 70, y: 22, w: w * 0.48 - 84, h: h - 100 };
+      var pts = []; for (var r = 0.3; r <= 1.25; r += 0.01) pts.push([r * 100, Math.pow(r, 4) * 100]);
+      var lin = [[30, 30], [125, 125]];
+      var c = BB.chart(ctx, box, { x: [30, 125], y: [0, 250], xLabel: "반지름(처음 = 100 %)", yLabel: "흐름(%)", xTicks: [50, 75, 100, 125], yTicks: [0, 50, 100, 150, 200, 250],
+        series: [{ data: lin, color: BB.alpha(p.dim, 0.5), width: 1.2, dash: [4, 3] }, { data: pts, color: p.accent, width: 2.4 }],
+        points: [{ x: rf * 100, y: Math.pow(rf, 4) * 100, color: p.accent2, r: 6 }] });
+      txt(ctx, "r⁴", c.X(118), c.Y(205), { size: 13, weight: 700, color: p.accent });
+      txt(ctx, "비례(점선)", c.X(112), c.Y(130), { size: 10.5, align: "right" });
+      txt(ctx, Math.round(Math.pow(rf, 4) * 100) + " %", c.X(rf * 100) + 9, c.Y(Math.pow(rf, 4) * 100) - 10, { size: 12, weight: 700, color: p.accent2 });
+      if (rf < 0.6) txt(ctx, "흐름 " + Math.round(Math.pow(rf, 4) * 100) + " %: 조직이 굶는다", vx + 6, (narrow ? cy + Rpx + 30 : h - 16), { size: 12, weight: 700, color: p.bad });
+    }, { get height() { return viewW("r4-cv") < 560 ? 500 : 300; } });
+    BB.drag(cv.canvas, {
+      start: function (x, y) { dragging = lay && Math.abs(x - lay.hx) < 60 && y < lay.cy; },
+      move: function (x, y) { if (!dragging) return; setR((lay.cy - y - 6) / lay.Rpx); },
+      end: function () { dragging = false; },
+    });
+    BB.loop(document.getElementById("sim-r4"), function (dt) {
+      var vmax = Math.pow(rf, 2) * getDp() / 10;
+      lanes.forEach(function (L) { L.ph += dt * 90 * vmax * (1 - L.y * L.y); });
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 2. 병렬 회로 */
+  (function () {
+    var ORG = [
+      { k: "brain", n: "뇌", q: 750 }, { k: "heart", n: "심장(관상)", q: 250 }, { k: "gut", n: "소화관·간", q: 1350 },
+      { k: "kidneys", n: "콩팥", q: 1100 }, { k: "muscle", n: "골격근", q: 1000 }, { k: "skin", n: "피부·기타", q: 550 },
+    ];
+    var DP = 90;
+    ORG.forEach(function (o) { o.r0 = DP / (o.q / 1000); o.m = 1; o.ph = 0; });
+    var mode = "par", lay = null, cv = null, drag = -1, res = null;
+    function calc() {
+      var hold = document.getElementById("pl-hold").checked;
+      var Rs = ORG.map(function (o) { return o.r0 * o.m; });
+      var R = mode === "par" ? BD.parallel(Rs) : BD.series(Rs);
+      var map, co;
+      if (mode === "ser") { map = 93; co = DP / R; }
+      else if (hold) { map = 93; co = DP / R; }
+      else { co = 5.0; map = 3 + co * R; }
+      var flows = ORG.map(function (o, i) { return mode === "par" ? ((map - 3) / Rs[i]) * 1000 : co * 1000; });
+      res = { R: R, map: map, co: co, flows: flows };
+      BB.stat("pl-o-r", R.toFixed(1) + "<small>mmHg·min/L</small>");
+      BB.stat("pl-o-co", co.toFixed(2) + "<small>L/min</small>");
+      BB.stat("pl-o-map", "<span class='" + (map < 75 ? "bad-t" : "") + "'>" + fmt0(map) + "</span><small>mmHg</small>");
+      BB.stat("pl-o-br", fmt0(flows[0]) + "<small>mL/min</small>");
+    }
+    BB.seg("pl-mode", function (v) { mode = v; calc(); });
+    document.getElementById("pl-hold").addEventListener("change", calc);
+    document.getElementById("pl-run").addEventListener("click", function () { ORG[4].m = 0.08; calc(); });
+    document.getElementById("pl-re").addEventListener("click", function () { ORG.forEach(function (o) { o.m = 1; }); calc(); });
+    calc();
+    function mToX(m, x0, x1) { var f = (Math.log(m) / Math.LN2 + 4) / 6; return x0 + (1 - BB.clamp(f, 0, 1)) * (x1 - x0); }
+    cv = BB.canvas("#pl-cv", function (ctx, w, h) {
+      var p = P(), art = BB.color("art"), ven = BB.color("ven"), narrow = w < 560;
+      var ax = 26, vxp = w - 26, top = 34, rowH = (h - top - 30) / ORG.length;
+      // 대동맥, 대정맥 기둥
+      ctx.fillStyle = BB.alpha(art, 0.6); ctx.fillRect(ax - 8, top - 6, 14, rowH * ORG.length);
+      ctx.fillStyle = BB.alpha(ven, 0.6); ctx.fillRect(vxp - 6, top - 6, 14, rowH * ORG.length);
+      txt(ctx, "대동맥 " + fmt0(res.map) + " mmHg", ax - 8, 14, { size: 11, weight: 700, color: art });
+      txt(ctx, "대정맥 3", vxp + 8, 14, { align: "right", size: 11, weight: 700, color: ven });
+      var vx0 = narrow ? 70 : 120, vx1 = narrow ? w * 0.52 : w * 0.5;
+      lay = { rows: [], vx0: vx0, vx1: vx1 };
+      var maxQ = Math.max.apply(null, res.flows.concat([1500]));
+      ORG.forEach(function (o, i) {
+        var y = top + rowH * (i + 0.5) - 6, q = res.flows[i];
+        var wd = 2 + 10 * Math.sqrt(q / maxQ);
+        ctx.strokeStyle = BB.alpha(art, 0.35); ctx.lineWidth = wd; ctx.beginPath(); ctx.moveTo(ax, y); ctx.lineTo(w * 0.62, y); ctx.stroke();
+        ctx.strokeStyle = BB.alpha(ven, 0.35); ctx.beginPath(); ctx.moveTo(w * 0.62, y); ctx.lineTo(vxp, y); ctx.stroke();
+        BD.flowDots(ctx, [[ax, y], [w * 0.62, y]], o.ph, { color: art, gap: 22, r: 2.4 });
+        BD.flowDots(ctx, [[w * 0.62, y], [vxp, y]], o.ph, { color: ven, gap: 22, r: 2.4 });
+        // 꼭지 트랙
+        ctx.strokeStyle = BB.alpha(p.dim, 0.35); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(vx0, y + 13); ctx.lineTo(vx1, y + 13); ctx.stroke();
+        var hx = mToX(o.m, vx0, vx1);
+        handle(ctx, hx, y, o.m < 0.5 ? p.ok : o.m > 2 ? p.bad : p.accent, 7);
+        txt(ctx, o.n, narrow ? ax + 12 : ax + 14, y - 12, { size: 11.5, weight: 700, color: p.text });
+        // 장기 상자와 숫자
+        var bx = w * 0.62 + 6;
+        ctx.fillStyle = p.bg; ctx.strokeStyle = p.border; ctx.lineWidth = 1; BB.rrect(ctx, bx, y - 13, narrow ? 90 : 128, 26, 6); ctx.fill(); ctx.stroke();
+        txt(ctx, fmt0(q) + " mL/min", bx + 6, y, { size: 11.5, mono: true, weight: 700, color: q < o.q * 0.85 ? p.bad : p.text });
+        if (!narrow) txt(ctx, Math.round((q / (res.co * 1000)) * 100) + "%", bx + 122, y, { size: 11, mono: true, align: "right" });
+        lay.rows.push({ y: y, i: i });
+      });
+      txt(ctx, "← 조임 · 꼭지 · 열림 →", (vx0 + vx1) / 2, h - 12, { size: 10.5, align: "center" });
+      if (mode === "ser") txt(ctx, "직렬: 저항이 모두 더해져 " + (res.co * 1000).toFixed(0) + " mL/min만 흐른다", w / 2, h - 28, { size: 12, weight: 700, color: p.bad, align: "center" });
+      else if (res.map < 75) txt(ctx, "혈압 저하: 뇌 혈류까지 준다", w / 2, h - 28, { size: 12, weight: 700, color: p.bad, align: "center" });
+    }, { get height() { return viewW("pl-cv") < 560 ? 380 : 340; } });
+    BB.drag(cv.canvas, {
+      start: function (x, y) { drag = -1; if (!lay) return; lay.rows.forEach(function (r) { if (Math.abs(y - r.y) < 16 && x > lay.vx0 - 20 && x < lay.vx1 + 20) drag = r.i; }); },
+      move: function (x) { if (drag < 0) return; var f = 1 - BB.clamp((x - lay.vx0) / (lay.vx1 - lay.vx0), 0, 1); ORG[drag].m = Math.pow(2, f * 6 - 4); calc(); },
+      end: function () { drag = -1; },
+    });
+    BB.loop(document.getElementById("sim-parallel"), function (dt) { ORG.forEach(function (o, i) { o.ph += dt * 30 * Math.sqrt(res.flows[i] / 500); }); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 3. 순환을 따라 */
+  (function () {
+    var SEG = [
+      { n: "대동맥", pin: 100, pout: 98, amp: 1, a: 2.5, vol: "약 2 %(동맥 전체 약 13 %)", d: "탄성 섬유가 많은 굵은 관. 수축기에 늘어나 압력을 저장한다. 맥압이 가장 크다." },
+      { n: "큰·작은 동맥", pin: 98, pout: 88, amp: 0.95, a: 20, vol: "약 11 %", d: "피를 장기까지 나르는 관. 저항이 작아 평균 압력이 거의 떨어지지 않는다. 오히려 맥압은 반사파 때문에 조금 커지기도 한다." },
+      { n: "세동맥", pin: 88, pout: 35, amp: 0.7, a: 40, vol: "약 2 %", d: "민무늬근으로 굵기를 바꾸는 꼭지. 압력이 가장 많이 떨어지고 맥박의 출렁임이 사라진다. 총 말초 저항의 약 절반 이상이 여기다." },
+      { n: "모세혈관", pin: 35, pout: 15, amp: 0, a: 2500, vol: "약 5 %", d: "세포 한 겹의 벽. 총 단면적이 대동맥의 약 1,000배라 피가 가장 느리게 지나며 산소·영양·노폐물을 주고받는다." },
+      { n: "세정맥", pin: 15, pout: 10, amp: 0, a: 250, vol: "정맥 전체 약 64 %", d: "모세혈관에서 나온 피를 모은다. 염증 때 백혈구가 빠져나가는 곳이기도 하다." },
+      { n: "정맥", pin: 10, pout: 4, amp: 0, a: 80, vol: "(정맥 전체에 포함)", d: "벽이 얇아 잘 늘어나는 저장고. 피의 약 2/3가 여기 있다. 교감 신경이 정맥을 조이면 저장된 피가 심장으로 돌아간다." },
+      { n: "대정맥", pin: 4, pout: 2, amp: 0, a: 8, vol: "(정맥 전체에 포함)", d: "우심방으로 들어가기 직전. 압력은 거의 0~5 mmHg(중심 정맥압)이다." },
+    ];
+    var Q = 83, cur = 0.2, t = 0, lay = null, cv = null;
+    function segAt(x) { var i = Math.min(SEG.length - 1, Math.floor(x * SEG.length)); return { i: i, f: x * SEG.length - i }; }
+    function pMean(x) { var s = segAt(x), S = SEG[s.i]; return S.pin + (S.pout - S.pin) * s.f; }
+    function pAmp(x) { var s = segAt(x), S = SEG[s.i], nx = SEG[s.i + 1]; var a1 = S.amp, a2 = nx ? nx.amp : 0; return (a1 + (a2 - a1) * s.f) * 22; }
+    function out() {
+      var s = segAt(cur), S = SEG[s.i];
+      BB.stat("ci-o-p", fmt0(pMean(cur)) + "<small>mmHg</small>");
+      BB.stat("ci-o-a", BB.fmt(S.a, 3) + "<small>cm²</small>");
+      var v = Q / S.a; BB.stat("ci-o-v", (v >= 1 ? v.toFixed(1) + "<small>cm/s</small>" : (v * 10).toFixed(2) + "<small>mm/s</small>"));
+      BB.stat("ci-o-vol", S.vol);
+      document.getElementById("ci-info").innerHTML = "<h4>" + S.n + "</h4><p>" + S.d + "</p>";
+    }
+    out();
+    // 속도의 역수(머무는 시간)를 누적해 위상 → 위치 표를 만든다(로그 압축)
+    var tab = (function () { var xs = [0], ts = [0], acc = 0, n = 700; for (var i = 1; i <= n; i++) { var x = i / n, S = SEG[Math.min(SEG.length - 1, Math.floor(x * SEG.length))]; acc += Math.pow(S.a / 2.5, 0.42) / n; xs.push(x); ts.push(acc); } return { xs: xs, ts: ts.map(function (v) { return v / acc; }) }; })();
+    cv = BB.canvas("#ci-cv", function (ctx, w, h) {
+      var p = P(), art = BB.color("art"), ven = BB.color("ven");
+      var L = 58, R = w - 16, X = function (x) { return L + x * (R - L); };
+      var hP = h * 0.36, hA = h * 0.24, hV = h * 0.2;
+      var bP = { x: L, y: 26, w: R - L, h: hP }, bA = { x: L, y: bP.y + hP + 26, w: R - L, h: hA }, bV = { x: L, y: bA.y + hA + 22, w: R - L, h: hV };
+      // 구간 띠와 이름
+      SEG.forEach(function (S, i) {
+        var x0 = X(i / SEG.length), x1 = X((i + 1) / SEG.length);
+        if (i % 2) { ctx.fillStyle = BB.alpha(p.text, 0.03); ctx.fillRect(x0, bP.y, x1 - x0, bV.y + bV.h - bP.y); }
+        if (segAt(cur).i === i) { ctx.fillStyle = BB.alpha(p.accent, 0.1); ctx.fillRect(x0, bP.y, x1 - x0, bV.y + bV.h - bP.y); }
+        var nm = w < 560 ? S.n.replace("큰·작은 ", "") : S.n;
+        txt(ctx, nm, (x0 + x1) / 2, bP.y - 12, { align: "center", size: w < 560 ? 9.5 : 11, weight: 600, color: segAt(cur).i === i ? p.accent : p.dim });
+      });
+      // 압력
+      var Yp = function (v) { return bP.y + bP.h - (v / 130) * bP.h; };
+      ctx.strokeStyle = p.grid; ctx.lineWidth = 1; [0, 40, 80, 120].forEach(function (v) { ctx.beginPath(); ctx.moveTo(L, Yp(v)); ctx.lineTo(R, Yp(v)); ctx.stroke(); txt(ctx, String(v), L - 6, Yp(v), { align: "right", size: 10, mono: true }); });
+      ctx.fillStyle = BB.alpha(art, 0.2); ctx.beginPath();
+      for (var x = 0; x <= 1; x += 0.004) { var y = Yp(pMean(x) + pAmp(x) * 0.66 * 1.0); x ? ctx.lineTo(X(x), y) : ctx.moveTo(X(x), y); }
+      for (var x2 = 1; x2 >= 0; x2 -= 0.004) ctx.lineTo(X(x2), Yp(pMean(x2) - pAmp(x2) * 0.6)); ctx.closePath(); ctx.fill();
+      // 출렁이는 순간 압력
+      ctx.strokeStyle = art; ctx.lineWidth = 1.4; ctx.beginPath();
+      for (var x3 = 0; x3 <= 1; x3 += 0.003) { var ph = t * 1.2 - x3 * 3; var v3 = pMean(x3) + pAmp(x3) * (pShapeFast(ph) - 0.38) * 1.25; x3 ? ctx.lineTo(X(x3), Yp(v3)) : ctx.moveTo(X(x3), Yp(v3)); } ctx.stroke();
+      ctx.strokeStyle = p.text; ctx.lineWidth = 2.2; ctx.beginPath();
+      for (var x4 = 0; x4 <= 1; x4 += 0.004) { x4 ? ctx.lineTo(X(x4), Yp(pMean(x4))) : ctx.moveTo(X(x4), Yp(pMean(x4))); } ctx.stroke();
+      ctx.save(); ctx.translate(14, bP.y + bP.h / 2); ctx.rotate(-Math.PI / 2); txt(ctx, "압력 mmHg", 0, 0, { align: "center", size: 11 }); ctx.restore();
+      // 단면적(로그)
+      var la = function (a) { return (Math.log10(a) - Math.log10(1)) / (Math.log10(5000) - Math.log10(1)); };
+      var cyA = bA.y + bA.h / 2;
+      ctx.fillStyle = BB.alpha(p.accent, 0.16); ctx.strokeStyle = p.accent; ctx.lineWidth = 1.5; ctx.beginPath();
+      var pts = SEG.map(function (S, i) { return [X((i + 0.5) / SEG.length), la(S.a)]; });
+      pts.unshift([X(0), la(SEG[0].a)]); pts.push([X(1), la(SEG[SEG.length - 1].a)]);
+      pts.forEach(function (q, k) { var y = cyA - q[1] * bA.h / 2; k ? ctx.lineTo(q[0], y) : ctx.moveTo(q[0], y); });
+      for (var k = pts.length - 1; k >= 0; k--) ctx.lineTo(pts[k][0], cyA + pts[k][1] * bA.h / 2);
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+      // 흐르는 점(속도 로그)
+      ctx.save(); ctx.beginPath(); ctx.rect(L, bA.y, R - L, bA.h); ctx.clip();
+      for (var lane = -2; lane <= 2; lane++) {
+        var path = []; for (var xx = 0; xx <= 1.0001; xx += 0.01) path.push(xx);
+        var dotsX = [];
+        for (var d = 0; d < 26; d++) {
+          // 각 점의 위치를 '시간'으로 적분한 대신 위상만으로 근사: 구간마다 속도 다른 균등 간격
+          var s0 = ((t * 0.05 + d / 26 + lane * 0.013) % 1 + 1) % 1;
+          dotsX.push(s0);
+        }
+        dotsX.forEach(function (s0) {
+          // s0(시간 위상) → 위치: 속도의 역수를 누적한 표를 써서 느린 구간에 오래 머물게
+          var xpos = invTime(s0); var S = SEG[segAt(xpos).i];
+          var y = cyA + (lane / 2.6) * la(S.a) * bA.h / 2;
+          ctx.fillStyle = segAt(xpos).i <= 2 ? art : segAt(xpos).i === 3 ? p.accent2 : ven;
+          ctx.beginPath(); ctx.arc(X(xpos), y, 2.2, 0, Math.PI * 2); ctx.fill();
+        });
+      }
+      ctx.restore();
+      txt(ctx, "총 단면적(로그)", L + 4, bA.y + 8, { size: 10.5 });
+      SEG.forEach(function (S, i) { if (w > 520 || i % 2 === 0 || i === 3) txt(ctx, BB.fmt(S.a, 2), X((i + 0.5) / SEG.length), cyA, { align: "center", size: 10, mono: true, color: p.text }); });
+      // 속도(로그)
+      var lv = function (v) { return (Math.log10(v) + 2) / 4; };
+      var Yv = function (v) { return bV.y + bV.h - lv(v) * bV.h; };
+      ctx.strokeStyle = p.grid; [0.01, 0.1, 1, 10, 100].forEach(function (v) { ctx.beginPath(); ctx.moveTo(L, Yv(v)); ctx.lineTo(R, Yv(v)); ctx.stroke(); txt(ctx, v >= 1 ? String(v) : String(v), L - 6, Yv(v), { align: "right", size: 9.5, mono: true }); });
+      ctx.strokeStyle = p.warn; ctx.lineWidth = 2.4; ctx.beginPath();
+      SEG.forEach(function (S, i) { var y = Yv(Q / S.a), x0 = X(i / SEG.length), x1 = X((i + 1) / SEG.length); i ? ctx.lineTo(x0, y) : ctx.moveTo(x0, y); ctx.lineTo(x1, y); }); ctx.stroke();
+      ctx.save(); ctx.translate(14, bV.y + bV.h / 2); ctx.rotate(-Math.PI / 2); txt(ctx, "속도 cm/s", 0, 0, { align: "center", size: 11 }); ctx.restore();
+      // 커서
+      var cx = X(cur); ctx.strokeStyle = p.text; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(cx, bP.y); ctx.lineTo(cx, bV.y + bV.h); ctx.stroke();
+      handle(ctx, cx, bV.y + bV.h + 12, p.text, 7);
+      ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(cx, Yp(pMean(cur)), 4.5, 0, Math.PI * 2); ctx.fill();
+      lay = { L: L, R: R };
+    }, { get height() { return viewW("ci-cv") < 560 ? 470 : 440; } });
+    function invTime(s) { return BD.interp(tab.ts, tab.xs, s); }
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; cur = BB.clamp((x - lay.L) / (lay.R - lay.L), 0, 0.999); out(); cv.redraw(); } });
+    BB.loop(document.getElementById("sim-circuit"), function (dt) { t += dt; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 4. 윈드케셀 */
+  (function () {
+    var res, young, t = 0, cv = null;
+    var cOf = function (age) { return 2.0 * Math.exp(-(age - 20) / 45); };
+    function calc() {
+      var r = 1.065 * getR(), c = cOf(getAge());
+      res = BD.windkessel({ hr: 72, sv: 72, r: r, c: c });
+      young = BD.windkessel({ hr: 72, sv: 72, r: r, c: cOf(20) });
+      BB.stat("wk-o-bp", fmt0(res.sbp) + "/" + fmt0(res.dbp));
+      BB.stat("wk-o-pp", "<span class='" + (res.pp > 60 ? "bad-t" : "") + "'>" + fmt0(res.pp) + "</span><small>mmHg</small>");
+      BB.stat("wk-o-map", fmt0(res.map) + "<small>mmHg</small>");
+      BB.stat("wk-o-c", c.toFixed(2) + " · " + res.tau.toFixed(2) + "<small>s</small>");
+    }
+    var d = BB.debounce(calc, 40);
+    var getAge = BB.range("wk-age", function (v) { return v + "세"; }, d);
+    var getR = BB.range("wk-r", function (v) { return "×" + v.toFixed(2); }, d);
+    calc();
+    cv = BB.canvas("#wk-cv", function (ctx, w, h) {
+      var p = P(), art = BB.color("art"), narrow = w < 560, T = res.T;
+      var tc = t % T, i = Math.min(res.t.length - 1, Math.floor((tc / T) * res.t.length));
+      // 왼쪽: 늘어나는 대동맥
+      var ax = narrow ? w / 2 : w * 0.16, ay = narrow ? 70 : h / 2, len = narrow ? w * 0.7 : 150;
+      var c = cOf(getAge()), vol = c * (res.p[i] - 60);   // 늘어난 부피(mL)
+      var r0 = 14, rr = r0 + vol * 0.16;
+      if (narrow) {
+        ctx.fillStyle = BB.alpha(art, 0.25); ctx.strokeStyle = art; ctx.lineWidth = 3 + (1 - c / 2) * 5;
+        BB.rrect(ctx, ax - len / 2, ay - rr, len, 2 * rr, rr); ctx.fill(); ctx.stroke();
+        txt(ctx, "대동맥(늘어난 부피 " + fmt0(vol) + " mL)", ax, ay + 50, { align: "center", size: 11 });
+      } else {
+        ctx.fillStyle = BB.alpha(art, 0.25); ctx.strokeStyle = art; ctx.lineWidth = 3 + (1 - c / 2) * 5;
+        BB.rrect(ctx, ax - rr, ay - len / 2, 2 * rr, len, rr); ctx.fill(); ctx.stroke();
+        txt(ctx, "대동맥", ax, ay - len / 2 - 26, { align: "center", size: 12, weight: 700, color: p.text });
+        txt(ctx, "늘어난 부피 " + fmt0(vol) + " mL", ax, ay + len / 2 + 24, { align: "center", size: 11 });
+        txt(ctx, "벽 두께 = 뻣뻣함", ax, ay + len / 2 + 40, { align: "center", size: 10.5 });
+      }
+      var inflow = res.q[i] > 1;
+      txt(ctx, inflow ? "수축기: 늘어나며 저장" : "이완기: 줄어들며 밀어냄", narrow ? ax : ax, narrow ? 18 : ay - len / 2 - 10, { align: "center", size: 11, weight: 600, color: inflow ? p.accent : art });
+      // 오른쪽: 혈압 파형(두 박동)
+      var box = narrow ? { x: 48, y: 140, w: w - 62, h: h - 186 } : { x: w * 0.34, y: 18, w: w * 0.66 - 16, h: h - 62 };
+      var two = function (r) { var a = []; for (var k = 0; k < r.t.length; k++) a.push([r.t[k], r.p[k]]); for (var k2 = 0; k2 < r.t.length; k2++) a.push([r.t[k2] + r.T, r.p[k2]]); return a; };
+      var qd = []; for (var k3 = 0; k3 < res.t.length; k3++) { qd.push([res.t[k3], 40 + res.q[k3] * 0.15]); } for (var k4 = 0; k4 < res.t.length; k4++) qd.push([res.t[k4] + T, 40 + res.q[k4] * 0.15]);
+      var cc = BB.chart(ctx, box, { x: [0, 2 * T], y: [40, 180], xLabel: "시간(s)", yLabel: "동맥압(mmHg)", xFmt: function (v) { return v.toFixed(1); },
+        series: [{ data: qd, color: BB.alpha(p.accent, 0.5), width: 1.4 }, { data: two(young), color: p.faint, width: 1.6, dash: [5, 4] }, { data: two(res), color: art, width: 2.6 }],
+        hlines: [{ y: 140, color: BB.alpha(p.bad, 0.6), label: "140" }, { y: 90, color: BB.alpha(p.warn, 0.6), label: "90" }] });
+      var cx = cc.X(tc + (t % (2 * T) >= T ? T : 0));
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(cx, box.y); ctx.lineTo(cx, box.y + box.h); ctx.stroke();
+      txt(ctx, fmt0(res.sbp) + "/" + fmt0(res.dbp), box.x + 8, box.y + 10, { size: 15, mono: true, weight: 700, color: art });
+      txt(ctx, "흐린 점선: 20세 동맥 " + fmt0(young.sbp) + "/" + fmt0(young.dbp), box.x + 8, box.y + 28, { size: 11 });
+      if (res.sbp >= 140 && res.dbp < 90) txt(ctx, "고립성 수축기 고혈압", box.x + box.w - 6, box.y + 10, { align: "right", size: 12, weight: 700, color: p.bad });
+      else if (res.sbp >= 140 || res.dbp >= 90) txt(ctx, "고혈압 범위", box.x + box.w - 6, box.y + 10, { align: "right", size: 12, weight: 700, color: p.bad });
+    }, { get height() { return viewW("wk-cv") < 560 ? 420 : 320; } });
+    BB.loop(document.getElementById("sim-windkessel"), function (dt) { t += dt * 0.6; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 5. 커프 혈압 */
+  (function () {
+    var WHO = { daon: [128, 82], norm: [114, 74], high: [156, 96] };
+    var who = "daon", st = null, cv = null, T = 60 / 72;
+    function art(tt) { var bp = WHO[who]; return bp[1] + (bp[0] - bp[1]) * pShapeFast(tt / T); }
+    function reset(go) {
+      st = { t: 0, cuff: 180, run: !!go, sounds: [], first: null, last: null, hist: [], done: false, pumping: go ? 0 : null };
+      BB.stat("cf-o-s", "—"); BB.stat("cf-o-d", "—"); BB.stat("cf-o-err", "—"); BB.stat("cf-o-cuff", "180<small>mmHg</small>");
+      document.getElementById("cf-go").textContent = go ? "다시 측정" : "측정 시작";
+    }
+    BB.seg("cf-who", function (v) { who = v; reset(false); });
+    var getSp = BB.range("cf-sp", function (v) { return v + " mmHg/s"; });
+    document.getElementById("cf-go").addEventListener("click", function () { reset(true); });
+    reset(false);
+    function step(dt) {
+      if (!st.run || st.done) return;
+      var n = Math.max(1, Math.round(dt / 0.005)), hh = dt / n;
+      for (var k = 0; k < n; k++) {
+        var prev = art(st.t);
+        st.t += hh; st.cuff -= getSp() * hh;
+        var a = art(st.t), bp = WHO[who];
+        // 박동 꼭대기 근처에서 동맥이 커프보다 높으면 소리
+        var ph = (st.t % T) / T;
+        if (ph < hh / T * 1.01 + 0.0001 && st.t > 0.1) {
+          var open = bp[0] > st.cuff && bp[1] < st.cuff;
+          if (open) {
+            var f = (bp[0] - st.cuff) / (bp[0] - bp[1]);
+            var amp = f < 0.15 ? 0.6 : f < 0.7 ? 1 : f < 0.85 ? 0.5 : 0.25;
+            st.sounds.push([st.t + 0.12, amp, st.cuff]);
+            if (st.first == null) { st.first = st.cuff; BB.stat("cf-o-s", fmt0(st.first) + "<small>mmHg</small>"); }
+            st.last = st.cuff;
+            BB.stat("cf-o-d", fmt0(st.last) + "<small>mmHg</small>");
+          }
+        }
+        if (st.t % 0.05 < hh) st.hist.push([st.t, st.cuff, a]);
+        if (st.cuff < Math.max(40, WHO[who][1] - 25)) {
+          st.done = true;
+          var e1 = st.first - bp[0], e2 = st.last - bp[1];
+          BB.stat("cf-o-err", "<span class='" + (Math.abs(e1) > 4 || Math.abs(e2) > 4 ? "bad-t" : "") + "'>" + (e1 >= 0 ? "+" : "") + fmt0(e1) + " / " + (e2 >= 0 ? "+" : "") + fmt0(e2) + "</span><small>mmHg</small>");
+          break;
+        }
+      }
+      BB.stat("cf-o-cuff", fmt0(st.cuff) + "<small>mmHg</small>");
+    }
+    cv = BB.canvas("#cf-cv", function (ctx, w, h) {
+      var p = P(), artc = BB.color("art"), narrow = w < 560, bp = WHO[who];
+      var tEnd = (180 - Math.max(40, bp[1] - 25)) / getSp() + 1;
+      // 팔 단면(커프 아래 동맥)
+      var ax = narrow ? 60 : 70, ay = 80, R = 46;
+      var a = art(st.t), open = !st.run || st.done ? (st.cuff < bp[1] ? 1 : 0) : BB.clamp((a - st.cuff) / 12, 0, 1);
+      if (!st.run) open = 1;
+      ctx.fillStyle = BB.alpha(p.accent, 0.18); ctx.beginPath(); ctx.arc(ax, ay, R + 10, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = BB.alpha(BB.color("prot"), 0.25); ctx.beginPath(); ctx.arc(ax, ay, R, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = BB.alpha(p.dim, 0.35); ctx.beginPath(); ctx.ellipse(ax - 12, ay + 4, 9, 12, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = artc; ctx.beginPath(); ctx.ellipse(ax + 16, ay - 6, 9, 1.5 + 7.5 * open, 0, 0, Math.PI * 2); ctx.fill();
+      txt(ctx, "커프", ax, ay - R - 18, { align: "center", size: 11, weight: 600, color: p.accent });
+      txt(ctx, "위팔 동맥", ax + 30, ay + R + 22, { align: "center", size: 11, color: artc });
+      txt(ctx, "뼈", ax - 12, ay + 4, { align: "center", size: 10, color: p.text });
+      var stTxt = !st.run ? "준비" : st.done ? "측정 끝" : st.cuff > bp[0] ? "막힘: 소리 없음" : st.cuff > bp[1] ? "박동마다 열림: 툭 툭" : "계속 열림: 소리 없음";
+      txt(ctx, stTxt, ax, ay + R + 40, { align: "center", size: 12, weight: 700, color: st.cuff > bp[1] && st.cuff < bp[0] && st.run ? p.warn : p.text });
+      // 압력 기록
+      var box = narrow ? { x: 46, y: 182, w: w - 60, h: h - 280 } : { x: 190, y: 18, w: w - 206, h: h - 128 };
+      var c = BB.chart(ctx, box, { x: [0, tEnd], y: [40, 190], xLabel: "시간(s)", yLabel: "압력(mmHg)", xFmt: function (v) { return fmt0(v); } });
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      ctx.strokeStyle = BB.alpha(artc, 0.85); ctx.lineWidth = 1.2; ctx.beginPath();
+      var tNow = st.run ? st.t : 0;
+      for (var x = 0; x <= tNow; x += 0.02) { var y = c.Y(art(x)); x ? ctx.lineTo(c.X(x), y) : ctx.moveTo(c.X(x), y); } ctx.stroke();
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(c.X(0), c.Y(180)); ctx.lineTo(c.X(st.t), c.Y(st.cuff)); ctx.stroke();
+      if (st.run) handle(ctx, c.X(st.t), c.Y(st.cuff), p.accent, 5);
+      if (st.first != null) { ctx.strokeStyle = BB.alpha(p.warn, 0.7); ctx.setLineDash([4, 3]); ctx.lineWidth = 1.2; [st.first, st.last].forEach(function (v) { ctx.beginPath(); ctx.moveTo(box.x, c.Y(v)); ctx.lineTo(box.x + box.w, c.Y(v)); ctx.stroke(); }); ctx.setLineDash([]); }
+      ctx.restore();
+      if (st.first != null) { txt(ctx, "첫 소리 " + fmt0(st.first), box.x + box.w - 4, c.Y(st.first) - 8, { align: "right", size: 11, weight: 700, color: p.warn }); }
+      if (st.done) txt(ctx, "마지막 소리 " + fmt0(st.last), box.x + box.w - 4, c.Y(st.last) + 10, { align: "right", size: 11, weight: 700, color: p.warn });
+      txt(ctx, "굵은 선: 커프 압력 · 가는 선: 동맥압(실제 " + bp[0] + "/" + bp[1] + ")", box.x + 6, box.y + 8, { size: 10.5 });
+      if (!st.run) txt(ctx, narrow ? "\"측정 시작\"을 누른다" : "\"측정 시작\"을 누르면 커프를 180까지 부풀린 뒤 공기를 뺀다", box.x + box.w / 2, box.y + box.h / 2, { align: "center", size: 12.5, weight: 700, color: p.text });
+      // 소리 막대
+      var sb = { x: box.x, y: box.y + box.h + 44, w: box.w, h: narrow ? 40 : 44 };
+      ctx.strokeStyle = p.grid; ctx.beginPath(); ctx.moveTo(sb.x, sb.y + sb.h / 2); ctx.lineTo(sb.x + sb.w, sb.y + sb.h / 2); ctx.stroke();
+      txt(ctx, "청진기 소리", sb.x - 6, sb.y + sb.h / 2, { align: "right", size: 10.5 });
+      st.sounds.forEach(function (s) {
+        var x = c.X(s[0]); var fresh = st.t - s[0] < 0.25 && st.t >= s[0];
+        ctx.strokeStyle = fresh ? p.warn : BB.alpha(p.warn, 0.7); ctx.lineWidth = fresh ? 3 : 2;
+        ctx.beginPath(); ctx.moveTo(x, sb.y + sb.h / 2 - s[1] * sb.h / 2); ctx.lineTo(x, sb.y + sb.h / 2 + s[1] * sb.h / 2); ctx.stroke();
+      });
+      var lastS = st.sounds.length ? st.sounds[st.sounds.length - 1] : null;
+      if (lastS && st.t - lastS[0] < 0.2 && st.t >= lastS[0]) txt(ctx, "툭!", ax + 52, ay - 30, { size: 16, weight: 800, color: p.warn });
+      if (getSp() >= 8) txt(ctx, "너무 빠르다: 박동 사이에 " + fmt0(getSp() * T) + " mmHg씩 지나친다", box.x + box.w - 4, box.y + box.h - 12, { align: "right", size: 11.5, weight: 700, color: p.bad });
+    }, { get height() { return viewW("cf-cv") < 560 ? 480 : 340; } });
+    BB.loop(document.getElementById("sim-cuff"), function (dt) { step(dt * 1.5); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 6. 혈압 지도 */
+  (function () {
+    var sbp = 128, dbp = 82, showEx = false, lay = null, cv = null;
+    function out() {
+      var c = BD.bpClass(sbp, dbp);
+      BB.stat("bc-o-bp", fmt0(sbp) + "/" + fmt0(dbp));
+      BB.stat("bc-o-cls", "<span class='" + (c.level >= 2 ? "bad-t" : c.level >= 0.5 ? "warn-t" : "ok-t") + "'>" + c.label + "</span>");
+      BB.stat("bc-o-map", fmt0(BD.mapOf(sbp, dbp)) + "<small>mmHg</small>");
+      BB.stat("bc-o-pp", fmt0(sbp - dbp) + "<small>mmHg</small>");
+      if (cv) cv.redraw();
+    }
+    document.getElementById("bc-daon").addEventListener("click", function () { sbp = 128; dbp = 82; showEx = false; out(); });
+    document.getElementById("bc-ex").addEventListener("click", function () { sbp = 128; dbp = 82; showEx = !showEx; out(); });
+    document.getElementById("bc-ex2").addEventListener("change", function () { if (!this.value) return; var v = this.value.split("/"); sbp = +v[0]; dbp = +v[1]; out(); });
+    out();
+    cv = BB.canvas("#bc-cv", function (ctx, w, h) {
+      var p = P();
+      var box = { x: 54, y: 16, w: w - 70, h: h - 72 };
+      var X = function (d) { return box.x + ((d - 40) / 80) * box.w; }, Y = function (s) { return box.y + box.h - ((s - 80) / 120) * box.h; };
+      var colOf = function (c) { return c.key === "normal" ? BB.alpha(p.ok, 0.22) : c.key === "elev" ? BB.alpha(p.warn, 0.14) : c.key === "pre" ? BB.alpha(p.warn, 0.32) : c.key === "h1" ? BB.alpha(p.bad, 0.2) : c.key === "h2" ? BB.alpha(p.bad, 0.36) : BB.alpha(p.accent, 0.18); };
+      for (var d = 40; d < 120; d += 1) for (var s = 80; s < 200; s += 1) {
+        var c = BD.bpClass(s + 0.5, d + 0.5); ctx.fillStyle = colOf(c); ctx.fillRect(X(d), Y(s + 1), X(d + 1) - X(d) + 0.6, Y(s) - Y(s + 1) + 0.6);
+      }
+      BB.chart(ctx, box, { x: [40, 120], y: [80, 200], xLabel: "확장기 혈압(mmHg)", yLabel: "수축기 혈압(mmHg)", xTicks: [40, 60, 80, 90, 100, 110, 120], yTicks: [80, 100, 120, 140, 160, 180, 200] });
+      // 영역 이름
+      var lab = [["정상", 60, 104], ["주의", 60, 125], ["전단계", 72, 134], ["1기", 74, 150], ["2기", 76, 172], ["저혈압", 48, 86]];
+      lab.forEach(function (L) { txt(ctx, L[0], X(L[1]), Y(L[2]), { size: 11, weight: 700, color: p.text, align: "center" }); });
+      ctx.strokeStyle = BB.alpha(p.text, 0.25); ctx.setLineDash([2, 3]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(box.x, Y(sbp)); ctx.lineTo(X(dbp), Y(sbp)); ctx.lineTo(X(dbp), box.y + box.h); ctx.stroke(); ctx.setLineDash([]);
+      // 다온 표시
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(X(82), Y(128), 9, 0, Math.PI * 2); ctx.stroke();
+      txt(ctx, "다온 검진", X(82) + 12, Y(128) + 14, { size: 10.5, color: p.accent2 });
+      if (showEx) {
+        var x1 = X(82), y1 = Y(128), x2 = X(79), y2 = Y(123);
+        ctx.strokeStyle = p.ok; ctx.lineWidth = 2.4; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+        ctx.fillStyle = p.ok; ctx.beginPath(); ctx.arc(x2, y2, 5, 0, Math.PI * 2); ctx.fill();
+        txt(ctx, "규칙적 유산소 운동 평균 효과 → 123/79(주의 혈압)", Math.min(x2 - 6, box.x + box.w - 300), y2 + 22, { size: 11.5, weight: 700, color: p.ok });
+      }
+      handle(ctx, X(dbp), Y(sbp), p.text, 8);
+      var cls = BD.bpClass(sbp, dbp);
+      var lbl = fmt0(sbp) + "/" + fmt0(dbp) + " · " + cls.label;
+      ctx.font = BB.font(12.5, false, 700); var tw = ctx.measureText(lbl).width + 12;
+      var lx = BB.clamp(X(dbp) + 12, box.x + 2, box.x + box.w - tw - 2), ly = BB.clamp(Y(sbp) - 26, box.y + 2, box.y + box.h - 20);
+      ctx.fillStyle = BB.alpha(p.bg, 0.9); BB.rrect(ctx, lx, ly, tw, 20, 5); ctx.fill();
+      txt(ctx, lbl, lx + 6, ly + 10, { size: 12.5, weight: 700, color: cls.level >= 2 ? p.bad : p.text });
+      lay = { box: box };
+    }, { aspect: 0.7, minHeight: 320, maxHeight: 440 });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.box; dbp = Math.round(BB.clamp(40 + ((x - b.x) / b.w) * 80, 40, 120)); sbp = Math.round(BB.clamp(80 + ((b.y + b.h - y) / b.h) * 120, 80, 200)); if (sbp < dbp + 10) sbp = dbp + 10; out(); } });
+  })();
+
+  /* ---------------------------------------------------------- 7. 기울기 검사대 */
+  (function () {
+    var lay = null, cv = null, t = 0, poolNow = 0, dragging = false, RHO = 0.78;
+    var getA = BB.range("hs-a", function (v) { return v + "°"; }, function () { out(); });
+    document.getElementById("hs-pump").addEventListener("change", function () { out(); });
+    function vals() {
+      var s = Math.sin((getA() * Math.PI) / 180), pump = document.getElementById("hs-pump").checked;
+      var head = 93 - RHO * 46 * s, foot = 93 + RHO * 120 * s;
+      var vfoot = 5 + RHO * 120 * s; if (pump) vfoot = 5 + (25 - 5) * s + 4 * Math.sin(t * 6) * s;
+      var pool = (pump ? 150 : 520) * s;
+      return { s: s, head: head, foot: foot, vfoot: vfoot, pool: pool, pump: pump };
+    }
+    function out() {
+      var v = vals();
+      BB.stat("hs-o-head", "<span class='" + (v.head < 65 ? "warn-t" : "") + "'>" + fmt0(v.head) + "</span><small>mmHg</small>");
+      BB.stat("hs-o-foot", fmt0(v.foot) + "<small>mmHg</small>");
+      BB.stat("hs-o-ven", fmt0(v.vfoot) + "<small>mmHg</small>");
+      BB.stat("hs-o-pool", fmt0(v.pool) + "<small>mL</small>");
+    }
+    out();
+    cv = BB.canvas("#hs-cv", function (ctx, w, h) {
+      var p = P(), v = vals(), narrow = w < 560, art = BB.color("art"), ven = BB.color("ven");
+      var H = narrow ? Math.min(h * 0.5, w * 0.62) : Math.min(h * 0.82, 300);
+      var pivX = narrow ? w * 0.36 : w * 0.34, pivY = narrow ? h * 0.36 : h * 0.4;
+      var ang = (getA() * Math.PI) / 180;   // 0 = 누움(머리 왼쪽), 90 = 섬
+      var u = H / 100;
+      // 회전: 몸 좌표(위→아래 = 머리→발)를 화면으로
+      ctx.save(); ctx.translate(pivX, pivY); ctx.rotate(-(Math.PI / 2 - ang)); ctx.translate(-0, -30.5 * u);
+      // 침대
+      ctx.fillStyle = BB.alpha(p.dim, 0.18); BB.rrect(ctx, 14 * u, -4 * u, 4 * u, 108 * u, 4); ctx.fill();
+      BD.body(ctx, 0, 0, H, { organs: { brain: art, heart: art, muscle: BB.alpha(ven, 1) }, alpha: 0.35 });
+      // 다리 정맥 고임
+      ctx.fillStyle = BB.alpha(ven, 0.15 + 0.5 * (v.pool / 520)); ctx.beginPath(); ctx.ellipse(-5.6 * u, 80 * u, 3 * u, 14 * u, 0, 0, Math.PI * 2); ctx.ellipse(5.6 * u, 80 * u, 3 * u, 14 * u, 0, 0, Math.PI * 2); ctx.fill();
+      if (v.pump) { var sq = 0.5 + 0.5 * Math.sin(t * 6); ctx.strokeStyle = p.ok; ctx.lineWidth = 2; [-5.6, 5.6].forEach(function (dx) { ctx.beginPath(); ctx.ellipse(dx * u, 70 * u, (2.6 - sq) * u, 6 * u, 0, 0, Math.PI * 2); ctx.stroke(); }); }
+      ctx.restore();
+      // 위치 계산(화면): 몸 좌표 dy(u) → 화면
+      var pt = function (dy) { var d = (dy - 30.5) * u; return [pivX + Math.cos(ang - Math.PI / 2 + Math.PI / 2) * 0 + Math.sin(Math.PI / 2 - ang) * -d * -1 * 0 + d * Math.cos(ang), pivY + d * Math.sin(ang)]; };
+      // 위 식 단순화: 회전 -(90°-ang) 후 (0, d) → (d·sin(90°-ang), d·cos(90°-ang)) = (d·cos ang, d·sin ang)
+      pt = function (dy) { var d = (dy - 30.5) * u; return [pivX + d * Math.cos(ang), pivY + d * Math.sin(ang)]; };
+      var head = pt(6), heart = pt(30.5), foot = pt(96);
+      // 손잡이(머리 쪽)
+      var hp = pt(-4); handle(ctx, hp[0], hp[1], p.accent, 9);
+      lay = { pivX: pivX, pivY: pivY };
+      // 압력 글자
+      function tag(q, lines, col, dx, dy) {
+        var x = q[0] + dx, y = q[1] + (dy || 0);
+        ctx.font = BB.font(11.5, false, 700);
+        var tw = Math.max.apply(null, lines.map(function (s) { return ctx.measureText(s).width; })) + 10;
+        x = BB.clamp(x, 4, w - tw - 4); y = BB.clamp(y, 18, h - 20 * lines.length);
+        ctx.fillStyle = BB.alpha(p.bg, 0.88); BB.rrect(ctx, x, y - 10, tw, 16 * lines.length + 4, 5); ctx.fill();
+        lines.forEach(function (s, i) { txt(ctx, s, x + 5, y + i * 16, { size: 11.5, weight: 700, color: i === 0 ? col : p.dim }); });
+      }
+      tag(head, ["뇌 " + fmt0(v.head) + " mmHg", "심장보다 " + fmt0(46 * v.s) + " cm 위"], v.head < 65 ? p.bad : art, -40, -58);
+      tag(heart, ["심장 93 mmHg", "기준 높이"], art, 16, 40);
+      tag(foot, ["발 동맥 " + fmt0(v.foot), "발 정맥 " + fmt0(v.vfoot)], art, narrow ? -70 : 24, narrow ? 34 : 0);
+      // 피 기둥 막대(오른쪽)
+      if (narrow) {
+        var hb = { x: 54, y: h - 104, w: w - 74 }, BX = function (mm) { return hb.x + (mm / 200) * hb.w; };
+        [[v.head, art, "뇌"], [93, art, "심장"], [v.foot, art, "발 동맥"], [v.vfoot, ven, "발 정맥"]].forEach(function (b, i) {
+          var y = hb.y + i * 20; ctx.fillStyle = BB.alpha(b[1], 0.6); ctx.fillRect(hb.x, y, BX(b[0]) - hb.x, 13);
+          txt(ctx, b[2], hb.x - 6, y + 7, { align: "right", size: 10.5 }); txt(ctx, fmt0(b[0]), BX(b[0]) + 4, y + 7, { size: 10.5, mono: true, color: p.text });
+        });
+        txt(ctx, "mmHg(0~200)", hb.x + hb.w, hb.y - 10, { align: "right", size: 10 });
+      } else {
+      var bg = narrow ? 18 : 26, bw2 = narrow ? 14 : 20, bx = narrow ? w - 80 : w - 130, by0 = 30, bh = h - 96;
+      var Yb = function (mm) { return by0 + bh - (mm / 200) * bh; };
+      ctx.strokeStyle = p.grid; [0, 50, 100, 150, 200].forEach(function (mm) { ctx.beginPath(); ctx.moveTo(bx, Yb(mm)); ctx.lineTo(bx + 4 * bg + 2, Yb(mm)); ctx.stroke(); txt(ctx, String(mm), bx - 4, Yb(mm), { align: "right", size: 9.5, mono: true }); });
+      [[v.head, art, "뇌"], [93, art, "심장"], [v.foot, art, "발A"], [v.vfoot, ven, "발V"]].forEach(function (b, i) {
+        var x = bx + 4 + i * bg; ctx.fillStyle = BB.alpha(b[1], i === 3 ? 0.7 : 0.45 + 0.15 * i); ctx.fillRect(x, Yb(b[0]), bw2, Yb(0) - Yb(b[0]));
+        txt(ctx, b[2], x + bw2 / 2, Yb(0) + 10, { align: "center", size: 9, color: p.dim });
+      });
+      txt(ctx, "mmHg", bx + 2 * bg, by0 - 12, { align: "center", size: 10 });
+      }
+      if (v.head < 62) txt(ctx, "반사가 없다면 뇌로 가는 압력이 모자란다", 12, narrow ? 14 : h - 12, { size: 12, weight: 700, color: p.bad });
+    }, { get height() { return viewW("hs-cv") < 560 ? 470 : 380; } });
+    BB.drag(cv.canvas, {
+      start: function (x, y) { dragging = !!lay; },
+      move: function (x, y) { if (!dragging) return; var a = Math.atan2(lay.pivY - y, lay.pivX - x) * 180 / Math.PI; getA.set(Math.round(BB.clamp(a, 0, 90))); },
+      end: function () { dragging = false; },
+    });
+    BB.loop(document.getElementById("sim-tilt"), function (dt) { t += dt; if (document.getElementById("hs-pump").checked) out(); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 8. 스탈링 힘 */
+  (function () {
+    var pa = 35, pv = 15, fluid = 0, t = 0, lay = null, cv = null, drag = null, res = null;
+    var K = 2, LYMPH = 8;
+    function calc() {
+      var leak = document.getElementById("sc-leak").checked;
+      var sig = leak ? 0.55 : 1, pic = getPi(), pii = leak ? 8 : 1, pi0 = 0;
+      var n = 40, sum = 0, net = [];
+      for (var i = 0; i <= n; i++) { var x = i / n, pc = pa + (pv - pa) * x; var j = (pc - pi0) - sig * (pic - pii); net.push([x, j, pc]); sum += j; }
+      var avg = sum / (n + 1), jv = Math.max(0, K * avg * (leak ? 2.5 : 1) + (leak ? 2 : 0));
+      if (avg < 0) jv = 0.3;
+      res = { net: net, avg: avg, jv: jv, pic: pic, sig: sig, pii: pii, leak: leak };
+      BB.stat("sc-o-j", jv.toFixed(1) + "<small>L/day</small>");
+      BB.stat("sc-o-l", Math.min(jv, LYMPH).toFixed(1) + " / 최대 " + LYMPH + "<small>L/day</small>");
+    }
+    var getPi = BB.range("sc-pi", function (v) { return v + " mmHg"; }, calc);
+    document.getElementById("sc-leak").addEventListener("change", calc);
+    document.getElementById("sc-hf").addEventListener("click", function () { pv = 27; pa = 40; calc(); });
+    document.getElementById("sc-re").addEventListener("click", function () { pa = 35; pv = 15; fluid = 0; getPi.set(25); document.getElementById("sc-leak").checked = false; calc(); });
+    calc();
+    cv = BB.canvas("#sc-cv", function (ctx, w, h) {
+      var p = P(), art = BB.color("art"), ven = BB.color("ven"), narrow = w < 560;
+      // 위: 조직 속 모세혈관
+      var tx = 14, ty = 12, tw = w - 28, th = narrow ? 150 : 150;
+      var sw = BB.clamp(fluid / 30, 0, 1);
+      ctx.fillStyle = BB.alpha(BB.color("water"), 0.06 + 0.25 * sw); BB.rrect(ctx, tx, ty - 6 * sw, tw, th + 12 * sw, 12); ctx.fill();
+      txt(ctx, "조직액", tx + 8, ty + 12, { size: 11, color: p.dim });
+      var cy = ty + th * 0.52, cr = 16;
+      var grad = ctx.createLinearGradient(tx + 30, 0, tx + tw - 30, 0); grad.addColorStop(0, BB.alpha(art, 0.55)); grad.addColorStop(1, BB.alpha(ven, 0.55));
+      ctx.fillStyle = grad; BB.rrect(ctx, tx + 30, cy - cr, tw - 60, 2 * cr, cr); ctx.fill();
+      txt(ctx, "세동맥 쪽", tx + 34, cy + cr + 12, { size: 10.5, color: art });
+      txt(ctx, "세정맥 쪽", tx + tw - 34, cy + cr + 12, { align: "right", size: 10.5, color: ven });
+      BD.flowDots(ctx, [[tx + 36, cy], [tx + tw - 36, cy]], t * 26, { color: BB.alpha(p.text, 0.5), gap: 18, r: 2 });
+      // 화살표
+      var nA = narrow ? 6 : 9;
+      for (var i = 0; i < nA; i++) {
+        var x = (i + 0.5) / nA, j = BD.interp(res.net.map(function (q) { return q[0]; }), res.net.map(function (q) { return q[1]; }), x);
+        var px = tx + 30 + x * (tw - 60), L = BB.clamp(Math.abs(j) * 2.4, 3, 40), outw = j > 0, col = outw ? p.warn : ven;
+        [-1, 1].forEach(function (sd) {
+          var y0 = cy + sd * (cr + 2), y1 = y0 + sd * L * (outw ? 1 : 1);
+          var a = outw ? [y0, y1] : [y1, y0];
+          ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = 2.4; ctx.beginPath(); ctx.moveTo(px, a[0]); ctx.lineTo(px, a[1]); ctx.stroke();
+          var dir = (a[1] - a[0]) > 0 ? 1 : -1; ctx.beginPath(); ctx.moveTo(px, a[1]); ctx.lineTo(px - 4, a[1] - dir * 6); ctx.lineTo(px + 4, a[1] - dir * 6); ctx.closePath(); ctx.fill();
+        });
+      }
+      // 림프관
+      var lx = tx + tw * 0.5, ly = ty + th - 14;
+      ctx.strokeStyle = BB.alpha(p.ok, 0.6); ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(tx + 40, ly); ctx.lineTo(tx + tw - 40, ly); ctx.stroke();
+      BD.flowDots(ctx, [[tx + 40, ly], [tx + tw - 40, ly]], t * 8 * Math.min(res.jv, LYMPH), { color: p.ok, gap: 16, r: 2.2 });
+      txt(ctx, "림프관 → 정맥으로", tx + tw - 44, ly - 12, { align: "right", size: 10.5, color: p.ok });
+      if (fluid > 8) txt(ctx, "부종: 조직에 물이 고인다", tx + tw / 2, ty + 12, { align: "center", size: 12.5, weight: 700, color: p.bad });
+      // 아래: 압력 그래프
+      var box = { x: 50, y: ty + th + 34, w: w - 66, h: h - (ty + th + 34) - 72 };
+      var c = BB.chart(ctx, box, { x: [0, 1], y: [0, 45], xTicks: [], yLabel: "mmHg", xLabel: "모세혈관을 따라(동맥 쪽 → 정맥 쪽)",
+        series: [{ data: [[0, res.sig * (res.pic - res.pii)], [1, res.sig * (res.pic - res.pii)]], color: p.accent, width: 2.4 }, { data: [[0, pa], [1, pv]], color: art, width: 2.8 }] });
+      // 여과/재흡수 칠하기
+      var piE = res.sig * (res.pic - res.pii);
+      for (var k = 0; k < res.net.length - 1; k++) {
+        var x0 = res.net[k][0], x1 = res.net[k + 1][0], pc0 = res.net[k][2], pc1 = res.net[k + 1][2];
+        ctx.fillStyle = BB.alpha((pc0 + pc1) / 2 > piE ? p.warn : ven, 0.25);
+        ctx.beginPath(); ctx.moveTo(c.X(x0), c.Y(piE)); ctx.lineTo(c.X(x0), c.Y(pc0)); ctx.lineTo(c.X(x1), c.Y(pc1)); ctx.lineTo(c.X(x1), c.Y(piE)); ctx.closePath(); ctx.fill();
+      }
+      handle(ctx, c.X(0), c.Y(pa), art, 8); handle(ctx, c.X(1), c.Y(pv), art, 8);
+      txt(ctx, "Pc " + fmt0(pa), c.X(0) + 12, c.Y(pa) - 10, { size: 11, weight: 700, color: art });
+      txt(ctx, "Pc " + fmt0(pv), c.X(1) - 12, c.Y(pv) - 12, { align: "right", size: 11, weight: 700, color: art });
+      txt(ctx, "당기는 힘 σ(πc−πi) " + piE.toFixed(0), c.X(0.5), c.Y(piE) + 12, { align: "center", size: 11, weight: 600, color: p.accent });
+      lay = { c: c, box: box };
+      BB.stat("sc-o-e", fluid > 8 ? "<span class='bad-t'>붓는 중(부종)</span>" : res.jv > LYMPH ? "<span class='warn-t'>쌓이기 시작</span>" : "<span class='ok-t'>균형</span>");
+    }, { get height() { return viewW("sc-cv") < 560 ? 430 : 400; } });
+    BB.drag(cv.canvas, {
+      start: function (x, y) { drag = null; if (!lay) return; var c = lay.c; if (Math.hypot(x - c.X(0), y - c.Y(pa)) < 26) drag = "a"; else if (Math.hypot(x - c.X(1), y - c.Y(pv)) < 26) drag = "v"; },
+      move: function (x, y) { if (!drag) return; var b = lay.box, v = BB.clamp(45 * (b.y + b.h - y) / b.h, 2, 44); if (drag === "a") pa = Math.max(v, pv); else pv = Math.min(v, pa); calc(); },
+      end: function () { drag = null; },
+    });
+    BB.loop(document.getElementById("sim-capillary"), function (dt) {
+      t += dt; var exc = res.jv - LYMPH;
+      fluid = BB.clamp(fluid + (exc > 0 ? exc * dt * 1.2 : -dt * 3), 0, 30);
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 9. 압반사 모니터 */
+  (function () {
+    var ev = "stand", sim = null, wave = null, t = 0, cv = null, TS = 90;
+    var TPL = BD.ecg({ hr: 60, hrv: 0, resp: 0, noise: 0, duration: 5 }), TR = TPL.beats[2].r;
+    function beatShape(d, rr) { var k = Math.sqrt(BB.clamp(rr, 0.3, 1.6)); if (d > 0.05) d = 0.05 + (d - 0.05) / k; if (d < -0.3 || d > 0.55) return 0; return TPL.v(TR + d); }
+    function build() {
+      var events = ev === "stand" ? [{ t: 10, kind: "stand", value: 1 }] : ev === "bleed" ? [{ t: 10, kind: "bleed", value: 1000 }] : [{ t: 10, kind: "bleed", value: 1000 }, { t: 40, kind: "infuse", value: 1000 }];
+      sim = BD.baroLoop({ tstop: TS, baro: getG(), events: events });
+      // 박동 시각과 파형 표(0.01 s)
+      var dt = 0.01, n = Math.round(TS / dt), beats = [], ph = 0;
+      for (var s = 0; s < n; s++) {
+        var tt = s * dt, i = Math.min(sim.t.length - 1, Math.round(tt / 0.1));
+        ph += (sim.hr[i] / 60) * dt; if (ph >= 1) { ph -= 1; beats.push(tt); }
+      }
+      wave = { beats: beats };
+      var base = 50, mapMin = Math.min.apply(null, sim.map.slice(base)), last = sim.map[sim.map.length - 1];
+      BB.stat("br-o-min", "<span class='" + (mapMin < 75 ? "bad-t" : "") + "'>" + fmt0(mapMin) + "</span><small>mmHg</small>");
+      BB.stat("br-o-end", fmt0(last) + "<small>mmHg</small>");
+      BB.stat("br-o-hr", fmt0(sim.hr[50]) + " → " + fmt0(sim.hr[sim.hr.length - 1]) + "<small>bpm</small>");
+      BB.stat("br-o-sv", fmt0(sim.sv[50]) + " → " + fmt0(sim.sv[sim.sv.length - 1]) + "<small>mL</small>");
+      t = 0;
+    }
+    function at(k, tt) { var i = BB.clamp(Math.round(tt / 0.1), 0, sim.t.length - 1); return sim[k][i]; }
+    function lastBeat(tt) { var b = wave.beats, lo = 0, hi = b.length - 1, r = -1; while (lo <= hi) { var m = (lo + hi) >> 1; if (b[m] <= tt) { r = m; lo = m + 1; } else hi = m - 1; } return r; }
+    function ecgAt(tt) { var k = lastBeat(tt + 0.3); var y = 0; for (var j = Math.max(0, k - 1); j <= k && j >= 0; j++) { var rr = j > 0 ? wave.beats[j] - wave.beats[j - 1] : 0.85; y += beatShape(tt - wave.beats[j], rr); } return y; }
+    function abpAt(tt) { var k = lastBeat(tt - 0.15); if (k < 0) return at("dbp", tt); var b0 = wave.beats[k], b1 = wave.beats[k + 1] || b0 + 0.85; var f = (tt - 0.15 - b0) / (b1 - b0); return at("dbp", tt) + (at("sbp", tt) - at("dbp", tt)) * pShapeFast(f); }
+    var getG = BB.range("br-g", function (v) { return v === 0 ? "0(반사 없음)" : v.toFixed(1); }, BB.debounce(build, 80));
+    var getSp = BB.range("br-sp", function (v) { return v + "×"; });
+    BB.seg("br-ev", function (v) { ev = v; build(); });
+    document.getElementById("br-go").addEventListener("click", function () { t = 0; });
+    build();
+    cv = BB.canvas("#br-cv", function (ctx, w, h) {
+      var W = 6, tt = Math.max(t, 0.01), narrow = w < 560;
+      var mapNow = at("map", tt), alarm = mapNow < 75;
+      var topH = Math.round(h * 0.52);
+      BD.monitor(ctx, { x: 0, y: 0, w: w, h: topH }, {
+        t: [tt - W, tt], gridDt: 1,
+        traces: [
+          { label: "ECG II", color: BB.trace(1), data: function (q) { return q < 0 ? NaN : ecgAt(q); }, range: [-0.6, 1.5] },
+          { label: "ABP mmHg", color: BB.trace(2), data: function (q) { return q < 0 ? NaN : abpAt(q); }, range: [30, 150] },
+        ],
+        numerics: [
+          { label: "HR", value: fmt0(at("hr", tt)), unit: "bpm", color: BB.trace(1), alarm: at("hr", tt) > 110 },
+          { label: "ABP", value: fmt0(at("sbp", tt)) + "/" + fmt0(at("dbp", tt)), unit: "mmHg", color: BB.trace(2), alarm: alarm, sub: "(" + fmt0(mapNow) + ")" },
+        ],
+      });
+      // 아래: 추세(전체 90 s)
+      var trend = function (k) { var a = []; for (var i = 0; i < sim.t.length && sim.t[i] <= tt; i += 3) a.push([sim.t[i], sim[k][i]]); return a; };
+      var r = BD.monitor(ctx, { x: 0, y: topH + 4, w: w, h: h - topH - 4 }, {
+        t: [0, TS], gridDt: 10,
+        traces: [
+          { label: "평균 동맥압 추세 (0~90 s)", color: BB.trace(2), data: trend("map"), range: [55, 110] },
+          { label: "심박수 추세", color: BB.trace(1), data: trend("hr"), range: [50, 140] },
+        ],
+        numerics: [{ label: "SV", value: fmt0(at("sv", tt)), unit: "mL", color: BB.trace(3) }, { label: "CO", value: at("co", tt).toFixed(1), unit: "L/min", color: BB.trace(4) }],
+      });
+      var row = r.rows[0];
+      ctx.strokeStyle = "rgba(255,255,255,0.35)"; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
+      [10].concat(ev === "fluid" ? [40] : []).forEach(function (te) { var x = row.X(te); ctx.beginPath(); ctx.moveTo(x, row.y); ctx.lineTo(x, r.rows[1].y + r.rows[1].h); ctx.stroke(); });
+      ctx.setLineDash([]);
+      ctx.fillStyle = "#cfd6e4"; ctx.font = BB.font(10.5, false, 600); ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+      ctx.fillText(ev === "stand" ? "↓ 일어섬" : "↓ 출혈", row.X(10) + 3, row.y + row.h - 4);
+      if (ev === "fluid") ctx.fillText("↓ 수액", row.X(40) + 3, row.y + row.h - 4);
+      // 75 mmHg 선
+      ctx.strokeStyle = "rgba(255,77,94,0.45)"; ctx.setLineDash([2, 4]); ctx.beginPath(); ctx.moveTo(row.x, row.Y(75)); ctx.lineTo(row.x + row.w, row.Y(75)); ctx.stroke(); ctx.setLineDash([]);
+      if (alarm) { ctx.fillStyle = "#ff4d5e"; ctx.font = BB.font(12.5, false, 700); ctx.textAlign = "right"; ctx.textBaseline = "top"; ctx.fillText("경보: 평균 동맥압 75 미만 · 어지러움", row.x + row.w - 4, row.y + 4); }
+    }, { get height() { return viewW("br-cv") < 560 ? 440 : 400; } });
+    BB.loop(document.getElementById("sim-baroreflex"), function (dt) { t += dt * getSp(); if (t > TS - 0.2) t = TS - 0.2; cv.redraw(); });
+  })();
+})();
+</script>
+</body>
+</html>

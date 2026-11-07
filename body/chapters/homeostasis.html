@@ -1,0 +1,918 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "몸은 값을 지키는 제어 장치다. 설정점·감지기·효과기, 음성 피드백의 이득과 남는 오차, 지연이 만드는 출렁임, 적분 제어, 양성 피드백, 앞먹임, 일어설 때의 압반사를 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>항상성과 피드백 · BodyBook</title>
+<meta name="description" content="몸은 값을 지키는 제어 장치다. 설정점·감지기·효과기, 음성 피드백의 이득과 남는 오차, 지연이 만드는 출렁임, 적분 제어, 양성 피드백, 앞먹임, 일어설 때의 압반사를 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/homeostasis.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="항상성과 피드백 · BodyBook">
+<meta property="og:description" content="몸은 값을 지키는 제어 장치다. 설정점·감지기·효과기, 음성 피드백의 이득과 남는 오차, 지연이 만드는 출렁임, 적분 제어, 양성 피드백, 앞먹임, 일어설 때의 압반사를 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/homeostasis.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/homeostasis.html#chapter","name":"항상성과 피드백","headline":"항상성과 피드백 · BodyBook","description":"몸은 값을 지키는 제어 장치다. 설정점·감지기·효과기, 음성 피드백의 이득과 남는 오차, 지연이 만드는 출렁임, 적분 제어, 양성 피드백, 앞먹임, 일어설 때의 압반사를 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/homeostasis.html","position":2,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"2. 항상성과 피드백","item":"https://medical.euiyun.com/body/chapters/homeostasis.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<!--head:end-->
+<style>
+  .hs-flag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="homeostasis">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 02</div>
+    <h1>항상성과 피드백</h1>
+    <p class="lead">한겨울 바깥은 영하 10 °C이고 한여름 찜질방은 60 °C인데, 몸속 온도는 37 °C에서 1 °C도 잘 벗어나지 않는다. 밥을 먹어도 굶어도 혈당은 70~140 mg/dL 사이에 머물고, 누웠다 일어서도 혈압은 몇 초 만에 제자리로 돌아온다. 몸은 값을 <b>지키는</b> 기계다. 이 장은 그 기계의 설계도인 피드백 루프를 직접 만들고 망가뜨려 본다.</p>
+    <ul class="objectives">
+      <li>항상성 루프의 부품(설정점, 감지기, 조절 중추, 효과기)을 실제 예에서 찾는다.</li>
+      <li>음성 피드백의 이득이 클수록 남는 오차가 작아지는 이유와, 1/(1 + 이득) 관계를 설명한다.</li>
+      <li>신호가 늦게 도착하면 피드백이 출렁이고, 이득과 지연이 함께 커질수록 불안정해진다는 것을 본다.</li>
+      <li>적분 제어, 양성 피드백, 앞먹임(예측)이 각각 언제 쓰이는지 구별한다.</li>
+      <li>설정점 자체를 옮기는 것(열, 운동)과 교란을 되돌리는 것을 구별한다.</li>
+    </ul>
+  </header>
+
+  <section id="loop">
+    <h2>값을 지키는 기계</h2>
+    <p>19세기 프랑스의 생리학자 클로드 베르나르는 몸 안의 액체, 곧 세포를 둘러싼 "내부 환경"이 바깥이 어떻게 변하든 일정하게 유지된다는 것을 알아챘다. 1920년대 미국의 월터 캐넌은 이것을 <span class="term">항상성</span><span class="en">(Homeostasis)</span>이라 불렀다. "같은(homeo) 상태에 머문다(stasis)"는 뜻이다. 체온, 혈압, 혈당, 혈액의 pH, 산소와 이산화탄소 분압, 나트륨 농도가 모두 그렇게 지켜진다.</p>
+    <p>항상성은 저절로 생기지 않는다. 값을 재고, 원하는 값과 비교하고, 차이를 줄이도록 무언가를 움직이는 <b>장치</b>가 있다. 이 장치에는 언제나 같은 부품이 있다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-1-10.webp" width="777" height="456" loading="lazy" decoding="async" alt="음성 피드백 루프: 자극, 감지기, 조절 중추, 효과기와 체온 조절의 예">
+      <figcaption><b>음성 피드백 루프.</b> (a) 자극(교란)이 조절 변수를 밀어내면 감지기가 재고, 조절 중추가 설정점과 비교해 차이(오차)를 계산하고, 효과기가 오차의 반대 방향으로 값을 되돌린다. 되돌린 값은 다시 자극을 줄인다(왼쪽으로 돌아가는 화살표). (b) 체온이 37 °C를 넘으면 피부와 뇌의 신경 세포가 감지하고, 뇌의 체온 조절 중추가 온몸의 땀샘을 움직인다. "음성"은 오차의 부호를 뒤집는다는 뜻이다.<span class="fig-words">Stimulus 자극 · Sensor 감지기 · Control 조절 중추 · Effector 효과기 · Sweat glands 땀샘</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/1-5-homeostasis">그림 1.10</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>몸 안의 루프를 이해하는 가장 쉬운 길은 집 안의 루프를 보는 것이다. 보일러의 온도 조절기는 방의 온도(조절 변수)를 온도계(감지기)로 재고, 사용자가 정한 온도(<span class="term">설정점</span><span class="en">(Set point)</span>)와 비교해 보일러(<span class="term">효과기</span><span class="en">(Effector)</span>)를 켜거나 끈다. 아래 방에서 바깥 기온과 설정 온도를 바꿔 보자.</p>
+
+    <div class="sim" id="sim-hs-thermo" data-desc="보일러를 켜고 끄는 온도 조절기로 감지기·조절 중추·효과기를 보고, 켜고 끄는 간격과 바깥 기온에 따라 방 온도가 어떻게 출렁이는지, 보일러 힘이 모자라면 무엇이 무너지는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>방의 온도 조절기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="th-cv"></canvas><span class="hint">그래프의 설정 온도 선을 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>바깥 기온 <output id="th-out-out"></output></span><input type="range" id="th-out" min="-15" max="25" step="1" value="0"></label>
+          <label class="ctrl"><span>켜고 끄는 간격 <output id="th-hy-out"></output></span><input type="range" id="th-hy" min="0.2" max="4" step="0.1" value="1"></label>
+          <div class="btn-row"><button class="btn" id="th-win">창문 열기(10분)</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">방 온도</span><span class="v" id="th-o-t">—</span></div>
+        <div class="stat"><span class="k">설정 온도</span><span class="v" id="th-o-sp">—</span></div>
+        <div class="stat"><span class="k">보일러</span><span class="v" id="th-o-on">—</span></div>
+        <div class="stat"><span class="k">시간당 켜짐 횟수</span><span class="v" id="th-o-n">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 켜고 끄는 간격을 0.2 °C로 줄인다. 온도는 설정점에 바짝 붙지만 보일러가 자주 켜졌다 꺼진다. 4 °C로 넓히면 덜 켜지는 대신 크게 출렁인다. ② "창문 열기"를 누른다. 찬 공기(교란)가 들어와도 보일러가 더 오래 켜져 되돌린다. ③ 바깥 기온을 −15 °C로 내린다. 보일러가 쉬지 않고 켜져 있어도 설정 온도에 닿지 못한다. 효과기의 힘에는 한계가 있다. (방의 열 시정수 30분, 보일러를 계속 켜면 바깥보다 최대 30 °C 높아지는 교육용 모델. 시간은 1초에 약 4분씩 흐른다.)</div>
+    </div>
+
+    <p>보일러는 켜짐과 꺼짐 두 상태뿐이라 방 온도는 설정점 주위를 톱니처럼 오르내린다. 몸의 효과기 가운데 몇몇도 이렇게 거칠게 일한다. 떨림은 일정 체온 아래에서 시작되고 땀은 일정 체온 위에서 시작된다. 하지만 대부분의 효과기는 오차가 클수록 <b>더 세게</b> 일한다. 심장은 혈압이 많이 떨어질수록 더 빨리 뛴다. 이것이 다음 절의 비례 제어다.</p>
+  </section>
+
+  <section id="gain">
+    <h2>이득: 얼마나 세게 되돌리는가</h2>
+    <p>오차 1만큼에 효과기가 얼마나 세게 반응하는지를 <span class="term">이득</span><span class="en">(Gain)</span>이라 한다. 이득이 4라면 체온이 0.1 °C 떨어질 때 효과기는 "0.4만큼" 열을 더 만든다. 그런데 오차에 비례해서만 일하는 장치에는 묘한 성질이 있다. 교란이 계속되는 한 오차를 완전히 0으로 만들지 못한다. 오차가 0이 되면 효과기도 멈추기 때문이다.</p>
+    <div class="formula">$$\text{남는 오차} = \frac{\text{교란}}{1 + G}$$
+      <div class="where">\(G\) 루프 이득(차원 없음). 이득 1이면 교란의 절반, 이득 9면 10분의 1이 남는다. 압반사의 이득은 약 2~3, 체온 조절의 이득은 약 30이라고 알려져 있다(Guyton·Hall).</div>
+    </div>
+    <p>아래에서 오른쪽 곡선 위의 점을 끌어 이득을 바꿔 보자. 왼쪽 그래프에서 10초에 추위(교란)가 들이닥친 뒤 조절 변수가 어디까지 떨어졌다 어디에서 멈추는지를 본다.</p>
+
+    <div class="sim" id="sim-hs-gain" data-desc="이득 곡선 위의 점을 끌어 비례 제어의 이득을 바꾸면 교란 뒤 남는 오차가 1/(1+G)로 줄어드는 것과, 이득이 지나치게 크면 작은 지연에도 출렁이는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>이득을 올리면 오차가 준다</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="gn-cv"></canvas><span class="hint">오른쪽 곡선 위의 점을 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>피드백 있음</span><span><i style="background:var(--text-faint)"></i>피드백 없음(이득 0)</span><span><i style="background:var(--warn)"></i>효과기의 일</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">이득 G</span><span class="v" id="gn-o-g">—</span></div>
+        <div class="stat"><span class="k">남는 오차</span><span class="v" id="gn-o-e">—</span></div>
+        <div class="stat"><span class="k">교란을 막아 낸 몫</span><span class="v" id="gn-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 이득을 0으로 둔다. 추위만큼 그대로 떨어진다(37 → 32 °C 상당). ② 이득 4에서 남는 오차가 교란의 1/5(1 °C)이다. 이득 30이면 약 0.16 °C로, 체온 조절의 실제 정밀도에 가깝다. ③ 이득을 32 넘게 올린다. 감지에 0.5초 지연만 있어도 되돌리는 힘이 너무 세서 출렁임이 사라지지 않는다. (조절 변수의 시정수 10초, 교란은 −5 °C 상당의 계단, 감지 지연 0.5초. BD.feedback 교육용 모델.)</div>
+    </div>
+
+    <p>이득이 큰 루프일수록 값을 정밀하게 지킨다. 그렇다면 왜 모든 루프의 이득을 끝없이 키우지 않을까. 답은 위 실험의 ③에 이미 나왔다. 실제 루프에는 반드시 <b>지연</b>이 있다.</p>
+  </section>
+
+  <section id="delay">
+    <h2>지연이 만드는 출렁임</h2>
+    <p>샤워기의 물 온도를 맞추던 기억을 떠올려 보자. 손잡이를 돌려도 따뜻한 물이 파이프를 따라 오는 데 몇 초가 걸린다. 성급하게 더 돌리면 뜨거운 물이 쏟아지고, 다시 급하게 돌리면 찬물이 나온다. 신호가 늦게 도착하는 루프에서 세게 반응하면 값이 설정점을 지나쳤다(오버슈트) 되돌아오기를 반복한다.</p>
+    <p>몸의 루프에도 지연이 있다. 신경 신호는 수십~수백 ms, 호르몬은 몇 분, 콩팥이 물을 버리는 데는 한 시간이 걸린다. 아래 지도는 가로가 지연, 세로가 이득이다. 점을 끌어 오른쪽 기록이 어떻게 변하는지 보자.</p>
+
+    <div class="sim" id="sim-hs-delay" data-desc="지연-이득 지도 위의 점을 끌어 음성 피드백이 안정, 출렁임, 지속 진동으로 넘어가는 경계를 찾고, 지연이 길수록 낼 수 있는 이득이 줄어드는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>지연-이득 지도</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="dl-cv"></canvas><span class="hint">왼쪽 지도의 점을 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--ok)"></i>안정(출렁임이 가라앉는다)</span><span><i style="background:var(--bad)"></i>불안정(출렁임이 커진다)</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">지연</span><span class="v" id="dl-o-d">—</span></div>
+        <div class="stat"><span class="k">이득</span><span class="v" id="dl-o-g">—</span></div>
+        <div class="stat"><span class="k">최종값을 지나친 양</span><span class="v" id="dl-o-o">—</span></div>
+        <div class="stat"><span class="k">판정</span><span class="v" id="dl-o-s" style="font-family:var(--font);font-size:16px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 지연 0.5초, 이득 4에 놓는다. 한 번 내려갔다 부드럽게 멈춘다. ② 이득은 그대로 두고 지연을 4초로 늘린다. 설정점을 지나쳐 몇 번 출렁인 뒤 가라앉는다. ③ 지연을 6초로 늘려 주황색(불안정) 영역에 들어간다. 출렁임이 점점 커지다가 효과기가 최대·최소를 오가는 진동이 된다. ④ 경계선을 따라가 보면 지연이 길수록 허용되는 이득이 작아진다. 느린 루프는 부드럽게 반응해야 한다. (경계선은 1차 지연 루프의 안정 조건을 계산한 것, 오른쪽 기록은 BD.feedback으로 돌린 것이다. 시정수 10초, 효과기 출력 ±40 제한.)</div>
+    </div>
+
+    <p>이 지도가 생리학에서 여러 "출렁임"을 설명한다. 심부전 환자가 잘 때 숨이 깊어졌다 멈췄다를 반복하는 체인-스토크스 호흡은 피가 폐에서 뇌의 화학 수용체까지 가는 시간이 길어져(심박출량이 낮아서) 호흡 조절 루프의 지연이 커진 결과로 본다. 혈압에서도 약 10초 주기의 작은 출렁임(마이어파)이 보이는데, 압반사 루프의 지연과 관계가 있다.</p>
+  </section>
+
+  <section id="integral">
+    <h2>남은 오차를 지우는 적분</h2>
+    <p>비례 제어는 언제나 오차를 조금 남긴다. 그 오차를 끝까지 지우는 방법은 오차를 <b>쌓아 두는</b> 것이다. 오차가 조금이라도 남아 있으면 쌓인 값이 계속 늘어 효과기를 더 세게 밀고, 오차가 정확히 0이 될 때에야 멈춘다. 이것을 <span class="term">적분 제어</span><span class="en">(Integral control)</span>라 한다.</p>
+    <p>몸에서 적분 제어에 가장 가까운 예는 콩팥이다. 혈압이 조금이라도 높으면 콩팥은 소금과 물을 조금 더 버리고, 이 차이가 매일 쌓여 결국 혈액량과 혈압을 끌어내린다. 압반사가 몇 초 안에 거칠게 막는다면, 콩팥은 며칠에 걸쳐 남은 오차를 지운다(<a href="kidney.html">18장</a>).</p>
+
+    <div class="sim" id="sim-hs-int" data-desc="비례 제어만 있을 때 남는 오차를 적분 제어가 시간을 두고 지우는 것을 보고, 적분 세기가 너무 크면 지나치는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>비례 제어와 적분 제어</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="it-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>비례 이득 <output id="it-g-out"></output></span><input type="range" id="it-g" min="0.5" max="10" step="0.5" value="3"></label>
+          <label class="ctrl"><span>적분 세기 <output id="it-k-out"></output></span><input type="range" id="it-k" min="0" max="2" step="0.05" value="0.2"></label>
+          <div class="btn-row"><button class="btn primary" id="it-go">다시 재생</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--text-faint)"></i>비례만</span><span><i style="background:var(--accent)"></i>비례 + 적분</span><span><i style="background:var(--warn)"></i>쌓인 오차(적분 항)</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">비례만: 남는 오차</span><span class="v" id="it-o-p">—</span></div>
+        <div class="stat"><span class="k">적분 포함: 남는 오차</span><span class="v" id="it-o-i">—</span></div>
+        <div class="stat"><span class="k">설정점을 지나친 양</span><span class="v" id="it-o-o">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 적분 세기 0.2에서 진한 실선이 천천히 설정점까지 돌아오는 것을 본다. 흐린 선(비례만)은 중간에 멈춘다. ② 적분을 0으로 둔다. 두 선이 겹친다. ③ 적분을 1.5 넘게 올린다. 빨리 돌아오지만 설정점을 넘어갔다 돌아온다. 쌓아 둔 오차를 비우는 데 시간이 걸리기 때문이다. (시정수 10초, 감지 지연 1초, 교란 −5 계단. BD.feedback의 ki 항.)</div>
+    </div>
+  </section>
+
+  <section id="positive">
+    <h2>양성 피드백: 끝을 내기 위한 폭주</h2>
+    <p>오차를 줄이는 대신 <b>키우는</b> 루프도 있다. 출산 때 아기 머리가 자궁 입구를 누르면 그 신호가 뇌하수체에서 옥시토신을 내게 하고, 옥시토신은 자궁을 더 세게 수축시켜 머리를 더 세게 누르게 한다. 변화가 변화를 부르는 <span class="term">양성 피드백</span><span class="en">(Positive feedback)</span>이다. 피가 굳을 때도 트롬빈이 더 많은 트롬빈을 만드는 연쇄 반응이 일어난다.</p>
+    <p>양성 피드백은 값을 지키지 못한다. 대신 어떤 일을 <b>빠르게 끝까지</b> 해낸다. 그래서 반드시 루프 밖의 "끝내는 장치"가 필요하다. 아기가 나오면 누르던 자극이 사라지고, 상처가 막히면 손상된 혈관 벽이라는 출발점이 사라진다. 아래에서 끝내는 장치를 끄고 켜 보자.</p>
+
+    <div class="sim" id="sim-hs-pos" data-desc="옥시토신-자궁 수축, 트롬빈 연쇄 같은 양성 피드백이 루프 이득에 따라 폭발적으로 커지는 것과, 루프 밖의 끝내는 장치가 없으면 멈추지 않는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>양성 피드백과 끝내는 장치</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ps-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="ps-kind"><button data-value="birth" class="on">출산(옥시토신)</button><button data-value="clot">피 응고(트롬빈)</button></div>
+          <label class="ctrl"><span>루프 이득 <output id="ps-g-out"></output></span><input type="range" id="ps-g" min="0.6" max="2.4" step="0.05" value="1.6"></label>
+          <label class="check"><input type="checkbox" id="ps-stop" checked> 끝내는 장치</label>
+          <div class="btn-row"><button class="btn primary" id="ps-go">처음부터</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">신호 세기</span><span class="v" id="ps-o-x">—</span></div>
+        <div class="stat"><span class="k">일의 진행</span><span class="v" id="ps-o-p">—</span></div>
+        <div class="stat"><span class="k">상태</span><span class="v" id="ps-o-s" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 이득 1.6에서 신호가 처음에는 느리게, 나중에는 폭발적으로 커지고, 일이 끝나는 순간 끝내는 장치가 루프를 끊어 신호가 사라진다. ② 끝내는 장치를 끄고 처음부터 돌린다. 신호가 최대에 붙은 채 내려오지 않는다. 피 응고라면 상처 바깥까지 피가 굳어 가는 위험한 상태다. ③ 이득을 1 아래로 내린다. 신호가 스스로 커지지 못하고 사그라들어 일이 끝나지 않는다. (신호 x의 변화 = (이득 − 1) × x / 시정수 + 처음 자극. 최대 100으로 제한한 교육용 모델.)</div>
+    </div>
+
+    <p>양성 피드백은 병에서도 나타난다. 심장이 약해져 혈압이 떨어지면 심장 근육 자신에게 가는 피(관상 혈류)가 줄어 심장이 더 약해지는 악순환, 열이 너무 높아지면 대사가 빨라져 열이 더 나는 악순환이 그렇다. 몸이 건강하다는 것은 대부분의 루프에서 음성 피드백이 이기고 있다는 뜻이다.</p>
+  </section>
+
+  <section id="stand">
+    <h2>일어설 때 혈압이 지켜지는 이유</h2>
+    <p>누워 있다가 벌떡 일어서면 중력 때문에 약 500~800 mL의 피가 다리와 배의 정맥으로 쏠린다. 심장으로 돌아오는 피(앞부하)가 줄어 1회 박출량이 떨어지고, 혈압이 내려간다. 아무것도 하지 않으면 뇌로 가는 피가 모자라 눈앞이 캄캄해진다. 그런데 대부분의 사람은 아무것도 느끼지 못한다. 몇 초 안에 혈압이 돌아오기 때문이다.</p>
+    <p>그 일을 하는 것이 <span class="term">압반사</span><span class="en">(Baroreflex)</span>다. 목동맥과 대동맥의 벽에 있는 압력 감지기(압수용체)가 혈압이 떨어진 것을 알리면, 뇌줄기의 심혈관 중추가 교감 신경을 올리고 부교감 신경을 내린다. 심장은 빨리 세게 뛰고, 세동맥은 좁아지고(말초 저항 증가), 정맥은 조여 피를 심장 쪽으로 짜낸다. 아래 모니터에서 압반사의 세기를 바꿔 가며 일어서 보자.</p>
+
+    <div class="sim" id="sim-hs-stand" data-desc="환자 모니터에서 누웠다 일어설 때의 동맥압, 심박수, 교감 신경 활성을 보고, 압반사가 정상·약함·없음일 때 혈압이 어떻게 되돌아오거나 무너지는지 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>일어서기: 압반사 모니터</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view monitor"><canvas id="sd-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="sd-g"><button data-value="1" class="on">정상 압반사</button><button data-value="0.3">약함</button><button data-value="0">없음</button></div>
+          <div class="btn-row"><button class="btn primary" id="sd-go">다시 일어서기</button></div>
+          <label class="check"><input type="checkbox" id="sd-slow"> 천천히 재생</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">평균 동맥압</span><span class="v" id="sd-o-map">—</span></div>
+        <div class="stat"><span class="k">가장 낮을 때</span><span class="v" id="sd-o-min">—</span></div>
+        <div class="stat"><span class="k">심박수</span><span class="v" id="sd-o-hr">—</span></div>
+        <div class="stat"><span class="k">1회 박출량</span><span class="v" id="sd-o-sv">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 정상 압반사로 일어선다(8초). 평균 동맥압이 약 5 mmHg 떨어졌다가 몇 초 안에 거의 돌아오고, 심박수가 70에서 약 77로 오른다. ② "없음"으로 바꾼다. 박출량이 준 만큼 혈압이 약 74 mmHg까지 떨어지고 돌아오지 않는다. 일어설 때 어지러운 기립성 저혈압의 원리다. ③ "약함"은 그 사이다. 다 돌아오지 못하고 오차가 남는다. 이득이 작은 비례 제어다. (압반사의 덩어리 모델 BD.baroLoop: 감지 지연 1초, 기립으로 유효 혈액량 약 550 mL 감소. 수축기·확장기 혈압은 박출량으로 어림한 파형이다.)</div>
+    </div>
+
+    <p>압반사는 이 장에서 배운 모든 것을 보여 준다. 설정점(평균 약 93 mmHg)이 있고, 감지기(압수용체)와 조절 중추(뇌줄기)와 효과기(심장·혈관)가 있다. 이득은 2~3 정도라 오차를 조금 남기고, 지연이 1초 남짓이라 거의 출렁이지 않는다. 그리고 남은 오차는 더 느린 루프(호르몬, 콩팥)가 나중에 지운다.</p>
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 일어설 때 자주 어지럽거나 쓰러질 것 같은 느낌, 원인 모를 열이 있다면 의료진과 상담하세요.</p>
+  </section>
+
+  <section id="feedforward">
+    <h2>앞먹임: 오차가 생기기 전에 움직인다</h2>
+    <p>피드백에는 근본적인 약점이 있다. 오차가 <b>생긴 뒤에야</b> 움직인다. 달리기를 시작한 뒤에 근육의 산소가 모자란 것을 알아채고 심장을 빨리 뛰게 하면, 그 사이 근육은 산소 빚을 진다. 그래서 몸은 미리 움직인다. 출발선에 서기만 해도 심박수가 오르고, 음식을 보거나 냄새만 맡아도 이자가 인슐린을 조금 내보낸다(뇌상 인슐린 분비). 교란을 <b>예측</b>해서 미리 대응하는 이 방식을 <span class="term">앞먹임</span><span class="en">(Feedforward)</span>이라 한다.</p>
+
+    <div class="sim" id="sim-hs-ff" data-desc="달리기 출발이나 식사처럼 예고된 교란에 대해 피드백만 쓸 때와 앞먹임(예측)을 더할 때, 생기는 부족(산소 빚, 혈당 과잉)의 크기를 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>미리 움직이면 빚이 준다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ff-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="ff-kind"><button data-value="run" class="on">달리기 출발</button><button data-value="meal">식사</button></div>
+          <label class="ctrl"><span>앞먹임 크기 <output id="ff-a-out"></output></span><input type="range" id="ff-a" min="0" max="1.2" step="0.05" value="0.6"></label>
+          <label class="ctrl"><span>예고 시간 <output id="ff-lead-out"></output></span><input type="range" id="ff-lead" min="0" max="30" step="1" value="10"></label>
+          <div class="btn-row"><button class="btn primary" id="ff-go">다시 재생</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--text-faint)"></i>피드백만</span><span><i style="background:var(--accent)"></i>앞먹임 + 피드백</span><span><i style="background:var(--bad)"></i>쌓인 부족</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">피드백만: 쌓인 부족</span><span class="v" id="ff-o-fb">—</span></div>
+        <div class="stat"><span class="k">앞먹임: 쌓인 부족</span><span class="v" id="ff-o-ff">—</span></div>
+        <div class="stat"><span class="k">줄어든 비율</span><span class="v" id="ff-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 앞먹임 0.6, 예고 10초에서 진한 실선이 출발 전부터 오른다. 주황색 부족 넓이가 흐린 선(피드백만)보다 훨씬 작다. ② 앞먹임을 0으로 둔다. 두 선이 같아진다. ③ 앞먹임을 1.2로 올린다. 예측이 지나치면 필요 이상으로 올렸다가 피드백이 다시 끌어내린다. 예측은 정확할 때만 이득이다. (요구량을 계단으로, 효과기를 시정수 8초의 1차 지연으로, 피드백을 감지 지연 3초의 적분 제어로 둔 교육용 모델. "식사"는 같은 구조에 이름만 바꿨다.)</div>
+    </div>
+
+    <p>앞먹임은 경험으로 배운다. 매일 같은 시간에 밥을 먹으면 그 시간이 다가올 때 위산과 인슐린이 미리 준비되고, 운동을 꾸준히 하면 출발 신호에 반응하는 심박수 상승이 빨라진다. 피드백이 실수를 고치는 장치라면 앞먹임은 실수를 미리 줄이는 장치다. 둘은 함께 일한다.</p>
+  </section>
+
+  <section id="setpoint">
+    <h2>설정점을 옮길 때</h2>
+    <p>열이 나면 체온이 39 °C까지 오른다. 항상성이 무너진 것일까. 아니다. 감염이 일으킨 신호 물질(발열 물질)이 뇌의 시상하부에 있는 체온 조절 중추의 <b>설정점</b>을 올렸고, 몸은 새 설정점을 성실하게 지키고 있다. 그래서 열이 오르는 동안에는 체온이 이미 37 °C를 넘었는데도 춥고 떨린다. 몸은 "아직 39 °C보다 낮다"고 판단하기 때문이다. 해열제가 듣거나 감염이 가라앉아 설정점이 내려오면, 이번에는 체온이 새 설정점보다 높으니 땀이 쏟아진다.</p>
+    <p>아래 체온계의 설정점 손잡이를 끌어 올리고 내려 보자. 교란(더운 방)과 설정점 이동(열)을 비교하면, 같은 높은 체온이라도 몸이 느끼는 것과 효과기가 하는 일이 정반대다.</p>
+
+    <div class="sim" id="sim-hs-sp" data-desc="체온계의 설정점을 끌어 올려 열이 나는 과정(떨림, 피부 혈관 수축)과 내려오는 과정(땀)을 보고, 같은 높은 체온이라도 교란(더운 방)일 때와 무엇이 다른지 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>설정점 옮기기: 열과 더위</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="sp-cv"></canvas><span class="hint">체온계의 설정점 손잡이를 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>바깥 열 부하(교란) <output id="sp-d-out"></output></span><input type="range" id="sp-d" min="-1" max="1.5" step="0.05" value="0"></label>
+          <div class="btn-row"><button class="btn" id="sp-fever">열 나기(39 °C)</button><button class="btn" id="sp-cure">해열(37 °C)</button><button class="btn" id="sp-hot">더운 방</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">설정점</span><span class="v" id="sp-o-sp">—</span></div>
+        <div class="stat"><span class="k">심부 체온</span><span class="v" id="sp-o-t">—</span></div>
+        <div class="stat"><span class="k">몸이 느끼는 것</span><span class="v" id="sp-o-f" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "열 나기"를 누른다. 설정점이 39 °C로 뛰고, 체온이 따라 오르는 동안 떨림과 피부 혈관 수축이 최대로 켜진다. 체온 38 °C에서도 몸은 "춥다". ② "해열"을 누른다. 체온이 설정점보다 높아 땀이 쏟아지며 내려온다. ③ 설정점 37 °C에서 "더운 방"(교란)을 누른다. 체온이 조금 오르지만 몸은 땀을 내며 버틴다. 같은 37.5 °C라도 열일 때와 정반대다. (오차에 비례하는 효과기, 시정수 약 6분, 1초에 1분씩 흐르는 교육용 모델. 운동 중에도 설정점이 약간 오른다는 견해가 있지만, 운동 중 체온 상승의 대부분은 교란(열 생산)이다(19장).)</div>
+    </div>
+
+    <p>설정점을 옮기는 일은 열에서만 일어나지 않는다. 달리기를 시작하면 압반사의 설정점이 위로 옮겨져, 혈압이 쉴 때보다 높아도 반사가 이를 끌어내리지 않는다. 그렇지 않다면 운동 중 오르는 혈압을 압반사가 계속 막아 근육에 충분한 피를 보내지 못할 것이다. 하루 동안 코르티솔과 체온이 오르내리는 것도 설정점이 시계를 따라 움직이기 때문이다(<a href="hormone.html">17장</a>).</p>
+    <div class="callout tip">
+      <strong>교란인가, 설정점 이동인가</strong>
+      값이 정상 범위를 벗어났을 때 물어볼 질문은 하나다. 몸이 그 값을 되돌리려 애쓰고 있는가(교란), 아니면 그 값을 지키려 애쓰고 있는가(설정점 이동). 더운 날의 37.8 °C에는 땀이 나고, 열이 오르는 37.8 °C에는 떨린다.
+    </div>
+  </section>
+
+  <section id="daon">
+    <h2>나만의 루프 만들기</h2>
+    <p>이제 부품을 직접 고를 차례다. 아래 종합 시뮬레이터는 감지 지연, 이득, 효과기의 한계, 적분, 피드백의 부호를 마음대로 바꿀 수 있는 루프다. 위쪽 그림의 점은 신호가 루프를 도는 모습이고, 아래 기록은 조절 변수(여기서는 체온)다. 루프가 안정한지, 출렁이는지, 폭주하는지, 효과기의 한계에 걸렸는지를 판정해 준다.</p>
+
+    <div class="sim" id="sim-hs-build" data-big data-desc="감지 지연, 이득, 효과기의 한계, 적분 제어, 음성·양성 부호, 교란의 종류를 골라 나만의 항상성 루프를 만들고, 안정·출렁임·폭주·포화를 직접 일으켜 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>나만의 항상성 루프</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="bd-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="bd-sign"><button data-value="neg" class="on">음성</button><button data-value="pos">양성</button></div>
+          <label class="ctrl"><span>감지 지연 <output id="bd-d-out"></output></span><input type="range" id="bd-d" min="0" max="10" step="0.25" value="1"></label>
+          <label class="ctrl"><span>이득 <output id="bd-g-out"></output></span><input type="range" id="bd-g" min="0" max="20" step="0.5" value="4"></label>
+          <label class="ctrl"><span>효과기의 한계 <output id="bd-l-out"></output></span><input type="range" id="bd-l" min="1" max="40" step="1" value="20"></label>
+          <label class="check"><input type="checkbox" id="bd-i"> 적분 제어 더하기</label>
+          <label class="ctrl"><span>교란</span><select id="bd-dist"><option value="step">추위(계단)</option><option value="pulse">찬물 샤워(10초)</option><option value="sine">밤낮처럼 오르내림</option><option value="big">혹한(큰 계단)</option></select></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">판정</span><span class="v" id="bd-o-s" style="font-family:var(--font);font-size:16px">—</span></div>
+        <div class="stat"><span class="k">마지막 오차</span><span class="v" id="bd-o-e">—</span></div>
+        <div class="stat"><span class="k">가장 멀어진 값</span><span class="v" id="bd-o-m">—</span></div>
+        <div class="stat"><span class="k">효과기가 한계에 붙은 시간</span><span class="v" id="bd-o-sat">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 값(지연 1초, 이득 4)은 안정하지만 오차가 1 °C(교란 5의 1/5) 남는다. "적분 제어"를 켜서 지운다. ② 지연을 7초로 늘린다. 출렁임이 커지는 진동이 된다. 이득을 2로 낮추면 다시 안정해진다. ③ 교란을 "혹한"으로 바꾸고 효과기의 한계를 5로 줄인다. 이득을 아무리 올려도 체온이 떨어진다. 효과기가 최대로 일해도 모자란 "포화"다. ④ "양성"을 고른다. 작은 교란이 스스로 커져 생존 한계까지 달아난다. (BD.feedback: 시정수 10초, 설정점 37 °C. 판정은 마지막 60초의 진폭·추세·포화 시간으로 했다. 생존 한계 25~45 °C에서 값을 멈췄다.)</div>
+    </div>
+
+    <p>다온의 몸으로 돌아가자. 다온이 회의실 의자에서 벌떡 일어설 때 일어나는 일은 바로 이 루프 하나가 돌아가는 일이다.</p>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 2장</span></div>
+      <h4>일어설 때 평균 동맥압 93 → 약 88 → 약 90 mmHg, 심박수 70 → 약 77</h4>
+      <p>오후 회의가 끝나고 다온이 의자에서 벌떡 일어선다. 다리 쪽으로 피가 쏠려 유효 혈액량이 약 550 mL 줄고, 1회 박출량이 약 71 mL에서 약 56 mL로 떨어진다. 압반사 모델(`BD.baroLoop`, 정상 이득)로 돌리면 평균 동맥압이 약 93 mmHg에서 일어선 지 3초쯤 뒤 약 88 mmHg까지 내려갔다가, 교감 신경이 심박수를 약 77로, 말초 저항을 약 10 % 올려 약 90 mmHg에서 다시 자리를 잡는다. 다온은 아무것도 느끼지 못한다. 같은 모델에서 압반사를 끄면 혈압은 약 74 mmHg로 떨어진 채 돌아오지 않는다. 설정점(약 93 mmHg), 감지기(목동맥·대동맥의 압수용체), 조절 중추(뇌줄기), 효과기(심장·세동맥·정맥), 그리고 다 지우지 못하고 남은 약 3 mmHg의 오차까지, 이 장의 모든 부품이 1초 남짓한 지연 안에서 움직였다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>기립 때의 혈압 변화는 음성 피드백(압반사) 하나로 설명된다. 이득이 2~3인 비례 제어라 작은 오차가 남는다.</div><div><b>아직 모르는 것</b>달릴 때는 혈압이 쉴 때보다 높은데도 압반사가 끌어내리지 않는다. 운동 중에는 설정점을 일부러 옮기기 때문인데(재설정), 그 세부와 심장의 몫은 순환 장에서 본다.</div><div><b>다음 단계</b><a href="cell.html">3장</a>에서 모든 루프의 맨 끝, 세포의 막에서 물과 이온이 움직이는 원리를 본다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>항상성 루프는 조절 변수, 감지기, 설정점을 가진 조절 중추, 효과기로 되어 있고, 음성 피드백은 오차의 반대 방향으로 값을 되돌린다.</li>
+      <li>비례 제어는 교란의 1/(1 + G)만큼 오차를 남긴다. 이득이 클수록 정밀하지만, 지연이 있으면 이득을 마음대로 키울 수 없다.</li>
+      <li>지연과 이득이 함께 커지면 루프는 설정점을 지나쳐 출렁이고, 경계를 넘으면 진동한다. 느린 루프는 부드럽게 반응해야 한다.</li>
+      <li>적분 제어는 오차를 쌓아 남은 오차를 끝까지 지운다(예: 콩팥의 혈압 조절). 양성 피드백은 일을 빨리 끝내지만 루프 밖의 끝내는 장치가 필요하다.</li>
+      <li>앞먹임은 예고된 교란에 미리 대응해 피드백의 빚을 줄인다(출발 전 심박 상승, 뇌상 인슐린 분비).</li>
+      <li>열은 항상성의 실패가 아니라 설정점의 이동이다. 일어설 때의 혈압은 압반사(지연 약 1초, 이득 2~3)가 몇 초 안에 되돌린다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>비례 제어 루프의 이득이 4이다. 교란이 피드백 없이는 조절 변수를 10만큼 밀어낸다면, 피드백이 있을 때 남는 오차는?</p>
+        <div class="opts">
+          <button class="opt">0</button>
+          <button class="opt">2.5</button>
+          <button class="opt" data-correct>2</button>
+          <button class="opt">40</button>
+        </div>
+        <div class="quiz-exp">남는 오차 = 교란 / (1 + G) = 10 / 5 = 2. 비례 제어만으로는 오차를 0으로 만들 수 없다. 0으로 만들려면 적분 제어가 필요하다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>음성 피드백 루프가 설정점 주위에서 계속 출렁이며 가라앉지 않는다. 가장 그럴듯한 원인은?</p>
+        <div class="opts">
+          <button class="opt" data-correct>감지나 반응의 지연이 길고 이득이 크다</button>
+          <button class="opt">이득이 너무 작다</button>
+          <button class="opt">설정점이 너무 높다</button>
+          <button class="opt">효과기가 하나뿐이다</button>
+        </div>
+        <div class="quiz-exp">지연이 있는 루프에서 세게 반응하면 신호가 도착했을 때는 이미 늦어 설정점을 지나친다. 지연이 길수록 허용되는 이득이 작아진다. 체인-스토크스 호흡이 대표적인 예다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>다음 중 양성 피드백의 예로 가장 알맞은 것은?</p>
+        <div class="opts">
+          <button class="opt">더우면 땀이 나 체온이 내려간다</button>
+          <button class="opt">혈당이 오르면 인슐린이 나와 혈당이 내려간다</button>
+          <button class="opt">혈압이 떨어지면 심박수가 오른다</button>
+          <button class="opt" data-correct>자궁 입구가 눌리면 옥시토신이 나와 수축이 더 세지고, 더 세게 누른다</button>
+        </div>
+        <div class="quiz-exp">변화가 같은 방향의 변화를 키우는 루프가 양성 피드백이다. 나머지 셋은 변화를 되돌리는 음성 피드백이다. 출산의 루프는 아기가 나오면(루프 밖의 끝내는 장치) 멈춘다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>열이 오르기 시작할 때 체온이 이미 37.8 °C인데도 춥고 떨리는 이유는?</p>
+        <div class="opts">
+          <button class="opt">체온 감지기가 고장 나서</button>
+          <button class="opt" data-correct>시상하부의 설정점이 체온보다 높게 올라가 몸이 "아직 낮다"고 판단해서</button>
+          <button class="opt">땀이 너무 많이 나서</button>
+          <button class="opt">피부 온도가 심부 체온보다 높아서</button>
+        </div>
+        <div class="quiz-exp">발열 물질이 설정점을 약 39 °C로 올리면, 37.8 °C는 설정점보다 낮은 값이 된다. 루프는 정상적으로 일하며 떨림과 피부 혈관 수축으로 체온을 새 설정점까지 끌어올린다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>압반사의 감지 지연이 1초, 이득이 약 2라고 하자. 기립으로 평균 동맥압이 피드백 없이는 18 mmHg 떨어질 상황이라면, 압반사가 있을 때 남는 혈압 저하는 대략 얼마인가?</p>
+        <div class="opts">
+          <button class="opt">0 mmHg</button>
+          <button class="opt" data-correct>약 6 mmHg</button>
+          <button class="opt">약 9 mmHg</button>
+          <button class="opt">약 36 mmHg</button>
+        </div>
+        <div class="quiz-exp">18 / (1 + 2) = 6 mmHg. 지연 1초는 이 정도 이득에서 출렁임을 만들 만큼 길지 않다. 남은 오차는 호르몬과 콩팥 같은 느린 루프가 나중에 지운다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  function fmt0(x) { return Math.round(x).toLocaleString("en-US"); }
+  function narrowOf(id, bp) { var el = document.getElementById(id); return (el && el.parentElement.clientWidth < (bp || 560)); }
+  function handle(ctx, x, y, col, r) { var p = P(); ctx.fillStyle = p.bg; ctx.strokeStyle = col || p.accent; ctx.lineWidth = 2.6; ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); }
+  /** 시계열을 차트 데이터로 */
+  function pts(t, y, every) { var o = []; for (var i = 0; i < t.length; i += (every || 1)) o.push([t[i], y[i]]); return o; }
+
+  /* ---------------------------------------------------------- 1. 온도 조절기 */
+  (function () {
+    var TAU = 30, PMAX = 30, st, hist, lay = null;
+    function reset() { st = { t: 0, T: 18, on: false, sw: [], win: 0 }; hist = []; }
+    reset();
+    var sp = 21;
+    var getOut = BB.range("th-out", function (v) { return v + " °C"; });
+    var getHy = BB.range("th-hy", function (v) { return "±" + (v / 2).toFixed(2) + " °C"; });
+    document.getElementById("th-win").addEventListener("click", function () { st.win = 10; });
+    function step(dt) {
+      var hy = getHy() / 2;
+      if (st.T < sp - hy && !st.on) { st.on = true; st.sw.push(st.t); }
+      else if (st.T > sp + hy && st.on) st.on = false;
+      var outT = getOut() - (st.win > 0 ? 0 : 0), k = st.win > 0 ? 6 : 1;
+      st.T += ((outT - st.T) * k / TAU + (st.on ? PMAX / TAU : 0)) * dt;
+      if (st.win > 0) st.win -= dt;
+      st.t += dt;
+      if (!hist.length || st.t - hist[hist.length - 1][0] >= 0.5) hist.push([st.t, st.T, st.on ? 1 : 0, st.win > 0 ? 1 : 0]);
+      while (hist.length && hist[0][0] < st.t - 240) hist.shift();
+      while (st.sw.length && st.sw[0] < st.t - 60) st.sw.shift();
+    }
+    for (var pre = 0; pre < 4000; pre++) step(0.05);
+    var cv = BB.canvas("#th-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 520, hy = getHy() / 2;
+      // 방 그림
+      var rw = narrow ? w - 32 : Math.min(200, w * 0.36), rh = narrow ? 190 : h - 40, rx = 16, ry = narrow ? 14 : 20;
+      var heat = BB.color("heat"), cold = BB.color("water");
+      ctx.strokeStyle = p.text; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(rx, ry + 30); ctx.lineTo(rx + rw / 2, ry); ctx.lineTo(rx + rw, ry + 30); ctx.stroke();
+      var tf = BB.clamp((st.T - 10) / 20, 0, 1);
+      ctx.fillStyle = BB.alpha(st.T > sp ? heat : cold, 0.08 + 0.18 * Math.abs(st.T - sp) / 6);
+      ctx.fillRect(rx, ry + 30, rw, rh - 30); ctx.strokeRect(rx, ry + 30, rw, rh - 30);
+      // 창문
+      var wx = rx + rw - 54, wy = ry + 48;
+      ctx.strokeStyle = p.dim; ctx.lineWidth = 1.5; ctx.strokeRect(wx, wy, 38, 30);
+      if (st.win > 0) { ctx.fillStyle = BB.alpha(cold, 0.4); ctx.fillRect(wx, wy, 38, 30); ctx.fillStyle = cold; ctx.font = BB.font(10.5, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText("열림", wx + 19, wy + 33); }
+      // 바깥 기온
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "right"; ctx.textBaseline = "top"; ctx.fillText("바깥 " + getOut() + " °C", rx + rw, ry - 2);
+      // 보일러
+      var bx = rx + 14, by = ry + rh - 46;
+      ctx.fillStyle = st.on ? BB.alpha(heat, 0.85) : p.surface; ctx.strokeStyle = st.on ? heat : p.border; ctx.lineWidth = 1.5;
+      BB.rrect(ctx, bx, by, 52, 34, 6); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = st.on ? "#fff" : p.dim; ctx.font = BB.font(11, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(st.on ? "켜짐" : "꺼짐", bx + 26, by + 17);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textBaseline = "bottom"; ctx.fillText("효과기", bx + 26, by - 3);
+      if (st.on) { ctx.strokeStyle = BB.alpha(heat, 0.6); ctx.lineWidth = 1.5; for (var k = 0; k < 3; k++) { var ox = bx + 12 + k * 14, ph = (st.t * 2 + k) % 3; ctx.beginPath(); ctx.moveTo(ox, by - 16 - ph * 4); ctx.quadraticCurveTo(ox + 5, by - 22 - ph * 4, ox, by - 28 - ph * 4); ctx.stroke(); } }
+      // 온도계(감지기)
+      var tx = rx + rw - 30, ty0 = ry + 92, th = rh - 112;
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.5; BB.rrect(ctx, tx - 6, ty0, 12, th, 6); ctx.stroke();
+      var Ty = function (T) { return ty0 + th - BB.clamp((T - 10) / 20, 0, 1) * th; };
+      ctx.fillStyle = BB.color("art"); ctx.fillRect(tx - 3, Ty(st.T), 6, ty0 + th - Ty(st.T));
+      ctx.beginPath(); ctx.arc(tx, ty0 + th + 5, 8, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(tx - 12, Ty(sp)); ctx.lineTo(tx + 12, Ty(sp)); ctx.stroke();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "right"; ctx.textBaseline = "middle"; ctx.fillText("감지기", tx - 12, ty0 + 6);
+      ctx.fillStyle = p.text; ctx.font = BB.font(narrow ? 20 : 22, true, 700); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText(st.T.toFixed(1) + " °C", rx + 12, ry + 40);
+      ctx.fillStyle = p.accent2; ctx.font = BB.font(11.5); ctx.fillText("설정 " + sp.toFixed(1) + " °C", rx + 12, ry + 66);
+      // 그래프
+      var box = narrow ? { x: 56, y: ry + rh + 22, w: w - 72, h: h - ry - rh - 78 } : { x: rx + rw + 62, y: 16, w: w - rx - rw - 80, h: h - 72 };
+      var t1 = Math.max(240, st.t), t0 = t1 - 240;
+      var c = BB.chart(ctx, box, { x: [t0, t1], y: [8, 30], xLabel: "시간(분)", yLabel: "방 온도 °C", xFmt: function (v) { return Math.round(v); },
+        bands: [], series: [{ data: hist.map(function (q) { return [q[0], q[1]]; }), color: BB.color("art"), width: 2.2 }] });
+      ctx.fillStyle = BB.alpha(p.accent2, 0.12); ctx.fillRect(box.x, c.Y(sp + hy), box.w, c.Y(sp - hy) - c.Y(sp + hy));
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 1.6; ctx.setLineDash([6, 4]); ctx.beginPath(); ctx.moveTo(box.x, c.Y(sp)); ctx.lineTo(box.x + box.w, c.Y(sp)); ctx.stroke(); ctx.setLineDash([]);
+      handle(ctx, box.x + box.w - 10, c.Y(sp), p.accent2, 6.5);
+      // 보일러 켜짐 띠
+      hist.forEach(function (q, i) { if (!i) return; var x0 = c.X(hist[i - 1][0]), x1 = c.X(q[0]); if (q[2]) { ctx.fillStyle = BB.alpha(heat, 0.55); ctx.fillRect(x0, box.y + box.h - 8, x1 - x0 + 0.5, 8); } if (q[3]) { ctx.fillStyle = BB.alpha(cold, 0.35); ctx.fillRect(x0, box.y, x1 - x0 + 0.5, box.h - 8); } });
+      ctx.fillStyle = heat; ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("보일러 켜짐", box.x + 4, box.y + box.h - 10);
+      if (getOut() + PMAX < sp - hy + 0.3 && st.t > 60) { ctx.fillStyle = p.bad; ctx.font = BB.font(12.5, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText("보일러를 쉬지 않고 켜도 닿지 못한다", box.x + box.w / 2, box.y + 6); }
+      lay = c;
+      BB.stat("th-o-t", st.T.toFixed(1) + "<small>°C</small>");
+      BB.stat("th-o-sp", sp.toFixed(1) + "<small>°C</small>");
+      BB.stat("th-o-on", st.on ? "켜짐" : "꺼짐");
+      BB.stat("th-o-n", st.t > 60 ? String(st.sw.length) + "<small>회</small>" : "…");
+    }, { get height() { return narrowOf("th-cv", 520) ? 480 : 330; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.box; if (x < b.x - 10) return; var v = 8 + (b.y + b.h - y) / b.h * 22; sp = Math.round(BB.clamp(v, 14, 28) * 2) / 2; cv.redraw(); } });
+    BB.loop(document.getElementById("sim-hs-thermo"), function (dt) { var n = 8; for (var i = 0; i < n; i++) step(dt * 4 / n * 1); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 2. 이득 */
+  (function () {
+    var G = 4, lay = null, cache = {};
+    function run(g) { var k = g.toFixed(2); return cache[k] || (cache[k] = BD.feedback({ sp: 37, y0: 37, base: 37, gain: g, delay: 0.5, tau: 10, dist: function (t) { return t >= 10 ? -5 : 0; }, tstop: 90 })); }
+    var open = run(0);
+    var cv = BB.canvas("#gn-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 600, r = run(G);
+      var b1 = narrow ? { x: 56, y: 14, w: w - 72, h: 200 } : { x: 54, y: 14, w: w * 0.58 - 70, h: h - 72 };
+      var b2 = narrow ? { x: 56, y: 290, w: w - 72, h: h - 356 } : { x: w * 0.58 + 50, y: 14, w: w * 0.42 - 66, h: h - 72 };
+      var c1 = BB.chart(ctx, b1, { x: [0, 90], y: [31, 39], xLabel: "시간(초)", yLabel: "조절 변수(°C 상당)",
+        hlines: [{ y: 37, color: p.accent2, label: "설정점 37" }],
+        series: [{ data: pts(open.t, open.y, 4), color: p.faint, width: 1.6, dash: [5, 4] }, { data: pts(r.t, r.y.map(function (v) { return BB.clamp(v, 30, 40); }), 2), color: p.accent, width: 2.6 }] });
+      // 효과기의 일(오른쪽 축 없이 아래에 작게)
+      var ux = r.u.map(function (u) { return 31 + BB.clamp((u - 37) / 40, -1, 1) * 2 + 2; });
+      ctx.save(); ctx.globalAlpha = 0.85; BB.chart(ctx, b1, { x: [0, 90], y: [31, 39], xTicks: [], yTicks: [], series: [{ data: pts(r.t, ux, 4), color: p.warn, width: 1.6 }] }); ctx.restore();
+      ctx.fillStyle = p.warn; ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("효과기의 일", b1.x + 6, c1.Y(33) - 4);
+      var endY = r.y[r.y.length - 1];
+      ctx.fillStyle = p.bad; ctx.font = BB.font(11); ctx.textAlign = "right"; ctx.textBaseline = "top"; ctx.fillText("추위 시작(10초)", c1.X(10) + 100, b1.y + 4);
+      ctx.strokeStyle = BB.alpha(p.bad, 0.6); ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(c1.X(10), b1.y); ctx.lineTo(c1.X(10), b1.y + b1.h); ctx.stroke(); ctx.setLineDash([]);
+      // 오차 화살표
+      var ex = c1.X(85);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(ex, c1.Y(37)); ctx.lineTo(ex, c1.Y(BB.clamp(endY, 31, 39))); ctx.stroke();
+      ctx.fillStyle = p.text; ctx.font = BB.font(11, true, 700); ctx.textAlign = "right"; ctx.textBaseline = "middle"; ctx.fillText("오차 " + Math.abs(37 - endY).toFixed(2), ex - 4, (c1.Y(37) + c1.Y(BB.clamp(endY, 31, 39))) / 2);
+      // 오른쪽: 남는 오차 곡선
+      var gs = BD.linspace(0, 40, 161);
+      var c2 = BB.chart(ctx, b2, { x: [0, 40], y: [0, 5.2], xLabel: "이득 G", yLabel: "남는 오차", bands: [{ x0: 30.5, x1: 40, color: BB.alpha(p.bad, 0.12) }],
+        series: [{ data: gs.map(function (g) { return [g, 5 / (1 + g)]; }), color: p.accent, width: 2.4 }] });
+      ctx.fillStyle = p.bad; ctx.font = BB.font(10.5); ctx.textAlign = "right"; ctx.textBaseline = "top"; ctx.fillText("출렁임(지연 0.5초)", b2.x + b2.w - 4, b2.y + 4);
+      ctx.fillStyle = p.accent; ctx.font = BB.font(12, true, 700); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("5 / (1 + G)", c2.X(3), c2.Y(5 / 4) - 6);
+      handle(ctx, c2.X(G), c2.Y(5 / (1 + G)));
+      lay = c2;
+      BB.stat("gn-o-g", G.toFixed(1));
+      BB.stat("gn-o-e", (5 / (1 + G)).toFixed(2) + "<small>°C</small>");
+      BB.stat("gn-o-c", Math.round(G / (1 + G) * 100) + "<small>%</small>");
+    }, { get height() { return narrowOf("gn-cv", 600) ? 580 : 350; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.box; if (x < b.x - 20 || y < b.y - 20) return; G = Math.round(BB.clamp((x - b.x) / b.w * 40, 0, 40) * 2) / 2; cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 3. 지연-이득 지도 */
+  (function () {
+    var TAU = 10, D = 4, G = 4, lay = null, cache = {};
+    function dcrit(g) { if (g <= 1) return Infinity; var s = Math.sqrt(g * g - 1); return (Math.PI - Math.atan(s)) * TAU / s; }
+    function run() { var k = D.toFixed(2) + "|" + G.toFixed(2); return cache[k] || (cache[k] = BD.feedback({ sp: 37, y0: 37, base: 37, gain: G, delay: D, tau: TAU, dist: function (t) { return t >= 10 ? -5 : 0; }, tstop: 150 })); }
+    var cv = BB.canvas("#dl-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 600, r = run();
+      var b1 = narrow ? { x: 56, y: 14, w: w - 72, h: 220 } : { x: 52, y: 14, w: w * 0.42 - 64, h: h - 72 };
+      var b2 = narrow ? { x: 56, y: 310, w: w - 72, h: h - 376 } : { x: w * 0.42 + 48, y: 14, w: w * 0.58 - 62, h: h - 72 };
+      var c1 = BB.chart(ctx, b1, { x: [0, 10], y: [0.5, 10], xLabel: "감지 지연(초)", yLabel: "이득 G" });
+      // 영역 칠하기
+      for (var px = 0; px < b1.w; px += 3) for (var py = 0; py < b1.h; py += 3) {
+        var dd = px / b1.w * 10, gg = 0.5 + (1 - py / b1.h) * 9.5;
+        ctx.fillStyle = dd < dcrit(gg) ? BB.alpha(p.ok, 0.12) : BB.alpha(p.bad, 0.18);
+        ctx.fillRect(b1.x + px, b1.y + py, 3, 3);
+      }
+      var bl = []; for (var g = 1.02; g <= 10; g += 0.05) bl.push([dcrit(g), g]);
+      BB.chart(ctx, b1, { x: [0, 10], y: [0.5, 10], xTicks: [], yTicks: [], series: [{ data: bl, color: p.text, width: 2 }] });
+      ctx.fillStyle = p.ok; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("안정", b1.x + 8, b1.y + b1.h - 8);
+      ctx.fillStyle = p.bad; ctx.textAlign = "right"; ctx.textBaseline = "top"; ctx.fillText("진동", b1.x + b1.w - 8, b1.y + 8);
+      handle(ctx, c1.X(D), c1.Y(G));
+      // 오른쪽 기록
+      var lo = Math.min(31, Math.floor(Math.min.apply(null, r.y))), hi = Math.max(39, Math.ceil(Math.max.apply(null, r.y)));
+      lo = Math.max(lo, 10); hi = Math.min(hi, 64);
+      var c2 = BB.chart(ctx, b2, { x: [0, 150], y: [lo, hi], xLabel: "시간(초)", yLabel: "조절 변수", hlines: [{ y: 37, color: p.accent2, label: "설정점" }],
+        series: [{ data: pts(r.t, r.y, 2), color: D < dcrit(G) ? p.accent : p.bad, width: 2.3 }] });
+      var over = 0, endV = r.y[r.y.length - 1], amp = 0;
+      r.t.forEach(function (t, i) { if (t > 10) over = Math.max(over, Math.abs(r.y[i] - 37) - Math.abs(endV - 37)); if (t > 110) amp = Math.max(amp, Math.abs(r.y[i] - endV)); });
+      var stable = D < dcrit(G);
+      if (!stable) { ctx.fillStyle = p.bad; ctx.font = BB.font(12.5, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("출렁임이 커지다 효과기 한계에서 진동", b2.x + 8, b2.y + 6); }
+      lay = c1;
+      BB.stat("dl-o-d", D.toFixed(1) + "<small>s</small>");
+      BB.stat("dl-o-g", G.toFixed(1));
+      BB.stat("dl-o-o", Math.max(0, over).toFixed(2) + "<small>°C</small>");
+      BB.stat("dl-o-s", stable ? (over > 0.05 ? "출렁이다 안정" : "안정") : "<span style='color:var(--bad)'>불안정</span>");
+    }, { get height() { return narrowOf("dl-cv", 600) ? 600 : 360; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.box; if (x > b.x + b.w + 20 || y > b.y + b.h + 20) return; D = Math.round(BB.clamp((x - b.x) / b.w * 10, 0, 10) * 4) / 4; G = Math.round(BB.clamp(0.5 + (b.y + b.h - y) / b.h * 9.5, 0.5, 10) * 4) / 4; cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 4. 적분 */
+  (function () {
+    var rp, ri, tNow = 0, cv = null;
+    function calc() {
+      var base = { sp: 37, y0: 37, base: 37, gain: getG(), delay: 1, tau: 10, dist: function (t) { return t >= 10 ? -5 : 0; }, tstop: 150 };
+      rp = BD.feedback(base);
+      ri = BD.feedback(Object.assign({}, base, { ki: getK() }));
+      var ep = 37 - rp.y[rp.y.length - 1], ei = 37 - ri.y[ri.y.length - 1], over = 0;
+      ri.t.forEach(function (t, i) { if (t > 12) over = Math.max(over, ri.y[i] - 37); });
+      BB.stat("it-o-p", ep.toFixed(2) + "<small>°C</small>");
+      BB.stat("it-o-i", Math.abs(ei).toFixed(2) + "<small>°C</small>");
+      BB.stat("it-o-o", over.toFixed(2) + "<small>°C</small>");
+      tNow = 0;
+    }
+    var getG = BB.range("it-g", function (v) { return v.toFixed(1); }, calc);
+    var getK = BB.range("it-k", function (v) { return v.toFixed(2); }, calc);
+    document.getElementById("it-go").addEventListener("click", function () { tNow = 0; });
+    calc();
+    cv = BB.canvas("#it-cv", function (ctx, w, h) {
+      var p = P(), n = Math.max(2, Math.floor(tNow / 150 * rp.t.length));
+      var box = { x: 54, y: 14, w: w - 70, h: h * 0.62 - 20 };
+      var cut = function (r) { return pts(r.t.slice(0, n), r.y.slice(0, n), 2); };
+      var c = BB.chart(ctx, box, { x: [0, 150], y: [33, 38.5], yLabel: "조절 변수 °C", hlines: [{ y: 37, color: p.accent2, label: "설정점" }],
+        series: [{ data: cut(rp), color: p.faint, width: 2, dash: [5, 4] }, { data: cut(ri), color: p.accent, width: 2.6 }] });
+      // 적분 항(쌓인 오차) 아래 작은 그래프
+      var box2 = { x: 54, y: box.y + box.h + 18, w: w - 70, h: h - box.y - box.h - 60 };
+      var acc = [], s = 0, dt = ri.t[1] - ri.t[0];
+      for (var i = 0; i < n; i++) { s += (37 - ri.y[i]) * dt; acc.push([ri.t[i], s * getK()]); }
+      var top = Math.max(5, Math.ceil((getK() * 5 / 1 + 0.01) * 1.2));
+      BB.chart(ctx, box2, { x: [0, 150], y: [0, Math.max(6, top)], xLabel: "시간(초)", yLabel: "쌓인 오차", series: [{ data: acc, color: p.warn, width: 2.2, fill: BB.alpha(p.warn, 0.18) }] });
+      var k = Math.min(n - 1, rp.t.length - 1);
+      if (n > 4) { [[rp, p.faint], [ri, p.accent]].forEach(function (q) { ctx.fillStyle = q[1]; ctx.beginPath(); ctx.arc(c.X(q[0].t[k]), c.Y(BB.clamp(q[0].y[k], 33, 38.5)), 4.5, 0, Math.PI * 2); ctx.fill(); }); }
+      if (tNow > 140) {
+        ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "right"; ctx.textBaseline = "top";
+        ctx.fillText("비례만: 오차 " + (37 - rp.y[rp.y.length - 1]).toFixed(2) + " 남음", box.x + box.w - 4, c.Y(rp.y[rp.y.length - 1]) + 6);
+      }
+    }, { aspect: 0.62, minHeight: 330, maxHeight: 420 });
+    BB.loop(document.getElementById("sim-hs-int"), function (dt) { if (tNow < 150) { tNow = Math.min(150, tNow + dt * 30); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 5. 양성 피드백 */
+  (function () {
+    var st, hist, TAU = 4;
+    var TXT = {
+      birth: { sig: "옥시토신·수축", work: "아기의 진행", a: "자궁 수축", b: "자궁 입구 압박", c: "옥시토신 분비", done: "아기가 나왔다: 압박 자극이 사라져 루프가 끊겼다", stuck: "끝내는 장치 없음: 수축이 멈추지 않는다", fizz: "이득이 모자라 진통이 잦아들었다" },
+      clot: { sig: "트롬빈", work: "상처 막힘", a: "트롬빈", b: "혈소판·응고 인자 활성", c: "더 많은 트롬빈", done: "상처가 막혔다: 손상된 벽이 덮여 연쇄가 멈췄다", stuck: "끝내는 장치 없음: 상처 밖까지 피가 굳어 간다", fizz: "이득이 모자라 응고가 시작되지 못했다" },
+    };
+    function reset() { st = { t: 0, x: 0, prog: 0, done: false, ph: 0 }; hist = []; }
+    reset();
+    var kind = BB.seg("ps-kind", function () { reset(); });
+    var getG = BB.range("ps-g", function (v) { return v.toFixed(2); }, function () { reset(); });
+    document.getElementById("ps-go").addEventListener("click", reset);
+    document.getElementById("ps-stop").addEventListener("change", reset);
+    for (var pre = 0; pre < 140; pre++) step(0.1);
+    function step(dt) {
+      var g = getG(), stopOn = document.getElementById("ps-stop").checked;
+      var stim = st.t < 3 ? 2 : 0;
+      var loopOn = !(st.done && stopOn);
+      var dx = loopOn ? ((g - 1) * st.x + stim) / TAU : -st.x / 2;
+      st.x = BB.clamp(st.x + dx * dt, 0, 100);
+      st.prog = Math.min(1, st.prog + st.x * dt / 1200);
+      if (st.prog >= 1) st.done = true;
+      st.t += dt; st.ph += dt * (0.5 + st.x / 25);
+      if (!hist.length || st.t - hist[hist.length - 1][0] > 0.2) hist.push([st.t, st.x, st.prog * 100]);
+    }
+    var cv = BB.canvas("#ps-cv", function (ctx, w, h) {
+      var p = P(), T = TXT[kind()], narrow = w < 520, g = getG(), stopOn = document.getElementById("ps-stop").checked;
+      // 루프 그림
+      var R = narrow ? 64 : 74, cx = narrow ? w / 2 : R + 50, cy = R + 30;
+      var col = kind() === "birth" ? BB.color("ins") : BB.color("art");
+      var lw = 2 + 8 * st.x / 100, broken = st.done && stopOn;
+      var nodes = [[T.a, -Math.PI / 2], [T.b, Math.PI / 6], [T.c, Math.PI * 5 / 6]];
+      for (var i = 0; i < 3; i++) {
+        var a0 = nodes[i][1] + 0.42, a1 = nodes[(i + 1) % 3][1] - 0.42 + (i === 2 ? Math.PI * 2 : 0);
+        ctx.strokeStyle = broken && i === 0 ? BB.alpha(p.faint, 0.5) : BB.alpha(col, 0.35 + 0.6 * st.x / 100); ctx.lineWidth = lw;
+        if (broken && i === 0) ctx.setLineDash([4, 6]);
+        ctx.beginPath(); ctx.arc(cx, cy, R, a0, a1); ctx.stroke(); ctx.setLineDash([]);
+        var ex = cx + Math.cos(a1) * R, ey = cy + Math.sin(a1) * R, ang = a1 + Math.PI / 2;
+        ctx.fillStyle = ctx.strokeStyle; ctx.beginPath(); ctx.moveTo(ex + Math.cos(ang) * 8, ey + Math.sin(ang) * 8); ctx.lineTo(ex - Math.cos(ang - 1.2) * 0 + Math.cos(ang + 2.2) * 9, ey + Math.sin(ang + 2.2) * 9); ctx.lineTo(ex + Math.cos(ang - 2.2) * 9, ey + Math.sin(ang - 2.2) * 9); ctx.closePath(); ctx.fill();
+      }
+      // 도는 점
+      if (!broken && st.x > 0.5) for (var k = 0; k < 6; k++) { var a = st.ph * 1.5 + k * Math.PI / 3; ctx.fillStyle = col; ctx.beginPath(); ctx.arc(cx + Math.cos(a) * R, cy + Math.sin(a) * R, 2.5 + lw * 0.25, 0, Math.PI * 2); ctx.fill(); }
+      nodes.forEach(function (n) {
+        var x = cx + Math.cos(n[1]) * R, y = cy + Math.sin(n[1]) * R;
+        ctx.font = BB.font(11.5, false, 700); var tw = ctx.measureText(n[0]).width + 14;
+        ctx.fillStyle = p.bg; ctx.strokeStyle = col; ctx.lineWidth = 1.5; BB.rrect(ctx, x - tw / 2, y - 12, tw, 24, 8); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = p.text; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(n[0], x, y);
+      });
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("× " + g.toFixed(2), cx, cy);
+      if (broken) { ctx.fillStyle = p.ok; ctx.font = BB.font(11, false, 700); ctx.fillText("끊김", cx + R * 0.6, cy - R * 0.62); }
+      // 진행 막대
+      var px = narrow ? 16 : cx + R + 70, pw = narrow ? w - 32 : w - px - 16, py = narrow ? cy + R + 30 : 30;
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText(T.work + " " + Math.round(st.prog * 100) + "%", px, py - 4);
+      ctx.fillStyle = p.surface; BB.rrect(ctx, px, py, pw, 14, 6); ctx.fill();
+      ctx.fillStyle = p.ok; BB.rrect(ctx, px, py, pw * st.prog, 14, 6); ctx.fill();
+      // 기록
+      var box = narrow ? { x: 56, y: py + 34, w: w - 72, h: h - py - 76 } : { x: px + 30, y: py + 40, w: pw - 30, h: h - py - 82 };
+      var t1 = Math.max(40, st.t);
+      BB.chart(ctx, box, { x: [0, t1], y: [0, 105], xLabel: "시간(초)", yLabel: T.sig, series: [{ data: hist.map(function (q) { return [q[0], q[1]]; }), color: col, width: 2.4, fill: BB.alpha(col, 0.12) }] });
+      var msg = "", mcol = p.dim;
+      if (st.done && stopOn) { msg = T.done; mcol = p.ok; }
+      else if (st.x >= 99.9 && !stopOn && st.done) { msg = T.stuck; mcol = p.bad; }
+      else if (st.t > 25 && st.x < 1 && !st.done) { msg = T.fizz; mcol = p.warn; }
+      if (msg) { ctx.fillStyle = mcol; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; BB.wrapText(ctx, msg, box.x + 6, box.y + 4, box.w - 12, 15, 2); }
+      BB.stat("ps-o-x", Math.round(st.x) + "<small>/100</small>");
+      BB.stat("ps-o-p", Math.round(st.prog * 100) + "<small>%</small>");
+      BB.stat("ps-o-s", msg ? (st.done && stopOn ? "끝남" : st.done ? "폭주가 멈추지 않음" : "잦아듦") : st.x > 5 ? "커지는 중" : "시작");
+    }, { get height() { return narrowOf("ps-cv", 520) ? 470 : 300; } });
+    BB.loop(document.getElementById("sim-hs-pos"), function (dt) { if (st.t >= 90) reset(); for (var i = 0; i < 4; i++) step(dt * 2 / 4); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 6. 일어서기(압반사) */
+  (function () {
+    var res, phi, tc = 6, TS = 8, TEND = 45, cv;
+    var g = BB.seg("sd-g", function () { calc(); tc = 0; });
+    document.getElementById("sd-go").addEventListener("click", function () { tc = 0; });
+    function calc() {
+      res = BD.baroLoop({ tstop: TEND, baro: Number(g()), events: [{ t: TS, kind: "stand", value: 1 }] });
+      phi = [0]; for (var i = 1; i < res.t.length; i++) phi.push(phi[i - 1] + res.hr[i] / 60 * (res.t[i] - res.t[i - 1]));
+    }
+    calc();
+    function idx(t) { return BB.clamp(Math.round(t / (res.t[1] - res.t[0])), 0, res.t.length - 1); }
+    function wave(ph) { var w = ph < 0.13 ? Math.sin(ph / 0.13 * Math.PI / 2) : Math.exp(-(ph - 0.13) * 3.1) + (ph > 0.3 && ph < 0.42 ? 0.06 * Math.sin((ph - 0.3) / 0.12 * Math.PI) : 0); var m = Math.exp(-0.87 * 3.1); return (w - m) / (1 - m); }
+    function abp(t) { var i = idx(t), ph = phi[i] % 1; return res.dbp[i] + (res.sbp[i] - res.dbp[i]) * wave(ph); }
+    cv = BB.canvas("#sd-cv", function (ctx, w, h) {
+      var i = idx(tc), TW = TEND;
+      var mapMin = 999; for (var k = 0; k <= i; k++) if (res.t[k] > TS) mapMin = Math.min(mapMin, res.map[k]);
+      var hist = function (arr) { var o = []; for (var k = 0; k <= i; k++) o.push([res.t[k], arr[k]]); return o; };
+      var wt1 = Math.max(6, tc), wt0 = wt1 - 6;
+      var abpd = []; for (var tt = wt0; tt <= tc; tt += 0.01) abpd.push([tt, abp(tt)]);
+      var low = res.map[i] < 80 && tc > TS;
+      var hTop = Math.round(h * 0.34);
+      var m1 = BD.monitor(ctx, { x: 0, y: 0, w: w, h: hTop }, {
+        t: [wt0, wt1], gridDt: 0.2,
+        traces: [{ label: "ABP mmHg(최근 6초)", color: BB.trace(2), data: abpd, range: [40, 150], width: 1.8 }],
+        numerics: [
+          { label: "HR", value: String(Math.round(res.hr[i])), unit: "bpm", color: BB.trace(1) },
+          { label: "ABP", value: Math.round(res.sbp[i]) + "/" + Math.round(res.dbp[i]), unit: "mmHg", color: BB.trace(2), sub: "(" + Math.round(res.map[i]) + ")", alarm: low },
+        ],
+      });
+      ctx.fillStyle = "rgba(120,140,170,0.35)"; ctx.fillRect(0, hTop, w, 2);
+      var m = BD.monitor(ctx, { x: 0, y: hTop + 2, w: w, h: h - hTop - 2 }, {
+        t: [0, TW], gridDt: 5,
+        traces: [
+          { label: "평균 동맥압 mmHg", color: BB.trace(2), data: hist(res.map), range: [60, 100], width: 2.2 },
+          { label: "심박수 bpm", color: BB.trace(1), data: hist(res.hr), range: [55, 95], width: 2.2 },
+          { label: "교감 신경 활성", color: BB.trace(4), data: hist(res.sym), range: [0.3, 0.9], width: 2 },
+        ],
+        numerics: [
+          { label: "SV", value: String(Math.round(res.sv[i])), unit: "mL", color: BB.trace(3) },
+          { label: "최저 MAP", value: mapMin < 999 ? String(Math.round(mapMin)) : "—", unit: "mmHg", color: BB.trace(2) },
+        ],
+      });
+      m.rows.forEach(function (r, k) {
+        ctx.strokeStyle = "rgba(255,255,255,0.35)"; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(r.X(TS), r.y + 2); ctx.lineTo(r.X(TS), r.y + r.h - 2); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = "rgba(255,255,255,0.6)"; ctx.fillRect(r.X(tc) - 1, r.y + 2, 2, r.h - 4);
+        if (k === 0) { ctx.strokeStyle = "rgba(160,190,255,0.35)"; ctx.setLineDash([2, 4]); ctx.beginPath(); ctx.moveTo(r.x, r.Y(93)); ctx.lineTo(r.x + r.w, r.Y(93)); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle = "rgba(160,190,255,0.75)"; ctx.font = BB.font(10); ctx.textAlign = "right"; ctx.textBaseline = "bottom"; ctx.fillText("설정점 93", r.x + r.w - 4, r.Y(93) - 2); }
+      });
+      var r0 = m.rows[0], q0 = m1.rows[0];
+      ctx.font = BB.font(11, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillStyle = "#e6ebf5"; ctx.fillText("일어섬", r0.X(TS) + 4, r0.y + 18);
+      ctx.fillStyle = "#9aa6bf"; ctx.font = BB.font(10.5, true); ctx.textAlign = "right"; ctx.fillText(tc < TS ? "누워 있음" : "일어선 뒤 " + (tc - TS).toFixed(1) + " s", q0.x + q0.w - 4, q0.y + 3);
+      ctx.fillStyle = "#9aa6bf"; ctx.font = BB.font(10); ctx.textAlign = "right"; ctx.textBaseline = "bottom"; ctx.fillText("0~" + TW + "초", r0.x + r0.w - 4, m.rows[m.rows.length - 1].y + m.rows[m.rows.length - 1].h - 2);
+      if (low) { ctx.fillStyle = "#ff8a4c"; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("뇌로 가는 피 부족: 어지러움", r0.x + 4, r0.y + 34); }
+      BB.stat("sd-o-map", Math.round(res.map[i]) + "<small>mmHg</small>");
+      BB.stat("sd-o-min", (mapMin < 999 ? Math.round(mapMin) : "—") + "<small>mmHg</small>");
+      BB.stat("sd-o-hr", Math.round(res.hr[i]) + "<small>bpm</small>");
+      BB.stat("sd-o-sv", Math.round(res.sv[i]) + "<small>mL</small>");
+    }, { get height() { return narrowOf("sd-cv", 520) ? 460 : 400; } });
+    BB.loop(document.getElementById("sim-hs-stand"), function (dt) { if (tc < TEND) tc = Math.min(TEND, tc + dt * (document.getElementById("sd-slow").checked ? 0.6 : 2)); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 7. 앞먹임 */
+  (function () {
+    var T0 = 40, TEND = 120, tNow = 0, rFB, rFF;
+    var LAB = {
+      run: { dem: "산소 요구", eff: "심박수(공급)", def: "산소 빚", sig: "출발", pre: "준비 신호", unit: "", y: "요구·공급(상대)" },
+      meal: { dem: "포도당 유입", eff: "인슐린(처리)", def: "혈당 과잉", sig: "식사", pre: "음식을 봄", unit: "", y: "유입·처리(상대)" },
+    };
+    function sim(ffA, lead) {
+      var dt = 0.05, n = Math.round(TEND / dt), E = 0.2, cmd = 0.2, integ = 0, buf = BD.delayLine(dt, 3, 0);
+      var out = { t: [], d: [], e: [], def: [], acc: 0 };
+      for (var s = 0; s <= n; s++) {
+        var t = s * dt, D = t >= T0 ? 1 : 0.2;
+        var ff = ffA > 0 && t >= T0 - lead ? ffA * 0.8 * Math.min(1, (t - (T0 - lead)) / 4) : 0;
+        var def = Math.max(-1, D - E), sensed = buf.push(def);
+        integ += sensed * dt * 0.09;
+        cmd = 0.2 + integ + ff;
+        cmd = BB.clamp(cmd, 0, 1.6);
+        E += (cmd - E) / 8 * dt;
+        if (D - E > 0) out.acc += (D - E) * dt;
+        if (s % 4 === 0) { out.t.push(t); out.d.push(D); out.e.push(E); out.def.push(D - E); }
+      }
+      return out;
+    }
+    var cv;
+    function calc() {
+      rFB = sim(0, 0); rFF = sim(getA(), getL());
+      BB.stat("ff-o-fb", rFB.acc.toFixed(1));
+      BB.stat("ff-o-ff", rFF.acc.toFixed(1));
+      BB.stat("ff-o-r", Math.round((1 - rFF.acc / rFB.acc) * 100) + "<small>%</small>");
+      tNow = 0;
+    }
+    var kind = BB.seg("ff-kind", function () { if (cv) cv.redraw(); });
+    var getA = BB.range("ff-a", function (v) { return Math.round(v * 100) + "%"; }, calc);
+    var getL = BB.range("ff-lead", function (v) { return v + " 초 전"; }, calc);
+    document.getElementById("ff-go").addEventListener("click", function () { tNow = 0; });
+    calc();
+    cv = BB.canvas("#ff-cv", function (ctx, w, h) {
+      var p = P(), L = LAB[kind()], n = Math.max(2, Math.floor(tNow / TEND * rFF.t.length));
+      var box = { x: 58, y: 22, w: w - 72, h: h - 66 };
+      var cut = function (r, k) { return pts(r.t.slice(0, n), r[k].slice(0, n)); };
+      var c = BB.chart(ctx, box, { x: [0, TEND], y: [0, 1.4], xLabel: "시간(초)", yLabel: L.y, yTicks: [0, 0.5, 1],
+        series: [{ data: cut(rFF, "d"), color: p.text, width: 1.6, dash: [2, 3] }, { data: cut(rFB, "e"), color: p.faint, width: 2, dash: [5, 4] }, { data: cut(rFF, "e"), color: p.accent, width: 2.6 }] });
+      // 부족 넓이(앞먹임) 칠하기
+      ctx.fillStyle = BB.alpha(p.bad, 0.25); ctx.beginPath();
+      var started = false;
+      for (var i = 0; i < n; i++) { var x = c.X(rFF.t[i]), y = c.Y(rFF.d[i]); if (rFF.d[i] - rFF.e[i] > 0 && rFF.t[i] >= T0) { if (!started) { ctx.moveTo(x, c.Y(rFF.e[i])); started = true; } ctx.lineTo(x, y); } }
+      for (var j = n - 1; j >= 0; j--) if (rFF.d[j] - rFF.e[j] > 0 && rFF.t[j] >= T0) ctx.lineTo(c.X(rFF.t[j]), c.Y(rFF.e[j]));
+      if (started) { ctx.closePath(); ctx.fill(); }
+      // 출발·예고 표시
+      ctx.strokeStyle = p.bad; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(c.X(T0), box.y); ctx.lineTo(c.X(T0), box.y + box.h); ctx.stroke();
+      if (getA() > 0 && getL() > 0) { ctx.strokeStyle = p.accent; ctx.beginPath(); ctx.moveTo(c.X(T0 - getL()), box.y); ctx.lineTo(c.X(T0 - getL()), box.y + box.h); ctx.stroke(); }
+      ctx.setLineDash([]);
+      ctx.font = BB.font(11, false, 700); ctx.textBaseline = "bottom"; ctx.textAlign = "left";
+      ctx.fillStyle = p.bad; ctx.fillText(L.sig, c.X(T0) + 4, box.y + 12);
+      if (getA() > 0 && getL() > 0) { ctx.fillStyle = p.accent; ctx.textAlign = "right"; ctx.fillText(L.pre, c.X(T0 - getL()) - 4, box.y + 12); }
+      ctx.font = BB.font(11); ctx.textAlign = "right"; ctx.textBaseline = "top";
+      ctx.fillStyle = p.dim; ctx.fillText("점선: " + L.dem, box.x + box.w - 4, c.Y(1) + 4);
+      ctx.fillStyle = p.accent; ctx.fillText(L.eff, box.x + box.w - 4, c.Y(1) + 20);
+      ctx.fillStyle = p.bad; ctx.textAlign = "left"; ctx.fillText("주황 넓이 = " + L.def, box.x + 6, box.y + box.h - 18);
+    }, { aspect: 0.6, minHeight: 300, maxHeight: 380 });
+    BB.loop(document.getElementById("sim-hs-ff"), function (dt) { if (tNow < TEND) { tNow = Math.min(TEND, tNow + dt * 24); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 8. 설정점(열) */
+  (function () {
+    var st = { t: 0, T: 37, SP: 37 }, hist = [], lay = null, GAIN = 3, TAU = 6;
+    var getD = BB.range("sp-d", function (v) { return (v > 0 ? "+" : "") + v.toFixed(2); });
+    document.getElementById("sp-fever").addEventListener("click", function () { st.SP = 39; getD.set(0); });
+    document.getElementById("sp-cure").addEventListener("click", function () { st.SP = 37; });
+    document.getElementById("sp-hot").addEventListener("click", function () { st.SP = 37; getD.set(1.2); });
+    function eff(e) { return { shiver: BB.clamp(e * 2.2, 0, 1), vaso: BB.clamp(e * 3, 0, 1), sweat: BB.clamp(-e * 2.2, 0, 1), dil: BB.clamp(-e * 3, 0, 1) }; }
+    function step(dt) {
+      var e = st.SP - st.T, u = BB.clamp(GAIN * e, -1.6, 1.4);
+      st.T += (u + getD() * 0.4) / TAU * dt;
+      st.t += dt;
+      if (!hist.length || st.t - hist[hist.length - 1][0] > 0.25) hist.push([st.t, st.T, st.SP]);
+      while (hist.length && hist[0][0] < st.t - 60) hist.shift();
+    }
+    for (var pre = 0; pre < 1200; pre++) step(0.025);
+    var cv = BB.canvas("#sp-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 520, e = st.SP - st.T, E = eff(e);
+      // 체온계
+      var tx = 44, ty0 = 26, th = narrow ? 200 : h - 70;
+      var Ty = function (T) { return ty0 + th - (T - 35) / 6 * th; };
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.5; BB.rrect(ctx, tx - 8, ty0 - 6, 16, th + 12, 8); ctx.stroke();
+      ctx.fillStyle = BB.color("art"); ctx.fillRect(tx - 4, Ty(st.T), 8, ty0 + th + 6 - Ty(st.T)); ctx.beginPath(); ctx.arc(tx, ty0 + th + 14, 11, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5, true); ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      for (var T = 35; T <= 41; T++) { ctx.fillText(T, tx - 14, Ty(T)); ctx.strokeStyle = p.grid; ctx.beginPath(); ctx.moveTo(tx - 10, Ty(T)); ctx.lineTo(tx + 8, Ty(T)); ctx.stroke(); }
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(tx - 10, Ty(st.SP)); ctx.lineTo(tx + 26, Ty(st.SP)); ctx.stroke();
+      handle(ctx, tx + 30, Ty(st.SP), p.accent2, 7);
+      ctx.fillStyle = p.accent2; ctx.font = BB.font(11, false, 700); ctx.textAlign = "left"; ctx.fillText("설정점", tx + 40, Ty(st.SP) - 10); ctx.font = BB.font(11, true, 700); ctx.fillText(st.SP.toFixed(1), tx + 40, Ty(st.SP) + 5);
+      ctx.fillStyle = BB.color("art"); ctx.font = BB.font(11, true, 700); ctx.fillText(st.T.toFixed(2) + " 체온", tx + 12, Ty(st.T) + (Math.abs(Ty(st.T) - Ty(st.SP)) < 22 ? 22 : 0));
+      // 효과기 막대
+      var ex = narrow ? 150 : 150, ew = narrow ? w - ex - 14 : 150;
+      var bars = [["떨림", E.shiver, BB.color("heat")], ["피부 혈관 수축", E.vaso, BB.color("ven")], ["땀", E.sweat, BB.color("water")], ["피부 혈관 확장", E.dil, BB.color("art")]];
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("효과기", ex, 14);
+      bars.forEach(function (b, k) {
+        var y = 36 + k * 34;
+        ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.fillText(b[0], ex, y);
+        ctx.fillStyle = p.surface; BB.rrect(ctx, ex, y + 15, ew, 10, 4); ctx.fill();
+        ctx.fillStyle = b[2]; BB.rrect(ctx, ex, y + 15, ew * b[1], 10, 4); ctx.fill();
+      });
+      var feel = e > 0.25 ? ["춥다, 떨린다", BB.color("ven")] : e < -0.25 ? ["덥다, 땀이 난다", BB.color("heat")] : ["편안하다", p.ok];
+      ctx.fillStyle = feel[1]; ctx.font = BB.font(14, false, 800); ctx.fillText("느낌: " + feel[0], ex, 36 + 4 * 34 + 2);
+      // 기록
+      var box = narrow ? { x: 56, y: ty0 + th + 50, w: w - 72, h: h - ty0 - th - 106 } : { x: ex + ew + 60, y: 16, w: w - ex - ew - 76, h: h - 74 };
+      var t1 = Math.max(60, st.t), t0 = t1 - 60;
+      BB.chart(ctx, box, { x: [t0, t1], y: [35.5, 40.5], xLabel: "시간(분)", yLabel: "°C", xFmt: function (v) { return Math.round(v); },
+        series: [{ data: hist.map(function (q) { return [q[0], q[2]]; }), color: p.accent2, width: 2, dash: [6, 4] }, { data: hist.map(function (q) { return [q[0], q[1]]; }), color: BB.color("art"), width: 2.4 }] });
+      ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillStyle = p.accent2; ctx.fillText("점선: 설정점", box.x + 6, box.y + 4); ctx.fillStyle = BB.color("art"); ctx.fillText("실선: 심부 체온", box.x + 6, box.y + 18);
+      if (st.T > 40) { ctx.fillStyle = p.bad; ctx.font = BB.font(12, false, 700); ctx.fillText("40 °C 이상: 위험한 고열", box.x + 6, box.y + 34); }
+      lay = { tx: tx, Ty: Ty, ty0: ty0, th: th };
+      BB.stat("sp-o-sp", st.SP.toFixed(1) + "<small>°C</small>");
+      BB.stat("sp-o-t", st.T.toFixed(2) + "<small>°C</small>");
+      BB.stat("sp-o-f", feel[0]);
+    }, { get height() { return narrowOf("sp-cv", 520) ? 490 : 320; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay || x > lay.tx + 80) return; var v = 35 + (lay.ty0 + lay.th - y) / lay.th * 6; st.SP = Math.round(BB.clamp(v, 36, 40.5) * 10) / 10; cv.redraw(); } });
+    BB.loop(document.getElementById("sim-hs-sp"), function (dt) { for (var i = 0; i < 4; i++) step(dt / 4); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 9. 나만의 루프 */
+  (function () {
+    var res, tNow = 0, TEND = 200, ph = 0, cv = null, diag = "";
+    var DIST = {
+      step: function (t) { return t >= 10 ? -5 : 0; },
+      pulse: function (t) { return t >= 10 && t < 20 ? -12 : 0; },
+      sine: function (t) { return -4 * Math.sin(2 * Math.PI * t / 60); },
+      big: function (t) { return t >= 10 ? -12 : 0; },
+    };
+    function calc() {
+      var L = getL(), sign = sgn(), dist = DIST[document.getElementById("bd-dist").value];
+      res = BD.feedback({ sp: 37, y0: 37, base: 37, gain: getG(), ki: document.getElementById("bd-i").checked ? 0.3 : 0, delay: getD(), tau: 10, kind: sign, dist: dist, tstop: TEND, umin: 37 - L, umax: 37 + L, ymin: 25, ymax: 45 });
+      // 판정
+      var n = res.t.length, last = [], satT = 0, dt = res.t[1] - res.t[0], maxDev = 0;
+      for (var i = 0; i < n; i++) {
+        if (Math.abs(res.u[i] - 37) >= L - 1e-6) satT += dt;
+        if (res.t[i] > 10) maxDev = Math.max(maxDev, Math.abs(res.y[i] - 37));
+        if (res.t[i] > TEND - 60) last.push(res.y[i]);
+      }
+      var lmin = Math.min.apply(null, last), lmax = Math.max.apply(null, last), endE = 37 - res.y[n - 1];
+      var isSine = document.getElementById("bd-dist").value === "sine";
+      if (res.y.some(function (v) { return v <= 25.01 || v >= 44.99; })) diag = "폭주: 생존 한계";
+      else if (!isSine && lmax - lmin > 0.6) diag = "진동(불안정)";
+      else if (!isSine && satT > 60 && Math.abs(endE) > 1) diag = "포화: 효과기 힘 부족";
+      else if (isSine) diag = maxDev < 1.5 ? "잘 따라간다" : "따라가지 못한다";
+      else if (Math.abs(endE) < 0.05) diag = "안정, 오차 없음";
+      else diag = "안정, 오차가 남음";
+      var bad = /폭주|진동|포화|못한/.test(diag);
+      BB.stat("bd-o-s", bad ? "<span style='color:var(--bad)'>" + diag + "</span>" : diag);
+      BB.stat("bd-o-e", (isSine ? "—" : endE.toFixed(2) + "<small>°C</small>"));
+      BB.stat("bd-o-m", maxDev.toFixed(2) + "<small>°C</small>");
+      BB.stat("bd-o-sat", Math.round(satT) + "<small>s</small>");
+      tNow = 0;
+    }
+    var sgn = BB.seg("bd-sign", calc);
+    var getD = BB.range("bd-d", function (v) { return v.toFixed(2) + " s"; }, BB.debounce(calc, 40));
+    var getG = BB.range("bd-g", function (v) { return v.toFixed(1); }, BB.debounce(calc, 40));
+    var getL = BB.range("bd-l", function (v) { return "±" + v; }, BB.debounce(calc, 40));
+    document.getElementById("bd-i").addEventListener("change", calc);
+    document.getElementById("bd-dist").addEventListener("change", calc);
+    calc();
+    cv = BB.canvas("#bd-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, n = Math.max(2, Math.floor(tNow / TEND * res.t.length)), i = n - 1;
+      // 블록 그림(위)
+      var dh = narrow ? 170 : 150;
+      var bw = narrow ? (w - 40) / 2 - 10 : 118, bh = 40;
+      var B = narrow ? {
+        sens: [20, 20], ctrl: [w - 20 - bw, 20], eff: [w - 20 - bw, 104], plant: [20, 104],
+      } : { sens: [20, 20], ctrl: [w / 2 - bw / 2, 20], eff: [w - 20 - bw, 20], plant: [w / 2 - bw / 2, 98] };
+      var yv = res.y[i], uv = res.u[i], dv = res.d[i], col = p.accent;
+      var boxes = [
+        ["sens", "감지기", "지연 " + getD().toFixed(1) + " s", p.accent2],
+        ["ctrl", "조절 중추", (sgn() === "neg" ? "음성" : "양성") + " · G " + getG().toFixed(1) + (document.getElementById("bd-i").checked ? " + 적분" : ""), p.accent],
+        ["eff", "효과기", "출력 " + (uv - 37 >= 0 ? "+" : "") + (uv - 37).toFixed(1) + " / ±" + getL(), Math.abs(uv - 37) >= getL() - 1e-6 ? p.bad : p.warn],
+        ["plant", "체온", yv.toFixed(2) + " °C", BB.color("art")],
+      ];
+      var ctrOf = function (k) { return [B[k][0] + bw / 2, B[k][1] + bh / 2]; };
+      var path = narrow ? [ctrOf("plant"), ctrOf("sens"), ctrOf("ctrl"), ctrOf("eff"), ctrOf("plant")] : [ctrOf("plant"), [B.sens[0] + bw / 2, B.plant[1] + bh / 2], ctrOf("sens"), ctrOf("ctrl"), ctrOf("eff"), [B.eff[0] + bw / 2, B.plant[1] + bh / 2], ctrOf("plant")];
+      ctx.strokeStyle = BB.alpha(p.dim, 0.5); ctx.lineWidth = 2; ctx.beginPath(); path.forEach(function (q, k) { k ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); }); ctx.stroke();
+      BD.flowDots(ctx, path, ph * 40, { color: Math.abs(yv - 37) > 1.5 ? p.bad : p.accent, gap: 22, r: 3 });
+      boxes.forEach(function (b) {
+        var x = B[b[0]][0], y = B[b[0]][1];
+        ctx.fillStyle = p.bg; ctx.strokeStyle = b[3]; ctx.lineWidth = 2; BB.rrect(ctx, x, y, bw, bh, 8); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = BB.alpha(b[3], 0.12); BB.rrect(ctx, x, y, bw, bh, 8); ctx.fill();
+        ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(b[1], x + bw / 2, y + 4);
+        ctx.fillStyle = b[3]; ctx.font = BB.font(10.5, true); ctx.fillText(b[2], x + bw / 2, y + 22);
+      });
+      // 교란 화살표
+      var pl = B.plant, dxp = narrow ? pl[0] + bw / 2 : pl[0] - 46;
+      ctx.fillStyle = Math.abs(dv) > 0.01 ? p.bad : p.faint; ctx.font = BB.font(11, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "top";
+      if (narrow) { ctx.textAlign = "left"; ctx.fillText("교란 " + dv.toFixed(1) + " → 체온", pl[0], pl[1] + bh + 4); } else { ctx.textAlign = "right"; ctx.fillText("교란 " + dv.toFixed(1) + " →", pl[0] - 6, pl[1] + bh + 2); }
+      // 기록(아래)
+      var box = { x: 56, y: dh + 14, w: w - 72, h: h - dh - 58 };
+      var ys = res.y.slice(0, n), lo = Math.min(33, Math.floor(Math.min.apply(null, res.y))), hi = Math.max(39, Math.ceil(Math.max.apply(null, res.y)));
+      var c = BB.chart(ctx, box, { x: [0, TEND], y: [lo, hi], xLabel: "시간(초)", yLabel: "체온 °C", hlines: [{ y: 37, color: p.accent2, label: "설정점 37" }],
+        series: [{ data: pts(res.t.slice(0, n), ys, 2), color: /폭주|진동|포화|못한/.test(diag) ? p.bad : p.accent, width: 2.4 }] });
+      ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(c.X(res.t[i]), c.Y(res.y[i]), 4.5, 0, Math.PI * 2); ctx.fill();
+      if (tNow >= TEND) { ctx.fillStyle = /폭주|진동|포화|못한/.test(diag) ? p.bad : p.ok; ctx.font = BB.font(13, false, 800); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("판정: " + diag, box.x + 8, box.y + 6); }
+    }, { get height() { return narrowOf("bd-cv") ? 470 : 440; } });
+    BB.loop(document.getElementById("sim-hs-build"), function (dt) { ph += dt; if (tNow < TEND) tNow = Math.min(TEND, tNow + dt * 40); cv.redraw(); });
+  })();
+})();
+</script>
+</body>
+</html>

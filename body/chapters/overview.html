@@ -1,0 +1,1166 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "37조 개의 세포가 하나처럼 움직이는 몸을 숫자로 본다. 기관계의 지도, 하루의 숫자, 몸의 물과 구성, 몸집과 대사량의 법칙, 정상 범위의 의미를 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>몸이라는 기계 · BodyBook</title>
+<meta name="description" content="37조 개의 세포가 하나처럼 움직이는 몸을 숫자로 본다. 기관계의 지도, 하루의 숫자, 몸의 물과 구성, 몸집과 대사량의 법칙, 정상 범위의 의미를 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/overview.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="몸이라는 기계 · BodyBook">
+<meta property="og:description" content="37조 개의 세포가 하나처럼 움직이는 몸을 숫자로 본다. 기관계의 지도, 하루의 숫자, 몸의 물과 구성, 몸집과 대사량의 법칙, 정상 범위의 의미를 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/overview.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/overview.html#chapter","name":"몸이라는 기계","headline":"몸이라는 기계 · BodyBook","description":"37조 개의 세포가 하나처럼 움직이는 몸을 숫자로 본다. 기관계의 지도, 하루의 숫자, 몸의 물과 구성, 몸집과 대사량의 법칙, 정상 범위의 의미를 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/overview.html","position":1,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"1. 몸이라는 기계","item":"https://medical.euiyun.com/body/chapters/overview.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<!--head:end-->
+<style>
+  .ov-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .ov-chips a { font-size: 12.5px; padding: 2px 9px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--text); text-decoration: none; }
+  .ov-chips a:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="overview">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 01</div>
+    <h1>몸이라는 기계</h1>
+    <p class="lead">당신의 몸은 약 37조 개의 세포로 되어 있다. 세포 하나하나는 스스로 먹고 숨 쉬고 쓰레기를 버리는 작은 생명이지만, 몸 전체는 마치 하나의 기계처럼 움직인다. 심장은 하루 10만 번 뛰고, 콩팥은 180 L의 물을 거르고, 근육은 체중만큼의 ATP를 만들었다 쓴다. 이 장은 그 기계의 지도를 펼치고, 이 책 전체에서 쓸 숫자들의 크기를 손으로 느껴 본다.</p>
+    <ul class="objectives">
+      <li>세포 → 조직 → 기관 → 기관계 → 몸의 단계를 구분하고, 기관마다 무게·에너지·혈류의 몫이 어떻게 다른지 읽는다.</li>
+      <li>하루 동안 몸이 하는 일(박동, 호흡, 여과, 산소 소비)을 숫자로 어림한다.</li>
+      <li>몸의 60 %가 물이고, 그 물이 세포 안과 밖에 어떻게 나뉘는지 설명한다.</li>
+      <li>몸집이 커질수록 kg당 대사량과 심박수가 줄어드는 법칙(클라이버 법칙)과, 큰 몸에 순환이 꼭 필요한 이유를 설명한다.</li>
+      <li>정상 참고 범위가 하나의 숫자가 아니라 분포라는 것을 이해한다.</li>
+    </ul>
+  </header>
+
+  <section id="levels">
+    <h2>기관계의 지도</h2>
+    <p>생리학<span class="en">(Physiology)</span>은 몸이 <b>어떻게 작동하는가</b>를 묻는 학문이다. 해부학이 부품의 모양과 위치를 그린다면, 생리학은 그 부품이 무엇을 얼마나 빨리 하고 서로 어떻게 맞물리는지를 숫자로 따진다. 심장이 몇 mL를 짜내는지, 폐가 산소를 얼마나 빨리 넘기는지, 콩팥이 소금을 얼마나 버리는지 같은 질문이다.</p>
+    <p>몸은 층층이 쌓인 구조다. 같은 일을 하는 세포가 모이면 <span class="term">조직</span><span class="en">(Tissue)</span>이 되고, 여러 조직이 한 가지 임무를 위해 모이면 <span class="term">기관</span><span class="en">(Organ)</span>이 되며, 기관들이 하나의 큰 일을 나눠 맡으면 <span class="term">기관계</span><span class="en">(Organ system)</span>가 된다. 심장과 혈관과 혈액이 함께 순환계를 이루는 식이다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-1-3.webp" width="1200" height="1417" loading="lazy" decoding="async" alt="원자에서 분자, 세포, 조직, 기관(방광), 기관계(비뇨계), 한 사람으로 올라가는 피라미드">
+      <figcaption><b>몸의 구성 단계.</b> 원자·분자(화학 수준)가 모여 세포가 되고, 비슷한 세포가 모여 조직, 조직이 모여 기관(그림에서는 방광), 기관이 모여 기관계(비뇨계), 기관계가 모여 한 사람이 된다. 단계를 하나 올라갈 때마다 아래 단계에는 없던 성질이 생긴다. 세포 하나는 박동하지 않지만 심장 근육 조직은 박동하고, 심장 하나는 혈압을 지키지 못하지만 순환계 전체는 혈압을 지킨다.<span class="fig-words">Chemical 화학 · Cellular 세포 · Tissue 조직 · Organ 기관 · Organ system 기관계 · Organismal 개체(사람)</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/1-2-structural-organization-of-the-human-body">그림 1.3</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>그림의 단계 가운데 기관과 기관계를 실제 몸 속 위치로 보자. 아래 3D 모델은 일본 DBCLS가 공개한 인체 해부 데이터(BodyParts3D)로 만들었다. 피부를 끄면 기관이, 뼈대를 끄면 뒤쪽 콩팥이 드러난다.</p>
+
+    <div class="sim model3d" id="sim-ov-3d" data-model="body" data-orbit="20deg 80deg auto" data-desc="실제 인체 데이터로 만든 3D 모델을 돌려 보며 뼈대, 뇌, 심장, 기관지, 간, 위, 창자, 콩팥, 방광이 몸 속 어디에 있는지 확인한다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 몸 속</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="skin">피부</button><button type="button" data-part="skeleton" title="몸무게의 약 15 %">뼈대</button><button type="button" data-part="brain" title="몸무게의 2 %, 산소 소비의 약 20 %">뇌</button><button type="button" data-part="heart" title="주먹만 한 펌프, 하루 약 10만 번">심장</button><button type="button" data-part="lungs" title="공기의 길. 폐 실질은 모델에 없다">기관·기관지</button><button type="button" data-part="liver" title="가장 큰 내장 기관, 대사 공장">간</button><button type="button" data-part="stomach">위</button><button type="button" data-part="intestine">작은창자·큰창자</button><button type="button" data-part="kidneys" title="하루 180 L를 거른다">콩팥</button><button type="button" data-part="bladder">방광</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 피부를 끈다. ② 뼈대를 끄고 모델을 뒤로 돌려 콩팥이 등 쪽에 붙어 있는 것을 본다. ③ 심장과 기관지를 남기고 나머지를 끄면 순환계와 호흡계가 가슴 속에서 얼마나 붙어 있는지 보인다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <p>이 책은 기관계를 다섯 갈래로 묶는다. 피를 돌리는 <b>순환</b>, 산소를 들이고 이산화탄소를 내보내는 <b>호흡</b>, 힘을 내는 <b>근육</b>, 연료를 태우고 저장하는 <b>에너지</b>, 이 모두를 맞추는 신경·호르몬·콩팥·체온의 <b>조절</b>이다. 아래 몸 지도에서 장기를 눌러 보자. 그 장기가 체중의 몇 %인지, 쉬는 동안 몸 전체 에너지의 몇 %를 쓰는지, 심장이 내보낸 피의 몇 %를 받는지가 나온다.</p>
+
+    <div class="sim" id="sim-ov-map" data-desc="몸 지도에서 장기를 눌러 역할, 무게, 쉬는 동안 쓰는 에너지의 몫, 받는 혈류의 몫을 비교하고, 계통 버튼으로 다섯 갈래 기관계를 나눠 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>몸 지도: 무게, 에너지, 혈류의 몫</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="mp-cv"></canvas><span class="hint">장기를 누른다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>계통으로 보기</span></div>
+          <div class="seg" id="mp-sys"><button data-value="all" class="on">전체</button><button data-value="circ">순환</button><button data-value="resp">호흡</button><button data-value="musc">근육</button><button data-value="meta">에너지</button><button data-value="reg">조절</button></div>
+          <div class="info-panel" id="mp-sysinfo" style="border:0;padding:0;background:transparent;min-height:0;font-size:14px"></div>
+        </div>
+      </div>
+      <div class="info-panel" id="mp-info">장기를 누르면 설명이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">무게(70 kg 성인)</span><span class="v" id="mp-o-kg">—</span></div>
+        <div class="stat"><span class="k">쉬는 동안 에너지의 몫</span><span class="v" id="mp-o-en">—</span></div>
+        <div class="stat"><span class="k">쉬는 동안 혈류의 몫</span><span class="v" id="mp-o-fl">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 뇌를 누른다. 무게는 체중의 2 %인데 에너지는 약 20 %를 쓴다. ② 골격근을 누른다. 무게는 40 %인데 쉬는 동안 에너지는 약 22 %뿐이다. 달리면 이 몫이 몇 배로 뛴다. ③ 콩팥은 0.3 kg인데 혈류의 약 22 %를 받는다. 피를 쓰기 위해서가 아니라 거르기 위해서다. ④ 계통 버튼으로 다섯 갈래를 하나씩 켠다. (체중 70 kg 표준 성인. 장기 무게와 kg당 대사율은 Elia(1992)의 대표값(BD.ORGANS), 혈류 비율은 교과서 대표값을 반올림했다. 소화관과 피부의 대사율은 나머지 조직 평균으로 어림했다.)</div>
+    </div>
+
+    <p>세 막대를 나란히 보면 몸의 살림살이가 보인다. 뇌·간·심장·콩팥 네 기관은 합쳐서 체중의 6 % 남짓인데 쉬는 동안 쓰는 에너지는 60 %에 가깝다. 반대로 체중의 40 %를 차지하는 골격근은 쉴 때는 얌전하다가 달리기 시작하면 몸 전체 에너지의 80 % 이상을 가져간다. 이 "몫의 이동"이 운동 생리학의 거의 전부다(<a href="flow.html">7장</a>, <a href="exercise.html">12장</a>).</p>
+  </section>
+
+  <section id="day">
+    <h2>하루의 숫자</h2>
+    <p>생리학을 배울 때 가장 먼저 몸에 붙여 두면 좋은 것은 <b>크기의 감각</b>이다. 심박수 70은 1분에 70번이지만, 하루로 늘리면 10만 번이다. 한 번에 70 mL씩이면 하루 7천 L, 욕조 수십 개 분량을 같은 5 L의 피로 돌려 쓴다는 뜻이다.</p>
+    <div class="numbers">
+      <div><b>약 10만 번</b><span>하루 심장 박동(72 × 1,440분)</span></div>
+      <div><b>약 2만 번</b><span>하루 호흡(분당 14회)</span></div>
+      <div><b>약 7,000 L</b><span>심장이 하루 내보내는 피</span></div>
+      <div><b>약 180 L</b><span>콩팥이 하루 거르는 물(소변은 1.5 L)</span></div>
+    </div>
+    <p>아래 계수기는 가상의 시계를 빠르게 돌린다. 심박수와 호흡수를 바꾸면 하루치가 어떻게 달라지는지 보자. 마지막 칸의 ATP는 세포가 쓰는 에너지 화폐로, 몸 안에는 수십 g밖에 없지만 하루에 체중과 비슷한 무게만큼 만들어졌다 쓰인다.</p>
+
+    <div class="sim" id="sim-ov-day" data-desc="가상 시계를 1배에서 1만 배까지 돌리며 심장 박동, 호흡, 내보낸 피, 콩팥 여과량, 산소, 다시 만든 ATP가 하루 동안 얼마나 쌓이는지 센다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>하루의 계수기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="dy-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>시계 속도 <output id="dy-sp-out"></output></span><input type="range" id="dy-sp" min="0" max="4" step="0.1" value="2.8"></label>
+          <label class="ctrl"><span>심박수 <output id="dy-hr-out"></output></span><input type="range" id="dy-hr" min="40" max="180" step="1" value="72"></label>
+          <label class="ctrl"><span>호흡수 <output id="dy-rr-out"></output></span><input type="range" id="dy-rr" min="6" max="40" step="1" value="14"></label>
+          <div class="btn-row"><button class="btn primary" id="dy-go">일시정지</button><button class="btn" id="dy-day">하루로 건너뛰기</button><button class="btn" id="dy-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">가상 시간</span><span class="v" id="dy-o-t">—</span></div>
+        <div class="stat"><span class="k">하루 박동(이 심박수로)</span><span class="v" id="dy-o-hb">—</span></div>
+        <div class="stat"><span class="k">하루 호흡</span><span class="v" id="dy-o-br">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "하루로 건너뛰기"를 누르고 여섯 칸의 하루치를 읽는다. ② 심박수를 50(훈련된 사람의 안정 심박)으로 내린다. 하루 박동이 약 3만 번 준다. 그래도 내보내는 피가 같으려면 한 번에 더 많이 짜내야 한다(<a href="heart.html">4장</a>). ③ 시계 속도를 1배로 낮춰 심장 아이콘과 계수기가 같은 박자로 움직이는 것을 본다. (1회 박출량 70 mL, 사구체 여과율 125 mL/min, 산소 소비 250 mL/min, 하루 에너지 2,392 kcal에서 ATP 약 0.022 kg/kcal로 어림. 쉬는 상태가 하루 종일 이어진다고 가정했다.)</div>
+    </div>
+  </section>
+
+  <section id="composition">
+    <h2>몸은 무엇으로 되어 있나</h2>
+    <p>몸무게의 약 60 %는 물이다. 70 kg인 사람이라면 42 L, 큰 생수통 두 개가 넘는다. 이 물은 한곳에 고여 있지 않고 칸이 나뉘어 있다. 약 3분의 2는 세포 안에 있는 <span class="term">세포내액</span><span class="en">(Intracellular fluid, ICF)</span>이고, 나머지 3분의 1이 세포 밖의 <span class="term">세포외액</span><span class="en">(Extracellular fluid, ECF)</span>이다. 세포외액은 다시 세포 사이를 채운 <span class="term">사이질액</span><span class="en">(Interstitial fluid)</span>과 혈관 안의 <span class="term">혈장</span><span class="en">(Plasma)</span>으로 나뉜다. 혈장은 몸 전체 물의 약 7 %, 3 L 남짓에 불과하다.</p>
+    <p>왜 여자는 50 %, 남자는 60 %라고 할까. 지방 조직에는 물이 10~20 %밖에 없고, 근육 같은 제지방 조직에는 약 73 %가 있기 때문이다. 같은 체중이라도 체지방이 많을수록 몸의 물이 적다. 아래 막대에서 지방의 경계를 끌어 보자.</p>
+
+    <div class="sim" id="sim-ov-comp" data-desc="체중 막대에서 지방의 경계를 끌어 체지방률을 바꾸면 몸의 물, 단백질, 무기질과 세포 안·사이질·혈장의 물이 어떻게 달라지는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>몸의 구성과 물의 세 칸</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cp-cv"></canvas><span class="hint">지방 경계를 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="cp-sex"><button data-value="m" class="on">남</button><button data-value="f">여</button></div>
+          <label class="ctrl"><span>몸무게 <output id="cp-kg-out"></output></span><input type="range" id="cp-kg" min="40" max="130" step="1" value="78"></label>
+          <label class="ctrl"><span>체지방률 <output id="cp-bf-out"></output></span><input type="range" id="cp-bf" min="5" max="50" step="1" value="24"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">몸의 물(체지방 반영)</span><span class="v" id="cp-o-tbw">—</span></div>
+        <div class="stat"><span class="k">어림 규칙(남 60 %·여 50 %)</span><span class="v" id="cp-o-rule">—</span></div>
+        <div class="stat"><span class="k">세포 안 / 세포 밖</span><span class="v" id="cp-o-ie">—</span></div>
+        <div class="stat"><span class="k">혈장</span><span class="v" id="cp-o-pl">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 체지방을 10 %로 줄인다. 몸의 물이 체중의 65 %를 넘는다. 운동선수의 몸이다. ② 40 %로 올린다. 같은 체중인데 물이 44 % 남짓으로 준다. 체중만 보고 약 용량이나 수분을 어림하면 틀리는 이유다. ③ 성별 버튼을 바꿔 어림 규칙과 비교한다. 성별 차이의 대부분은 평균 체지방 차이다. (제지방의 73 %가 물, 6.8 %가 무기질, 나머지를 단백질·글리코겐으로 어림했다. 세포 안 2/3, 세포 밖 1/3, 세포 밖 중 혈장 1/5로 나눴다.)</div>
+    </div>
+
+    <p>다온처럼 체중 78 kg, 체지방 24 %라면 어림 규칙으로는 약 47 L, 체지방을 반영하면 약 43 L다. 이 책에서 공식 계산에는 어림 규칙(`BD.tbw`)을 쓰지만, 실제 몸의 물은 체지방에 따라 몇 L씩 달라진다는 것을 기억해 두자. 세포 안과 밖의 물이 어떻게 오가는지는 <a href="cell.html">3장</a>의 삼투에서, 혈장의 물과 소금을 콩팥이 어떻게 지키는지는 <a href="kidney.html">18장</a>에서 다룬다.</p>
+  </section>
+
+  <section id="scaling">
+    <h2>몸집의 법칙</h2>
+    <p>생쥐의 심장은 1분에 600번 넘게 뛰고, 코끼리의 심장은 30번 남짓 뛴다. 몸집이 커질수록 심장은 느려지고, 1 kg당 쓰는 에너지도 준다. 놀라운 것은 이 관계가 생쥐에서 코끼리까지 거의 <b>한 줄의 직선</b>(로그 눈금에서) 위에 놓인다는 점이다. 1930년대 막스 클라이버가 정리한 이 관계를 <span class="term">클라이버 법칙</span><span class="en">(Kleiber's law)</span>이라 한다.</p>
+    <div class="formula">$$BMR \approx 70\, M^{3/4}\ \text{kcal/day}, \qquad HR \approx 241\, M^{-1/4}\ \text{bpm}$$
+      <div class="where">\(M\) 체중(kg), \(BMR\) 기초대사량(70 kg 사람이면 약 1,700 kcal/day), \(HR\) 안정 심박수(포유류 평균 경향, 70 kg이면 약 83 bpm)</div>
+    </div>
+    <p>지수 3/4이 핵심이다. 몸무게가 16배가 되면 대사량은 16배가 아니라 8배(16의 3/4제곱)만 는다. 그래서 kg당 대사량은 절반이 된다. 아래 그래프에서 동물의 몸무게를 끌어 보자. 흐린 점선은 "몸집에 정비례한다면"의 선이다.</p>
+
+    <div class="sim" id="sim-ov-scale" data-desc="생쥐에서 코끼리까지 몸무게를 끌어 대사량(클라이버 3/4 법칙)과 심박수(−1/4 법칙)를 로그 눈금으로 따라가고, 평생 심박수가 대략 일정한지 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>생쥐에서 코끼리까지</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="sc-cv"></canvas><span class="hint">그래프를 좌우로 끌어 몸무게를 바꾼다</span></div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">몸무게</span><span class="v" id="sc-o-m">—</span></div>
+        <div class="stat"><span class="k">기초대사량</span><span class="v" id="sc-o-b">—</span></div>
+        <div class="stat"><span class="k">kg당 대사량</span><span class="v" id="sc-o-k">—</span></div>
+        <div class="stat"><span class="k">심박수</span><span class="v" id="sc-o-hr">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 생쥐(25 g)에 놓는다. kg당 대사량이 사람의 약 7배다. 작은 몸은 표면으로 열을 빨리 잃기 때문에 끊임없이 태워야 한다. ② 코끼리(4 t)로 끈다. 심박수가 약 30으로 떨어진다. ③ 아래 막대에서 평생 심박수를 비교한다. 대부분의 포유류가 10억 번 안팎에서 생을 마치는데 사람만 30억 번 가까이로 튀어나온다. (선은 포유류 평균 경향, 점은 대표값이다. 실제 동물은 종마다 선에서 꽤 벗어난다. 평생 박동은 안정 심박수 × 대표 수명으로 어림했다.)</div>
+    </div>
+
+    <p>왜 하필 3/4일까. 아직 완전히 합의된 답은 없지만 가장 널리 받아들여지는 설명은 <b>공급망</b>이다. 큰 몸은 모든 세포에 혈관을 뻗어야 하고, 혈관 나무가 몸을 채우는 방식이 대사량을 몸무게보다 느리게 늘린다는 것이다. 어느 쪽이든 공급의 문제라는 점은 같다. 다음 절에서 그 공급을 직접 보자.</p>
+  </section>
+
+  <section id="size">
+    <h2>왜 큰 몸에는 순환이 필요한가</h2>
+    <p>세포는 표면을 통해 산소와 양분을 받는다. 그런데 크기가 커지면 부피(필요한 양)는 지름의 세제곱으로, 표면적(들어오는 길)은 제곱으로 는다. 공 모양이라면 표면적 대 부피의 비는 \(S/V = 3/r\)이어서 반지름이 10배가 되면 부피 1 mL당 표면이 10분의 1로 줄어든다.</p>
+    <p>더 큰 문제는 시간이다. 분자가 저절로 퍼지는 <span class="term">확산</span><span class="en">(Diffusion)</span>은 거리의 <b>제곱</b>에 비례하는 시간이 걸린다. 산소가 10 µm를 퍼지는 데 약 25 ms, 1 mm에는 약 4분, 1 cm에는 약 7시간이 걸린다. 아래에서 공 모양 덩어리의 크기를 분자에서 사람까지 끌어 보자. 색은 공의 단면에서 산소 농도다.</p>
+
+    <div class="sim" id="sim-ov-zoom" data-desc="분자에서 사람까지 크기를 로그 자 위에서 끌어, 표면적/부피 비와 확산 시간이 어떻게 변하고 어느 크기부터 확산만으로는 중심에 산소가 닿지 않는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>크기를 키우면 산소가 닿지 않는다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="zm-cv"></canvas><span class="hint">아래 자의 손잡이를 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="zm-q"><button data-value="1" class="on">쉬는 조직</button><button data-value="10">일하는 근육(×10)</button></div>
+          <div class="btn-row"><button class="btn primary" id="zm-go">자동 확대</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">반지름</span><span class="v" id="zm-o-r">—</span></div>
+        <div class="stat"><span class="k">표면적/부피</span><span class="v" id="zm-o-sv">—</span></div>
+        <div class="stat"><span class="k">중심까지 확산 시간</span><span class="v" id="zm-o-t">—</span></div>
+        <div class="stat"><span class="k">확산만으로 버티는 최대 반지름</span><span class="v" id="zm-o-rc">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 세포 크기(10~50 µm)에서는 단면 전체가 산소로 고르게 차 있다. ② 반지름을 1 mm 가까이 키운다. 중심부터 산소가 바닥나 주황색 "산소 없는 중심"이 생긴다. ③ "일하는 근육"으로 바꾸면 쓰는 양이 10배라 버틸 수 있는 반지름이 약 1/3로 준다. 그래서 근육 섬유 사이에는 모세혈관이 수십 µm 간격으로 촘촘하다. (조직이 고르게 산소를 쓰는 공 모양 덩어리, 표면 산소 분압 100 mmHg, 산소 확산 계수 2×10⁻⁹ m²/s, 쉬는 몸 평균 소비량으로 계산했다. 확산 시간 ≈ r²/(2D).)</div>
+    </div>
+
+    <p>답은 분명하다. 확산은 수십 µm까지만 쓸모 있는 운반 수단이다. 그래서 큰 몸은 피를 <b>밀어서</b> 나르는 <span class="term">대류</span><span class="en">(Convection, bulk flow)</span>를 발명했다. 심장이 피를 몸 구석구석까지 밀어 보내고, 마지막 수십 µm만 확산에 맡긴다. 폐의 벽이 0.5 µm 남짓으로 얇고 모세혈관이 세포마다 붙어 있는 것도 같은 이유다. 확산의 법칙은 <a href="cell.html">3장</a>에서 자세히 다룬다.</p>
+  </section>
+
+  <section id="systems">
+    <h2>계통은 혼자 일하지 않는다</h2>
+    <p>책은 장마다 한 기관씩 다루지만 몸은 그렇게 나뉘어 움직이지 않는다. 10 km 달리기 하나에도 거의 모든 계통이 동원된다. 다리 근육이 산소를 요구하면 폐는 환기를 늘리고, 심장은 박출량을 늘리고, 혈관은 피를 근육 쪽으로 돌리고, 간은 포도당을 풀고, 피부는 열을 버리고, 콩팥은 물을 아낀다. 이 모두를 뇌와 호르몬이 지휘한다.</p>
+    <p>아래 그림에서 계통 하나를 눌러 보자. 그 계통으로 들어오고 나가는 화살표와 흐름의 크기가 나온다. 강도를 올리면 숫자와 흐름이 함께 커진다.</p>
+
+    <div class="sim" id="sim-ov-graph" data-desc="달리기 한 번에 뇌, 심장, 폐, 근육, 간, 피부, 콩팥, 호르몬이 어떤 흐름(산소, 피, 연료, 열, 신호)으로 이어지는지 계통을 눌러 따라간다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>달리기 한 번에 계통이 어떻게 이어지나</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="gr-cv"></canvas><span class="hint">계통을 누른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>운동 강도 <output id="gr-x-out"></output></span><input type="range" id="gr-x" min="0" max="1" step="0.05" value="1"></label>
+          <div class="btn-row"><button class="btn" id="gr-all">전체 보기</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--o2)"></i>산소·피</span><span><i style="background:var(--co2)"></i>이산화탄소</span><span><i style="background:var(--glu)"></i>연료</span><span><i style="background:var(--heat)"></i>열·땀</span><span><i style="background:var(--nerve)"></i>신경·호르몬 신호</span></div>
+      <div class="info-panel" id="gr-info">계통을 누르면 달리는 동안 그 계통이 하는 일이 나온다.</div>
+      <div class="sim-note">해볼 것: ① 강도를 0(안정)과 1(다온의 10 km 대회 속도) 사이에서 움직이며 화살표의 숫자를 본다. 산소 섭취는 약 9배, 심박출량은 약 3.5배로 는다. ② 근육을 누른다. 들어오는 것(산소, 피, 연료, 명령)과 나가는 것(CO₂, 열)이 가장 많다. ③ 뇌를 누른다. 뇌는 물질을 거의 나르지 않고 신호만 보낸다. (다온의 숫자: 안정 심박 72, 대회 심박 약 168, VO2max 38 mL/kg/min의 79 %, 심박출량 5.2 → 18 L/min, RER 0.90, 대회 열생산 약 800 W. 사이는 직선으로 보간했다.)</div>
+    </div>
+
+    <p>이 그림이 이 책의 지도다. 2장에서는 이 연결들이 어떻게 값을 지키는지(피드백), 3장에서는 모든 화살표의 맨 끝인 세포의 막에서 무슨 일이 일어나는지를 본 뒤, 4장부터 화살표를 하나씩 따라간다.</p>
+  </section>
+
+  <section id="ranges">
+    <h2>정상은 하나의 숫자가 아니다</h2>
+    <p>검사 결과지에는 "참고 범위 60~100" 같은 숫자가 붙어 있다. 이 범위 안이면 정상, 밖이면 비정상일까. 대부분의 <span class="term">참고 범위</span><span class="en">(Reference interval)</span>는 건강한 사람 수백 명을 재서 <b>가운데 95 %</b>가 들어가는 구간으로 정한다. 정의상 건강한 사람 20명 중 1명은 범위 밖에 나온다.</p>
+    <p>아래 분포에서 값을 끌어 보자. 그 값이 건강한 사람 가운데 몇 번째쯤인지(백분위)가 나온다. 검사 항목 수를 늘리면 "적어도 하나가 범위 밖"일 확률이 얼마나 빨리 커지는지도 볼 수 있다.</p>
+
+    <div class="sim" id="sim-ov-range" data-desc="건강한 사람의 분포 위에서 값을 끌어 백분위와 95 % 참고 범위를 보고, 검사 항목이 늘면 건강해도 하나쯤 범위 밖이 나올 확률이 얼마나 커지는지 계산한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>참고 범위는 분포다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="rg-cv"></canvas><span class="hint">분포 위의 값을 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="rg-var"><button data-value="hr" class="on">안정 심박수</button><button data-value="glu">공복 혈당</button><button data-value="temp">체온</button></div>
+          <label class="ctrl"><span>검사 항목 수 <output id="rg-n-out"></output></span><input type="range" id="rg-n" min="1" max="40" step="1" value="20"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">값</span><span class="v" id="rg-o-v">—</span></div>
+        <div class="stat"><span class="k">백분위</span><span class="v" id="rg-o-p">—</span></div>
+        <div class="stat"><span class="k">95 % 참고 범위</span><span class="v" id="rg-o-r">—</span></div>
+        <div class="stat"><span class="k">하나 이상 범위 밖일 확률</span><span class="v" id="rg-o-any">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 안정 심박수 52에 놓인 점을 본다. 흔히 쓰는 진료 범위(60~100) 밖이지만 건강한 사람 분포로는 5번째 백분위쯤이고, 지구력 선수에게는 흔한 값이다. 45까지 끌면 통계 범위 밖으로도 나간다. ② 검사 항목 수를 20으로 둔다. 모두 건강한 항목이어도 하나 이상 범위 밖으로 나올 확률이 약 64 %다. ③ 공복 혈당을 고른다. 진료 기준선(100, 126 mg/dL)은 건강한 사람의 분포가 아니라 "나중에 병이 생길 위험"으로 정했다. 통계 범위와 진료 기준은 다르다. (건강한 성인 집단을 정규 분포로 어림한 교육용 그림이다. 평균·표준편차는 대표값이며 실제 검사실 범위는 나이·성별·장비에 따라 다르다. 항목들은 서로 독립이라고 가정했다.)</div>
+    </div>
+
+    <p>참고 범위에는 두 종류가 있다는 것을 기억하자. 하나는 건강한 사람의 분포에서 나온 <b>통계 범위</b>(심박수, 대부분의 혈액 검사), 다른 하나는 그 값 이상에서 병의 위험이 커진다는 연구로 정한 <b>진료 기준</b>(혈압, 공복 혈당, 콜레스테롤)이다. 진료 기준은 학회와 시기에 따라 다르고, 새 연구가 나오면 바뀐다. 이 책은 국내 진료 지침에서 흔히 쓰는 경계값을 쓰되, 그때마다 이 점을 밝힌다.</p>
+    <p class="health-note">이 책의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 진단이나 치료를 대신하지 않습니다. 증상이 있거나 검사 수치가 걱정되면 의료진과 상담하세요.</p>
+  </section>
+
+  <section id="daon">
+    <h2>다온을 소개한다</h2>
+    <p>이 책은 한 사람의 몸을 처음부터 끝까지 따라간다. 정다온(가상의 인물)은 34세, 키 175 cm, 몸무게 78 kg, 체지방 약 24 %의 사무직이다. 운동은 거의 하지 않았다. 지난 건강검진에서 안정 심박수 72 bpm, 혈압 128/82 mmHg, 공복 혈당 98 mg/dL, 당화혈색소 5.6 %가 나왔고, 운동 부하 검사로 잰 <span class="term">최대 산소 섭취량</span><span class="en">(VO2max)</span>은 38 mL/kg/min이었다. 모두 "아직은 정상, 하지만 경계 근처"인 숫자들이다.</p>
+    <p>다온은 <b>12주 뒤 가을 10 km 달리기 대회</b>(기온 24 °C, 습도 60 %)에 나가기로 했다. 지금 몸으로 달리면 약 58분, 12주 훈련 뒤에는 약 50분을 목표로 잡았다. 이 책의 질문은 하나다. <b>이 몸이 10 km를 달리려면 무엇이 얼마나 바뀌어야 하는가.</b></p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 480 250" role="img" aria-label="책의 순서: 원리, 순환, 호흡, 근육, 에너지, 조절, 실험실">
+        <defs><marker id="ov-ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="14" y="16" width="452" height="44" rx="10" class="f-surface"/>
+        <text x="30" y="43" class="lbl-b">원리 1~3장</text>
+        <text x="138" y="43" class="lbl-dim">몸의 지도 · 피드백 · 세포의 막</text>
+        <rect x="14" y="76" width="84" height="88" rx="10" class="seg-circ" opacity="0.18"/>
+        <rect x="104" y="76" width="84" height="88" rx="10" class="seg-resp" opacity="0.18"/>
+        <rect x="194" y="76" width="84" height="88" rx="10" class="seg-musc" opacity="0.18"/>
+        <rect x="284" y="76" width="84" height="88" rx="10" class="seg-meta" opacity="0.18"/>
+        <rect x="374" y="76" width="92" height="88" rx="10" class="seg-reg" opacity="0.18"/>
+        <text x="56" y="104" text-anchor="middle" class="lbl-b">순환</text><text x="56" y="124" text-anchor="middle" class="lbl-dim">4~7장</text><text x="56" y="146" text-anchor="middle" class="lbl-dim">심장·혈관</text>
+        <text x="146" y="104" text-anchor="middle" class="lbl-b">호흡</text><text x="146" y="124" text-anchor="middle" class="lbl-dim">8~10장</text><text x="146" y="146" text-anchor="middle" class="lbl-dim">폐·가스</text>
+        <text x="236" y="104" text-anchor="middle" class="lbl-b">근육</text><text x="236" y="124" text-anchor="middle" class="lbl-dim">11~12장</text><text x="236" y="146" text-anchor="middle" class="lbl-dim">힘·운동</text>
+        <text x="326" y="104" text-anchor="middle" class="lbl-b">에너지</text><text x="326" y="124" text-anchor="middle" class="lbl-dim">13~15장</text><text x="326" y="146" text-anchor="middle" class="lbl-dim">대사·혈당</text>
+        <text x="420" y="104" text-anchor="middle" class="lbl-b">조절</text><text x="420" y="124" text-anchor="middle" class="lbl-dim">16~19장</text><text x="420" y="146" text-anchor="middle" class="lbl-dim">신경·호르몬</text>
+        <path d="M98 120 L104 120" class="s-line" marker-end="url(#ov-ar2)"/>
+        <path d="M188 120 L194 120" class="s-line" marker-end="url(#ov-ar2)"/>
+        <path d="M278 120 L284 120" class="s-line" marker-end="url(#ov-ar2)"/>
+        <path d="M368 120 L374 120" class="s-line" marker-end="url(#ov-ar2)"/>
+        <rect x="14" y="182" width="452" height="52" rx="10" class="f-acc-soft"/>
+        <text x="30" y="206" class="lbl-acc">20장 인체 실험실</text>
+        <text x="30" y="225" class="lbl-dim">다온의 대회 날을 처음부터 끝까지 돌린다</text>
+        <path d="M240 164 L240 178" class="s-acc" marker-end="url(#ov-ar2)"/>
+      </svg>
+      <figcaption><b>책의 순서.</b> 다온의 몸을 피(순환) → 숨(호흡) → 힘(근육) → 연료(에너지) → 지휘(조절) 순서로 따라간다. 장마다 끝에 "다온의 기록"이 하나씩 붙고, 20장에서 모든 것을 이어 대회 날을 돌린다.</figcaption>
+    </figure>
+
+    <p>먼저 다온의 몸을 숫자로 적어 두자. 아래 계산기는 키·몸무게·나이·성별로 이 책에서 자주 쓸 숫자를 낸다. 자신의 숫자를 넣어 다온과 비교해 보자. 입력한 값은 이 페이지 밖으로 나가지 않는다.</p>
+
+    <div class="sim" id="sim-ov-daon" data-big data-desc="키·몸무게·나이·성별·안정 심박수를 넣어 BMI, 체표면적, 몸의 물, 혈액량, 하루 심장 박동, 기초대사량을 계산하고 다온의 숫자와 나란히 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>다온의 숫자, 나의 숫자</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="dn-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="dn-sex"><button data-value="m" class="on">남</button><button data-value="f">여</button></div>
+          <label class="ctrl"><span>키 <output id="dn-cm-out"></output></span><input type="range" id="dn-cm" min="140" max="200" step="1" value="175"></label>
+          <label class="ctrl"><span>몸무게 <output id="dn-kg-out"></output></span><input type="range" id="dn-kg" min="35" max="150" step="1" value="78"></label>
+          <label class="ctrl"><span>나이 <output id="dn-age-out"></output></span><input type="range" id="dn-age" min="15" max="85" step="1" value="34"></label>
+          <label class="ctrl"><span>안정 심박수 <output id="dn-hr-out"></output></span><input type="range" id="dn-hr" min="40" max="110" step="1" value="72"></label>
+          <div class="btn-row"><button class="btn" id="dn-re">다온으로 되돌리기</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">BMI</span><span class="v" id="dn-o-bmi">—</span></div>
+        <div class="stat"><span class="k">체표면적</span><span class="v" id="dn-o-bsa">—</span></div>
+        <div class="stat"><span class="k">혈액량</span><span class="v" id="dn-o-bv">—</span></div>
+        <div class="stat"><span class="k">하루 심장 박동</span><span class="v" id="dn-o-hb">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 값이 다온이다. BMI 25.5, 체표면적 1.94 m², 몸의 물 약 47 L, 혈액 약 5.5 L, 하루 박동 약 10만 번. ② 자신의 키와 몸무게를 넣는다. 두 사람의 실루엣이 같은 눈금으로 서고, 막대마다 다온(흐린 표시)과 비교된다. ③ 몸무게만 10 kg 올린다. BMI는 크게 움직이지만 체표면적은 조금만 는다. 약 용량과 심박출량 지표에 체표면적을 쓰는 이유다. (BMI = kg/m², 체표면적 DuBois 식, 몸의 물 남 60 %·여 50 %, 혈액량 남 7 %·여 6.5 %, 기초대사량 Mifflin 식, 최대 심박수 Tanaka 식. BMI 구간은 국내 비만 진료 지침의 경계값이며 기준은 학회·시기에 따라 다르다.)</div>
+    </div>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 1장</span></div>
+      <h4>BMI 25.5, 몸의 물 약 47 L, 하루 심장 박동 약 10만 번</h4>
+      <p>다온(34세, 175 cm, 78 kg)의 몸을 숫자로 적으면 BMI 25.5(국내 기준 비만 1단계의 문턱, WHO 기준 과체중), 체표면적 약 1.94 m², 몸의 물 약 47 L(체지방을 반영하면 약 43 L), 혈액 약 5.5 L다. 안정 심박수 72로 하루 약 10만 4천 번, 분당 14회 호흡으로 하루 약 2만 번 숨을 쉰다. 쉬는 동안 심장은 하루 7천 L 넘는 피를 내보내고, 기초대사량은 약 1,709 kcal다. 이 몸이 12주 뒤 10 km를 약 50분에 달리려면 심박출량은 쉴 때의 세 배 넘게, 산소 섭취는 아홉 배 가까이 늘어야 한다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>다온의 기본 숫자(BMI, 체표면적, 몸의 물, 혈액량, 하루 박동). 달리기가 거의 모든 계통을 함께 움직인다는 것.</div><div><b>아직 모르는 것</b>몸은 이 숫자들을 어떻게 일정하게 지키는가. 일어서거나 달리기 시작할 때 무엇이 값을 되돌리는가.</div><div><b>다음 단계</b><a href="homeostasis.html">2장</a>에서 다온이 회의실 의자에서 일어설 때의 혈압을 피드백 루프로 읽는다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>몸은 분자 → 세포 → 조직 → 기관 → 기관계 → 몸으로 쌓이고, 단계마다 새 성질이 생긴다. 이 책은 기관계를 순환·호흡·근육·에너지·조절 다섯 갈래로 묶는다.</li>
+      <li>기관의 무게와 일의 몫은 다르다. 뇌·간·심장·콩팥은 체중의 6 % 남짓인데 쉬는 동안 에너지의 약 60 %를 쓰고, 콩팥은 0.3 kg으로 혈류의 약 22 %를 받는다.</li>
+      <li>하루의 숫자: 심장 박동 약 10만 번, 호흡 약 2만 번, 내보낸 피 약 7,000 L, 콩팥 여과 약 180 L, ATP는 체중과 비슷한 무게.</li>
+      <li>몸무게의 약 60 %가 물이다(지방이 많을수록 적다). 2/3는 세포 안, 1/3은 세포 밖이고, 혈장은 몸 전체 물의 약 7 %다.</li>
+      <li>대사량은 몸무게의 3/4제곱, 심박수는 −1/4제곱에 비례한다(클라이버 법칙). 확산 시간은 거리의 제곱에 비례해 1 mm를 넘으면 쓸모가 없어지므로 큰 몸에는 순환이 필요하다.</li>
+      <li>참고 범위는 건강한 사람의 가운데 95 %이거나, 위험이 커지는 경계로 정한 진료 기준이다. 범위 밖이 곧 병은 아니고, 기준은 학회·시기에 따라 다르다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>체중의 약 2 %인데 쉬는 동안 몸 전체 에너지의 약 20 %를 쓰는 기관은?</p>
+        <div class="opts">
+          <button class="opt">골격근</button>
+          <button class="opt" data-correct>뇌</button>
+          <button class="opt">지방 조직</button>
+          <button class="opt">피부</button>
+        </div>
+        <div class="quiz-exp">뇌는 약 1.4 kg으로 체중의 2 %이지만 kg당 대사율이 근육의 약 18배여서 쉬는 동안 에너지의 약 20 %를 쓴다. 골격근은 무게(약 40 %)에 비해 쉴 때는 몫(약 22 %)이 작다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>안정 심박수 60 bpm, 1회 박출량 80 mL인 사람의 심장이 하루(1,440분) 동안 내보내는 피에 가장 가까운 것은?</p>
+        <div class="opts">
+          <button class="opt">약 70 L</button>
+          <button class="opt">약 700 L</button>
+          <button class="opt" data-correct>약 6,900 L</button>
+          <button class="opt">약 86,000 L</button>
+        </div>
+        <div class="quiz-exp">60회/분 × 0.08 L = 4.8 L/min, 하루 4.8 × 1,440 ≈ 6,900 L. 86,000은 하루 박동 수(60 × 1,440 = 86,400)다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>클라이버 법칙(대사량 ∝ 몸무게<sup>3/4</sup>)에 따르면, 몸무게가 16배인 동물의 기초대사량은 몇 배인가?</p>
+        <div class="opts">
+          <button class="opt">2배</button>
+          <button class="opt" data-correct>8배</button>
+          <button class="opt">12배</button>
+          <button class="opt">16배</button>
+        </div>
+        <div class="quiz-exp">16<sup>3/4</sup> = (16<sup>1/4</sup>)<sup>3</sup> = 2<sup>3</sup> = 8. 몸무게는 16배인데 대사량은 8배이므로 kg당 대사량은 절반이 된다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>확산만으로 산소를 나르는 데 한계가 있어 큰 몸에 순환계가 필요한 가장 직접적인 이유는?</p>
+        <div class="opts">
+          <button class="opt">산소 분자가 너무 무거워서</button>
+          <button class="opt">세포막이 산소를 막기 때문에</button>
+          <button class="opt">확산은 온도가 높을수록 느려지기 때문에</button>
+          <button class="opt" data-correct>확산 시간이 거리의 제곱에 비례해 1 mm를 넘으면 너무 오래 걸리기 때문에</button>
+        </div>
+        <div class="quiz-exp">확산 시간 ≈ x²/(2D). 10 µm는 수십 ms이지만 1 mm는 수 분, 1 cm는 몇 시간이다. 그래서 피를 밀어 나르고 마지막 수십 µm만 확산에 맡긴다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>건강한 사람의 가운데 95 %로 정한 참고 범위를 서로 독립인 검사 20개에 적용할 때, 건강한 사람이 적어도 한 항목에서 범위 밖으로 나올 확률에 가장 가까운 것은?</p>
+        <div class="opts">
+          <button class="opt" data-correct>약 64 %</button>
+          <button class="opt">약 5 %</button>
+          <button class="opt">약 20 %</button>
+          <button class="opt">100 %</button>
+        </div>
+        <div class="quiz-exp">모든 항목이 범위 안일 확률은 0.95<sup>20</sup> ≈ 0.36, 그러니 하나 이상 밖일 확률은 1 − 0.36 ≈ 0.64. 범위 밖 숫자 하나가 곧 병을 뜻하지 않는 이유다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  function fmt0(x) { return Math.round(x).toLocaleString("en-US"); }
+  function narrowOf(id, bp) { var el = document.getElementById(id); return (el && el.parentElement.clientWidth < (bp || 560)); }
+
+  /* ---------------------------------------------------------- 1. 몸 지도 */
+  (function () {
+    var OR = {}; BD.ORGANS.forEach(function (o) { OR[o.key] = o; });
+    var KC = function (k) { return OR[k].kg * OR[k].rate; };
+    // 막대에 쓰는 묶음(질량 kg, 휴식 에너지 kcal/day, 혈류 %)
+    var SEGS = [
+      { k: "brain", name: "뇌", kg: 1.4, en: KC("brain"), fl: 14 },
+      { k: "heart", name: "심장", kg: 0.33, en: KC("heart"), fl: 4 },
+      { k: "kidneys", name: "콩팥", kg: 0.31, en: KC("kidney"), fl: 22 },
+      { k: "liver", name: "간·소화관", kg: 3.3, en: KC("liver") + 1.5 * 12, fl: 27 },
+      { k: "muscle", name: "골격근", kg: 28, en: KC("muscle"), fl: 15 },
+      { k: "fat", name: "지방", kg: 15, en: KC("fat"), fl: 4 },
+      { k: "skin", name: "피부", kg: 4, en: 4 * 12, fl: 6 },
+      { k: "rest", name: "나머지", kg: 17.7, en: 0, fl: 8 },
+    ];
+    var totEn = 0; BD.ORGANS.forEach(function (o) { totEn += o.kg * o.rate; });
+    SEGS[7].en = totEn - SEGS.slice(0, 7).reduce(function (s, q) { return s + q.en; }, 0);
+    var totKg = SEGS.reduce(function (s, q) { return s + q.kg; }, 0);
+    var SYS = { circ: "순환", resp: "호흡", musc: "근육", meta: "에너지", reg: "조절" };
+    var CH = { heart: ["heart", "4장 심장"], ecg: ["ecg", "5장 심전도"], vessels: ["vessels", "6장 혈관"], flow: ["flow", "7장 혈류"], lungs: ["lungs", "8장 폐"], gas: ["gas", "9장 가스 교환"], breathing: ["breathing", "10장 호흡 조절"], muscle: ["muscle", "11장 근육"], exercise: ["exercise", "12장 운동"], metabolism: ["metabolism", "13장 대사"], weight: ["weight", "14장 체중"], glucose: ["glucose", "15장 혈당"], nerve: ["nerve", "16장 신경"], hormone: ["hormone", "17장 호르몬"], kidney: ["kidney", "18장 콩팥"], thermo: ["thermo", "19장 체온"] };
+    var ORG = {
+      brain: { sys: "reg", seg: "brain", kg: 1.4, ch: ["nerve", "hormone", "breathing"], role: "모든 계통의 지휘소. 감각을 모아 판단하고 신경과 호르몬으로 명령을 내린다. 연료는 거의 포도당만 쓰고, 저장 연료가 없어 피가 몇 초만 끊겨도 의식을 잃는다." },
+      thyroid: { sys: "reg", seg: "rest", kg: 0.02, ch: ["hormone"], role: "갑상선 호르몬으로 온몸 세포의 대사 속도를 정한다. 20 g짜리 기관이 기초대사량을 수십 % 올리고 내린다." },
+      lungs: { sys: "resp", seg: "rest", kg: 1.0, ch: ["lungs", "gas", "breathing"], role: "산소를 들이고 이산화탄소를 버린다. 폐포 표면적은 약 70 m², 벽 두께는 0.5 µm 남짓. 심장이 내보낸 피 전부가 폐를 한 번씩 지난다(폐순환)." },
+      heart: { sys: "circ", seg: "heart", kg: 0.33, ch: ["heart", "ecg", "vessels", "flow"], role: "피를 미는 두 개의 펌프. 쉴 때 1분에 약 5 L, 달리면 15~20 L를 내보낸다. 쉬지 못하므로 kg당 대사율이 가장 높은 축에 든다." },
+      liver: { sys: "meta", seg: "liver", kg: 1.8, ch: ["metabolism", "glucose", "weight"], role: "몸의 화학 공장. 포도당을 저장하고 풀어 혈당을 지키고, 지방과 단백질을 바꾸고, 약과 독을 처리한다. 장에서 온 피(문맥)를 먼저 받는다." },
+      stomach: { sys: "meta", seg: "liver", kg: 0.15, ch: ["metabolism"], role: "음식을 잠시 담고 산과 효소로 부순다. 위에서 장으로 넘어가는 속도가 식후 혈당이 오르는 속도를 정한다(15장)." },
+      pancreas: { sys: "meta", seg: "liver", kg: 0.1, ch: ["glucose", "hormone"], role: "소화 효소와 함께 인슐린·글루카곤을 내는 혈당의 조절판. 혈당이 오르면 몇 분 안에 인슐린을 낸다." },
+      adrenal: { sys: "reg", seg: "rest", kg: 0.01, ch: ["hormone", "nerve"], role: "콩팥 위에 얹힌 작은 샘. 속질은 아드레날린을, 겉질은 코르티솔과 알도스테론을 낸다. 달리기 출발 직전의 두근거림이 여기서 나온다." },
+      kidneys: { sys: "reg", seg: "kidneys", kg: 0.31, ch: ["kidney"], role: "하루 180 L의 혈장을 걸러 1.5 L만 소변으로 버린다. 물·소금·산의 양을 정해 혈압과 체액을 지킨다. 피를 쓰려고가 아니라 거르려고 많이 받는다." },
+      gut: { sys: "meta", seg: "liver", kg: 1.2, ch: ["metabolism", "weight"], role: "소화관(작은창자·큰창자). 표면적이 넓은 벽으로 양분과 물을 흡수한다. 식후에는 혈류가 크게 늘고, 달릴 때는 크게 준다." },
+      bladder: { sys: "reg", seg: "rest", kg: 0.05, ch: ["kidney"], role: "소변을 모아 두는 주머니. 약 300~400 mL가 차면 신호를 보낸다." },
+      muscle: { sys: "musc", seg: "muscle", kg: 28, ch: ["muscle", "exercise"], role: "몸무게의 약 40 %. 쉴 때는 얌전하지만 달리면 산소 소비가 수십 배로 뛰어 몸 전체 에너지의 80 % 이상을 가져간다. 열의 가장 큰 원천이기도 하다." },
+      skin: { sys: "reg", seg: "skin", kg: 4, ch: ["thermo"], role: "몸의 경계이자 방열판. 피부 혈관을 열고 땀을 내 열을 버린다. 더운 날 달리면 피부로 가는 혈류가 근육과 피를 두고 다툰다(19장)." },
+    };
+    var NAMES = { brain: "뇌", thyroid: "갑상선", lungs: "폐", heart: "심장", liver: "간", stomach: "위", pancreas: "이자(췌장)", adrenal: "부신", kidneys: "콩팥", gut: "장", bladder: "방광", muscle: "골격근", skin: "피부" };
+    var SYSINFO = {
+      all: "다섯 갈래를 색으로 구분했다. 버튼을 눌러 한 갈래만 켠다.",
+      circ: "<b>순환</b>: 심장과 혈관과 피. 산소·연료·열·호르몬을 나르는 길이다. → <a href='heart.html'>4~7장</a>",
+      resp: "<b>호흡</b>: 폐와 호흡근, 호흡 중추. 산소를 들이고 CO₂와 산을 버린다. → <a href='lungs.html'>8~10장</a>",
+      musc: "<b>근육</b>: 골격근. 힘과 움직임과 열을 만든다. → <a href='muscle.html'>11~12장</a>",
+      meta: "<b>에너지</b>: 간·소화관·이자. 연료를 받아들이고 저장하고 꺼낸다. → <a href='metabolism.html'>13~15장</a>",
+      reg: "<b>조절</b>: 뇌·신경, 호르몬 샘, 콩팥, 피부. 값을 지키고 계통들을 맞춘다. → <a href='nerve.html'>16~19장</a>",
+    };
+    var sel = "brain", pos = null, lay = null, hover = null;
+    var sys = BB.seg("mp-sys", function () { document.getElementById("mp-sysinfo").innerHTML = SYSINFO[sys()]; cv.redraw(); });
+    document.getElementById("mp-sysinfo").innerHTML = SYSINFO.all;
+    var info = document.getElementById("mp-info");
+    function segOf(k) { for (var i = 0; i < SEGS.length; i++) if (SEGS[i].k === k) return SEGS[i]; return null; }
+    function showInfo() {
+      var o = ORG[sel], s = segOf(o.seg);
+      var chips = o.ch.map(function (c) { return "<a href='" + CH[c][0] + ".html'>" + CH[c][1] + "</a>"; }).join("");
+      info.innerHTML = "<h4>" + NAMES[sel] + " <small style='color:var(--text-faint);font-weight:500'>· " + SYS[o.sys] + "</small></h4><p>" + o.role + "</p><div class='ov-chips'>" + chips + "</div>";
+      BB.stat("mp-o-kg", (o.kg < 1 ? fmt0(o.kg * 1000) + "<small>g</small>" : o.kg.toFixed(1) + "<small>kg</small>") + "<small> · " + (o.kg / 70 * 100).toFixed(o.kg / 70 < 0.01 ? 2 : 1) + "%</small>");
+      var direct = { brain: 1, heart: 1, kidneys: 1, liver: 1, muscle: 1, skin: 1 };
+      if (direct[sel]) {
+        var en = sel === "liver" ? KC("liver") : s.en;
+        BB.stat("mp-o-en", (en / totEn * 100).toFixed(1) + "<small>%</small>");
+        BB.stat("mp-o-fl", sel === "liver" ? "27<small>% (간동맥 6 + 문맥 21)</small>" : s.fl + "<small>%</small>");
+      } else if (sel === "lungs") {
+        BB.stat("mp-o-en", "<small>나머지에 포함</small>"); BB.stat("mp-o-fl", "100<small>% (폐순환)</small>");
+      } else {
+        BB.stat("mp-o-en", "<small>" + (s.k === "rest" ? "나머지" : s.name) + "에 포함</small>");
+        BB.stat("mp-o-fl", "<small>" + (s.k === "rest" ? "나머지" : s.name) + "에 포함</small>");
+      }
+    }
+    function orgColor(k) {
+      var s = sys(), o = ORG[k];
+      if (s === "all" || o.sys === s) return BB.segColor(o.sys);
+      return BB.alpha(P().dim, 0.35);
+    }
+    var cv = BB.canvas("#mp-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var bodyH = narrow ? 330 : h - 30, top = 14;
+      var bx = narrow ? w / 2 : Math.min(w * 0.27, 190);
+      var organs = {};
+      Object.keys(ORG).forEach(function (k) { organs[k] = orgColor(k); });
+      pos = BD.body(ctx, bx, top, bodyH, { organs: organs, labels: false, alpha: 0.5 });
+      var u = bodyH / 100, labs = { l: [], r: [] };
+      Object.keys(pos).forEach(function (k) { if (!organs[k]) return; var q = pos[k]; var right = k === "skin" || (q.x >= bx - 0.5 && k !== "muscle"); (right ? labs.r : labs.l).push({ k: k, x: q.x + (k === "skin" ? q.rx : 0), y: q.y + (k === "muscle" ? -4 * u : 0), rx: k === "skin" ? 0 : q.rx }); });
+      ["l", "r"].forEach(function (side) {
+        var arr = labs[side].sort(function (a, b) { return a.y - b.y; }), last = -1e9;
+        arr.forEach(function (L) { L.ly = Math.max(L.y, last + 14); last = L.ly; });
+        var lx = side === "r" ? bx + 19 * u : bx - 19 * u;
+        arr.forEach(function (L) {
+          var on = L.k === sel;
+          ctx.strokeStyle = BB.alpha(p.dim, 0.7); ctx.lineWidth = 0.8; ctx.beginPath();
+          ctx.moveTo(L.x + (side === "r" ? L.rx * 0.6 : -L.rx * 0.6), L.y); ctx.lineTo(lx + (side === "r" ? -8 : 8), L.ly); ctx.lineTo(lx + (side === "r" ? -3 : 3), L.ly); ctx.stroke();
+          ctx.fillStyle = on ? p.accent : p.text; ctx.font = BB.font(11.5, false, on ? 800 : 600); ctx.textAlign = side === "r" ? "left" : "right"; ctx.textBaseline = "middle";
+          ctx.fillText(NAMES[L.k], lx, L.ly);
+        });
+      });
+      // 선택 강조
+      var sp = pos[sel];
+      if (sp) {
+        ctx.strokeStyle = p.text; ctx.lineWidth = 2.2; ctx.setLineDash([4, 3]);
+        ctx.beginPath(); ctx.ellipse(sp.x, sp.y, sp.rx + 5, sp.ry + 5, 0, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+      }
+      if (hover && hover !== sel && pos[hover]) { var hp = pos[hover]; ctx.strokeStyle = BB.alpha(p.text, 0.5); ctx.lineWidth = 1.4; ctx.beginPath(); ctx.ellipse(hp.x, hp.y, hp.rx + 4, hp.ry + 4, 0, 0, Math.PI * 2); ctx.stroke(); }
+      // 오른쪽(또는 아래): 세 개의 100 % 막대
+      var gx = narrow ? 14 : Math.min(w * 0.27, 190) * 2 + 10, gy = narrow ? bodyH + 34 : 26;
+      var gw = w - gx - 14, gh = narrow ? h - gy - 10 : h - gy - 20;
+      var rows = [
+        { key: "kg", title: "무게", unit: "kg", tot: totKg, val: function (q) { return q.kg; } },
+        { key: "en", title: "쉬는 동안 에너지", unit: "kcal/day", tot: totEn, val: function (q) { return q.en; } },
+        { key: "fl", title: "쉬는 동안 혈류", unit: "%", tot: 100, val: function (q) { return q.fl; } },
+      ];
+      var selSeg = ORG[sel].seg;
+      var rowH = gh / 3;
+      ctx.font = BB.font(12, false, 700); ctx.fillStyle = p.text; ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+      rows.forEach(function (r, ri) {
+        var y = gy + ri * rowH + 18, bh = Math.min(30, rowH - 46);
+        ctx.fillStyle = p.text; ctx.font = BB.font(12.5, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+        ctx.fillText(r.title, gx, y - 4);
+        ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "right";
+        ctx.fillText(r.key === "kg" ? "합계 70 kg" : r.key === "en" ? "합계 약 1,690 kcal/day" : "합계 = 심박출량 약 5 L/min", gx + gw, y - 4);
+        var x = gx;
+        SEGS.forEach(function (q, qi) {
+          var f = r.val(q) / r.tot, sw = f * gw;
+          var on = q.k === selSeg;
+          var col = q.k === "rest" ? p.faint : q.k === "fat" ? BB.color("fat") : BB.segColor({ brain: "reg", heart: "circ", kidneys: "reg", liver: "meta", muscle: "musc", skin: "reg" }[q.k]);
+          ctx.fillStyle = BB.alpha(col, on ? 0.95 : 0.4);
+          ctx.fillRect(x, y, Math.max(0.5, sw - 1), bh);
+          if (on) { ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.strokeRect(x, y, Math.max(1, sw - 1), bh); }
+          if (sw > 30 || on) {
+            ctx.fillStyle = on ? p.text : p.dim; ctx.font = BB.font(on ? 12 : 10.5, true, on ? 700 : 400); ctx.textAlign = "center"; ctx.textBaseline = "top";
+            var lx = BB.clamp(x + sw / 2, gx + 16, gx + gw - 16);
+            ctx.fillText(Math.round(f * 100) + "%", lx, y + bh + 3);
+            if (sw > 52) { ctx.fillStyle = on ? "#fff" : p.text; ctx.font = BB.font(10.5, false, 600); ctx.textBaseline = "middle"; ctx.fillText(q.k === "rest" ? "나머지" : q.name, x + sw / 2, y + bh / 2); }
+          }
+          x += sw;
+        });
+      });
+      // 선택 묶음 이름
+      var ss = segOf(selSeg);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("굵은 테두리 = " + (ss.k === "rest" ? "나머지(작은 기관들)" : ss.name), gx, gy + 3 * rowH - 2 > h - 14 ? h - 14 : gy + 3 * rowH - 2);
+      lay = { gx: gx };
+    }, { get height() { return narrowOf("mp-cv") ? 640 : 430; } });
+    function pick(x, y) {
+      if (!pos) return null;
+      var order = ["thyroid", "heart", "adrenal", "pancreas", "stomach", "liver", "kidneys", "bladder", "brain", "lungs", "gut", "muscle", "skin"];
+      for (var i = 0; i < order.length; i++) {
+        var k = order[i], q = pos[k]; if (!q) continue;
+        var rx = q.rx + 3, ry = q.ry + 3, dx = x - q.x, dy = y - q.y;
+        if (k === "muscle") { var d2 = Math.min(Math.abs(dx), Math.abs(x - (q.x + 11.2 * (q.rx / 3.6)))); if (d2 < rx && Math.abs(dy) < ry) return k; continue; }
+        if (k === "skin") { if (Math.abs(dx) < rx + 4 && Math.abs(dy) < ry) return k; continue; }
+        if ((dx * dx) / (rx * rx) + (dy * dy) / (ry * ry) <= 1) return k;
+      }
+      return null;
+    }
+    var tip = BB.tip(cv.canvas);
+    BB.drag(cv.canvas, {
+      start: function (x, y) { var k = pick(x, y); if (k) { sel = k; showInfo(); cv.redraw(); } },
+      hover: function (x, y) { var k = pick(x, y); if (k !== hover) { hover = k; cv.redraw(); } if (k) tip.show(x, y, "<b>" + NAMES[k] + "</b><small>" + SYS[ORG[k].sys] + " · 눌러서 자세히</small>"); else tip.hide(); },
+    });
+    cv.canvas.addEventListener("pointerleave", function () { tip.hide(); hover = null; cv.redraw(); });
+    showInfo();
+  })();
+
+  /* ---------------------------------------------------------- 2. 하루의 계수기 */
+  (function () {
+    var simMin = 0, playing = true, realT = 0;
+    var getSp = BB.range("dy-sp", function (v) { var s = Math.pow(10, v); return "×" + (s < 10 ? s.toFixed(1) : fmt0(s)); });
+    var getHr = BB.range("dy-hr", function (v) { return v + " bpm"; }, function () { upd(); });
+    var getRr = BB.range("dy-rr", function (v) { return v + " 회/분"; }, function () { upd(); });
+    var KCAL = 2392, ATPKG = 0.0222;
+    function upd() {
+      BB.stat("dy-o-hb", fmt0(getHr() * 1440) + "<small>번</small>");
+      BB.stat("dy-o-br", fmt0(getRr() * 1440) + "<small>번</small>");
+    }
+    upd();
+    var btn = document.getElementById("dy-go");
+    btn.addEventListener("click", function () { playing = !playing; btn.textContent = playing ? "일시정지" : "재생"; });
+    document.getElementById("dy-day").addEventListener("click", function () { simMin = 1440; playing = false; btn.textContent = "재생"; cv.redraw(); });
+    document.getElementById("dy-re").addEventListener("click", function () { simMin = 0; cv.redraw(); });
+    function clock(m) { var s = Math.floor(m * 60), hh = Math.floor(s / 3600), mm = Math.floor((s % 3600) / 60), ss = s % 60; return (hh < 10 ? "0" : "") + hh + ":" + (mm < 10 ? "0" : "") + mm + ":" + (ss < 10 ? "0" : "") + ss; }
+    function big(x) { return x >= 1e6 ? (x / 1e6).toFixed(2) + "백만" : fmt0(x); }
+    var cv = BB.canvas("#dy-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 520;
+      var m = simMin, hr = getHr(), rr = getRr();
+      // 위: 시계 띠
+      var cy = 30;
+      ctx.fillStyle = p.text; ctx.font = BB.font(narrow ? 22 : 26, true, 700); ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      ctx.fillText(clock(Math.min(m, 1440 * 99)), 16, cy);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11.5); ctx.textBaseline = "top";
+      ctx.fillText(m >= 1440 ? "하루 " + (m / 1440).toFixed(2) + "일째" : "가상 시간(시:분:초)", 16, cy + 16);
+      var bx = narrow ? 150 : 200, bw = w - bx - 16;
+      ctx.fillStyle = p.surface; BB.rrect(ctx, bx, cy - 7, bw, 14, 7); ctx.fill();
+      ctx.fillStyle = p.accent; BB.rrect(ctx, bx, cy - 7, bw * Math.min(1, m / 1440), 14, 7); ctx.fill();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5, true); ctx.textAlign = "right"; ctx.textBaseline = "top"; ctx.fillText("24 h", bx + bw, cy + 10);
+      ctx.textAlign = "left"; ctx.fillText("0", bx, cy + 10);
+      // 칸 6개
+      var cols = narrow ? 2 : 3, rowsN = narrow ? 3 : 2, gy = 70, gap = 10;
+      var tw = (w - 32 - gap * (cols - 1)) / cols, th = (h - gy - 12 - gap * (rowsN - 1)) / rowsN;
+      var beat = (realT * hr / 60) % 1, br = (realT * rr / 60) % 1;
+      var tiles = [
+        { name: "심장 박동", v: big(hr * m), unit: "번", day: fmt0(hr * 1440) + "번", col: BB.color("art"), icon: "heart" },
+        { name: "호흡", v: big(rr * m), unit: "번", day: fmt0(rr * 1440) + "번", col: BB.color("o2"), icon: "lung" },
+        { name: "심장이 내보낸 피", v: fmt0(hr * 0.07 * m), unit: "L", day: fmt0(hr * 0.07 * 1440) + " L", col: BB.color("art"), icon: "drop" },
+        { name: "콩팥이 거른 물", v: (0.125 * m).toFixed(m < 80 ? 1 : 0), unit: "L", day: "180 L(소변 1.5 L)", col: BB.color("water"), icon: "filter" },
+        { name: "들이마신 산소", v: fmt0(0.25 * m), unit: "L", day: "360 L", col: BB.color("co2"), icon: "o2" },
+        { name: "다시 만든 ATP", v: (KCAL * ATPKG * m / 1440).toFixed(m < 300 ? 2 : 1), unit: "kg", day: (KCAL * ATPKG).toFixed(0) + " kg", col: BB.color("glu"), icon: "atp" },
+      ];
+      tiles.forEach(function (t, i) {
+        var cx = 16 + (i % cols) * (tw + gap), ty = gy + Math.floor(i / cols) * (th + gap);
+        ctx.fillStyle = BB.alpha(t.col, 0.07); BB.rrect(ctx, cx, ty, tw, th, 10); ctx.fill();
+        ctx.strokeStyle = BB.alpha(t.col, 0.35); ctx.lineWidth = 1; BB.rrect(ctx, cx, ty, tw, th, 10); ctx.stroke();
+        // 아이콘
+        var ix = cx + 22, iy = ty + 24, s = 11;
+        ctx.save(); ctx.fillStyle = t.col; ctx.strokeStyle = t.col; ctx.lineWidth = 2;
+        if (t.icon === "heart") {
+          var k = 1 + 0.25 * Math.exp(-beat * 9);
+          ctx.translate(ix, iy); ctx.scale(k, k); ctx.beginPath(); ctx.moveTo(0, s * 0.9);
+          ctx.bezierCurveTo(-s * 1.4, -s * 0.1, -s * 0.6, -s * 1.1, 0, -s * 0.35); ctx.bezierCurveTo(s * 0.6, -s * 1.1, s * 1.4, -s * 0.1, 0, s * 0.9); ctx.fill();
+        } else if (t.icon === "lung") {
+          var kk = 0.8 + 0.25 * (0.5 - 0.5 * Math.cos(br * Math.PI * 2));
+          ctx.globalAlpha = 0.8; ctx.beginPath(); ctx.ellipse(ix - 6, iy, 5.5 * kk, 10 * kk, 0.1, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.ellipse(ix + 6, iy, 5.5 * kk, 10 * kk, -0.1, 0, Math.PI * 2); ctx.fill();
+        } else if (t.icon === "drop") {
+          var dy = (realT * hr / 60 * 6) % 12;
+          ctx.globalAlpha = 0.9; ctx.beginPath(); ctx.moveTo(ix, iy - 11); ctx.quadraticCurveTo(ix + 9, iy + 2, ix, iy + 9); ctx.quadraticCurveTo(ix - 9, iy + 2, ix, iy - 11); ctx.fill();
+          ctx.globalAlpha = 0.5; ctx.beginPath(); ctx.arc(ix + 13, iy - 6 + dy, 2, 0, Math.PI * 2); ctx.fill();
+        } else if (t.icon === "filter") {
+          ctx.beginPath(); ctx.moveTo(ix - 10, iy - 9); ctx.lineTo(ix + 10, iy - 9); ctx.lineTo(ix + 2, iy + 2); ctx.lineTo(ix + 2, iy + 10); ctx.lineTo(ix - 2, iy + 10); ctx.lineTo(ix - 2, iy + 2); ctx.closePath(); ctx.globalAlpha = 0.75; ctx.fill();
+          ctx.globalAlpha = 1; var fy = (realT * 20) % 10; ctx.beginPath(); ctx.arc(ix, iy + 10 + fy * 0.6, 1.6, 0, Math.PI * 2); ctx.fill();
+        } else if (t.icon === "o2") {
+          ctx.font = BB.font(14, true, 700); ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("O₂", ix, iy);
+          ctx.globalAlpha = 0.4; ctx.beginPath(); ctx.arc(ix, iy, 13 + 2 * Math.sin(realT * 3), 0, Math.PI * 2); ctx.stroke();
+        } else {
+          ctx.font = BB.font(11, true, 800); ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("ATP", ix, iy);
+          ctx.globalAlpha = 0.5; ctx.beginPath(); ctx.arc(ix, iy, 14, realT * 4, realT * 4 + 4.5); ctx.stroke();
+        }
+        ctx.restore();
+        ctx.fillStyle = p.text; ctx.font = BB.font(12.5, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "middle";
+        ctx.fillText(t.name, cx + 44, ty + 24);
+        var fs = Math.max(16, Math.min(28, tw * 0.13));
+        ctx.font = BB.font(fs, true, 700); ctx.textAlign = "right"; ctx.textBaseline = "alphabetic"; ctx.fillStyle = t.col;
+        var uw = 0; ctx.save(); ctx.font = BB.font(12); uw = ctx.measureText(" " + t.unit).width; ctx.restore();
+        ctx.fillText(t.v, cx + tw - 12 - uw, ty + th - 26);
+        ctx.font = BB.font(12); ctx.fillStyle = p.dim; ctx.fillText(" " + t.unit, cx + tw - 12, ty + th - 26);
+        ctx.font = BB.font(10.5); ctx.fillStyle = p.faint; ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+        ctx.fillText("하루치 " + t.day, cx + 12, ty + th - 7);
+      });
+      BB.stat("dy-o-t", clock(m));
+    }, { get height() { return narrowOf("dy-cv", 520) ? 470 : 330; } });
+    BB.loop(document.getElementById("sim-ov-day"), function (dt) {
+      realT += dt;
+      if (playing) { simMin += dt * Math.pow(10, getSp()) / 60; if (simMin > 1440 * 7) simMin = 1440 * 7; }
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 3. 몸의 구성 */
+  (function () {
+    var lay = null;
+    function comp() {
+      var kg = getKg(), bf = getBf() / 100, lean = kg * (1 - bf);
+      var water = 0.73 * lean, mineral = 0.068 * lean, protein = lean - water - mineral, fat = kg * bf;
+      var icf = water * 2 / 3, ecf = water / 3, plasma = ecf / 5, isf = ecf - plasma;
+      return { kg: kg, bf: bf, water: water, mineral: mineral, protein: protein, fat: fat, icf: icf, ecf: ecf, plasma: plasma, isf: isf, rule: BD.tbw(kg, sex()) };
+    }
+    function upd() {
+      var c = comp();
+      BB.stat("cp-o-tbw", c.water.toFixed(1) + "<small>L · " + Math.round(c.water / c.kg * 100) + "%</small>");
+      BB.stat("cp-o-rule", c.rule.toFixed(1) + "<small>L</small>");
+      BB.stat("cp-o-ie", c.icf.toFixed(1) + " / " + c.ecf.toFixed(1) + "<small>L</small>");
+      BB.stat("cp-o-pl", c.plasma.toFixed(1) + "<small>L</small>");
+      if (cv) cv.redraw();
+    }
+    var cv = null;
+    var sex = BB.seg("cp-sex", function (v) { getBf.set(v === "f" ? 30 : 24); });
+    var getKg = BB.range("cp-kg", function (v) { return v + " kg"; }, upd);
+    var getBf = BB.range("cp-bf", function (v) { return v + "%"; }, upd);
+    cv = BB.canvas("#cp-cv", function (ctx, w, h) {
+      var p = P(), c = comp(), narrow = w < 520;
+      // 1) 체중 막대
+      var bx = 16, bw = w - 32, by = 34, bh = 46;
+      ctx.fillStyle = p.text; ctx.font = BB.font(13, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+      ctx.fillText("몸무게 " + c.kg + " kg", bx, by - 8);
+      var parts = [
+        { k: "물", v: c.water, col: BB.color("water") },
+        { k: "단백질 등", v: c.protein, col: BB.color("prot") },
+        { k: "무기질", v: c.mineral, col: p.dim },
+        { k: "지방", v: c.fat, col: BB.color("fat") },
+      ];
+      var x = bx;
+      parts.forEach(function (q) {
+        var sw = q.v / c.kg * bw;
+        ctx.fillStyle = BB.alpha(q.col, 0.75); ctx.fillRect(x, by, Math.max(0.5, sw - 1.5), bh);
+        ctx.fillStyle = p.text; ctx.font = BB.font(11.5, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        if (sw > 44) { ctx.fillText(q.k, x + sw / 2, by + bh / 2 - 8); ctx.font = BB.font(11, true); ctx.fillText(q.v.toFixed(1) + " kg", x + sw / 2, by + bh / 2 + 9); }
+        else if (sw > 18) { ctx.font = BB.font(10, true); ctx.fillText(Math.round(q.v / c.kg * 100) + "%", x + sw / 2, by + bh / 2); }
+        x += sw;
+      });
+      // 지방 경계 손잡이
+      var fx = bx + bw * (1 - c.bf);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(fx, by - 4); ctx.lineTo(fx, by + bh + 4); ctx.stroke();
+      ctx.fillStyle = p.bg; ctx.beginPath(); ctx.arc(fx, by + bh + 10, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = fx > w - 90 ? "right" : "left"; ctx.textBaseline = "top";
+      ctx.fillText("체지방 " + Math.round(c.bf * 100) + "%", fx + (fx > w - 90 ? -12 : 12), by + bh + 4);
+      // 어림 규칙 표시
+      var rx = bx + bw * Math.min(1, c.rule / c.kg);
+      ctx.strokeStyle = BB.alpha(BB.color("water"), 0.9); ctx.setLineDash([3, 3]); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(rx, by - 6); ctx.lineTo(rx, by + bh); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = BB.color("water"); ctx.font = BB.font(10.5); ctx.textAlign = "center"; ctx.textBaseline = "bottom"; ctx.fillText("어림 규칙 " + (sex() === "f" ? "50" : "60") + "%", BB.clamp(rx, bx + 50, bx + bw - 120), by - 7);
+      lay = { bx: bx, bw: bw, by: by, bh: bh };
+      // 2) 물의 세 칸(탱크)
+      var ty = by + bh + 44, tH = h - ty - 44;
+      ctx.fillStyle = p.text; ctx.font = BB.font(13, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+      ctx.fillText("몸의 물 " + c.water.toFixed(1) + " L는 어디에 있나", bx, ty);
+      var maxW = 60; // L 기준 눈금(가장 큰 물에서도 칸 높이 비례 유지)
+      var tanks = [
+        { k: "세포 안(ICF)", v: c.icf, sub: "몸의 물 2/3 · K⁺가 많다", col: BB.color("water") },
+        { k: "사이질액", v: c.isf, sub: "세포 밖의 4/5", col: BB.color("water") },
+        { k: "혈장", v: c.plasma, sub: "1/5", col: BB.color("art") },
+      ];
+      var totW = tanks.reduce(function (s, t) { return s + t.v; }, 0);
+      var gap = 10, avail = bw - gap * 2, tx = bx;
+      var icfw = Math.min(avail * c.icf / totW, avail - 2 * (narrow ? 70 : 80));
+      tanks.forEach(function (t, i) {
+        var tw = i === 0 ? icfw : i === 1 ? Math.max(narrow ? 70 : 80, (avail - icfw) * 0.8) : bx + bw - tx;
+        var y0 = ty + 26, hh = tH - 16;
+        if (i === 1) {
+          ctx.strokeStyle = p.dim; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(tx, ty + 20); ctx.lineTo(tx, ty + 14); ctx.lineTo(bx + bw, ty + 14); ctx.lineTo(bx + bw, ty + 20); ctx.stroke();
+          ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+          ctx.fillText("세포 밖 " + c.ecf.toFixed(1) + " L · Na⁺", (tx + bx + bw) / 2, ty + 12);
+        }
+        ctx.strokeStyle = p.border; ctx.lineWidth = 1.5; BB.rrect(ctx, tx, y0, tw, hh, 8); ctx.stroke();
+        var lvl = hh * Math.min(0.95, 0.35 + 0.6 * (c.water / maxW));
+        ctx.fillStyle = BB.alpha(t.col, 0.3); BB.rrect(ctx, tx + 2, y0 + hh - lvl, tw - 4, lvl - 2, 6); ctx.fill();
+        // 물결
+        ctx.strokeStyle = BB.alpha(t.col, 0.8); ctx.lineWidth = 1.5; ctx.beginPath();
+        for (var xx = tx + 3; xx <= tx + tw - 3; xx += 3) { var yy = y0 + hh - lvl + Math.sin(xx / 7) * 1.5; xx === tx + 3 ? ctx.moveTo(xx, yy) : ctx.lineTo(xx, yy); } ctx.stroke();
+        ctx.fillStyle = p.text; ctx.font = BB.font(narrow ? 11 : 12, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "top";
+        ctx.fillText(t.k, tx + tw / 2, y0 + 8);
+        ctx.font = BB.font(narrow ? 13 : 18, true, 700); ctx.fillStyle = t.col; ctx.textBaseline = "middle";
+        ctx.fillText(t.v.toFixed(1) + " L", tx + tw / 2, y0 + hh * 0.6);
+        ctx.fillStyle = p.dim; ctx.font = BB.font(10); ctx.textBaseline = "bottom"; if (tw > 90 || i === 0) ctx.fillText(t.sub, tx + tw / 2, y0 + hh - 6);
+        tx += tw + gap;
+      });
+      // 세포 경계(세포막) 표시
+      var mx = bx + icfw + gap / 2;
+      ctx.strokeStyle = BB.color("prot"); ctx.lineWidth = 2.5; ctx.setLineDash([2, 4]); ctx.beginPath(); ctx.moveTo(mx, ty + 6); ctx.lineTo(mx, ty + 14 + tH); ctx.stroke(); ctx.setLineDash([]);
+    }, { get height() { return narrowOf("cp-cv", 520) ? 360 : 330; } });
+    upd();
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; if (y < lay.by - 20 || y > lay.by + lay.bh + 30) return; var f = 1 - (x - lay.bx) / lay.bw; getBf.set(Math.round(BB.clamp(f * 100, 5, 50))); } });
+  })();
+
+  /* ---------------------------------------------------------- 4. 클라이버 법칙 */
+  (function () {
+    var ANIMALS = [
+      { n: "땃쥐", m: 0.004, hr: 900, life: 1.5 },
+      { n: "생쥐", m: 0.025, hr: 600, life: 2.5 },
+      { n: "쥐", m: 0.3, hr: 350, life: 3 },
+      { n: "고양이", m: 4, hr: 150, life: 15 },
+      { n: "개", m: 20, hr: 100, life: 12 },
+      { n: "사람", m: 70, hr: 70, life: 80 },
+      { n: "말", m: 500, hr: 40, life: 30 },
+      { n: "코끼리", m: 4000, hr: 30, life: 65 },
+    ];
+    var M = 70, lay = null;
+    var HRf = function (m) { return 241 * Math.pow(m, -0.25); };
+    function upd() {
+      BB.stat("sc-o-m", M < 1 ? fmt0(M * 1000) + "<small>g</small>" : M < 1000 ? BB.fmt(M, 3) + "<small>kg</small>" : (M / 1000).toFixed(1) + "<small>t</small>");
+      BB.stat("sc-o-b", fmt0(BD.kleiber(M)) + "<small>kcal/day</small>");
+      BB.stat("sc-o-k", (BD.kleiber(M) / M).toFixed(1) + "<small>kcal/kg/day</small>");
+      BB.stat("sc-o-hr", fmt0(HRf(M)) + "<small>bpm</small>");
+    }
+    var cv = BB.canvas("#sc-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 600;
+      var c1, c2, b1, b2, lifeBox;
+      if (narrow) {
+        b1 = { x: 58, y: 14, w: w - 74, h: 190 };
+        b2 = { x: 58, y: 264, w: w - 74, h: 160 };
+        lifeBox = { x: 16, y: 482, w: w - 32, h: h - 516 };
+      } else {
+        b1 = { x: 64, y: 14, w: w / 2 - 84, h: 230 };
+        b2 = { x: w / 2 + 52, y: 14, w: w / 2 - 68, h: 230 };
+        lifeBox = { x: 16, y: 312, w: w - 32, h: h - 340 };
+      }
+      var xr = [0.001, 10000], xf = function (v) { return v >= 1000 ? (v / 1000) + "t" : v >= 1 ? v + "kg" : (v * 1000) + "g"; };
+      var line = BD.logspace(0.001, 10000, 60);
+      c1 = BB.chart(ctx, b1, { x: xr, y: [0.1, 1e5], logX: true, logY: true, xFmt: xf, yFmt: function (v) { return v >= 1000 ? (v / 1000) + "k" : String(v); }, xLabel: "몸무게(로그 눈금)", yLabel: "기초대사량 kcal/day",
+        series: [{ data: line.map(function (m) { return [m, 70 * m]; }), color: BB.alpha(p.dim, 0.6), width: 1.2, dash: [5, 4] }, { data: line.map(function (m) { return [m, BD.kleiber(m)]; }), color: p.accent, width: 2.6 }] });
+      c2 = BB.chart(ctx, b2, { x: xr, y: [10, 2000], logX: true, logY: true, xFmt: xf, xLabel: "몸무게(로그 눈금)", yLabel: "심박수 bpm",
+        series: [{ data: line.map(function (m) { return [m, HRf(m)]; }), color: BB.color("art"), width: 2.6 }] });
+      ctx.font = BB.font(11); ctx.textBaseline = "bottom";
+      ctx.fillStyle = p.accent; ctx.textAlign = "left"; ctx.fillText("기울기 3/4", c1.X(200), c1.Y(BD.kleiber(200) / 8));
+      ctx.fillStyle = p.dim; ctx.textAlign = "right"; ctx.fillText("점선: 몸무게에 정비례(기울기 1)", b1.x + b1.w - 4, b1.y + b1.h - 4); ctx.textAlign = "left";
+      ctx.fillStyle = BB.color("art"); ctx.fillText("기울기 −1/4", c2.X(0.04), c2.Y(HRf(0.04) * 0.45));
+      // 동물 점
+      ANIMALS.forEach(function (a, i) {
+        [[c1, BD.kleiber(a.m)], [c2, a.hr]].forEach(function (cc, j) {
+          var X = cc[0].X(a.m), Y = cc[0].Y(cc[1]);
+          ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(X, Y, 3.2, 0, Math.PI * 2); ctx.fill();
+          if (!narrow || i % 2 === 1 || a.n === "사람" || a.n === "코끼리") {
+            ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "center"; ctx.textBaseline = j === 0 ? "top" : "bottom";
+            ctx.fillText(a.n, X, j === 0 ? Y + 5 : Y - 5);
+          }
+        });
+      });
+      // 끄는 세로선
+      [[c1, BD.kleiber(M)], [c2, HRf(M)]].forEach(function (cc) {
+        var b = cc[0].box, X = cc[0].X(M);
+        ctx.strokeStyle = p.text; ctx.lineWidth = 1.3; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(X, b.y); ctx.lineTo(X, b.y + b.h); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = p.bg; ctx.strokeStyle = p.accent; ctx.lineWidth = 2.4; ctx.beginPath(); ctx.arc(X, cc[0].Y(cc[1]), 6.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      });
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, true, 700); ctx.textAlign = c1.X(M) > b1.x + b1.w - 90 ? "right" : "left"; ctx.textBaseline = "top";
+      ctx.fillText(fmt0(BD.kleiber(M)) + " kcal/day", c1.X(M) + (ctx.textAlign === "right" ? -8 : 8), b1.y + 4);
+      ctx.textAlign = c2.X(M) > b2.x + b2.w - 70 ? "right" : "left";
+      ctx.fillText(fmt0(HRf(M)) + " bpm", c2.X(M) + (ctx.textAlign === "right" ? -8 : 8), b2.y + 4);
+      // 평생 박동 막대
+      var L = lifeBox;
+      ctx.fillStyle = p.text; ctx.font = BB.font(12.5, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("평생 심장 박동(안정 심박수 × 대표 수명)", L.x, L.y);
+      var rowsN = ANIMALS.length, rh = (L.h - 24) / rowsN, maxB = 3.5e9;
+      var labW = 54, barX = L.x + labW, barW = L.w - labW - 70;
+      ANIMALS.forEach(function (a, i) {
+        var beats = a.hr * 60 * 24 * 365 * a.life, y = L.y + 22 + i * rh;
+        var near = Math.abs(Math.log10(a.m / M)) < 0.35;
+        ctx.fillStyle = near ? p.text : p.dim; ctx.font = BB.font(11, false, near ? 700 : 400); ctx.textAlign = "right"; ctx.textBaseline = "middle";
+        ctx.fillText(a.n, barX - 6, y + rh / 2);
+        ctx.fillStyle = BB.alpha(a.n === "사람" ? p.accent : BB.color("art"), near ? 0.9 : 0.45);
+        ctx.fillRect(barX, y + 2, barW * beats / maxB, Math.max(4, rh - 5));
+        ctx.fillStyle = p.dim; ctx.font = BB.font(10.5, true); ctx.textAlign = "left";
+        ctx.fillText(Math.round(beats / 1e8) + "억", barX + barW * beats / maxB + 5, y + rh / 2);
+      });
+      var x1e9 = barX + barW * 1e9 / maxB;
+      ctx.strokeStyle = BB.alpha(p.text, 0.4); ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(x1e9, L.y + 20); ctx.lineTo(x1e9, L.y + L.h); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("10억 번", x1e9 + 4, L.y + 2 + 14);
+      lay = { c1: c1, c2: c2, b1: b1, b2: b2 };
+      upd();
+    }, { get height() { return narrowOf("sc-cv", 600) ? 760 : 560; } });
+    BB.drag(cv.canvas, { move: function (x, y) {
+      if (!lay) return;
+      var c = y < lay.b2.y - 20 || x < lay.b2.x - 30 ? lay.c1 : lay.c2;
+      if (y > lay.b2.y + lay.b2.h + 40) return;
+      var b = c.box, f = BB.clamp((x - b.x) / b.w, 0, 1);
+      M = Math.pow(10, -3 + 7 * f);
+      cv.redraw();
+    } });
+  })();
+
+  /* ---------------------------------------------------------- 5. 크기와 확산 */
+  (function () {
+    var LMIN = -9, LMAX = 1;           // 반지름 log10(m)
+    var lr = Math.log10(15e-6), auto = false, lay = null;
+    var MARK = [[0.5e-9, "포도당 분자"], [5e-9, "단백질"], [0.5e-6, "미토콘드리아"], [4e-6, "적혈구"], [15e-6, "세포"], [0.5e-3, "근섬유 다발"], [6e-3, "콩팥 조각"], [0.06, "심장"], [0.3, "사람 몸통"]];
+    var D = 2e-9, C0 = 0.138, Q0 = 2.66e-3;   // m²/s, mol/m³(PO2 100 mmHg), mol/m³/s
+    var q = BB.seg("zm-q", function () { cv.redraw(); });
+    function rcrit() { return Math.sqrt(6 * D * C0 / (Q0 * Number(q()))); }
+    function len(r) { return r >= 1 ? r.toFixed(2) + " m" : r >= 1e-3 ? BB.fmt(r * 1000, 3) + " mm" : r >= 1e-6 ? BB.fmt(r * 1e6, 3) + " µm" : BB.fmt(r * 1e9, 3) + " nm"; }
+    function dur(s) { return s < 1e-3 ? BB.fmt(s * 1e6, 2) + " µs" : s < 1 ? BB.fmt(s * 1000, 2) + " ms" : s < 120 ? BB.fmt(s, 2) + " s" : s < 7200 ? BB.fmt(s / 60, 2) + " 분" : s < 2 * 86400 ? BB.fmt(s / 3600, 2) + " 시간" : s < 2 * 365 * 86400 ? BB.fmt(s / 86400, 2) + " 일" : BB.fmt(s / 86400 / 365, 2) + " 년"; }
+    document.getElementById("zm-go").addEventListener("click", function () { auto = !auto; if (auto && lr > LMAX - 0.6) lr = LMIN + 0.3; this.textContent = auto ? "멈춤" : "자동 확대"; });
+    var cv = BB.canvas("#zm-cv", function (ctx, w, h) {
+      var p = P(), r = Math.pow(10, lr), rc = rcrit(), narrow = w < 520;
+      // 위: 단면
+      var R = Math.min(narrow ? 100 : 120, (h - 130) / 2), cx = narrow ? w / 2 : w * 0.3, cy = R + 18;
+      var o2 = BB.color("o2"), bad = p.bad;
+      var N = 60;
+      for (var i = N; i >= 1; i--) {
+        var xr = i / N, x = xr * r;
+        var c = C0 - (Q0 * Number(q())) / (6 * D) * (r * r - x * x);
+        var f = BB.clamp(c / C0, 0, 1);
+        ctx.fillStyle = f <= 0 ? BB.alpha(bad, 0.75) : BB.alpha(o2, 0.12 + 0.75 * f);
+        ctx.beginPath(); ctx.arc(cx, cy, R * xr, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.strokeStyle = BB.color("prot"); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+      // 산소 화살표(표면에서 안으로)
+      ctx.strokeStyle = BB.alpha(o2, 0.9); ctx.fillStyle = BB.alpha(o2, 0.9); ctx.lineWidth = 1.6;
+      for (var a = 0; a < 8; a++) {
+        var an = a * Math.PI / 4 + 0.3, x1 = cx + Math.cos(an) * (R + 16), y1 = cy + Math.sin(an) * (R + 16), x2 = cx + Math.cos(an) * (R + 3), y2 = cy + Math.sin(an) * (R + 3);
+        ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      }
+      var anox = r > rc;
+      if (anox) {
+        var rin = Math.sqrt(Math.max(0, r * r - 6 * D * C0 / (Q0 * Number(q()))));
+        ctx.fillStyle = "#fff"; ctx.font = BB.font(12, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        if (rin / r > 0.25) ctx.fillText("산소 없는 중심", cx, cy);
+      }
+      // 오른쪽: 수치 패널
+      var px = narrow ? 16 : w * 0.56, py = narrow ? cy + R + 26 : 24;
+      var nm = MARK.reduce(function (best, m) { return Math.abs(Math.log10(m[0]) - lr) < Math.abs(Math.log10(best[0]) - lr) ? m : best; }, MARK[0]);
+      ctx.fillStyle = p.text; ctx.font = BB.font(narrow ? 16 : 20, true, 700); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("반지름 " + len(r), px, py);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(12); ctx.fillText("이 크기쯤: " + nm[1], px, py + (narrow ? 22 : 28));
+      if (!narrow) {
+        var lines = [["표면적/부피 = 3/r", BB.fmt(3 / r, 3) + " /m"], ["중심까지 확산", dur(BD.diffTime(r))], ["확산만으로 버티는 반지름", len(rc)]];
+        lines.forEach(function (l, k) {
+          ctx.fillStyle = p.dim; ctx.font = BB.font(12); ctx.fillText(l[0], px, py + 64 + k * 42);
+          ctx.fillStyle = k === 2 ? p.accent : p.text; ctx.font = BB.font(16, true, 700); ctx.fillText(l[1], px, py + 82 + k * 42);
+        });
+        ctx.fillStyle = anox ? bad : p.ok; ctx.font = BB.font(13, false, 700);
+        ctx.fillText(anox ? "확산만으로는 부족: 피를 밀어 날라야 한다" : "확산만으로 충분하다", px, py + 200);
+      } else {
+        ctx.fillStyle = anox ? bad : p.ok; ctx.font = BB.font(12.5, false, 700);
+        ctx.fillText(anox ? "확산만으로는 부족: 순환이 필요" : "확산만으로 충분", px, py + 42);
+      }
+      // 아래: 로그 자
+      var rx = 20, rw = w - 40, ry = h - (narrow ? 60 : 50);
+      ctx.strokeStyle = p.axis; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(rx, ry); ctx.lineTo(rx + rw, ry); ctx.stroke();
+      var X = function (l) { return rx + (l - LMIN) / (LMAX - LMIN) * rw; };
+      // 확산 가능 구간 띠
+      ctx.fillStyle = BB.alpha(p.ok, 0.18); ctx.fillRect(rx, ry - 6, X(Math.log10(rc)) - rx, 12);
+      ctx.fillStyle = BB.alpha(bad, 0.14); ctx.fillRect(X(Math.log10(rc)), ry - 6, rx + rw - X(Math.log10(rc)), 12);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10, true); ctx.textAlign = "center"; ctx.textBaseline = "top";
+      var labs = { "-9": "1 nm", "-6": "1 µm", "-3": "1 mm", "0": "1 m" };
+      for (var e = LMIN; e <= LMAX; e++) { ctx.strokeStyle = p.axis; ctx.beginPath(); ctx.moveTo(X(e), ry - 4); ctx.lineTo(X(e), ry + 4); ctx.stroke(); if (labs[e]) ctx.fillText(labs[e], X(e), ry + 9); }
+      ctx.font = BB.font(9.5); ctx.textBaseline = "bottom";
+      MARK.forEach(function (m, k) { if (narrow && k % 2) return; var row = narrow ? (k / 2) % 2 : k % 2; var xx = X(Math.log10(m[0])); ctx.fillStyle = p.faint; ctx.fillRect(xx - 0.5, ry - 10, 1, 4); ctx.fillText(m[1], BB.clamp(xx, rx + 26, rx + rw - 26), ry - 10 - row * 11); });
+      var hx = X(lr);
+      ctx.fillStyle = p.bg; ctx.strokeStyle = p.accent; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(hx, ry, 8, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.textBaseline = "top"; if (!narrow) ctx.fillText("반지름(로그 눈금) · 초록: 확산으로 충분", rx, ry + 24);
+      lay = { X: X, rx: rx, rw: rw, ry: ry };
+      BB.stat("zm-o-r", len(r));
+      BB.stat("zm-o-sv", BB.fmt(3 / r / 1000, 3) + "<small>/mm</small>");
+      BB.stat("zm-o-t", dur(BD.diffTime(r)));
+      BB.stat("zm-o-rc", len(rc));
+    }, { get height() { return narrowOf("zm-cv", 520) ? 400 : 340; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; lr = BB.clamp(LMIN + (x - lay.rx) / lay.rw * (LMAX - LMIN), LMIN, LMAX); auto = false; document.getElementById("zm-go").textContent = "자동 확대"; cv.redraw(); } });
+    BB.loop(document.getElementById("sim-ov-zoom"), function (dt) { if (auto) { lr += dt * 0.9; if (lr >= LMAX) { lr = LMAX; auto = false; document.getElementById("zm-go").textContent = "자동 확대"; } cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 6. 계통 연결 그래프 */
+  (function () {
+    var NODES = {
+      brain: { n: "뇌·신경", seg: "reg", wx: 0.5, wy: 0.1, nx: 0.5, ny: 0.07, ch: "nerve.html", info: "운동 명령을 근육에 보내고, 동시에 교감 신경으로 심장을 빨리 뛰게 하고, 호흡 중추로 환기를 늘리고, 부신에 아드레날린을 내라고 지시한다. 출발 신호 전부터 미리 올리는 것(앞먹임)도 뇌가 한다(2장)." },
+      hormone: { n: "부신·호르몬", seg: "reg", wx: 0.86, wy: 0.14, nx: 0.84, ny: 0.2, ch: "hormone.html", info: "아드레날린과 노르아드레날린이 심장과 간을 자극하고, 글루카곤·코르티솔이 연료를 꺼낸다. 신경보다 느리지만 온몸에 한꺼번에 퍼진다." },
+      lungs: { n: "폐", seg: "resp", wx: 0.13, wy: 0.34, nx: 0.16, ny: 0.3, ch: "lungs.html", info: "환기량을 분당 약 6 L에서 60 L 이상으로 늘려 산소를 들이고 CO₂를 버린다. 피는 폐를 지나는 약 0.3초 사이에 산소로 거의 가득 찬다." },
+      heart: { n: "심장·혈관", seg: "circ", wx: 0.5, wy: 0.42, nx: 0.5, ny: 0.45, ch: "heart.html", info: "심박수와 1회 박출량을 함께 올려 심박출량을 약 5 L/min에서 18 L/min으로 늘리고, 혈관은 근육 쪽을 열고 장·콩팥 쪽을 조여 피를 옮긴다." },
+      liver: { n: "간·지방", seg: "meta", wx: 0.13, wy: 0.8, nx: 0.16, ny: 0.66, ch: "metabolism.html", info: "간은 글리코겐을 풀어 혈당을 지키고, 지방 조직은 지방산을 내놓는다. 대회 속도에서는 연료의 대부분이 탄수화물이다(RER 약 0.90)." },
+      muscle: { n: "다리 근육", seg: "musc", wx: 0.5, wy: 0.84, nx: 0.5, ny: 0.86, ch: "muscle.html", info: "모든 요구의 출발점. 산소와 연료를 받아 ATP를 만들고 힘을 낸다. 그 대가로 CO₂·젖산·열을 내놓는다. 쓴 에너지의 약 4분의 3이 열이 된다." },
+      skin: { n: "피부", seg: "reg", wx: 0.86, wy: 0.84, nx: 0.84, ny: 0.86, ch: "thermo.html", info: "근육에서 온 열을 피부 혈관과 땀으로 버린다. 다온의 대회 조건에서 땀은 약 0.6 L. 습도가 높으면 땀이 마르지 않아 열이 쌓인다." },
+      kidney: { n: "콩팥", seg: "reg", wx: 0.86, wy: 0.48, nx: 0.84, ny: 0.55, ch: "kidney.html", info: "달리는 동안 콩팥으로 가는 피가 줄고, 항이뇨 호르몬이 늘어 소변을 아낀다. 땀으로 잃는 물을 덜 버리는 쪽으로 돕는다." },
+    };
+    var EDGES = [
+      { a: "brain", b: "muscle", c: "nerve", t: function (x) { return "운동 명령"; }, q: function (x) { return 0.2 + x; }, bend: 0.5 },
+      { a: "brain", b: "heart", c: "nerve", t: function (x) { return "교감 신경 · 심박 " + fmt0(72 + 96 * x); }, q: function (x) { return 0.2 + x; } },
+      { a: "brain", b: "lungs", c: "nerve", t: function (x) { return "호흡 " + fmt0(7 + 60 * x) + " L/min"; }, q: function (x) { return 0.2 + x; } },
+      { a: "brain", b: "hormone", c: "nerve", t: function (x) { return "부신 자극"; }, q: function (x) { return 0.1 + x; } },
+      { a: "hormone", b: "liver", c: "nerve", t: function (x) { return "아드레날린"; }, q: function (x) { return 0.1 + x; }, bend: -0.3, lp: 0.1 },
+      { a: "hormone", b: "kidney", c: "nerve", t: function (x) { return "항이뇨 호르몬"; }, q: function (x) { return 0.1 + 0.8 * x; }, lp: 0.8 },
+      { a: "lungs", b: "heart", c: "o2", t: function (x) { return "O₂ " + (0.27 + 2.07 * x).toFixed(1) + " L/min"; }, q: function (x) { return 0.27 + 2.07 * x; } },
+      { a: "heart", b: "muscle", c: "o2", t: function (x) { return "피 " + (0.9 + 14.6 * x).toFixed(1) + " L/min"; }, q: function (x) { return 1 + 14 * x; } },
+      { a: "muscle", b: "lungs", c: "co2", t: function (x) { return "CO₂ " + (0.22 + 1.89 * x).toFixed(1) + " L/min"; }, q: function (x) { return 0.22 + 1.89 * x; }, bend: -0.18 },
+      { a: "liver", b: "muscle", c: "glu", t: function (x) { return "포도당·지방산"; }, q: function (x) { return 0.2 + x; } },
+      { a: "muscle", b: "skin", c: "heat", t: function (x) { return "열 " + fmt0(20 + 680 * x) + " W"; }, q: function (x) { return 0.1 + x; } },
+      { a: "heart", b: "kidney", c: "o2", t: function (x) { return "피 " + (1.1 - 0.5 * x).toFixed(1) + " L/min"; }, q: function (x) { return 1.1 - 0.5 * x; } },
+      { a: "heart", b: "skin", c: "o2", t: function (x) { return "피 " + (0.3 + 1.7 * x).toFixed(1) + " L/min"; }, q: function (x) { return 0.3 + 1.7 * x; }, bend: 0.12 },
+    ];
+    var sel = null, ph = 0, xy = {}, lay = null;
+    var getX = BB.range("gr-x", function (v) { return v === 0 ? "안정" : v === 1 ? "대회 속도" : Math.round(v * 100) + "%"; }, function () { cv.redraw(); });
+    var info = document.getElementById("gr-info");
+    document.getElementById("gr-all").addEventListener("click", function () { sel = null; info.innerHTML = "계통을 누르면 달리는 동안 그 계통이 하는 일이 나온다."; cv.redraw(); });
+    var cv = BB.canvas("#gr-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 520, x = getX();
+      Object.keys(NODES).forEach(function (k) { var n = NODES[k]; xy[k] = [(narrow ? n.nx : n.wx) * w, (narrow ? n.ny : n.wy) * h]; });
+      var nw = narrow ? 84 : 104, nh = 34;
+      EDGES.forEach(function (e) {
+        var A = xy[e.a], B = xy[e.b], on = !sel || sel === e.a || sel === e.b;
+        var col = BB.color(e.c), dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy);
+        var bend = e.bend == null ? 0.08 : e.bend;
+        var mx = (A[0] + B[0]) / 2 - dy * bend, my = (A[1] + B[1]) / 2 + dx * bend;
+        // 끝점: 상자 가장자리 근처
+        var pts = [];
+        for (var s = 0; s <= 24; s++) { var t = s / 24, u = 1 - t; pts.push([u * u * A[0] + 2 * u * t * mx + t * t * B[0], u * u * A[1] + 2 * u * t * my + t * t * B[1]]); }
+        var inBox = function (pt, c) { return Math.abs(pt[0] - c[0]) < nw / 2 + 2 && Math.abs(pt[1] - c[1]) < nh / 2 + 2; };
+        pts = pts.filter(function (pt) { return !inBox(pt, A) && !inBox(pt, B); });
+        if (pts.length < 2) return;
+        var qv = e.q(x), wd = 1 + 2.4 * Math.min(1, qv / 6) + (on && sel ? 0.8 : 0);
+        ctx.strokeStyle = BB.alpha(col, on ? 0.85 : 0.12); ctx.lineWidth = wd;
+        ctx.beginPath(); pts.forEach(function (pt, i) { i ? ctx.lineTo(pt[0], pt[1]) : ctx.moveTo(pt[0], pt[1]); }); ctx.stroke();
+        var e1 = pts[pts.length - 1], e0 = pts[pts.length - 2], ang = Math.atan2(e1[1] - e0[1], e1[0] - e0[0]);
+        ctx.fillStyle = BB.alpha(col, on ? 0.95 : 0.15); ctx.beginPath(); ctx.moveTo(e1[0], e1[1]); ctx.lineTo(e1[0] - 9 * Math.cos(ang - 0.4), e1[1] - 9 * Math.sin(ang - 0.4)); ctx.lineTo(e1[0] - 9 * Math.cos(ang + 0.4), e1[1] - 9 * Math.sin(ang + 0.4)); ctx.closePath(); ctx.fill();
+        if (on) BD.flowDots(ctx, pts, ph * (14 + 26 * Math.min(1, qv / 4)), { color: col, gap: 16, r: 2.2 });
+        if (on && (sel || !narrow)) {
+          var mid = pts[Math.floor(pts.length * (e.lp || 0.5))], lab = e.t(x);
+          ctx.font = BB.font(10.5, false, 600); var tw = ctx.measureText(lab).width;
+          ctx.fillStyle = BB.alpha(p.bg, 0.88); BB.rrect(ctx, mid[0] - tw / 2 - 4, mid[1] - 8, tw + 8, 16, 4); ctx.fill();
+          ctx.fillStyle = col; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(lab, mid[0], mid[1]);
+        }
+      });
+      Object.keys(NODES).forEach(function (k) {
+        var n = NODES[k], c = xy[k], col = BB.segColor(n.seg), on = sel === k;
+        ctx.fillStyle = on ? BB.alpha(col, 0.95) : BB.alpha(col, 0.16);
+        BB.rrect(ctx, c[0] - nw / 2, c[1] - nh / 2, nw, nh, 9); ctx.fill();
+        ctx.strokeStyle = col; ctx.lineWidth = on ? 2.4 : 1.4; BB.rrect(ctx, c[0] - nw / 2, c[1] - nh / 2, nw, nh, 9); ctx.stroke();
+        ctx.fillStyle = on ? "#fff" : p.text; ctx.font = BB.font(narrow ? 11.5 : 12.5, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillText(n.n, c[0], c[1]);
+      });
+      if (!sel && narrow) { ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("계통을 누르면 흐름의 숫자가 나온다", 8, 6); }
+      lay = { nw: nw, nh: nh };
+    }, { get height() { return narrowOf("gr-cv", 520) ? 520 : 440; } });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      if (!lay) return;
+      var hit = null;
+      Object.keys(xy).forEach(function (k) { if (Math.abs(x - xy[k][0]) < lay.nw / 2 && Math.abs(y - xy[k][1]) < lay.nh / 2) hit = k; });
+      if (!hit) return;
+      sel = hit; var n = NODES[hit];
+      info.innerHTML = "<h4>" + n.n + "</h4><p>" + n.info + "</p><div class='ov-chips'><a href='" + n.ch + "'>자세히 보기</a></div>";
+      cv.redraw();
+    } });
+    BB.loop(document.getElementById("sim-ov-graph"), function (dt) { ph += dt; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 7. 참고 범위 */
+  (function () {
+    var VARS = {
+      hr: { name: "안정 심박수", unit: "bpm", mu: 70, sd: 11, lo: 30, hi: 110, v: 52, dig: 0, clin: [{ x: 60, t: "진료 범위 60" }, { x: 100, t: "100" }], clinName: "흔히 쓰는 진료 범위 60~100" },
+      glu: { name: "공복 혈당", unit: "mg/dL", mu: 90, sd: 8, lo: 60, hi: 135, v: 98, dig: 0, clin: [{ x: 100, t: "100 공복혈당장애" }, { x: 126, t: "126 당뇨병" }], clinName: "진료 기준(위험으로 정한 선)" },
+      temp: { name: "체온(입안)", unit: "°C", mu: 36.8, sd: 0.35, lo: 35.6, hi: 38.2, v: 37.3, dig: 1, clin: [{ x: 37.5, t: "37.5" }], clinName: "흔히 열로 보는 선" },
+    };
+    var lay = null, cur = {};
+    Object.keys(VARS).forEach(function (k) { cur[k] = VARS[k].v; });
+    var vsel = BB.seg("rg-var", function () { cv.redraw(); });
+    var getN = BB.range("rg-n", function (v) { return v + "개"; }, function () { cv.redraw(); });
+    var cv = BB.canvas("#rg-cv", function (ctx, w, h) {
+      var p = P(), V = VARS[vsel()], v = cur[vsel()], narrow = w < 520;
+      var box = { x: 22, y: 30, w: w - 44, h: h - (narrow ? 170 : 150) };
+      var pdf = function (x) { return Math.exp(-0.5 * Math.pow((x - V.mu) / V.sd, 2)); };
+      var X = function (x) { return box.x + (x - V.lo) / (V.hi - V.lo) * box.w; }, Y = function (y) { return box.y + box.h - y * box.h * 0.92; };
+      var lo95 = V.mu - 1.96 * V.sd, hi95 = V.mu + 1.96 * V.sd;
+      // 분포 채우기: 95 % 안·밖
+      for (var px = box.x; px < box.x + box.w; px += 1) {
+        var xv = V.lo + (px - box.x) / box.w * (V.hi - V.lo), inside = xv >= lo95 && xv <= hi95;
+        ctx.fillStyle = inside ? BB.alpha(p.accent2, 0.22) : BB.alpha(p.warn, 0.35);
+        ctx.fillRect(px, Y(pdf(xv)), 1.2, Y(0) - Y(pdf(xv)));
+      }
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 2.2; ctx.beginPath();
+      for (var px2 = box.x; px2 <= box.x + box.w; px2 += 2) { var xv2 = V.lo + (px2 - box.x) / box.w * (V.hi - V.lo); px2 === box.x ? ctx.moveTo(px2, Y(pdf(xv2))) : ctx.lineTo(px2, Y(pdf(xv2))); }
+      ctx.stroke();
+      ctx.strokeStyle = p.axis; ctx.beginPath(); ctx.moveTo(box.x, Y(0)); ctx.lineTo(box.x + box.w, Y(0)); ctx.stroke();
+      // 눈금
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5, true); ctx.textAlign = "center"; ctx.textBaseline = "top";
+      var step = V.dig ? 0.4 : (V.hi - V.lo) > 60 ? 10 : 10;
+      for (var t = Math.ceil(V.lo / step) * step; t <= V.hi + 1e-9; t += step) { ctx.fillText(V.dig ? t.toFixed(1) : String(Math.round(t)), X(t), Y(0) + 5); }
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11.5); ctx.fillText(V.name + "(" + V.unit + ")", box.x + box.w / 2, Y(0) + 20);
+      // 95 % 괄호
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 1.4; var by = box.y - 10;
+      ctx.beginPath(); ctx.moveTo(X(lo95), by + 6); ctx.lineTo(X(lo95), by); ctx.lineTo(X(hi95), by); ctx.lineTo(X(hi95), by + 6); ctx.stroke();
+      ctx.fillStyle = p.accent2; ctx.font = BB.font(11, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+      ctx.fillText("건강한 사람의 95 %: " + lo95.toFixed(V.dig) + "~" + hi95.toFixed(V.dig), (X(lo95) + X(hi95)) / 2, by - 2);
+      ctx.fillStyle = p.warn; ctx.font = BB.font(10.5); ctx.textBaseline = "bottom";
+      ctx.textAlign = "left"; ctx.fillText("2.5 %", box.x + 2, Y(0) - 4); ctx.textAlign = "right"; ctx.fillText("2.5 %", box.x + box.w - 2, Y(0) - 4);
+      // 진료 기준선
+      V.clin.forEach(function (c, i) {
+        ctx.strokeStyle = p.bad; ctx.setLineDash([5, 3]); ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(X(c.x), box.y + 14); ctx.lineTo(X(c.x), Y(0)); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = p.bad; ctx.font = BB.font(10.5, false, 600); ctx.textAlign = X(c.x) > box.x + box.w - 90 ? "right" : "left"; ctx.textBaseline = "top";
+        ctx.fillText(c.t, X(c.x) + (ctx.textAlign === "right" ? -4 : 4), box.y + 16 + i * 14);
+      });
+      // 값 손잡이
+      var vx = X(v);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(vx, Y(pdf(v))); ctx.lineTo(vx, Y(0)); ctx.stroke();
+      ctx.fillStyle = p.bg; ctx.strokeStyle = p.accent; ctx.lineWidth = 2.6; ctx.beginPath(); ctx.arc(vx, Y(pdf(v)), 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      var pct = 0.5 * (1 + BB.erf((v - V.mu) / (V.sd * Math.SQRT2)));
+      ctx.font = BB.font(12.5, true, 700); ctx.textAlign = vx > box.x + box.w * 0.7 ? "right" : "left"; ctx.textBaseline = "bottom";
+      var vl = v.toFixed(V.dig) + " " + V.unit + " · " + Math.round(pct * 100) + "번째 백분위", vw = ctx.measureText(vl).width, vxx = vx + (ctx.textAlign === "right" ? -10 : 10);
+      ctx.fillStyle = BB.alpha(p.bg, 0.85); ctx.fillRect(ctx.textAlign === "right" ? vxx - vw - 3 : vxx - 3, Y(pdf(v)) - 22, vw + 6, 18);
+      ctx.fillStyle = p.text; ctx.fillText(v.toFixed(V.dig) + " " + V.unit + " · " + Math.round(pct * 100) + "번째 백분위", vx + (ctx.textAlign === "right" ? -10 : 10), Y(pdf(v)) - 6);
+      // 아래: 여러 항목 확률 막대
+      var n = getN(), any = 1 - Math.pow(0.95, n), gy = h - (narrow ? 92 : 74), gw = w - 44;
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("건강한데도 검사 " + n + "개 중 하나 이상 범위 밖일 확률", 22, gy);
+      ctx.fillStyle = p.surface; BB.rrect(ctx, 22, gy + 22, gw, 18, 6); ctx.fill();
+      ctx.fillStyle = any > 0.5 ? p.bad : p.warn; BB.rrect(ctx, 22, gy + 22, gw * any, 18, 6); ctx.fill();
+      ctx.fillStyle = p.text; ctx.font = BB.font(13, true, 700); ctx.textAlign = any > 0.8 ? "right" : "left"; ctx.textBaseline = "middle";
+      ctx.fillText(Math.round(any * 100) + "%", any > 0.8 ? 22 + gw * any - 6 : 22 + gw * any + 6, gy + 31);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("= 1 − 0.95^" + n + " (항목이 서로 독립이라고 가정)", 22, gy + 46);
+      lay = { X: X, box: box, V: V };
+      BB.stat("rg-o-v", v.toFixed(V.dig) + "<small>" + V.unit + "</small>");
+      BB.stat("rg-o-p", Math.round(pct * 100) + "<small>번째</small>");
+      BB.stat("rg-o-r", lo95.toFixed(V.dig) + "~" + hi95.toFixed(V.dig));
+      BB.stat("rg-o-any", Math.round(any * 100) + "<small>%</small>");
+    }, { get height() { return narrowOf("rg-cv", 520) ? 380 : 340; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; if (y > lay.box.y + lay.box.h + 30) return; var V = lay.V; var v = V.lo + (x - lay.box.x) / lay.box.w * (V.hi - V.lo); v = BB.clamp(v, V.lo, V.hi); cur[vsel()] = V.dig ? Math.round(v * 10) / 10 : Math.round(v); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 8. 다온의 숫자 */
+  (function () {
+    var D0 = BD.DAON;
+    function calc(o) {
+      var bv = o.kg * (o.sex === "f" ? 0.065 : 0.07);
+      return { bmi: BD.bmi(o.kg, o.cm), bsa: BD.bsa(o.kg, o.cm), tbw: BD.tbw(o.kg, o.sex), bv: bv, beats: o.hr * 1440, bmr: BD.bmr(o.kg, o.cm, o.age, o.sex), hrmax: BD.hrMax(o.age) };
+    }
+    var daon = calc({ kg: D0.weight, cm: D0.height, age: D0.age, sex: "m", hr: D0.restHr });
+    var cv = null;
+    function me() { return { kg: getKg(), cm: getCm(), age: getAge(), sex: sex(), hr: getHr() }; }
+    function upd() {
+      var r = calc(me());
+      BB.stat("dn-o-bmi", r.bmi.toFixed(1) + "<small>kg/m²</small>");
+      BB.stat("dn-o-bsa", r.bsa.toFixed(2) + "<small>m²</small>");
+      BB.stat("dn-o-bv", r.bv.toFixed(1) + "<small>L</small>");
+      BB.stat("dn-o-hb", fmt0(r.beats) + "<small>번</small>");
+      if (cv) cv.redraw();
+    }
+    var sex = BB.seg("dn-sex", upd);
+    var getCm = BB.range("dn-cm", function (v) { return v + " cm"; }, upd);
+    var getKg = BB.range("dn-kg", function (v) { return v + " kg"; }, upd);
+    var getAge = BB.range("dn-age", function (v) { return v + "세"; }, upd);
+    var getHr = BB.range("dn-hr", function (v) { return v + " bpm"; }, upd);
+    document.getElementById("dn-re").addEventListener("click", function () { sex.set("m", false); getCm.set(175); getKg.set(78); getAge.set(34); getHr.set(72); upd(); });
+    function bmiClass(b) { return b < 18.5 ? ["저체중", "warn"] : b < 23 ? ["정상", "ok"] : b < 25 ? ["비만 전단계", "warn"] : b < 30 ? ["비만 1단계", "bad"] : b < 35 ? ["비만 2단계", "bad"] : ["비만 3단계", "bad"]; }
+    cv = BB.canvas("#dn-cv", function (ctx, w, h) {
+      var p = P(), o = me(), r = calc(o), narrow = w < 560;
+      // 실루엣 두 개(같은 눈금)
+      var sw = narrow ? w : w * 0.34, base = narrow ? 230 : h - 26;
+      var wD = Math.sqrt(daon.bmi / 22), wM = Math.sqrt(r.bmi / 22);
+      var scale = Math.min((base - 34) / 200, sw * 0.4 / (68 * Math.max(wD, wM)));  // px per cm
+      var hD = D0.height * scale, hM = o.cm * scale;
+      var xD = sw * 0.28, xM = sw * 0.72;
+      // 눈금선
+      ctx.strokeStyle = p.grid; ctx.fillStyle = p.faint; ctx.font = BB.font(9.5, true); ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      [100, 150, 200].forEach(function (c) { var y = base - c * scale; ctx.beginPath(); ctx.moveTo(6, y); ctx.lineTo(sw - 6, y); ctx.stroke(); ctx.fillText(c + "", 6, y - 6); });
+      ctx.save(); ctx.translate(xD, 0); ctx.scale(wD, 1); BD.body(ctx, 0, base - hD, hD, { fill: BB.alpha(p.accent2, 0.15), stroke: BB.alpha(p.accent2, 0.7) }); ctx.restore();
+      ctx.save(); ctx.translate(xM, 0); ctx.scale(wM, 1); BD.body(ctx, 0, base - hM, hM, { fill: BB.alpha(p.accent, 0.18), stroke: p.accent }); ctx.restore();
+      ctx.strokeStyle = p.axis; ctx.beginPath(); ctx.moveTo(6, base); ctx.lineTo(sw - 6, base); ctx.stroke();
+      ctx.font = BB.font(12, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "top";
+      ctx.fillStyle = p.accent2; ctx.fillText("다온", xD, base + 4);
+      ctx.fillStyle = p.accent; ctx.fillText("나", xM, base + 4);
+      ctx.font = BB.font(10.5, true); ctx.textBaseline = "bottom";
+      ctx.fillStyle = p.accent2; ctx.fillText(D0.height + "cm·" + D0.weight + "kg", xD, base - hD - 4);
+      ctx.fillStyle = p.accent; ctx.fillText(o.cm + "cm·" + o.kg + "kg", xM, base - hM - 4);
+      // 오른쪽(아래): 비교 막대
+      var gx = narrow ? 14 : sw + 16, gy = narrow ? base + 34 : 14, gw = w - gx - 14;
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(gx + 4, gy + 1); ctx.lineTo(gx + 4, gy + 13); ctx.stroke();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "middle"; ctx.fillText("다온", gx + 10, gy + 7);
+      ctx.fillStyle = p.accent; ctx.beginPath(); ctx.moveTo(gx + 52, gy + 3); ctx.lineTo(gx + 47, gy + 11); ctx.lineTo(gx + 57, gy + 11); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = p.dim; ctx.fillText("나", gx + 62, gy + 7);
+      gy += 20;
+      var M = [
+        { k: "BMI", u: "kg/m²", me: r.bmi, d: daon.bmi, max: 40, dig: 1, bands: [[18.5, "warn"], [23, "ok"], [25, "warn"], [30, "bad"], [40, "bad"]] },
+        { k: "체표면적", u: "m²", me: r.bsa, d: daon.bsa, max: 2.8, dig: 2 },
+        { k: "몸의 물(어림)", u: "L", me: r.tbw, d: daon.tbw, max: 80, dig: 1 },
+        { k: "혈액량", u: "L", me: r.bv, d: daon.bv, max: 10, dig: 1 },
+        { k: "하루 심장 박동", u: "만 번", me: r.beats / 1e4, d: daon.beats / 1e4, max: 16, dig: 1 },
+        { k: "기초대사량", u: "kcal/day", me: r.bmr, d: daon.bmr, max: 3000, dig: 0 },
+        { k: "최대 심박수(어림)", u: "bpm", me: r.hrmax, d: daon.hrmax, max: 220, dig: 0 },
+      ];
+      var rh = (h - gy - 8) / M.length;
+      M.forEach(function (m, i) {
+        var y = gy + i * rh, by = y + 20, bh = Math.min(12, rh - 30);
+        ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top";
+        ctx.fillText(m.k, gx, y + 2);
+        var vtxt = (m.dig ? m.me.toFixed(m.dig) : fmt0(m.me)) + " " + m.u;
+        ctx.fillStyle = p.accent; ctx.font = BB.font(12, true, 700); ctx.textAlign = "right"; ctx.fillText(vtxt, gx + gw, y + 2);
+        if (m.k === "BMI") {
+          var cls = bmiClass(m.me); ctx.fillStyle = p[cls[1]]; ctx.font = BB.font(11, false, 700);
+          ctx.fillText(cls[0] + " · ", gx + gw - ctx.measureText(vtxt).width - 10, y + 2);
+          var x0 = gx, lo = 0;
+          m.bands.forEach(function (b) { var x1 = gx + gw * Math.min(b[0], m.max) / m.max; ctx.fillStyle = BB.alpha(p[b[1]], 0.25); ctx.fillRect(x0, by, x1 - x0, bh); x0 = x1; });
+        } else { ctx.fillStyle = p.surface; ctx.fillRect(gx, by, gw, bh); }
+        var Xm = gx + gw * BB.clamp(m.me / m.max, 0, 1), Xd = gx + gw * BB.clamp(m.d / m.max, 0, 1);
+        if (m.k !== "BMI") { ctx.fillStyle = BB.alpha(p.accent, 0.55); ctx.fillRect(gx, by, Xm - gx, bh); }
+        ctx.strokeStyle = p.accent2; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(Xd, by - 4); ctx.lineTo(Xd, by + bh + 4); ctx.stroke();
+        ctx.fillStyle = p.accent; ctx.beginPath(); ctx.moveTo(Xm, by + bh + 1); ctx.lineTo(Xm - 5, by + bh + 8); ctx.lineTo(Xm + 5, by + bh + 8); ctx.closePath(); ctx.fill();
+      });
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+    }, { get height() { return narrowOf("dn-cv") ? 640 : 440; } });
+    upd();
+  })();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "id": "medicalbooks",
+  "title": "MedicalBooks",
+  "description": "심장과 혈관, 폐와 산소, 혈당과 호르몬, 운동과 체중까지. 가상 인체를 직접 움직이며 배우는 한국어 의학·건강 교과서를 한 저장소와 한 주소에서 만납니다.",
+  "url": "https://medical.euiyun.com/",
+  "repo": "https://github.com/geniuskey/medical-books",
+  "field": "health",
+  "status": "published",
+  "domain": "medical.euiyun.com",
+  "books": [
+    "body/book.json"
+  ]
+}

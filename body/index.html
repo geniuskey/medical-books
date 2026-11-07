@@ -1,0 +1,316 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see LICENSE.md). -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BodyBook · 몸의 원리 교과서</title>
+<meta name="description" content="심장, 폐, 근육, 호르몬. 몸은 어떻게 돌아가나. 심박수와 혈류, 호흡과 산소, 근육의 힘, 에너지 대사 계산, 혈당과 인슐린, 호르몬 피드백 루프를 시뮬레이터로 직접 돌려 보며 배우는 인터랙티브 생리학 교과서.">
+<link rel="canonical" href="https://medical.euiyun.com/body/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="BodyBook · 몸의 원리 교과서">
+<meta property="og:description" content="심장, 폐, 근육, 호르몬. 몸이 어떻게 돌아가는지 시뮬레이터로 직접 돌려 보며 배우는 생리학 교과서.">
+<meta property="og:url" content="https://medical.euiyun.com/body/">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://medical.euiyun.com/body/#site","name":"BodyBook","alternateName":"바디북","url":"https://medical.euiyun.com/body/","inLanguage":"ko","description":"몸이 어떻게 돌아가는지 만져 보며 배우는 인터랙티브 생리학 교과서"},{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/","inLanguage":"ko","bookFormat":"EBook","isAccessibleForFree":true,"author":{"@type":"Person","name":"geniuskey"},"license":"https://creativecommons.org/licenses/by/4.0/","dateModified":"2026-10-04","hasPart":[{"@type":"Chapter","name":"몸이라는 기계","position":1,"url":"https://medical.euiyun.com/body/chapters/overview.html"},{"@type":"Chapter","name":"항상성과 피드백","position":2,"url":"https://medical.euiyun.com/body/chapters/homeostasis.html"},{"@type":"Chapter","name":"세포: 확산, 삼투, 막전위","position":3,"url":"https://medical.euiyun.com/body/chapters/cell.html"},{"@type":"Chapter","name":"심장: 펌프의 한 박동","position":4,"url":"https://medical.euiyun.com/body/chapters/heart.html"},{"@type":"Chapter","name":"심장의 전기와 심전도","position":5,"url":"https://medical.euiyun.com/body/chapters/ecg.html"},{"@type":"Chapter","name":"혈관과 혈압","position":6,"url":"https://medical.euiyun.com/body/chapters/vessels.html"},{"@type":"Chapter","name":"심박수와 혈류","position":7,"url":"https://medical.euiyun.com/body/chapters/flow.html"},{"@type":"Chapter","name":"폐: 숨쉬기의 역학","position":8,"url":"https://medical.euiyun.com/body/chapters/lungs.html"},{"@type":"Chapter","name":"가스 교환과 산소 운반","position":9,"url":"https://medical.euiyun.com/body/chapters/gas.html"},{"@type":"Chapter","name":"호흡 조절과 산염기","position":10,"url":"https://medical.euiyun.com/body/chapters/breathing.html"},{"@type":"Chapter","name":"근육: 힘을 만드는 분자 기계","position":11,"url":"https://medical.euiyun.com/body/chapters/muscle.html"},{"@type":"Chapter","name":"운동하는 몸","position":12,"url":"https://medical.euiyun.com/body/chapters/exercise.html"},{"@type":"Chapter","name":"에너지 대사 계산","position":13,"url":"https://medical.euiyun.com/body/chapters/metabolism.html"},{"@type":"Chapter","name":"에너지 균형과 체중","position":14,"url":"https://medical.euiyun.com/body/chapters/weight.html"},{"@type":"Chapter","name":"혈당과 인슐린","position":15,"url":"https://medical.euiyun.com/body/chapters/glucose.html"},{"@type":"Chapter","name":"신경: 전기로 말하기","position":16,"url":"https://medical.euiyun.com/body/chapters/nerve.html"},{"@type":"Chapter","name":"호르몬과 피드백 루프","position":17,"url":"https://medical.euiyun.com/body/chapters/hormone.html"},{"@type":"Chapter","name":"콩팥과 체액","position":18,"url":"https://medical.euiyun.com/body/chapters/kidney.html"},{"@type":"Chapter","name":"체온 조절","position":19,"url":"https://medical.euiyun.com/body/chapters/thermo.html"},{"@type":"Chapter","name":"인체 실험실","position":20,"url":"https://medical.euiyun.com/body/chapters/lab.html"},{"@type":"Chapter","name":"용어집 & 종합 퀴즈","position":21,"url":"https://medical.euiyun.com/body/chapters/glossary.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/common.js"></script>
+<script src="js/body.js"></script>
+<style>
+  .hero-sim { border-radius: 20px; border: 1px solid var(--border); background: var(--bg-elev); overflow: hidden; box-shadow: var(--shadow); }
+  .hero-sim .view { background: #0b0d12; position: relative; }
+  .hero-sim canvas { display: block; width: 100%; }
+  .hero-sim .ctl { display: grid; gap: 10px; padding: 14px 16px 16px; border-top: 1px solid var(--border); }
+  .hero-sim .row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .hero-sim .row .ctrl { flex: 1 1 180px; margin: 0; }
+  .hero-sim .cap { font-size: 14px; color: var(--text-dim); min-height: 44px; line-height: 1.55; }
+  .hero-sim .cap b { color: var(--text); }
+  .hero-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+  .hero-badges span { font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-dim); background: var(--bg-elev); }
+  .trail { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+  .trail > div { padding: 16px; border-radius: 12px; background: var(--bg-elev); border: 1px solid var(--border); border-top: 4px solid var(--c); }
+  .trail b { display: block; font-size: 17px; margin: 0 0 2px; }
+  .trail small { display: block; font-family: var(--mono); font-size: 11px; color: var(--text-faint); margin-bottom: 8px; letter-spacing: .06em; }
+  .trail p { margin: 0 0 10px; font-size: 14px; color: var(--text-dim); line-height: 1.55; }
+  .trail .steps, .path .steps { display: flex; flex-wrap: wrap; gap: 6px; }
+  .trail .steps a, .path .steps a { font-family: var(--mono); font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .trail .steps a:hover, .path .steps a:hover { text-decoration: none; filter: brightness(1.1); }
+  .feat { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+  .feat a { display: flex; flex-direction: column; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); overflow: hidden; transition: transform .15s, border-color .15s; }
+  .feat a:hover { text-decoration: none; transform: translateY(-2px); border-color: var(--accent); }
+  .feat canvas { display: block; width: 100%; background: var(--canvas-bg); border-bottom: 1px solid var(--border); }
+  .feat .txt { padding: 14px 18px 18px; }
+  .feat .txt small { font-family: var(--mono); font-size: 11.5px; color: var(--accent); letter-spacing: .08em; }
+  .feat h3 { margin: 4px 0 6px; font-size: 18px; }
+  .feat p { margin: 0; font-size: 14.5px; color: var(--text-dim); line-height: 1.6; }
+  .persona { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); padding: 22px; border-radius: var(--radius); border: 1px solid var(--border); border-left: 4px solid var(--accent-2); background: var(--bg-elev); }
+  @media (min-width: 760px) { .persona { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); } }
+  .persona p { margin: 0 0 10px; color: var(--text-dim); }
+  .persona dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14.5px; align-content: start; }
+  .persona dt { color: var(--text-dim); }
+  .persona dd { margin: 0; font-family: var(--mono); font-size: 13.5px; color: var(--text); text-align: right; }
+  .paths { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .path { padding: 18px 20px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-elev); }
+  .path h3 { margin: 0 0 6px; font-size: 17px; }
+  .path p { margin: 0 0 10px; color: var(--text-dim); font-size: 14.5px; }
+  .series { display: flex; flex-wrap: wrap; gap: 10px; }
+  .series a { padding: 10px 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); font-weight: 600; font-size: 15px; }
+  .series a small { display: block; font-weight: 400; color: var(--text-dim); font-size: 13px; }
+  .series a:hover { text-decoration: none; border-color: var(--accent); }
+  .disclaimer { font-size: 14px; color: var(--text-dim); }
+  .lab-cta { display: grid; gap: 18px; align-items: center; grid-template-columns: minmax(0, 1fr); padding: 24px; border-radius: var(--radius); border: 1px solid var(--accent); background: linear-gradient(120deg, var(--accent-soft), var(--accent-2-soft)); }
+  @media (min-width: 760px) { .lab-cta { grid-template-columns: minmax(0, 1fr) auto; } }
+  .lab-cta h2 { margin: 0 0 6px; font-size: 24px; }
+  .lab-cta p { margin: 0; color: var(--text-dim); font-size: 15.5px; }
+  .lab-cta a { justify-self: start; padding: 12px 20px; border-radius: 12px; font-weight: 700; background: var(--accent); color: var(--on-accent); white-space: nowrap; }
+  .lab-cta a:hover { text-decoration: none; filter: brightness(1.05); }
+</style>
+<link rel="stylesheet" href="../shared/css/book-shell.css">
+<script defer src="../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-root="">
+<section class="home-hero">
+  <div class="inner">
+    <div>
+      <div class="eyebrow">Interactive Physiology Textbook</div>
+      <h1>심장, 폐, 근육, 호르몬.<br><span class="grad">몸은 어떻게 돌아가나</span></h1>
+      <p>심장은 하루 10만 번 뛰고, 폐는 2만 번 숨을 쉬고, 콩팥은 180 L를 걸러 1.5 L만 버린다. 이 교과서는 그 숫자들이 서로 어떻게 묶여 있는지를 <strong>직접 돌려 보며</strong> 배운다. 심박수를 올리면 왜 어느 순간 혈류가 줄어드는지, 숨을 참으면 무엇이 먼저 한계에 닿는지, 덜 먹으면 왜 체중이 직선으로 줄지 않는지, 호르몬은 어떻게 스스로를 멈추는지.</p>
+      <div class="cta">
+        <a class="primary" href="chapters/overview.html">1장부터 시작하기 →</a>
+        <a class="ghost" href="sims.html">시뮬레이터 갤러리</a>
+      </div>
+      <div class="hero-badges">
+        <span>21개 챕터</span><span id="sim-count">180여 개 시뮬레이터</span><span>이어지는 케이스: 다온의 12주</span><span>모든 장이 같은 생리 엔진</span>
+      </div>
+    </div>
+    <div class="hero-sim" id="hero">
+      <div class="view"><canvas id="hero-cv"></canvas></div>
+      <div class="ctl">
+        <div class="row">
+          <label class="ctrl"><span>심박수 <output id="hero-hr-out"></output></span><input type="range" id="hero-hr" min="40" max="200" step="1" value="72"></label>
+          <div class="seg" id="hero-mode"><button data-value="pace" class="on">심박수만</button><button data-value="ex">운동하듯</button></div>
+        </div>
+        <div class="cap" id="hero-cap"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section">
+  <h2>숫자로 보는 몸</h2>
+  <p class="sub">이 교과서를 끝내면 아래 숫자가 어디서 나오는지, 내 몸에서 무엇을 뜻하는지 설명할 수 있게 됩니다.</p>
+  <div class="numbers">
+    <div><b>5 L/min</b><span>쉬고 있을 때 심장이 한 번에 약 70 mL씩, 1분에 70번 짜내는 피. 달리면 네 배가 된다</span></div>
+    <div><b>r⁴</b><span>혈관 반지름이 10 % 줄면 흐름은 약 34 % 준다. 혈압을 정하는 것은 가는 혈관의 지름이다</span></div>
+    <div><b>0.25 초</b><span>폐 모세혈관의 적혈구가 산소로 꽉 차는 데 걸리는 시간. 통과 시간은 그 세 배다</span></div>
+    <div><b>PaCO₂ 40</b><span>숨을 쉬게 만드는 것은 산소 부족이 아니라 이산화탄소다. 숨 참기의 한계도 그것이 정한다</span></div>
+    <div><b>1,700 kcal</b><span>가만히 누워 있어도 쓰는 하루 에너지. 그 절반 이상을 간, 뇌, 심장, 콩팥이 쓴다</span></div>
+    <div><b>TSH × 10</b><span>갑상선 호르몬이 조금만 줄어도 뇌하수체의 신호는 열 배로 커진다. 피드백 루프의 확대경</span></div>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>대표 시뮬레이터</h2>
+  <p class="sub">이 책을 쓰며 가장 먼저 만들고 싶었던 세 가지. 눌러서 바로 해 보세요.</p>
+  <div class="feat">
+    <a href="chapters/flow.html?sims=1#sim-co-hr"><canvas id="f1"></canvas><div class="txt"><small>CH 07 · 순환</small><h3>심박수와 혈류</h3><p>심박수를 올리면 심박출량이 늘다가 어느 순간 꺾인다. 채울 시간이 모자라기 때문이다. 운동할 때 몸이 이 한계를 어떻게 피해 가는지 본다.</p></div></a>
+    <a href="chapters/metabolism.html?sims=1#sim-ledger"><canvas id="f2"></canvas><div class="txt"><small>CH 13 · 에너지</small><h3>에너지 대사 계산</h3><p>기초대사량, 활동, 식사의 열 효과를 하루 장부에 쌓는다. 내 키·몸무게·나이와 하루 일과를 넣으면 몇 kcal를 쓰는지 나온다.</p></div></a>
+    <a href="chapters/hormone.html?sims=1#sim-loop"><canvas id="f3"></canvas><div class="txt"><small>CH 17 · 조절</small><h3>호르몬 피드백 루프</h3><p>시상하부 → 뇌하수체 → 부신. 코르티솔이 위쪽을 억제하는 고리를 끊거나 늦추면 하루 리듬이 어떻게 무너지는지 본다.</p></div></a>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>몸의 다섯 계통</h2>
+  <p class="sub">피를 돌리고, 산소를 들이고, 힘을 내고, 연료를 태우고, 이 모두를 조절한다. 1~3장은 모든 계통에 깔린 원리(항상성, 세포)이고, 20장 실험실에서 전부를 하나로 잇습니다.</p>
+  <div class="trail" id="trail"></div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>이어지는 케이스: 다온의 12주</h2>
+  <div class="persona">
+    <div>
+      <p><strong style="color:var(--text)">정다온, 34세.</strong> 사무직이고 운동은 거의 하지 않았다. 올봄 건강검진에서 "혈압이 조금 높고 공복 혈당이 경계에 가깝다"는 말을 들었다. 그래서 12주 뒤 가을에 열리는 10 km 달리기 대회에 나가기로 했다.</p>
+      <p>책의 모든 장은 다온의 몸을 한 계통씩 들여다본다. 안정 시 심장은 한 번에 얼마를 짜내는지, 대회 속도에서는 폐와 근육과 대사가 어떻게 바뀌는지, 점심을 먹은 뒤 혈당은 어떻게 오르내리는지, 대회 날 아침의 호르몬과 땀과 체온은 어떤지. 마지막 장에서는 독자가 다온의 대회 날을, 그리고 자기 몸의 숫자를 직접 돌려 본다.</p>
+      <p style="font-size:13px">가상의 인물이며 실제 인물과 무관합니다.</p>
+    </div>
+    <dl id="daon"></dl>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <div class="lab-cta">
+    <div>
+      <h2>인체 실험실</h2>
+      <p>심장, 폐, 근육, 대사, 호르몬, 체온을 하나로 이은 가상 인체. 달리기, 고지대, 식사, 출혈, 더위 같은 사건을 직접 걸고, 환자 모니터 위에서 몸이 어떻게 버티는지 본다.</p>
+    </div>
+    <a href="chapters/lab.html">실험실 열기 →</a>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>전체 챕터</h2>
+  <p class="sub">각 장은 일상의 질문 → 직관 → 시뮬레이터 → 원리 → 정상 수치 → 다온의 기록 → 퀴즈 순서로 구성됩니다.</p>
+  <div class="ch-grid" id="chgrid"></div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>추천 학습 경로</h2>
+  <p class="sub">궁금한 것부터 읽어도 됩니다.</p>
+  <div class="paths">
+    <div class="path"><h3>건강검진 결과지를 받았다면</h3><p>혈압, 혈당, 심전도, 폐 기능, 콩팥 수치가 무엇을 재는지.</p><div class="steps"><a href="chapters/vessels.html">06</a><a href="chapters/ecg.html">05</a><a href="chapters/glucose.html">15</a><a href="chapters/lungs.html">08</a><a href="chapters/kidney.html">18</a></div></div>
+    <div class="path"><h3>달리기를 시작했다면</h3><p>심박 구간, 산소, 젖산, 에너지, 땀과 체온.</p><div class="steps"><a href="chapters/flow.html">07</a><a href="chapters/gas.html">09</a><a href="chapters/muscle.html">11</a><a href="chapters/exercise.html">12</a><a href="chapters/thermo.html">19</a></div></div>
+    <div class="path"><h3>체중이 고민이라면</h3><p>칼로리 장부, 체중 동역학, 혈당과 인슐린.</p><div class="steps"><a href="chapters/metabolism.html">13</a><a href="chapters/weight.html">14</a><a href="chapters/glucose.html">15</a><a href="chapters/hormone.html">17</a></div></div>
+    <div class="path"><h3>원리부터 차근차근</h3><p>항상성, 세포, 그리고 심장과 폐.</p><div class="steps"><a href="chapters/overview.html">01</a><a href="chapters/homeostasis.html">02</a><a href="chapters/cell.html">03</a><a href="chapters/heart.html">04</a><a href="chapters/lungs.html">08</a></div></div>
+    <div class="path"><h3>피드백과 조절</h3><p>몸이 값을 지키는 방법, 그리고 무너지는 방법.</p><div class="steps"><a href="chapters/homeostasis.html">02</a><a href="chapters/breathing.html">10</a><a href="chapters/nerve.html">16</a><a href="chapters/hormone.html">17</a><a href="chapters/kidney.html">18</a></div></div>
+    <div class="path"><h3>시뮬레이터부터</h3><p>글 없이 바로 만져 보기.</p><div class="steps"><a href="sims.html">갤러리</a><a href="chapters/lab.html">20 실험실</a></div></div>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>이 사이트 사용법</h2>
+  <div class="flow">
+    <div><b>읽기</b>일상의 질문에서 시작합니다. 생리학 용어는 처음 나올 때 풀어 씁니다.</div>
+    <div><b>만지기</b>슬라이더를 밀고 곡선 위의 점과 장기를 눌러 보세요. 대부분의 그림은 움직입니다.</div>
+    <div><b>무너뜨리기</b>값을 끝까지 밀어 보세요. 심장이 못 채우고, 산소가 바닥나고, 루프가 출렁이는 지점이 배울 점입니다.</div>
+    <div><b>따라가기</b>장마다 다온의 12주가 한 걸음씩 나아갑니다.</div>
+    <div><b>시뮬레이터만</b>상단의 "시뮬레이터만" 버튼으로 글을 숨기고 실험만 볼 수 있습니다.</div>
+  </div>
+  <p class="disclaimer" style="margin-top:20px">이 사이트의 수치는 건강한 성인의 교과서 대표값과 교육용 모델로 계산한 근사이며, 개인의 몸은 이와 다를 수 있습니다. 진단·치료·운동 처방 같은 의학적 조언이 아닙니다. 증상이 있거나 검사 수치가 걱정되면 의료진과 상담하세요.</p>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>함께 읽으면 좋은 교과서</h2>
+  <p class="sub">같은 방식으로 만든 인터랙티브 교과서 시리즈입니다.</p>
+  <div class="series">
+    <a href="https://money.euiyun.com/money/">MoneyBook<small>돈 교과서 · 월급에서 은퇴까지</small></a>
+    <a href="https://system.euiyun.com/car/">CarBook<small>자동차 공학 · 엔진에서 자율주행까지</small></a>
+    <a href="https://semi.euiyun.com/sensor/">SensorBook<small>이미지 센서 · 빛이 숫자가 되기까지</small></a>
+    <a href="https://computing.euiyun.com/ai/">AIBook<small>인공지능 · 만져 보며 배우는 AI</small></a>
+    <a href="https://books.euiyun.com/">전체 책<small>books.euiyun.com</small></a>
+  </div>
+</section>
+
+<script src="js/sims.js"></script>
+<script>
+(function () {
+  "use strict";
+  // 챕터 카드
+  document.getElementById("chgrid").innerHTML = BB.CHAPTERS.map(function (c) {
+    return '<a class="ch-card" href="chapters/' + c.slug + '.html"><span class="num">CHAPTER ' + c.num + "</span><h3>" + c.title + "</h3><p>" + c.desc + '</p><span class="tags">' +
+      c.tags.map(function (t) { return '<span class="' + (t === "sim" ? "sim" : "") + '">' + (t === "sim" ? "시뮬레이터" : t) + "</span>"; }).join("") + "</span></a>";
+  }).join("");
+  if (window.BB_SIMS && window.BB_SIMS.length > 20) document.getElementById("sim-count").textContent = window.BB_SIMS.length + "개 시뮬레이터";
+
+  // 계통 띠
+  var about = [
+    "심장은 펌프, 혈관은 관, 혈압은 둘 사이의 타협. 심박수와 혈류의 관계.",
+    "공기를 폐포까지 들이고, 산소를 헤모글로빈에 싣고, 이산화탄소로 리듬을 맞춘다.",
+    "분자 모터가 만든 힘을 운동 단위로 모으고, 세 가지 에너지 시스템으로 버틴다.",
+    "칼로리 장부와 체중의 동역학, 혈당과 인슐린의 줄다리기.",
+    "신경은 빠르게, 호르몬은 느리게. 콩팥과 피부가 물과 열을 맞춘다.",
+  ];
+  document.getElementById("trail").innerHTML = BB.STAGES.map(function (st, i) {
+    var chs = BB.CHAPTERS.filter(function (c) { return c.stage === i; });
+    return '<div style="--c:var(--seg-' + st.seg + ')"><b>' + st.name + "</b><small>" + st.en.toUpperCase() + "</small><p>" + about[i] + '</p><div class="steps">' +
+      chs.map(function (c) { return '<a href="chapters/' + c.slug + '.html" title="' + c.title + '">' + c.num + "</a>"; }).join("") + "</div></div>";
+  }).join("");
+
+  // 다온
+  var D = BD.DAON, L = BD.lungVolumes(D.height, D.age, "m"), plan = BD.racePlan(38, 0.6);
+  var rows = [["키 · 몸무게", D.height + " cm · " + D.weight + " kg"], ["BMI", BD.bmi(D.weight, D.height).toFixed(1)], ["안정 심박수", D.restHr + " bpm"], ["혈압", D.sbp + "/" + D.dbp + " mmHg"],
+    ["공복 혈당", D.glucose + " mg/dL"], ["VO₂max", D.vo2max + " mL/kg/min"], ["폐활량(예측)", L.vc.toFixed(2) + " L"], ["기초대사량", Math.round(BD.bmr(D.weight, D.height, D.age)).toLocaleString() + " kcal"], ["지금 10 km", "약 " + Math.round(plan.time) + "분"]];
+  document.getElementById("daon").innerHTML = rows.map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>"; }).join("");
+
+  // 히어로: 뛰는 심장 + 모니터
+  var cache = {}, res = null, mode = "pace";
+  function compute() {
+    var hr = getHr(), key = mode + hr;
+    if (!cache[key]) {
+      var o = { hr: hr, beats: 7 };
+      if (mode === "ex") { var x = BB.clamp((hr - 72) / (184 - 72), 0, 1); o.emax = 2.8 + 2.7 * x; o.vs = 440 + 260 * x; o.rs = 1.05 - 0.73 * x; o.tscale = 1 - 0.2 * x; o.ca = 1.35 - 0.55 * x; }
+      cache[key] = BD.heart(o);
+    }
+    res = cache[key];
+    var cls = res.co;
+    document.getElementById("hero-cap").innerHTML = "1회 박출량 <b>" + res.sv.toFixed(0) + " mL</b> × 심박수 <b>" + hr + "</b> = 심박출량 <b>" + cls.toFixed(1) + " L/min</b>. " +
+      (mode === "pace" ? (hr > 140 ? "심박수만 올리면 채울 시간이 모자라 박출량이 줄고, 결국 심박출량도 꺾인다." : "심장 박동기로 박자만 바꾸는 상황이다. 계속 올려 보자.") : "운동할 때는 수축력, 정맥 환류, 이완 속도가 함께 올라 박출량을 지킨다.");
+  }
+  var getHr = BB.range("hero-hr", function (v) { return v + " bpm"; }, BB.debounce(function () { compute(); }, 60));
+  BB.seg("hero-mode", function (v) { mode = v; compute(); });
+  compute();
+  var t = 0, ecgCache = {};
+  var holder = document.getElementById("hero-cv").parentElement;
+  var cv = BB.canvas("#hero-cv", function (ctx, w, h) {
+    if (!res) return;
+    var T = res.T, tc = t % T, i = Math.min(res.t.length - 1, Math.floor((tc / T) * res.t.length));
+    var narrow = w < 520;
+    var hx = narrow ? w * 0.5 : w * 0.24, hs = narrow ? Math.min(46, h * 0.16) : Math.min(70, h * 0.24);
+    var vfrac = (res.vlv[i] - 30) / 130;
+    var pal = BB.palette();
+    // 모니터
+    var hrNow = Math.round(60 / T);
+    var ecg = ecgCache[hrNow] || (ecgCache[hrNow] = BD.ecg({ hr: hrNow, duration: 30, hrv: 0, resp: 0, noise: 0.004 }));
+    var span = Math.max(3, 3 * T);
+    var t0 = Math.max(0, t - span * 0.98);
+    var mbox = narrow ? { x: 8, y: hs * 2.6 + 8, w: w - 16, h: h - hs * 2.6 - 16 } : { x: w * 0.46, y: 10, w: w * 0.54 - 10, h: h - 20 };
+    BD.monitor(ctx, mbox, {
+      t: [t0, t0 + span],
+      traces: [
+        { label: "II", color: BB.trace(1), data: function (s) { return s > t ? NaN : ecg.v(s % 30); }, range: [-0.5, 1.4] },
+        { label: "ABP", color: BB.trace(2), data: function (s) { if (s > t) return NaN; var k = Math.floor(((s % T) / T) * res.t.length); return res.pao[Math.min(res.pao.length - 1, k)]; }, range: [40, 170] },
+        { label: "LV VOL", color: BB.trace(3), data: function (s) { if (s > t) return NaN; var k = Math.floor(((s % T) / T) * res.t.length); return res.vlv[Math.min(res.vlv.length - 1, k)]; }, range: [20, 170] },
+      ],
+      numerics: narrow ? [] : [
+        { label: "HR", value: String(Math.round(60 / T)), color: BB.trace(1) },
+        { label: "ABP", value: res.sbp.toFixed(0) + "/" + res.dbp.toFixed(0), unit: "mmHg", color: BB.trace(2), sub: "(" + res.map.toFixed(0) + ")" },
+        { label: "CO", value: res.co.toFixed(1), unit: "L/min", color: BB.trace(3) },
+      ],
+    });
+    BD.heartDiagram(ctx, hx, (narrow ? hs * 1.35 : h * 0.5) + 6, hs, {
+      lv: vfrac, la: 1 - vfrac * 0.7, ra: 1 - vfrac * 0.7, rv: vfrac,
+      mitral: res.qmv[i] > 0, tricuspid: res.qmv[i] > 0, aortic: res.qao[i] > 0, pulmonic: res.qao[i] > 0,
+      active: res.e[i] > 1 ? "ventricles" : null, labels: !narrow,
+    });
+    ctx.fillStyle = pal.dim; ctx.font = BB.font(12, false, 600); ctx.textAlign = "center"; ctx.textBaseline = "top";
+    if (!narrow) ctx.fillText(res.qao[i] > 0 ? "박출 중: 대동맥판 열림" : res.qmv[i] > 0 ? "충만 중: 승모판 열림" : "등용적: 판막 모두 닫힘", hx, h - 26);
+  }, { get height() { return holder.clientWidth < 520 ? 380 : 300; } });
+  BB.loop(document.getElementById("hero"), function (dt) { t += dt; cv.redraw(); });
+
+  // 대표 시뮬레이터 미리보기 (정지 그림)
+  function feat(id, draw) { BB.canvas("#" + id, draw, { aspect: 0.42, maxHeight: 170 }); }
+  feat("f1", function (ctx, w, h) {
+    var P = BB.palette();
+    var pts = [], pts2 = [];
+    [40, 60, 80, 100, 120, 140, 160, 180, 200].forEach(function (hr) { var r = BD.heart({ hr: hr, beats: 5 }); pts.push([hr, r.co]); });
+    BB.chart(ctx, { x: 40, y: 12, w: w - 56, h: h - 40 }, { x: [40, 200], y: [0, 8], xLabel: "", series: [{ data: pts, color: P.accent, width: 2.6 }], xTicks: [60, 100, 140, 180], yTicks: [0, 4, 8] });
+    ctx.fillStyle = P.dim; ctx.font = BB.font(11); ctx.textAlign = "right"; ctx.fillText("심박수 →  심박출량(L/min)", w - 12, 24);
+  });
+  feat("f2", function (ctx, w, h) {
+    var P = BB.palette(), b = BD.bmr(78, 175, 34);
+    var items = [{ label: "기초대사", value: b, color: BB.color("seg-meta") }, { label: "활동", value: b * 0.3, color: BB.color("seg-musc") }, { label: "식사 열효과", value: b * 0.13, color: BB.color("glu") }];
+    BB.donut(ctx, h * 0.55 + 10, h / 2, h * 0.42, items, { inner: 0.58, center: { big: Math.round(b * 1.43).toLocaleString(), small: "kcal/일" } });
+    ctx.font = BB.font(12); ctx.textAlign = "left"; ctx.textBaseline = "middle";
+    items.forEach(function (it, k) { var y = h * 0.3 + k * 22; ctx.fillStyle = it.color; ctx.fillRect(h * 1.15 + 14, y - 5, 10, 10); ctx.fillStyle = P.text; ctx.fillText(it.label + " " + Math.round(it.value).toLocaleString(), h * 1.15 + 30, y); });
+  });
+  feat("f3", function (ctx, w, h) {
+    var P = BB.palette(), a = BD.hpa({ days: 2 }), pts = [], pts2 = [];
+    for (var k = 0; k < a.t.length; k += 6) if (a.t[k] >= 1440) { pts.push([(a.t[k] - 1440) / 60, a.c[k]]); }
+    var b = BD.hpa({ days: 2, fb: 0.35 });
+    for (var j = 0; j < b.t.length; j += 6) if (b.t[j] >= 1440) pts2.push([(b.t[j] - 1440) / 60, b.c[j]]);
+    BB.chart(ctx, { x: 34, y: 12, w: w - 48, h: h - 40 }, { x: [0, 24], y: [0, 40], xTicks: [0, 6, 12, 18, 24], yTicks: [0, 20, 40], series: [{ data: pts2, color: P.bad, width: 1.6, dash: [4, 3] }, { data: pts, color: BB.color("ins"), width: 2.6 }] });
+    ctx.fillStyle = P.dim; ctx.font = BB.font(11); ctx.textAlign = "right"; ctx.fillText("코르티솔의 하루 · 점선: 피드백 약화", w - 12, 24);
+  });
+})();
+</script>
+</body>
+</html>

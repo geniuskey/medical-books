@@ -1,0 +1,518 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "생리학 용어 140개를 검색하고 장별로 거르며, 정상 참고값 표와 정상 범위 찾기, 단위 변환기, 핵심 공식 모음, 책 전체를 아우르는 종합 퀴즈 20문항으로 몸의 원리를 점검한다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>용어집 & 종합 퀴즈 · BodyBook</title>
+<meta name="description" content="생리학 용어 140개를 검색하고 장별로 거르며, 정상 참고값 표와 정상 범위 찾기, 단위 변환기, 핵심 공식 모음, 책 전체를 아우르는 종합 퀴즈 20문항으로 몸의 원리를 점검한다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/glossary.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="용어집 &amp; 종합 퀴즈 · BodyBook">
+<meta property="og:description" content="생리학 용어 140개를 검색하고 장별로 거르며, 정상 참고값 표와 정상 범위 찾기, 단위 변환기, 핵심 공식 모음, 책 전체를 아우르는 종합 퀴즈 20문항으로 몸의 원리를 점검한다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/glossary.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/glossary.html#chapter","name":"용어집 & 종합 퀴즈","headline":"용어집 & 종합 퀴즈 · BodyBook","description":"생리학 용어 140개를 검색하고 장별로 거르며, 정상 참고값 표와 정상 범위 찾기, 단위 변환기, 핵심 공식 모음, 책 전체를 아우르는 종합 퀴즈 20문항으로 몸의 원리를 점검한다.","url":"https://medical.euiyun.com/body/chapters/glossary.html","position":21,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-04","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"21. 용어집 & 종합 퀴즈","item":"https://medical.euiyun.com/body/chapters/glossary.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<!--head:end-->
+<style>
+  [hidden] { display: none !important; }
+  .gl-pad { padding: 14px 18px 18px; display: grid; gap: 12px; }
+  .gl-search { margin-bottom: 0 !important; }
+  .gl-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .gl-chips button { font: inherit; font-size: 12.5px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); cursor: pointer; }
+  .gl-chips button.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 600; }
+  @media (max-width: 560px) { .gl-chips .t { display: none; } }
+  #ref-body td.num { white-space: nowrap; }
+  .gl-count { font-size: 13px; color: var(--text-faint); font-family: var(--mono); }
+  #gl-list { max-height: min(70vh, 820px); overflow-y: auto; overscroll-behavior: contain; padding-right: 4px; }
+  .gl-item h4 { overflow-wrap: anywhere; }
+  .gl-item mark { background: color-mix(in srgb, var(--warn) 35%, transparent); color: inherit; border-radius: 3px; padding: 0 1px; }
+  .gl-empty { padding: 24px; text-align: center; color: var(--text-dim); border: 1px dashed var(--border); border-radius: 12px; }
+  .fx-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); margin: 18px 0; }
+  .fx { padding: 14px 16px 12px; border-radius: 12px; background: var(--bg-elev); border: 1px solid var(--border); min-width: 0; }
+  .fx h4 { margin: 0 0 2px; font-size: 15px; }
+  .fx h4 a { font-size: 12px; font-weight: 600; margin-left: 6px; white-space: nowrap; }
+  .fx .formula { margin: 6px 0 0; padding: 4px 0 0; background: none; border: 0; }
+  .fx p { margin: 6px 0 0 !important; font-size: 14px; color: var(--text-dim); }
+  .qz-score { position: sticky; top: calc(var(--nav-h) + 6px); z-index: 3; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; margin: 0 0 16px; display: grid; gap: 8px; box-shadow: var(--shadow); }
+  .qz-score .row { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; font-size: 14px; color: var(--text-dim); }
+  .qz-score b { font-family: var(--mono); color: var(--text); font-size: 18px; }
+  .qz-bar { height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; display: flex; }
+  .qz-bar i { display: block; height: 100%; }
+  .qz-bar i.ok { background: var(--ok); } .qz-bar i.no { background: var(--bad); }
+  .quiz-q .qch { font-size: 12px; font-weight: 700; color: var(--accent-2); letter-spacing: .03em; margin-bottom: 4px !important; }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="glossary">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 21</div>
+    <h1>용어집 &amp; 종합 퀴즈</h1>
+    <p class="lead">책을 덮기 전에 한 번 정리하자. 이 장은 읽는 장이 아니라 찾아보는 장이다. 낯선 용어를 검색하고, 검사 결과지의 숫자가 보통 어디쯤인지 확인하고, 단위를 바꾸고, 핵심 공식을 한 장에서 다시 보고, 마지막으로 책 전체를 아우르는 20문항으로 자신을 점검한다.</p>
+    <ul class="objectives">
+      <li>140개 생리학 용어를 한국어·영어로 검색하고 장별로 거른다.</li>
+      <li>건강한 성인의 대표 참고값과 흔한 검사 수치의 범위를 읽는다.</li>
+      <li>혈당·압력·온도·에너지·운동 강도의 단위를 서로 바꾼다.</li>
+      <li>책에 나온 핵심 공식을 기호와 대표값으로 다시 본다.</li>
+      <li>종합 퀴즈로 순환·호흡·근육·에너지·조절을 점검한다.</li>
+    </ul>
+  </header>
+
+  <section id="glossary">
+    <h2>용어집</h2>
+    <p>검색창에 한국어, 영어, 약어 무엇이든 넣어 보자. 아래 막대는 장마다 용어 수다. 막대를 누르거나 장 단추를 누르면 그 장의 용어만 남는다. 각 용어 아래의 링크가 그 용어를 자세히 설명한 장이다.</p>
+
+    <div class="sim" id="sim-gloss" data-desc="생리학 용어 140개를 한국어·영어로 검색하고, 장별 용어 수 막대를 눌러 거르며, 각 용어를 설명한 장으로 바로 간다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>용어 찾기</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="gl-cv"></canvas><span class="hint">막대를 눌러 장을 고른다</span></div>
+      </div>
+      <div class="gl-pad">
+        <input type="search" class="gl-search" id="gl-q" placeholder="용어 검색: 예) 박출률, preload, ADH, 젖산" autocomplete="off" aria-label="용어 검색">
+        <div class="gl-chips" id="gl-chips"></div>
+        <div class="gl-count" id="gl-count"></div>
+        <div id="gl-list" class="gl-list" aria-live="polite"></div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">찾은 용어</span><span class="v" id="gl-o-n">—</span></div>
+        <div class="stat"><span class="k">고른 장</span><span class="v" id="gl-o-ch" style="font-family:var(--font);font-size:16px">전체</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "압"을 검색해 혈압·분압·삼투압·흉막강 압력처럼 압력이 얼마나 여러 장에 나오는지 본다. ② 영어 "threshold"를 넣으면 젖산 역치, 신경의 역치, 콩팥의 신장 역치가 한꺼번에 나온다. 같은 말이 계통마다 다른 문턱을 가리킨다. ③ 막대에서 가장 긴 장을 눌러 그 장의 용어를 훑는다.</div>
+    </div>
+  </section>
+
+  <section id="reference">
+    <h2>정상 참고값</h2>
+    <p>아래 표는 이 책의 엔진이 "건강한 성인"으로 쓴 대표값(<code>BD.REF</code>)이다. 교과서에 흔히 실리는 70 kg 안팎 성인의 값을 반올림했다. 실제 정상 범위는 나이, 성별, 몸집, 측정 방법에 따라 다르므로 모두 "약"으로 읽는다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>항목</th><th class="num">대표값(약)</th><th>단위</th><th>장</th></tr></thead>
+      <tbody id="ref-body"></tbody>
+    </table></div>
+    <p>건강검진 결과지에서 자주 보는 수치의 대략적인 참고 범위도 모아 두었다. <b>검사실마다 기계와 기준이 달라 범위가 조금씩 다르다.</b> 진단 기준(혈압, 공복 혈당, HbA1c)은 국내 진료 지침에서 흔히 쓰는 경계값이며 학회와 시기에 따라 바뀐다. 결과지에 적힌 그 검사실의 참고 범위가 언제나 우선이다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>검사</th><th>대략적인 참고 범위</th><th>무엇을 보나</th></tr></thead>
+      <tbody>
+        <tr><td>헤모글로빈</td><td>남 약 13~17, 여 약 12~16 g/dL</td><td>산소 운반 능력(<a href="gas.html">9장</a>)</td></tr>
+        <tr><td>헤마토크릿</td><td>남 약 40~50 %, 여 약 36~45 %</td><td>혈액 중 적혈구 부피 비율</td></tr>
+        <tr><td>백혈구</td><td>약 4,000~10,000 /µL</td><td>감염·염증</td></tr>
+        <tr><td>혈소판</td><td>약 15만~40만 /µL</td><td>지혈</td></tr>
+        <tr><td>나트륨 / 칼륨</td><td>약 135~145 / 3.5~5.0 mmol/L</td><td>체액·막전위(<a href="cell.html">3장</a>, <a href="kidney.html">18장</a>)</td></tr>
+        <tr><td>공복 혈당</td><td>약 70~99 mg/dL(100~125 공복혈당장애, 126 이상 당뇨 범위)</td><td><a href="glucose.html">15장</a></td></tr>
+        <tr><td>당화혈색소(HbA1c)</td><td>약 5.6 % 이하(5.7~6.4 당뇨 전단계, 6.5 이상 당뇨 범위)</td><td>2~3개월 평균 혈당</td></tr>
+        <tr><td>크레아티닌 / eGFR</td><td>약 0.6~1.2 mg/dL / 90 mL/min/1.73m² 이상</td><td>콩팥의 여과 능력(<a href="kidney.html">18장</a>)</td></tr>
+        <tr><td>요소질소(BUN)</td><td>약 8~20 mg/dL</td><td>단백질 대사·콩팥</td></tr>
+        <tr><td>AST / ALT</td><td>대개 약 40 U/L 이하</td><td>간세포 손상</td></tr>
+        <tr><td>총콜레스테롤 / LDL</td><td>약 200 미만 / 130 미만 mg/dL(위험도에 따라 목표가 다르다)</td><td>혈관 건강(<a href="vessels.html">6장</a>)</td></tr>
+        <tr><td>HDL / 중성지방</td><td>약 40 이상 / 150 미만 mg/dL</td><td>지질 대사</td></tr>
+        <tr><td>TSH / 유리 T4</td><td>약 0.4~4.0 mU/L / 약 0.8~1.8 ng/dL(약 10~23 pmol/L)</td><td>갑상선 축(<a href="hormone.html">17장</a>)</td></tr>
+        <tr><td>동맥혈 pH / PaCO₂ / HCO₃⁻</td><td>7.35~7.45 / 35~45 mmHg / 22~26 mmol/L</td><td>산염기(<a href="breathing.html">10장</a>)</td></tr>
+      </tbody>
+    </table></div>
+
+    <p>표의 숫자 하나를 골라 직접 넣어 보자. 아래 시뮬레이터는 값이 참고 범위의 어디쯤에 놓이는지를 막대 위에 그린다. 눈금 위의 손잡이를 끌어도 된다.</p>
+
+    <div class="sim" id="sim-ref" data-desc="공복 혈당·HbA1c·혈압·pH·PaCO₂·나트륨·칼륨·체온 같은 항목을 골라 값을 넣으면 참고 범위 막대 위의 위치와 대략적인 판정, 설명한 장을 보여 준다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>정상 범위 찾기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="rf-cv"></canvas><span class="hint">손잡이를 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>항목</span><select id="rf-sel"></select></label>
+          <label class="ctrl"><span>값 <output id="rf-v-out"></output></span><input type="range" id="rf-v" min="0" max="100" step="1" value="50"></label>
+        </div>
+      </div>
+      <div class="info-panel" id="rf-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">넣은 값</span><span class="v" id="rf-o-v">—</span></div>
+        <div class="stat"><span class="k">대략적인 판정</span><span class="v" id="rf-o-c" style="font-family:var(--font);font-size:16px">—</span></div>
+        <div class="stat"><span class="k">참고 범위</span><span class="v" id="rf-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "공복 혈당"에서 99와 100을 오가 본다. 숫자 1이 이름표를 바꾸지만 몸이 그 사이에서 갑자기 달라지는 것은 아니다. 경계값은 연속적인 위험을 나누는 약속이다. ② "동맥혈 pH"를 7.30과 7.50으로 옮긴다. 정상 폭이 0.1밖에 안 된다. ③ "심부 체온"을 끝까지 올려 열사병 범위를 확인한다. (범위는 이 장 표의 대략값이며 진단 기준이 아니다. 실제 판정은 결과지의 참고 범위와 의료진의 해석을 따른다.)</div>
+    </div>
+  </section>
+
+  <section id="units">
+    <h2>단위 변환기</h2>
+    <p>같은 혈당이 나라에 따라 mg/dL 또는 mmol/L로, 같은 혈액 가스가 mmHg 또는 kPa로 적힌다. 외국 자료를 읽거나 운동 기기의 숫자를 볼 때 단위가 다르면 엉뚱하게 읽기 쉽다. 위아래 두 눈금은 같은 양을 다른 단위로 잰 자다. 손잡이를 끌어 보자.</p>
+
+    <div class="sim" id="sim-units" data-desc="혈당 mg/dL↔mmol/L, 압력 mmHg↔kPa, 체온 °C↔°F, 에너지 kcal↔kJ, 산소 섭취 mL/kg/min↔METs를 위아래 두 눈금 위에서 끌어 바꾸고 자주 쓰는 기준점을 함께 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>두 개의 자</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="un-cv"></canvas><span class="hint">손잡이를 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>바꿀 양</span><div class="seg" id="un-kind"><button data-value="glu" class="on">혈당</button><button data-value="press">압력</button><button data-value="temp">체온</button><button data-value="energy">에너지</button><button data-value="met">운동 강도</button></div></div>
+          <label class="ctrl"><span>값 <output id="un-v-out"></output></span><input type="range" id="un-v" min="0" max="100" step="0.1" value="50"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">위 눈금</span><span class="v" id="un-o-a">—</span></div>
+        <div class="stat"><span class="k">아래 눈금</span><span class="v" id="un-o-b">—</span></div>
+        <div class="stat"><span class="k">바꾸는 식</span><span class="v" id="un-o-f" style="font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 혈당 126 mg/dL가 약 7.0 mmol/L임을 확인한다(포도당 1 mmol = 180 mg이므로 ÷18). ② 압력에서 해수면 대기압 760 mmHg = 101.3 kPa, 정상 PaCO₂ 40 mmHg ≈ 5.3 kPa를 찾는다. ③ 체온 40 °C가 화씨로 몇 도인지 본다. ④ 운동 강도에서 다온의 VO₂max 38 mL/kg/min이 약 11 METs임을 확인한다. (1 mmHg = 0.1333 kPa, °F = °C × 9/5 + 32, 1 kcal = 4.184 kJ, 1 MET = 3.5 mL/kg/min.)</div>
+    </div>
+  </section>
+
+  <section id="formulas">
+    <h2>공식 모음</h2>
+    <p>책에 나온 핵심 공식을 계통 순서로 모았다. 기호 옆의 숫자는 건강한 성인의 대표값이다. 링크를 누르면 그 공식을 시뮬레이터로 돌려 본 장으로 간다.</p>
+    <div class="fx-grid">
+      <div class="fx"><h4>심박출량<a href="heart.html">4장</a></h4><div class="formula">$$CO = HR \times SV$$</div><p>심박수 70 bpm × 1회 박출량 70 mL ≈ 4.9 L/min.</p></div>
+      <div class="fx"><h4>박출률<a href="heart.html">4장</a></h4><div class="formula">$$EF = \frac{EDV - ESV}{EDV}$$</div><p>(120 − 50) / 120 ≈ 0.58. 정상 약 55~70 %.</p></div>
+      <div class="fx"><h4>평균 동맥압<a href="vessels.html">6장</a></h4><div class="formula">$$MAP \approx DBP + \tfrac{1}{3}(SBP - DBP)$$</div><p>120/80이면 약 93 mmHg. 또한 \(MAP \approx CO \times TPR\).</p></div>
+      <div class="fx"><h4>푸아죄유 법칙<a href="vessels.html">6장</a></h4><div class="formula">$$Q = \frac{\pi r^4 \Delta P}{8 \eta L}$$</div><p>반지름이 절반이 되면 유량은 1/16.</p></div>
+      <div class="fx"><h4>카르보넨 목표 심박<a href="flow.html">7장</a></h4><div class="formula">$$HR_{목표} = HR_{안정} + k\,(HR_{최대} - HR_{안정})$$</div><p>최대 심박수 ≈ 208 − 0.7 × 나이(Tanaka).</p></div>
+      <div class="fx"><h4>폐포 환기량<a href="lungs.html">8장</a></h4><div class="formula">$$\dot V_A = (V_T - V_D) \times RR$$</div><p>(500 − 150) mL × 12회 ≈ 4.2 L/min.</p></div>
+      <div class="fx"><h4>폐포 가스식<a href="gas.html">9장</a></h4><div class="formula">$$P_AO_2 = F_IO_2 (P_B - 47) - \frac{P_aCO_2}{R}$$</div><p>0.21 × 713 − 40/0.8 ≈ 100 mmHg.</p></div>
+      <div class="fx"><h4>동맥 산소 함량<a href="gas.html">9장</a></h4><div class="formula">$$C_aO_2 = 1.34\,Hb\,S_aO_2 + 0.003\,P_aO_2$$</div><p>1.34 × 15 × 0.97 + 0.3 ≈ 19.8 mL/dL. 산소 운반량 = CO × CaO₂ × 10.</p></div>
+      <div class="fx"><h4>PaCO₂와 환기<a href="breathing.html">10장</a></h4><div class="formula">$$P_aCO_2 = 0.863\,\frac{\dot V CO_2}{\dot V_A}$$</div><p>200 mL/min ÷ 4.2 L/min × 0.863 ≈ 41 mmHg. 환기가 두 배면 PaCO₂는 절반.</p></div>
+      <div class="fx"><h4>헨더슨-하셀바흐<a href="breathing.html">10장</a></h4><div class="formula">$$pH = 6.1 + \log\frac{[HCO_3^-]}{0.03\,P_aCO_2}$$</div><p>24 / (0.03 × 40) = 20, log 20 ≈ 1.3 → pH 7.4.</p></div>
+      <div class="fx"><h4>네른스트 전위<a href="cell.html">3장</a></h4><div class="formula">$$E = \frac{61.5}{z}\log\frac{[C]_{밖}}{[C]_{안}}\ \text{mV}$$</div><p>칼륨 4.5/140 → 약 −92 mV(37 °C).</p></div>
+      <div class="fx"><h4>확산 시간<a href="cell.html">3장</a></h4><div class="formula">$$t \approx \frac{x^2}{2D}$$</div><p>거리가 10배면 시간은 100배. 세포 안은 밀리초, 1 cm는 몇 시간.</p></div>
+      <div class="fx"><h4>달리기 산소 비용<a href="exercise.html">12장</a></h4><div class="formula">$$\dot VO_2 = 3.5 + 0.2\,v\ (+\,0.9\,v\,G)$$</div><p>v는 m/min, G는 경사. 1 MET = 3.5 mL/kg/min.</p></div>
+      <div class="fx"><h4>기초대사량(Mifflin)<a href="metabolism.html">13장</a></h4><div class="formula">$$BMR = 10W + 6.25H - 5A + s$$</div><p>W kg, H cm, A 나이, s = +5(남) / −161(여). 다온 약 1,709 kcal.</p></div>
+      <div class="fx"><h4>Weir 식<a href="metabolism.html">13장</a></h4><div class="formula">$$EE = 3.941\,\dot VO_2 + 1.106\,\dot VCO_2$$</div><p>L/min을 넣으면 kcal/min. 산소 1 L ≈ 4.8~5.0 kcal.</p></div>
+      <div class="fx"><h4>HbA1c와 평균 혈당<a href="glucose.html">15장</a></h4><div class="formula">$$eAG = 28.7 \times A1c - 46.7$$</div><p>HbA1c 5.6 % → 평균 혈당 약 114 mg/dL.</p></div>
+      <div class="fx"><h4>청소율<a href="kidney.html">18장</a></h4><div class="formula">$$C = \frac{U \times V}{P}$$</div><p>소변 농도 U, 소변량 V, 혈장 농도 P. 이눌린 청소율 ≈ GFR ≈ 125 mL/min.</p></div>
+      <div class="fx"><h4>반감기<a href="hormone.html">17장</a></h4><div class="formula">$$C(t) = C_0\, e^{-kt},\quad t_{1/2} = \frac{\ln 2}{k}$$</div><p>반감기 네다섯 번이면 처음의 약 3~6 %만 남는다.</p></div>
+      <div class="fx"><h4>열 저장<a href="thermo.html">19장</a></h4><div class="formula">$$S = M - W - (C + R + E)$$</div><p>대사량 M에서 일 W와 전도·대류·복사·증발 손실을 뺀 나머지가 체온을 올린다.</p></div>
+      <div class="fx"><h4>체질량 지수<a href="weight.html">14장</a></h4><div class="formula">$$BMI = \frac{W}{H^2}$$</div><p>78 kg ÷ 1.75² ≈ 25.5 kg/m².</p></div>
+    </div>
+  </section>
+
+  <section id="final-quiz">
+    <h2>종합 퀴즈</h2>
+    <p>책 전체에서 20문항을 골랐다. 계산 문제가 여섯 개 섞여 있다. 문제 위의 작은 글씨가 그 문제를 다룬 장이다. 위쪽 점수판이 푸는 동안 따라온다.</p>
+    <div class="qz-score" id="qz-score">
+      <div class="row"><span>맞힘 <b id="qz-ok">0</b></span><span>틀림 <b id="qz-no">0</b></span><span>남은 문제 <b id="qz-left">20</b></span><span id="qz-msg"></span><button class="btn" id="qz-reset" style="margin-left:auto">다시 풀기</button></div>
+      <div class="qz-bar"><i class="ok" id="qz-bar-ok" style="width:0"></i><i class="no" id="qz-bar-no" style="width:0"></i></div>
+    </div>
+    <div class="quiz" id="qz-list">
+      <div class="quiz-q"><p class="qch">1장 · 몸이라는 기계</p><p>키 160 cm, 몸무게 64 kg인 사람의 BMI는?</p><div class="opts">
+        <button class="opt">20.0</button><button class="opt">22.5</button><button class="opt" data-correct>25.0</button><button class="opt">40.0</button></div>
+        <div class="quiz-exp">64 ÷ 1.6² = 64 ÷ 2.56 = 25.0 kg/m². 국내 기준으로 비만(25 이상)의 경계다.</div></div>
+      <div class="quiz-q"><p class="qch">2장 · 항상성과 피드백</p><p>음성 피드백에서 반응이 늦게 돌아오면(지연이 크면) 흔히 생기는 일은?</p><div class="opts">
+        <button class="opt" data-correct>값이 설정점 주위에서 출렁인다(진동)</button><button class="opt">값이 더 빨리 설정점에 닿는다</button><button class="opt">음성 피드백이 양성 피드백으로 바뀐다</button><button class="opt">설정점이 저절로 내려간다</button></div>
+        <div class="quiz-exp">지연이 있으면 이미 지나간 오차에 반응해 과하게 고치고, 다시 반대로 과하게 고치기를 되풀이한다. 이득이 클수록 출렁임이 커진다.</div></div>
+      <div class="quiz-q"><p class="qch">3장 · 세포</p><p>확산 거리가 10 µm에서 100 µm로 10배 늘면 확산에 걸리는 시간은?</p><div class="opts">
+        <button class="opt">10배</button><button class="opt">거의 같다</button><button class="opt">1,000배</button><button class="opt" data-correct>100배</button></div>
+        <div class="quiz-exp">확산 시간은 거리의 제곱에 비례한다(t ≈ x²/2D). 그래서 큰 생물은 순환계로 먼 거리를 대신 나른다.</div></div>
+      <div class="quiz-q"><p class="qch">4장 · 심장</p><p>이완기말 부피 150 mL, 1회 박출량 60 mL인 심장의 박출률은?</p><div class="opts">
+        <button class="opt" data-correct>40 %</button><button class="opt">60 %</button><button class="opt">90 %</button><button class="opt">250 %</button></div>
+        <div class="quiz-exp">60 ÷ 150 = 0.4. 수축 기능이 떨어졌다고 보는 경계 근처다.</div></div>
+      <div class="quiz-q"><p class="qch">5장 · 심장의 전기</p><p>심전도에서 PR 간격의 대부분을 차지하는 것은?</p><div class="opts">
+        <button class="opt">심실의 재분극</button><button class="opt" data-correct>방실결절에서의 신호 지연</button><button class="opt">동방결절의 자동 탈분극</button><button class="opt">심실 근육의 수축</button></div>
+        <div class="quiz-exp">방실결절은 신호를 일부러 늦춰 심방이 심실을 다 채울 시간을 준다. 이 지연이 길어지면 1도 방실 차단이다.</div></div>
+      <div class="quiz-q"><p class="qch">6장 · 혈관과 혈압</p><p>혈압 130/85 mmHg의 평균 동맥압에 가장 가까운 것은?</p><div class="opts">
+        <button class="opt">85 mmHg</button><button class="opt">108 mmHg</button><button class="opt" data-correct>100 mmHg</button><button class="opt">215 mmHg</button></div>
+        <div class="quiz-exp">85 + (130 − 85)/3 = 85 + 15 = 100 mmHg. 이완기가 한 주기에서 더 길어 단순 평균(107.5)보다 낮다.</div></div>
+      <div class="quiz-q"><p class="qch">6장 · 혈관과 혈압</p><p>세동맥의 반지름이 절반으로 줄면 (압력 차가 같을 때) 흐르는 피의 양은?</p><div class="opts">
+        <button class="opt">1/2</button><button class="opt">1/4</button><button class="opt">1/8</button><button class="opt" data-correct>1/16</button></div>
+        <div class="quiz-exp">푸아죄유 법칙에서 유량은 반지름의 네제곱에 비례한다. (1/2)⁴ = 1/16. 몸이 혈관 지름으로 혈류를 조절하는 이유다.</div></div>
+      <div class="quiz-q"><p class="qch">7장 · 심박수와 혈류</p><p>심박수를 아주 빠르게(예: 200 bpm 이상) 올리면 심박출량이 오히려 줄 수 있는 이유는?</p><div class="opts">
+        <button class="opt">수축기가 길어져서</button><button class="opt">혈관 저항이 0이 되어서</button><button class="opt" data-correct>이완기가 짧아져 심실이 충분히 채워지지 못해서</button><button class="opt">판막이 열리지 않아서</button></div>
+        <div class="quiz-exp">심박수가 오를 때 줄어드는 것은 주로 이완기(충만 시간)다. 채울 시간이 모자라면 1회 박출량이 떨어져 곱이 줄어든다.</div></div>
+      <div class="quiz-q"><p class="qch">8장 · 폐</p><p>1회 호흡량 500 mL, 사강 150 mL, 호흡수 12회/분일 때 폐포 환기량은?</p><div class="opts">
+        <button class="opt">6.0 L/min</button><button class="opt" data-correct>4.2 L/min</button><button class="opt">1.8 L/min</button><button class="opt">7.8 L/min</button></div>
+        <div class="quiz-exp">(500 − 150) × 12 = 4,200 mL/min. 6.0 L/min은 사강을 빼지 않은 분당 환기량이다.</div></div>
+      <div class="quiz-q"><p class="qch">8장 · 폐</p><p>FEV₁/FVC가 0.55로 낮게 나왔다. 가장 먼저 떠올릴 패턴은?</p><div class="opts">
+        <button class="opt" data-correct>기도가 좁아진 폐쇄성 패턴</button><button class="opt">폐가 작아진 제한성 패턴</button><button class="opt">정상</button><button class="opt">산소 확산 장애만 있는 상태</button></div>
+        <div class="quiz-exp">공기가 좁은 기도로 천천히 빠져나가 첫 1초에 내보내는 비율이 줄어든다(천식, 만성 폐쇄성 폐질환). 제한성은 FVC가 함께 줄어 비가 대개 정상이거나 높다.</div></div>
+      <div class="quiz-q"><p class="qch">9장 · 가스 교환</p><p>헤모글로빈 산소 해리 곡선을 오른쪽으로 옮기는(산소를 더 잘 내놓게 하는) 조건은?</p><div class="opts">
+        <button class="opt">체온 하강, pH 상승</button><button class="opt">일산화탄소 흡입</button><button class="opt">CO₂ 감소</button><button class="opt" data-correct>체온 상승, pH 하강, CO₂ 증가</button></div>
+        <div class="quiz-exp">운동하는 근육처럼 뜨겁고, 산성이고, CO₂가 많은 곳에서 헤모글로빈이 산소를 더 쉽게 놓는다(보어 효과). 필요한 곳에 산소가 더 간다.</div></div>
+      <div class="quiz-q"><p class="qch">9장 · 가스 교환</p><p>헤모글로빈 10 g/dL, 포화도 100 %인 혈액의 산소 함량(용해 산소 무시)에 가장 가까운 것은?</p><div class="opts">
+        <button class="opt">10 mL/dL</button><button class="opt" data-correct>13.4 mL/dL</button><button class="opt">20 mL/dL</button><button class="opt">1.34 mL/dL</button></div>
+        <div class="quiz-exp">1.34 × 10 × 1.0 = 13.4 mL/dL. 빈혈이면 포화도가 정상이어도 운반하는 산소가 적다.</div></div>
+      <div class="quiz-q"><p class="qch">10장 · 호흡 조절</p><p>건강한 사람의 호흡을 가장 강하게 몰아붙이는 신호는?</p><div class="opts">
+        <button class="opt">동맥혈 산소 분압의 작은 감소</button><button class="opt" data-correct>동맥혈 CO₂ 분압(과 그에 따른 pH)의 증가</button><button class="opt">혈당 감소</button><button class="opt">체온 상승</button></div>
+        <div class="quiz-exp">PaCO₂가 몇 mmHg만 올라도 환기가 크게 는다. 산소 감지는 PaO₂가 약 60 mmHg 아래로 떨어져야 강해진다.</div></div>
+      <div class="quiz-q"><p class="qch">11장 · 근육</p><p>힘을 조금씩 올릴 때 운동 단위가 동원되는 순서로 알맞은 것은?</p><div class="opts">
+        <button class="opt">큰 단위부터 작은 단위로</button><button class="opt">무작위로</button><button class="opt">모든 단위가 한꺼번에</button><button class="opt" data-correct>작고 지치지 않는 단위부터 크고 힘센 단위로</button></div>
+        <div class="quiz-exp">헤네만의 크기 원리. 작은 일은 작은(제1형 위주) 단위가 맡고, 막판 스퍼트처럼 큰 힘이 필요할 때 큰(제2형) 단위까지 동원된다.</div></div>
+      <div class="quiz-q"><p class="qch">12장 · 운동하는 몸</p><p>VO₂max가 같은 두 사람 가운데 10 km를 더 빨리 달릴 가능성이 큰 사람은?</p><div class="opts">
+        <button class="opt" data-correct>젖산 역치가 VO₂max의 더 높은 비율에 있는 사람</button><button class="opt">최대 심박수가 더 높은 사람</button><button class="opt">안정 시 젖산이 더 높은 사람</button><button class="opt">근육 글리코겐이 더 적은 사람</button></div>
+        <div class="quiz-exp">한 시간 안팎의 경기는 젖산 역치 근처 강도로 달린다. 역치가 높으면 최대치의 더 큰 비율을 오래 쓸 수 있다. 다온의 12주 훈련이 바꾼 것도 이것이다.</div></div>
+      <div class="quiz-q"><p class="qch">13장 · 에너지 대사</p><p>몸무게 70 kg인 사람이 8 METs로 30분 달릴 때 쓰는 에너지(MET × kg × 시간)는?</p><div class="opts">
+        <button class="opt">140 kcal</button><button class="opt">560 kcal</button><button class="opt" data-correct>280 kcal</button><button class="opt">1,120 kcal</button></div>
+        <div class="quiz-exp">8 × 70 × 0.5 = 280 kcal. 1 MET ≈ 1 kcal/kg/h로 어림한 값이다.</div></div>
+      <div class="quiz-q"><p class="qch">14장 · 에너지 균형</p><p>하루 500 kcal씩 덜 먹어도 체중이 "7,700 kcal = 1 kg" 직선대로 계속 줄지 않는 이유가 아닌 것은?</p><div class="opts">
+        <button class="opt">몸이 가벼워져 움직이는 데 드는 에너지가 준다</button><button class="opt">적응 열생성으로 소비가 더 준다</button><button class="opt" data-correct>지방 1 kg에는 에너지가 전혀 없다</button><button class="opt">줄어드는 몸에 제지방도 섞여 있다</button></div>
+        <div class="quiz-exp">지방 조직 1 kg에는 약 7,700 kcal가 있다. 체중이 줄수록 소비도 줄어 새 균형점으로 다가가며 곡선으로 느려진다.</div></div>
+      <div class="quiz-q"><p class="qch">15장 · 혈당과 인슐린</p><p>HbA1c 7.0 %에 해당하는 평균 혈당(eAG = 28.7 × A1c − 46.7)에 가장 가까운 것은?</p><div class="opts">
+        <button class="opt">100 mg/dL</button><button class="opt" data-correct>154 mg/dL</button><button class="opt">201 mg/dL</button><button class="opt">70 mg/dL</button></div>
+        <div class="quiz-exp">28.7 × 7 − 46.7 = 200.9 − 46.7 ≈ 154 mg/dL(약 8.6 mmol/L).</div></div>
+      <div class="quiz-q"><p class="qch">16장 · 신경</p><p>유수 신경 섬유가 무수 섬유보다 신호를 훨씬 빨리 전하는 이유는?</p><div class="opts">
+        <button class="opt">활동 전위의 크기가 더 커서</button><button class="opt">신경 전달 물질이 더 많아서</button><button class="opt">불응기가 없어서</button><button class="opt" data-correct>수초 사이의 결절만 건너뛰며 흥분하는 도약 전도 때문에</button></div>
+        <div class="quiz-exp">수초가 절연해 전류가 다음 랑비에 결절까지 빠르게 퍼지고, 결절에서만 활동 전위가 새로 만들어진다. 지름도 클수록 빠르다.</div></div>
+      <div class="quiz-q"><p class="qch">17~19장 · 조절</p><p>땀으로 물을 많이 잃어 혈장 삼투압이 오를 때 일어나는 일로 알맞은 것은?</p><div class="opts">
+        <button class="opt">항이뇨 호르몬이 줄어 묽은 소변이 많이 나온다</button><button class="opt" data-correct>항이뇨 호르몬이 늘어 진한 소변이 조금 나오고 목이 마르다</button><button class="opt">코르티솔이 사라진다</button><button class="opt">체온 설정점이 내려간다</button></div>
+        <div class="quiz-exp">삼투압 감지기가 뇌하수체 뒤엽의 ADH 분비를 늘려 집합관이 물을 다시 흡수한다. 갈증이 함께 생겨 물을 마시게 한다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>용어는 계통을 건너 반복된다. 압력(혈압·분압·삼투압), 역치(젖산·신경·콩팥), 피드백(압반사·호르몬·체온)은 같은 생각을 다른 기관에 적용한 것이다.</li>
+      <li>정상 참고값은 "약"이다. 범위는 사람·검사실·학회 기준에 따라 다르며, 결과지의 참고 범위와 경과가 한 숫자보다 중요하다.</li>
+      <li>단위를 확인하는 습관이 숫자를 바르게 읽게 한다: 혈당 ÷18 = mmol/L, mmHg × 0.133 = kPa, 1 MET = 3.5 mL/kg/min.</li>
+      <li>몸의 핵심 공식은 곱과 비다: CO = HR × SV, EF = SV/EDV, MAP ≈ CO × TPR, CaO₂ = 1.34·Hb·SaO₂, pH는 HCO₃⁻/PaCO₂의 비가 정한다.</li>
+    </ol>
+    <p class="health-note">이 장의 참고값과 계산은 원리를 익히기 위한 교육용 자료입니다. 검사 결과가 걱정되거나 증상이 있으면 의료진과 상담하세요.</p>
+  </section>
+</main>
+
+<script src="../js/glossary-data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  var $ = function (id) { return document.getElementById(id); };
+  var CH = {}; BB.CHAPTERS.forEach(function (c) { CH[c.slug] = c; });
+  var ORDER = BB.CHAPTERS.map(function (c) { return c.slug; }).filter(function (s) { return s !== "glossary"; });
+  var TERMS = window.BOOK_GLOSSARY.terms.map((t) => [t.ko, t.en, t.chapters[0], t.def]);
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  /* ---------------------------------------------------------- 1. 용어 찾기 */
+  (function () {
+    var chSel = null, cv = null, lay = [];
+    var qEl = $("gl-q"), listEl = $("gl-list"), chips = $("gl-chips");
+    chips.innerHTML = '<button data-ch="" class="on">전체</button>' + ORDER.map(function (s) { return '<button data-ch="' + s + '">' + CH[s].num + '<span class="t"> ' + esc(CH[s].title.split(/[:：]/)[0]) + "</span></button>"; }).join("");
+    chips.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; setCh(b.dataset.ch || null); });
+    function setCh(s) {
+      chSel = chSel === s ? null : s;
+      [].forEach.call(chips.children, function (b) { b.classList.toggle("on", (b.dataset.ch || null) === chSel); });
+      render();
+    }
+    function hl(text, q) {
+      var t = esc(text); if (!q) return t;
+      var i = text.toLowerCase().indexOf(q); if (i < 0) return t;
+      return esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length));
+    }
+    function matches(q) {
+      return TERMS.filter(function (t) { return !q || (t[0] + " " + t[1] + " " + t[3]).toLowerCase().indexOf(q) >= 0; });
+    }
+    function render() {
+      var q = qEl.value.trim().toLowerCase();
+      var m = matches(q), f = m.filter(function (t) { return !chSel || t[2] === chSel; });
+      f.sort(function (a, b) { return a[0].localeCompare(b[0], "ko"); });
+      $("gl-count").textContent = f.length + " / " + TERMS.length + "개";
+      BB.stat("gl-o-n", f.length + "<small>/ " + TERMS.length + "</small>");
+      BB.stat("gl-o-ch", chSel ? CH[chSel].num + "장" : "전체");
+      listEl.innerHTML = f.length ? f.map(function (t) {
+        return '<div class="gl-item"><h4>' + hl(t[0], q) + '<span class="en">' + hl(t[1], q) + "</span></h4><p>" + hl(t[3], q) + '</p><a class="ch" href="' + t[2] + '.html">→ ' + CH[t[2]].num + "장 " + esc(CH[t[2]].title) + "</a></div>";
+      }).join("") : '<div class="gl-empty">"' + esc(qEl.value) + '"에 해당하는 용어가 없다. 영어나 다른 낱말로 검색해 보자.</div>';
+      if (cv) cv.redraw();
+    }
+    qEl.addEventListener("input", render);
+    render();
+    cv = BB.canvas("#gl-cv", function (ctx, w, h) {
+      var p = P(), q = qEl.value.trim().toLowerCase(), m = matches(q);
+      var cnt = {}, all = {};
+      TERMS.forEach(function (t) { all[t[2]] = (all[t[2]] || 0) + 1; });
+      m.forEach(function (t) { cnt[t[2]] = (cnt[t[2]] || 0) + 1; });
+      var n = ORDER.length, L = 30, R = w - 10, top = 24, bot = h - 52, slot = (R - L) / n, mx = 12;
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("장별 용어 수" + (q ? " · 회색: 전체, 색: 검색에 걸린 것" : ""), L, 4);
+      ctx.font = BB.font(9.5, true); ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      [0, 6, 12].forEach(function (v) { var y = bot - v / mx * (bot - top); ctx.strokeStyle = p.grid; ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(R, y); ctx.stroke(); ctx.fillStyle = p.dim; ctx.fillText(v, L - 4, y); });
+      lay = [];
+      ORDER.forEach(function (s, i) {
+        var x = L + i * slot + slot * 0.15, bw = slot * 0.7, st = CH[s].stage, col = st != null ? BB.segColor(BB.STAGES[st].seg) : p.accent;
+        var ya = bot - (all[s] || 0) / mx * (bot - top), yc = bot - (cnt[s] || 0) / mx * (bot - top);
+        var dim = chSel && chSel !== s;
+        ctx.fillStyle = BB.alpha(p.dim, 0.18); ctx.fillRect(x, ya, bw, bot - ya);
+        ctx.fillStyle = BB.alpha(col, dim ? 0.3 : 0.85); ctx.fillRect(x, yc, bw, bot - yc);
+        if (chSel === s) { ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.strokeRect(x - 1, ya - 1, bw + 2, bot - ya + 2); }
+        ctx.fillStyle = chSel === s ? p.text : p.dim; ctx.font = BB.font(w < 500 ? 8.5 : 10, true); ctx.textAlign = "center"; ctx.textBaseline = "top";
+        if (w >= 500 || i % 2 === 0) ctx.fillText(CH[s].num, x + bw / 2, bot + 4);
+        lay.push({ s: s, x0: L + i * slot, x1: L + (i + 1) * slot });
+      });
+      ctx.fillStyle = p.faint; ctx.font = BB.font(10); ctx.textAlign = "center"; ctx.fillText("장 번호", (L + R) / 2, bot + 18);
+    }, { aspect: 0.24, minHeight: 170, maxHeight: 210 });
+    var tip = BB.tip(cv.canvas);
+    BB.drag(cv.canvas, {
+      start: function (x) { var b = lay.find(function (q) { return x >= q.x0 && x < q.x1; }); if (b) setCh(b.s); },
+      hover: function (x) { var b = lay.find(function (q) { return x >= q.x0 && x < q.x1; }); if (!b) { tip.hide(); return; } var n = TERMS.filter(function (t) { return t[2] === b.s; }).length; tip.show(x, 30, "<b>" + CH[b.s].num + " " + esc(CH[b.s].title) + "</b><small>용어 " + n + "개</small>"); },
+    });
+    cv.canvas.addEventListener("pointerleave", tip.hide);
+  })();
+
+  /* ---------------------------------------------------------- 참고값 표 (BD.REF) */
+  (function () {
+    var R = BD.REF;
+    var ROWS = [
+      ["안정 심박수", "hr", "bpm", "flow"], ["1회 박출량", "sv", "mL", "heart"], ["심박출량", "co", "L/min", "heart"], ["수축기 / 이완기 혈압", ["sbp", "dbp"], "mmHg", "vessels"],
+      ["평균 동맥압", "map", "mmHg", "vessels"], ["중심 정맥압", "cvp", "mmHg", "vessels"], ["말초 혈관 저항", "tpr", "mmHg·min/L", "vessels"], ["이완기말 / 수축기말 부피", ["edv", "esv"], "mL", "heart"],
+      ["박출률", "ef", "", "heart"], ["혈액량", "bloodVol", "L", "overview"], ["헤마토크릿", "hct", "", "gas"], ["헤모글로빈", "hb", "g/dL", "gas"],
+      ["호흡수", "rr", "회/분", "lungs"], ["1회 호흡량 / 사강", ["vt", "deadSpace"], "mL", "lungs"], ["분당 환기량 / 폐포 환기량", ["ve", "va"], "L/min", "lungs"],
+      ["동맥혈 PO₂ / PCO₂", ["pao2", "paco2"], "mmHg", "gas"], ["pH", "ph", "", "breathing"], ["HCO₃⁻", "hco3", "mmol/L", "breathing"], ["동맥혈 산소 포화도", "sao2", "", "gas"],
+      ["혼합 정맥혈 PO₂ / 포화도", ["pvo2", "svo2"], "mmHg / –", "gas"], ["산소 섭취 / CO₂ 배출(안정)", ["vo2", "vco2"], "mL/min", "metabolism"], ["호흡 상(RQ)", "rq", "", "metabolism"],
+      ["사구체 여과율", "gfr", "mL/min", "kidney"], ["신장 혈장류 / 혈류", ["rpf", "rbf"], "mL/min", "kidney"], ["하루 소변량", "urine", "L/일", "kidney"], ["혈장 삼투압", "posm", "mOsm/kg", "kidney"],
+      ["심부 / 피부 온도", ["tcore", "tskin"], "°C", "thermo"], ["공복 혈당", "glucose", "mg/dL", "glucose"], ["공복 인슐린", "insulin", "µU/mL", "glucose"], ["HbA1c", "a1c", "%", "glucose"],
+      ["나트륨 / 칼륨 / 염소", ["na", "k", "cl"], "mmol/L", "kidney"], ["칼슘", "ca", "mg/dL", "cell"], ["코르티솔(오전)", "cortisolAM", "µg/dL", "hormone"], ["TSH / 유리 T4", ["tsh", "ft4"], "mU/L / pmol/L", "hormone"],
+      ["해수면 대기압", "patm", "mmHg", "gas"],
+    ];
+    var pct = { ef: 1, hct: 1, sao2: 1, svo2: 1 };
+    var fmt = function (k) { var v = R[k]; if (v == null) return "—"; return pct[k] ? Math.round(v * 100) + " %" : String(v); };
+    $("ref-body").innerHTML = ROWS.map(function (r) {
+      var ks = Array.isArray(r[1]) ? r[1] : [r[1]];
+      return "<tr><td>" + r[0] + '</td><td class="num">' + ks.map(fmt).join(" / ") + "</td><td>" + r[2] + '</td><td><a href="' + r[3] + '.html">' + CH[r[3]].num + "장</a></td></tr>";
+    }).join("");
+  })();
+
+  /* ---------------------------------------------------------- 2. 정상 범위 찾기 */
+  (function () {
+    var ITEMS = [
+      { k: "fpg", name: "공복 혈당", unit: "mg/dL", min: 40, max: 200, step: 1, def: 98, ch: "glucose", zones: [[40, 70, "bad", "저혈당 범위"], [70, 100, "ok", "정상"], [100, 126, "warn", "공복혈당장애"], [126, 200, "bad", "당뇨병 범위"]], note: "8시간 이상 굶은 뒤의 혈당. 한 번의 값보다 반복 측정과 HbA1c를 함께 본다." },
+      { k: "a1c", name: "당화혈색소(HbA1c)", unit: "%", min: 4, max: 11, step: 0.1, def: 5.6, ch: "glucose", zones: [[4, 5.7, "ok", "정상"], [5.7, 6.5, "warn", "당뇨 전단계"], [6.5, 11, "bad", "당뇨병 범위"]], note: "지난 2~3개월의 평균 혈당을 반영한다. 적혈구 수명이 바뀌는 상태(빈혈 등)에서는 해석이 달라진다." },
+      { k: "sbp", name: "수축기 혈압", unit: "mmHg", min: 80, max: 200, step: 1, def: 128, ch: "vessels", zones: [[80, 90, "warn", "낮음"], [90, 120, "ok", "정상"], [120, 130, "warn", "주의"], [130, 140, "warn", "전단계"], [140, 160, "bad", "고혈압 1기"], [160, 200, "bad", "2기 이상"]], note: "여러 날 반복해 잰 평균으로 판단한다. 분류는 수축기·이완기 중 높은 쪽 등급을 따른다." },
+      { k: "dbp", name: "이완기 혈압", unit: "mmHg", min: 40, max: 120, step: 1, def: 82, ch: "vessels", zones: [[40, 60, "warn", "낮음"], [60, 80, "ok", "정상"], [80, 90, "warn", "전단계"], [90, 100, "bad", "1기"], [100, 120, "bad", "2기 이상"]], note: "심장이 쉬는 동안 동맥이 유지하는 최저 압력." },
+      { k: "hr", name: "안정 심박수", unit: "bpm", min: 30, max: 150, step: 1, def: 72, ch: "ecg", zones: [[30, 60, "warn", "서맥 범위"], [60, 100, "ok", "보통"], [100, 150, "bad", "빈맥 범위"]], note: "지구력 운동을 하는 사람은 60 아래도 흔하다. 증상과 함께 해석한다." },
+      { k: "ph", name: "동맥혈 pH", unit: "", min: 7.0, max: 7.7, step: 0.01, def: 7.4, ch: "breathing", zones: [[7.0, 7.35, "bad", "산증"], [7.35, 7.45, "ok", "정상"], [7.45, 7.7, "bad", "알칼리증"]], note: "정상 폭이 0.1뿐이다. 폐(CO₂)와 콩팥(HCO₃⁻)이 함께 지킨다." },
+      { k: "paco2", name: "동맥혈 PaCO₂", unit: "mmHg", min: 15, max: 80, step: 1, def: 40, ch: "breathing", zones: [[15, 35, "warn", "낮음(과호흡)"], [35, 45, "ok", "정상"], [45, 80, "warn", "높음(저환기)"]], note: "폐포 환기량에 반비례한다. 숨을 빨리 쉬면 내려간다." },
+      { k: "sao2", name: "산소 포화도", unit: "%", min: 60, max: 100, step: 1, def: 98, ch: "gas", zones: [[60, 90, "bad", "저산소"], [90, 95, "warn", "낮은 편"], [95, 100, "ok", "정상"]], note: "손가락 산소 포화도 측정기는 손이 차거나 매니큐어가 있으면 낮게 나오기도 한다." },
+      { k: "na", name: "나트륨", unit: "mmol/L", min: 115, max: 165, step: 1, def: 140, ch: "kidney", zones: [[115, 135, "bad", "저나트륨혈증"], [135, 145, "ok", "정상"], [145, 165, "bad", "고나트륨혈증"]], note: "혈장 삼투압의 대부분을 정한다. 맹물을 지나치게 마시면 내려간다." },
+      { k: "k", name: "칼륨", unit: "mmol/L", min: 2, max: 7.5, step: 0.1, def: 4.3, ch: "cell", zones: [[2, 3.5, "bad", "저칼륨"], [3.5, 5.0, "ok", "정상"], [5.0, 7.5, "bad", "고칼륨"]], note: "휴지 막전위를 정하는 이온이라 조금만 벗어나도 심장 리듬에 영향을 준다." },
+      { k: "posm", name: "혈장 삼투압", unit: "mOsm/kg", min: 250, max: 330, step: 1, def: 290, ch: "kidney", zones: [[250, 285, "warn", "낮음"], [285, 295, "ok", "정상"], [295, 330, "warn", "높음(탈수)"]], note: "1~2 %만 올라도 항이뇨 호르몬과 갈증이 켜진다." },
+      { k: "hb", name: "헤모글로빈(남)", unit: "g/dL", min: 6, max: 20, step: 0.1, def: 15, ch: "gas", zones: [[6, 13, "warn", "빈혈 범위"], [13, 17, "ok", "정상"], [17, 20, "warn", "높음"]], note: "여성은 약 12~16 g/dL. 고지대에 살면 높다." },
+      { k: "tsh", name: "TSH", unit: "mU/L", min: 0, max: 12, step: 0.1, def: 1.5, ch: "hormone", zones: [[0, 0.4, "warn", "낮음"], [0.4, 4.0, "ok", "정상"], [4.0, 12, "warn", "높음"]], note: "갑상선 호르몬이 모자라면 뇌하수체가 TSH를 올린다. 음성 피드백의 거울이다." },
+      { k: "core", name: "심부 체온", unit: "°C", min: 33, max: 42, step: 0.1, def: 37, ch: "thermo", zones: [[33, 35, "bad", "저체온"], [35, 36.1, "warn", "낮음"], [36.1, 37.5, "ok", "정상"], [37.5, 40, "warn", "발열·운동"], [40, 42, "bad", "열사병 위험"]], note: "하루 중에도 0.5 °C 남짓 오르내린다(새벽에 가장 낮다)." },
+      { k: "gfr", name: "eGFR", unit: "mL/min/1.73m²", min: 0, max: 140, step: 1, def: 110, ch: "kidney", zones: [[0, 15, "bad", "G5 범위"], [15, 30, "bad", "G4 범위"], [30, 45, "warn", "G3b 범위"], [45, 60, "warn", "G3a 범위"], [60, 90, "warn", "G2: 경도 감소"], [90, 140, "ok", "G1: 정상 또는 높음"]], note: "KDIGO 2024의 GFR 범주다. G1·G2는 신장 손상의 근거가 없으면 만성콩팥병을 뜻하지 않는다. 만성콩팥병은 신장 손상 소견 또는 eGFR 60 미만이 최소 3개월 지속되는지 확인해야 하며, 한 번의 값으로 진단하지 않는다." },
+    ];
+    var sel = $("rf-sel"), it = ITEMS[0], lay = null, cv = null;
+    sel.innerHTML = ITEMS.map(function (q, i) { return '<option value="' + i + '">' + q.name + "</option>"; }).join("");
+    var dec = function () { return it.step < 0.1 ? 2 : it.step < 1 ? 1 : 0; };
+    var getV = BB.range("rf-v", function (v) { return v.toFixed(dec()) + " " + it.unit; }, function () { upd(); });
+    function zoneOf(v) { for (var i = 0; i < it.zones.length; i++) if (v < it.zones[i][1] || i === it.zones.length - 1) return it.zones[i]; }
+    function upd() {
+      var v = getV(), z = zoneOf(v), ok = it.zones.find(function (q) { return q[2] === "ok"; });
+      BB.stat("rf-o-v", v.toFixed(dec()) + "<small>" + it.unit + "</small>");
+      BB.stat("rf-o-c", z[3]);
+      BB.stat("rf-o-r", ok[0] + "~" + ok[1] + "<small>" + it.unit + "</small>");
+      $("rf-info").innerHTML = "<h4>" + it.name + "</h4><p>" + it.note + ' <a href="' + it.ch + '.html">' + CH[it.ch].num + "장 " + CH[it.ch].title + "</a></p>";
+      if (cv) cv.redraw();
+    }
+    function pick() {
+      it = ITEMS[Number(sel.value)];
+      var el = $("rf-v"); el.min = it.min; el.max = it.max; el.step = it.step; getV.set(it.def);
+    }
+    sel.addEventListener("change", pick);
+    pick();
+    cv = BB.canvas("#rf-cv", function (ctx, w, h) {
+      var p = P(), L = 24, R = w - 24, by = h * 0.42, bh = 26;
+      var X = function (v) { return L + (v - it.min) / (it.max - it.min) * (R - L); };
+      var C = { ok: p.ok, warn: p.warn, bad: p.bad };
+      ctx.fillStyle = p.text; ctx.font = BB.font(14, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText(it.name + (it.unit ? " (" + it.unit + ")" : ""), L, 12);
+      it.zones.forEach(function (z, i) {
+        ctx.fillStyle = BB.alpha(C[z[2]], z[2] === "ok" ? 0.45 : 0.28); ctx.fillRect(X(z[0]), by, X(z[1]) - X(z[0]) - 1, bh);
+        ctx.font = BB.font(10.5); var tw = ctx.measureText(z[3]).width;
+        if (X(z[1]) - X(z[0]) > tw + 4) { ctx.fillStyle = p.dim; ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(z[3], (X(z[0]) + X(z[1])) / 2, by + bh + 22); }
+        if (i) { ctx.fillStyle = p.dim; ctx.font = BB.font(10, true); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(String(z[0]), X(z[0]), by + bh + 5); }
+      });
+      ctx.fillStyle = p.faint; ctx.font = BB.font(10, true); ctx.textBaseline = "top";
+      ctx.textAlign = "left"; ctx.fillText(String(it.min), L, by + bh + 5); ctx.textAlign = "right"; ctx.fillText(String(it.max), R, by + bh + 5);
+      var v = getV(), x = X(v), z = zoneOf(v);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, by - 18); ctx.lineTo(x, by + bh + 2); ctx.stroke();
+      ctx.fillStyle = p.bg; ctx.strokeStyle = C[z[2]]; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, by - 20, 9, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = p.text; ctx.font = BB.font(13, true, 700); ctx.textAlign = x > w * 0.7 ? "right" : "left"; ctx.textBaseline = "middle";
+      ctx.fillText(v.toFixed(dec()) + "  " + z[3], x + (x > w * 0.7 ? -16 : 16), by - 20);
+      lay = { L: L, R: R };
+    }, { aspect: 0.3, minHeight: 190, maxHeight: 220 });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; var v = it.min + BD.clamp((x - lay.L) / (lay.R - lay.L), 0, 1) * (it.max - it.min); getV.set(Math.round(v / it.step) * it.step); } });
+    upd();
+  })();
+
+  /* ---------------------------------------------------------- 3. 단위 변환기 */
+  (function () {
+    var K = {
+      glu: { a: "mg/dL", b: "mmol/L", f: function (x) { return x / 18; }, min: 20, max: 400, step: 1, def: 126, fs: "mmol/L = mg/dL ÷ 18", marks: [[70, "저혈당 경계"], [100, "공복 정상 상한"], [126, "당뇨 기준(공복)"], [200, "당뇨 기준(식후)"]], da: 0, db: 1 },
+      press: { a: "mmHg", b: "kPa", f: function (x) { return x * 0.13332; }, min: 0, max: 800, step: 1, def: 40, fs: "kPa = mmHg × 0.1333", marks: [[40, "PaCO₂"], [100, "PAO₂"], [120, "수축기 혈압"], [760, "대기압"]], da: 0, db: 1 },
+      temp: { a: "°C", b: "°F", f: function (x) { return x * 9 / 5 + 32; }, min: 30, max: 44, step: 0.1, def: 37, fs: "°F = °C × 9/5 + 32", marks: [[35, "저체온"], [37, "정상"], [38, "발열"], [40, "열사병 위험"]], da: 1, db: 1 },
+      energy: { a: "kcal", b: "kJ", f: function (x) { return x * 4.184; }, min: 0, max: 3000, step: 10, def: 510, fs: "kJ = kcal × 4.184", marks: [[510, "달리기 40분(다온)"], [1709, "다온 기초대사"], [2392, "다온 하루 소비"]], da: 0, db: 0 },
+      met: { a: "mL/kg/min", b: "METs", f: function (x) { return x / 3.5; }, min: 0, max: 70, step: 0.5, def: 38, fs: "METs = VO₂ ÷ 3.5", marks: [[3.5, "안정"], [12.3, "빠르게 걷기"], [30, "다온 대회 속도"], [38, "다온 VO₂max"], [43, "12주 뒤"]], da: 1, db: 1 },
+    };
+    var kind = BB.seg("un-kind", function () { var k = K[kind()], el = $("un-v"); el.min = k.min; el.max = k.max; el.step = k.step; getV.set(k.def); });
+    var getV = BB.range("un-v", function (v) { var k = K[kind()]; return v.toFixed(k.da) + " " + k.a; }, function () { upd(); });
+    var cv = null, lay = null;
+    function upd() {
+      var k = K[kind()], v = getV();
+      BB.stat("un-o-a", v.toFixed(k.da) + "<small>" + k.a + "</small>");
+      BB.stat("un-o-b", k.f(v).toFixed(k.db) + "<small>" + k.b + "</small>");
+      BB.stat("un-o-f", k.fs);
+      if (cv) cv.redraw();
+    }
+    (function () { var k = K[kind()], el = $("un-v"); el.min = k.min; el.max = k.max; el.step = k.step; getV.set(k.def); })();
+    cv = BB.canvas("#un-cv", function (ctx, w, h) {
+      var p = P(), k = K[kind()], L = 26, R = w - 26, ya = 70, yb = h - 70;
+      var X = function (v) { return L + (v - k.min) / (k.max - k.min) * (R - L); };
+      var fb = k.f, bmin = fb(k.min), bmax = fb(k.max);
+      var XB = function (u) { return L + (u - bmin) / (bmax - bmin) * (R - L); };
+      function nice(span) { var raw = span / 6, mag = Math.pow(10, Math.floor(Math.log10(raw))); return [1, 2, 2.5, 5, 10].map(function (m) { return m * mag; }).find(function (s) { return span / s <= 7; }); }
+      function ruler(y, lo, hi, Xf, label, up, col) {
+        ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(R, y); ctx.stroke();
+        var st = nice(hi - lo); ctx.font = BB.font(10.5, true); ctx.fillStyle = p.dim; ctx.textAlign = "center"; ctx.textBaseline = up ? "bottom" : "top";
+        for (var t = Math.ceil(lo / st) * st; t <= hi + 1e-9; t += st) { var x = Xf(t); ctx.strokeStyle = col; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y + (up ? -8 : 8)); ctx.stroke(); ctx.fillText(String(+t.toFixed(2)), x, y + (up ? -10 : 10)); }
+        for (var t2 = Math.ceil(lo / (st / 5)) * (st / 5); t2 <= hi + 1e-9; t2 += st / 5) { var x2 = Xf(t2); ctx.beginPath(); ctx.moveTo(x2, y); ctx.lineTo(x2, y + (up ? -4 : 4)); ctx.stroke(); }
+        ctx.fillStyle = col; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = up ? "bottom" : "top"; ctx.fillText(label, L, y + (up ? -26 : 26));
+      }
+      ruler(ya, k.min, k.max, X, k.a, true, p.accent);
+      ruler(yb, bmin, bmax, XB, k.b, false, p.accent2);
+      // 기준점
+      ctx.font = BB.font(10); ctx.textBaseline = "middle";
+      k.marks.forEach(function (m, i) {
+        var x = X(m[0]); ctx.strokeStyle = BB.alpha(p.dim, 0.5); ctx.setLineDash([2, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x, ya); ctx.lineTo(x, yb); ctx.stroke(); ctx.setLineDash([]);
+        var yy = ya + 18 + (i % 3) * 14;
+        ctx.fillStyle = p.dim; ctx.textAlign = x > w * 0.6 ? "right" : "left"; ctx.fillText(m[1], x + (x > w * 0.6 ? -4 : 4), yy);
+      });
+      var v = getV(), x = X(v);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, ya); ctx.lineTo(x, yb); ctx.stroke();
+      var mid = (ya + yb) / 2 + 22;
+      ctx.fillStyle = p.bg; ctx.strokeStyle = p.text; ctx.lineWidth = 2.4; ctx.beginPath(); ctx.arc(x, mid, 9, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.font = BB.font(13, true, 700); ctx.textAlign = x > w * 0.6 ? "right" : "left"; ctx.textBaseline = "middle"; ctx.fillStyle = p.text;
+      ctx.fillText(v.toFixed(k.da) + " " + k.a + " = " + k.f(v).toFixed(k.db) + " " + k.b, x + (x > w * 0.6 ? -16 : 16), mid);
+      lay = { L: L, R: R };
+    }, { aspect: 0.42, minHeight: 250, maxHeight: 300 });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; var k = K[kind()]; var v = k.min + BD.clamp((x - lay.L) / (lay.R - lay.L), 0, 1) * (k.max - k.min); getV.set(Math.round(v / k.step) * k.step); } });
+    upd();
+  })();
+
+  /* ---------------------------------------------------------- 종합 퀴즈 점수판 */
+  (function () {
+    var list = $("qz-list"), qs = list.querySelectorAll(".quiz-q"), N = qs.length, ok = 0, no = 0;
+    function show() {
+      $("qz-ok").textContent = ok; $("qz-no").textContent = no; $("qz-left").textContent = N - ok - no;
+      $("qz-bar-ok").style.width = (ok / N * 100) + "%"; $("qz-bar-no").style.width = (no / N * 100) + "%";
+      var done = ok + no;
+      $("qz-msg").textContent = done === N ? (ok >= 17 ? "훌륭하다. 몸의 원리를 꿰고 있다." : ok >= 12 ? "좋다. 틀린 문제의 장을 다시 보자." : "틀린 문제 위의 장 이름을 따라 다시 읽어 보자.") : done ? "정답률 " + Math.round(ok / done * 100) + " %" : "";
+    }
+    list.addEventListener("answered", function (e) { if (e.detail && e.detail.correct) ok++; else no++; show(); });
+    $("qz-reset").addEventListener("click", function () {
+      ok = 0; no = 0;
+      qs.forEach(function (q) { q.classList.remove("done"); q.querySelectorAll("button.opt").forEach(function (b) { b.disabled = false; b.classList.remove("right", "wrong"); }); });
+      show();
+    });
+    show();
+  })();
+})();
+</script>
+</body>
+</html>

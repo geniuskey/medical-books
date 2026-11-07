@@ -1,0 +1,1170 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "숨은 어떻게 들어오고 나가는가. 횡격막과 흉막강 음압, 폐의 탄성과 기도 저항, 폐활량 측정과 1초 강제 호기량, 표면장력과 표면활성제, 사강과 폐포 환기, 기흉을 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>폐: 숨쉬기의 역학 · BodyBook</title>
+<meta name="description" content="숨은 어떻게 들어오고 나가는가. 횡격막과 흉막강 음압, 폐의 탄성과 기도 저항, 폐활량 측정과 1초 강제 호기량, 표면장력과 표면활성제, 사강과 폐포 환기, 기흉을 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/lungs.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="폐: 숨쉬기의 역학 · BodyBook">
+<meta property="og:description" content="숨은 어떻게 들어오고 나가는가. 횡격막과 흉막강 음압, 폐의 탄성과 기도 저항, 폐활량 측정과 1초 강제 호기량, 표면장력과 표면활성제, 사강과 폐포 환기, 기흉을 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/lungs.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/lungs.html#chapter","name":"폐: 숨쉬기의 역학","headline":"폐: 숨쉬기의 역학 · BodyBook","description":"숨은 어떻게 들어오고 나가는가. 횡격막과 흉막강 음압, 폐의 탄성과 기도 저항, 폐활량 측정과 1초 강제 호기량, 표면장력과 표면활성제, 사강과 폐포 환기, 기흉을 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/lungs.html","position":8,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"8. 폐: 숨쉬기의 역학","item":"https://medical.euiyun.com/body/chapters/lungs.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<!--head:end-->
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="lungs">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 08</div>
+    <h1>폐: 숨쉬기의 역학</h1>
+    <p class="lead">하루에 약 2만 번, 1만 L가 넘는 공기가 코와 입을 드나든다. 폐에는 근육이 없다. 폐는 스스로 부풀지 못하는 탄성 주머니이고, 숨을 들이쉬게 하는 것은 가슴과 횡격막이 만드는 <b>압력 차이</b>뿐이다. 이 장은 그 압력이 어떻게 생기는지, 폐가 얼마나 쉽게 늘어나고 기도가 얼마나 공기를 막는지, 그리고 들이쉰 공기 중 얼마만큼이 실제로 쓰이는지를 직접 돌려 본다.</p>
+    <ul class="objectives">
+      <li>횡격막이 내려가면 흉막강과 폐포의 압력이 어떻게 바뀌어 공기가 들어오는지 설명한다.</li>
+      <li>폐활량계 그림에서 1회 호흡량, 폐활량, 기능적 잔기량, 잔기량을 읽는다.</li>
+      <li>1초 강제 호기량과 그 비율(FEV1/FVC)로 폐쇄성과 제한성 장애를 구별한다.</li>
+      <li>폐의 탄성도, 표면장력과 표면활성제, 기도 반지름과 저항의 관계를 설명한다.</li>
+      <li>사강 때문에 얕고 빠른 숨보다 깊고 느린 숨이 폐포 환기에 유리한 이유를 계산한다.</li>
+    </ul>
+  </header>
+
+  <section id="pressure">
+    <h2>숨은 압력 차이로 들어온다</h2>
+    <p>공기는 압력이 높은 곳에서 낮은 곳으로 흐른다. 숨을 들이쉬려면 폐 안의 압력이 바깥 대기보다 조금 낮아져야 하고, 내쉬려면 조금 높아져야 한다. 그 차이는 놀랄 만큼 작다. 조용히 숨 쉴 때 폐 속 압력은 대기압보다 약 1 cmH₂O(물기둥 1 cm, 대기압의 1,000분의 1)만 오르내린다.</p>
+    <p>폐는 <span class="term">흉막</span><span class="en">(Pleura)</span>이라는 얇은 두 겹의 막에 싸여 가슴벽 안쪽에 붙어 있다. 두 막 사이의 좁은 틈, <span class="term">흉막강</span><span class="en">(Pleural space)</span>에는 몇 mL의 액체만 있다. 폐는 늘 안쪽으로 쪼그라들려 하고 가슴벽은 바깥으로 벌어지려 하므로, 둘 사이의 흉막강은 대기보다 낮은 <b>음압</b>(약 −5 cmH₂O)을 띤다. 이 음압이 폐를 가슴벽에 붙들어 둔다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-22-16.webp" width="1200" height="911" loading="lazy" decoding="async" alt="가슴 단면: 갈비뼈 벽, 벽쪽·내장쪽 흉막, 흉막강, 폐, 횡격막과 각 부위의 압력">
+      <figcaption><b>숨을 다 내쉬고 쉬는 순간의 가슴.</b> 폐는 안쪽으로 쪼그라들려 하고 가슴벽은 바깥으로 벌어지려 한다. 두 힘이 맞서 두 겹 흉막 사이(흉막강)에 대기압보다 약 4 mmHg(약 −5 cmH₂O) 낮은 음압이 생긴다. 공기가 흐르지 않으므로 폐포 압력은 대기압과 같다(0). 숨을 들이쉬면 횡격막이 내려가며 이 음압이 더 깊어진다.<span class="fig-words">Atmospheric pressure 대기압 · Intrapleural pressure 흉막강 압력 · Intra-alveolar pressure 폐포 압력 · Transpulmonary pressure 경폐압 · Parietal/Visceral pleura 벽쪽/내장쪽 흉막 · Pleural cavity 흉막강 · Thoracic wall 가슴벽 · Diaphragm 횡격막</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/22-3-the-process-of-breathing">그림 22.16</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>숨을 들이쉬는 주인공은 <span class="term">횡격막</span><span class="en">(Diaphragm)</span>이다. 돔 모양의 근육이 수축해 1~2 cm 내려가면 가슴 속 공간이 넓어지고, 흉막강 압력이 −5에서 −7~−8 cmH₂O로 더 낮아진다. 폐가 따라 늘어나며 폐포 압력이 대기보다 약 1 cmH₂O 낮아지고, 그 작은 차이로 공기가 들어온다. 조용히 내쉬는 것은 근육이 하는 일이 아니다. 횡격막이 풀리면 늘어난 폐가 고무풍선처럼 스스로 오그라들며 공기를 밀어낸다.</p>
+    <p>아래 시뮬레이터에서 숨 한 번이 흘러가는 동안 흉막강 압력, 폐포 압력, 공기 흐름, 부피를 함께 보자. 폐를 뻣뻣하게 하거나 기도를 좁혀 보면 같은 힘으로 들어오는 공기가 어떻게 달라지는지 보인다.</p>
+
+    <div class="sim" id="sim-lu-mech" data-desc="횡격막이 내려가며 흉막강·폐포 압력이 바뀌고 공기가 드나드는 숨 한 번을 움직이는 가슴 그림과 압력·흐름·부피 곡선으로 본다. 폐 탄성도와 기도 저항을 바꾼다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>숨 한 번의 역학</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="lm-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>폐 탄성도(늘어나기 쉬움) <output id="lm-c-out"></output></span><input type="range" id="lm-c" min="0.05" max="0.4" step="0.01" value="0.2"></label>
+          <label class="ctrl"><span>기도 저항 <output id="lm-r-out"></output></span><input type="range" id="lm-r" min="1" max="20" step="0.5" value="2"></label>
+          <label class="ctrl"><span>호흡수 <output id="lm-rr-out"></output></span><input type="range" id="lm-rr" min="6" max="40" step="1" value="12"></label>
+          <label class="ctrl"><span>호흡 근육의 힘 <output id="lm-f-out"></output></span><input type="range" id="lm-f" min="0.5" max="2" step="0.05" value="1"></label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>부피</span><span><i style="background:var(--ok)"></i>공기 흐름</span><span><i style="background:var(--accent-2)"></i>흉막강 압력</span><span><i style="background:var(--warn)"></i>폐포 압력</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">1회 호흡량</span><span class="v" id="lm-o-vt">—</span></div>
+        <div class="stat"><span class="k">흉막강 압력(최저)</span><span class="v" id="lm-o-ppl">—</span></div>
+        <div class="stat"><span class="k">폐포 압력 범위</span><span class="v" id="lm-o-palv">—</span></div>
+        <div class="stat"><span class="k">시간 상수 R·C</span><span class="v" id="lm-o-tau">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값에서 흉막강 압력(파랑)이 −5에서 약 −7.7 cmH₂O까지 내려갈 때 폐포 압력(노랑)은 0 아래로 1 cmH₂O도 안 내려가는 것을 본다. 그 작은 차이로 약 0.5 L가 들어온다. ② 폐 탄성도를 0.07로 낮춘다(폐섬유화처럼 뻣뻣한 폐). 같은 근육 힘으로 들어오는 공기가 약 0.19 L로 준다. 근육 힘을 2배로 올려도 약 0.38 L에 그친다. 뻣뻣한 폐는 숨 한 번에 큰 힘이 든다. ③ 기도 저항을 15로 올리고 호흡수를 30으로 올린다. 시간 상수(저항 × 탄성도)가 흡기 시간에 비해 길어져 다 채우기 전에 내쉬기 시작한다. (단일 구획 저항-탄성 모델 BD.breath. 근육 압력은 흡기 동안 사인 모양으로 오르고 호기는 수동이다. 흉막강 압력 = −5 − 근육 압력.)</div>
+    </div>
+
+    <p>폐포 압력이 0으로 돌아오는 순간이 흡기와 호기가 바뀌는 순간이다. 이때 흐름이 0이고 부피는 가장 크다. 흉막강 압력은 숨 쉬는 내내 음압이다. 폐가 언제나 조금은 늘어나 있어서 안으로 당기는 힘이 남아 있기 때문이다. 이 음압이 사라지면 어떤 일이 생기는지는 이 장 끝의 기흉에서 본다.</p>
+  </section>
+
+  <section id="volumes">
+    <h2>폐 부피: 폐활량계가 그리는 지도</h2>
+    <p>폐에 담긴 공기의 양은 숨을 얼마나 깊이 쉬느냐에 따라 여러 층으로 나뉜다. 조용히 한 번 들이쉬고 내쉬는 양이 <span class="term">1회 호흡량</span><span class="en">(Tidal volume, VT)</span>으로 약 0.5 L다. 최대한 들이쉰 뒤 최대한 내쉰 양이 <span class="term">폐활량</span><span class="en">(Vital capacity, VC)</span>이고, 그래도 폐에 남는 공기가 <span class="term">잔기량</span><span class="en">(Residual volume, RV)</span>이다. 조용히 내쉬고 쉬는 순간 폐에 남은 공기가 <span class="term">기능적 잔기량</span><span class="en">(Functional residual capacity, FRC)</span>으로, 앞 그림에서 폐와 가슴벽의 힘이 맞서는 지점이다.</p>
+    <p>폐 부피는 키가 클수록 크고, 나이가 들면 폐활량은 줄고 잔기량은 는다. 아래에서 키·나이·성별을 넣으면 예측식(유럽 호흡기 학회 1993)으로 계산한 부피가 막대로 나타나고, 왼쪽에서는 폐활량계의 펜이 조용한 숨 → 최대 흡기 → 최대 호기를 그린다.</p>
+
+    <div class="sim" id="sim-lu-vol" data-desc="키·나이·성별을 넣으면 예측 폐 부피(총폐용량, 폐활량, 기능적 잔기량, 잔기량)가 막대로 나뉘고, 폐활량계 펜이 조용한 숨과 최대 흡기·호기를 그린다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>폐 부피 지도와 폐활량계</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="lv-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>키 <output id="lv-h-out"></output></span><input type="range" id="lv-h" min="150" max="200" step="1" value="175"></label>
+          <label class="ctrl"><span>나이 <output id="lv-a-out"></output></span><input type="range" id="lv-a" min="18" max="85" step="1" value="34"></label>
+          <div class="seg" id="lv-sex"><button data-value="m" class="on">남성 식</button><button data-value="f">여성 식</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">총폐용량 TLC</span><span class="v" id="lv-o-tlc">—</span></div>
+        <div class="stat"><span class="k">폐활량 VC</span><span class="v" id="lv-o-vc">—</span></div>
+        <div class="stat"><span class="k">기능적 잔기량 FRC</span><span class="v" id="lv-o-frc">—</span></div>
+        <div class="stat"><span class="k">잔기량 RV</span><span class="v" id="lv-o-rv">—</span></div>
+      </div>
+      <div class="sim-note">막대: RV 잔기량, ERV 날숨 예비량, VT 1회 호흡량, IRV 들숨 예비량. 해볼 것: ① 기본값(다온: 175 cm, 34세, 남성)에서 폐활량 약 5.07 L, 총폐용량 약 6.88 L를 확인한다. ② 나이를 80세로 올린다. 총폐용량은 거의 같은데 폐활량이 줄고 잔기량이 는다. 탄력이 줄어 다 내쉬지 못하고 공기가 갇히기 때문이다. ③ 빗금 친 잔기량은 폐활량계로 잴 수 없다(내쉴 수 없는 공기다). 따라서 FRC와 TLC도 폐활량계만으로는 못 재고 기체 희석법이나 체적 변동 기록법이 필요하다. (ERS 1993 예측식 BD.lungVolumes. 개인의 실제 값은 예측값의 약 80~120 %에 흩어진다.)</div>
+    </div>
+
+    <p>"용량"(capacity)은 두 개 이상의 "부피"(volume)를 더한 것이다. 폐활량 = 들숨 예비량 + 1회 호흡량 + 날숨 예비량, 총폐용량 = 폐활량 + 잔기량. 잔기량이 있다는 것은 다행한 일이다. 폐가 완전히 비지 않으므로 숨을 내쉬는 동안에도 폐포의 공기가 혈액과 가스를 계속 주고받아, 피의 산소가 숨결마다 출렁이지 않는다.</p>
+  </section>
+
+  <section id="spirometry">
+    <h2>힘껏 내쉬기: 1초 강제 호기량</h2>
+    <p>폐 기능 검사에서 가장 흔히 하는 것은 최대한 들이쉰 뒤 <b>있는 힘껏 빨리</b> 내쉬는 검사다. 이때 내쉰 전체 양이 <span class="term">강제 폐활량</span><span class="en">(Forced vital capacity, FVC)</span>, 처음 1초 동안 내쉰 양이 <span class="term">1초 강제 호기량</span><span class="en">(Forced expiratory volume in 1 s, FEV1)</span>이다. 건강한 폐는 1초 만에 폐활량의 약 80 %를 내보낸다.</p>
+    <p>두 숫자의 비율 FEV1/FVC가 장애의 종류를 가른다. 기도가 좁아지는 <span class="term">폐쇄성 장애</span><span class="en">(Obstructive)</span>(천식, 만성 폐쇄성 폐질환)에서는 공기가 천천히 빠져 FEV1이 크게 줄고 비율이 0.70 아래로 떨어진다. 폐가 뻣뻣해 덜 부푸는 <span class="term">제한성 장애</span><span class="en">(Restrictive)</span>(폐섬유화, 심한 비만, 흉곽 변형)에서는 FVC 자체가 작아지지만 빠져나가는 속도는 오히려 빨라 비율은 정상이거나 높다.</p>
+
+    <div class="sim" id="sim-lu-fev" data-desc="정상·폐쇄성·제한성 폐로 힘껏 내쉬어 부피-시간 곡선과 흐름-부피 고리를 그리고, FEV1/FVC 비율이 0.70 기준선의 어느 쪽에 있는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>힘껏 내쉬기: 부피-시간 곡선과 흐름-부피 고리</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="lf-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="lf-kind"><button data-value="normal" class="on">정상</button><button data-value="obstructive">폐쇄성</button><button data-value="restrictive">제한성</button></div>
+          <label class="ctrl"><span>장애의 정도 <output id="lf-s-out"></output></span><input type="range" id="lf-s" min="0" max="1" step="0.05" value="0.5"></label>
+          <div class="btn-row"><button class="btn primary" id="lf-go">다시 불기</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>지금 폐</span><span><i style="background:var(--text-faint)"></i>다온(정상) 기준</span><span><i style="background:var(--bad)"></i>FEV1/FVC 0.70 기준선</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">FEV1</span><span class="v" id="lf-o-fev1">—</span></div>
+        <div class="stat"><span class="k">FVC</span><span class="v" id="lf-o-fvc">—</span></div>
+        <div class="stat"><span class="k">FEV1/FVC</span><span class="v" id="lf-o-r">—</span></div>
+        <div class="stat"><span class="k">최고 호기 유량</span><span class="v" id="lf-o-pef">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "정상"에서 1초 지점(세로 점선)까지 폐활량의 약 80 %가 나가고 흐름-부피 고리가 뾰족한 삼각형 모양인 것을 본다. ② "폐쇄성"을 고르고 정도를 올린다. 곡선이 천천히 오르고 FEV1/FVC가 0.70 아래로 내려가 빨간색이 된다. 최고 유량이 크게 준다. ③ "제한성"은 고리가 작고 좁아지지만 비율은 0.80을 넘는다. 비율만 보면 정상처럼 보이므로 FVC 자체를 함께 봐야 한다. (강제 호기를 지수 감소 V = FVC·(1 − e^(−t/τ))로 근사한 BD.spirometry. 실제 폐쇄성 곡선의 호기 쪽은 아래로 오목하게 파이는데, 이 모델에서는 직선에 가깝게 그려진다. 흡기 쪽은 반원으로 그렸다.)</div>
+    </div>
+
+    <p>흐름-부피 고리는 검사지 한 장에서 많은 것을 알려 준다. 날숨 쪽(위)은 처음 0.1초 만에 최고 유량에 닿은 뒤 거의 직선으로 내려간다. 흥미롭게도 이 내려가는 부분은 아무리 더 세게 불어도 빨라지지 않는다. 세게 불수록 가슴 속 압력이 기도를 바깥에서 눌러 좁히기 때문이다(<span class="term">동적 기도 압박</span><span class="en">(Dynamic airway compression)</span>). 그래서 이 곡선은 노력보다 기도와 폐 자체의 성질을 드러낸다.</p>
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 폐쇄성 장애를 가르는 기준(FEV1/FVC 0.70 고정값 또는 나이별 정상 하한)은 학회와 시기에 따라 다릅니다. 숨가쁨, 오래가는 기침, 쌕쌕거림 같은 증상이 있거나 검사 결과가 걱정되면 의료진과 상담하세요.</p>
+  </section>
+
+  <section id="compliance">
+    <h2>폐의 탄성: 압력-부피 곡선</h2>
+    <p>폐를 꺼내 기관에 관을 꽂고 압력을 조금씩 올리며 부피를 재면 S자 곡선이 나온다. 곡선의 기울기, 즉 압력 1 cmH₂O당 늘어나는 부피가 <span class="term">폐 탄성도</span><span class="en">(Compliance)</span>다. 기울기가 클수록 잘 늘어나는 폐이고, 작을수록 뻣뻣한 폐다.</p>
+    <div class="formula">$$C = \frac{\Delta V}{\Delta P}$$
+      <div class="where">\(C\) 폐 탄성도(정상 약 0.2 L/cmH₂O), \(\Delta V\) 늘어난 부피(L), \(\Delta P\) 폐 안팎의 압력 차(경폐압, 폐포 압력 − 흉막강 압력, cmH₂O)</div>
+    </div>
+    <p>이 곡선에는 두 가지 수수께끼가 있다. 첫째, 부풀릴 때와 오그라들 때 곡선이 다르다(<span class="term">히스테리시스</span><span class="en">(Hysteresis)</span>). 같은 압력에서 내쉴 때 부피가 더 크다. 둘째, 폐를 공기 대신 <b>생리식염수</b>로 채우면 훨씬 작은 압력으로 부푼다. 두 현상 모두 폐포 안쪽 벽의 얇은 물층이 만드는 표면장력 때문이다. 아래에서 곡선 위의 점을 끌어 기울기를 재 보자.</p>
+
+    <div class="sim" id="sim-lu-pv" data-desc="폐의 압력-부피 곡선 위의 점을 끌어 탄성도(기울기)를 재고, 공기와 생리식염수, 표면활성제의 양에 따라 곡선과 히스테리시스가 어떻게 바뀌는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>정적 압력-부피 곡선</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="lp-cv"></canvas><span class="hint">곡선 위의 점을 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="lp-med"><button data-value="air" class="on">공기로 부풀림</button><button data-value="saline">식염수로 부풀림</button></div>
+          <label class="ctrl"><span>표면활성제 <output id="lp-s-out"></output></span><input type="range" id="lp-s" min="0" max="1" step="0.05" value="1"></label>
+          <label class="check"><input type="checkbox" id="lp-hy" checked> 내쉴 때 곡선(히스테리시스)</label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>부풀릴 때</span><span><i style="background:var(--accent-2)"></i>오그라들 때</span><span><i style="background:var(--text-faint)"></i>정상 폐(공기)</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">경폐압</span><span class="v" id="lp-o-p">—</span></div>
+        <div class="stat"><span class="k">폐 부피</span><span class="v" id="lp-o-v">—</span></div>
+        <div class="stat"><span class="k">탄성도(기울기)</span><span class="v" id="lp-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 5 cmH₂O 근처(조용한 숨의 범위)에 두고 기울기를 읽는다. 약 0.2~0.3 L/cmH₂O. 30 cmH₂O 가까이 끌면 곡선이 눕고 기울기가 0에 가까워진다. 다 찬 폐는 더 늘지 않는다. ② "식염수"를 고른다. 공기-물 경계면이 사라져 표면장력이 없어지므로 같은 부피를 훨씬 적은 압력으로 얻고, 히스테리시스도 사라진다. ③ 표면활성제를 0으로 내린다. 곡선이 오른쪽으로 밀려 같은 부피에 두 배 넘는 압력이 든다. 미숙아의 신생아 호흡 곤란 증후군이 이 상태다. (S자 모양 근사 BD.lungPV, 다온의 RV 1.81 L·TLC 6.88 L에 맞췄다.)</div>
+    </div>
+
+    <p>공기로 채운 폐가 식염수 폐보다 몇 배 더 뻣뻣하다는 것은, 폐가 안으로 오그라드는 힘의 절반 이상이 조직의 탄성 섬유가 아니라 <b>표면장력</b>에서 나온다는 뜻이다. 폐섬유화처럼 조직이 굳으면 곡선 전체가 눕고(탄성도 감소), 폐기종처럼 탄성 섬유가 부서지면 곡선이 가팔라진다(탄성도 증가). 폐기종의 폐는 잘 부풀지만 스스로 오그라드는 힘이 약해 내쉬기가 어렵다.</p>
+  </section>
+
+  <section id="surfactant">
+    <h2>표면장력과 표면활성제</h2>
+    <p>폐에는 지름 0.2 mm 남짓한 공기주머니인 <span class="term">폐포</span><span class="en">(Alveolus)</span>가 약 3~5억 개 있다. 폐포 안쪽은 얇은 물층으로 덮여 있고, 물 분자끼리 당기는 표면장력이 폐포를 오그라뜨리려 한다. 비눗방울이 그렇듯 작은 구 안의 압력은 반지름에 반비례한다. 이것이 <span class="term">라플라스 법칙</span><span class="en">(Law of Laplace)</span>이다.</p>
+    <div class="formula">$$P = \frac{2T}{r}$$
+      <div class="where">\(P\) 폐포를 오그라뜨리는 압력(cmH₂O), \(T\) 표면장력(물 약 70, 폐포 체액 약 50, 표면활성제가 있으면 약 5~25 dyn/cm), \(r\) 폐포 반지름(약 100 µm)</div>
+    </div>
+    <p>문제는 크기가 다른 폐포가 이웃해 있을 때다. 표면장력이 같다면 작은 폐포의 압력이 더 높으므로, 작은 폐포의 공기가 큰 폐포로 빠져나가고 작은 폐포는 결국 찌그러져 버린다. 실제 폐는 그렇게 되지 않는다. 폐포 벽의 2형 세포가 만드는 <span class="term">표면활성제</span><span class="en">(Surfactant)</span>가 표면장력을 낮추는데, 폐포가 작아질수록 분자가 빽빽해져 더 많이 낮춘다. 아래에서 직접 확인해 보자.</p>
+
+    <div class="sim" id="sim-lu-lap" data-desc="크기가 다른 두 폐포를 관으로 이으면 표면활성제가 없을 때 작은 폐포가 큰 폐포로 비워져 찌그러지고, 표면활성제가 있으면 두 폐포가 같은 크기로 맞춰지는 것을 라플라스 법칙으로 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>두 폐포의 줄다리기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ll-cv"></canvas><span class="hint">왼쪽 폐포의 테두리를 끌어 크기를 정한다</span></div>
+        <div class="sim-controls">
+          <label class="check"><input type="checkbox" id="ll-s"> 표면활성제</label>
+          <div class="btn-row"><button class="btn primary" id="ll-go">다시 시작</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>폐포 공기</span><span><i style="background:var(--ok)"></i>공기가 흐르는 방향</span><span><i style="background:var(--bad)"></i>허탈(찌그러짐)</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">작은 폐포 반지름 · 압력</span><span class="v" id="ll-o-1">—</span></div>
+        <div class="stat"><span class="k">큰 폐포 반지름 · 압력</span><span class="v" id="ll-o-2">—</span></div>
+        <div class="stat"><span class="k">상태</span><span class="v" id="ll-o-st" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 표면활성제를 끈 채 시작한다(표면장력 50 dyn/cm로 일정). 작은 폐포(50 µm)의 압력이 약 20 cmH₂O로 큰 폐포의 두 배이므로, 공기가 큰 쪽으로 빠지며 작은 폐포가 점점 빨리 찌그러진다. ② 표면활성제를 켜고 다시 시작한다. 작은 폐포의 표면장력이 크게 낮아져 압력이 오히려 큰 폐포보다 낮아지고, 공기가 작은 쪽으로 흘러 두 폐포가 같은 크기로 맞춰진다. ③ 테두리를 끌어 두 폐포를 거의 같은 크기로 만든 뒤 표면활성제 없이 시작해 본다. 아주 작은 차이도 결국 커진다. 불안정한 평형이다. (표면활성제가 있을 때 표면장력은 면적에 비례해 2~50 dyn/cm로 바뀐다고 가정했다. 두 폐포의 공기 총량은 일정하고, 시간은 느리게 돌렸다.)</div>
+    </div>
+
+    <p>표면활성제는 임신 24~28주 무렵부터 만들어지기 시작해 35주쯤 충분해진다. 그보다 일찍 태어난 아기는 폐포가 숨 쉴 때마다 찌그러지려 해서 숨쉬기가 매우 힘들다. 이것이 <span class="term">신생아 호흡 곤란 증후군</span><span class="en">(Neonatal respiratory distress syndrome)</span>이고, 인공 표면활성제를 기관에 넣어 주는 치료가 미숙아의 생존율을 크게 높였다. 표면활성제는 또 폐포 벽의 물을 덜 끌어당겨 폐에 물이 차는 것도 막는다.</p>
+  </section>
+
+  <section id="airways">
+    <h2>기도의 저항: 반지름의 네제곱</h2>
+    <p>들이쉰 공기는 기관에서 시작해 둘씩 갈라지기를 약 23번 되풀이한 끝에 폐포에 닿는다. 앞쪽 16세대는 공기를 나르기만 하는 관(<span class="term">전도 구역</span><span class="en">(Conducting zone)</span>)이고, 그 뒤가 가스 교환이 일어나는 <span class="term">호흡 구역</span><span class="en">(Respiratory zone)</span>이다. 갈라질수록 가지 하나는 가늘어지지만 가지 수가 두 배씩 늘어 전체 단면적은 폭발적으로 커진다.</p>
+
+    <figure class="photo">
+      <div class="fig-row"><img src="../assets/figures/openstax-ap-22-13.webp" width="1200" height="825" loading="lazy" decoding="async" alt="좌우 폐의 엽과 기관, 주기관지, 엽기관지, 구역기관지"><img src="../assets/figures/openstax-ap-22-10.webp" width="1200" height="916" loading="lazy" decoding="async" alt="호흡 세기관지 끝의 폐포관과 폐포낭, 폐포를 감싼 모세혈관"></div>
+      <figcaption><b>23번 갈라지는 나무.</b> 왼쪽: 기관이 좌우 주기관지로, 다시 엽기관지와 구역기관지로 갈라진다. 오른쪽: 가지 끝의 호흡 세기관지와 폐포관, 폐포낭에서 비로소 가스 교환이 일어난다. 기관(단면적 약 2.5 cm²)에서 폐포관까지 약 23번 갈라지는 동안 전체 단면적은 1만 배 가까이 넓어진다. 공기의 속도는 그만큼 느려져, 맨 끝에서는 흐름이 아니라 확산으로 가스가 섞인다. 공기를 나르기만 하는 전도 구역의 부피(약 150 mL)가 해부학적 사강이다.<span class="fig-words">Trachea 기관 · Main bronchus 주기관지 · Lobar/Segmental bronchus 엽/구역기관지 · Superior/Middle/Inferior lobe 위/중간/아래엽 · Terminal/Respiratory bronchiole 종말/호흡 세기관지 · Alveolar duct 폐포관 · Alveolar sac 폐포낭 · Alveolus 폐포</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/22-2-the-lungs">그림 22.13</a>, <a href="https://openstax.org/books/anatomy-and-physiology/pages/22-1-organs-and-structures-of-the-respiratory-system">그림 22.10</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>실제 기관지 나무를 돌려 보자. 이 모델은 구역기관지 몇 세대까지만 담았지만, 공기 길(기관지)과 핏길(폐동맥·폐정맥)이 나란히 갈라져 폐 구석구석까지 짝을 지어 간다는 것이 보인다. 폐 실질(스펀지 같은 폐 조직)은 원본 데이터에 없어 빠졌다.</p>
+
+    <div class="sim model3d" id="sim-lu-3d" data-model="lungs" data-orbit="0deg 80deg auto" data-desc="실제 인체 데이터로 만든 기관지 나무와 폐동맥·폐정맥 3D 모델을 돌려 보며 공기 길과 핏길이 나란히 갈라지는 모습을 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 기관지 나무</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="airway" title="전도 구역: 공기를 나르기만 한다">기관·기관지</button><button type="button" data-part="pulmart" title="산소가 적은 피를 폐로">폐동맥</button><button type="button" data-part="pulmvein" title="산소가 많은 피를 좌심방으로">폐정맥</button><button type="button" data-part="heart">심장</button><button type="button" data-part="diaphragm" title="들숨의 주 근육">횡격막</button><button type="button" data-part="ribs">갈비뼈</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 갈비뼈와 횡격막을 끈다. ② 폐동맥과 폐정맥을 끄고 기관지만 남겨 오른쪽(엽 3개)과 왼쪽(엽 2개)의 가지 수를 비교한다. ③ 기관지를 끄면 폐동맥(파랑)이 기관지를 따라가고 폐정맥(빨강)은 그 사이로 따로 모인다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <p>관의 저항은 반지름의 네제곱에 반비례한다(푸아죄유 법칙, <a href="vessels.html">6장</a>). 반지름이 절반이 되면 저항은 16배가 된다. 의외로 기도 저항의 대부분은 가는 세기관지가 아니라 <b>중간 크기 기관지</b>에 있다. 가는 관은 수가 엄청나게 많아 병렬로 합쳐지기 때문이다. 천식 발작에서는 기관지 벽의 민무늬근이 조이고 점막이 붓고 점액이 쌓여 이 중간 기도가 좁아진다. 아래에서 기관지 단면의 안쪽 벽을 끌어 좁혀 보자.</p>
+
+    <div class="sim" id="sim-lu-aw" data-desc="기관지 단면의 안쪽 벽을 끌어 반지름을 줄이면 저항이 네제곱으로 치솟고, 같은 근육 힘으로 들어오는 공기가 얼마나 주는지 천식 발작과 기관지 확장제를 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>기관지 반지름과 저항</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="la-cv"></canvas><span class="hint">단면의 안쪽 벽을 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="la-pre"><button data-value="1" class="on">평소</button><button data-value="0.62">천식 발작</button><button data-value="0.9">기관지 확장제 뒤</button></div>
+          <label class="check"><input type="checkbox" id="la-mu"> 점액이 쌓임</label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>공기가 지나는 길(내강)</span><span><i style="background:var(--seg-musc)"></i>민무늬근</span><span><i style="background:var(--bad)"></i>저항 곡선 위 지금 상태</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">반지름(평소 대비)</span><span class="v" id="la-o-r">—</span></div>
+        <div class="stat"><span class="k">기도 저항</span><span class="v" id="la-o-R">—</span></div>
+        <div class="stat"><span class="k">같은 힘의 1회 호흡량</span><span class="v" id="la-o-vt">—</span></div>
+        <div class="stat"><span class="k">0.5 L를 얻는 데 드는 힘</span><span class="v" id="la-o-w">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 안쪽 벽을 끌어 반지름을 0.8배로 줄인다. 저항이 약 2.4배가 되고, 같은 힘으로 들어오는 숨이 약 0.49에서 0.34 L로 준다. ② "천식 발작"(0.62배)을 누른다. 저항이 약 7배로 뛰고, 같은 힘으로는 숨이 절반 넘게 줄어든다. 숨을 지키려면 근육이 훨씬 세게 일해야 한다. ③ "점액이 쌓임"을 켠다. 같은 근육 수축에도 내강이 더 좁아진다. "기관지 확장제 뒤"를 누르면 민무늬근이 풀려 대부분 회복된다. (기도 전체가 같은 비율로 좁아진다고 가정했다: 저항 = 2 × (평소 반지름/반지름)⁴ cmH₂O·s/L. 1회 호흡량은 같은 근육 힘으로 BD.breath를 돌린 값, 필요한 힘은 BD.breath로 0.5 L를 맞추는 근육 압력의 배수다.)</div>
+    </div>
+
+    <p>저항이 늘면 같은 공기를 옮기는 데 더 큰 압력이 필요하고, 그 압력을 만드는 것은 호흡 근육이다. 천식 발작이 숨이 막히는 느낌과 함께 몹시 지치게 하는 이유다. 특히 내쉴 때가 더 힘들다. 들이쉴 때는 가슴 속 음압이 기도를 바깥으로 당겨 벌려 주지만, 내쉴 때는 오히려 눌러 좁히기 때문이다. 좁아진 기도를 빠르게 지나는 공기는 소용돌이치며 쌕쌕거리는 소리(<span class="term">천명</span><span class="en">(Wheeze)</span>)를 낸다.</p>
+  </section>
+
+  <section id="deadspace">
+    <h2>사강: 들이쉰 공기가 다 쓰이지는 않는다</h2>
+    <p>숨을 들이쉬면 맨 먼저 폐포에 닿는 공기는 방금 들이쉰 새 공기가 아니다. 직전 날숨 끝에 기관과 기관지에 남아 있던, 이미 한 번 쓰인 공기다. 새 공기의 마지막 약 150 mL는 반대로 기관과 기관지에 머물다 다음 날숨에 그대로 나간다. 이렇게 가스 교환에 쓰이지 못하는 부피가 <span class="term">사강</span><span class="en">(Dead space)</span>이다(대략 몸무게 1 kg당 2 mL, 몸무게를 파운드로 나타낸 수와 같은 mL라는 어림셈도 있다).</p>
+    <div class="formula">$$\dot V_A = (V_T - V_D) \times RR$$
+      <div class="where">\(\dot V_A\) 폐포 환기량(새 공기가 폐포에 닿는 양, 약 4.2 L/min), \(V_T\) 1회 호흡량(약 0.5 L), \(V_D\) 사강(약 0.15 L), \(RR\) 호흡수(약 12회/분). 분당 환기량 \(\dot V_E = V_T \times RR\) ≈ 6 L/min.</div>
+    </div>
+    <p>사강은 숨마다 <b>똑같이</b> 빼야 하는 몫이다. 그러므로 같은 분당 환기량이라도 얕고 빠르게 쉬면 손해가 커진다. 아래에서 분당 환기량을 고정한 채 호흡수만 바꿔 보자. 왼쪽 그림의 관이 사강이고, 들이쉬는 동안 새 공기(빨강)의 앞머리가 관을 지나 폐포에 닿는지 본다.</p>
+
+    <div class="sim" id="sim-lu-dead" data-desc="분당 환기량을 같게 두고 호흡수만 바꾸면, 숨마다 사강 150 mL를 채우느라 얕고 빠른 숨에서는 폐포에 닿는 새 공기가 줄어드는 것을 움직이는 기도 그림과 폐포 환기 곡선으로 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>얕고 빠르게, 깊고 느리게</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ld-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>분당 환기량(고정) <output id="ld-ve-out"></output></span><input type="range" id="ld-ve" min="3" max="20" step="0.5" value="6"></label>
+          <label class="ctrl"><span>호흡수 <output id="ld-rr-out"></output></span><input type="range" id="ld-rr" min="4" max="60" step="1" value="12"></label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--o2)"></i>새 공기</span><span><i style="background:var(--co2)"></i>이미 쓰인 공기(사강에 남은)</span><span><i style="background:var(--bad)"></i>폐포 환기 0</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">1회 호흡량</span><span class="v" id="ld-o-vt">—</span></div>
+        <div class="stat"><span class="k">폐포 환기량</span><span class="v" id="ld-o-va">—</span></div>
+        <div class="stat"><span class="k">사강 비율 VD/VT</span><span class="v" id="ld-o-f">—</span></div>
+        <div class="stat"><span class="k">동맥 PaCO2(모델)</span><span class="v" id="ld-o-co2">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본값(6 L/min, 12회)에서 1회 호흡량 0.5 L 중 0.35 L만 폐포에 닿아 폐포 환기량이 4.2 L/min인 것을 확인한다. ② 호흡수를 30으로 올린다. 분당 환기량은 같은데 1회 호흡량 0.2 L 중 새 공기는 50 mL뿐이라 폐포 환기가 1.5 L/min으로 떨어지고 PaCO2가 치솟는다. ③ 호흡수를 40 이상으로 올린다. 1회 호흡량이 사강보다 작아져 새 공기가 폐포에 전혀 닿지 않는다(빨간 띠). 반대로 6회로 내리면 폐포 환기가 늘지만 숨 한 번이 1 L가 되어 근육이 폐를 크게 늘려야 한다. (사강 150 mL 고정, 이산화탄소 생성 200 mL/min, PaCO2 = 0.863 × VCO2 / VA, BD.paco2. 실제로는 관 속에서 새 공기와 쓰인 공기가 조금 섞이므로 경계가 이렇게 뚜렷하지 않다.)</div>
+    </div>
+
+    <p>얕고 빠른 숨은 사강에서 손해를 보고, 깊고 느린 숨은 폐를 크게 늘리느라 탄성에 맞서는 일이 늘어난다. 그래서 쉬는 사람은 1분에 12~16번쯤, 둘 사이의 알맞은 지점에서 숨을 쉰다. 폐가 뻣뻣한 사람(폐섬유화)이 얕고 빠르게, 기도가 좁은 사람(만성 폐쇄성 폐질환)이 깊고 느리게 숨 쉬는 경향이 있는 것도 같은 저울질의 결과다.</p>
+    <div class="callout tip">
+      <strong>스노클이 길면 숨이 막히는 이유</strong>
+      스노클 관은 사강을 늘린다. 관의 부피가 300 mL라면 사강이 두 배 넘게 늘어, 평소처럼 숨 쉬어도 폐포 환기가 크게 준다. 시판 스노클이 짧고 가는 것은 이 때문이다. 위 시뮬레이터에서 호흡수 12, 환기량 6 L/min에 사강을 450 mL로 바꾼 셈이라면 1회 호흡량 0.5 L 중 50 mL만 폐포에 닿는다.
+    </div>
+  </section>
+
+  <section id="pneumothorax">
+    <h2>흉막의 음압이 사라지면: 기흉</h2>
+    <p>폐는 늘 쪼그라들려 하고 가슴벽은 늘 벌어지려 한다. 두 힘이 맞서는 동안 흉막강은 음압으로 둘을 붙들고 있다. 그런데 사고로 가슴벽에 구멍이 나거나, 폐 표면의 작은 공기주머니가 터져 흉막강에 공기가 들어가면 어떻게 될까. 음압이 사라지고, 두 용수철은 서로를 놓고 각자 쉬는 모양으로 돌아간다. 이것이 <span class="term">기흉</span><span class="en">(Pneumothorax)</span>이다.</p>
+
+    <div class="sim" id="sim-lu-ptx" data-desc="흉막강에 구멍을 내면 음압이 0으로 올라가며 폐는 안으로 오그라들고 가슴벽은 밖으로 벌어지는 기흉을 보고, 흉관으로 공기를 빼 폐를 다시 펴 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>기흉: 두 용수철이 서로를 놓을 때</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="lx-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>구멍의 크기 <output id="lx-g-out"></output></span><input type="range" id="lx-g" min="0.1" max="1" step="0.05" value="0.4"></label>
+          <div class="btn-row"><button class="btn primary" id="lx-hole">구멍 내기</button><button class="btn" id="lx-tube">흉관으로 공기 빼기</button><button class="btn" id="lx-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>폐</span><span><i style="background:var(--accent-2)"></i>폐가 안으로 당기는 힘</span><span><i style="background:var(--warn)"></i>가슴벽이 밖으로 벌어지는 힘</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">흉막강 압력</span><span class="v" id="lx-o-p">—</span></div>
+        <div class="stat"><span class="k">오른쪽 폐 부피</span><span class="v" id="lx-o-l">—</span></div>
+        <div class="stat"><span class="k">오른쪽 가슴 부피</span><span class="v" id="lx-o-c">—</span></div>
+        <div class="stat"><span class="k">흉막강 공기</span><span class="v" id="lx-o-a">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "구멍 내기"를 누른다. 흉막강 압력이 −5에서 0으로 오르는 동안 오른쪽 폐는 약 1.65 L에서 0.73 L로 오그라들고, 가슴벽은 바깥으로 벌어진다. 두 용수철이 서로 붙들고 있었다는 증거다. ② 구멍 크기를 바꿔 다시 해 본다. 작은 구멍은 천천히, 큰 구멍은 빨리 무너진다. ③ "흉관으로 공기 빼기"를 누른다. 흉막강을 약 −10 cmH₂O로 빨아 공기를 빼면 폐가 다시 펴지고 압력이 −5로 돌아온다. (한쪽 가슴만 그렸다. 폐는 S자 압력-부피 곡선, 가슴벽은 쉬는 부피 2.15 L에 탄성도 0.1 L/cmH₂O인 직선 용수철로 두고, 매 순간 두 부피의 차이가 흉막강 공기가 되도록 압력을 풀었다. 시간은 빠르게 돌렸다.)</div>
+    </div>
+
+    <p>키가 크고 마른 젊은 사람에게 이유 없이 생기는 기흉(자발성 기흉)은 폐 꼭대기의 작은 공기주머니가 터져 생기는 경우가 많다. 더 위험한 것은 구멍이 판막처럼 작동해 숨 쉴 때마다 공기가 들어가기만 하고 나가지 못하는 <span class="term">긴장성 기흉</span><span class="en">(Tension pneumothorax)</span>이다. 흉막강 압력이 대기보다 높아져 폐를 완전히 누르고 심장으로 돌아오는 정맥까지 눌러, 응급으로 공기를 빼야 한다.</p>
+  </section>
+
+  <section id="daon">
+    <h2>다온의 숨: 쉴 때와 달릴 때</h2>
+    <p>예측식으로 본 다온의 폐는 평범하다. 키 175 cm, 34세 남성의 예측 폐활량은 약 5.07 L, 강제 호기를 그대로 적용하면 FEV1 약 4.07 L, 비율 0.80이다. 쉴 때 다온은 1분에 약 6.8 L를 들이쉰다. 대회 속도(최대 산소 섭취량의 약 79 %)로 달리면 분당 환기량이 약 67 L/min, 열 배 가까이로 는다. 몸은 이 늘어난 환기를 1회 호흡량과 호흡수로 어떻게 나눌까.</p>
+    <p>아래 시뮬레이터에서 운동 강도를 올려 보자. "자연스럽게"는 사람의 실제 경향(1회 호흡량이 폐활량의 절반쯤까지 먼저 늘고, 그 뒤로는 호흡수가 는다)을 따른 것이다. 같은 분당 환기량을 "얕고 빠르게"나 "깊고 느리게" 나누면 폐포 환기와 호흡 근육의 일이 어떻게 달라지는지 비교한다.</p>
+
+    <div class="sim" id="sim-lu-daon" data-big data-desc="다온이 쉴 때부터 10 km 대회 속도까지 운동 강도를 올리면 분당 환기량이 약 67 L/min까지 늘며 1회 호흡량과 호흡수로 나뉘는 모습, 사강을 뺀 폐포 환기, 호흡 근육의 일을 세 가지 숨 쉬는 방식으로 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>다온의 숨, 안정에서 대회 속도까지</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="dn-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>운동 강도(최대 산소 섭취량 대비) <output id="dn-x-out"></output></span><input type="range" id="dn-x" min="0" max="1" step="0.01" value="0"></label>
+          <div class="seg" id="dn-mode"><button data-value="nat" class="on">자연스럽게</button><button data-value="shallow">얕고 빠르게</button><button data-value="deep">깊고 느리게</button></div>
+          <div class="btn-row"><button class="btn" id="dn-race">대회 속도로</button><button class="btn" id="dn-rest">안정으로</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>폐 부피(1회 호흡)</span><span><i style="background:var(--o2)"></i>폐포에 닿는 몫</span><span><i style="background:var(--co2)"></i>사강으로 버리는 몫</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">분당 환기량</span><span class="v" id="dn-o-ve">—</span></div>
+        <div class="stat"><span class="k">1회 호흡량 × 호흡수</span><span class="v" id="dn-o-p">—</span></div>
+        <div class="stat"><span class="k">폐포 환기량</span><span class="v" id="dn-o-va">—</span></div>
+        <div class="stat"><span class="k">호흡 근육의 일(최소 대비)</span><span class="v" id="dn-o-w">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "대회 속도로"를 누른다. 분당 환기량 약 67 L/min이 1회 호흡량 약 2.0 L × 호흡수 약 34회로 나뉘고, 사강 비율이 쉴 때 약 32 %에서 약 12 %로 줄어 폐포 환기가 약 58 L/min이 된다. ② "얕고 빠르게"를 고른다. 같은 67 L/min이 1.0 L × 67회가 되어 폐포 환기가 약 5 L/min 줄고 일도 는다. ③ "깊고 느리게"(1회 3.2 L)는 폐포 환기는 조금 늘지만 폐를 총폐용량 가까이 늘리느라 일이 커진다. 아래 그래프의 U자 곡선 바닥 근처에 "자연스럽게"가 놓인다. (분당 환기량은 BD.steady(강도).ve, 1회 호흡량은 0.5 + 1.9·(1 − e^(−(VE − 6)/40)) L, 상한 폐활량의 55 %, 사강 = 0.17 + 0.05·(VT − 0.5) L. 일은 탄성 일 + 난류를 넣은 저항 일을 같은 폐포 환기에서 비교한 상대값이다.)</div>
+    </div>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 8장</span></div>
+      <h4>예측 폐활량 5.07 L, FEV1/FVC 0.80. 대회 속도의 숨은 2.0 L × 34회</h4>
+      <p>키 175 cm, 34세 남성의 예측식으로 다온의 폐는 총폐용량 약 6.88 L, 폐활량 약 5.07 L, 기능적 잔기량 약 3.31 L, 잔기량 약 1.81 L다. 강제 호기를 적용하면 FEV1 약 4.07 L, FEV1/FVC 0.80으로 0.70 기준선보다 충분히 높다. 숨을 막는 기도의 문제는 없다. 대회 속도에서 분당 환기량은 약 67 L/min. 몸은 이것을 1회 호흡량 약 2.0 L(폐활량의 약 40 %)와 호흡수 약 34회로 나눈다. 숨마다 빼야 하는 사강(약 0.24 L)이 1회 호흡량의 12 %에 그쳐 폐포 환기는 약 58 L/min이다. 같은 환기를 1.0 L × 67회로 얕게 쉬었다면 폐포 환기는 약 54 L/min으로 줄고 호흡 근육은 더 일해야 했다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>다온의 폐 부피와 강제 호기는 정상 범위. 달릴 때 늘어난 환기는 먼저 깊이로, 그다음 횟수로 나뉜다. 깊게 쉬는 편이 사강 손해가 적다.</div><div><b>아직 모르는 것</b>폐포에 닿은 공기의 산소가 피로 얼마나 넘어가는가. 짧아진 모세혈관 통과 시간에도 피가 산소로 다 채워지는가.</div><div><b>다음 단계</b><a href="gas.html">9장</a>에서 폐포 산소 분압, 헤모글로빈 포화도, 산소 운반량을 계산한다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>숨은 압력 차이로 흐른다. 횡격막이 내려가면 흉막강 압력이 약 −5에서 −8 cmH₂O로, 폐포 압력이 약 −1 cmH₂O로 떨어져 공기가 들어온다. 조용한 호기는 폐의 탄성으로 저절로 일어난다.</li>
+      <li>폐활량 = 들숨 예비량 + 1회 호흡량 + 날숨 예비량, 총폐용량 = 폐활량 + 잔기량. 잔기량과 기능적 잔기량은 폐활량계로 직접 잴 수 없다.</li>
+      <li>FEV1/FVC가 0.70 아래면 폐쇄성(천식, 만성 폐쇄성 폐질환), FVC가 작고 비율이 정상 이상이면 제한성(폐섬유화 등)을 의심한다.</li>
+      <li>폐 탄성도 C = ΔV/ΔP(약 0.2 L/cmH₂O). 폐를 오그라뜨리는 힘의 큰 몫은 표면장력이고, 표면활성제가 작은 폐포일수록 표면장력을 더 낮춰 폐포가 찌그러지지 않게 한다(P = 2T/r).</li>
+      <li>기도 저항은 반지름의 네제곱에 반비례한다. 반지름이 절반이면 저항은 16배다.</li>
+      <li>폐포 환기량 = (1회 호흡량 − 사강) × 호흡수. 같은 분당 환기량이면 깊고 느린 숨이 폐포 환기에 유리하다. 다온의 대회 속도 환기 약 67 L/min은 약 2.0 L × 34회로 나뉜다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>조용히 숨을 들이쉬는 도중의 압력으로 옳은 것은?</p>
+        <div class="opts">
+          <button class="opt">폐포 압력이 대기압보다 약간 높고, 흉막강 압력은 0이다</button>
+          <button class="opt" data-correct>흉막강 압력이 −5보다 더 낮아지고, 폐포 압력은 대기압보다 약간 낮다</button>
+          <button class="opt">흉막강 압력이 양압이 되어 폐를 밀어 부풀린다</button>
+          <button class="opt">폐 자체의 근육이 수축해 폐포 압력을 낮춘다</button>
+        </div>
+        <div class="quiz-exp">횡격막이 내려가 흉막강 음압이 깊어지면(약 −7~−8 cmH₂O) 폐가 따라 늘어나며 폐포 압력이 대기보다 약 1 cmH₂O 낮아진다. 폐에는 숨을 쉬게 하는 근육이 없다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>1회 호흡량 0.6 L, 사강 0.15 L, 호흡수 14회/분일 때 폐포 환기량은?</p>
+        <div class="opts">
+          <button class="opt">8.4 L/min</button>
+          <button class="opt">2.1 L/min</button>
+          <button class="opt" data-correct>6.3 L/min</button>
+          <button class="opt">10.5 L/min</button>
+        </div>
+        <div class="quiz-exp">(0.6 − 0.15) × 14 = 0.45 × 14 = 6.3 L/min. 8.4 L/min은 사강을 빼지 않은 분당 환기량이다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>FEV1 1.8 L, FVC 4.0 L인 검사 결과의 해석으로 가장 알맞은 것은?</p>
+        <div class="opts">
+          <button class="opt" data-correct>비율 0.45로 폐쇄성 장애를 의심한다</button>
+          <button class="opt">비율 2.2로 제한성 장애를 의심한다</button>
+          <button class="opt">FVC가 정상이므로 정상이다</button>
+          <button class="opt">비율 0.45로 폐가 너무 잘 늘어나는 것이다</button>
+        </div>
+        <div class="quiz-exp">FEV1/FVC = 1.8 ÷ 4.0 = 0.45. 0.70보다 크게 낮아 기도가 좁아져 공기가 천천히 빠지는 폐쇄성 장애(천식, 만성 폐쇄성 폐질환)를 시사한다. 제한성 장애는 FVC가 작고 비율은 정상이거나 높다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>표면활성제가 없을 때, 관으로 이어진 반지름 50 µm와 100 µm의 두 폐포에서 일어나는 일은?</p>
+        <div class="opts">
+          <button class="opt">큰 폐포의 압력이 더 높아 큰 폐포가 작은 폐포로 비워진다</button>
+          <button class="opt">압력이 같아 아무 일도 일어나지 않는다</button>
+          <button class="opt">두 폐포가 같은 크기로 맞춰진다</button>
+          <button class="opt" data-correct>작은 폐포의 압력이 두 배라 작은 폐포가 큰 폐포로 비워져 찌그러진다</button>
+        </div>
+        <div class="quiz-exp">라플라스 법칙 P = 2T/r에서 표면장력이 같다면 반지름이 절반인 폐포의 압력이 두 배다. 공기가 작은 쪽에서 큰 쪽으로 흘러 작은 폐포가 허탈된다. 표면활성제는 작은 폐포의 표면장력을 더 많이 낮춰 이를 막는다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>천식 발작으로 기관지 반지름이 평소의 절반이 되었다. 기도 저항은 대략 몇 배가 되는가?</p>
+        <div class="opts">
+          <button class="opt">2배</button>
+          <button class="opt">4배</button>
+          <button class="opt" data-correct>16배</button>
+          <button class="opt">반으로 준다</button>
+        </div>
+        <div class="quiz-exp">저항은 반지름의 네제곱에 반비례한다. (1/0.5)⁴ = 2⁴ = 16배. 반지름이 조금만 줄어도 숨쉬기가 급격히 힘들어지는 이유다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  var DAON = BD.lungVolumes(175, 34, "m");
+  function wOf(id) { var el = document.getElementById(id); return el && el.parentElement ? el.parentElement.clientWidth : 600; }
+  function txt(ctx, s, x, y, col, sz, al, bl, wt, mono) {
+    ctx.fillStyle = col; ctx.font = BB.font(sz || 11, mono, wt); ctx.textAlign = al || "left"; ctx.textBaseline = bl || "alphabetic"; ctx.fillText(s, x, y);
+  }
+  function handle(ctx, x, y, col, r) {
+    var p = P(); ctx.fillStyle = p.bg; ctx.strokeStyle = col || p.text; ctx.lineWidth = 2.2;
+    ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }
+  function arrow(ctx, x1, y1, x2, y2, col, wd, head) {
+    var a = Math.atan2(y2 - y1, x2 - x1), hl = head || 8;
+    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = wd || 2;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2 - Math.cos(a) * hl * 0.6, y2 - Math.sin(a) * hl * 0.6); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x2 - hl * Math.cos(a - 0.45), y2 - hl * Math.sin(a - 0.45)); ctx.lineTo(x2 - hl * Math.cos(a + 0.45), y2 - hl * Math.sin(a + 0.45)); ctx.closePath(); ctx.fill();
+  }
+  function f2(x) { return x.toFixed(2); }
+  function f1(x) { return x.toFixed(1); }
+
+  /* ---------------------------------------------------------- 1. 숨 한 번의 역학 */
+  (function () {
+    var res, t = 0, phase = 0, cv = null;
+    function calc() {
+      var c = getC(), r = getR(), rr = getRR(), f = getF();
+      res = BD.breath({ c: c, r: r, rr: rr, vt: 0.5 * f * c / 0.2 });
+      var vmin = Math.min.apply(null, res.v);
+      res._vmin = vmin;
+      res._ti = res.T / 3;
+      BB.stat("lm-o-vt", Math.round(res.vt * 1000) + "<small>mL</small>");
+      BB.stat("lm-o-ppl", f1(Math.min.apply(null, res.ppl)) + "<small>cmH₂O</small>");
+      BB.stat("lm-o-palv", f1(Math.min.apply(null, res.palv)) + " ~ +" + f1(Math.max.apply(null, res.palv)));
+      BB.stat("lm-o-tau", f2(res.tau) + "<small>s</small>");
+      if (cv) cv.redraw();
+    }
+    var getC = BB.range("lm-c", function (v) { return v.toFixed(2) + " L/cmH₂O"; }, function () { calc(); });
+    var getR = BB.range("lm-r", function (v) { return v.toFixed(1) + " cmH₂O·s/L"; }, function () { calc(); });
+    var getRR = BB.range("lm-rr", function (v) { return v + "회/분"; }, function () { calc(); });
+    var getF = BB.range("lm-f", function (v) { return "×" + v.toFixed(2); }, function () { calc(); });
+    calc();
+    function chest(ctx, cx, cy, s, vf, p, i) {
+      // vf: 0(날숨 끝) ~ 1(흡기 끝)의 상대 부피
+      var wf = 1 + 0.05 * vf, dy = 0.16 * s * vf;
+      var top = cy - 0.62 * s, bot = cy + 0.5 * s;
+      var dTop = bot - 0.3 * s + dy;   // 횡격막 꼭대기
+      function wall(inset) {
+        var k = inset;
+        ctx.beginPath();
+        ctx.moveTo(cx - 0.22 * s * wf + k, top + k);
+        ctx.quadraticCurveTo(cx - 0.66 * s * wf + k, top + 0.1 * s, cx - 0.68 * s * wf + k, cy + 0.1 * s);
+        ctx.quadraticCurveTo(cx - 0.68 * s * wf + k, bot - 0.05 * s, cx - 0.6 * s * wf + k, bot - k);
+        ctx.lineTo(cx + 0.6 * s * wf - k, bot - k);
+        ctx.quadraticCurveTo(cx + 0.68 * s * wf - k, bot - 0.05 * s, cx + 0.68 * s * wf - k, cy + 0.1 * s);
+        ctx.quadraticCurveTo(cx + 0.66 * s * wf - k, top + 0.1 * s, cx + 0.22 * s * wf - k, top + k);
+        ctx.closePath();
+      }
+      function dome() {
+        ctx.moveTo(cx - 0.62 * s * wf, bot);
+        ctx.quadraticCurveTo(cx - 0.4 * s, dTop - 0.05 * s, cx, dTop + 0.06 * s);
+        ctx.quadraticCurveTo(cx + 0.4 * s, dTop - 0.05 * s, cx + 0.62 * s * wf, bot);
+      }
+      // 가슴벽(갈비뼈)
+      ctx.fillStyle = BB.alpha(p.text, 0.05); wall(0); ctx.fill();
+      ctx.strokeStyle = p.dim; ctx.lineWidth = 3.5; wall(0); ctx.stroke();
+      ctx.strokeStyle = BB.alpha(p.dim, 0.35); ctx.lineWidth = 1.2;
+      for (var k = 1; k <= 4; k++) { var yy = top + 0.18 * s * k; ctx.beginPath(); ctx.moveTo(cx - 0.62 * s * wf, yy + 0.06 * s); ctx.quadraticCurveTo(cx - 0.3 * s, yy - 0.05 * s, cx - 0.08 * s, yy); ctx.moveTo(cx + 0.62 * s * wf, yy + 0.06 * s); ctx.quadraticCurveTo(cx + 0.3 * s, yy - 0.05 * s, cx + 0.08 * s, yy); ctx.stroke(); }
+      // 폐(흉막 틈만큼 안쪽, 횡격막 위)
+      ctx.save();
+      wall(6); ctx.clip();
+      ctx.beginPath(); ctx.moveTo(cx - 2 * s, top - s); ctx.lineTo(cx + 2 * s, top - s); ctx.lineTo(cx + 2 * s, bot); ctx.lineTo(cx + 0.62 * s * wf, bot);
+      ctx.quadraticCurveTo(cx + 0.4 * s, dTop - 0.05 * s - 5, cx, dTop + 0.06 * s - 5); ctx.quadraticCurveTo(cx - 0.4 * s, dTop - 0.05 * s - 5, cx - 0.62 * s * wf, bot);
+      ctx.lineTo(cx - 2 * s, bot); ctx.closePath(); ctx.clip();
+      ctx.fillStyle = BB.alpha(p.accent, 0.22 + 0.12 * vf); ctx.strokeStyle = p.accent; ctx.lineWidth = 1.6;
+      [-1, 1].forEach(function (sd) {
+        ctx.beginPath(); ctx.ellipse(cx + sd * 0.38 * s * wf, cy + 0.02 * s, 0.33 * s * wf, 0.62 * s, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      });
+      ctx.restore();
+      // 심장(가운데)
+      ctx.fillStyle = BB.alpha(BB.color("art"), 0.25); ctx.beginPath(); ctx.ellipse(cx + 0.06 * s, cy + 0.12 * s + dy * 0.5, 0.13 * s, 0.17 * s, -0.4, 0, Math.PI * 2); ctx.fill();
+      // 횡격막
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 4; ctx.beginPath(); dome(); ctx.stroke();
+      // 기관 + 공기 점
+      var tr = [[cx, top - 0.32 * s], [cx, cy - 0.28 * s], [cx - 0.2 * s, cy - 0.12 * s]], tr2 = [[cx, cy - 0.28 * s], [cx + 0.2 * s, cy - 0.12 * s]];
+      ctx.strokeStyle = BB.alpha(p.accent, 0.8); ctx.lineWidth = 7; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(tr[0][0], tr[0][1]); ctx.lineTo(tr[1][0], tr[1][1]); ctx.lineTo(tr[2][0], tr[2][1]); ctx.moveTo(tr2[0][0], tr2[0][1]); ctx.lineTo(tr2[1][0], tr2[1][1]); ctx.stroke(); ctx.lineCap = "butt";
+      var dots = BB.color("o2");
+      BD.flowDots(ctx, tr, phase, { color: dots, gap: 11, r: 2.4 });
+      BD.flowDots(ctx, [[cx, top - 0.32 * s], [cx, cy - 0.28 * s], [cx + 0.2 * s, cy - 0.12 * s]], phase, { color: dots, gap: 11, r: 2.4 });
+      // 숫자
+      var fl = res.flow[i];
+      txt(ctx, "대기 0", cx + 10, top - 0.26 * s, p.dim, 11.5, "left", "middle");
+      txt(ctx, fl > 0.02 ? "들숨 ↓" : fl < -0.02 ? "날숨 ↑" : "멈춤", cx - 10, top - 0.26 * s, fl > 0.02 ? p.ok : fl < -0.02 ? p.warn : p.dim, 12, "right", "middle", 700);
+      txt(ctx, "폐포", cx - 0.42 * s, cy - 0.06 * s, p.text, 11.5, "center", "middle", 600);
+      txt(ctx, (res.palv[i] >= 0 ? "+" : "") + res.palv[i].toFixed(2), cx - 0.42 * s, cy + 0.1 * s, p.warn, 13, "center", "middle", 700, true);
+      txt(ctx, "흉막강", cx + 0.78 * s, cy - 0.32 * s, p.accent2, 11.5, "left", "middle", 600);
+      txt(ctx, res.ppl[i].toFixed(1), cx + 0.78 * s, cy - 0.16 * s, p.accent2, 13, "left", "middle", 700, true);
+      ctx.strokeStyle = BB.alpha(p.accent2, 0.6); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(cx + 0.77 * s, cy - 0.24 * s); ctx.lineTo(cx + 0.66 * s, cy - 0.12 * s); ctx.stroke();
+      txt(ctx, "횡격막", cx - 0.62 * s, bot + 14, p.accent2, 11.5, "left", "middle", 600);
+      txt(ctx, "단위 cmH₂O", cx + 0.62 * s, bot + 14, p.faint, 10.5, "right", "middle");
+    }
+    cv = BB.canvas("#lm-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, T = res.T, n = res.t.length;
+      var tc = t % T, i = Math.min(n - 1, Math.floor((tc / T) * n));
+      var vmax = Math.max.apply(null, res.v) - res._vmin, vrel = res.v[i] - res._vmin;
+      var s = narrow ? Math.min(w * 0.36, 130) : Math.min(h * 0.4, w * 0.21);
+      var cx = narrow ? w * 0.42 : w * 0.24, cy = narrow ? s * 0.98 + 26 : h * 0.52;
+      chest(ctx, cx, cy, s, BB.clamp(vrel / 0.6, 0, 1.6), p, i);
+      // 오른쪽: 부피·흐름·압력
+      var gx = narrow ? 48 : w * 0.5 + 6, gw = narrow ? w - 60 : w * 0.5 - 18;
+      var gy = narrow ? cy + s * 0.5 + 40 : 14, gh = (narrow ? h - gy - 26 : h - 40);
+      var rows = [0.3, 0.3, 0.4].map(function (f) { return f * gh; });
+      var ymax = Math.max(0.8, Math.ceil(vmax * 12) / 10);
+      var fmax = Math.max(0.6, Math.ceil(Math.max.apply(null, res.flow.map(Math.abs)) * 11) / 10);
+      var pmin = Math.min(-8, Math.floor(Math.min.apply(null, res.ppl)) - 1), pmax = Math.max(2, Math.ceil(Math.max.apply(null, res.palv)) + 1);
+      function ser(arr, off) { var o = []; for (var k = 0; k < n; k++) o.push([res.t[k], arr[k] - (off || 0)]); return o; }
+      var y0 = gy;
+      var c1 = BB.chart(ctx, { x: gx, y: y0, w: gw, h: rows[0] - 14 }, { x: [0, T], y: [0, ymax], xTicks: [], yTicks: [0, ymax / 2, ymax], yFmt: function (v) { return v.toFixed(1); }, series: [{ data: ser(res.v, res._vmin), color: p.accent, width: 2.2, fill: BB.alpha(p.accent, 0.1) }] });
+      txt(ctx, "부피 L", gx + 4, y0 + 2, p.accent, 11, "left", "top", 600);
+      y0 += rows[0];
+      var c2 = BB.chart(ctx, { x: gx, y: y0, w: gw, h: rows[1] - 14 }, { x: [0, T], y: [-fmax, fmax], xTicks: [], yTicks: [-fmax, 0, fmax], yFmt: function (v) { return v.toFixed(1); }, series: [{ data: ser(res.flow), color: p.ok, width: 2.2 }] });
+      txt(ctx, "흐름 L/s (+ 들숨)", gx + 4, y0 + 2, p.ok, 11, "left", "top", 600);
+      y0 += rows[1];
+      var c3 = BB.chart(ctx, { x: gx, y: y0, w: gw, h: rows[2] - 22 }, { x: [0, T], y: [pmin, pmax], yTicks: [pmin, 0, pmax].filter(function (v, k, a) { return a.indexOf(v) === k; }), xFmt: function (v) { return v.toFixed(1); }, xTicks: [0, T / 2, T], hlines: [{ y: 0, color: p.faint }], series: [{ data: ser(res.ppl), color: p.accent2, width: 2.2 }, { data: ser(res.palv), color: p.warn, width: 2.2 }] });
+      txt(ctx, "압력 cmH₂O", gx + 4, y0 + 2, p.dim, 11, "left", "top", 600);
+      txt(ctx, "시간(s)", gx + gw, y0 + rows[2] - 4, p.faint, 10.5, "right", "top");
+      // 흡기 구간 띠와 커서
+      [c1, c2, c3].forEach(function (c) {
+        ctx.fillStyle = BB.alpha(p.ok, 0.07); ctx.fillRect(c.box.x, c.box.y, c.X(res._ti) - c.box.x, c.box.h);
+        ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(c.X(tc), c.box.y); ctx.lineTo(c.X(tc), c.box.y + c.box.h); ctx.stroke();
+      });
+      txt(ctx, "들숨", c1.X(res._ti / 2), c1.box.y + c1.box.h - 4, p.ok, 10.5, "center", "bottom");
+      if (res.tau * 3 > res._ti) txt(ctx, "시간 상수가 길어 다 채우기 전에 내쉰다", gx + gw, gy + rows[0] - 14 - 4, p.bad, 11.5, "right", "bottom", 700);
+    }, { get height() { return wOf("lm-cv") < 560 ? 640 : 360; } });
+    BB.loop(document.getElementById("sim-lu-mech"), function (dt) {
+      t += dt;
+      var T = res.T, n = res.t.length, i = Math.min(n - 1, Math.floor(((t % T) / T) * n));
+      phase += res.flow[i] * dt * 90;
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 2. 폐 부피 지도 */
+  (function () {
+    var L = DAON, t = 0, cv = null;
+    function calc() {
+      L = BD.lungVolumes(getH(), getA(), getS());
+      BB.stat("lv-o-tlc", f2(L.tlc) + "<small>L</small>");
+      BB.stat("lv-o-vc", f2(L.vc) + "<small>L</small>");
+      BB.stat("lv-o-frc", f2(L.frc) + "<small>L</small>");
+      BB.stat("lv-o-rv", f2(L.rv) + "<small>L</small>");
+      if (cv) cv.redraw();
+    }
+    var getH = BB.range("lv-h", function (v) { return v + " cm"; }, calc);
+    var getA = BB.range("lv-a", function (v) { return v + "세"; }, calc);
+    var getS = BB.seg("lv-sex", calc);
+    calc();
+    function sm(u) { u = BB.clamp(u, 0, 1); return (1 - Math.cos(Math.PI * u)) / 2; }
+    function vol(tt) {
+      var q = function (x) { return L.frc + L.vt * 0.5 * (1 - Math.cos((2 * Math.PI * x) / 5)); };
+      if (tt < 15) return q(tt);
+      if (tt < 19) return L.frc + (L.tlc - L.frc) * sm((tt - 15) / 4);
+      if (tt < 20) return L.tlc;
+      if (tt < 26) { var u = (tt - 20) / 6; return L.rv + (L.tlc - L.rv) * Math.exp(-4.2 * u) * (1 - u) + 0 * u; }
+      if (tt < 29) return L.rv + (L.frc - L.rv) * sm((tt - 26) / 3);
+      return q(tt - 29);
+    }
+    var TT = 34;
+    cv = BB.canvas("#lv-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, ymax = 8;
+      var tc = Math.min(TT, t % (TT + 4));
+      var box = narrow ? { x: 40, y: 16, w: w - 56, h: 220 } : { x: 58, y: 16, w: w * 0.56 - 70, h: h - 56 };
+      var c = BB.chart(ctx, box, { x: [0, TT], y: [0, ymax], xLabel: "시간(s)", yLabel: narrow ? null : "폐 부피(L)", yTicks: [0, 2, 4, 6, 8], xTicks: [0, 10, 20, 30],
+        bands: [] });
+      // 잔기량 빗금
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, c.Y(L.rv), box.w, c.Y(0) - c.Y(L.rv)); ctx.clip();
+      ctx.strokeStyle = BB.alpha(p.dim, 0.3); ctx.lineWidth = 1;
+      for (var k = -400; k < box.w + 400; k += 9) { ctx.beginPath(); ctx.moveTo(box.x + k, c.Y(0)); ctx.lineTo(box.x + k + 60, c.Y(L.rv) - 60); ctx.stroke(); }
+      ctx.restore();
+      txt(ctx, "잔기량: 폐활량계로 잴 수 없다", box.x + 6, c.Y(L.rv / 2), p.dim, 11, "left", "middle");
+      // 기준선
+      [[L.tlc, "TLC"], [L.frc, "FRC"], [L.rv, "RV"]].forEach(function (q) {
+        ctx.strokeStyle = BB.alpha(p.text, 0.25); ctx.setLineDash([3, 4]); ctx.beginPath(); ctx.moveTo(box.x, c.Y(q[0])); ctx.lineTo(narrow ? box.x + box.w : w * 0.56 + 30, c.Y(q[0])); ctx.stroke(); ctx.setLineDash([]);
+      });
+      // 펜 궤적
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 2.4; ctx.beginPath();
+      for (var tt = 0; tt <= tc; tt += 0.05) { var x = c.X(tt), y = c.Y(vol(tt)); tt ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      ctx.stroke();
+      handle(ctx, c.X(tc), c.Y(vol(tc)), p.accent, 5);
+      // 구간 표시
+      ctx.font = BB.font(10.5);
+      if (tc > 4) txt(ctx, "조용한 숨", c.X(7.5), c.Y(L.frc + L.vt) - 8, p.dim, 10.5, "center", "bottom");
+      if (tc > 18) txt(ctx, "최대 흡기", c.X(17), c.Y(L.tlc) - 6, p.dim, 10.5, "center", "bottom");
+      if (tc > 24) txt(ctx, "최대 호기", c.X(23.5), c.Y(L.rv) - 6, p.dim, 10.5, "left", "bottom");
+      // 막대
+      var segs = [
+        { a: 0, b: L.rv, col: BB.alpha(p.dim, 0.35), k: "RV", name: "잔기량" },
+        { a: L.rv, b: L.frc, col: BB.alpha(p.accent2, 0.6), k: "ERV", name: "날숨 예비량" },
+        { a: L.frc, b: L.frc + L.vt, col: BB.alpha(p.accent, 0.85), k: "VT", name: "1회 호흡량" },
+        { a: L.frc + L.vt, b: L.tlc, col: BB.alpha(p.ok, 0.5), k: "IRV", name: "들숨 예비량" },
+      ];
+      if (!narrow) {
+        var bx = w * 0.56 + 30, bw = 58;
+        segs.forEach(function (sg) {
+          var y1 = c.Y(sg.b), y0 = c.Y(sg.a), my = (y0 + y1) / 2;
+          ctx.fillStyle = sg.col; ctx.fillRect(bx, y1, bw, y0 - y1);
+          ctx.strokeStyle = p.bg; ctx.lineWidth = 1; ctx.strokeRect(bx, y1, bw, y0 - y1);
+          if (y0 - y1 > 30) { txt(ctx, sg.k, bx + bw / 2, my - 7, p.text, 11, "center", "middle", 700, true); txt(ctx, f2(sg.b - sg.a), bx + bw / 2, my + 8, p.text, 10.5, "center", "middle", 400, true); }
+          else txt(ctx, sg.k + " " + f2(sg.b - sg.a), bx + bw / 2, my, p.text, 9.5, "center", "middle", 700, true);
+        });
+        function brk(x, a, b, label, col, top) {
+          ctx.strokeStyle = col; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x - 4, c.Y(b)); ctx.lineTo(x, c.Y(b)); ctx.lineTo(x, c.Y(a)); ctx.lineTo(x - 4, c.Y(a)); ctx.stroke();
+          if (top) { txt(ctx, label + " " + f2(b - a), x, c.Y(b) - 6, col, 11, "center", "bottom", 700); return; }
+          txt(ctx, label, x + 5, (c.Y(a) + c.Y(b)) / 2 - 7, col, 11, "left", "middle", 700);
+          txt(ctx, f2(b - a), x + 5, (c.Y(a) + c.Y(b)) / 2 + 8, col, 11, "left", "middle", 600, true);
+        }
+        brk(bx + bw + 12, L.rv, L.tlc, "VC", p.accent);
+        brk(bx + bw + 60, 0, L.frc, "FRC", p.accent2);
+        brk(bx + bw + 108, 0, L.tlc, "TLC", p.text, true);
+      } else {
+        // 좁은 화면: 가로 막대
+        var hb = { x: 16, y: box.y + box.h + 76, w: w - 32, h: 30 };
+        var X = function (v) { return hb.x + (v / L.tlc) * hb.w; };
+        txt(ctx, "같은 부피를 가로 막대로(L)", hb.x, hb.y - 34, p.dim, 11, "left", "bottom", 600);
+        segs.forEach(function (sg) {
+          ctx.fillStyle = sg.col; ctx.fillRect(X(sg.a), hb.y, X(sg.b) - X(sg.a), hb.h);
+          ctx.strokeStyle = p.bg; ctx.strokeRect(X(sg.a), hb.y, X(sg.b) - X(sg.a), hb.h);
+          txt(ctx, sg.k, (X(sg.a) + X(sg.b)) / 2, hb.y + hb.h / 2, p.text, 10.5, "center", "middle", 700, true);
+          txt(ctx, f2(sg.b - sg.a), (X(sg.a) + X(sg.b)) / 2, hb.y + hb.h + 12, p.dim, 10, "center", "middle", 400, true);
+        });
+        function hbr(a, b, y, label, col) {
+          ctx.strokeStyle = col; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(X(a), y + 4); ctx.lineTo(X(a), y); ctx.lineTo(X(b), y); ctx.lineTo(X(b), y + 4); ctx.stroke();
+          txt(ctx, label, (X(a) + X(b)) / 2, y - 3, col, 11, "center", "bottom", 700);
+        }
+        hbr(L.rv, L.tlc, hb.y - 6, "VC " + f2(L.vc), p.accent);
+        hbr(0, L.frc, hb.y + hb.h + 34, "", p.accent2);
+        txt(ctx, "FRC " + f2(L.frc), (X(0) + X(L.frc)) / 2, hb.y + hb.h + 50, p.accent2, 11, "center", "middle", 700);
+        hbr(0, L.tlc, hb.y + hb.h + 66, "", p.text);
+        txt(ctx, "TLC " + f2(L.tlc), (X(0) + X(L.tlc)) / 2 + 40, hb.y + hb.h + 82, p.text, 11, "center", "middle", 700);
+      }
+    }, { get height() { return wOf("lv-cv") < 560 ? 450 : 340; } });
+    BB.loop(document.getElementById("sim-lu-vol"), function (dt) { t += dt * 1.6; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 3. 강제 호기 */
+  (function () {
+    var base = BD.spirometry({ fvc: DAON.vc }), res = base, t = 0, cv = null;
+    function calc() {
+      res = BD.spirometry({ fvc: DAON.vc, kind: getK(), severity: getSv() });
+      var bad = res.ratio < 0.7;
+      BB.stat("lf-o-fev1", f2(res.fev1) + "<small>L</small>");
+      BB.stat("lf-o-fvc", f2(res.fvc) + "<small>L</small>");
+      BB.stat("lf-o-r", '<span class="' + (bad ? "bad-t" : "ok-t") + '">' + f2(res.ratio) + "</span>");
+      BB.stat("lf-o-pef", f1(res.pef) + "<small>L/s</small>");
+      t = 0;
+      if (cv) cv.redraw();
+    }
+    var getK = BB.seg("lf-kind", calc);
+    var getSv = BB.range("lf-s", function (v) { return Math.round(v * 100) + "%"; }, calc);
+    document.getElementById("lf-go").addEventListener("click", function () { t = 0; });
+    calc();
+    function loopPts(r) {
+      var ex = [], pif = 1.2 * r.fvc;
+      for (var k = 0; k < r.t.length; k++) ex.push([r.v[k], r.flow[k]]);
+      var ins = [];
+      for (var q = 0; q <= 40; q++) { var th = (q / 40) * Math.PI; ins.push([r.fvc * (1 - q / 40), -pif * Math.sin(th)]); }
+      return { ex: ex, ins: ins };
+    }
+    cv = BB.canvas("#lf-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, tc = Math.min(6, t);
+      var b1 = narrow ? { x: 42, y: 22, w: w - 58, h: 170 } : { x: 46, y: 22, w: w * 0.45 - 56, h: h - 116 };
+      var b2 = narrow ? { x: 42, y: 254, w: w - 58, h: 190 } : { x: w * 0.45 + 46, y: 22, w: w * 0.55 - 60, h: h - 116 };
+      // 부피-시간
+      var kk = 0; while (kk < res.t.length - 1 && res.t[kk] <= tc) kk++;
+      var vtSer = [], vtBase = [];
+      for (var k = 0; k < res.t.length; k++) { vtBase.push([base.t[k], base.v[k]]); if (k <= kk) vtSer.push([res.t[k], res.v[k]]); }
+      var c1 = BB.chart(ctx, b1, { x: [0, 6], y: [0, 6], xLabel: narrow ? null : "시간(s)", yTicks: [0, 2, 4, 6], xTicks: [0, 1, 2, 3, 4, 5, 6],
+        vlines: [{ x: 1, color: p.dim, label: "1초" }],
+        series: [{ data: vtBase, color: BB.alpha(p.dim, 0.5), width: 1.5, dash: [5, 4] }, { data: vtSer, color: p.accent, width: 2.6 }] });
+      txt(ctx, "내쉰 부피(L)", b1.x, b1.y - 6, p.dim, 11, "left", "bottom", 600);
+      if (narrow) txt(ctx, "시간(s)", b1.x + b1.w, b1.y + b1.h + 20, p.faint, 10.5, "right", "top");
+      if (tc >= 1) {
+        ctx.strokeStyle = p.accent; ctx.setLineDash([2, 3]); ctx.beginPath(); ctx.moveTo(b1.x, c1.Y(res.fev1)); ctx.lineTo(c1.X(1), c1.Y(res.fev1)); ctx.stroke(); ctx.setLineDash([]);
+        txt(ctx, "FEV1 " + f2(res.fev1), c1.X(1) + 6, c1.Y(res.fev1) + 4, p.accent, 11.5, "left", "top", 700);
+      }
+      if (tc >= 5.9) { ctx.strokeStyle = p.text; ctx.setLineDash([5, 3]); ctx.beginPath(); ctx.moveTo(b1.x, c1.Y(res.fvc)); ctx.lineTo(b1.x + b1.w, c1.Y(res.fvc)); ctx.stroke(); ctx.setLineDash([]); txt(ctx, "FVC " + f2(res.fvc), b1.x + b1.w - 4, c1.Y(res.fvc) - 4, p.text, 11.5, "right", "bottom", 700); }
+      handle(ctx, c1.X(res.t[kk]), c1.Y(res.v[kk]), p.accent, 5);
+      // 흐름-부피
+      var Lb = loopPts(base), Lr = loopPts(res);
+      var exNow = Lr.ex.slice(0, kk + 1);
+      var c2 = BB.chart(ctx, b2, { x: [0, 6], y: [-8, 12], xLabel: "내쉰 부피(L)", yTicks: [-8, -4, 0, 4, 8, 12], hlines: [{ y: 0, color: p.faint }],
+        series: [{ data: Lb.ex.concat(Lb.ins), color: BB.alpha(p.dim, 0.5), width: 1.5, dash: [5, 4] }, { data: exNow, color: p.accent, width: 2.6, fill: BB.alpha(p.accent, 0.08) }].concat(tc >= 5.9 ? [{ data: Lr.ins, color: p.accent2, width: 2.2 }] : []) });
+      txt(ctx, "흐름(L/s)  위: 날숨 · 아래: 들숨", b2.x, b2.y - 6, p.dim, 11, "left", "bottom", 600);
+      var ipk = 0; for (var q = 1; q < res.flow.length; q++) if (res.flow[q] > res.flow[ipk]) ipk = q;
+      if (kk >= ipk) { var px = c2.X(res.v[ipk]), py = c2.Y(res.pef); ctx.fillStyle = p.accent; ctx.beginPath(); ctx.arc(px, py, 4, 0, Math.PI * 2); ctx.fill(); txt(ctx, "최고 유량 " + f1(res.pef), px + 7, py - 2, p.accent, 11, "left", "bottom", 700); }
+      // 비율 막대
+      var rb = { x: narrow ? 42 : 46, y: h - 44, w: (narrow ? w - 58 : w - 106), h: 14 };
+      var RX = function (v) { return rb.x + ((v - 0.3) / 0.7) * rb.w; };
+      ctx.fillStyle = BB.alpha(p.bad, 0.18); ctx.fillRect(rb.x, rb.y, RX(0.7) - rb.x, rb.h);
+      ctx.fillStyle = BB.alpha(p.ok, 0.18); ctx.fillRect(RX(0.7), rb.y, rb.x + rb.w - RX(0.7), rb.h);
+      ctx.strokeStyle = p.bad; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(RX(0.7), rb.y - 6); ctx.lineTo(RX(0.7), rb.y + rb.h + 4); ctx.stroke();
+      [0.3, 0.5, 0.7, 0.9, 1.0].forEach(function (v) { txt(ctx, v.toFixed(1), RX(v), rb.y + rb.h + 4, p.faint, 10, "center", "top", 400, true); });
+      var shown = tc >= 1.05;
+      if (shown) {
+        var rr = Math.min(res.ratio, 1), col = res.ratio < 0.7 ? p.bad : p.ok;
+        ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(RX(rr), rb.y + rb.h); ctx.lineTo(RX(rr) - 7, rb.y - 7); ctx.lineTo(RX(rr) + 7, rb.y - 7); ctx.closePath(); ctx.fill();
+        txt(ctx, "FEV1/FVC " + f2(res.ratio) + (res.ratio < 0.7 ? " · 폐쇄성" : res.fvc < 0.8 * DAON.vc ? " · FVC 감소(제한성 의심)" : " · 정상 범위"), RX(Math.max(0.42, Math.min(0.72, rr))), rb.y - 10, col, 12, "center", "bottom", 700);
+      } else txt(ctx, "FEV1/FVC: 1초가 지나면 나온다", rb.x + rb.w / 2, rb.y - 10, p.dim, 11.5, "center", "bottom");
+    }, { get height() { return wOf("lf-cv") < 560 ? 560 : 360; } });
+    BB.loop(document.getElementById("sim-lu-fev"), function (dt) { if (t < 7.5) { t += dt * 1.2; cv.redraw(); } else t = 0; });
+  })();
+
+  /* ---------------------------------------------------------- 4. 압력-부피 곡선 */
+  (function () {
+    var pc = 5, lay = null, cv = null;
+    var O = { rv: DAON.rv, tlc: DAON.tlc };
+    function opt(dir) { return { rv: O.rv, tlc: O.tlc, medium: getM(), surfactant: getS(), dir: dir }; }
+    function vin(pp) { return BD.lungPV(pp, opt("in")); }
+    function vout(pp) { return BD.lungPV(pp, opt("out")); }
+    function upd() {
+      var v = vin(pc), cmp = (vin(pc + 0.25) - vin(pc - 0.25)) / 0.5;
+      BB.stat("lp-o-p", f1(pc) + "<small>cmH₂O</small>");
+      BB.stat("lp-o-v", f2(v) + "<small>L</small>");
+      BB.stat("lp-o-c", cmp.toFixed(3) + "<small>L/cmH₂O</small>");
+      if (cv) cv.redraw();
+    }
+    var getM = BB.seg("lp-med", upd);
+    var getS = BB.range("lp-s", function (v) { return Math.round(v * 100) + "%"; }, upd);
+    document.getElementById("lp-hy").addEventListener("change", upd);
+    cv = BB.canvas("#lp-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var box = { x: narrow ? 44 : 54, y: 16, w: w - (narrow ? 58 : 72), h: h - 58 };
+      var hy = document.getElementById("lp-hy").checked && getM() === "air";
+      var ps = BD.linspace(0, 35, 141);
+      var inn = ps.map(function (q) { return [q, vin(q)]; }), out = ps.map(function (q) { return [q, vout(q)]; });
+      var norm = ps.map(function (q) { return [q, BD.lungPV(q, { rv: O.rv, tlc: O.tlc })]; });
+      var c = BB.chart(ctx, box, { x: [0, 35], y: [0, 8], xLabel: "경폐압(cmH₂O)", yLabel: narrow ? null : "폐 부피(L)", series: [{ data: norm, color: BB.alpha(p.dim, 0.55), width: 1.4, dash: [5, 4] }] });
+      if (narrow) txt(ctx, "폐 부피(L)", box.x + 4, box.y + 2, p.dim, 11, "left", "top");
+      if (hy) {
+        ctx.fillStyle = BB.alpha(p.accent2, 0.1); ctx.beginPath();
+        inn.forEach(function (q, k) { k ? ctx.lineTo(c.X(q[0]), c.Y(q[1])) : ctx.moveTo(c.X(q[0]), c.Y(q[1])); });
+        for (var k = out.length - 1; k >= 0; k--) ctx.lineTo(c.X(out[k][0]), c.Y(out[k][1]));
+        ctx.closePath(); ctx.fill();
+        BB.chart(ctx, box, { x: [0, 35], y: [0, 8], xTicks: [], yTicks: [], series: [{ data: out, color: p.accent2, width: 2.4 }] });
+        var hm = 13; txt(ctx, "히스테리시스", c.X(hm) + 6, c.Y((vin(hm) + vout(hm)) / 2) + 14, p.accent2, 11, "left", "middle", 600);
+      }
+      BB.chart(ctx, box, { x: [0, 35], y: [0, 8], xTicks: [], yTicks: [], series: [{ data: inn, color: p.accent, width: 2.8 }] });
+      // TLC, RV
+      ctx.strokeStyle = BB.alpha(p.text, 0.2); ctx.setLineDash([3, 4]);
+      [O.tlc, O.rv].forEach(function (v) { ctx.beginPath(); ctx.moveTo(box.x, c.Y(v)); ctx.lineTo(box.x + box.w, c.Y(v)); ctx.stroke(); });
+      ctx.setLineDash([]);
+      txt(ctx, "총폐용량", box.x + box.w - 4, c.Y(O.tlc) - 3, p.faint, 10.5, "right", "bottom");
+      // 접선
+      var v = vin(pc), cmp = (vin(pc + 0.25) - vin(pc - 0.25)) / 0.5, dp = 4;
+      ctx.strokeStyle = p.bad; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(c.X(pc - dp), c.Y(v - cmp * dp)); ctx.lineTo(c.X(pc + dp), c.Y(v + cmp * dp)); ctx.stroke();
+      ctx.strokeStyle = BB.alpha(p.text, 0.35); ctx.setLineDash([2, 3]); ctx.beginPath(); ctx.moveTo(c.X(pc), c.Y(0)); ctx.lineTo(c.X(pc), c.Y(v)); ctx.lineTo(box.x, c.Y(v)); ctx.stroke(); ctx.setLineDash([]);
+      handle(ctx, c.X(pc), c.Y(v), p.accent, 7);
+      var lx = c.X(pc) + 12, right = lx > box.x + box.w - 150;
+      txt(ctx, "기울기 " + cmp.toFixed(2) + " L/cmH₂O", right ? c.X(pc) - 12 : lx, c.Y(v) + 18, p.bad, 12, right ? "right" : "left", "top", 700);
+      // 풍선 아이콘
+      var r0 = Math.min(34, box.h * 0.12), rr = r0 * Math.cbrt(v / O.tlc);
+      var bx = box.x + box.w - r0 - (narrow ? 70 : 90), by = box.y + box.h - r0 - 14;
+      ctx.fillStyle = BB.alpha(getM() === "air" ? p.accent : BB.color("water"), 0.25); ctx.strokeStyle = getM() === "air" ? p.accent : BB.color("water"); ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.arc(bx, by, rr, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      txt(ctx, getM() === "air" ? "공기" : "식염수", bx + r0 + 8, by - 6, p.dim, 11, "left", "middle", 600);
+      txt(ctx, f2(v) + " L", bx + r0 + 8, by + 9, p.text, 12, "left", "middle", 700, true);
+      if (getM() === "air" && getS() < 0.3) txt(ctx, "표면활성제 부족: 같은 부피에 훨씬 큰 압력", box.x + box.w - 4, box.y + 30, p.bad, 12, "right", "top", 700);
+      lay = c;
+    }, { aspect: 0.62, minHeight: 300, maxHeight: 400 });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; pc = BB.clamp((x - lay.box.x) / lay.box.w * 35, 0.5, 34.5); upd(); } });
+    upd();
+  })();
+
+  /* ---------------------------------------------------------- 5. 라플라스: 두 폐포 */
+  (function () {
+    var r1, r2, u0, run = true, collapsed = false, lay = null, phase = 0, flowDir = 0, cv = null, dragging = false;
+    var surf = document.getElementById("ll-s");
+    function tension(r) { return surf.checked ? 2 + 48 * Math.min(1, Math.pow(r / 140, 2)) : 50; }
+    function reset(a) { r1 = a || 50; r2 = 100; u0 = Math.pow(r1, 3) + Math.pow(r2, 3); collapsed = false; run = true; stat(); }
+    function pr(r) { return r <= 0 ? 0 : BD.laplace(tension(r), r); }
+    function stat() {
+      BB.stat("ll-o-1", collapsed ? '<span class="bad-t">0 µm · 허탈</span>' : Math.round(r1) + " µm · " + f1(pr(r1)) + "<small>cmH₂O</small>");
+      BB.stat("ll-o-2", Math.round(r2) + " µm · " + f1(pr(r2)) + "<small>cmH₂O</small>");
+      var st = collapsed ? '<span class="bad-t">작은 폐포가 찌그러졌다</span>' : Math.abs(r1 - r2) < 1.5 ? '<span class="ok-t">같은 크기로 안정</span>' : (pr(r1) > pr(r2) ? "작은 쪽 → 큰 쪽으로 빠진다" : "큰 쪽 → 작은 쪽으로 채운다");
+      BB.stat("ll-o-st", st);
+    }
+    reset();
+    surf.addEventListener("change", function () { reset(r1 > 5 && !collapsed ? r1 : 50); });
+    document.getElementById("ll-go").addEventListener("click", function () { reset(50); });
+    function step(dt) {
+      if (!run || collapsed || dragging) { flowDir = 0; return; }
+      for (var k = 0; k < 10; k++) {
+        var d = pr(r1) - pr(r2);
+        var du = -9000 * d * dt / 10;
+        var u1 = Math.pow(r1, 3) + du;
+        if (u1 <= Math.pow(6, 3)) { collapsed = true; r1 = 0; r2 = Math.cbrt(u0); break; }
+        if (u1 >= u0 - 216) { u1 = u0 - 216; }
+        r1 = Math.cbrt(u1); r2 = Math.cbrt(Math.max(216, u0 - u1));
+        flowDir = Math.abs(d) < 0.02 ? 0 : d > 0 ? 1 : -1;
+      }
+      if (Math.abs(r1 - r2) < 0.3) { r1 = r2 = Math.cbrt(u0 / 2); flowDir = 0; }
+      phase += dt * 30 * Math.min(4, Math.abs(pr(r1) - pr(r2)) + 0.5);
+      stat();
+    }
+    cv = BB.canvas("#ll-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 460;
+      var sc = Math.min(w * 0.17, h * 0.25) / 130;   // px per µm
+      var cy = h * 0.47, x1 = w * 0.27, x2 = w * 0.7, jy = h * 0.14;
+      var R1 = r1 * sc, R2 = r2 * sc;
+      // 관
+      var air = BB.color("o2");
+      ctx.strokeStyle = BB.alpha(p.dim, 0.5); ctx.lineWidth = 9; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(x1, cy - Math.max(R1, 6)); ctx.lineTo(x1, jy); ctx.lineTo(x2, jy); ctx.lineTo(x2, cy - R2); ctx.stroke(); ctx.lineCap = "butt";
+      ctx.strokeStyle = BB.alpha(p.dim, 0.4); ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo((x1 + x2) / 2, jy); ctx.lineTo((x1 + x2) / 2, 4); ctx.stroke();
+      txt(ctx, "세기관지(입구는 닫아 둠)", (x1 + x2) / 2 + 8, 10, p.faint, 10.5, "left", "top");
+      if (flowDir !== 0) {
+        var path = [[x1, cy - Math.max(R1, 6)], [x1, jy], [x2, jy], [x2, cy - R2]];
+        if (flowDir < 0) path = path.reverse();
+        BD.flowDots(ctx, path, phase, { color: p.ok, gap: 13, r: 3 });
+      }
+      // 폐포
+      function alv(x, R, r, label) {
+        if (r <= 0) {
+          ctx.strokeStyle = p.bad; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x - 16, cy); ctx.quadraticCurveTo(x, cy - 6, x + 16, cy); ctx.stroke();
+          txt(ctx, "허탈", x, cy + 18, p.bad, 13, "center", "top", 700);
+          return;
+        }
+        var T = tension(r);
+        ctx.fillStyle = BB.alpha(p.accent, 0.18); ctx.strokeStyle = p.accent; ctx.lineWidth = 2.4 + T / 25;
+        ctx.beginPath(); ctx.arc(x, cy, R, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        // 안쪽으로 당기는 화살표(압력에 비례)
+        var a = Math.min(R * 0.7, 6 + pr(r) * 1.6);
+        [0, Math.PI / 2, Math.PI, 1.5 * Math.PI].forEach(function (th) {
+          var ox = x + Math.cos(th) * R, oy = cy + Math.sin(th) * R;
+          arrow(ctx, ox, oy, ox - Math.cos(th) * a, oy - Math.sin(th) * a, BB.alpha(p.accent2, 0.85), 1.8, 7);
+        });
+        txt(ctx, label, x, cy + R + 8, p.text, 12, "center", "top", 700);
+        txt(ctx, f1(pr(r)) + " cmH₂O", x, cy + R + 24, p.accent2, 12.5, "center", "top", 700, true);
+        txt(ctx, Math.round(r) + " µm · T " + Math.round(T), x, cy + R + 41, p.dim, 11, "center", "top", 400, true);
+      }
+      alv(x1, R1, r1, "작은 폐포");
+      alv(x2, R2, r2, "큰 폐포");
+      if (r1 > 0) handle(ctx, x1 + R1, cy, p.accent, 6.5);
+      txt(ctx, "공기", x2, cy, BB.alpha(p.accent, 0.8), 12, "center", "middle", 600);
+      lay = { x1: x1, cy: cy, sc: sc };
+      txt(ctx, surf.checked ? "표면활성제: 작아질수록 표면장력(T)이 낮아진다" : "표면장력 T = 50 dyn/cm로 일정", 10, h - 8, surf.checked ? p.ok : p.warn, narrow ? 10.5 : 11.5, "left", "bottom", 600);
+    }, { aspect: 0.6, minHeight: 330, maxHeight: 380 });
+    BB.drag(cv.canvas, {
+      start: function (x, y) { if (!lay) return; dragging = Math.abs(y - lay.cy) < 60 && x < lay.x1 + 160 / 1; },
+      move: function (x) { if (!lay || !dragging) return; var r = BB.clamp((x - lay.x1) / lay.sc, 20, 125); reset(r); dragging = true; cv.redraw(); },
+      end: function () { dragging = false; },
+    });
+    BB.loop(document.getElementById("sim-lu-lap"), function (dt) { step(dt * 0.35); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 6. 기도 저항 */
+  (function () {
+    var rf = 1, lay = null, cv = null, t = 0;
+    var mucus = document.getElementById("la-mu");
+    function eff() { return rf * (mucus.checked ? 0.85 : 1); }
+    function Rof(f) { return 2 * Math.pow(1 / f, 4); }
+    var b0 = BD.breath({ c: 0.2, r: 2 }), cache = {};
+    function br(R) { var k = R.toFixed(2); return cache[k] || (cache[k] = BD.breath({ c: 0.2, r: R })); }
+    function needF(R) {
+      // 0.5 L를 얻는 근육 압력 배수(이분법)
+      var lo = 1, hi = 40;
+      for (var k = 0; k < 18; k++) { var m = (lo + hi) / 2; if (BD.breath({ c: 0.2, r: R, vt: 0.5 * m, cycles: 2 }).vt < b0.vt) lo = m; else hi = m; }
+      return (lo + hi) / 2;
+    }
+    var needCache = {};
+    function upd() {
+      var f = eff(), R = Rof(f), b = br(R);
+      var k = R.toFixed(2), nf = needCache[k] || (needCache[k] = needF(R));
+      BB.stat("la-o-r", "×" + f2(f));
+      BB.stat("la-o-R", f1(R) + "<small>cmH₂O·s/L (×" + f1(R / 2) + ")</small>");
+      BB.stat("la-o-vt", Math.round(b.vt * 1000) + "<small>mL</small>");
+      BB.stat("la-o-w", "×" + f1(nf));
+      if (cv) cv.redraw();
+    }
+    var getPre = BB.seg("la-pre", function (v) { rf = +v; upd(); });
+    mucus.addEventListener("change", upd);
+    cv = BB.canvas("#la-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, f = eff(), R = Rof(f), b = br(R);
+      var Rr = narrow ? Math.min(w * 0.27, 92) : Math.min(h * 0.36, w * 0.17);
+      var cx = narrow ? w / 2 : w * 0.22, cy = narrow ? Rr + 22 : h * 0.48;
+      var musc = BB.color("seg-musc");
+      var outer = Rr, smo = Rr * 0.8, lumen0 = Rr * 0.58, lum = lumen0 * rf, lumEff = lumen0 * f;
+      // 바깥 벽(연골)
+      ctx.fillStyle = BB.alpha(p.dim, 0.18); ctx.beginPath(); ctx.arc(cx, cy, outer, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = BB.alpha(p.dim, 0.5); ctx.lineWidth = 1.5; ctx.stroke();
+      // 민무늬근: 조일수록 두껍게
+      var tk = 6 + (1 - rf) * 26;
+      ctx.strokeStyle = BB.alpha(musc, 0.8); ctx.lineWidth = Math.max(4, tk);
+      ctx.beginPath(); ctx.arc(cx, cy, Math.max(lum + tk / 2 + 6, smo - (1 - rf) * 10), 0, Math.PI * 2); ctx.stroke();
+      // 점막
+      ctx.fillStyle = BB.alpha(BB.color("art"), 0.25); ctx.beginPath(); ctx.arc(cx, cy, lum + 6 + (1 - rf) * 10, 0, Math.PI * 2); ctx.fill();
+      // 내강
+      ctx.fillStyle = p.bg; ctx.beginPath(); ctx.arc(cx, cy, lum, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = BB.alpha(p.accent, 0.25); ctx.fill();
+      if (mucus.checked) {
+        ctx.fillStyle = BB.alpha(BB.color("fat"), 0.7);
+        ctx.beginPath(); ctx.arc(cx, cy, lum, 0.2 * Math.PI, 0.85 * Math.PI); ctx.arc(cx, cy, lumEff, 0.85 * Math.PI, 0.2 * Math.PI, true); ctx.closePath(); ctx.fill();
+      }
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, lum, 0, Math.PI * 2); ctx.stroke();
+      handle(ctx, cx + lum, cy, p.accent, 7);
+      txt(ctx, "공기 길", cx, cy, p.accent, 11.5, "center", "middle", 700);
+      txt(ctx, "민무늬근", cx - outer * 0.72, cy - outer * 0.95, musc, 11, "center", "bottom", 600);
+      if (mucus.checked) txt(ctx, "점액", cx, cy + lum * 0.7, p.text, 10.5, "center", "middle", 600);
+      // 저항 곡선
+      var gb = narrow ? { x: 46, y: cy + Rr + 34, w: w - 62, h: 170 } : { x: w * 0.46, y: 18, w: w * 0.54 - 18, h: h * 0.52 };
+      var fs = BD.linspace(0.4, 1.15, 80).map(function (q) { return [q, Rof(q)]; });
+      var c = BB.chart(ctx, gb, { x: [0.4, 1.15], y: [0.5, 100], logY: true, xTicks: [0.4, 0.6, 0.8, 1.0], xFmt: function (v) { return "×" + v.toFixed(1); }, yFmt: function (v) { return String(v); },
+        series: [{ data: fs, color: p.accent, width: 2.4 }], vlines: [{ x: 1, color: p.faint }] });
+      txt(ctx, "기도 저항(log) cmH₂O·s/L", gb.x + 4, gb.y + 2, p.dim, 11, "left", "top", 600);
+      txt(ctx, "반지름(평소 대비)", gb.x + gb.w, gb.y + gb.h + 20, p.faint, 10.5, "right", "top");
+      ctx.fillStyle = p.bad; ctx.beginPath(); ctx.arc(c.X(BB.clamp(f, 0.4, 1.15)), c.Y(R), 6, 0, Math.PI * 2); ctx.fill();
+      txt(ctx, "×" + f1(R / 2) + " 저항", c.X(BB.clamp(f, 0.4, 1.15)) + 9, c.Y(R) - 4, p.bad, 12, "left", "bottom", 700);
+      // 같은 힘의 숨
+      var tb = narrow ? { x: 46, y: gb.y + gb.h + 60, w: w - 62, h: h - (gb.y + gb.h + 60) - 34 } : { x: w * 0.46, y: h * 0.52 + 76, w: w * 0.54 - 18, h: h * 0.48 - 110 };
+      var T = b.T, ser = [], ser0 = [], vm = Math.min.apply(null, b.v), vm0 = Math.min.apply(null, b0.v);
+      for (var k = 0; k < b.t.length; k++) { ser.push([b.t[k], b.v[k] - vm]); ser0.push([b0.t[k], b0.v[k] - vm0]); }
+      BB.chart(ctx, tb, { x: [0, T], y: [0, 0.6], xTicks: [], yTicks: [0, 0.5], yFmt: function (v) { return v.toFixed(1); }, series: [{ data: ser0, color: BB.alpha(p.dim, 0.5), width: 1.4, dash: [4, 3] }, { data: ser, color: p.accent, width: 2.4, fill: BB.alpha(p.accent, 0.1) }] });
+      txt(ctx, "같은 근육 힘으로 들어오는 숨(L) · 점선: 평소", tb.x + 4, tb.y - 4, p.dim, 11, "left", "bottom", 600);
+      if (f < 0.75) txt(ctx, "쌕쌕거림(천명)", narrow ? cx + Rr + 6 : cx, narrow ? cy - Rr + 4 : cy + outer + 20, p.bad, 12, narrow ? "left" : "center", "top", 700);
+      lay = { cx: cx, cy: cy, l0: lumen0 };
+    }, { get height() { return wOf("la-cv") < 560 ? 560 : 340; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var d = Math.hypot(x - lay.cx, y - lay.cy); if (d > lay.l0 * 1.6) return; rf = BB.clamp(d / lay.l0, 0.42, 1.12); upd(); } });
+    upd();
+  })();
+
+  /* ---------------------------------------------------------- 7. 사강 */
+  (function () {
+    var VD = 0.15, t = 0, cv = null;
+    function vals() { var ve = getVE(), rr = getRR(), vt = ve / rr, va = Math.max(0, vt - VD) * rr; return { ve: ve, rr: rr, vt: vt, va: va, pc: BD.paco2(200, va) }; }
+    function upd() {
+      var v = vals();
+      BB.stat("ld-o-vt", Math.round(v.vt * 1000) + "<small>mL</small>");
+      BB.stat("ld-o-va", (v.va <= 0 ? '<span class="bad-t">0</span>' : f1(v.va)) + "<small>L/min</small>");
+      BB.stat("ld-o-f", Math.min(100, Math.round((VD / v.vt) * 100)) + "<small>%</small>");
+      BB.stat("ld-o-co2", v.va < 0.6 ? '<span class="bad-t">매우 높음</span>' : '<span class="' + (v.pc > 45 ? "bad-t" : "") + '">' + Math.round(v.pc) + "</span><small>mmHg</small>");
+      if (cv) cv.redraw();
+    }
+    var getVE = BB.range("ld-ve", function (v) { return v.toFixed(1) + " L/min"; }, upd);
+    var getRR = BB.range("ld-rr", function (v) { return v + "회/분"; }, upd);
+    cv = BB.canvas("#ld-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, v = vals();
+      var T = 60 / v.rr, tc = (t % T) / T, ti = 0.4;
+      // 지금까지 들이쉰 부피(0~VT)
+      var inh = tc < ti ? v.vt * (1 - Math.cos((Math.PI * tc) / ti)) / 2 : v.vt * (1 + Math.cos((Math.PI * (tc - ti)) / (1 - ti))) / 2;
+      var o2 = BB.color("o2"), co2 = BB.color("co2");
+      // 관 그림
+      var tx0 = 16, ty = narrow ? 70 : 96, tl = narrow ? w * 0.5 : w * 0.34, tw = 22;
+      var alvX = tx0 + tl, alvW = narrow ? w - alvX - 20 : w * 0.14, alvH = narrow ? 90 : 120;
+      txt(ctx, "입", tx0, ty - tw / 2 - 6, p.dim, 11, "left", "bottom");
+      txt(ctx, "기관·기관지 = 사강 150 mL", tx0 + tl / 2, ty - tw / 2 - 6, p.dim, 11, "center", "bottom", 600);
+      ctx.fillStyle = BB.alpha(co2, 0.35); ctx.fillRect(tx0, ty - tw / 2, tl, tw);
+      // 폐포 상자: 아래는 기존 공기(혼합), 위로 새 공기 몫
+      ctx.fillStyle = BB.alpha(co2, 0.18); BB.rrect(ctx, alvX, ty - alvH / 2, alvW, alvH, 14); ctx.fill();
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 1.6; BB.rrect(ctx, alvX, ty - alvH / 2, alvW, alvH, 14); ctx.stroke();
+      // 새 공기의 앞머리
+      var front = Math.min(1, inh / VD), xf = tx0 + front * tl;
+      ctx.fillStyle = BB.alpha(o2, 0.75); ctx.fillRect(tx0, ty - tw / 2, xf - tx0, tw);
+      var into = Math.max(0, inh - VD), frac = Math.min(1, into / 1.0);
+      if (into > 0) { ctx.fillStyle = BB.alpha(o2, 0.55); BB.rrect(ctx, alvX + 3, ty + alvH / 2 - 3 - frac * (alvH - 6), alvW - 6, frac * (alvH - 6), 10); ctx.fill(); }
+      ctx.strokeStyle = p.dim; ctx.lineWidth = 1.2; ctx.strokeRect(tx0, ty - tw / 2, tl, tw);
+      txt(ctx, "폐포", alvX + alvW / 2, ty - alvH / 2 + 6, p.text, 11.5, "center", "top", 700);
+      txt(ctx, "숨마다 새 공기 " + Math.round(Math.max(0, v.vt - VD) * 1000) + " mL", alvX + alvW / 2, ty + alvH / 2 + 14, Math.max(0, v.vt - VD) > 0 ? o2 : p.bad, 11.5, "center", "top", 700);
+      // 1회 호흡량 막대
+      var bx = tx0, by = ty + (narrow ? 34 : 40) + (narrow ? 0 : 30), bw = tl - 8, sc = bw / Math.max(1.2, v.vt);
+      txt(ctx, "1회 호흡량 " + Math.round(v.vt * 1000) + " mL =", bx, by, p.dim, 11, "left", "top");
+      var dW = Math.min(VD, v.vt) * sc;
+      ctx.fillStyle = BB.alpha(co2, 0.55); ctx.fillRect(bx, by + 16, dW, 14);
+      if (v.vt > VD) { ctx.fillStyle = BB.alpha(o2, 0.7); ctx.fillRect(bx + dW, by + 16, (v.vt - VD) * sc, 14); }
+      txt(ctx, "사강 " + Math.round(Math.min(VD, v.vt) * 1000) + " mL", bx, by + 34, co2, 10.5, "left", "top", 600);
+      txt(ctx, "폐포 " + Math.round(Math.max(0, v.vt - VD) * 1000) + " mL", bx + 84, by + 34, v.vt > VD ? o2 : p.bad, 10.5, "left", "top", 600);
+      // 곡선: 폐포 환기 vs 호흡수
+      var gb = narrow ? { x: 44, y: by + 70, w: w - 60, h: h - by - 70 - 46 } : { x: w * 0.56, y: 18, w: w * 0.44 - 18, h: h - 64 };
+      var rrs = BD.linspace(4, 60, 113), cur = rrs.map(function (q) { return [q, Math.max(0, v.ve / q - VD) * q]; });
+      var rrDead = v.ve / VD;
+      var c = BB.chart(ctx, gb, { x: [4, 60], y: [0, Math.max(6, Math.ceil(v.ve * 1.1))], xLabel: "호흡수(회/분)", xTicks: [10, 20, 30, 40, 50, 60],
+        bands: rrDead < 60 ? [{ x0: Math.max(4, rrDead), x1: 60, color: BB.alpha(p.bad, 0.12) }] : [],
+        hlines: [{ y: v.ve, color: p.faint, label: "분당 환기량" }], series: [{ data: cur, color: o2, width: 2.6 }] });
+      txt(ctx, "폐포 환기량(L/min)", gb.x + 4, gb.y + 2, p.dim, 11, "left", "top", 600);
+      if (rrDead < 58) txt(ctx, "VT < 사강", c.X((Math.max(4, rrDead) + 60) / 2), c.Y(0) - 6, p.bad, 11, "center", "bottom", 700);
+      ctx.fillStyle = o2; ctx.beginPath(); ctx.arc(c.X(v.rr), c.Y(v.va), 6, 0, Math.PI * 2); ctx.fill();
+      txt(ctx, f1(v.va) + " L/min", c.X(v.rr) + (v.rr > 40 ? -9 : 9), c.Y(v.va) - 6, p.text, 12, v.rr > 40 ? "right" : "left", "bottom", 700);
+    }, { get height() { return wOf("ld-cv") < 560 ? 520 : 320; } });
+    BB.loop(document.getElementById("sim-lu-dead"), function (dt) { t += dt; cv.redraw(); });
+    upd();
+  })();
+
+  /* ---------------------------------------------------------- 8. 기흉 */
+  (function () {
+    var st, hist, mode = "closed", cv = null;
+    function lung(ptp) { return BD.lungPV(ptp, { rv: 0.3, tlc: 3.45, mid: 5.92, k: 3.2 }); }
+    function wall(ppl) { return 2.15 + 0.1 * ppl; }
+    function solve(vpl) { var lo = -40, hi = 15; for (var k = 0; k < 50; k++) { var m = (lo + hi) / 2; if (wall(m) - lung(-m) < vpl) lo = m; else hi = m; } return (lo + hi) / 2; }
+    function reset() { st = { t: 0, vpl: 0, ppl: solve(0) }; hist = []; mode = "closed"; }
+    reset();
+    var getG = BB.range("lx-g", function (v) { return Math.round(v * 100) + "%"; });
+    document.getElementById("lx-hole").addEventListener("click", function () { mode = "open"; });
+    document.getElementById("lx-tube").addEventListener("click", function () { mode = "tube"; });
+    document.getElementById("lx-re").addEventListener("click", reset);
+    function step(dt) {
+      var g = getG();
+      if (mode === "open") st.vpl += g * 0.12 * Math.max(0, -st.ppl) * dt;
+      if (mode === "tube") { st.vpl += 0.12 * (-10 - st.ppl) * dt; if (st.vpl <= 0) { st.vpl = 0; mode = "closed"; } }
+      st.vpl = Math.max(0, st.vpl);
+      st.ppl = solve(st.vpl); st.t += dt;
+      if (!hist.length || st.t - hist[hist.length - 1][0] > 0.1) hist.push([st.t, st.ppl]);
+      if (hist.length > 400) hist.shift();
+    }
+    cv = BB.canvas("#lx-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var vl = lung(-st.ppl), vc = wall(st.ppl), v0 = 1.65;
+      var cy = narrow ? 120 : h * 0.44, cx = narrow ? w / 2 : w * 0.3, S = narrow ? Math.min(w * 0.2, 80) : Math.min(h * 0.28, w * 0.14);
+      // 왼쪽 그림 = 오른쪽 가슴(해부학 관례), 오른쪽 그림 = 왼쪽 가슴(정상)
+      var kc = Math.sqrt(vc / v0), kl = Math.sqrt(vl / v0);
+      function half(sd, kWall, kLung, air) {
+        var hx = cx + sd * S * 0.62, rx = S * 0.55, ry = S * 1.0;
+        // 가슴벽
+        ctx.fillStyle = air ? BB.alpha(p.dim, 0.12) : "transparent";
+        ctx.strokeStyle = p.dim; ctx.lineWidth = 3.5;
+        ctx.beginPath(); ctx.ellipse(hx + sd * (kWall - 1) * rx, cy, rx * kWall, ry * Math.sqrt(kWall), 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        if (air && st.vpl > 0.02) txt(ctx, "공기", hx + sd * rx * kWall * 0.98 + sd * (kWall - 1) * rx - sd * 12, cy - ry * 0.55, p.dim, 11, "center", "middle", 700);
+        // 폐(내측 고정)
+        var lx = hx - sd * (1 - kLung) * rx * 0.85;
+        ctx.fillStyle = BB.alpha(p.accent, 0.3); ctx.strokeStyle = p.accent; ctx.lineWidth = 1.8;
+        ctx.beginPath(); ctx.ellipse(lx, cy + (1 - kLung) * ry * 0.1, rx * 0.92 * kLung, ry * 0.94 * kLung, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        return { hx: hx, rx: rx, ry: ry, lx: lx };
+      }
+      var R = half(-1, kc, kl, true), Lh = half(1, 1, 1, false);
+      // 심장·종격동
+      ctx.fillStyle = BB.alpha(BB.color("art"), 0.3); ctx.beginPath(); ctx.ellipse(cx, cy + S * 0.25, S * 0.2, S * 0.3, 0, 0, Math.PI * 2); ctx.fill();
+      // 힘 화살표(오른쪽 가슴)
+      var rec = 6 + Math.max(0, -st.ppl) * 3.2;   // 남은 당김을 화살표 길이로
+      var lxl = R.lx - R.rx * 0.92 * kl;
+      arrow(ctx, lxl, cy, lxl + Math.min(rec, 30), cy, p.accent2, 2.4, 8);
+      var wx = R.hx - R.rx * kc + (-1) * (kc - 1) * R.rx;
+      arrow(ctx, wx + 2, cy + R.ry * 0.4, wx - 18 - (st.ppl < -1 ? 0 : 6), cy + R.ry * 0.4, p.warn, 2.4, 8);
+      txt(ctx, "오른쪽 가슴", R.hx - R.rx * 0.2, cy - R.ry * 1.05 - 8, p.text, 12, "center", "bottom", 700);
+      txt(ctx, "왼쪽(정상)", Lh.hx, cy - Lh.ry - 8, p.dim, 12, "center", "bottom", 600);
+      txt(ctx, f1(st.ppl) + " cmH₂O", R.hx, cy + R.ry * Math.sqrt(kc) + 18, st.ppl > -1 ? p.bad : p.accent2, 13, "center", "top", 700, true);
+      txt(ctx, "흉막강", R.hx, cy + R.ry * Math.sqrt(kc) + 34, p.dim, 11, "center", "top");
+      if (mode === "open") txt(ctx, "구멍으로 공기가 들어간다", 12, narrow ? 12 : 16, p.bad, 12, "left", "top", 700);
+      if (mode === "tube") txt(ctx, "흉관: −10 cmH₂O로 빨아낸다", 12, narrow ? 12 : 16, p.ok, 12, "left", "top", 700);
+      // 압력 기록
+      var gb = narrow ? { x: 44, y: 290, w: w - 60, h: h - 290 - 44 } : { x: w * 0.6, y: 22, w: w * 0.4 - 18, h: h - 66 };
+      var t1 = Math.max(20, st.t);
+      BB.chart(ctx, gb, { x: [t1 - 20, t1], y: [-12, 2], xLabel: "시간(s)", xFmt: function (v) { return v.toFixed(0); }, hlines: [{ y: 0, color: p.bad, label: "대기압" }, { y: -5, color: p.faint }],
+        series: [{ data: hist, color: p.accent2, width: 2.4 }] });
+      txt(ctx, "흉막강 압력(cmH₂O)", gb.x + 4, gb.y - 4, p.dim, 11, "left", "bottom", 600);
+      BB.stat("lx-o-p", f1(st.ppl) + "<small>cmH₂O</small>");
+      BB.stat("lx-o-l", f2(vl) + "<small>L</small>");
+      BB.stat("lx-o-c", f2(vc) + "<small>L</small>");
+      BB.stat("lx-o-a", f2(st.vpl) + "<small>L</small>");
+    }, { get height() { return wOf("lx-cv") < 560 ? 480 : 330; } });
+    BB.loop(document.getElementById("sim-lu-ptx"), function (dt) { for (var k = 0; k < 4; k++) step(dt / 4 * 2); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 9. 다온 */
+  (function () {
+    var L = DAON, t = 0, cv = null, phaseV = 0;
+    function vdOf(vt) { return 0.17 + 0.05 * Math.max(0, vt - 0.5); }
+    function natVT(ve) { return Math.min(0.55 * L.vc, 0.5 + 1.9 * (1 - Math.exp(-Math.max(0, ve - 6) / 40))); }
+    function pattern(ve, mode) {
+      var vt = natVT(ve);
+      if (mode === "shallow") vt = Math.max(0.3, vt * 0.5);
+      if (mode === "deep") vt = Math.min(0.8 * L.vc, vt * 1.6);
+      var rr = ve / vt, vd = vdOf(vt);
+      return { ve: ve, vt: vt, rr: rr, vd: vd, va: Math.max(0, vt - vd) * rr };
+    }
+    // 같은 폐포 환기를 얻는 데 드는 일(상대): 탄성 + 저항(난류)
+    function work(va, rr) {
+      var vt = 0.5; for (var k = 0; k < 40; k++) vt = va / rr + vdOf(vt);
+      var ti = 0.45 * 60 / rr, peak = Math.PI * vt / (2 * ti), R = 1 + 2 * peak;
+      return rr * (vt * vt / 0.2 + R * Math.PI * Math.PI * vt * vt / (8 * ti) * (va > 10 ? 2 : 1));
+    }
+    var cur = null;
+    function calc() {
+      var x = getX(), s = BD.steady(x), mode = getM();
+      cur = pattern(s.ve, mode);
+      cur.x = x;
+      var rrs = BD.linspace(5, 90, 171), ws = rrs.map(function (r) { return work(cur.va, r); });
+      var wmin = Math.min.apply(null, ws);
+      cur.curve = rrs.map(function (r, k) { return [r, ws[k] / wmin * 100]; });
+      cur.w = work(cur.va, cur.rr) / wmin * 100;
+      cur.nat = pattern(s.ve, "nat");
+      BB.stat("dn-o-ve", f1(cur.ve) + "<small>L/min</small>");
+      BB.stat("dn-o-p", f2(cur.vt) + " L × " + Math.round(cur.rr));
+      BB.stat("dn-o-va", f1(cur.va) + "<small>L/min (사강 " + Math.round(cur.vd / cur.vt * 100) + "%)</small>");
+      BB.stat("dn-o-w", "+" + Math.max(0, Math.round(cur.w - 100)) + "<small>%</small>");
+      if (cv) cv.redraw();
+    }
+    var RACE = BD.racePlan(38, 0.6).frac;
+    var getX = BB.range("dn-x", function (v) { return Math.abs(v - RACE) < 0.006 ? Math.round(v * 100) + "% (대회)" : v === 0 ? "안정" : Math.round(v * 100) + "%"; }, calc);
+    var getM = BB.seg("dn-mode", calc);
+    document.getElementById("dn-race").addEventListener("click", function () { getX.set(+RACE.toFixed(2)); });
+    document.getElementById("dn-rest").addEventListener("click", function () { getX.set(0); });
+    calc();
+    var trace = [], tPrev = 0;
+    cv = BB.canvas("#dn-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, o2 = BB.color("o2"), co2 = BB.color("co2");
+      // 위: 흐르는 폐 부피 기록(최근 12초)
+      var tb = { x: 46, y: 18, w: w - 62, h: narrow ? 150 : h * 0.4 };
+      var span = 12;
+      var c = BB.chart(ctx, tb, { x: [t - span, t], y: [0, 8], xTicks: [], yTicks: [0, L.rv, L.frc, L.tlc].map(function (v) { return +v.toFixed(1); }), yFmt: function (v) { return v.toFixed(1); },
+        hlines: [{ y: L.tlc, color: p.faint }],
+        series: [{ data: trace, color: p.accent, width: 2.2, fill: BB.alpha(p.accent, 0.08) }] });
+      txt(ctx, "폐 부피(L) · 최근 12초", tb.x + 4, tb.y + 2, p.dim, 11, "left", "top", 600);
+      txt(ctx, f2(cur.vt) + " L × " + Math.round(cur.rr) + "회/분", tb.x + tb.w - 4, tb.y + tb.h - 6, p.accent, 13, "right", "bottom", 700);
+      // 가운데: 분당 환기량의 내역
+      var yb = tb.y + tb.h + 40, bw = w - 62, scale = bw / 110;
+      txt(ctx, "분당 환기량 " + f1(cur.ve) + " L/min의 내역", 46, yb - 8, p.text, 12, "left", "bottom", 700);
+      var wa = cur.va * scale, wd = (cur.ve - cur.va) * scale;
+      ctx.fillStyle = BB.alpha(o2, 0.7); ctx.fillRect(46, yb, wa, 20);
+      ctx.fillStyle = BB.alpha(co2, 0.6); ctx.fillRect(46 + wa, yb, wd, 20);
+      [0, 20, 40, 60, 80, 100].forEach(function (v) { txt(ctx, String(v), 46 + v * scale, yb + 24, p.faint, 10, "center", "top", 400, true); });
+      txt(ctx, "폐포 " + f1(cur.va), 46 + 4, yb + 10, p.text, 11, "left", "middle", 700);
+      if (wd > 40) txt(ctx, "사강 " + f1(cur.ve - cur.va), 46 + wa + 4, yb + 10, p.text, 11, "left", "middle", 700);
+      // 아래: 일의 U자 곡선
+      var gb = { x: 46, y: yb + 58, w: narrow ? w - 62 : w * 0.62, h: h - (yb + 58) - 40 };
+      var cc = BB.chart(ctx, gb, { x: [5, 90], y: [90, 220], xLabel: "호흡수(회/분)", xTicks: [10, 20, 30, 40, 50, 60, 70, 80, 90], yTicks: [100, 150, 200],
+        series: [{ data: cur.curve, color: p.accent2, width: 2.4 }] });
+      txt(ctx, "같은 폐포 환기에 드는 호흡 근육의 일(최소 = 100)", gb.x + 4, gb.y - 4, p.dim, 11, "left", "bottom", 600);
+      var nat = cur.nat;
+      [["shallow", "얕게"], ["nat", "자연"], ["deep", "깊게"]].forEach(function (m) {
+        var q = pattern(cur.ve, m[0]), rr = q.rr, wv = work(cur.va, BB.clamp(rr, 5, 90));
+        var mn = Math.min.apply(null, cur.curve.map(function (z) { return z[1]; }));
+        // 같은 폐포 환기 기준이 아니므로 위치만 참고: 지금 선택 방식의 호흡수로 표시
+      });
+      var on = Math.min(90, cur.rr), wy = Math.min(219, cur.w);
+      ctx.fillStyle = p.accent2; ctx.beginPath(); ctx.arc(cc.X(on), cc.Y(wy), 6, 0, Math.PI * 2); ctx.fill();
+      txt(ctx, "지금 +" + Math.max(0, Math.round(cur.w - 100)) + "%", cc.X(on) + (on > 60 ? -9 : 9), cc.Y(wy) - 6, p.text, 12, on > 60 ? "right" : "left", "bottom", 700);
+      if (!narrow) {
+        var sx = w * 0.62 + 66, sy = gb.y + 4;
+        txt(ctx, "세 방식 비교(같은 VE)", sx, sy, p.text, 12, "left", "top", 700);
+        [["nat", "자연스럽게"], ["shallow", "얕고 빠르게"], ["deep", "깊고 느리게"]].forEach(function (m, k) {
+          var q = pattern(cur.ve, m[0]), yy = sy + 24 + k * 38, sel = getM() === m[0];
+          txt(ctx, m[1], sx, yy, sel ? p.accent : p.dim, 11.5, "left", "top", sel ? 700 : 400);
+          txt(ctx, f2(q.vt) + " L × " + Math.round(q.rr) + " → VA " + f1(q.va), sx, yy + 15, sel ? p.text : p.dim, 11, "left", "top", 400, true);
+        });
+      }
+    }, { get height() { return wOf("dn-cv") < 560 ? 520 : 440; } });
+    BB.loop(document.getElementById("sim-lu-daon"), function (dt) {
+      t += dt;
+      var T = 60 / cur.rr; phaseV += dt / T;
+      var u = phaseV % 1, ti = 0.42;
+      var v = u < ti ? (1 - Math.cos(Math.PI * u / ti)) / 2 : (1 + Math.cos(Math.PI * (u - ti) / (1 - ti))) / 2;
+      var base = cur.x > 0.3 ? L.frc - Math.min(0.6, (cur.x - 0.3) * 1.2) : L.frc;   // 운동하면 날숨 끝 부피가 조금 내려간다
+      trace.push([t, base + v * cur.vt]);
+      while (trace.length && trace[0][0] < t - 12.5) trace.shift();
+      cv.redraw();
+    });
+  })();
+})();
+</script>
+</body>
+</html>

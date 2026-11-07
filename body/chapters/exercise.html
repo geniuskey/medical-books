@@ -1,0 +1,920 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "달리는 몸은 에너지를 어디서 얻는가. 세 가지 에너지 시스템, 산소 부족과 운동 뒤 산소 소비, 젖산 역치와 VO2max, 연료의 교차, 심박 구간, 훈련 적응과 체력-피로 모델을 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>운동하는 몸 · BodyBook</title>
+<meta name="description" content="달리는 몸은 에너지를 어디서 얻는가. 세 가지 에너지 시스템, 산소 부족과 운동 뒤 산소 소비, 젖산 역치와 VO2max, 연료의 교차, 심박 구간, 훈련 적응과 체력-피로 모델을 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/exercise.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="운동하는 몸 · BodyBook">
+<meta property="og:description" content="달리는 몸은 에너지를 어디서 얻는가. 세 가지 에너지 시스템, 산소 부족과 운동 뒤 산소 소비, 젖산 역치와 VO2max, 연료의 교차, 심박 구간, 훈련 적응과 체력-피로 모델을 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/exercise.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/exercise.html#chapter","name":"운동하는 몸","headline":"운동하는 몸 · BodyBook","description":"달리는 몸은 에너지를 어디서 얻는가. 세 가지 에너지 시스템, 산소 부족과 운동 뒤 산소 소비, 젖산 역치와 VO2max, 연료의 교차, 심박 구간, 훈련 적응과 체력-피로 모델을 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/exercise.html","position":12,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"12. 운동하는 몸","item":"https://medical.euiyun.com/body/chapters/exercise.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<!--head:end-->
+<style> </style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="exercise">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 12</div>
+    <h1>운동하는 몸</h1>
+    <p class="lead">달리기를 시작하면 다리 근육의 에너지 소비는 몇 초 만에 수십 배로 뛴다. 그런데 근육 안에 쌓아 둔 ATP는 2~3초분밖에 없다. 몸은 서로 다른 속도와 용량의 세 가지 발전기를 차례로 켜서 이 틈을 메운다. 이 장은 그 발전기들이 언제, 얼마나 일하는지 보고, 산소를 들이마시는 능력(VO2max)과 젖산이 쌓이기 시작하는 강도(젖산 역치)가 10 km 기록을 어떻게 정하는지 계산한다. 마지막으로 다온의 12주 훈련을 직접 짜 본다.</p>
+    <ul class="objectives">
+      <li>인산크레아틴, 해당 과정, 산화 과정의 속도와 용량을 비교하고 운동 시간에 따른 기여를 읽는다.</li>
+      <li>운동을 시작하고 끝낼 때 산소 섭취가 늦게 따라오는 이유와 산소 부족·운동 뒤 산소 소비를 설명한다.</li>
+      <li>점증 부하 검사에서 젖산 역치와 VO2max를 찾고, 둘이 경기 기록을 어떻게 나눠 정하는지 계산한다.</li>
+      <li>강도에 따라 지방과 탄수화물의 비율이 바뀌는 교차와, 심박 구간으로 훈련 강도를 나누는 법을 이해한다.</li>
+      <li>훈련이 바꾸는 것들의 시간 상수와 체력-피로 모델로 훈련 계획과 테이퍼의 효과를 따져 본다.</li>
+    </ul>
+  </header>
+
+  <section id="systems">
+    <h2>세 개의 발전기</h2>
+    <p>근육이 쓰는 에너지 화폐는 단 하나, <span class="term">ATP</span><span class="en">(Adenosine triphosphate)</span>다. 교차다리가 한 번 당길 때, 칼슘을 다시 퍼 넣을 때, 나트륨-칼륨 펌프가 돌 때 모두 ATP를 쓴다(<a href="muscle.html">11장</a>). 문제는 근육 안의 ATP가 kg당 약 5 mmol, 전력 질주라면 2~3초면 바닥나는 양이라는 점이다. 그래서 ATP는 저장고가 아니라 <b>통로</b>다. 쓰는 만큼 거의 같은 속도로 다시 만들어진다.</p>
+    <p>다시 만드는 길은 셋이다. 이미 만들어 둔 고에너지 인산을 바로 넘겨주는 <span class="term">인산크레아틴 시스템</span><span class="en">(Phosphocreatine, PCr)</span>, 포도당을 산소 없이 반쯤 쪼개는 <span class="term">해당 과정</span><span class="en">(Glycolysis)</span>, 그리고 미토콘드리아에서 산소로 연료를 끝까지 태우는 <span class="term">산화 과정</span><span class="en">(Oxidative phosphorylation)</span>이다. 빠를수록 용량이 작고, 느릴수록 용량이 크다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-10-12.webp" width="902" height="1014" loading="lazy" decoding="async" alt="근육이 ATP를 다시 채우는 세 길: 인산크레아틴, 해당 과정, 미토콘드리아의 세포 호흡">
+      <figcaption><b>ATP를 다시 채우는 세 길.</b> (a) 인산크레아틴은 한 단계 반응이라 순식간에 ATP를 채우지만 10초 남짓이면 바닥난다. (b) 해당 과정은 포도당과 글리코겐을 피루브산으로 쪼개며 ATP 2개를 얻고, 산소가 모자라면 젖산을 남긴다. (c) 산화 과정은 미토콘드리아에서 포도당·피루브산·지방산을 산소로 태워 가장 많은 ATP를 만들지만, 수십 단계를 거치고 산소 공급을 기다려야 해서 가장 느리다. 세 길은 차례로 켜지는 것이 아니라 처음부터 함께 켜지고 비율만 바뀐다.<span class="fig-words">Creatine phosphate 인산크레아틴 · Creatine kinase 크레아틴 인산화 효소 · Glycolysis 해당 과정 · Muscle glycogen 근육 글리코겐 · Pyruvate 피루브산 · Lactic acid 젖산 · Aerobic respiration 유산소 호흡 · Cellular respiration in mitochondria 미토콘드리아의 세포 호흡 · Fatty acids 지방산</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/10-3-muscle-fiber-contraction-and-relaxation">그림 10.12</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>아래는 전력을 다해 달릴 때 세 시스템이 매 순간 내는 ATP 공급 속도다. 세로선을 끌어 운동 시간을 정하면 그 시간 동안 쓴 에너지가 어디서 왔는지 나눠 보여 준다.</p>
+
+    <div class="sim" id="ex-energy" data-desc="전력 운동의 시간을 끌어 인산크레아틴, 해당 과정, 산화 과정이 매 순간 얼마나 ATP를 대는지와, 운동 시간에 따라 유산소 비율이 어떻게 바뀌는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>전력 운동의 에너지 내역</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="en-cv"></canvas></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--heat)"></i>인산크레아틴</span><span><i style="background:var(--carb)"></i>해당 과정</span><span><i style="background:var(--accent-2)"></i>산화 과정</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">운동 시간</span><span class="v" id="en-o-d">—</span></div>
+        <div class="stat"><span class="k">PCr / 해당 / 산화</span><span class="v" id="en-o-s">—</span></div>
+        <div class="stat"><span class="k">유산소 비율(실험 요약)</span><span class="v" id="en-o-a">—</span></div>
+        <div class="stat"><span class="k">총 공급 속도(처음 대비)</span><span class="v" id="en-o-p">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 왼쪽 그래프의 세로선을 끌어 10초에 둔다. 100 m 달리기다. 인산크레아틴이 절반 넘게 댄다. ② 60초(400 m)로 옮긴다. 해당 과정이 가장 크고 산화도 이미 3분의 1을 넘는다. ③ 끝(180초)까지 끈다. 총 공급 속도가 처음의 절반 아래로 떨어진다. 오래 달릴수록 느려지는 이유다. 아래 작은 그래프는 여러 실험을 요약한 유산소 비율 곡선으로, 약 75초에서 유산소와 무산소가 반반이 된다. (교육용 모델 BD.energySystems, BD.aerobicShare. 정규화된 ATP 공급 속도이며 실제 값은 사람과 근육마다 다르다.)</div>
+    </div>
+
+    <p>유산소와 무산소가 반반이 되는 지점은 약 1분 남짓이다. 흔히 생각하는 것보다 훨씬 이르다. 800 m 달리기(약 2분)도 이미 절반 넘게 유산소이고, 다온이 뛸 10 km(약 58분)는 98 % 가까이 유산소다. 그러니 10 km 기록을 정하는 것은 산소를 얼마나 들이고(VO2max), 그중 얼마를 젖산이 쌓이지 않는 선에서 쓸 수 있느냐(젖산 역치)다.</p>
+    <p>인산크레아틴은 작은 대신 다시 채우는 것도 빠르다. 쉬는 동안 산화 과정이 만든 ATP로 30~60초의 시간 상수로 회복된다. 인터벌 훈련에서 쉬는 시간이 왜 중요한지 아래에서 보자.</p>
+
+    <div class="sim" id="ex-pcr" data-desc="짧은 전력 질주와 휴식을 반복하며 인산크레아틴이 바닥났다 차오르는 것과, 쉬는 시간이 짧으면 뒤로 갈수록 질주 파워가 떨어지는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>인터벌 질주와 인산크레아틴 회복</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="pc-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>질주 시간 <output id="pc-s-out"></output></span><input type="range" id="pc-s" min="5" max="30" step="1" value="10"></label>
+          <label class="ctrl"><span>쉬는 시간 <output id="pc-r-out"></output></span><input type="range" id="pc-r" min="10" max="180" step="5" value="30"></label>
+          <label class="ctrl"><span>반복 횟수 <output id="pc-n-out"></output></span><input type="range" id="pc-n" min="3" max="10" step="1" value="6"></label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--heat)"></i>인산크레아틴</span><span><i style="background:var(--accent)"></i>ATP</span><span><i style="background:var(--text-dim)"></i>질주 평균 파워</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">마지막 질주 직전 PCr</span><span class="v" id="pc-o-p">—</span></div>
+        <div class="stat"><span class="k">마지막 / 첫 질주 파워</span><span class="v" id="pc-o-w">—</span></div>
+        <div class="stat"><span class="k">ATP 최저</span><span class="v" id="pc-o-a">—</span></div>
+        <div class="stat"><span class="k">전체 시간</span><span class="v" id="pc-o-t">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 질주 10초, 휴식 30초로 6번. 인산크레아틴이 다 차오르기 전에 다음 질주가 시작되어 파워가 점점 떨어진다. ② 휴식을 120초로 늘린다. 매번 거의 다 회복되어 파워가 유지된다. ③ ATP 선(빨강)은 질주 중에도 거의 그대로다. 줄어드는 것은 ATP가 아니라 ATP를 채워 주는 인산크레아틴이다. (질주 중 PCr은 시간 상수 9초로 줄고, 휴식 중 40초로 회복한다(BD.pcrRecovery). 해당 과정은 질주마다 산성화로 7 %씩 약해진다고 가정한 교육용 모델)</div>
+    </div>
+  </section>
+
+  <section id="oxygen">
+    <h2>산소 섭취는 늦게 따라온다</h2>
+    <p>제자리에서 갑자기 달리기 시작하면 근육이 쓰는 에너지는 첫 걸음부터 늘지만, 폐에서 재는 산소 섭취량은 1~3분에 걸쳐 천천히 오른다. 심장 박출량이 늘고, 근육의 혈관이 열리고, 미토콘드리아의 효소가 깨어나는 데 시간이 걸리기 때문이다. 그 사이의 모자란 몫은 인산크레아틴과 해당 과정이 빌려준다. 이 빚을 <span class="term">산소 부족</span><span class="en">(Oxygen deficit)</span>이라 한다.</p>
+    <p>운동을 멈춘 뒤에도 숨이 한동안 거친 것은 빚을 갚는 중이기 때문이다. 인산크레아틴을 다시 채우고, 높아진 체온과 심박수, 호르몬을 되돌리는 데 산소가 더 든다. 이것을 <span class="term">운동 후 초과 산소 소비</span><span class="en">(Excess post-exercise oxygen consumption, EPOC)</span>라 한다. 아래에서 운동 강도(점선 계단)를 위아래로 끌어 보자.</p>
+
+    <div class="sim" id="ex-kin" data-desc="운동 강도의 계단을 끌어 올리며 산소 섭취가 늦게 따라오는 모습, 산소 부족과 운동 후 초과 산소 소비의 넓이, 훈련 전후 시간 상수의 차이를 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>산소 부족과 운동 뒤 산소 빚</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="kn-cv"></canvas><span class="hint">계단 손잡이를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="kn-who"><button data-value="pre" class="on">다온 지금</button><button data-value="post">다온 12주 뒤</button></div>
+          <label class="check"><input type="checkbox" id="kn-cmp" checked> 다른 쪽 곡선도 보기</label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--text-dim)"></i>필요한 산소(요구량)</span><span><i style="background:var(--accent-2)"></i>실제 산소 섭취</span><span><i style="background:var(--bad)"></i>산소 부족</span><span><i style="background:var(--ok)"></i>운동 후 초과 소비</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">강도</span><span class="v" id="kn-o-x">—</span></div>
+        <div class="stat"><span class="k">산소 부족</span><span class="v" id="kn-o-d">—</span></div>
+        <div class="stat"><span class="k">운동 후 초과 소비</span><span class="v" id="kn-o-e">—</span></div>
+        <div class="stat"><span class="k">시간 상수 τ</span><span class="v" id="kn-o-t">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 계단을 20 mL/kg/min(편한 달리기)에 둔다. 약 2분 만에 산소 섭취가 요구량을 따라잡는다(3τ 무렵 95 %). ② "12주 뒤"로 바꾼다. 시간 상수가 35초에서 22초로 줄어 빨간 넓이(산소 부족)가 확 준다. 훈련된 몸은 출발이 빠르다. ③ 계단을 젖산 역치 위로 올린다. 산소 섭취가 평평해지지 않고 계속 슬금슬금 오르는 '느린 성분'이 생기고, VO2max를 넘으면 요구량을 끝내 따라잡지 못한다(빨간 경고). (BD.vo2Kinetics, 6분 운동. 역치 위 느린 성분과 VO2max 상한은 장 안에서 덧붙인 교육용 가정)</div>
+    </div>
+
+    <p>산소 부족은 운동 처음 몇 분이 왜 가장 힘든지 설명한다. 몸이 아직 산소 공급을 다 끌어올리지 못해 무산소 시스템에 기대고 있기 때문이다. 준비 운동은 이 첫 단계를 미리 지나 놓는 일이다. 대회에서 출발하자마자 너무 빨리 달리면 빚이 커지고, 그 빚은 남은 거리 내내 따라온다.</p>
+  </section>
+
+  <section id="test">
+    <h2>점증 부하 검사: 역치와 VO2max 찾기</h2>
+    <p>몸이 1분에 쓸 수 있는 산소의 최대량을 <span class="term">최대 산소 섭취량</span><span class="en">(Maximal oxygen uptake, VO2max)</span>이라 하고, 체중 1 kg당 mL/min으로 나타낸다. 산소는 폐 → 피 → 심장 → 근육의 사슬을 지나므로, VO2max는 그 사슬의 곱으로 정해진다. 이것이 <span class="term">피크 원리</span><span class="en">(Fick principle)</span>다.</p>
+    <div class="formula">$$\dot{V}O_2 = HR \times SV \times (C_aO_2 - C_vO_2)$$
+      <div class="where">\(HR\) 심박수(다온 최대 약 184 bpm), \(SV\) 1회 박출량(최대 운동 약 110 mL), \(C_aO_2 - C_vO_2\) 동맥과 정맥의 산소 함량 차(쉴 때 약 5, 최대 운동 약 15 mL/dL). 다온의 최대: 184 × 0.11 L × 0.147 ≈ 3.0 L/min ÷ 78 kg ≈ 38 mL/kg/min</div>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 480 240" role="img" aria-label="산소가 폐에서 근육까지 가는 사슬과 쉴 때와 최대 운동 때의 숫자">
+        <defs><marker id="ex-ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="6" y="40" width="104" height="70" rx="12" class="f-surface"/>
+        <text x="58" y="68" text-anchor="middle" class="lbl-b">폐</text>
+        <text x="58" y="92" text-anchor="middle" class="lbl-dim">환기 ×17</text>
+        <rect x="128" y="40" width="104" height="70" rx="12" class="f-art-soft"/>
+        <text x="180" y="68" text-anchor="middle" class="lbl-b">심장</text>
+        <text x="180" y="92" text-anchor="middle" class="lbl-dim">박출 ×3.8</text>
+        <rect x="250" y="40" width="104" height="70" rx="12" class="f-art-soft"/>
+        <text x="302" y="68" text-anchor="middle" class="lbl-b">모세혈관</text>
+        <text x="302" y="92" text-anchor="middle" class="lbl-dim">추출 ×3</text>
+        <rect x="372" y="40" width="104" height="70" rx="12" class="f-ven-soft"/>
+        <text x="424" y="68" text-anchor="middle" class="lbl-b">근육 세포</text>
+        <text x="424" y="92" text-anchor="middle" class="lbl-dim">산소를 태움</text>
+        <path d="M110 75 L124 75" class="s-art" marker-end="url(#ex-ar2)"/>
+        <path d="M232 75 L246 75" class="s-art" marker-end="url(#ex-ar2)"/>
+        <path d="M354 75 L368 75" class="s-ven" marker-end="url(#ex-ar2)"/>
+        <text x="20" y="150" class="lbl">쉴 때</text>
+        <text x="110" y="150" class="lbl">72 × 72 mL × 5 mL/dL ≈ 0.26 L/min</text>
+        <text x="20" y="180" class="lbl-acc">최대 운동</text>
+        <text x="110" y="180" class="lbl-acc">184 × 110 mL × 15 mL/dL ≈ 3.0 L/min</text>
+        <text x="20" y="214" class="lbl-dim">심박수 2.6배 × 박출량 1.5배 × 추출 3배 ≈ 11배</text>
+      </svg>
+      <figcaption><b>산소의 사슬.</b> 쉴 때와 최대 운동 때 다온의 산소 섭취는 약 11배 차이가 난다. 심박수와 박출량(<a href="heart.html">4장</a>, <a href="flow.html">7장</a>)이 피를 더 보내고, 근육이 피에서 산소를 더 많이 뽑아 쓴다. 건강한 사람에게 VO2max의 한계는 대개 폐가 아니라 심장이 보낼 수 있는 피의 양이다.</figcaption>
+    </figure>
+
+    <p>VO2max는 러닝머신 속도를 1분마다 조금씩 올리며 숨을 분석해 잰다. 이때 피 속 <span class="term">젖산</span><span class="en">(Lactate)</span>도 함께 재면, 처음엔 거의 그대로이다가 어느 강도부터 꺾여 가파르게 오르는 지점이 보인다. 그 지점이 <span class="term">젖산 역치</span><span class="en">(Lactate threshold)</span>다. 젖산 자체는 노폐물이 아니라 다른 근육과 심장이 태우는 연료인데, 만드는 속도가 치우는 속도를 넘기 시작하는 것이 역치다. 아래 검사에서 젖산 곡선이 꺾이는 곳에 세로 표지를 끌어다 놓아 보자.</p>
+
+    <div class="sim" id="ex-ramp" data-desc="러닝머신 속도를 1분마다 올리는 점증 부하 검사를 재생하며 산소 섭취, 심박수, 젖산, 호흡 교환율, 환기량을 함께 보고, 표지를 끌어 젖산 역치와 VO2max를 찾는다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>러닝머신 점증 부하 검사</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view monitor"><canvas id="rp-cv"></canvas><span class="hint">세로 표지를 끌어 역치를 찾는다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="rp-who"><button data-value="pre" class="on">다온 지금</button><button data-value="post">12주 뒤</button></div>
+          <label class="check"><input type="checkbox" id="rp-ans"> 답 보기(역치·VO2max)</label>
+          <div class="btn-row"><button class="btn primary" id="rp-go">다시 시작</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">표지의 속도</span><span class="v" id="rp-o-v">—</span></div>
+        <div class="stat"><span class="k">그때 젖산 · 심박</span><span class="v" id="rp-o-l">—</span></div>
+        <div class="stat"><span class="k">실제 역치(2 mmol/L)</span><span class="v" id="rp-o-t">—</span></div>
+        <div class="stat"><span class="k">최고 VO2</span><span class="v" id="rp-o-m">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 검사가 끝날 때까지 본다. 산소 섭취(파랑)는 속도에 따라 직선으로 오르다 끝에서 평평해진다. 이 고원이 VO2max다. ② 노란 젖산 곡선이 꺾이는 곳에 표지를 끌어다 놓고 "답 보기"로 맞춰 본다. 같은 무렵 환기량(VE)과 호흡 교환율(RER)도 함께 가팔라진다. 젖산의 산을 중탄산이 받아 CO2가 더 나오기 때문이다(<a href="breathing.html">10장</a>). ③ "12주 뒤"로 바꾼다. VO2max도 오르지만 역치는 더 많이 올라 오른쪽으로 밀린다. (BD.steady와 다니엘스 산소 비용식으로 계산한 교육용 검사. 시작 6 km/h, 1분마다 0.5 km/h씩, 요구량이 VO2max의 106 %를 넘으면 종료)</div>
+    </div>
+
+    <p>다온의 검사 결과는 VO2max 38 mL/kg/min, 젖산 역치는 VO2max의 약 60 %(심박 약 139)다. 운동을 거의 하지 않은 사람에게 흔한 숫자다. 역치를 넘는 강도에서는 젖산과 수소 이온이 쌓이며 오래 버티지 못한다. 역치 근처, 젖산 약 4 mmol/L 정도의 강도가 한 시간짜리 경기를 달릴 수 있는 상한이다.</p>
+  </section>
+
+  <section id="race">
+    <h2>VO2max만으로는 기록을 알 수 없다</h2>
+    <p>VO2max가 크면 빨리 달릴 수 있다. 하지만 VO2max가 같은 두 사람의 10 km 기록이 몇 분씩 차이 나는 일은 흔하다. 차이를 만드는 것은 VO2max의 <b>몇 %</b>를 한 시간 가까이 유지할 수 있느냐, 즉 젖산 역치다. 같은 산소로 얼마나 빨리 달리느냐(달리기 경제성)도 한몫한다.</p>
+    <p>아래 판 위의 점을 끌어 VO2max(세로)와 젖산 역치(가로)를 바꿔 보자. 오른쪽 막대는 두 가지 예측을 비교한다. VO2max만 보고 엘리트 선수처럼 그 몫을 다 쓸 수 있다고 가정한 기록(다니엘스 공식)과, 역치가 정하는 현실적인 기록이다.</p>
+
+    <div class="sim" id="ex-race" data-desc="VO2max와 젖산 역치를 판 위에서 끌어 5 km·10 km·하프·풀 마라톤의 예상 페이스를 VO2max만 본 예측과 역치를 반영한 예측으로 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>VO2max와 젖산 역치가 정하는 기록</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="rc-cv"></canvas><span class="hint">왼쪽 판 위의 점을 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--text-faint)"></i>VO2max만 본 예측</span><span><i style="background:var(--accent)"></i>젖산 역치 반영 예측</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">VO2max · 역치</span><span class="v" id="rc-o-in">—</span></div>
+        <div class="stat"><span class="k">10 km(VO2max만)</span><span class="v" id="rc-o-a">—</span></div>
+        <div class="stat"><span class="k">10 km(역치 반영)</span><span class="v" id="rc-o-b">—</span></div>
+        <div class="stat"><span class="k">10 km 강도</span><span class="v" id="rc-o-f">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "다온 지금"(38, 60 %)에 둔다. VO2max만 보면 10 km 약 52분이지만 역치 때문에 실제로는 약 58분이다. ② 역치만 오른쪽(0.8)으로 끈다. VO2max는 그대로인데 기록이 크게 빨라져 두 예측이 가까워진다. 잘 훈련된 사람의 모습이다. ③ "다온 12주"(43, 68 %) 표지로 옮긴다. 10 km 약 50분. 거리가 길수록 두 예측의 차이가 벌어진다. (VO2max만 본 예측은 BD.raceTime(다니엘스-길버트), 역치 반영 예측은 다니엘스의 지속 비율 곡선을 역치에 맞춰 낮춘 장 안의 근사. 10 km에서는 BD.racePlan과 1분 안쪽으로 맞는다.)</div>
+    </div>
+
+    <p>한 시간 남짓한 경기는 젖산이 약 4 mmol/L에 머무는 강도로 달린다. 다온의 지금 역치로 그 강도는 VO2max의 약 79 %, 속도로는 시속 약 10.4 km, 10 km 약 58분이다. 그때 심박수는 약 161, 호흡 교환율은 약 0.90이다. VO2max만 보면 약 52분에 달릴 몸이지만, 젖산이 일찍 쌓이는 근육 때문에 그 6분을 쓰지 못한다. 훈련으로 바꾸기 쉬운 쪽도 역치다.</p>
+  </section>
+
+  <section id="fuel">
+    <h2>지방과 탄수화물의 교차</h2>
+    <p>산화 과정은 지방과 탄수화물을 모두 태운다. 지방은 몸에 수만 kcal가 있지만 태우는 속도가 느리고, 탄수화물(근육·간 글리코겐 약 2,000 kcal)은 빨리 태울 수 있지만 양이 적다. 강도가 오를수록 몸은 빠른 연료인 탄수화물 쪽으로 옮겨 간다. 두 연료의 비율이 뒤바뀌는 강도를 <span class="term">교차점</span><span class="en">(Crossover point)</span>이라 한다. 숨에서 나오는 CO2와 들어가는 O2의 비, <span class="term">호흡 교환율</span><span class="en">(Respiratory exchange ratio, RER)</span>로 연료 비율을 알 수 있다(지방만 약 0.7, 탄수화물만 1.0, <a href="metabolism.html">13장</a>).</p>
+
+    <div class="sim" id="ex-fuel" data-desc="운동 강도를 끌어 1분에 쓰는 에너지가 지방과 탄수화물로 어떻게 나뉘는지 보고, 지방 연소가 가장 많은 강도와 교차점을 찾는다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>강도에 따른 연료 비율</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="fu-cv"></canvas><span class="hint">세로선을 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="fu-who"><button data-value="pre" class="on">다온 지금</button><button data-value="post">12주 뒤</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--fat)"></i>지방</span><span><i style="background:var(--carb)"></i>탄수화물</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">강도 · 심박</span><span class="v" id="fu-o-x">—</span></div>
+        <div class="stat"><span class="k">에너지 소비</span><span class="v" id="fu-o-e">—</span></div>
+        <div class="stat"><span class="k">지방 / 탄수화물</span><span class="v" id="fu-o-g">—</span></div>
+        <div class="stat"><span class="k">RER</span><span class="v" id="fu-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 강도를 30 %에서 100 %까지 끈다. 에너지 소비는 계속 늘지만 지방의 몫(노랑)은 중간에서 가장 크고 다시 준다. ② 지방이 가장 많이 타는 강도(표시된 점)를 찾는다. 다온은 VO2max의 약 50 %, 1분에 약 5 kcal(지방 약 0.6 g)다. ③ "12주 뒤"로 바꾼다. 같은 상대 강도에서 지방을 더 많이 쓰고 교차점이 오른쪽으로 옮겨 간다. 훈련이 미토콘드리아를 늘려 지방을 더 빨리 태울 수 있게 되기 때문이다. (BD.steady의 RER로 연료 비율, 베어 식(BD.weir)으로 에너지를 계산한 교육용 모델. 체중 78 kg)</div>
+    </div>
+
+    <p>지방을 가장 많이 태우는 강도가 중간이라는 것은 "살을 빼려면 천천히 오래"라는 말의 근거로 자주 쓰인다. 하지만 체중을 정하는 것은 하루 전체의 에너지 장부다(<a href="weight.html">14장</a>). 대회에서 중요한 것은 반대 방향이다. 대회 속도의 RER 약 0.90이면 에너지의 약 3분의 2가 탄수화물이고, 58분이면 근육 글리코겐 수백 g을 쓴다. 글리코겐이 바닥나면 갑자기 속도가 떨어지는 이른바 '벽'을 만난다. 10 km에서는 드물고, 마라톤에서는 흔하다.</p>
+  </section>
+
+  <section id="zones">
+    <h2>심박 구간과 훈련 강도의 배분</h2>
+    <p>젖산을 매번 잴 수는 없으니 훈련할 때는 심박수로 강도를 어림한다. 최대 심박수와 안정 심박수 사이의 여유분(<span class="term">심박 예비량</span><span class="en">(Heart rate reserve)</span>)의 몇 %인지로 구간을 나누는 것이 <span class="term">카르보넨 공식</span><span class="en">(Karvonen formula)</span>이다(<a href="flow.html">7장</a>).</p>
+    <div class="formula">$$HR_{목표} = HR_{안정} + x \times (HR_{최대} - HR_{안정})$$
+      <div class="where">\(x\) 강도(0.5~1.0), \(HR_{안정}\) 다온 72 bpm, \(HR_{최대}\) 208 − 0.7 × 나이 = 184 bpm(다나카 식, 개인차 ±10 bpm). 다온의 70 % = 72 + 0.7 × 112 ≈ 150 bpm</div>
+    </div>
+    <p>지구력 선수들의 훈련 일지를 보면 훈련 시간의 약 80 %를 편한 강도(1~2구간), 약 20 %를 역치 위의 힘든 강도로 보내는 경우가 많다. 이를 <span class="term">양극화 훈련</span><span class="en">(Polarized training)</span>이라 한다. 반대로 매번 "조금 힘든" 중간 강도로만 달리면 피로는 쌓이는데 자극은 애매하기 쉽다. 아래 막대를 위아래로 끌어 한 주의 구간별 시간을 직접 나눠 보자.</p>
+
+    <div class="sim" id="ex-zones" data-desc="다온의 카르보넨 심박 구간을 보고, 한 주의 구간별 훈련 시간 막대를 끌어 양극화·역치 위주·회색 지대 배분의 훈련 부하와 쉬운 강도 비율을 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>다온의 심박 구간과 한 주의 배분</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="zn-cv"></canvas><span class="hint">막대를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>안정 심박수 <output id="zn-r-out"></output></span><input type="range" id="zn-r" min="48" max="90" step="1" value="72"></label>
+          <label class="ctrl"><span>나이 <output id="zn-a-out"></output></span><input type="range" id="zn-a" min="20" max="70" step="1" value="34"></label>
+          <div class="seg" id="zn-pre"><button data-value="pol" class="on">양극화</button><button data-value="thr">역치 위주</button><button data-value="grey">회색 지대</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">한 주 훈련 시간</span><span class="v" id="zn-o-t">—</span></div>
+        <div class="stat"><span class="k">쉬운 강도(1~2구간)</span><span class="v" id="zn-o-e">—</span></div>
+        <div class="stat"><span class="k">훈련 부하(시간 × 구간)</span><span class="v" id="zn-o-l">—</span></div>
+        <div class="stat"><span class="k">젖산 역치 심박</span><span class="v" id="zn-o-lt">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 안정 심박 72, 나이 34(다온)의 구간을 읽는다. 2구간 139~151, 4구간 162~173 bpm. ② "양극화", "역치 위주", "회색 지대"를 차례로 누른다. 같은 시간이라도 훈련 부하와 힘든 시간의 비율이 다르다. ③ 4~5구간 막대를 끌어 올려 힘든 시간이 30 %를 넘게 해 본다. 경고가 뜬다. 회복이 따라오지 못하기 쉽다. (구간 경계는 BD.HR_ZONES의 심박 예비량 비율. 훈련 부하는 구간 번호를 가중치로 쓴 단순 점수다. 여기 배분은 예시일 뿐 처방이 아니다.)</div>
+    </div>
+
+    <div class="callout warn">
+      <strong>숫자보다 몸의 신호가 먼저다</strong>
+      운동 중 가슴 통증이나 압박감, 심한 어지러움, 쓰러질 것 같은 느낌, 평소와 다른 숨참이 있으면 바로 멈추고 의료진을 찾는다. 공식으로 계산한 최대 심박수는 사람에 따라 10 bpm 넘게 틀릴 수 있으므로, 최대 강도 검사는 혼자 하지 말고 의료진이나 전문가와 함께 한다. 더운 날 대회 속도로 오래 달리는 것도 위험하다(<a href="thermo.html">19장</a>).
+    </div>
+  </section>
+
+  <section id="adapt">
+    <h2>훈련이 바꾸는 것, 그리고 되돌아가는 속도</h2>
+    <p>훈련은 몸에 작은 스트레스를 반복해서 주고, 몸이 다음 스트레스에 대비해 스스로를 고치게 하는 일이다. 바뀌는 것마다 속도가 다르다. 혈장량은 며칠 만에 늘어 1회 박출량을 키우고, 미토콘드리아 효소는 몇 주, 모세혈관은 그보다 느리게 는다. 그리고 대부분은 훈련을 멈추면 늘었을 때보다 <b>빨리</b> 되돌아간다.</p>
+
+    <div class="sim" id="ex-adapt" data-desc="훈련을 멈추는 시점을 끌어 혈장량, 1회 박출량, 미토콘드리아, 모세혈관, VO2max, 젖산 역치가 각자 다른 속도로 늘고 쉬면 더 빨리 줄어드는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>적응의 시간 상수</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="ad-cv"></canvas><span class="hint">"훈련 끝" 손잡이를 좌우로 끈다</span></div>
+      </div>
+      <div class="info-panel" id="ad-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">훈련 기간</span><span class="v" id="ad-o-w">—</span></div>
+        <div class="stat"><span class="k">끝날 때 VO2max</span><span class="v" id="ad-o-v">—</span></div>
+        <div class="stat"><span class="k">8주 쉰 뒤 VO2max</span><span class="v" id="ad-o-r">—</span></div>
+        <div class="stat"><span class="k">8주 쉰 뒤 미토콘드리아</span><span class="v" id="ad-o-m">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 훈련 끝을 12주에 둔다. 혈장량은 2주 안에 거의 다 늘었고, 모세혈관은 아직 오르는 중이다. ② 쉬기 시작한 뒤의 기울기를 비교한다. 혈장량과 미토콘드리아는 몇 주 만에 크게 줄지만 모세혈관은 오래 남는다. ③ 훈련 끝을 4주로 당긴다. 짧게 얻은 것은 짧게 잃는다. (각 지표를 1차 지연으로 근사했다. 최대 변화량과 시간 상수는 여러 훈련·탈훈련 연구의 대략적인 크기를 쓴 교육용 값이다.)</div>
+    </div>
+
+    <p>되돌아가는 속도가 다르다는 것은 쉬는 시간을 짜는 데 쓸모가 있다. 며칠 쉬어도 모세혈관과 근섬유 구조는 거의 그대로이고, 줄어드는 것은 주로 혈장량과 효소다. 그래서 대회 전 일주일쯤 훈련량을 줄여도(테이퍼) 체력은 거의 잃지 않으면서 쌓인 피로만 빠르게 걷힌다. 마지막 시뮬레이터에서 이 계산을 다온의 12주에 적용한다.</p>
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 고혈압·당뇨·심장 질환이 있거나 운동 중 증상이 있으면 운동을 시작하거나 강도를 높이기 전에 의료진과 상담하세요. 검사 기준과 권고는 학회와 시기에 따라 다릅니다.</p>
+  </section>
+
+  <section id="daon">
+    <h2>다온의 12주: 훈련을 직접 짜 보기</h2>
+    <p>훈련의 효과를 숫자로 다루는 가장 단순한 모델이 바니스터의 <span class="term">체력-피로 모델</span><span class="en">(Fitness–fatigue model)</span>이다. 훈련 하나는 두 가지를 남긴다. 천천히 쌓이고 천천히 사라지는 <b>체력</b>(시간 상수 약 42일)과, 빨리 쌓이고 빨리 사라지는 <b>피로</b>(약 7일)다. 그날의 컨디션은 체력에서 피로를 뺀 값이다.</p>
+    <div class="formula">$$p(t) = p_0 + k_1 \sum_{s<t} w_s\, e^{-(t-s)/\tau_1} - k_2 \sum_{s<t} w_s\, e^{-(t-s)/\tau_2}$$
+      <div class="where">\(w_s\) s일의 훈련 부하, \(\tau_1\) 체력 시간 상수(42일), \(\tau_2\) 피로 시간 상수(7일), \(k_1 = 1\), \(k_2 = 2\)(피로가 더 크게 남지만 더 빨리 사라진다)</div>
+    </div>
+    <p>아래 12주 막대를 위아래로 끌어 주마다 달리는 시간을 정하자(주 4일에 나눠 달린다고 가정). 기본 계획은 3주 늘리고 1주 줄이는 흐름에 마지막 주를 가볍게 한 예시다. 대회 날의 체력으로 VO2max와 역치를, 그날 남은 피로로 컨디션을 어림해 10 km 기록을 예측한다.</p>
+
+    <div class="sim" id="ex-plan" data-big data-desc="다온의 12주 훈련 막대를 끌어 주별 훈련량을 바꾸면 체력-피로 모델이 날마다의 체력·피로·컨디션을 그리고, 대회 날의 VO2max·젖산 역치·10 km 예상 기록과 테이퍼의 효과를 보여 준다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>다온의 12주 훈련 계획</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="pl-cv"></canvas><span class="hint">주별 막대를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="pl-pre"><button data-value="base" class="on">기본 계획</button><button data-value="notaper">테이퍼 없음</button><button data-value="big">너무 많이</button><button data-value="small">너무 적게</button></div>
+          <label class="check"><input type="checkbox" id="pl-day"> 날마다의 예상 기록 보기</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">대회 날 VO2max</span><span class="v" id="pl-o-v">—</span></div>
+        <div class="stat"><span class="k">대회 날 젖산 역치</span><span class="v" id="pl-o-l">—</span></div>
+        <div class="stat"><span class="k">10 km 예상 기록</span><span class="v" id="pl-o-t">—</span></div>
+        <div class="stat"><span class="k">총 훈련 시간</span><span class="v" id="pl-o-h">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본 계획에서 대회 날 VO2max 약 43, 역치 약 68 %, 10 km 약 50분을 확인한다. ② "테이퍼 없음"을 누른다. 체력은 조금 더 높지만 피로가 남아 예상 기록이 1분 넘게 늦어진다. 마지막 주 막대를 다시 낮춰 보자. ③ "너무 많이"를 누른다. 체력이 오르는 몫은 점점 줄어드는데(포화), 주간 증가가 커서 부상 위험 경고가 뜬다. 모델에는 부상이 없지만 실제 몸에는 있다. (BD.banister k1 = 1, k2 = 2, τ1 = 42일, τ2 = 7일. 대회 날 체력을 1 − e^(−체력/700)로 포화시켜 기본 계획이 VO2max 38 → 43, 역치 0.60 → 0.68이 되게 맞추고, 기록은 BD.racePlan에 남은 피로만큼 늦춘 교육용 계산이다. 계획은 예시이며 개인 처방이 아니다.)</div>
+    </div>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 12장</span></div>
+      <h4>VO2max 38 → 43, 젖산 역치 60 % → 68 %, 10 km 약 58분 → 약 50분</h4>
+      <p>운동 부하 검사에서 다온의 VO2max는 38 mL/kg/min, 젖산 역치는 VO2max의 약 60 %(심박 약 139)였다. 젖산 약 4 mmol/L를 유지할 수 있는 강도는 VO2max의 약 79 %, 시속 약 10.4 km로 10 km 약 58분이다(그때 심박 약 161). VO2max만 보면 약 52분이 가능한 몸이지만 낮은 역치가 6분을 막는다. 체력-피로 모델로 짠 12주 예시 계획(주 90분에서 시작해 3주 늘리고 1주 줄여 11주째 200분, 마지막 주는 110분으로 테이퍼)을 돌리면 대회 날 VO2max 약 43, 역치 약 68 %로 어림되고, 이때 대회 강도는 VO2max의 약 83 %, 시속 약 11.9 km, 10 km 약 50분이다. 마지막 주를 줄이지 않으면 체력은 비슷한데 남은 피로 때문에 기록이 1분 남짓 늦어진다. 테이퍼는 7일 시간 상수의 피로를 걷어 내고 42일 시간 상수의 체력은 거의 남기는 계산이다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>10 km는 98 % 가까이 유산소 경기이고, 기록은 VO2max와 젖산 역치가 함께 정한다. 12주 훈련으로 역치를 올리는 것이 가장 큰 몫이다.</div><div><b>아직 모르는 것</b>58분 동안 실제로 몇 kcal를 쓰고, 그 에너지는 하루 장부에서 얼마나 되는가. 대회 속도의 RER 0.90이 연료로 무엇을 뜻하는가.</div><div><b>다음 단계</b><a href="metabolism.html">13장</a>에서 다온의 기초대사량과 하루 소비 에너지, 달리기의 칼로리를 계산한다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>근육의 ATP는 2~3초분뿐이다. 인산크레아틴(약 10초), 해당 과정(수십 초~2분), 산화 과정(무한에 가까움)이 처음부터 함께 켜져 비율만 바뀐다. 유산소와 무산소가 반반인 운동 시간은 약 75초다.</li>
+      <li>운동을 시작하면 산소 섭취가 시간 상수 20~40초로 늦게 따라와 산소 부족이 생기고, 끝난 뒤에는 운동 후 초과 산소 소비로 갚는다. 훈련하면 시간 상수가 짧아진다.</li>
+      <li>VO2max = 심박수 × 1회 박출량 × 동정맥 산소 차. 다온의 38 mL/kg/min은 184 bpm × 110 mL × 15 mL/dL ÷ 78 kg에 해당한다.</li>
+      <li>젖산 역치는 젖산 생산이 제거를 넘기 시작하는 강도다. 한 시간짜리 경기는 젖산 약 4 mmol/L 근처로 달리므로, 기록은 VO2max와 역치가 함께 정한다.</li>
+      <li>강도가 오르면 연료는 지방에서 탄수화물로 옮겨 간다(교차). 대회 속도의 RER 약 0.90이면 에너지의 약 3분의 2가 탄수화물이다.</li>
+      <li>훈련 적응은 지표마다 속도가 다르고, 대개 얻을 때보다 빨리 잃는다. 체력-피로 모델에서 테이퍼는 빠른 피로를 걷어 내고 느린 체력을 남긴다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>전력으로 10초 동안 달리는 100 m 경기에서 ATP를 다시 채우는 데 가장 큰 몫을 하는 것은?</p>
+        <div class="opts">
+          <button class="opt">지방의 산화</button>
+          <button class="opt" data-correct>인산크레아틴</button>
+          <button class="opt">근육에 저장된 ATP 자체</button>
+          <button class="opt">간 글리코겐의 산화</button>
+        </div>
+        <div class="quiz-exp">처음 10초는 한 단계 반응으로 가장 빠른 인산크레아틴이 주로 댄다. 저장된 ATP는 2~3초분뿐이고, 산화 과정은 아직 산소 공급이 따라오지 못해 몫이 작다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>안정 심박수 72 bpm, 최대 심박수 184 bpm인 다온이 카르보넨 공식으로 강도 70 %의 목표 심박수를 정하면?</p>
+        <div class="opts">
+          <button class="opt">약 129 bpm</button>
+          <button class="opt">약 139 bpm</button>
+          <button class="opt" data-correct>약 150 bpm</button>
+          <button class="opt">약 162 bpm</button>
+        </div>
+        <div class="quiz-exp">72 + 0.7 × (184 − 72) = 72 + 0.7 × 112 = 72 + 78.4 ≈ 150 bpm. 최대 심박수의 70 %(약 129)와 헷갈리기 쉽다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>훈련을 하면 같은 운동을 시작할 때의 산소 부족이 줄어든다. 그 이유로 가장 알맞은 것은?</p>
+        <div class="opts">
+          <button class="opt">근육이 같은 운동에 산소를 덜 쓰게 되어서</button>
+          <button class="opt">폐활량이 두 배로 늘어서</button>
+          <button class="opt">젖산이 더 많이 만들어져서</button>
+          <button class="opt" data-correct>산소 섭취가 빨리 따라오도록(시간 상수가 짧아지도록) 혈류와 미토콘드리아가 바뀌어서</button>
+        </div>
+        <div class="quiz-exp">산소 부족은 요구량과 실제 섭취 사이의 넓이다. 훈련하면 심박출량·근육 혈류가 빨리 늘고 미토콘드리아가 많아져 시간 상수가 약 35초에서 20초대로 짧아지고, 그만큼 넓이가 준다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>VO2max가 같은 두 사람의 10 km 기록이 크게 다를 때, 가장 먼저 의심할 차이는?</p>
+        <div class="opts">
+          <button class="opt" data-correct>VO2max의 몇 %를 오래 유지할 수 있는가(젖산 역치)</button>
+          <button class="opt">최대 심박수</button>
+          <button class="opt">근육에 저장된 ATP의 양</button>
+          <button class="opt">폐활량</button>
+        </div>
+        <div class="quiz-exp">한 시간 남짓한 경기는 젖산이 쌓이지 않는 선(역치 근처)에서 달린다. 역치가 VO2max의 60 %인 사람과 80 %인 사람은 같은 VO2max로도 대회 속도가 크게 다르다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>12주 뒤 다온이 10 km를 시속 12 km로 고르게 달린다면 기록은?</p>
+        <div class="opts">
+          <button class="opt">약 45분</button>
+          <button class="opt" data-correct>50분</button>
+          <button class="opt">약 55분</button>
+          <button class="opt">약 58분</button>
+        </div>
+        <div class="quiz-exp">시간 = 거리 ÷ 속도 = 10 km ÷ 12 km/h = 0.833시간 = 50분. 엔진의 예측(시속 약 11.9 km, 약 50분)과 같다. 1 km에 5분 페이스다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  function wOf(id) { var el = document.getElementById(id); return el && el.parentElement ? el.parentElement.clientWidth : 600; }
+  function txt(ctx, s, x, y, o) {
+    o = o || {};
+    ctx.font = BB.font(o.size || 11, o.mono, o.weight);
+    ctx.fillStyle = o.color || P().dim;
+    ctx.textAlign = o.align || "left"; ctx.textBaseline = o.base || "alphabetic";
+    ctx.fillText(s, x, y);
+  }
+  function handle(ctx, x, y, r, col) {
+    var p = P();
+    ctx.fillStyle = p.bg; ctx.strokeStyle = col || p.text; ctx.lineWidth = 2.4;
+    ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }
+  function mmss(min) { var m = Math.floor(min), s = Math.round((min - m) * 60); if (s === 60) { m++; s = 0; } return m + ":" + (s < 10 ? "0" : "") + s; }
+  function hms(min) { if (min < 60) return mmss(min); var h = Math.floor(min / 60); return h + ":" + mmss(min - h * 60).padStart(5, "0"); }
+  var WHO = { pre: { vo2max: 38, lt: 0.6, tau: 35, name: "다온 지금" }, post: { vo2max: 43, lt: 0.68, tau: 22, name: "다온 12주 뒤" } };
+  /** 역치를 반영한 현실적 기록(분): 다니엘스의 지속 비율 곡선을, 60분에서 젖산 4 mmol/L 강도와 같아지게 낮춘다 */
+  function realTime(vo2max, lt, km) {
+    var l4 = lt + ((1 - lt) / Math.LN10) * Math.log(3), lo = 5, hi = 900;
+    for (var i = 0; i < 60; i++) {
+      var t = (lo + hi) / 2, v = (km * 1000) / t;
+      var f = Math.min(BD.danielsFrac(t), BD.danielsFrac(t) - BD.danielsFrac(60) + l4);
+      if (BD.danielsVO2(v) > vo2max * f) lo = t; else hi = t;
+    }
+    return (lo + hi) / 2;
+  }
+
+  /* ---------------------------------------------------------- 1. 에너지 시스템 */
+  (function () {
+    var D = 10, lay = null;
+    var T = [], S = [];
+    for (var t = 0; t <= 180; t += 1) { T.push(t); S.push(BD.energySystems(t)); }
+    var COL = function () { return { pcr: BB.color("heat"), gly: BB.color("carb"), ox: P().accent2 }; };
+    var EV = [[10, "100 m"], [50, "400 m"], [110, "800 m"], [220, "1500 m"], [1500, "5 km"], [3470, "다온 10 km"]];
+    var cv = BB.canvas("#en-cv", function (ctx, w, h) {
+      var p = P(), c0 = COL(), narrow = w < 600;
+      var box = narrow ? { x: 50, y: 22, w: w - 64, h: h * 0.56 - 58 } : { x: 54, y: 22, w: w * 0.64 - 70, h: h - 64 };
+      var c = BB.chart(ctx, box, { x: [0, 180], y: [0, 1.15], xLabel: "운동 시작부터(초)", yLabel: "ATP 공급 속도(처음 = 1)", yTicks: [0, 0.5, 1] });
+      // 누적 면적: 산화(아래) → 해당 → PCr
+      var layers = [["ox", c0.ox], ["gly", c0.gly], ["pcr", c0.pcr]];
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      for (var L = layers.length - 1; L >= 0; L--) {
+        ctx.beginPath(); ctx.moveTo(c.X(0), c.Y(0));
+        for (var i = 0; i < T.length; i++) { var s = 0; for (var q = 0; q <= L; q++) s += S[i][layers[q][0]]; ctx.lineTo(c.X(T[i]), c.Y(s)); }
+        ctx.lineTo(c.X(180), c.Y(0)); ctx.closePath(); ctx.fillStyle = BB.alpha(layers[L][1], 0.75); ctx.fill();
+      }
+      ctx.fillStyle = BB.alpha(p.bg, 0.45); ctx.fillRect(c.X(D), box.y, box.x + box.w - c.X(D), box.h);
+      ctx.restore();
+      txt(ctx, "← 인산크레아틴", c.X(9), c.Y(0.98), { color: p.text, size: 11.5, weight: 700 });
+      txt(ctx, "해당 과정", c.X(40), c.Y(0.55), { color: p.text, size: 11.5, weight: 700 });
+      txt(ctx, "산화 과정", c.X(120), c.Y(0.2), { color: p.text, size: 11.5, weight: 700 });
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(c.X(D), box.y); ctx.lineTo(c.X(D), box.y + box.h); ctx.stroke();
+      handle(ctx, c.X(D), box.y + 2, 8, p.accent);
+      // 0~D 적분
+      var a = { pcr: 0, gly: 0, ox: 0 }, tot = 0;
+      for (var k = 0; k <= 400; k++) { var tt = (D * k) / 400, e = BD.energySystems(tt), wt = k === 0 || k === 400 ? 0.5 : 1; a.pcr += e.pcr * wt; a.gly += e.gly * wt; a.ox += e.ox * wt; }
+      tot = a.pcr + a.gly + a.ox;
+      var sh = [a.pcr / tot, a.gly / tot, a.ox / tot];
+      // 비율 막대
+      var bx = box.x + box.w - 112, bw = 16;
+      ctx.fillStyle = BB.alpha(p.bg, 0.85); BB.rrect(ctx, bx - 8, box.y + 8, 120, box.h * 0.5 + 30, 8); ctx.fill(); ctx.strokeStyle = p.border; ctx.lineWidth = 1; ctx.stroke();
+      var by = box.y + 24, bh = box.h * 0.5, yy = by;
+      [[sh[0], c0.pcr], [sh[1], c0.gly], [sh[2], c0.ox]].forEach(function (s) { ctx.fillStyle = s[1]; ctx.fillRect(bx, yy, bw, bh * s[0]); yy += bh * s[0]; });
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1; ctx.strokeRect(bx, by, bw, bh);
+      txt(ctx, "0~" + D + "초 합계", bx + bw + 6, by + 10, { color: p.text, size: 11, weight: 700 });
+      txt(ctx, "PCr " + Math.round(sh[0] * 100) + "%", bx + bw + 6, by + 28, { color: p.text, size: 11 });
+      txt(ctx, "해당 " + Math.round(sh[1] * 100) + "%", bx + bw + 6, by + 44, { color: p.text, size: 11 });
+      txt(ctx, "산화 " + Math.round(sh[2] * 100) + "%", bx + bw + 6, by + 60, { color: p.text, size: 11 });
+      lay = c;
+      // 유산소 비율 곡선(로그)
+      var b2 = narrow ? { x: 50, y: h * 0.56 + 18, w: w - 64, h: h * 0.44 - 64 } : { x: w * 0.64 + 40, y: 22, w: w * 0.36 - 56, h: h - 64 };
+      var pts = []; for (var lg = Math.log10(5); lg <= Math.log10(3600) + 1e-9; lg += 0.02) { var Dd = Math.pow(10, lg); pts.push([Dd, BD.aerobicShare(Dd)]); }
+      var c2 = BB.chart(ctx, b2, { x: [5, 3600], y: [0, 1], logX: true, xLabel: "최대 운동 시간(초, 로그)", yTicks: [0, 0.5, 1], yFmt: function (v) { return Math.round(v * 100) + "%"; }, xFmt: function (v) { return v >= 1000 ? "1000" : String(v); },
+        hlines: [{ y: 0.5, color: p.faint }], series: [{ data: pts, color: c0.ox, width: 2.6, fill: BB.alpha(c0.ox, 0.12) }] });
+      txt(ctx, "유산소 비율", b2.x + 4, b2.y - 6, { size: 11 });
+      EV.forEach(function (ev, k) {
+        var x = c2.X(ev[0]), y = c2.Y(BD.aerobicShare(ev[0]));
+        ctx.fillStyle = k === 5 ? p.accent : p.dim; ctx.beginPath(); ctx.arc(x, y, 3.5, 0, Math.PI * 2); ctx.fill();
+        if (!narrow || k % 2 === 0 || k === 5) txt(ctx, ev[1], x + (k >= 4 ? -5 : 5), y + (k % 2 ? -8 : 14), { color: k === 5 ? p.accent : p.dim, size: 10.5, align: k >= 4 ? "right" : "left" });
+      });
+      if (D >= 5) { ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(c2.X(D), b2.y); ctx.lineTo(c2.X(D), b2.y + b2.h); ctx.stroke(); ctx.setLineDash([]); }
+      BB.stat("en-o-d", D + "<small>s</small>");
+      BB.stat("en-o-s", sh.map(function (x) { return Math.round(x * 100); }).join(" / ") + "<small>%</small>");
+      BB.stat("en-o-a", Math.round(BD.aerobicShare(D) * 100) + "<small>%</small>");
+      BB.stat("en-o-p", Math.round(BD.energySystems(D).total * 100) + "<small>%</small>");
+    }, { get height() { return wOf("en-cv") < 600 ? 560 : 360; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.box; if (x > b.x + b.w + 10 || y > b.y + b.h + 20) return; D = Math.round(BB.clamp(((x - b.x) / b.w) * 180, 2, 180)); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 2. 인터벌과 PCr */
+  (function () {
+    var data = null, t = 0, cv = null;
+    function calc() {
+      var S = getS(), R = getR(), N = getN(), dt = 0.25, pcr = 1, gly = 1, out = { t: [], pcr: [], atp: [], sprints: [], phase: [] }, minAtp = 1, beforeLast = 1;
+      for (var k = 0; k < N; k++) {
+        if (k === N - 1) beforeLast = pcr;
+        var pw = 0, cnt = 0;
+        for (var s = 0; s < S; s += dt) {
+          var p0 = pcr; pcr = pcr * Math.exp(-dt / 9);
+          var power = 0.55 * (p0 + pcr) / 2 / 1 + 0.35 * gly * (1 - Math.exp(-(s + dt) / 4)) + 0.1;
+          pw += power; cnt++;
+          var atp = 0.82 + 0.18 * Math.min(1, pcr / 0.25);
+          minAtp = Math.min(minAtp, atp);
+          out.t.push(out.t.length * dt); out.pcr.push(pcr); out.atp.push(atp); out.phase.push(1);
+        }
+        out.sprints.push(pw / cnt);
+        gly *= 0.93;
+        if (k < N - 1) {
+          var start = pcr;
+          for (var r = dt; r <= R + 1e-9; r += dt) { pcr = BD.pcrRecovery(r, 40, start); out.t.push(out.t.length * dt); out.pcr.push(pcr); out.atp.push(0.82 + 0.18 * Math.min(1, pcr / 0.25)); out.phase.push(0); }
+        }
+      }
+      out.T = out.t.length * dt; out.minAtp = minAtp; out.beforeLast = beforeLast;
+      data = out; t = 0;
+      if (cv) cv.redraw();
+    }
+    var getS = BB.range("pc-s", function (v) { return v + " s"; }, BB.debounce(calc, 40));
+    var getR = BB.range("pc-r", function (v) { return v + " s"; }, BB.debounce(calc, 40));
+    var getN = BB.range("pc-n", function (v) { return v + "회"; }, BB.debounce(calc, 40));
+    calc();
+    cv = BB.canvas("#pc-cv", function (ctx, w, h) {
+      var p = P(), heat = BB.color("heat"), n = data.t.length, idx = Math.min(n - 1, Math.floor((t / data.T) * n));
+      var box = { x: 52, y: 26, w: w - 68, h: h * 0.58 - 40 };
+      var c = BB.chart(ctx, box, { x: [0, data.T], y: [0, 1.1], xLabel: "", yTicks: [0, 0.5, 1], yFmt: function (v) { return Math.round(v * 100) + "%"; } });
+      // 질주 구간 칠하기
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      var st = -1;
+      for (var i = 0; i <= n; i++) {
+        var on = i < n && data.phase[i] === 1;
+        if (on && st < 0) st = i;
+        if (!on && st >= 0) { ctx.fillStyle = BB.alpha(p.bad, 0.12); ctx.fillRect(c.X(data.t[st]), box.y, c.X(data.t[i - 1]) - c.X(data.t[st]), box.h); st = -1; }
+      }
+      function line(arr, col, wd, upto) { ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.beginPath(); for (var k = 0; k <= upto; k++) { var x = c.X(data.t[k]), y = c.Y(arr[k]); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); }
+      line(data.pcr, BB.alpha(heat, 0.25), 1.4, n - 1); line(data.atp, BB.alpha(p.accent, 0.25), 1.4, n - 1);
+      line(data.pcr, heat, 2.6, idx); line(data.atp, p.accent, 2.2, idx);
+      ctx.restore();
+      txt(ctx, "근육 속 저장량(처음 = 100 %) · 빨간 띠 = 질주", box.x, box.y - 8, { size: 11 });
+      txt(ctx, "ATP", box.x + box.w - 4, c.Y(data.atp[idx]) - 6, { color: p.accent, align: "right", size: 11, weight: 700 });
+      txt(ctx, "시간(초)  ·  ATP 저장량은 전력 질주 약 2초분", box.x + box.w / 2, box.y + box.h + 30, { align: "center", size: 11.5 });
+      ctx.fillStyle = heat; ctx.beginPath(); ctx.arc(c.X(data.t[idx]), c.Y(data.pcr[idx]), 5, 0, Math.PI * 2); ctx.fill();
+      // 아래: 질주별 평균 파워 막대
+      var b2 = { x: 52, y: h * 0.58 + 44, w: w - 68, h: h * 0.42 - 74 };
+      var first = data.sprints[0];
+      var done = 0; for (var q = 0, acc = 0; q < data.sprints.length; q++) { var tEnd = getS() * (q + 1) + getR() * q; if (t >= tEnd) done = q + 1; }
+      BB.bars(ctx, b2, { labels: data.sprints.map(function (_, k) { return (k + 1) + "회"; }), y: [0, 1.1], yFmt: function (v) { return Math.round(v * 100) + "%"; },
+        stacks: [{ label: "파워", color: function (i) { return i < done ? (data.sprints[i] / first < 0.8 ? p.bad : p.dim) : BB.alpha(p.dim, 0.25); }, data: data.sprints.map(function (s) { return s / first; }) }],
+        valueFmt: function (v, i) { return i < done ? Math.round(v * 100) + "%" : ""; } });
+      txt(ctx, "질주별 평균 파워(첫 질주 = 100 %)", b2.x, b2.y - 8, { size: 11 });
+      BB.stat("pc-o-p", Math.round(data.beforeLast * 100) + "<small>%</small>");
+      BB.stat("pc-o-w", Math.round((data.sprints[data.sprints.length - 1] / first) * 100) + "<small>%</small>");
+      BB.stat("pc-o-a", Math.round(data.minAtp * 100) + "<small>%</small>");
+      BB.stat("pc-o-t", mmss(data.T / 60) + "<small>분</small>");
+    }, { get height() { return wOf("pc-cv") < 560 ? 440 : 400; } });
+    BB.loop(document.getElementById("ex-pcr"), function (dt) { t += dt * Math.max(20, data.T / 8); if (t > data.T + 30) t = 0; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 3. 산소 섭취 동역학 */
+  (function () {
+    var demand = 20, lay = null, cv = null, res = {};
+    function run(who) {
+      var W = WHO[who], ltv = W.vo2max * W.lt, slow = demand > ltv ? (demand - ltv) * 0.4 : 0;
+      var r = BD.vo2Kinetics({ rest: 3.5, demand: demand, tOn: 60, tOff: 420, tstop: 900, tau: W.tau, slow: slow, tauOff: W.tau * 1.3 });
+      var vo2 = r.vo2.map(function (v) { return Math.min(v, W.vo2max); });
+      var def = 0, ep = 0;
+      for (var i = 0; i < r.t.length; i++) { if (r.t[i] >= 60 && r.t[i] < 420) def += Math.max(0, r.demand[i] - vo2[i]) / 60; if (r.t[i] >= 420) ep += Math.max(0, vo2[i] - 3.5) / 60; }
+      return { t: r.t, vo2: vo2, demand: r.demand, def: def, epoc: ep, W: W, over: demand > W.vo2max, ltv: ltv };
+    }
+    function calc() { res.pre = run("pre"); res.post = run("post"); if (cv) cv.redraw(); }
+    var getWho = BB.seg("kn-who", function () { if (cv) cv.redraw(); });
+    document.getElementById("kn-cmp").addEventListener("change", function () { cv.redraw(); });
+    calc();
+    cv = BB.canvas("#kn-cv", function (ctx, w, h) {
+      var p = P(), r = res[getWho()], o = res[getWho() === "pre" ? "post" : "pre"];
+      var box = { x: 54, y: 18, w: w - 70, h: h - (w < 520 ? 100 : 84) };
+      var c = BB.chart(ctx, box, { x: [0, 900], y: [0, 50], xLabel: "시간(초) · 60초에 시작, 420초에 멈춤", yLabel: "산소 섭취(mL/kg/min)", xTicks: [0, 60, 180, 300, 420, 540, 660, 780, 900],
+        hlines: [{ y: r.W.vo2max, color: p.bad, label: "VO2max " + r.W.vo2max }, { y: r.ltv, color: p.warn, label: "젖산 역치" }] });
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      // 산소 부족
+      ctx.fillStyle = BB.alpha(p.bad, 0.28); ctx.beginPath();
+      for (var i = 60; i < 420; i++) { var x = c.X(r.t[i]); i === 60 ? ctx.moveTo(x, c.Y(r.demand[i])) : ctx.lineTo(x, c.Y(r.demand[i])); }
+      for (var j = 419; j >= 60; j--) ctx.lineTo(c.X(r.t[j]), c.Y(r.vo2[j]));
+      ctx.closePath(); ctx.fill();
+      // EPOC
+      ctx.fillStyle = BB.alpha(p.ok, 0.28); ctx.beginPath(); ctx.moveTo(c.X(420), c.Y(3.5));
+      for (var k = 420; k < r.t.length; k++) ctx.lineTo(c.X(r.t[k]), c.Y(r.vo2[k]));
+      ctx.lineTo(c.X(900), c.Y(3.5)); ctx.closePath(); ctx.fill();
+      // 요구량
+      ctx.strokeStyle = p.dim; ctx.lineWidth = 1.8; ctx.setLineDash([6, 4]); ctx.beginPath();
+      r.demand.forEach(function (d, q) { var x = c.X(r.t[q]), y = c.Y(d); q ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke(); ctx.setLineDash([]);
+      if (document.getElementById("kn-cmp").checked) { ctx.strokeStyle = BB.alpha(p.dim, 0.7); ctx.lineWidth = 1.4; ctx.beginPath(); o.vo2.forEach(function (v, q) { var x = c.X(o.t[q]), y = c.Y(v); q ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke(); }
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 2.8; ctx.beginPath(); r.vo2.forEach(function (v, q) { var x = c.X(r.t[q]), y = c.Y(v); q ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke();
+      ctx.restore();
+      txt(ctx, "산소 부족 " + r.def.toFixed(1) + " mL/kg", c.X(70), c.Y(Math.min(46, demand + 3)), { color: p.bad, size: 11.5, weight: 700 });
+      txt(ctx, "운동 후 초과 소비 " + r.epoc.toFixed(1), c.X(440), c.Y(Math.max(r.vo2[425] * 0.6, 8)), { color: p.ok, size: 11.5, weight: 700 });
+      if (document.getElementById("kn-cmp").checked) txt(ctx, "회색: " + o.W.name, box.x + box.w - 4, box.y + box.h - 6, { align: "right", size: 11 });
+      handle(ctx, c.X(240), c.Y(demand), 8, p.text);
+      if (r.over) { ctx.fillStyle = BB.alpha(p.bad, 0.12); ctx.fillRect(box.x, box.y, box.w, 22); txt(ctx, "VO2max를 넘는 요구: 따라잡지 못해 오래 버티지 못한다", box.x + box.w / 2, box.y + 11, { color: p.bad, align: "center", base: "middle", size: 12, weight: 700 }); }
+      else if (demand > r.ltv) txt(ctx, "역치 위: 느린 성분으로 계속 오른다", c.X(250), c.Y(demand) - 14, { color: p.warn, align: "center", size: 11, weight: 700 });
+      lay = c;
+      BB.stat("kn-o-x", demand.toFixed(0) + "<small>mL/kg/min · " + Math.round((demand / r.W.vo2max) * 100) + "%</small>");
+      BB.stat("kn-o-d", r.def.toFixed(1) + "<small>mL/kg</small>");
+      BB.stat("kn-o-e", r.epoc.toFixed(1) + "<small>mL/kg</small>");
+      BB.stat("kn-o-t", r.W.tau + "<small>s</small>");
+    }, { get height() { return wOf("kn-cv") < 520 ? 360 : 340; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; demand = Math.round(BB.clamp(50 * (1 - (y - lay.box.y) / lay.box.h), 8, 48)); calc(); } });
+  })();
+
+  /* ---------------------------------------------------------- 4. 점증 부하 검사 */
+  (function () {
+    var test = null, t = 0, mark = 9, lay = null, cv = null;
+    function build(who) {
+      var W = WHO[who], out = [], tEnd = 0;
+      for (var tt = 0; tt <= 25; tt += 0.05) {
+        var kmh = 6 + 0.5 * Math.floor(tt), x = BD.danielsVO2((kmh * 1000) / 60) / W.vo2max;
+        var s = BD.steady(x, { vo2max: W.vo2max, lt: W.lt });
+        out.push({ t: tt, kmh: kmh, x: x, s: s }); tEnd = tt;
+        if (x > 1.06) break;
+      }
+      var ltK = BD.danielsSpeed(W.vo2max * W.lt), obK = BD.danielsSpeed(W.vo2max * (W.lt + ((1 - W.lt) / Math.LN10) * Math.log(3)));
+      return { pts: out, tEnd: tEnd, W: W, ltK: ltK, obK: obK, vmK: BD.danielsSpeed(W.vo2max) };
+    }
+    var getWho = BB.seg("rp-who", function (v) { test = build(v); t = 0; });
+    test = build("pre");
+    document.getElementById("rp-go").addEventListener("click", function () { t = 0; });
+    document.getElementById("rp-ans").addEventListener("change", function () { cv.redraw(); });
+    function kmhToT(k) { return (k - 6) * 2 + 0.5; }
+    cv = BB.canvas("#rp-cv", function (ctx, w, h) {
+      var pts = test.pts, n = pts.length, idx = Math.min(n - 1, Math.floor((t / test.tEnd) * (n - 1))), ans = document.getElementById("rp-ans").checked;
+      var G = { text: "#e6e9f0", dim: "#9aa6bf", grid: "rgba(255,255,255,0.08)" };
+      var L = 52, R = w - (w < 520 ? 56 : 78), top = 50, bottom = h - 34;
+      var rows = [
+        { k: "vo2", name: "VO2", unit: "mL/kg/min", lo: 0, hi: 50, col: BB.trace(3), f: function (q) { return q.s.vo2; } },
+        { k: "hr", name: "심박", unit: "bpm", lo: 60, hi: 200, col: BB.trace(1), f: function (q) { return q.s.hr; } },
+        { k: "lac", name: "젖산", unit: "mmol/L", lo: 0, hi: 14, col: BB.trace(4), f: function (q) { return q.s.lactate; } },
+        { k: "rer", name: "RER", unit: "", lo: 0.7, hi: 1.15, col: BB.trace(2), f: function (q) { return q.s.rer; } },
+        { k: "ve", name: "VE", unit: "L/min", lo: 0, hi: 130, col: "#c9a6ff", f: function (q) { return q.s.ve; } },
+      ];
+      var rh = (bottom - top) / rows.length;
+      var X = function (tt) { return L + (tt / 16) * (R - L); };
+      // 위: 속도 눈금
+      ctx.font = BB.font(10.5, true); ctx.fillStyle = G.dim; ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+      for (var k = 6; k <= 14; k += 1) { var x = X(kmhToT(k) - 0.5); if (x <= R) ctx.fillText(k + "", x, top - 6); }
+      txt(ctx, "km/h", L - 6, top - 6, { color: G.dim, size: 10.5, align: "right", base: "bottom" });
+      rows.forEach(function (r, ri) {
+        var y0 = top + ri * rh, Y = function (v) { return y0 + rh - 6 - ((v - r.lo) / (r.hi - r.lo)) * (rh - 12); };
+        ctx.strokeStyle = G.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(L, y0 + rh - 2); ctx.lineTo(R, y0 + rh - 2); ctx.stroke();
+        txt(ctx, r.name, L - 6, y0 + rh / 2, { color: r.col, size: 11, weight: 700, align: "right", base: "middle" });
+        ctx.strokeStyle = BB.alpha(r.col, 0.25); ctx.lineWidth = 1.2; ctx.beginPath();
+        pts.forEach(function (q, i) { var xx = X(q.t), yy = Y(r.f(q)); i ? ctx.lineTo(xx, yy) : ctx.moveTo(xx, yy); }); ctx.stroke();
+        ctx.strokeStyle = r.col; ctx.lineWidth = 2.2; ctx.beginPath();
+        for (var i = 0; i <= idx; i++) { var xx = X(pts[i].t), yy = Y(r.f(pts[i])); i ? ctx.lineTo(xx, yy) : ctx.moveTo(xx, yy); } ctx.stroke();
+        var v = r.f(pts[idx]);
+        txt(ctx, r.k === "rer" ? v.toFixed(2) : v < 20 && r.k === "lac" ? v.toFixed(1) : Math.round(v) + "", R + 6, y0 + rh / 2 - 4, { color: r.col, size: w < 520 ? 14 : 18, mono: true, weight: 700, base: "middle" });
+        txt(ctx, r.unit, R + 6, y0 + rh / 2 + 12, { color: G.dim, size: 9.5, base: "middle" });
+        if (r.k === "lac") { ctx.strokeStyle = "rgba(255,255,255,0.18)"; ctx.setLineDash([3, 3]); [2, 4].forEach(function (lv) { ctx.beginPath(); ctx.moveTo(L, Y(lv)); ctx.lineTo(R, Y(lv)); ctx.stroke(); }); ctx.setLineDash([]); }
+        r.Y = Y;
+      });
+      // 진행 커서
+      ctx.strokeStyle = "rgba(255,255,255,0.35)"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(pts[idx].t), top); ctx.lineTo(X(pts[idx].t), bottom); ctx.stroke();
+      // 답
+      if (ans) {
+        [[test.ltK, "역치 2 mmol", BB.trace(4)], [test.obK, "4 mmol", "#ffb86b"], [test.vmK, "VO2max", BB.trace(3)]].forEach(function (a, k) {
+          var x = X(kmhToT(a[0]) - 0.5); ctx.strokeStyle = a[2]; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, bottom); ctx.stroke(); ctx.setLineDash([]);
+          txt(ctx, a[1], x + 3, bottom + 14 + (k % 2) * 0, { color: a[2], size: 10.5, align: k === 2 ? "right" : "left" });
+        });
+      }
+      // 사용자 표지
+      var mx = X(kmhToT(mark) - 0.5);
+      ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(mx, top); ctx.lineTo(mx, bottom); ctx.stroke();
+      ctx.fillStyle = "#0b0d12"; ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.arc(mx, bottom + 2, 8, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      txt(ctx, "검사 " + mmss(pts[idx].t) + " · " + pts[idx].kmh.toFixed(1) + " km/h", 12, 14, { color: G.text, size: 12, weight: 700, base: "middle" });
+      if (idx >= n - 1) txt(ctx, "탈진: 검사 종료", R, 14, { color: "#ff6b6b", size: 12, weight: 700, align: "right", base: "middle" });
+      lay = { X: X, L: L, R: R };
+      var mk = Math.max(0, Math.min(n - 1, Math.round((kmhToT(mark) - 0.5) / 0.05)));
+      var sMark = BD.steady(BD.danielsVO2((mark * 1000) / 60) / test.W.vo2max, { vo2max: test.W.vo2max, lt: test.W.lt });
+      BB.stat("rp-o-v", mark.toFixed(1) + "<small>km/h</small>");
+      BB.stat("rp-o-l", sMark.lactate.toFixed(1) + " · " + Math.round(sMark.hr));
+      BB.stat("rp-o-t", ans ? test.ltK.toFixed(1) + "<small>km/h · 심박 " + Math.round(BD.steady(test.W.lt, { vo2max: test.W.vo2max, lt: test.W.lt }).hr) + "</small>" : "답 보기로 확인");
+      var vmax = 0; for (var i2 = 0; i2 <= idx; i2++) vmax = Math.max(vmax, pts[i2].s.vo2);
+      BB.stat("rp-o-m", vmax.toFixed(1) + "<small>mL/kg/min</small>");
+    }, { get height() { return wOf("rp-cv") < 520 ? 470 : 430; } });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; var tt = ((x - lay.L) / (lay.R - lay.L)) * 16; mark = BB.clamp(Math.round((6 + (tt) / 2) * 10) / 10, 6, 14); cv.redraw(); } });
+    BB.loop(document.getElementById("ex-ramp"), function (dt) { if (t < test.tEnd) { t = Math.min(test.tEnd, t + dt * 1.2); } cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 5. VO2max와 기록 */
+  (function () {
+    var v = 38, lt = 0.6, lay = null;
+    var DIST = [[5, "5 km"], [10, "10 km"], [21.0975, "하프"], [42.195, "풀"]];
+    var MARKS = [[38, 0.6, "다온 지금"], [43, 0.68, "다온 12주"], [50, 0.75, "꾸준한 시민 러너"], [70, 0.85, "엘리트"]];
+    var cv = BB.canvas("#rc-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 600;
+      var pad = narrow ? { x: 50, y: 22, w: w - 66, h: h * 0.46 - 60 } : { x: 54, y: 22, w: w * 0.42 - 70, h: h - 80 };
+      var c = BB.chart(ctx, pad, { x: [0.5, 0.9], y: [30, 75], xLabel: "젖산 역치(VO2max의 비율)", yLabel: "VO2max(mL/kg/min)", xFmt: function (q) { return Math.round(q * 100) + "%"; } });
+      MARKS.forEach(function (m) { ctx.fillStyle = p.dim; ctx.beginPath(); ctx.arc(c.X(m[1]), c.Y(m[0]), 4, 0, Math.PI * 2); ctx.fill(); txt(ctx, m[2], c.X(m[1]) + (m[1] > 0.8 ? -7 : 7), c.Y(m[0]) + (m[0] < 40 ? -8 : 4), { size: 10.5, align: m[1] > 0.8 ? "right" : "left", base: "middle" }); });
+      ctx.strokeStyle = BB.alpha(p.accent, 0.4); ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(c.X(0.6), c.Y(38)); ctx.lineTo(c.X(0.68), c.Y(43)); ctx.stroke(); ctx.setLineDash([]);
+      handle(ctx, c.X(lt), c.Y(v), 9, p.accent);
+      lay = c;
+      // 막대: 페이스(분/km)
+      var b2 = narrow ? { x: 50, y: h * 0.46 + 22, w: w - 66, h: h * 0.54 - 80 } : { x: w * 0.42 + 50, y: 22, w: w * 0.58 - 66, h: h - 80 };
+      var A = DIST.map(function (d) { return BD.raceTime(v, d[0]); }), B = DIST.map(function (d) { return realTime(v, lt, d[0]); });
+      var paceA = A.map(function (tm, i) { return tm / DIST[i][0]; }), paceB = B.map(function (tm, i) { return tm / DIST[i][0]; });
+      var ymax = Math.max(8, Math.ceil(Math.max.apply(null, paceB) + 0.5));
+      var c2 = BB.chart(ctx, b2, { x: [0, 4], y: [0, ymax], xTicks: [], yLabel: "페이스(분/km)", yFmt: function (q) { return q + ":00"; } });
+      var slot = b2.w / 4, bw = Math.min(30, slot * 0.3);
+      DIST.forEach(function (d, i) {
+        var cx = b2.x + slot * (i + 0.5);
+        ctx.fillStyle = BB.alpha(p.dim, 0.35); ctx.fillRect(cx - bw - 2, c2.Y(paceA[i]), bw, c2.Y(0) - c2.Y(paceA[i]));
+        ctx.fillStyle = p.accent; ctx.fillRect(cx + 2, c2.Y(paceB[i]), bw, c2.Y(0) - c2.Y(paceB[i]));
+        txt(ctx, d[1], cx, b2.y + b2.h + 16, { align: "center", size: 11.5, color: p.text, weight: 600 });
+        if (!narrow) txt(ctx, hms(A[i]), cx - bw / 2 - 2, c2.Y(paceA[i]) - 4, { align: "center", size: 10, mono: true });
+        txt(ctx, hms(B[i]), cx + (narrow ? 0 : bw / 2 + 2), c2.Y(paceB[i]) - (narrow ? 5 : 16), { align: "center", size: narrow ? 10 : 10.5, mono: true, color: p.accent, weight: 700 });
+      });
+      txt(ctx, narrow ? "숫자 = 역치 반영 기록 · 회색 VO2max만" : "막대 위 숫자 = 기록. 회색 VO2max만 · 빨강 역치 반영", b2.x, b2.y - 8, { size: 11 });
+      var f10 = Math.min(BD.danielsFrac(B[1]), BD.danielsFrac(B[1]) - BD.danielsFrac(60) + lt + ((1 - lt) / Math.LN10) * Math.log(3));
+      BB.stat("rc-o-in", v.toFixed(0) + " · " + Math.round(lt * 100) + "%");
+      BB.stat("rc-o-a", mmss(A[1]));
+      BB.stat("rc-o-b", mmss(B[1]) + "<small>(+" + (B[1] - A[1]).toFixed(1) + "분)</small>");
+      BB.stat("rc-o-f", Math.round(f10 * 100) + "<small>% VO2max</small>");
+    }, { get height() { return wOf("rc-cv") < 600 ? 600 : 360; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.box; if (x > b.x + b.w + 16 || y > b.y + b.h + 16) return; lt = Math.round(BB.clamp(0.5 + ((x - b.x) / b.w) * 0.4, 0.5, 0.9) * 100) / 100; v = Math.round(BB.clamp(75 - ((y - b.y) / b.h) * 45, 30, 75)); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 6. 연료 교차 */
+  (function () {
+    var x = 0.5, lay = null, cv = null;
+    function at(xx, W) { var s = BD.steady(xx, { vo2max: W.vo2max, lt: W.lt }), L = (s.vo2 * 78) / 1000, ee = BD.weir(L, L * s.rer); return { s: s, ee: ee, fat: ee * s.fatFrac, carb: ee * (1 - s.fatFrac) }; }
+    var getWho = BB.seg("fu-who", function () { cv.redraw(); });
+    cv = BB.canvas("#fu-cv", function (ctx, w, h) {
+      var p = P(), W = WHO[getWho()], fatC = BB.color("fat"), carbC = BB.color("carb");
+      var box = { x: 56, y: 22, w: w - 72, h: h - (w < 520 ? 100 : 84) };
+      var c = BB.chart(ctx, box, { x: [0.25, 1.0], y: [0, 18], xLabel: "운동 강도(% VO2max)", yLabel: "에너지 소비(kcal/min)", xFmt: function (q) { return Math.round(q * 100) + "%"; } });
+      var xs = []; for (var q = 0.25; q <= 1.0001; q += 0.01) xs.push(q);
+      var A = xs.map(function (q) { return at(q, W); });
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      ctx.fillStyle = BB.alpha(carbC, 0.6); ctx.beginPath(); ctx.moveTo(c.X(xs[0]), c.Y(0));
+      A.forEach(function (a, i) { ctx.lineTo(c.X(xs[i]), c.Y(a.ee)); }); ctx.lineTo(c.X(1), c.Y(0)); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = BB.alpha(fatC, 0.85); ctx.beginPath(); ctx.moveTo(c.X(xs[0]), c.Y(0));
+      A.forEach(function (a, i) { ctx.lineTo(c.X(xs[i]), c.Y(a.fat)); }); ctx.lineTo(c.X(1), c.Y(0)); ctx.closePath(); ctx.fill();
+      ctx.restore();
+      // 지방 최대, 교차점
+      var bi = 0; A.forEach(function (a, i) { if (a.fat > A[bi].fat) bi = i; });
+      var ci = A.findIndex(function (a) { return a.s.fatFrac < 0.5; });
+      ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(c.X(xs[bi]), c.Y(A[bi].fat), 4.5, 0, Math.PI * 2); ctx.fill();
+      txt(ctx, "지방 최대 " + Math.round(xs[bi] * 100) + "%", c.X(xs[bi]), c.Y(A[bi].fat) + 16, { color: p.text, align: "center", size: 11, weight: 700 });
+      if (ci > 0) { ctx.strokeStyle = p.text; ctx.setLineDash([4, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(c.X(xs[ci]), box.y); ctx.lineTo(c.X(xs[ci]), box.y + box.h); ctx.stroke(); ctx.setLineDash([]); txt(ctx, "교차점 " + Math.round(xs[ci] * 100) + "%", c.X(xs[ci]) + 4, box.y + 12, { color: p.text, size: 11 }); }
+      txt(ctx, "탄수화물", c.X(0.9), c.Y(at(0.9, W).ee * 0.75), { color: p.text, align: "center", size: 12, weight: 700 });
+      txt(ctx, "지방", c.X(0.33), c.Y(at(0.33, W).fat * 0.45), { color: p.text, align: "center", size: 12, weight: 700 });
+      var a = at(x, W);
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 1.8; ctx.beginPath(); ctx.moveTo(c.X(x), box.y); ctx.lineTo(c.X(x), box.y + box.h); ctx.stroke();
+      handle(ctx, c.X(x), c.Y(a.ee), 8, p.accent);
+      var rpx = c.X(BD.racePlan(W.vo2max, W.lt).frac);
+      txt(ctx, "▼ 대회 속도", rpx, box.y + box.h - 6, { color: p.accent, align: "center", size: 10.5, weight: 700 });
+      lay = c;
+      BB.stat("fu-o-x", Math.round(x * 100) + "% · " + Math.round(a.s.hr) + "<small>bpm</small>");
+      BB.stat("fu-o-e", a.ee.toFixed(1) + "<small>kcal/min</small>");
+      BB.stat("fu-o-g", (a.fat / 9).toFixed(2) + " / " + (a.carb / 4).toFixed(2) + "<small>g/min</small>");
+      BB.stat("fu-o-r", a.s.rer.toFixed(2) + "<small>지방 " + Math.round(a.s.fatFrac * 100) + "%</small>");
+    }, { get height() { return wOf("fu-cv") < 520 ? 340 : 330; } });
+    BB.drag(cv.canvas, { move: function (xx) { if (!lay) return; var b = lay.box; x = BB.clamp(0.25 + ((xx - b.x) / b.w) * 0.75, 0.25, 1); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 7. 심박 구간과 배분 */
+  (function () {
+    var PRE = { pol: [120, 110, 15, 25, 10], thr: [40, 60, 60, 90, 10], grey: [20, 50, 160, 40, 10] };
+    var mins = PRE.pol.slice(), lay = null, cv = null, dragI = -1;
+    var getR = BB.range("zn-r", function (v) { return v + " bpm"; }, function () { cv.redraw(); });
+    var getA = BB.range("zn-a", function (v) { return v + "세"; }, function () { cv.redraw(); });
+    BB.seg("zn-pre", function (v) { mins = PRE[v].slice(); cv.redraw(); });
+    function zc(i) { var p = P(); return [BB.alpha(p.accent2, 0.55), p.accent2, p.ok, p.warn, p.bad][i]; }
+    cv = BB.canvas("#zn-cv", function (ctx, w, h) {
+      var p = P(), hrR = getR(), hrM = BD.hrMax(getA()), narrow = w < 520;
+      // 위: 구간 띠
+      var x0 = 16, x1 = w - 16, y = 50, bh = 26;
+      var HX = function (hr) { return x0 + ((hr - 60) / (200 - 60)) * (x1 - x0); };
+      txt(ctx, "심박 구간(카르보넨) · 최대 " + Math.round(hrM) + " bpm", x0, 16, { color: p.text, size: 12, weight: 700, base: "middle" });
+      BD.HR_ZONES.forEach(function (z, i) {
+        var a = BD.karvonen(z.lo, hrR, hrM), b = BD.karvonen(z.hi, hrR, hrM);
+        ctx.fillStyle = zc(i); ctx.fillRect(HX(a), y, HX(b) - HX(a), bh);
+        txt(ctx, "Z" + z.z, (HX(a) + HX(b)) / 2, y + bh / 2, { color: "#fff", align: "center", base: "middle", size: 11.5, weight: 700, mono: true });
+        txt(ctx, Math.round(a) + "", HX(a), y + bh + 12, { align: "center", size: 10, mono: true });
+        if (i === 4) txt(ctx, Math.round(b) + "", HX(b), y + bh + 12, { align: "center", size: 10, mono: true });
+      });
+      var ltHr = BD.karvonen(0.6, hrR, hrM);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(HX(ltHr), y - 5); ctx.lineTo(HX(ltHr), y + bh + 2); ctx.stroke();
+      txt(ctx, "역치 " + Math.round(ltHr), HX(ltHr), y - 7, { color: p.text, align: "center", size: 10.5, weight: 700 });
+      txt(ctx, "안정 " + hrR, HX(hrR), y + bh / 2, { align: "center", base: "middle", size: 10.5 });
+      // 아래: 주간 배분 막대
+      var box = { x: 54, y: y + bh + 48, w: w - 70, h: h - (y + bh + 48) - 58 };
+      var tot = mins.reduce(function (s, m) { return s + m; }, 0);
+      var c = BB.bars(ctx, box, { labels: ["Z1", "Z2", "Z3", "Z4", "Z5"], y: [0, 200], yLabel: "한 주의 시간(분)", stacks: [{ label: "분", color: function (i) { return zc(i); }, data: mins }], valueFmt: function (v) { return Math.round(v) + "분"; } });
+      mins.forEach(function (m, i) { handle(ctx, c.X(i), c.Y(m), 6, zc(i)); });
+      var easy = (mins[0] + mins[1]) / tot, hard = (mins[3] + mins[4]) / tot;
+      txt(ctx, "쉬운 " + Math.round(easy * 100) + "% · 중간 " + Math.round((mins[2] / tot) * 100) + "% · 힘든 " + Math.round(hard * 100) + "%", box.x + box.w - 4, box.y + 4, { color: p.text, align: "right", size: 11.5, weight: 700, base: "top" });
+      if (hard > 0.3) { ctx.fillStyle = BB.alpha(p.bad, 0.12); ctx.fillRect(box.x, box.y + 22, box.w, 22); txt(ctx, "힘든 시간 30 % 초과: 회복이 따라오지 못하기 쉽다", box.x + box.w / 2, box.y + 33, { color: p.bad, align: "center", base: "middle", size: narrow ? 10.5 : 12, weight: 700 }); }
+      else if (mins[2] / tot > 0.4) txt(ctx, "중간 강도가 많다: 피로는 쌓이고 자극은 애매한 회색 지대", box.x + box.w - 4, box.y + 26, { color: p.warn, align: "right", base: "top", size: narrow ? 10.5 : 11.5, weight: 700 });
+      lay = c;
+      var load = mins.reduce(function (s, m, i) { return s + m * (i + 1); }, 0);
+      BB.stat("zn-o-t", Math.round(tot) + "<small>분</small>");
+      BB.stat("zn-o-e", Math.round(easy * 100) + "<small>%</small>");
+      BB.stat("zn-o-l", load + "<small>점</small>");
+      BB.stat("zn-o-lt", Math.round(ltHr) + "<small>bpm</small>");
+    }, { get height() { return wOf("zn-cv") < 520 ? 420 : 390; } });
+    BB.drag(cv.canvas, {
+      start: function (x) { if (!lay) return; var best = 1e9; dragI = -1; for (var i = 0; i < 5; i++) { var d = Math.abs(lay.X(i) - x); if (d < best) { best = d; dragI = i; } } if (best > lay.bw) dragI = -1; },
+      move: function (x, y) { if (!lay || dragI < 0) return; if (y < lay.box.y - 30) return; var v = BB.clamp((1 - (y - lay.box.y) / lay.box.h) * 200, 0, 200); mins[dragI] = Math.round(v / 5) * 5; cv.redraw(); },
+      end: function () { dragI = -1; },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 8. 적응의 시간 상수 */
+  (function () {
+    var V = [
+      { k: "plasma", name: "혈장량", on: 1, off: 1.5, max: 0.12, unit: "%", col: function () { return BB.color("water"); } },
+      { k: "sv", name: "1회 박출량", on: 3, off: 2.5, max: 0.12, unit: "%", col: function () { return BB.color("art"); } },
+      { k: "mito", name: "미토콘드리아", on: 4, off: 2.5, max: 0.4, unit: "%", col: function () { return BB.color("seg-musc"); } },
+      { k: "cap", name: "모세혈관 밀도", on: 7, off: 10, max: 0.2, unit: "%", col: function () { return BB.color("nerve"); } },
+      { k: "vo2", name: "VO2max", on: 5, off: 3.5, max: 0.13, unit: "%", col: function () { return P().accent2; } },
+      { k: "lt", name: "젖산 역치", on: 5, off: 3, max: 0.08, unit: "pt", col: function () { return P().warn; } },
+    ];
+    var stop = 12, lay = null, TMAX = 30;
+    function val(o, wk) { if (wk <= stop) return 1 - Math.exp(-wk / o.on); var a = 1 - Math.exp(-stop / o.on); return a * Math.exp(-(wk - stop) / o.off); }
+    var cv = BB.canvas("#ad-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var box = { x: 54, y: 30, w: w - (narrow ? 70 : 178), h: h - (narrow ? 134 : 90) };
+      var c = BB.chart(ctx, box, { x: [0, TMAX], y: [0, 1.05], xLabel: "주", yLabel: "얻을 수 있는 변화의 몇 %", yTicks: [0, 0.5, 1], yFmt: function (v) { return Math.round(v * 100) + "%"; },
+        bands: [{ x0: 0, x1: stop, color: BB.alpha(p.ok, 0.07) }],
+        series: V.map(function (o) { var d = []; for (var wk = 0; wk <= TMAX; wk += 0.25) d.push([wk, val(o, wk)]); return { data: d, color: o.col(), width: 2.4 }; }) });
+      txt(ctx, "훈련", c.X(stop / 2), box.y - 8, { color: p.ok, align: "center", size: 11.5, weight: 700 });
+      txt(ctx, "쉼(탈훈련)", c.X((stop + TMAX) / 2), box.y - 8, { color: p.dim, align: "center", size: 11.5, weight: 700 });
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.8; ctx.beginPath(); ctx.moveTo(c.X(stop), box.y); ctx.lineTo(c.X(stop), box.y + box.h); ctx.stroke();
+      handle(ctx, c.X(stop), box.y + box.h / 2, 9, p.accent);
+      ctx.strokeStyle = BB.alpha(p.text, 0.4); ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(c.X(stop + 8), box.y); ctx.lineTo(c.X(stop + 8), box.y + box.h); ctx.stroke(); ctx.setLineDash([]);
+      if (stop + 8 <= TMAX) txt(ctx, "8주 뒤", c.X(stop + 8) + 3, box.y + box.h - 6, { size: 10.5 });
+      // 범례(오른쪽 또는 아래 겹침 피하기)
+      if (!narrow) {
+        V.forEach(function (o, i) { var yy = box.y + 8 + i * 22; ctx.fillStyle = o.col(); ctx.fillRect(box.x + box.w + 14, yy - 5, 12, 10); txt(ctx, o.name, box.x + box.w + 30, yy, { color: p.text, size: 11, base: "middle" }); });
+      } else {
+        V.forEach(function (o, i) { var xx = box.x + (i % 3) * (box.w / 3), yy = h - 52 + Math.floor(i / 3) * 15; ctx.fillStyle = o.col(); ctx.fillRect(xx, yy - 4, 9, 8); txt(ctx, o.name, xx + 12, yy, { size: 10, base: "middle" }); });
+      }
+      lay = c;
+      var vo = V[4], mi = V[2];
+      BB.stat("ad-o-w", stop + "<small>주</small>");
+      BB.stat("ad-o-v", (38 * (1 + vo.max * val(vo, stop))).toFixed(1) + "<small>mL/kg/min</small>");
+      BB.stat("ad-o-r", (38 * (1 + vo.max * val(vo, stop + 8))).toFixed(1) + "<small>mL/kg/min</small>");
+      BB.stat("ad-o-m", "+" + Math.round(mi.max * val(mi, stop + 8) * 100) + "<small>% (끝날 때 +" + Math.round(mi.max * val(mi, stop) * 100) + "%)</small>");
+      document.getElementById("ad-info").innerHTML = "<h4>" + stop + "주 훈련이 끝난 날</h4><p>" + V.map(function (o) { var v = o.max * val(o, stop); return o.name + " " + (o.unit === "pt" ? "+" + (v * 100).toFixed(1) + "%p" : "+" + Math.round(v * 100) + "%"); }).join(" · ") + "</p>";
+    }, { get height() { return wOf("ad-cv") < 560 ? 410 : 340; } });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; stop = Math.round(BB.clamp(((x - lay.box.x) / lay.box.w) * TMAX, 1, 22)); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 9. 12주 계획 */
+  (function () {
+    var PRE = {
+      base: [90, 105, 120, 100, 135, 150, 165, 130, 175, 190, 200, 110],
+      notaper: [90, 105, 120, 100, 135, 150, 165, 130, 175, 190, 200, 200],
+      big: [150, 200, 250, 250, 300, 330, 360, 300, 380, 400, 420, 250],
+      small: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 40],
+    };
+    var K = 700, wk = PRE.base.slice(), cv = null, lay = null, dragI = -1, res = null;
+    function daily(w) { var d = []; w.forEach(function (x) { for (var i = 0; i < 7; i++) d.push(i === 0 || i === 2 || i === 4 || i === 6 ? x / 4 : 0); }); return d; }
+    var ref = BD.banister(daily(PRE.base)), g0 = 1 - Math.exp(-ref.fitness[83] / K), R0 = ref.fatigue[83] / (ref.fitness[83] + 200);
+    function predict(fit, fat) {
+      var G = (1 - Math.exp(-Math.max(0, fit) / K)) / g0, v = 38 + 5 * G, lt = 0.6 + 0.08 * G;
+      var R = fat / (Math.max(0, fit) + 200), pen = 0.4 * Math.max(0, R - R0);
+      return { v: v, lt: lt, time: BD.racePlan(v, lt).time * (1 + pen), fresh: BD.racePlan(v, lt).time };
+    }
+    function calc() {
+      var b = BD.banister(daily(wk)), days = [];
+      for (var i = 0; i < 84; i++) days.push(predict(b.fitness[i], b.fatigue[i]));
+      var warn = [];
+      for (var j = 0; j < 12; j++) { var prev = Math.max(j ? wk[j - 1] : 80, j > 1 ? wk[j - 2] : 80); if (wk[j] > prev * 1.3 && wk[j] - prev > 20) warn.push(j); }
+      res = { b: b, days: days, race: days[83], warn: warn };
+      if (cv) cv.redraw();
+    }
+    BB.seg("pl-pre", function (v) { wk = PRE[v].slice(); calc(); });
+    document.getElementById("pl-day").addEventListener("change", function () { cv.redraw(); });
+    calc();
+    cv = BB.canvas("#pl-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, showDay = document.getElementById("pl-day").checked;
+      // 위: 주별 막대
+      var b1 = { x: 50, y: 30, w: w - 64, h: h * 0.36 - 40 };
+      var c1 = BB.bars(ctx, b1, { labels: wk.map(function (_, i) { return (i + 1) + ""; }), y: [0, 450], yLabel: "분/주", gap: 0.3,
+        stacks: [{ label: "분", color: function (i) { return res.warn.indexOf(i) >= 0 ? p.bad : i === 11 ? p.ok : p.accent2; }, data: wk }], valueFmt: narrow ? null : function (v) { return Math.round(v); } });
+      wk.forEach(function (m, i) { handle(ctx, c1.X(i), c1.Y(m), narrow ? 5 : 6, res.warn.indexOf(i) >= 0 ? p.bad : p.text); });
+      txt(ctx, "주별 달리기 시간(주 4일) · 초록 = 대회 주", b1.x, b1.y - 14, { color: p.text, size: 11.5, weight: 700 });
+      if (res.warn.length) txt(ctx, narrow ? "30 % 넘게 늘린 주: 부상 위험" : "최근 2주보다 30 % 넘게 늘린 주: 부상 위험", b1.x + b1.w, b1.y - 14, { color: p.bad, align: "right", size: 11, weight: 700 });
+      lay = c1;
+      // 아래: 체력·피로·컨디션
+      var b2 = { x: 50, y: h * 0.36 + 34, w: w - 64, h: h * 0.64 - (narrow ? 112 : 98) };
+      var b = res.b, fmax = Math.max(1200, Math.max.apply(null, b.fitness) * 1.1, Math.max.apply(null, b.fatigue) * 1.1);
+      var day = function (arr) { return arr.map(function (v, i) { return [i + 1, v]; }); };
+      var series = [{ data: day(b.fatigue), color: p.bad, width: 1.6 }, { data: day(b.fitness), color: p.accent2, width: 2.4 }, { data: day(b.perf), color: p.text, width: 2.2 }];
+      var c2 = BB.chart(ctx, b2, { x: [0, 85], y: [Math.min(-300, Math.min.apply(null, b.perf) * 1.1), fmax], xLabel: "날짜(일) · 84일째 대회", yLabel: "모델 단위", xTicks: [0, 14, 28, 42, 56, 70, 84], hlines: [{ y: 0, color: p.faint }], series: showDay ? [] : series });
+      if (showDay) {
+        var tmin = 46, tmax = 62;
+        var c3 = BB.chart(ctx, b2, { x: [0, 85], y: [tmin, tmax], xLabel: "날짜(일) · 84일째 대회", yLabel: "그날 달린다면(분)", xTicks: [0, 14, 28, 42, 56, 70, 84],
+          series: [{ data: res.days.map(function (d, i) { return [i + 1, d.fresh]; }), color: p.faint, width: 1.4, dash: [4, 3] }, { data: res.days.map(function (d, i) { return [i + 1, Math.min(tmax, d.time)]; }), color: p.accent, width: 2.4 }] });
+        txt(ctx, "빨강: 피로를 반영한 10 km 예상 · 점선: 피로가 없다면", b2.x + 4, b2.y + 4, { size: 11, base: "top" });
+        ctx.fillStyle = p.accent; ctx.beginPath(); ctx.arc(c3.X(84), c3.Y(res.race.time), 5, 0, Math.PI * 2); ctx.fill();
+      } else {
+        txt(ctx, "파랑 체력 · 빨강 피로 · 검정 컨디션(체력 − 피로)", b2.x + 4, b2.y + 4, { size: 11, base: "top" });
+        ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(c2.X(84), c2.Y(b.perf[83]), 5, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.strokeStyle = p.ok; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(c2.X(84), b2.y); ctx.lineTo(c2.X(84), b2.y + b2.h); ctx.stroke(); ctx.setLineDash([]);
+      var rr = res.race;
+      txt(ctx, "대회 " + mmss(rr.time), c2.X(84) - 4, b2.y + 22, { color: p.ok, align: "right", size: 12.5, weight: 700, base: "top" });
+      BB.stat("pl-o-v", rr.v.toFixed(1) + "<small>mL/kg/min</small>");
+      BB.stat("pl-o-l", Math.round(rr.lt * 100) + "<small>% VO2max</small>");
+      BB.stat("pl-o-t", mmss(rr.time) + "<small>(피로 없으면 " + mmss(rr.fresh) + ")</small>");
+      BB.stat("pl-o-h", (wk.reduce(function (s, m) { return s + m; }, 0) / 60).toFixed(1) + "<small>시간</small>");
+    }, { get height() { return wOf("pl-cv") < 560 ? 520 : 470; } });
+    BB.drag(cv.canvas, {
+      start: function (x, y) { if (!lay) return; dragI = -1; if (y > lay.box.y + lay.box.h + 24) return; var best = 1e9; for (var i = 0; i < 12; i++) { var d = Math.abs(lay.X(i) - x); if (d < best) { best = d; dragI = i; } } },
+      move: function (x, y) { if (!lay || dragI < 0) return; var v = BB.clamp((1 - (y - lay.box.y) / lay.box.h) * 450, 0, 450); wk[dragI] = Math.round(v / 5) * 5; calc(); },
+      end: function () { dragI = -1; },
+    });
+  })();
+})();
+</script>
+</body>
+</html>

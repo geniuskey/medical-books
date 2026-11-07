@@ -1,0 +1,934 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "심장은 한 박동에 어떻게 피를 짜내는가. 심장 주기의 압력과 부피, 판막의 열림과 닫힘, 압력-부피 고리, 프랭크-스탈링 법칙, 수축력과 후부하를 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>심장: 펌프의 한 박동 · BodyBook</title>
+<meta name="description" content="심장은 한 박동에 어떻게 피를 짜내는가. 심장 주기의 압력과 부피, 판막의 열림과 닫힘, 압력-부피 고리, 프랭크-스탈링 법칙, 수축력과 후부하를 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/heart.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="심장: 펌프의 한 박동 · BodyBook">
+<meta property="og:description" content="심장은 한 박동에 어떻게 피를 짜내는가. 심장 주기의 압력과 부피, 판막의 열림과 닫힘, 압력-부피 고리, 프랭크-스탈링 법칙, 수축력과 후부하를 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/heart.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/heart.html#chapter","name":"심장: 펌프의 한 박동","headline":"심장: 펌프의 한 박동 · BodyBook","description":"심장은 한 박동에 어떻게 피를 짜내는가. 심장 주기의 압력과 부피, 판막의 열림과 닫힘, 압력-부피 고리, 프랭크-스탈링 법칙, 수축력과 후부하를 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/heart.html","position":4,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"4. 심장: 펌프의 한 박동","item":"https://medical.euiyun.com/body/chapters/heart.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<!--head:end-->
+<style>
+  .phase-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 18px 0; }
+  .phase-chips span { font-size: 12.5px; padding: 2px 9px; border-radius: 999px; background: var(--surface); color: var(--text-dim); border: 1px solid var(--border); }
+  .phase-chips span.on { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="heart">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 04</div>
+    <h1>심장: 펌프의 한 박동</h1>
+    <p class="lead">주먹만 한 근육 덩어리가 1분에 70번, 평생 30억 번 가까이 피를 밀어낸다. 한 번 뛸 때마다 심장 안에서는 압력이 오르고, 판막이 차례로 열리고 닫히고, 부피가 줄었다 늘어나는 정교한 순서가 0.8초 안에 지나간다. 이 장은 그 한 박동을 느린 화면으로 풀어 보고, 심장이 "얼마나 많이 짜낼지"를 스스로 정하는 원리를 직접 돌려 본다.</p>
+    <ul class="objectives">
+      <li>심장 주기의 여섯 구간을 압력·부피·판막·심음으로 구분한다.</li>
+      <li>위거스 도표에서 좌심실·대동맥·좌심방 압력의 교차가 판막을 여닫는 것을 읽는다.</li>
+      <li>압력-부피 고리로 1회 박출량, 박출률, 심장이 한 일을 한눈에 본다.</li>
+      <li>앞부하·후부하·수축력이 고리를 어떻게 바꾸는지, 프랭크-스탈링 법칙이 왜 필요한지 설명한다.</li>
+      <li>심부전, 판막 협착, 운동 같은 상태를 고리의 모양으로 구별한다.</li>
+    </ul>
+  </header>
+
+  <section id="pump">
+    <h2>두 개의 펌프, 하나의 박자</h2>
+    <p>심장은 사실 두 개의 펌프다. 오른쪽 심장은 온몸을 돌고 온 산소가 적은 피를 받아 폐로 보내고, 왼쪽 심장은 폐에서 산소를 받아 온 피를 온몸으로 보낸다. 두 펌프는 한 몸에 붙어 같은 박자로 뛰고, 길게 보면 <b>정확히 같은 양</b>을 내보낸다. 이 장에서는 주로 일이 더 많은 왼쪽 펌프, 좌심실을 따라간다.</p>
+    <p>각 펌프는 두 개의 방으로 되어 있다. 피를 잠깐 모아 두는 <span class="term">심방</span><span class="en">(Atrium)</span>과 실제로 힘을 써서 밀어내는 <span class="term">심실</span><span class="en">(Ventricle)</span>이다. 방과 방, 방과 혈관 사이에는 한쪽으로만 열리는 문인 <span class="term">판막</span><span class="en">(Valve)</span>이 있다. 판막에는 근육도 신경도 없다. 앞뒤의 <b>압력 차이</b>만이 문을 밀어 열고 닫는다. 이 단순한 규칙 하나로 심장 주기 전체가 설명된다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-19-4.webp" width="1200" height="1325" loading="lazy" decoding="async" alt="심장의 네 방과 큰 혈관, 그리고 폐순환과 체순환이 8자로 이어지는 순환 경로">
+      <figcaption><b>8자 모양의 두 고리.</b> 오른쪽 심장(파랑, 산소가 적은 피)은 피를 폐로 보내는 폐순환을, 왼쪽 심장(빨강, 산소가 많은 피)은 온몸으로 보내는 체순환을 맡는다. 두 고리는 직렬로 이어져 있어 한쪽이 내보낸 피는 결국 다른 쪽으로 돌아온다. 그림의 왼쪽·오른쪽은 해부도 관례대로 관찰자와 반대다.<span class="fig-words">Right/Left atrium 우/좌심방 · Right/Left ventricle 우/좌심실 · Pulmonary trunk 폐동맥 줄기 · Pulmonary veins 폐정맥 · Aorta 대동맥 · Superior/Inferior vena cava 위/아래 대정맥 · Pulmonary capillaries 폐 모세혈관 · Systemic capillaries 온몸 모세혈관</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/19-1-heart-anatomy">그림 19.4</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>먼저 한 박동을 느리게 돌려 보자. 아래 그림의 좌심실은 엔진(`BD.heart`)이 0.1 ms 단위로 푼 실제 압력과 부피를 따라 부풀었다 오그라든다. 재생 속도를 0.1배로 낮추면 판막이 열리고 닫히는 순간이 하나씩 보인다.</p>
+
+    <div class="sim" id="sim-beat" data-desc="좌심실이 부풀었다 오그라드는 한 박동을 느린 화면으로: 판막이 열리고 닫히는 순간과 심장 주기의 여섯 구간을 따라간다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>한 박동을 느린 화면으로</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="bt-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>재생 속도 <output id="bt-sp-out"></output></span><input type="range" id="bt-sp" min="0.05" max="1" step="0.05" value="0.25"></label>
+          <label class="ctrl"><span>심박수 <output id="bt-hr-out"></output></span><input type="range" id="bt-hr" min="45" max="160" step="1" value="72"></label>
+          <div class="btn-row"><button class="btn primary" id="bt-go">일시정지</button><button class="btn" id="bt-step">구간 넘기기</button></div>
+        </div>
+      </div>
+      <div class="phase-chips" id="bt-chips"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">지금 구간</span><span class="v" id="bt-o-ph" style="font-family:var(--font);font-size:16px">—</span></div>
+        <div class="stat"><span class="k">좌심실 부피</span><span class="v" id="bt-o-v">—</span></div>
+        <div class="stat"><span class="k">좌심실 압력</span><span class="v" id="bt-o-p">—</span></div>
+        <div class="stat"><span class="k">열린 판막</span><span class="v" id="bt-o-vl" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 재생 속도를 0.1배로 낮추고 "등용적 수축" 구간에서 판막이 모두 닫힌 채 압력만 오르는 것을 본다. ② "구간 넘기기"로 여섯 구간을 하나씩 짚는다. ③ 심박수를 150으로 올린다. 줄어드는 것은 주로 이완기(충만) 구간이고 수축기는 별로 짧아지지 않는다. (좌심실 시변 탄성 모델 + 동맥 탄성함·정맥 저장소의 닫힌 순환. 오른쪽 심장은 왼쪽과 같은 박자로 그렸다.)</div>
+    </div>
+
+    <p>한 박동은 크게 둘로 나뉜다. 심실이 수축하는 <span class="term">수축기</span><span class="en">(Systole)</span>와 이완하며 피를 받는 <span class="term">이완기</span><span class="en">(Diastole)</span>다. 안정 시 심박수 72에서 한 주기는 약 0.83초이고, 그중 수축기가 약 0.3초, 이완기가 약 0.5초다. 심박수를 올리면 거의 이완기만 짧아진다는 점을 기억해 두자. 7장에서 "심박수를 무한히 올릴 수 없는 이유"의 열쇠가 된다.</p>
+    <p>그림의 네 방이 실제로는 어떻게 겹쳐 있는지 3D로 보자. 실제 심장에서 우심실은 앞쪽, 좌심실은 왼쪽 뒤쪽에 있고, 대동맥과 폐동맥 줄기는 서로 꼬이듯 엇갈려 나간다. 색은 이 책의 관례대로 산소가 적은 피를 담는 쪽을 파랑, 많은 쪽을 빨강으로 칠했다.</p>
+
+    <div class="sim model3d" id="sim-ht-3d" data-model="heart" data-orbit="0deg 80deg auto" data-desc="실제 인체 데이터로 만든 심장 3D 모델을 돌리며 네 방, 큰 혈관, 관상동맥을 보고, 벽을 반투명하게 해 판막과 유두근을 찾는다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 심장</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="ventricles" title="좌심실 벽이 우심실보다 약 3배 두껍다">심실 벽</button><button type="button" data-part="ratrium" title="온몸에서 돌아온 피를 받는다">우심방</button><button type="button" data-part="latrium" title="폐에서 돌아온 피를 받는다">좌심방</button><button type="button" data-part="aorta" title="좌심실에서 온몸으로">대동맥</button><button type="button" data-part="pulmart" title="우심실에서 폐로, 산소가 적은 피">폐동맥</button><button type="button" data-part="pulmvein" title="폐에서 좌심방으로, 산소가 많은 피">폐정맥</button><button type="button" data-part="venacava" title="온몸에서 우심방으로">위·아래 대정맥</button><button type="button" data-part="coronary" title="심장 근육 자신에게 피를 주는 동맥">관상동맥</button><button type="button" data-part="cardiacvein" title="관상정맥동으로 모여 우심방으로">심장 정맥</button><button type="button" data-part="valves" title="압력 차로만 열리고 닫히는 한 방향 문">판막·유두근</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="ventricles,ratrium,latrium">벽 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 모델을 뒤로 돌려 폐정맥 네 가닥이 좌심방으로 들어가는 것을 본다. ② "벽 반투명"을 눌러 방 안의 판막과 유두근을 찾는다. ③ 관상동맥만 남기고 끄면 심장 근육이 자기 피를 어떻게 받는지 보인다(막히면 심근경색). <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+  </section>
+
+  <section id="wiggers">
+    <h2>위거스 도표: 세 개의 압력이 엇갈리는 순간</h2>
+    <p>심장 주기를 한 장에 담은 그림이 <span class="term">위거스 도표</span><span class="en">(Wiggers diagram)</span>다. 시간축 위에 좌심실 압력, 대동맥 압력, 좌심방 압력, 좌심실 부피, 심전도, 심음을 나란히 그린다. 판막의 규칙("압력이 높은 쪽에서 낮은 쪽으로만 열린다")만 알면 모든 사건이 곡선의 <b>교차점</b>에서 일어난다는 것이 보인다.</p>
+    <p>아래 도표에서 세로 커서를 좌우로 끌어 보자. 커서가 지나가는 구간의 이름과 그때 무슨 일이 일어나는지가 아래 상자에 뜬다.</p>
+
+    <div class="sim" id="sim-wiggers" data-desc="위거스 도표 위의 커서를 끌어 좌심실·대동맥·좌심방 압력의 교차, 부피 변화, 심전도, 심음이 같은 순간에 무엇을 하는지 읽는다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>위거스 도표 읽기</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="wg-cv"></canvas><span class="hint">세로 커서를 좌우로 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent-2)"></i>좌심실 압력</span><span><i style="background:var(--art)"></i>대동맥 압력</span><span><i style="background:var(--warn)"></i>좌심방 압력</span><span><i style="background:var(--accent)"></i>좌심실 부피</span><span><i style="background:var(--ok)"></i>심전도</span></div>
+      <div class="info-panel" id="wg-info">커서를 끌면 구간 설명이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">수축 시작부터</span><span class="v" id="wg-o-t">—</span></div>
+        <div class="stat"><span class="k">좌심실 / 대동맥</span><span class="v" id="wg-o-p">—</span></div>
+        <div class="stat"><span class="k">좌심방</span><span class="v" id="wg-o-la">—</span></div>
+        <div class="stat"><span class="k">부피</span><span class="v" id="wg-o-v">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 좌심실 압력(파랑)이 좌심방 압력(노랑)을 넘는 순간을 찾는다. 승모판이 닫히며 첫째 심음(S1)이 난다. ② 좌심실 압력이 대동맥 압력(빨강)을 넘는 순간 대동맥판이 열리고 부피가 줄기 시작한다. ③ 박출이 끝나 좌심실 압력이 대동맥 아래로 내려가면 대동맥판이 닫히며 둘째 심음(S2)과 대동맥 압력의 작은 패임(중복 패임)이 생긴다. (심박수 72, 교육용 모델. 실제 중복 패임은 반사파 때문에 더 뚜렷하다.)</div>
+    </div>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>구간</th><th>판막</th><th>압력</th><th>부피</th></tr></thead>
+      <tbody>
+        <tr><td>① 등용적 수축</td><td>승모판·대동맥판 모두 닫힘</td><td>좌심실 압력이 약 10 → 80 mmHg로 급상승</td><td>그대로(약 125 mL)</td></tr>
+        <tr><td>② 박출</td><td>대동맥판 열림</td><td>좌심실 ≈ 대동맥, 최고 약 120 mmHg</td><td>약 125 → 50 mL</td></tr>
+        <tr><td>③ 등용적 이완</td><td>모두 닫힘</td><td>좌심실 압력이 급락</td><td>그대로(약 50 mL)</td></tr>
+        <tr><td>④ 빠른 충만</td><td>승모판 열림</td><td>좌심방 > 좌심실</td><td>빠르게 증가</td></tr>
+        <tr><td>⑤ 느린 충만(이완 정지기)</td><td>승모판 열림</td><td>차이가 거의 없다</td><td>천천히 증가</td></tr>
+        <tr><td>⑥ 심방 수축</td><td>승모판 열림</td><td>좌심방 a파</td><td>마지막 10~20 % 추가</td></tr>
+      </tbody>
+    </table></div>
+
+    <p>두 개의 <span class="term">등용적</span><span class="en">(Isovolumic)</span> 구간이 핵심이다. 판막이 모두 닫혀 있으니 피가 들어오지도 나가지도 못하고, 근육은 부피를 바꾸지 못한 채 압력만 올리거나 내린다. 청진기로 듣는 "쿵-딱" 소리는 판막이 닫히는 소리다. "쿵"(S1)은 수축기의 시작에 승모판·삼첨판이, "딱"(S2)은 수축기의 끝에 대동맥판·폐동맥판이 닫히는 소리다.</p>
+  </section>
+
+  <section id="valves">
+    <h2>판막: 압력이 여는 한 방향 문</h2>
+    <p>판막은 건강할 때 거의 저항이 없다. 열려 있는 동안 좌심실과 대동맥의 압력 차이는 몇 mmHg에 불과하다. 그런데 나이가 들어 대동맥판에 칼슘이 쌓여 단단하게 굳으면(<span class="term">대동맥판 협착</span><span class="en">(Aortic stenosis)</span>) 문이 좁아진다. 좁은 문으로 같은 양을 밀어내려면 좌심실은 훨씬 높은 압력을 만들어야 한다.</p>
+    <p>아래에서 판막이 열리는 넓이를 줄여 보자. 대동맥 압력은 거의 그대로인데 좌심실 압력만 치솟고, 두 곡선 사이의 틈(압력 차)이 벌어진다.</p>
+
+    <div class="sim" id="sim-valve" data-desc="대동맥판이 좁아지면 좌심실이 얼마나 더 높은 압력을 내야 하는지: 수축기의 좌심실·대동맥 압력 차와 심장의 일을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>좁아진 대동맥판</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="vl-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>판막 열림 넓이 <output id="vl-a-out"></output></span><input type="range" id="vl-a" min="0.15" max="1" step="0.05" value="1"></label>
+          <label class="check"><input type="checkbox" id="vl-comp" checked> 수축력으로 보상(심근 비대)</label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent-2)"></i>좌심실 압력</span><span><i style="background:var(--art)"></i>대동맥 압력</span><span><i style="background:var(--bad)"></i>압력 차(경사)</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">최고 압력 차</span><span class="v" id="vl-o-g">—</span></div>
+        <div class="stat"><span class="k">좌심실 최고 압력</span><span class="v" id="vl-o-p">—</span></div>
+        <div class="stat"><span class="k">1회 박출량</span><span class="v" id="vl-o-sv">—</span></div>
+        <div class="stat"><span class="k">혈압</span><span class="v" id="vl-o-bp">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 넓이를 0.4로 줄인다. 압력 차가 수십 mmHg로 벌어지고 좌심실 최고 압력이 150을 넘는다. ② "보상"을 끈다. 수축력이 그대로면 박출량과 혈압이 떨어진다. ③ 0.2까지 줄인다. 보상을 켜도 박출량이 줄기 시작한다. 이 상태가 오래가면 두꺼워진 심장이 지친다. (판막을 선형 저항으로 근사했다. 실제 압력 차는 유속의 제곱에 비례한다.)</div>
+    </div>
+
+    <p>좌심실은 이 일을 근육을 키워서 해낸다. 벽이 두꺼워지면 같은 압력에서 벽에 걸리는 긴장이 줄기 때문이다(라플라스 법칙). 하지만 두꺼운 벽은 더 많은 산소를 원하고, 이완기에 덜 늘어난다. 협착의 문제는 결국 "얼마나 오래 보상할 수 있는가"의 문제다. 반대로 판막이 완전히 닫히지 않아 피가 거꾸로 새는 것을 <span class="term">역류</span><span class="en">(Regurgitation)</span>라 하고, 이때는 같은 피를 두 번 짜내야 하므로 심실이 늘어난다.</p>
+  </section>
+
+  <section id="pvloop">
+    <h2>압력-부피 고리: 한 박동을 한 장의 그림으로</h2>
+    <p>위거스 도표의 두 곡선, 좌심실 압력과 부피를 가로·세로축으로 바꿔 그리면 한 박동이 닫힌 고리 하나가 된다. 이것이 <span class="term">압력-부피 고리</span><span class="en">(Pressure–volume loop)</span>다. 시계 반대 방향으로 돌며 네 변이 각각 등용적 수축, 박출, 등용적 이완, 충만이다.</p>
+    <p>고리 하나에서 많은 것을 읽을 수 있다. 고리의 <b>폭</b>은 1회 박출량, 오른쪽 아래 모서리는 <span class="term">이완기말 부피</span><span class="en">(End-diastolic volume, EDV)</span>, 왼쪽 위 모서리는 <span class="term">수축기말 부피</span><span class="en">(End-systolic volume, ESV)</span>, 고리가 감싼 <b>넓이</b>는 심장이 한 번에 피에 해 준 일이다. 아래 고리 위에 마우스를 올리면 그 점이 주기의 어디인지가 나온다.</p>
+
+    <div class="sim" id="sim-pv" data-desc="압력-부피 고리의 네 변과 네 모서리가 심장 주기의 어디인지 짚어 보고, 1회 박출량·박출률·심장의 일을 고리에서 바로 읽는다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>압력-부피 고리 해부</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="pv-cv"></canvas><span class="hint">고리 위에 올리거나 누른다</span></div>
+      </div>
+      <div class="info-panel" id="pv-info">고리 위의 점을 고르면 설명이 나온다. 점은 저절로 고리를 따라 돈다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">1회 박출량</span><span class="v" id="pv-o-sv">—</span></div>
+        <div class="stat"><span class="k">박출률</span><span class="v" id="pv-o-ef">—</span></div>
+        <div class="stat"><span class="k">한 박동의 일</span><span class="v" id="pv-o-sw">—</span></div>
+        <div class="stat"><span class="k">EDV / ESV</span><span class="v" id="pv-o-vv">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 고리를 따라 도는 점을 보며 시계 반대 방향인 이유를 생각한다(아래 변: 피가 들어오며 부피가 는다). ② 오른쪽 세로 변(등용적 수축)과 왼쪽 세로 변(등용적 이완)에서는 부피가 그대로다. ③ 점선 두 개는 이 심장의 한계선이다. 위의 직선(수축기말 압력-부피 관계)의 기울기가 수축력이고, 아래 곡선(이완기말 압력-부피 관계)은 심실이 얼마나 쉽게 늘어나는지다.</div>
+    </div>
+
+    <div class="formula">$$SV = EDV - ESV, \qquad EF = \frac{SV}{EDV}$$
+      <div class="where">\(SV\) 1회 박출량(약 70 mL), \(EDV\) 이완기말 부피(약 120 mL), \(ESV\) 수축기말 부피(약 50 mL), \(EF\) 박출률(약 55~70 %가 정상 범위)</div>
+    </div>
+    <p>박출률은 심장 초음파 검사 결과지에서 가장 먼저 보는 숫자다. 심실이 채운 피의 몇 %를 내보내는지를 뜻하며, 40 % 아래로 떨어지면 수축 기능이 떨어졌다고 본다. 고리의 넓이(한 박동의 일)는 약 1 J, 즉 1 kg 물체를 10 cm 들어 올리는 정도다. 하루 10만 번이면 약 100 kJ이다.</p>
+  </section>
+
+  <section id="loads">
+    <h2>앞부하, 후부하, 수축력</h2>
+    <p>심장이 한 번에 얼마나 짜낼지는 세 가지가 정한다. 수축 직전 심실이 얼마나 채워져 늘어났는가(<span class="term">앞부하</span><span class="en">(Preload)</span>), 피를 밀어낼 때 맞서는 압력이 얼마나 높은가(<span class="term">후부하</span><span class="en">(Afterload)</span>), 그리고 같은 길이에서 근육이 얼마나 세게 수축하는가(<span class="term">수축력</span><span class="en">(Contractility)</span>)다. 세 손잡이를 하나씩 돌려 고리가 어떻게 바뀌는지 보자. 흐린 고리는 처음 상태다.</p>
+
+    <div class="sim" id="sim-loads" data-desc="앞부하(채움), 후부하(혈관 저항), 수축력 세 손잡이로 압력-부피 고리가 어떻게 넓어지고 좁아지고 옮겨 가는지 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>세 손잡이로 고리 바꾸기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ld-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>앞부하(정맥 환류) <output id="ld-pre-out"></output></span><input type="range" id="ld-pre" min="0.6" max="1.5" step="0.05" value="1"></label>
+          <label class="ctrl"><span>후부하(말초 저항) <output id="ld-aft-out"></output></span><input type="range" id="ld-aft" min="0.5" max="2" step="0.05" value="1"></label>
+          <label class="ctrl"><span>수축력 <output id="ld-con-out"></output></span><input type="range" id="ld-con" min="0.4" max="2" step="0.05" value="1"></label>
+          <div class="btn-row"><button class="btn" id="ld-re">처음으로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">1회 박출량</span><span class="v" id="ld-o-sv">—</span></div>
+        <div class="stat"><span class="k">박출률</span><span class="v" id="ld-o-ef">—</span></div>
+        <div class="stat"><span class="k">혈압</span><span class="v" id="ld-o-bp">—</span></div>
+        <div class="stat"><span class="k">심박출량</span><span class="v" id="ld-o-co">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 앞부하만 1.4로 올린다. 고리가 오른쪽으로 넓어지며 박출량이 는다(프랭크-스탈링). ② 처음으로 돌린 뒤 후부하만 1.8로 올린다. 고리가 키가 커지며 좁아진다. 높은 압력을 이기느라 덜 짜낸다. ③ 이번에는 수축력만 1.6으로. 수축기말 선이 가팔라지며 고리가 왼쪽으로 넓어진다. ④ 수축력을 0.5로 내리면 심부전처럼 좁고 오른쪽으로 밀린 고리가 된다. (심박수 72 고정, 반사 조절 없음)</div>
+    </div>
+
+    <p>세 손잡이는 각자 다른 방향으로 고리를 민다. 앞부하는 고리의 <b>오른쪽 변</b>을, 후부하는 고리의 <b>키</b>를, 수축력은 <b>왼쪽 위 모서리가 놓이는 선</b>을 움직인다. 운동할 때는 정맥 환류(앞부하)와 수축력이 함께 오르고 근육의 혈관이 열려 말초 저항(후부하)이 내려가므로, 세 효과가 모두 박출량을 키우는 쪽으로 합쳐진다.</p>
+    <div class="callout">
+      <strong>고혈압이 심장에 하는 일</strong>
+      혈압이 높다는 것은 좌심실이 매 박동 더 높은 벽을 넘어야 한다는 뜻이다. 처음에는 근육이 두꺼워져 버티지만(심근 비대), 두꺼운 벽은 이완기에 덜 늘어나 결국 채우는 일까지 어려워진다. 혈압 관리가 곧 심장 관리인 이유다(<a href="vessels.html">6장</a>).
+    </div>
+  </section>
+
+  <section id="starling">
+    <h2>프랭크-스탈링 법칙: 들어온 만큼 내보낸다</h2>
+    <p>앞의 실험에서 앞부하를 올리자 박출량이 저절로 늘었다. 신경도 호르몬도 끼어들지 않았다. 심장 근육 자체가 <b>많이 늘어날수록 더 세게 수축하는</b> 성질을 갖고 있기 때문이다. 이것을 처음 정리한 두 생리학자의 이름을 따 <span class="term">프랭크-스탈링 법칙</span><span class="en">(Frank–Starling law)</span>이라 한다.</p>
+    <p>근육 세포 안의 수축 단위(근절)가 적당히 늘어나면 액틴과 미오신이 더 알맞게 겹치고, 칼슘에 대한 감도도 높아진다(<a href="muscle.html">11장</a>). 아래에서 이완기말 압력(채움의 정도)을 끌어 곡선 위를 움직여 보자. 곡선 세 개는 수축력이 다른 세 심장이다.</p>
+
+    <div class="sim" id="sim-starling" data-desc="채움(이완기말 압력)을 끌어 프랭크-스탈링 곡선 위를 움직이고, 교감 신경 자극과 심부전에서 곡선이 위아래로 옮겨 가는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>프랭크-스탈링 곡선</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="st-cv"></canvas><span class="hint">곡선 위의 점을 좌우로 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--ok)"></i>교감 신경 자극(수축력 ↑)</span><span><i style="background:var(--accent)"></i>정상</span><span><i style="background:var(--bad)"></i>수축 기능 저하</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">이완기말 압력</span><span class="v" id="st-o-p">—</span></div>
+        <div class="stat"><span class="k">정상 심장의 박출량</span><span class="v" id="st-o-n">—</span></div>
+        <div class="stat"><span class="k">약한 심장의 박출량</span><span class="v" id="st-o-f">—</span></div>
+        <div class="stat"><span class="k">근절 길이(어림)</span><span class="v" id="st-o-sl">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 오른쪽으로 끈다. 처음에는 박출량이 가파르게 늘다가 15~20 mmHg를 넘으면 거의 늘지 않는다. ② 같은 채움에서 세 곡선을 비교한다. 수축력이 약한 심장은 같은 박출량을 얻으려면 훨씬 더 채워야(압력이 높아야) 한다. ③ 약한 심장의 이완기말 압력이 20 mmHg를 넘으면 그 압력이 폐로 거슬러 올라가 폐에 물이 찬다(빨간 띠). (각 점은 엔진으로 심장을 따로 돌려 얻은 값이다. 근절 길이는 부피로 어림한 그림이다.)</div>
+    </div>
+
+    <p>프랭크-스탈링 법칙이 왜 꼭 필요한지는 다음 실험에서 드러난다. 오른쪽과 왼쪽 펌프가 아주 조금이라도 다른 양을 내보내면 어떻게 될까.</p>
+  </section>
+
+  <section id="balance">
+    <h2>왼쪽과 오른쪽은 같은 양을 보내야 한다</h2>
+    <p>오른쪽 심장이 1분에 5.0 L를, 왼쪽 심장이 4.9 L를 보낸다고 해 보자. 차이는 겨우 2 %다. 하지만 매분 0.1 L씩 폐에 피가 쌓이면 30분 뒤에는 3 L가 쌓인다. 폐의 혈관이 담을 수 있는 피는 0.5 L 남짓이므로 그 전에 폐에 물이 넘친다. 실제로 그런 일이 일어나지 않는 것은 스탈링 법칙이 두 펌프를 자동으로 맞추기 때문이다. 폐에 피가 조금 쌓이면 좌심방 압력이 올라 좌심실이 더 채워지고, 더 채워진 좌심실은 더 많이 짜낸다.</p>
+
+    <div class="sim" id="sim-balance" data-desc="오른쪽·왼쪽 심장이 2 %만 다르게 뛰어도 폐에 피가 쌓이는데, 프랭크-스탈링 법칙이 몇 박동 만에 두 펌프를 저절로 맞추는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>두 펌프의 균형</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="bl-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>왼쪽 펌프의 세기 <output id="bl-l-out"></output></span><input type="range" id="bl-l" min="0.6" max="1.2" step="0.01" value="0.98"></label>
+          <label class="check"><input type="checkbox" id="bl-st" checked> 프랭크-스탈링 법칙</label>
+          <div class="btn-row"><button class="btn primary" id="bl-go">다시 시작</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--ven)"></i>몸의 정맥에 있는 피</span><span><i style="background:var(--art)"></i>폐 혈관에 있는 피</span><span><i style="background:var(--bad)"></i>폐부종 위험</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">시간</span><span class="v" id="bl-o-t">—</span></div>
+        <div class="stat"><span class="k">오른쪽 / 왼쪽 박출</span><span class="v" id="bl-o-q">—</span></div>
+        <div class="stat"><span class="k">폐에 있는 피</span><span class="v" id="bl-o-p">—</span></div>
+        <div class="stat"><span class="k">좌심방 압력</span><span class="v" id="bl-o-la">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 스탈링 법칙을 켠 채 왼쪽 세기를 0.98로 둔다. 폐의 피가 조금 늘다가 멈추고, 두 박출량이 같아진다. ② 스탈링 법칙을 끄고 다시 시작한다. 2 % 차이만으로 폐에 피가 계속 쌓여 몇 분 안에 위험선에 닿는다. ③ 스탈링을 켜고 왼쪽 세기를 0.7로 내린다(좌심실 기능 저하). 균형은 맞지만 좌심방 압력이 높은 곳에서 맞는다. 이것이 왼쪽 심부전의 숨가쁨이다. (두 구획 모델: 각 펌프 박출량 = 세기 × 채움 압력의 증가 함수. 시간은 실제보다 빠르게 돌린다.)</div>
+    </div>
+
+    <p>균형은 언제나 맞춰지지만 <b>어디에서</b> 맞춰지는지가 문제다. 왼쪽 펌프가 약해지면 좌심방 압력이 충분히 높아질 때까지 폐에 피가 쌓인 다음에야 균형이 잡힌다. 그 높은 압력이 폐 모세혈관에서 물을 밀어내 폐부종과 호흡 곤란을 만든다. 왼쪽 심부전 환자가 누우면 숨이 더 차는 것도, 누우면 다리의 피가 돌아와 앞부하가 더 늘기 때문이다.</p>
+  </section>
+
+  <section id="states">
+    <h2>고리의 모양으로 상태를 읽는다</h2>
+    <p>압력-부피 고리는 심장의 지문과 같다. 같은 혈압이라도 고리의 위치와 모양이 다르면 원인이 다르다. 아래에서 여러 상태를 골라 정상 고리(흐린 선)와 비교해 보자.</p>
+
+    <div class="sim" id="sim-states" data-desc="운동, 지구력 선수, 고혈압, 수축·이완 기능 저하, 판막 협착, 출혈에서 압력-부피 고리가 어떻게 달라지는지 정상과 겹쳐 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>상태별 압력-부피 고리</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ss-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>상태</span><select id="ss-sel">
+            <option value="run">달리기(대회 속도)</option>
+            <option value="athlete">지구력 선수 안정</option>
+            <option value="hypertension">고혈압</option>
+            <option value="failure">수축 기능 저하 심부전</option>
+            <option value="stiff">이완 기능 저하</option>
+            <option value="stenosis">대동맥판 협착</option>
+            <option value="bleed">출혈</option>
+          </select></label>
+        </div>
+      </div>
+      <div class="info-panel" id="ss-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">EDV / ESV</span><span class="v" id="ss-o-v">—</span></div>
+        <div class="stat"><span class="k">박출량 · 박출률</span><span class="v" id="ss-o-sv">—</span></div>
+        <div class="stat"><span class="k">심박수 · 심박출량</span><span class="v" id="ss-o-co">—</span></div>
+        <div class="stat"><span class="k">혈압</span><span class="v" id="ss-o-bp">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "수축 기능 저하"를 고른다. 고리가 오른쪽으로 크게 밀리고 좁아진다. 박출률이 약 25 %. ② "이완 기능 저하"는 반대로 고리가 작고 왼쪽에 있지만 박출률은 정상이다. 문제는 채우는 쪽이다(아래 곡선이 가파르다). ③ "달리기"는 고리가 넓고 왼쪽 모서리가 위로 올라간다. (각 상태는 교육용으로 매개변수를 바꾼 모델이며 반사 조절은 고정했다.)</div>
+    </div>
+
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 가슴 통증, 숨가쁨, 실신 같은 증상이 있거나 검사 결과가 걱정되면 의료진과 상담하세요.</p>
+  </section>
+
+  <section id="daon">
+    <h2>다온의 심장: 쉴 때와 달릴 때</h2>
+    <p>다온의 안정 시 심장을 엔진으로 돌리면 이완기말 부피 약 126 mL, 수축기말 부피 약 54 mL, 1회 박출량 약 72 mL, 박출률 약 57 %다. 심박수 72를 곱하면 1분에 약 5.2 L. 대회 속도로 달리면 심박수가 약 168로 오르고 교감 신경이 수축력을 키우며, 다리 근육이 펌프처럼 정맥의 피를 밀어 올리고, 근육의 혈관이 열려 저항이 크게 떨어진다. 아래 시뮬레이터에서 운동 강도를 0에서 1까지 밀어 보자.</p>
+
+    <div class="sim" id="sim-daon" data-big data-desc="다온의 심장을 쉴 때에서 10 km 대회 속도까지: 운동 강도를 밀면 심박수·수축력·정맥 환류·혈관 저항이 함께 바뀌며 압력-부피 고리와 심박출량이 어떻게 커지는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>다온의 심장, 안정에서 대회 속도까지</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="dn-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>운동 강도 <output id="dn-x-out"></output></span><input type="range" id="dn-x" min="0" max="1" step="0.05" value="0"></label>
+          <label class="check"><input type="checkbox" id="dn-hr" checked> 심박수</label>
+          <label class="check"><input type="checkbox" id="dn-con" checked> 수축력·이완 속도</label>
+          <label class="check"><input type="checkbox" id="dn-ven" checked> 정맥 환류(근육 펌프)</label>
+          <label class="check"><input type="checkbox" id="dn-vas" checked> 근육 혈관 확장</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">심박수</span><span class="v" id="dn-o-hr">—</span></div>
+        <div class="stat"><span class="k">1회 박출량</span><span class="v" id="dn-o-sv">—</span></div>
+        <div class="stat"><span class="k">심박출량</span><span class="v" id="dn-o-co">—</span></div>
+        <div class="stat"><span class="k">혈압(평균)</span><span class="v" id="dn-o-bp">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 강도를 1까지 민다. 심박출량이 약 5 L/min에서 약 18 L/min으로 세 배 넘게 는다. ② "심박수"만 남기고 나머지를 끈다. 박자만 빨라진 심장은 채울 시간이 모자라 박출량이 오히려 준다. ③ "근육 혈관 확장"만 끈다. 박출량은 비슷한데 혈압이 크게 오른다. 혈관이 열리지 않으면 운동은 혈압과의 싸움이 된다. (운동 강도 0 = 다온 안정 BD.HEART_PRESETS.daon, 1 = 대회 속도 BD.HEART_PRESETS.run. 사이를 직선으로 보간했다.)</div>
+    </div>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 4장</span></div>
+      <h4>안정 시 1회 박출량 72 mL, 대회 속도에서는 107 mL</h4>
+      <p>건강검진의 안정 심박수 72와 엔진으로 어림한 다온의 심장은 이완기말 부피 약 126 mL에서 약 72 mL를 내보낸다(박출률 약 57 %, 심박출량 약 5.2 L/min). 10 km 대회 속도(심박수 약 168)에서는 수축력이 두 배 가까이 오르고 정맥 환류가 늘어 1회 박출량이 약 107 mL, 박출률이 약 76 %가 되며 심박출량은 약 18 L/min에 이른다. 박출량이 늘어난 몫의 대부분은 수축기말 부피가 54 mL에서 34 mL로 줄어든 데서, 즉 <b>더 세게 짜낸</b> 데서 나온다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>쉴 때와 달릴 때의 압력-부피 고리. 달릴 때 심장이 더 많이 내보내는 세 가지 이유(수축력, 정맥 환류, 낮아진 저항).</div><div><b>아직 모르는 것</b>심박수를 168까지 올리는 신호는 어디서 오는가. 심장의 전기적 박자와 심전도.</div><div><b>다음 단계</b><a href="ecg.html">5장</a>에서 동방결절과 자율신경, 다온의 심전도를 읽는다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>심장은 직렬로 이어진 두 펌프(폐순환·체순환)이고, 판막은 압력 차이만으로 열리고 닫히는 한 방향 문이다.</li>
+      <li>심장 주기는 등용적 수축 → 박출 → 등용적 이완 → 빠른 충만 → 느린 충만 → 심방 수축의 여섯 구간이다. S1은 방실판, S2는 대동맥판·폐동맥판이 닫히는 소리다.</li>
+      <li>압력-부피 고리의 폭은 1회 박출량(약 70 mL), 넓이는 한 박동의 일(약 1 J)이다. 박출률 = SV/EDV, 정상 약 55~70 %.</li>
+      <li>앞부하는 고리의 오른쪽 변을, 후부하는 고리의 키를, 수축력은 수축기말 압력-부피 선의 기울기를 바꾼다.</li>
+      <li>프랭크-스탈링 법칙: 많이 채워질수록 더 세게 짜낸다. 이 성질이 두 펌프의 박출량을 박동마다 자동으로 맞춘다.</li>
+      <li>달릴 때 심박출량이 서너 배로 느는 것은 심박수만이 아니라 수축력·정맥 환류·혈관 확장이 함께 바뀌기 때문이다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>등용적 수축 구간에 대한 설명으로 옳은 것은?</p>
+        <div class="opts">
+          <button class="opt">대동맥판이 열려 피가 빠르게 나간다</button>
+          <button class="opt">승모판이 열려 심실이 채워진다</button>
+          <button class="opt" data-correct>모든 판막이 닫힌 채 심실 압력만 오른다</button>
+          <button class="opt">심방이 수축해 마지막 피를 밀어 넣는다</button>
+        </div>
+        <div class="quiz-exp">"등용적"은 부피가 같다는 뜻이다. 승모판은 이미 닫혔고 대동맥판은 아직 열리지 않아, 근육이 수축해도 부피는 그대로이고 압력만 대동맥 압력(약 80 mmHg)까지 오른다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>이완기말 부피 140 mL, 수축기말 부피 56 mL인 심장의 박출률은?</p>
+        <div class="opts">
+          <button class="opt">40 %</button>
+          <button class="opt" data-correct>60 %</button>
+          <button class="opt">84 %</button>
+          <button class="opt">250 %</button>
+        </div>
+        <div class="quiz-exp">1회 박출량 = 140 − 56 = 84 mL, 박출률 = 84 ÷ 140 = 0.6, 즉 60 %. 정상 범위다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>말초 혈관 저항(후부하)만 크게 올렸을 때 압력-부피 고리의 변화로 알맞은 것은?</p>
+        <div class="opts">
+          <button class="opt" data-correct>고리가 키가 커지고 폭이 좁아진다</button>
+          <button class="opt">고리가 오른쪽으로 넓어지고 키는 그대로다</button>
+          <button class="opt">고리가 왼쪽으로 넓어진다</button>
+          <button class="opt">고리의 모양은 그대로이고 위치만 아래로 내려간다</button>
+        </div>
+        <div class="quiz-exp">높아진 대동맥 압력을 넘어야 판막이 열리므로 박출이 더 높은 압력에서 시작하고(키가 큼), 같은 수축력으로는 덜 짜내 수축기말 부피가 커진다(폭이 좁음).</div>
+      </div>
+      <div class="quiz-q">
+        <p>오른쪽 심장이 왼쪽보다 분당 0.1 L 더 내보내는데도 폐에 피가 계속 쌓이지 않는 주된 이유는?</p>
+        <div class="opts">
+          <button class="opt">폐가 남는 피를 바로 소변으로 보낸다</button>
+          <button class="opt">교감 신경이 오른쪽 심장만 억제한다</button>
+          <button class="opt">판막이 남는 피를 거꾸로 돌려보낸다</button>
+          <button class="opt" data-correct>좌심방 압력이 올라 좌심실이 더 채워지고, 프랭크-스탈링 법칙으로 더 많이 짜낸다</button>
+        </div>
+        <div class="quiz-exp">폐에 피가 조금 쌓이면 좌심실 앞부하가 늘고, 늘어난 근육이 더 세게 수축해 박출량이 오른쪽과 같아질 때까지 저절로 맞춰진다. 신경이나 호르몬 없이 박동마다 일어난다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>안정 시 1회 박출량 72 mL, 심박수 72 bpm인 다온의 심박출량에 가장 가까운 것은?</p>
+        <div class="opts">
+          <button class="opt">1.0 L/min</button>
+          <button class="opt" data-correct>5.2 L/min</button>
+          <button class="opt">7.2 L/min</button>
+          <button class="opt">18 L/min</button>
+        </div>
+        <div class="quiz-exp">72 mL × 72회/분 = 5,184 mL/min ≈ 5.2 L/min. 18 L/min은 대회 속도에서의 값이다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  var cache = {};
+  function run(o) {
+    var key = JSON.stringify(o);
+    if (!cache[key]) cache[key] = BD.heart(o);
+    return cache[key];
+  }
+  function fmt0(x) { return Math.round(x).toString(); }
+  /** 결과에서 구간(0~5)을 찾는다 */
+  function phaseOf(r, tc) {
+    var e = r.events, T = r.T;
+    if (tc < (e.avOpen || 0.05)) return 0;
+    if (tc < (e.avClose || 0.3)) return 1;
+    if (tc < (e.mvOpen || 0.4)) return 2;
+    if (tc < (e.mvOpen || 0.4) + 0.14) return 3;
+    if (tc < T - 0.17) return 4;
+    return 5;
+  }
+  var PHASES = ["등용적 수축", "박출", "등용적 이완", "빠른 충만", "느린 충만", "심방 수축"];
+  var PHASE_INFO = [
+    "<h4>① 등용적 수축</h4><p>심실 근육이 수축을 시작한다. 좌심실 압력이 좌심방보다 높아지는 순간 승모판이 닫히고(S1), 대동맥 압력에 닿기 전까지는 대동맥판도 닫혀 있다. 부피는 그대로, 압력만 오른다.</p>",
+    "<h4>② 박출</h4><p>좌심실 압력이 대동맥 압력을 넘어 대동맥판이 열린다. 처음 3분의 1 동안 박출량의 대부분이 빠르게 나가고, 뒤로 갈수록 느려진다. 대동맥 압력이 최고점(수축기 혈압)을 찍는다.</p>",
+    "<h4>③ 등용적 이완</h4><p>근육이 풀리기 시작해 좌심실 압력이 대동맥 아래로 떨어지면 대동맥판이 닫힌다(S2). 대동맥 압력에 작은 패임이 생긴다. 승모판이 열리기 전까지 다시 판막이 모두 닫힌 구간이다.</p>",
+    "<h4>④ 빠른 충만</h4><p>좌심실 압력이 좌심방 아래로 떨어지면 승모판이 열리고, 수축기 동안 좌심방에 모여 있던 피가 한꺼번에 쏟아져 들어온다. 충만의 대부분이 이때 일어난다.</p>",
+    "<h4>⑤ 느린 충만(이완 정지기)</h4><p>좌심방과 좌심실의 압력이 거의 같아져 피가 천천히 들어온다. 심박수가 빨라지면 가장 먼저 사라지는 구간이다.</p>",
+    "<h4>⑥ 심방 수축</h4><p>심전도의 P파 뒤에 심방이 수축해 마지막 피를 밀어 넣는다(좌심방 압력의 a파). 안정 시에는 충만의 10~20 %이지만 심박수가 빠르거나 심실이 뻣뻣할 때 더 중요해진다.</p>",
+  ];
+  var ecgCache = {};
+  function ecgAt(hr, tc, T) {
+    var e = ecgCache[hr] || (ecgCache[hr] = BD.ecg({ hr: hr, hrv: 0, resp: 0, noise: 0, duration: 6 }));
+    return e.v(e.beats[1].r - 0.035 + tc);
+  }
+
+  /* ---------------------------------------------------------- 1. 한 박동 */
+  (function () {
+    var res, t = 0, playing = true;
+    var getSp = BB.range("bt-sp", function (v) { return v.toFixed(2) + "×"; });
+    var getHr = BB.range("bt-hr", function (v) { return v + " bpm"; }, BB.debounce(function () { res = run({ hr: getHr() }); }, 80));
+    res = run({ hr: getHr() });
+    var chips = document.getElementById("bt-chips");
+    chips.innerHTML = PHASES.map(function (p, i) { return "<span>" + (i + 1) + " " + p + "</span>"; }).join("");
+    var lastPh = -1;
+    var cv = BB.canvas("#bt-cv", function (ctx, w, h) {
+      var p = P(), T = res.T, tc = t % T, i = Math.min(res.t.length - 1, Math.floor((tc / T) * res.t.length));
+      var ph = phaseOf(res, tc);
+      var s = Math.min(h * 0.27, w * 0.2);
+      var narrow = w < 560;
+      var hx = narrow ? w * 0.5 : w * 0.3, hy = narrow ? h * 0.36 : h * 0.52;
+      if (narrow) s = Math.min(h * 0.2, w * 0.26);
+      var vf = (res.vlv[i] - 40) / 100;
+      BD.heartDiagram(ctx, hx, hy, s, {
+        lv: vf, rv: vf, la: 1.1 - vf, ra: 1.1 - vf,
+        mitral: res.qmv[i] > 0, tricuspid: res.qmv[i] > 0, aortic: res.qao[i] > 0, pulmonic: res.qao[i] > 0,
+        active: ph <= 1 ? "ventricles" : ph === 5 ? "atria" : null, labels: true,
+      });
+      // 흐름 화살표: 박출이면 대동맥으로, 충만이면 심방 → 심실
+      var art = BB.color("art");
+      if (res.qao[i] > 0) BD.flowDots(ctx, [[hx + 0.5 * s, hy + 0.3 * s], [hx + 0.18 * s, hy - 0.2 * s], [hx + 0.2 * s, hy - 1.3 * s], [hx + 0.75 * s, hy - 1.3 * s]], t * 200, { color: art, gap: 12, r: 2.6 });
+      if (res.qmv[i] > 0) BD.flowDots(ctx, [[hx + 0.55 * s, hy - 0.7 * s], [hx + 0.52 * s, hy + 0.2 * s]], t * 120, { color: art, gap: 10, r: 2.2 });
+      // 오른쪽: 부피·압력 막대 시계
+      var gx = narrow ? 16 : w * 0.6, gy = narrow ? h * 0.68 : 30, gw = narrow ? w - 32 : w * 0.37, gh = narrow ? h * 0.28 : h - 70;
+      var box = { x: gx + 34, y: gy, w: gw - 40, h: gh };
+      var pts = [], vts = [];
+      for (var k = 0; k < res.t.length; k += 3) { pts.push([res.t[k], res.plv[k]]); vts.push([res.t[k], res.vlv[k]]); }
+      var c = BB.chart(ctx, box, { x: [0, T], y: [0, 140], series: [{ data: pts, color: p.accent2, width: 2 }, { data: vts, color: p.accent, width: 2, dash: [5, 3] }], xTicks: [], yTicks: [0, 40, 80, 120] });
+      // 구간 띠
+      var e = res.events, edges = [0, e.avOpen, e.avClose, e.mvOpen, e.mvOpen + 0.14, T - 0.17, T];
+      for (var q = 0; q < 6; q++) {
+        ctx.fillStyle = q === ph ? BB.alpha(p.accent, 0.13) : "transparent";
+        ctx.fillRect(c.X(edges[q]), box.y, c.X(edges[q + 1]) - c.X(edges[q]), box.h);
+        ctx.fillStyle = q === ph ? p.accent : p.faint; ctx.font = BB.font(10.5, true, 700); ctx.textAlign = "center"; ctx.textBaseline = "top";
+        ctx.fillText(String(q + 1), (c.X(edges[q]) + c.X(edges[q + 1])) / 2, box.y + box.h + 6);
+      }
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(c.X(tc), box.y); ctx.lineTo(c.X(tc), box.y + box.h); ctx.stroke();
+      ctx.fillStyle = p.accent2; ctx.font = BB.font(11, false, 600); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("좌심실 압력(mmHg)", box.x + 4, box.y + 2);
+      ctx.fillStyle = p.accent; ctx.fillText("부피(mL, 점선)", box.x + 4, box.y + 16);
+      if (ph !== lastPh) {
+        lastPh = ph;
+        [].forEach.call(chips.children, function (el, k) { el.classList.toggle("on", k === ph); });
+        BB.stat("bt-o-ph", PHASES[ph]);
+      }
+      BB.stat("bt-o-v", fmt0(res.vlv[i]) + "<small>mL</small>");
+      BB.stat("bt-o-p", fmt0(res.plv[i]) + "<small>mmHg</small>");
+      var open = [];
+      if (res.qmv[i] > 0) open.push("승모판"); if (res.qao[i] > 0) open.push("대동맥판");
+      BB.stat("bt-o-vl", open.length ? open.join(", ") : "모두 닫힘");
+    }, { get height() { return document.getElementById("bt-cv").parentElement.clientWidth < 560 ? 460 : 330; } });
+    var loop = BB.loop(document.getElementById("sim-beat"), function (dt) { if (playing) { t += dt * getSp(); } cv.redraw(); });
+    var btn = document.getElementById("bt-go");
+    btn.addEventListener("click", function () { playing = !playing; btn.textContent = playing ? "일시정지" : "재생"; });
+    document.getElementById("bt-step").addEventListener("click", function () {
+      var T = res.T, tc = t % T, ph = phaseOf(res, tc), e = res.events;
+      var starts = [0, e.avOpen, e.avClose, e.mvOpen, e.mvOpen + 0.14, T - 0.17];
+      var nx = (ph + 1) % 6, target = starts[nx] + 0.005;
+      t = t - tc + target + (nx === 0 ? T : 0);
+      playing = false; btn.textContent = "재생"; cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 2. 위거스 도표 */
+  (function () {
+    var res = run({ hr: 72 }), lay = null, OFF = 0.24, cur = 0.36;   // 화면은 심실 수축 0.24 s 전(P파·심방 수축)부터 시작한다
+    var info = document.getElementById("wg-info");
+    var n = res.t.length;
+    var cyc = function (tau) { return (tau - OFF + res.T) % res.T; };
+    var idx = function (tau) { return Math.min(n - 1, Math.floor((cyc(tau) / res.T) * n)); };
+    var disp = function (tc) { return (tc + OFF) % res.T; };
+    var cv = BB.canvas("#wg-cv", function (ctx, w, h) {
+      var p = P(), T = res.T, L = 46, R = w - 14;
+      var rows = [{ y: 16, h: h * 0.44 }, { y: 0, h: h * 0.2 }, { y: 0, h: h * 0.12 }, { y: 0, h: h * 0.08 }];
+      rows[1].y = rows[0].y + rows[0].h + 14; rows[2].y = rows[1].y + rows[1].h + 8; rows[3].y = rows[2].y + rows[2].h + 4;
+      var X = function (tau) { return L + (tau / T) * (R - L); };
+      lay = { L: L, R: R, T: T };
+      var ph = phaseOf(res, cyc(cur));
+      // 구간 띠(픽셀마다 구간을 찾아 이어 칠한다)
+      var prev = -1, x0 = L;
+      for (var px = L; px <= R + 1; px += 1) {
+        var q = px <= R ? phaseOf(res, cyc(((px - L) / (R - L)) * T)) : -2;
+        if (q !== prev) {
+          if (prev >= 0) {
+            ctx.fillStyle = prev === ph ? BB.alpha(p.accent, 0.1) : prev % 2 ? BB.alpha(p.text, 0.025) : "transparent";
+            ctx.fillRect(x0, 8, px - x0, h - 14);
+            if (px - x0 > 12) { ctx.fillStyle = prev === ph ? p.accent : p.faint; ctx.font = BB.font(10.5, true, 700); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(String(prev + 1), (x0 + px) / 2, 0); }
+          }
+          prev = q; x0 = px;
+        }
+      }
+      function line(arr, Y, col, wd) {
+        ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.beginPath();
+        for (var px2 = L; px2 <= R; px2 += 1.5) { var y = Y(arr[idx(((px2 - L) / (R - L)) * T)]); px2 === L ? ctx.moveTo(px2, y) : ctx.lineTo(px2, y); }
+        ctx.stroke();
+      }
+      var r0 = rows[0], Yp = function (v) { return r0.y + r0.h - (v / 140) * r0.h; };
+      ctx.strokeStyle = p.grid; ctx.fillStyle = p.dim; ctx.font = BB.font(10, true); ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      [0, 40, 80, 120].forEach(function (v) { ctx.beginPath(); ctx.moveTo(L, Yp(v)); ctx.lineTo(R, Yp(v)); ctx.stroke(); ctx.fillText(v, L - 5, Yp(v)); });
+      line(res.pao, Yp, BB.color("art"), 2.2); line(res.pla, Yp, p.warn, 2); line(res.plv, Yp, p.accent2, 2.4);
+      ctx.save(); ctx.translate(12, r0.y + r0.h / 2); ctx.rotate(-Math.PI / 2); ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "center"; ctx.fillText("압력 mmHg", 0, 0); ctx.restore();
+      var r1 = rows[1], Yv = function (v) { return r1.y + r1.h - ((v - 30) / 110) * r1.h; };
+      [50, 120].forEach(function (v) { ctx.strokeStyle = p.grid; ctx.beginPath(); ctx.moveTo(L, Yv(v)); ctx.lineTo(R, Yv(v)); ctx.stroke(); ctx.fillStyle = p.dim; ctx.textAlign = "right"; ctx.fillText(v, L - 5, Yv(v)); });
+      line(res.vlv, Yv, p.accent, 2.2);
+      ctx.save(); ctx.translate(12, r1.y + r1.h / 2); ctx.rotate(-Math.PI / 2); ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "center"; ctx.fillText("부피 mL", 0, 0); ctx.restore();
+      // 심전도: R파가 심실 수축보다 약 30 ms 먼저
+      var r2 = rows[2], Ye = function (v) { return r2.y + r2.h * 0.75 - v * r2.h * 0.6; };
+      var ecg = ecgCache.w || (ecgCache.w = BD.ecg({ hr: 72, hrv: 0, resp: 0, noise: 0, duration: 6 }));
+      var r1t = ecg.beats[2].r - (OFF - 0.03);
+      ctx.strokeStyle = p.ok; ctx.lineWidth = 1.6; ctx.beginPath();
+      for (var x = L; x <= R; x += 1) { var tt = ((x - L) / (R - L)) * T, y = Ye(ecg.v(r1t + tt)); x === L ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+      ctx.stroke();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "right"; ctx.fillText("ECG", L - 5, r2.y + r2.h / 2);
+      ctx.textAlign = "center"; ctx.textBaseline = "bottom"; ctx.fillStyle = p.ok;
+      [["P", OFF - 0.03 - 0.155 + 0.0], ["QRS", OFF - 0.03], ["T", OFF - 0.03 + 0.29]].forEach(function (m) { if (m[1] > 0) ctx.fillText(m[0], X(m[1]), r2.y + 10); });
+      var r3 = rows[3], e = res.events;
+      ctx.fillStyle = p.dim; ctx.textAlign = "right"; ctx.textBaseline = "middle"; ctx.fillText("심음", L - 5, r3.y + r3.h / 2);
+      [[disp(e.mvClose + 0.012), "S1"], [disp(e.avClose), "S2"]].forEach(function (sd) {
+        var sx = X(sd[0]);
+        ctx.strokeStyle = p.text; ctx.lineWidth = 1.2; ctx.beginPath();
+        for (var k = -10; k <= 10; k++) { var yy = r3.y + r3.h / 2 + Math.sin(k * 1.9) * (r3.h / 2) * (1 - Math.abs(k) / 11); k === -10 ? ctx.moveTo(sx + k, yy) : ctx.lineTo(sx + k, yy); }
+        ctx.stroke(); ctx.fillStyle = p.text; ctx.font = BB.font(11, true, 700); ctx.textAlign = "left"; ctx.fillText(sd[1], sx + 13, r3.y + r3.h / 2);
+      });
+      ctx.font = BB.font(10.5); ctx.fillStyle = p.dim; ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+      [[disp(e.mvClose + 0.012), "승모판 닫힘"], [disp(e.avOpen), "대동맥판 열림"], [disp(e.avClose), "대동맥판 닫힘"], [disp(e.mvOpen), "승모판 열림"]].forEach(function (sd, k) {
+        var sx = X(sd[0]); ctx.strokeStyle = BB.alpha(p.text, 0.25); ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(sx, r0.y); ctx.lineTo(sx, r3.y + r3.h); ctx.stroke(); ctx.setLineDash([]);
+        if (w > 560) ctx.fillText(sd[1], sx, r0.y + 12 + (k % 2) * 13);
+      });
+      var cx = X(cur);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.8; ctx.beginPath(); ctx.moveTo(cx, 8); ctx.lineTo(cx, h - 4); ctx.stroke();
+      ctx.fillStyle = p.bg; ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, h - 14, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      var i = idx(cur);
+      [[res.plv[i], p.accent2], [res.pao[i], BB.color("art")], [res.pla[i], p.warn]].forEach(function (d) { ctx.fillStyle = d[1]; ctx.beginPath(); ctx.arc(cx, Yp(d[0]), 4, 0, Math.PI * 2); ctx.fill(); });
+      ctx.fillStyle = p.accent; ctx.beginPath(); ctx.arc(cx, Yv(res.vlv[i]), 4, 0, Math.PI * 2); ctx.fill();
+      var tcy = cyc(cur), tShow = tcy > res.T - OFF ? tcy - res.T : tcy;
+      BB.stat("wg-o-t", (tShow * 1000).toFixed(0) + "<small>ms</small>");
+      BB.stat("wg-o-p", fmt0(res.plv[i]) + " / " + fmt0(res.pao[i]) + "<small>mmHg</small>");
+      BB.stat("wg-o-la", res.pla[i].toFixed(1) + "<small>mmHg</small>");
+      BB.stat("wg-o-v", fmt0(res.vlv[i]) + "<small>mL</small>");
+      info.innerHTML = PHASE_INFO[ph];
+    }, { aspect: 0.62, minHeight: 380, maxHeight: 520 });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; cur = BB.clamp(((x - lay.L) / (lay.R - lay.L)) * lay.T, 0, lay.T - 0.001); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 3. 판막 협착 */
+  (function () {
+    var res, base = run({ hr: 72 });
+    function calc() {
+      var a = getA(), comp = document.getElementById("vl-comp").checked;
+      var rao = 0.012 / (a * a);
+      var o = { hr: 72, rao: rao };
+      if (comp) o.emax = 2.8 * (1 + 0.9 * (1 / a - 1) * 0.45);
+      res = run(o);
+      var grad = 0; for (var k = 0; k < res.t.length; k++) if (res.qao[k] > 0) grad = Math.max(grad, res.plv[k] - res.pao[k]);
+      BB.stat("vl-o-g", fmt0(grad) + "<small>mmHg</small>");
+      BB.stat("vl-o-p", fmt0(res.plvMax) + "<small>mmHg</small>");
+      BB.stat("vl-o-sv", fmt0(res.sv) + "<small>mL</small>");
+      BB.stat("vl-o-bp", fmt0(res.sbp) + "/" + fmt0(res.dbp));
+      res._grad = grad;
+      if (cv) cv.redraw();
+    }
+    var cv = null;
+    var getA = BB.range("vl-a", function (v) { return Math.round(v * 100) + "%"; }, BB.debounce(calc, 60));
+    document.getElementById("vl-comp").addEventListener("change", calc);
+    calc();
+    cv = BB.canvas("#vl-cv", function (ctx, w, h) {
+      var p = P(), T = res.T, ej = res.events.avClose + 0.06;
+      var box = { x: 50, y: 18, w: w - 66, h: h - 56 };
+      var lv = [], ao = [], gr = [];
+      for (var k = 0; k < res.t.length && res.t[k] <= ej; k++) { lv.push([res.t[k] * 1000, res.plv[k]]); ao.push([res.t[k] * 1000, res.pao[k]]); }
+      var top = Math.max(160, Math.ceil(res.plvMax / 40) * 40 + 20);
+      var c = BB.chart(ctx, box, { x: [0, ej * 1000], y: [0, top], xLabel: "수축 시작부터의 시간(ms)", yLabel: "압력(mmHg)", series: [{ data: ao, color: BB.color("art"), width: 2.4 }, { data: lv, color: p.accent2, width: 2.4 }] });
+      // 압력 차 칠하기
+      ctx.fillStyle = BB.alpha(p.bad, 0.22); ctx.beginPath();
+      var started = false, back = [];
+      for (var q = 0; q < lv.length; q++) { if (res.qao[q] > 0 && lv[q][1] > ao[q][1]) { var x = c.X(lv[q][0]); if (!started) { ctx.moveTo(x, c.Y(lv[q][1])); started = true; } else ctx.lineTo(x, c.Y(lv[q][1])); back.push([x, c.Y(ao[q][1])]); } }
+      for (var b = back.length - 1; b >= 0; b--) ctx.lineTo(back[b][0], back[b][1]);
+      if (started) { ctx.closePath(); ctx.fill(); }
+      // 기준(정상) 좌심실
+      var bl = []; for (var k2 = 0; k2 < base.t.length && base.t[k2] <= ej; k2++) bl.push([base.t[k2] * 1000, base.plv[k2]]);
+      ctx.save(); ctx.globalAlpha = 0.35; BB.chart(ctx, box, { x: [0, ej * 1000], y: [0, top], xTicks: [], yTicks: [], series: [{ data: bl, color: p.dim, width: 1.4, dash: [4, 3] }] }); ctx.restore();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "right"; ctx.textBaseline = "top";
+      ctx.fillText("흐린 점선: 정상 판막의 좌심실 압력", box.x + box.w - 4, box.y + 4);
+      if (res._grad > 40) { ctx.fillStyle = p.bad; ctx.font = BB.font(12, false, 700); ctx.fillText("압력 차 " + fmt0(res._grad) + " mmHg: 심한 협착 범위", box.x + box.w - 4, box.y + 22); }
+    }, { aspect: 0.6, minHeight: 280, maxHeight: 380 });
+  })();
+
+  /* ---------------------------------------------------------- 4. PV 고리 해부 */
+  (function () {
+    var res = run({ hr: 72 }), lay = null, sel = null, t = 0;
+    var info = document.getElementById("pv-info");
+    BB.stat("pv-o-sv", fmt0(res.sv) + "<small>mL</small>"); BB.stat("pv-o-ef", Math.round(res.ef * 100) + "<small>%</small>");
+    BB.stat("pv-o-sw", res.strokeWork.toFixed(2) + "<small>J</small>"); BB.stat("pv-o-vv", fmt0(res.edv) + " / " + fmt0(res.esv));
+    var tip;
+    var cv = BB.canvas("#pv-cv", function (ctx, w, h) {
+      var p = P(), o = res.opts;
+      var box = { x: 52, y: 16, w: w - 70, h: h - 56 };
+      var c = BB.chart(ctx, box, { x: [0, 180], y: [0, 160], xLabel: "좌심실 부피(mL)", yLabel: "좌심실 압력(mmHg)" });
+      // ESPVR, EDPVR
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      ctx.strokeStyle = p.faint; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.4;
+      ctx.beginPath(); ctx.moveTo(c.X(o.v0), c.Y(0)); ctx.lineTo(c.X(o.v0 + 160 / o.emax), c.Y(160)); ctx.stroke();
+      ctx.beginPath(); for (var v = o.v0; v <= 180; v += 2) { var pp = o.edA * (Math.exp(o.edK * (v - o.v0)) - 1); v === o.v0 ? ctx.moveTo(c.X(v), c.Y(pp)) : ctx.lineTo(c.X(v), c.Y(pp)); } ctx.stroke();
+      ctx.setLineDash([]); ctx.restore();
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left";
+      ctx.fillText("수축기말 압력-부피 선(기울기 = 수축력)", c.X(o.v0 + 120 / o.emax) + 6, c.Y(130));
+      ctx.fillText("이완기말 압력-부피 곡선", c.X(150), c.Y(30) - 6);
+      // 넓이 칠하기
+      ctx.fillStyle = BB.alpha(p.accent, 0.12); ctx.beginPath();
+      for (var k = 0; k < res.t.length; k++) { var x = c.X(res.vlv[k]), y = c.Y(res.plv[k]); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      ctx.closePath(); ctx.fill();
+      // 고리(구간별 색)
+      for (var k2 = 1; k2 < res.t.length; k2++) {
+        var ph = phaseOf(res, res.t[k2]);
+        ctx.strokeStyle = sel === ph ? p.accent : [p.accent2, BB.color("art"), p.accent2, p.warn, p.warn, p.warn][ph]; ctx.lineWidth = sel === ph ? 4.5 : 2.6;
+        ctx.beginPath(); ctx.moveTo(c.X(res.vlv[k2 - 1]), c.Y(res.plv[k2 - 1])); ctx.lineTo(c.X(res.vlv[k2]), c.Y(res.plv[k2])); ctx.stroke();
+      }
+      // 모서리 이름
+      var e = res.events, idx = function (tt) { return Math.min(res.t.length - 1, Math.round((tt / res.T) * res.t.length)); };
+      var corners = [[idx(0.002), "승모판 닫힘(EDV)", 8, 14], [idx(e.avOpen), "대동맥판 열림", 8, -6], [idx(e.avClose), "대동맥판 닫힘(ESV)", -8, -8], [idx(e.mvOpen), "승모판 열림", -8, -14]];
+      ctx.font = BB.font(11, false, 600);
+      corners.forEach(function (cn) { var x = c.X(res.vlv[cn[0]]), y = c.Y(res.plv[cn[0]]); ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(x, y, 3.5, 0, Math.PI * 2); ctx.fill(); ctx.textAlign = cn[2] > 0 ? "left" : "right"; ctx.fillText(cn[1], x + cn[2], y + cn[3]); });
+      // 도는 점
+      var i = Math.min(res.t.length - 1, Math.floor(((t * 0.35) % res.T) / res.T * res.t.length));
+      ctx.fillStyle = p.bg; ctx.strokeStyle = p.text; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.arc(c.X(res.vlv[i]), c.Y(res.plv[i]), 6.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      // SV 표시
+      var yy = c.Y(8) + 0;
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(c.X(res.esv), yy); ctx.lineTo(c.X(res.edv), yy); ctx.stroke();
+      ctx.fillStyle = p.accent; ctx.textAlign = "center"; ctx.textBaseline = "bottom"; ctx.fillText("1회 박출량 " + fmt0(res.sv) + " mL", c.X((res.esv + res.edv) / 2), yy - 3);
+      lay = { c: c };
+    }, { aspect: 0.62, minHeight: 320, maxHeight: 460 });
+    tip = BB.tip(cv.canvas);
+    function pick(x, y) {
+      if (!lay) return null;
+      var best = 1e9, bi = -1;
+      for (var k = 0; k < res.t.length; k += 2) { var d = Math.hypot(lay.c.X(res.vlv[k]) - x, lay.c.Y(res.plv[k]) - y); if (d < best) { best = d; bi = k; } }
+      return best < 26 ? bi : null;
+    }
+    BB.drag(cv.canvas, {
+      start: function (x, y) { var k = pick(x, y); if (k != null) { sel = phaseOf(res, res.t[k]); info.innerHTML = PHASE_INFO[sel]; cv.redraw(); } },
+      hover: function (x, y) { var k = pick(x, y); if (k == null) { tip.hide(); return; } var ph = phaseOf(res, res.t[k]); tip.show(x, y, "<b>" + PHASES[ph] + "</b><small>" + fmt0(res.vlv[k]) + " mL · " + fmt0(res.plv[k]) + " mmHg · " + (res.t[k] * 1000).toFixed(0) + " ms</small>"); },
+    });
+    cv.canvas.addEventListener("pointerleave", tip.hide);
+    BB.loop(document.getElementById("sim-pv"), function (dt) { t += dt; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 5. 세 손잡이 */
+  (function () {
+    var base = run({ hr: 72 }), res = base, cv = null;
+    function calc() {
+      res = run({ hr: 72, vs: Math.round(440 * getPre()), rs: +(1.05 * getAft()).toFixed(3), emax: +(2.8 * getCon()).toFixed(3) });
+      BB.stat("ld-o-sv", fmt0(res.sv) + "<small>mL</small>");
+      BB.stat("ld-o-ef", Math.round(res.ef * 100) + "<small>%</small>");
+      BB.stat("ld-o-bp", fmt0(res.sbp) + "/" + fmt0(res.dbp));
+      BB.stat("ld-o-co", res.co.toFixed(1) + "<small>L/min</small>");
+      if (cv) cv.redraw();
+    }
+    var d = BB.debounce(calc, 50);
+    var getPre = BB.range("ld-pre", function (v) { return "×" + v.toFixed(2); }, d);
+    var getAft = BB.range("ld-aft", function (v) { return "×" + v.toFixed(2); }, d);
+    var getCon = BB.range("ld-con", function (v) { return "×" + v.toFixed(2); }, d);
+    document.getElementById("ld-re").addEventListener("click", function () { getPre.set(1); getAft.set(1); getCon.set(1); });
+    calc();
+    cv = BB.canvas("#ld-cv", function (ctx, w, h) {
+      var p = P(), o = res.opts;
+      var box = { x: 52, y: 14, w: w - 68, h: h - 54 };
+      var c = BB.chart(ctx, box, { x: [0, 200], y: [0, 220], xLabel: "좌심실 부피(mL)", yLabel: "압력(mmHg)" });
+      function loop(r, col, wd, fill) {
+        ctx.beginPath(); for (var k = 0; k < r.t.length; k += 2) { var x = c.X(r.vlv[k]), y = c.Y(r.plv[k]); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.closePath();
+        if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+        ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.stroke();
+      }
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      ctx.strokeStyle = BB.alpha(p.accent2, 0.6); ctx.setLineDash([5, 4]); ctx.lineWidth = 1.3;
+      ctx.beginPath(); ctx.moveTo(c.X(o.v0), c.Y(0)); ctx.lineTo(c.X(o.v0 + 220 / o.emax), c.Y(220)); ctx.stroke();
+      ctx.strokeStyle = BB.alpha(p.dim, 0.5); ctx.beginPath(); ctx.moveTo(c.X(10), c.Y(0)); ctx.lineTo(c.X(10 + 220 / 2.8), c.Y(220)); ctx.stroke();
+      ctx.setLineDash([]); ctx.restore();
+      loop(base, BB.alpha(p.dim, 0.55), 1.6, BB.alpha(p.dim, 0.06));
+      loop(res, p.accent, 2.6, BB.alpha(p.accent, 0.13));
+      // 동맥 탄성선(후부하): 수축기말 점과 EDV를 잇는 선
+      ctx.strokeStyle = BB.alpha(BB.color("art"), 0.7); ctx.setLineDash([2, 3]); ctx.lineWidth = 1.3;
+      ctx.beginPath(); ctx.moveTo(c.X(res.edv), c.Y(0)); ctx.lineTo(c.X(res.esv), c.Y(res.esp)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("흐린 고리: 처음 상태 · 파란 점선: 수축력 · 빨간 점선: 후부하", box.x + 6, box.y + 4);
+      if (res.sv < 40) { ctx.fillStyle = p.bad; ctx.font = BB.font(12, false, 700); ctx.fillText("박출량이 크게 줄었다", box.x + 6, box.y + 22); }
+    }, { aspect: 0.66, minHeight: 300, maxHeight: 430 });
+  })();
+
+  /* ---------------------------------------------------------- 6. 스탈링 곡선 */
+  (function () {
+    var curves = null, cur = 10, lay = null;
+    function build() {
+      var sets = [{ k: "sym", emax: 4.2, col: "ok" }, { k: "norm", emax: 2.8, col: "accent" }, { k: "fail", emax: 1.2, col: "bad" }];
+      curves = sets.map(function (s) {
+        var pts = [];
+        [260, 300, 340, 380, 420, 460, 500, 560, 620, 700, 800].forEach(function (vs) { var r = BD.heart({ hr: 72, emax: s.emax, vs: vs, beats: 6 }); pts.push([r.lvedp, r.sv, r.edv]); });
+        pts.sort(function (a, b) { return a[0] - b[0]; });
+        return { s: s, pts: pts };
+      });
+    }
+    function svAt(cv, pe) { var xs = cv.pts.map(function (q) { return q[0]; }); return BD.interp(xs, cv.pts.map(function (q) { return q[1]; }), pe); }
+    function edvAt(cv, pe) { var xs = cv.pts.map(function (q) { return q[0]; }); return BD.interp(xs, cv.pts.map(function (q) { return q[2]; }), pe); }
+    var cvs = BB.canvas("#st-cv", function (ctx, w, h) {
+      if (!curves) build();
+      var p = P();
+      var narrow = w < 560;
+      var box = { x: 52, y: 16, w: (narrow ? w : w * 0.7) - 70, h: h - 56 };
+      var c = BB.chart(ctx, box, { x: [0, 30], y: [0, 140], xLabel: "이완기말 압력(mmHg) = 채움", yLabel: "1회 박출량(mL)", bands: [{ x0: 20, x1: 30, color: BB.alpha(p.bad, 0.1) }],
+        series: curves.map(function (cc) { return { data: cc.pts.map(function (q) { return [q[0], q[1]]; }), color: p[cc.s.col], width: 2.6 }; }) });
+      ctx.fillStyle = p.bad; ctx.font = BB.font(11); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText("폐울혈 위험", c.X(25), box.y + 4);
+      ctx.strokeStyle = p.text; ctx.setLineDash([3, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(c.X(cur), box.y); ctx.lineTo(c.X(cur), box.y + box.h); ctx.stroke(); ctx.setLineDash([]);
+      curves.forEach(function (cc) { var sv = svAt(cc, cur); ctx.fillStyle = p.bg; ctx.strokeStyle = p[cc.s.col]; ctx.lineWidth = 2.4; ctx.beginPath(); ctx.arc(c.X(cur), c.Y(sv), 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); });
+      lay = c;
+      // 근절 그림
+      var edv = edvAt(curves[1], cur), sl = 1.75 + (edv - 60) / 100 * 0.6;
+      var sx = narrow ? box.x + box.w * 0.52 : w * 0.73, sy = narrow ? box.y + box.h * 0.62 : h * 0.3, sw = narrow ? box.w * 0.44 : w * 0.24;
+      if (!narrow || true) {
+        ctx.fillStyle = BB.alpha(p.surface, 0.9); BB.rrect(ctx, sx - 6, sy - 18, sw + 12, 86, 8); ctx.fill();
+        var scale = sw / 2.8, zl = sx + sw / 2 - (sl / 2) * scale, zr = sx + sw / 2 + (sl / 2) * scale;
+        ctx.strokeStyle = p.text; ctx.lineWidth = 2.5; [zl, zr].forEach(function (z) { ctx.beginPath(); ctx.moveTo(z, sy + 4); ctx.lineTo(z, sy + 52); ctx.stroke(); });
+        ctx.strokeStyle = BB.color("seg-musc"); ctx.lineWidth = 2;
+        [14, 28, 42].forEach(function (dy) { ctx.beginPath(); ctx.moveTo(zl, sy + dy); ctx.lineTo(zl + 1.0 * scale, sy + dy); ctx.stroke(); ctx.beginPath(); ctx.moveTo(zr, sy + dy); ctx.lineTo(zr - 1.0 * scale, sy + dy); ctx.stroke(); });
+        ctx.strokeStyle = p.accent2; ctx.lineWidth = 4.5; var mid = sx + sw / 2;
+        [21, 35].forEach(function (dy) { ctx.beginPath(); ctx.moveTo(mid - 0.8 * scale, sy + dy); ctx.lineTo(mid + 0.8 * scale, sy + dy); ctx.stroke(); });
+        ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("근절(어림) " + sl.toFixed(2) + " µm", sx, sy - 2);
+        ctx.textBaseline = "top"; ctx.fillText(sl < 2.0 ? "겹침이 덜 알맞다" : sl <= 2.25 ? "가장 알맞은 겹침" : "늘어나 겹침이 준다", sx, sy + 56);
+      }
+      BB.stat("st-o-p", cur.toFixed(1) + "<small>mmHg</small>");
+      BB.stat("st-o-n", fmt0(svAt(curves[1], cur)) + "<small>mL</small>");
+      BB.stat("st-o-f", fmt0(svAt(curves[2], cur)) + "<small>mL</small>");
+      BB.stat("st-o-sl", sl.toFixed(2) + "<small>µm</small>");
+    }, { aspect: 0.56, minHeight: 320, maxHeight: 420 });
+    BB.drag(cvs.canvas, { move: function (x) { if (!lay) return; var v = (x - lay.box.x) / lay.box.w * 30; cur = BB.clamp(v, 1, 29); cvs.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 7. 두 펌프 균형 */
+  (function () {
+    var st, hist;
+    function reset() { st = { t: 0, ven: 3000, pul: 450, qr: 5, ql: 5 }; hist = []; }
+    reset();
+    var getL = BB.range("bl-l", function (v) { return "×" + v.toFixed(2); });
+    document.getElementById("bl-go").addEventListener("click", reset);
+    function step(dt) {
+      var starling = document.getElementById("bl-st").checked, k = getL();
+      var cvp = 4 + (st.ven - 3000) / 100, pla = 7 + (st.pul - 450) / 25;   // 저장소 압력(mmHg)
+      var f = function (pp) { return starling ? 5 * Math.pow(Math.max(0.2, pp) / 7, 0.65) / Math.pow(1, 1) : 5; };
+      st.qr = BB.clamp(5 * Math.pow(Math.max(0.3, cvp) / 4, 0.6), 0, 12);
+      st.ql = BB.clamp(k * (starling ? 5 * Math.pow(Math.max(0.3, pla) / 7, 0.6) : 5), 0, 12);
+      st.pul += (st.qr - st.ql) * 1000 / 60 * dt;
+      st.ven += (st.ql - st.qr) * 1000 / 60 * dt;
+      st.pul = BB.clamp(st.pul, 150, 3000); st.ven = BB.clamp(st.ven, 1200, 4000);
+      st.t += dt; st.pla = pla;
+      if (hist.length === 0 || st.t - hist[hist.length - 1][0] > 0.5) hist.push([st.t, st.pul, st.qr, st.ql]);
+      if (hist.length > 1200) hist.shift();
+    }
+    var cv = BB.canvas("#bl-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 520;
+      // 위: 두 저장소 그림
+      var top = narrow ? 150 : 140;
+      var bw = Math.min(150, w * 0.32);
+      function tank(x, y, vol, cap, col, label) {
+        ctx.strokeStyle = p.border; ctx.lineWidth = 1.5; BB.rrect(ctx, x, y, bw, top - 40, 10); ctx.stroke();
+        var fr = BB.clamp(vol / cap, 0, 1), hh = (top - 44) * fr;
+        ctx.fillStyle = BB.alpha(col, 0.55); BB.rrect(ctx, x + 2, y + top - 42 - hh, bw - 4, hh, 8); ctx.fill();
+        ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 600); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(label, x + bw / 2, y + top - 36);
+      }
+      var x1 = narrow ? 14 : w * 0.12, x2 = narrow ? w - bw - 14 : w * 0.88 - bw;
+      tank(x1, 6, st.ven, 4000, BB.color("ven"), "몸의 정맥 " + (st.ven / 1000).toFixed(2) + " L");
+      tank(x2, 6, st.pul, 1500, st.pul > 900 ? p.bad : BB.color("art"), "폐 혈관 " + (st.pul / 1000).toFixed(2) + " L");
+      ctx.strokeStyle = BB.alpha(p.bad, 0.7); ctx.setLineDash([4, 3]); var yDanger = 6 + (top - 42) - (top - 44) * (900 / 1500);
+      ctx.beginPath(); ctx.moveTo(x2, yDanger); ctx.lineTo(x2 + bw, yDanger); ctx.stroke(); ctx.setLineDash([]);
+      // 펌프 화살표
+      var mx = (x1 + bw + x2) / 2;
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11.5); ctx.textAlign = "center";
+      ctx.fillText("우심실 " + st.qr.toFixed(2) + " L/min →", mx, 26);
+      ctx.fillText("← 좌심실 " + st.ql.toFixed(2) + " L/min", mx, 70);
+      BD.flowDots(ctx, [[x1 + bw, 44], [x2, 44]], st.t * 40 * st.qr, { color: BB.color("ven"), gap: 14 });
+      BD.flowDots(ctx, [[x2, 88], [x1 + bw, 88]], st.t * 40 * st.ql, { color: BB.color("art"), gap: 14 });
+      // 아래: 폐 혈액량 시간 기록
+      var box = { x: 54, y: top + 14, w: w - 70, h: h - top - 50 };
+      var tmax = Math.max(60, st.t);
+      BB.chart(ctx, box, { x: [Math.max(0, tmax - 300), tmax], y: [0, 1600], xLabel: "시간(초, 빠르게 돌림)", yLabel: "폐 혈액(mL)", hlines: [{ y: 900, color: p.bad, label: "폐부종 위험" }],
+        series: [{ data: hist.map(function (q) { return [q[0], q[1]]; }), color: BB.color("art"), width: 2.4 }] });
+      BB.stat("bl-o-t", st.t.toFixed(0) + "<small>s</small>");
+      BB.stat("bl-o-q", st.qr.toFixed(2) + " / " + st.ql.toFixed(2));
+      BB.stat("bl-o-p", fmt0(st.pul) + "<small>mL</small>");
+      BB.stat("bl-o-la", (st.pla || 7).toFixed(1) + "<small>mmHg</small>");
+    }, { aspect: 0.7, minHeight: 340, maxHeight: 440 });
+    BB.loop(document.getElementById("sim-balance"), function (dt) { for (var k = 0; k < 6; k++) step(dt * 1.2); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 8. 상태별 고리 */
+  (function () {
+    var base = run(BD.HEART_PRESETS.rest), res = null, key = "run";
+    var NOTES = {
+      run: "<h4>달리기(대회 속도)</h4><p>심박수 168, 수축력 약 2배, 정맥 환류 증가, 말초 저항 약 1/3. 고리가 넓고 왼쪽 위 모서리가 높다. 박출률이 75 %를 넘는다.</p>",
+      athlete: "<h4>지구력 선수의 안정 상태</h4><p>심박수가 48로 느리지만 심실이 크고 잘 늘어나 한 번에 많이 짜낸다. 넓은 고리, 낮은 심박수. 훈련이 만든 '느리고 큰' 심장이다.</p>",
+      hypertension: "<h4>고혈압</h4><p>말초 저항이 높아 박출이 높은 압력에서 시작한다. 고리가 위로 길어지고 폭이 좁아진다. 오래가면 벽이 두꺼워진다.</p>",
+      failure: "<h4>수축 기능 저하(박출률 감소 심부전)</h4><p>수축력이 약해 수축기말 부피가 크게 남는다. 심실은 늘어나 이완기말 부피가 200 mL를 넘고, 박출률은 약 25 %. 박출량을 지키려고 심장이 커진 모습이다.</p>",
+      stiff: "<h4>이완 기능 저하(박출률 보존 심부전)</h4><p>심실이 뻣뻣해 잘 늘어나지 않는다. 박출률은 정상이지만 조금만 채워도 압력이 급히 올라, 충분히 채우지 못하고 박출량이 준다.</p>",
+      stenosis: "<h4>대동맥판 협착</h4><p>좁은 판막을 넘으려 좌심실이 대동맥보다 훨씬 높은 압력을 만든다. 고리의 윗변이 높이 솟는다. 수축력이 보상하는 동안 박출량은 유지된다.</p>",
+      bleed: "<h4>출혈</h4><p>혈액량이 줄어 앞부하가 떨어진다. 고리가 왼쪽으로 작아지고, 교감 신경이 심박수와 수축력을 올려 심박출량을 지키려 애쓴다.</p>",
+    };
+    var cv = null;
+    function calc() {
+      key = document.getElementById("ss-sel").value;
+      res = run(BD.HEART_PRESETS[key]);
+      document.getElementById("ss-info").innerHTML = NOTES[key];
+      BB.stat("ss-o-v", fmt0(res.edv) + " / " + fmt0(res.esv));
+      BB.stat("ss-o-sv", fmt0(res.sv) + " mL · " + Math.round(res.ef * 100) + "%");
+      BB.stat("ss-o-co", res.opts.hr + " · " + res.co.toFixed(1) + "<small>L/min</small>");
+      BB.stat("ss-o-bp", fmt0(res.sbp) + "/" + fmt0(res.dbp));
+      if (cv) cv.redraw();
+    }
+    document.getElementById("ss-sel").addEventListener("change", calc);
+    calc();
+    cv = BB.canvas("#ss-cv", function (ctx, w, h) {
+      var p = P(), ymax = Math.max(160, Math.ceil(res.plvMax / 40) * 40 + 10), xmax = Math.max(180, Math.ceil(res.edv / 40) * 40 + 20);
+      var box = { x: 52, y: 14, w: w - 68, h: h - 54 };
+      var c = BB.chart(ctx, box, { x: [0, xmax], y: [0, ymax], xLabel: "좌심실 부피(mL)", yLabel: "압력(mmHg)" });
+      function loop(r, col, wd, fill) { ctx.beginPath(); for (var k = 0; k < r.t.length; k += 2) { var x = c.X(r.vlv[k]), y = c.Y(r.plv[k]); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.closePath(); if (fill) { ctx.fillStyle = fill; ctx.fill(); } ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.stroke(); }
+      // EDPVR
+      var o = res.opts;
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      ctx.strokeStyle = p.faint; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.2; ctx.beginPath();
+      for (var v = o.v0; v <= xmax; v += 2) { var pp = o.edA * (Math.exp(o.edK * (v - o.v0)) - 1); v === o.v0 ? ctx.moveTo(c.X(v), c.Y(pp)) : ctx.lineTo(c.X(v), c.Y(pp)); }
+      ctx.stroke(); ctx.setLineDash([]); ctx.restore();
+      loop(base, BB.alpha(p.dim, 0.6), 1.6, BB.alpha(p.dim, 0.06));
+      loop(res, p.accent, 2.8, BB.alpha(p.accent, 0.14));
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("흐린 고리: 정상 안정 · 점선: 이완기말 곡선", box.x + 6, box.y + 4);
+      ctx.fillStyle = p.accent; ctx.font = BB.font(12.5, false, 700); ctx.fillText(BD.HEART_PRESETS[key].name, box.x + 6, box.y + 20);
+    }, { aspect: 0.66, minHeight: 300, maxHeight: 420 });
+  })();
+
+  /* ---------------------------------------------------------- 9. 다온 */
+  (function () {
+    var A = BD.HEART_PRESETS.daon, B = BD.HEART_PRESETS.run;
+    var restR = run({ hr: 72, rs: 1.15 }), res = restR, cv = null;
+    function lerp(a, b, x) { return a + (b - a) * x; }
+    function calc() {
+      var x = getX();
+      var on = function (id) { return document.getElementById(id).checked; };
+      var o = { hr: Math.round(on("dn-hr") ? lerp(72, 168, x) : 72), beats: 8 };
+      o.emax = +(on("dn-con") ? lerp(2.8, 5.5, x) : 2.8).toFixed(2);
+      o.tscale = +(on("dn-con") ? lerp(1, 0.8, x) : 1).toFixed(3);
+      o.vs = Math.round(on("dn-ven") ? lerp(440, 700, x) : 440);
+      o.rs = +(on("dn-vas") ? 1.15 * Math.pow(0.32 / 1.15, Math.pow(x, 0.7)) : 1.15).toFixed(3);   // 혈관 확장은 기하급수적으로
+      o.ca = +(on("dn-vas") ? lerp(1.35, 0.8, x) : 1.35).toFixed(3);
+      res = run(o);
+      BB.stat("dn-o-hr", o.hr + "<small>bpm</small>");
+      BB.stat("dn-o-sv", fmt0(res.sv) + "<small>mL</small>");
+      BB.stat("dn-o-co", res.co.toFixed(1) + "<small>L/min</small>");
+      BB.stat("dn-o-bp", fmt0(res.sbp) + "/" + fmt0(res.dbp) + "<small>(" + fmt0(res.map) + ")</small>");
+      if (cv) cv.redraw();
+    }
+    var getX = BB.range("dn-x", function (v) { return v === 0 ? "안정" : v === 1 ? "대회 속도" : Math.round(v * 100) + "%"; }, BB.debounce(calc, 60));
+    ["dn-hr", "dn-con", "dn-ven", "dn-vas"].forEach(function (id) { document.getElementById(id).addEventListener("change", calc); });
+    calc();
+    cv = BB.canvas("#dn-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var box = narrow ? { x: 50, y: 14, w: w - 64, h: h * 0.56 } : { x: 50, y: 14, w: w * 0.62 - 56, h: h - 52 };
+      var ymax = Math.max(200, Math.ceil(res.plvMax / 40) * 40);
+      var c = BB.chart(ctx, box, { x: [0, 200], y: [0, ymax], xLabel: "좌심실 부피(mL)", yLabel: "압력(mmHg)" });
+      function loop(r, col, wd, fill) { ctx.beginPath(); for (var k = 0; k < r.t.length; k += 2) { var x = c.X(r.vlv[k]), y = c.Y(r.plv[k]); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.closePath(); if (fill) { ctx.fillStyle = fill; ctx.fill(); } ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.stroke(); }
+      loop(restR, BB.alpha(p.dim, 0.6), 1.6, BB.alpha(p.dim, 0.05));
+      loop(res, p.accent, 2.8, BB.alpha(p.accent, 0.14));
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("흐린 고리: 다온 안정", box.x + 6, box.y + 4);
+      // 심박출량 막대: 박출량 × 심박수 = 넓이
+      var bx = narrow ? 56 : w * 0.66, by = narrow ? box.y + box.h + 58 : 30, bw = narrow ? w - 76 : w * 0.31, bh = narrow ? h - box.y - box.h - 72 : h - 80;
+      var maxCo = 22, co = res.co;
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+      ctx.fillText("심박출량 = 박출량 × 심박수", bx, by - 6);
+      var cw = bw * (res.opts.hr / 200), chh = bh * (res.sv / 140);
+      ctx.fillStyle = BB.alpha(p.accent, 0.25); ctx.fillRect(bx, by + bh - chh, cw, chh);
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 2; ctx.strokeRect(bx, by + bh - chh, cw, chh);
+      var rw = bw * (72 / 200), rh = bh * (restR.sv / 140);
+      ctx.strokeStyle = p.dim; ctx.setLineDash([4, 3]); ctx.strokeRect(bx, by + bh - rh, rw, rh); ctx.setLineDash([]);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textBaseline = "top"; ctx.fillText("가로: 심박수  세로: 박출량", bx, by + bh + 4);
+      ctx.fillStyle = p.accent; ctx.font = BB.font(Math.min(22, bw * 0.12), true, 700); ctx.textAlign = "right"; ctx.textBaseline = "bottom";
+      ctx.fillText(co.toFixed(1) + " L/min", bx + bw, by + bh - chh - 4 < by + 20 ? by + 22 : by + bh - chh - 4);
+    }, { get height() { return document.getElementById("dn-cv").parentElement.clientWidth < 560 ? 520 : 340; } });
+  })();
+})();
+</script>
+</body>
+</html>

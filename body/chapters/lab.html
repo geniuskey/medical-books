@@ -1,0 +1,1204 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "심장, 폐, 근육, 대사, 혈당, 호르몬, 체온을 하나로 이은 가상 인체. 달리기, 식사, 물, 고지대, 출혈, 더위를 환자 모니터 위에서 직접 걸어 보고, 다온의 10 km 대회 날과 내 몸의 숫자를 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>인체 실험실 · BodyBook</title>
+<meta name="description" content="심장, 폐, 근육, 대사, 혈당, 호르몬, 체온을 하나로 이은 가상 인체. 달리기, 식사, 물, 고지대, 출혈, 더위를 환자 모니터 위에서 직접 걸어 보고, 다온의 10 km 대회 날과 내 몸의 숫자를 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/lab.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="인체 실험실 · BodyBook">
+<meta property="og:description" content="심장, 폐, 근육, 대사, 혈당, 호르몬, 체온을 하나로 이은 가상 인체. 달리기, 식사, 물, 고지대, 출혈, 더위를 환자 모니터 위에서 직접 걸어 보고, 다온의 10 km 대회 날과 내 몸의 숫자를 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/lab.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/lab.html#chapter","name":"인체 실험실","headline":"인체 실험실 · BodyBook","description":"심장, 폐, 근육, 대사, 혈당, 호르몬, 체온을 하나로 이은 가상 인체. 달리기, 식사, 물, 고지대, 출혈, 더위를 환자 모니터 위에서 직접 걸어 보고, 다온의 10 km 대회 날과 내 몸의 숫자를 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/lab.html","position":20,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-04","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"20. 인체 실험실","item":"https://medical.euiyun.com/body/chapters/lab.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<!--head:end-->
+<style>
+  .ev-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ev-grid .btn { font-size: 13px; padding: 7px 8px; line-height: 1.3; }
+  .btn.on { border-color: var(--accent); color: var(--accent); font-weight: 700; background: var(--accent-soft); }
+  .ev-log { font-size: 13.5px; line-height: 1.55; }
+  .ev-log b { font-family: var(--mono); font-weight: 600; color: var(--text); margin-right: 6px; }
+  .ev-log .warn-t { font-weight: 600; }
+  .me-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+  @media (max-width: 420px) { .me-grid { grid-template-columns: 1fr; } }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="lab">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 20</div>
+    <h1>인체 실험실</h1>
+    <p class="lead">지금까지 심장, 혈관, 폐, 근육, 대사, 혈당, 신경, 호르몬, 콩팥, 체온을 한 장씩 따로 떼어 보았다. 실제 몸에서는 이것들이 한꺼번에 움직인다. 달리기 시작하면 심박수만 오르는 것이 아니라 숨이 깊어지고, 젖산이 쌓이고, 체온이 오르고, 땀이 나고, 혈당을 지키려 간이 움직이고, 코르티솔이 오른다. 이 장은 책 전체의 엔진을 하나로 묶은 실험실이다. 글은 짧게, 손은 많이.</p>
+    <ul class="objectives">
+      <li>가상 인체 모니터에서 달리기·식사·물·고도·출혈·더위를 걸고, 여러 계통이 동시에 반응하는 것을 본다.</li>
+      <li>다온의 10 km 대회 날을 킬로미터마다 따라가며 오늘과 12주 뒤를 비교한다.</li>
+      <li>고지대와 출혈처럼 산소 운반이 무너지는 상황에서 몸이 무엇으로 버티는지 확인한다.</li>
+      <li>자기 숫자를 넣어 BMI, 기초대사량, 심박 구간, 예측 폐활량, 혈압·혈당 분류를 읽는다.</li>
+      <li>한 가지 조건을 끝까지 밀 때 어느 계통이 먼저 한계에 닿는지 찾는다.</li>
+    </ul>
+  </header>
+
+  <section id="howto">
+    <h2>실험실 사용법</h2>
+    <p>이 장의 시뮬레이터는 모두 앞 장들에서 쓴 같은 생리 엔진(<code>BD</code>)을 부품으로 조립했다. 운동 강도에서 심박수·젖산·환기량을 내는 식은 <a href="exercise.html">12장</a>, 혈압을 지키는 압반사 루프는 <a href="vessels.html">6장</a>, 고도와 산소 포화도는 <a href="gas.html">9장</a>, 혈당 모델은 <a href="glucose.html">15장</a>, 코르티솔의 하루는 <a href="hormone.html">17장</a>, 땀과 소변은 <a href="kidney.html">18장</a>, 체온은 <a href="thermo.html">19장</a>에서 왔다. 부품 하나하나는 그 장에서 자세히 설명했으니 여기서는 <b>묶였을 때</b> 무슨 일이 일어나는지에 집중한다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>계통</th><th>실험실이 쓰는 엔진 부품</th><th>설명한 장</th></tr></thead>
+      <tbody>
+        <tr><td>근육·운동</td><td>BD.steady(산소 섭취 → 심박·젖산·호흡 교환율·환기량), BD.danielsVO2, BD.racePlan</td><td><a href="exercise.html">12장</a></td></tr>
+        <tr><td>순환</td><td>BD.baroLoop(혈액량·운동 → 혈압·심박), BD.ecg(심전도 파형)</td><td><a href="vessels.html">6장</a>, <a href="ecg.html">5장</a></td></tr>
+        <tr><td>호흡</td><td>BD.patm, BD.pao2, BD.satO2, BD.o2Content, BD.ph</td><td><a href="gas.html">9장</a>, <a href="breathing.html">10장</a></td></tr>
+        <tr><td>에너지</td><td>BD.weir, BD.carbFrac, BD.glucose, BD.bmr</td><td><a href="metabolism.html">13장</a>, <a href="glucose.html">15장</a></td></tr>
+        <tr><td>조절</td><td>BD.hpa(코르티솔), BD.adh·BD.urineOsm(소변), BD.thermo(심부 체온·땀)</td><td><a href="hormone.html">17장</a>~<a href="thermo.html">19장</a></td></tr>
+      </tbody>
+    </table></div>
+    <p>각 시뮬레이터 아래의 "해볼 것"을 순서대로 따라 하면 한 번에 한 가지 묶임이 보인다. 숫자는 모두 교육용 모델의 값이다. 실제 몸은 사람마다, 날마다 다르다.</p>
+    <div class="callout warn">
+      <strong>모델로만 해 볼 것</strong>
+      이 장에서는 더위 속 전력 달리기, 고산 급상승, 큰 출혈, 숨 참기 전 과호흡처럼 실제로 하면 위험한 상황을 일부러 만든다. 화면 속에서만 해 보고, 실제로 따라 하지 않는다.
+    </div>
+  </section>
+
+  <section id="monitor">
+    <h2>가상 인체 모니터</h2>
+    <p>아래는 다온의 몸을 아침 7시부터 돌리는 환자 모니터다. 위쪽은 병원 모니터와 같은 실시간 파형(심전도, 동맥압, 맥파, 호흡)과 큰 숫자, 아래쪽은 혈당·심부 체온·코르티솔·젖산의 추세다. 오른쪽 단추로 사건을 건다. 시간 배속을 60배로 두면 1초에 1분이 흐른다.</p>
+
+    <div class="sim" id="sim-monitor" data-big data-desc="다온의 몸 전체를 돌리는 환자 모니터: 달리기·식사·물·고도·더위·출혈·수액을 걸면 심전도·동맥압·산소 포화도·호흡·체온·혈당·코르티솔·젖산이 함께 움직인다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>가상 인체 모니터</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view monitor"><canvas id="vm-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="ev-grid">
+            <button class="btn" id="vm-run">달리기 시작</button>
+            <button class="btn" id="vm-eat">식사(탄수화물 90 g)</button>
+            <button class="btn" id="vm-drink">물 500 mL</button>
+            <button class="btn" id="vm-alt">고도 올리기</button>
+            <button class="btn" id="vm-heat">날씨 바꾸기</button>
+            <button class="btn" id="vm-bleed">출혈 500 mL</button>
+            <button class="btn" id="vm-fluid">수액 500 mL</button>
+            <button class="btn" id="vm-pause">일시정지</button>
+          </div>
+          <label class="ctrl"><span>달리기 속도 <output id="vm-pace-out"></output></span><input type="range" id="vm-pace" min="6" max="16" step="0.1" value="10.4"></label>
+          <div class="ctrl"><span>시간 배속</span><div class="seg" id="vm-speed"><button data-value="1">1×</button><button data-value="10">10×</button><button data-value="60" class="on">60×</button><button data-value="300">300×</button></div></div>
+          <div class="btn-row"><button class="btn" id="vm-reset">아침 7시로 되돌리기</button></div>
+        </div>
+      </div>
+      <div class="info-panel ev-log" id="vm-log">아직 아무 일도 일어나지 않았다. 안정 시 다온: 심박 72, 혈압 약 123/78, 산소 포화도 약 98 %, 심부 체온 37.0 °C, 공복 혈당 98 mg/dL.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">시각</span><span class="v" id="vm-o-clock">—</span></div>
+        <div class="stat"><span class="k">산소 섭취 (% 최대)</span><span class="v" id="vm-o-vo2">—</span></div>
+        <div class="stat"><span class="k">근육 글리코겐</span><span class="v" id="vm-o-gly">—</span></div>
+        <div class="stat"><span class="k">몸의 물 손실</span><span class="v" id="vm-o-water">—</span></div>
+        <div class="stat"><span class="k">순환 혈액량</span><span class="v" id="vm-o-vol">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "달리기 시작"을 누르고 60배속으로 20분을 지켜본다. 심박은 1~2분 만에 오르지만 심부 체온과 땀은 수십 분에 걸쳐 따라온다. ② 달리는 중에 "날씨 바꾸기"로 32 °C를 고른다. 같은 속도인데 심박이 계속 오른다(심박 표류). ③ 멈춘 뒤 "식사"를 누르고 300배속으로 혈당 곡선을 본다. ④ "고도 올리기"를 세 번 눌러 4,500 m로 가면 산소 포화도가 떨어지고 같은 속도가 훨씬 힘들어진다. ⑤ "출혈"을 세 번 누르면 심박이 오르며 혈압을 지키다가 어느 선을 넘으면 혈압이 무너진다. (교육용 통합 모델: 산소 섭취는 1차 지연(시정수 약 35초), 심박·젖산·환기는 BD.steady, 혈압은 BD.baroLoop의 정상 상태, 체온은 사건마다 BD.thermo를 현재 체온에서 다시 시작, 혈당은 BD.glucose, 코르티솔은 BD.hpa, 소변은 BD.adh로 계산한다. 엔진의 혈당 모델에는 운동 중 간의 포도당 방출이 없어 운동 효과를 0.12배로 줄여 넣었다. 파형은 보기 좋게 실제 시간으로 흐르고, 숫자와 추세만 배속으로 흐른다.)</div>
+    </div>
+
+    <p>몇 가지를 눌러 보면 계통마다 <b>시간의 길이</b>가 전혀 다르다는 것이 드러난다. 심박수와 혈압은 초 단위, 산소 섭취와 젖산은 분 단위, 체온과 땀은 수십 분, 혈당은 몇 시간, 코르티솔은 하루를 단위로 움직인다. 같은 "달리기 시작"이라는 사건이 서로 다른 속도의 물결을 여러 개 만든다. 또 한 계통의 변화가 다른 계통의 입력이 된다. 땀으로 물을 잃으면 혈액량이 줄고, 혈액량이 줄면 같은 혈압을 지키려고 심박이 더 오른다.</p>
+  </section>
+
+  <section id="race">
+    <h2>다온의 대회 날</h2>
+    <p>12주 동안 따라온 다온의 10 km 대회를 직접 돌려 보자. 기온 24 °C, 습도 60 %. 15분 몸풀기 조깅, 10분 출발 대기, 10 km, 그리고 25분 회복. "오늘"은 훈련 전 몸(VO2max 38, 젖산 역치 60 %, 안정 심박 72, 78 kg)이고, "12주 뒤"는 훈련 뒤 몸(VO2max 43, 역치 68 %, 안정 심박 64, 73.7 kg)이다. 두 몸 모두 젖산 역치 근처의 같은 전략(<code>BD.racePlan</code>)으로 달린다.</p>
+
+    <div class="sim" id="sim-race" data-desc="다온의 10 km 대회를 몸풀기부터 회복까지 킬로미터마다 따라가며 심박·젖산·심부 체온·혈당·땀을 보고, 훈련 전 몸과 12주 뒤 몸을 겹쳐 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>10 km를 킬로미터마다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="rc-cv"></canvas><span class="hint">그래프를 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>다온의 몸</span><div class="seg" id="rc-who"><button data-value="now" class="on">오늘</button><button data-value="after">12주 뒤</button></div></div>
+          <label class="check"><input type="checkbox" id="rc-ov" checked> 다른 쪽을 흐리게 겹쳐 보기</label>
+          <label class="check"><input type="checkbox" id="rc-gel"> 5 km 지점 에너지 젤(탄수화물 25 g)</label>
+          <div class="btn-row"><button class="btn primary" id="rc-play">일시정지</button><button class="btn" id="rc-re">처음부터</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">10 km 기록</span><span class="v" id="rc-o-t">—</span></div>
+        <div class="stat"><span class="k">레이스 평균 심박</span><span class="v" id="rc-o-hr">—</span></div>
+        <div class="stat"><span class="k">최고 심부 체온</span><span class="v" id="rc-o-core">—</span></div>
+        <div class="stat"><span class="k">결승까지 땀</span><span class="v" id="rc-o-sw">—</span></div>
+        <div class="stat"><span class="k">근육 글리코겐 사용</span><span class="v" id="rc-o-gly">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "오늘"을 재생하며 1 km 구간마다 심박이 조금씩 오르는 것을 본다. 속도는 같은데 체온과 탈수가 심박을 밀어 올린다. ② "12주 뒤"로 바꾼다. 같은 젖산(약 4 mmol/L)에서 더 빨리 달려 약 8분 일찍 들어온다. 겹친 흐린 점(오늘)이 한참 뒤에 처진다. ③ 에너지 젤을 켜면 5 km 뒤 혈당이 잠깐 오른다. 10 km는 글리코겐이 바닥나기 전에 끝나는 거리라 기록에는 거의 영향이 없다. (구간 속도는 BD.racePlan 속도에 처음 조금 빠르게·마지막 1 km 스퍼트 배율을 곱했다. 심박 = BD.steady + 체온 0.1 °C당 약 0.8 bpm + 탈수 1 %당 2.5 bpm. 체온·땀은 BD.thermo, 혈당은 BD.glucose(아침 식사 탄수화물 80 g을 2시간 반 전에), 글리코겐은 시작 400 g에서 탄수화물 연소량의 80 %를 뺐다.)</div>
+    </div>
+
+    <p>훈련이 바꾼 것은 "최대한"이 아니라 "얼마나 오래 높은 강도를 버티는가"다. 12주 뒤의 다온은 최대 산소 섭취량의 약 83 %로 달려도 젖산이 4 mmol/L 근처에 머문다. 오늘의 다온은 79 %에서 이미 그 선에 닿는다. 두 몸 모두 결승 무렵 심부 체온이 38 °C를 넘고 땀으로 0.7~0.8 L를 잃는다. 24 °C에서는 감당할 만하지만, 같은 대회가 32 °C였다면 이야기가 달라진다(<a href="thermo.html">19장</a>).</p>
+  </section>
+
+  <section id="altitude">
+    <h2>고지대 실험실</h2>
+    <p>높이 올라가면 공기 중 산소의 비율(21 %)은 그대로지만 대기압이 떨어져 산소 분압이 함께 떨어진다. 몸은 숨을 더 쉬어(과환기) 폐포의 이산화탄소를 내보내고 그 자리를 산소로 채운다. 며칠이 지나면 콩팥이 중탄산을 버려 알칼리 쪽으로 기운 pH를 바로잡고, 몇 주가 지나면 적혈구가 늘어난다. 산 그림의 등반가를 위아래로 끌어 보자.</p>
+
+    <div class="sim" id="sim-alt" data-desc="등반가를 0~8,848 m로 끌어 올리면 대기압·흡입 산소 분압·폐포 산소 분압·포화도가 계단처럼 떨어지고, 과환기와 순응 일수가 그 계단을 어떻게 되살리는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>산을 오르면 산소 계단이 내려간다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="al-cv"></canvas><span class="hint">등반가를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>고도 <output id="al-h-out"></output></span><input type="range" id="al-h" min="0" max="8848" step="1" value="3640"></label>
+          <label class="ctrl"><span>그 고도에서 지낸 날 <output id="al-d-out"></output></span><input type="range" id="al-d" min="0" max="42" step="1" value="0"></label>
+          <div class="ctrl"><span>활동</span><div class="seg" id="al-ex"><button data-value="rest" class="on">쉬는 중</button><button data-value="walk">걷는 중(5 km/h)</button></div></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">대기압</span><span class="v" id="al-o-pb">—</span></div>
+        <div class="stat"><span class="k">폐포 PO₂ / PaCO₂</span><span class="v" id="al-o-pa">—</span></div>
+        <div class="stat"><span class="k">산소 포화도</span><span class="v" id="al-o-sat">—</span></div>
+        <div class="stat"><span class="k">심박 · 분당 환기량</span><span class="v" id="al-o-hr">—</span></div>
+        <div class="stat"><span class="k">VO₂max(해수면 대비)</span><span class="v" id="al-o-vm">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 라파스(3,640 m)에 도착한 첫날(0일)과 3주 뒤(21일)를 비교한다. PaCO₂가 더 떨어지고(더 많이 숨쉬고) 폐포 PO₂와 포화도가 회복된다. ② 에베레스트 꼭대기로 끌어 올린다. 순응 0일이면 포화도가 거의 바닥이다. 42일 순응해도 쉬는 중 포화도가 약 50 %대이고, 최대 산소 섭취량은 해수면의 약 3분의 1이다. ③ "걷는 중"으로 바꾸면 운동이 폐 모세혈관의 확산 시간을 줄여 포화도가 더 떨어진다. (대기압·흡입·폐포 산소 분압은 BD.patm, BD.pio2, BD.pao2, 포화도는 pH·PaCO₂를 넣은 BD.satO2. 과환기의 크기는 Rahn–Otis 고도 곡선을 닮게 맞춘 경험식이다. 순응: 환기 증가 시정수 약 4일, 헤모글로빈 증가 시정수 약 18일. VO₂max 비율은 포화도와 헤모글로빈으로 어림했다.)</div>
+    </div>
+
+    <p>계단의 첫 칸(대기 → 기도)에서는 수증기압 47 mmHg가 빠지고, 둘째 칸(기도 → 폐포)에서는 이산화탄소가 자리를 차지한다. 고지대에서 몸이 조절할 수 있는 것은 둘째 칸뿐이다. 숨을 많이 쉬어 PaCO₂를 40에서 20 mmHg로 낮추면 폐포 PO₂가 약 25 mmHg 올라간다. 해수면에서는 아무 의미 없던 이 차이가 8,000 m에서는 의식과 무의식을 가른다. 순응은 이 과환기를 오래 버틸 수 있게 해 주는 콩팥과 골수의 느린 작업이다.</p>
+  </section>
+
+  <section id="bleed">
+    <h2>출혈과 수액</h2>
+    <p>몸의 혈액은 약 5 L다. 일부를 잃으면 압반사(<a href="vessels.html">6장</a>)가 곧바로 심박수를 올리고 혈관을 조여 혈압을 지킨다. 그래서 출혈 초기에는 혈압이 거의 그대로이고, 심박수가 먼저 오른다. 혈압이 떨어지기 시작했다면 보상이 이미 한계에 다다랐다는 뜻이다. 아래 모니터에서 잃는 혈액량과 넣는 수액을 정하고 10분을 돌려 보자.</p>
+
+    <div class="sim" id="sim-bleed" data-desc="2분 동안 피를 잃고 5분째부터 수액이나 혈액을 넣을 때 압반사가 심박수를 올려 혈압을 지키다 무너지는 과정을 모니터와 쇼크 분류로 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>피를 잃으면 심박이 먼저 말한다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view monitor"><canvas id="bl-cv"></canvas><span class="hint">아래 추세를 끌어 시간을 옮긴다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>잃는 혈액 <output id="bl-p-out"></output></span><input type="range" id="bl-p" min="0" max="45" step="1" value="25"></label>
+          <div class="ctrl"><span>5분째부터 넣는 것</span><div class="seg" id="bl-ft"><button data-value="none">없음</button><button data-value="saline" class="on">식염수</button><button data-value="blood">혈액</button></div></div>
+          <label class="ctrl"><span>넣는 양 <output id="bl-v-out"></output></span><input type="range" id="bl-v" min="0" max="3000" step="250" value="1500"></label>
+          <label class="check"><input type="checkbox" id="bl-baro" checked> 압반사 켜기</label>
+          <div class="btn-row"><button class="btn primary" id="bl-go">처음부터 재생</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">잃은 혈액</span><span class="v" id="bl-o-loss">—</span></div>
+        <div class="stat"><span class="k">쇼크 분류(잃은 양)</span><span class="v" id="bl-o-cls" style="font-family:var(--font);font-size:16px">—</span></div>
+        <div class="stat"><span class="k">평균 동맥압</span><span class="v" id="bl-o-map">—</span></div>
+        <div class="stat"><span class="k">심박수 · 쇼크 지수</span><span class="v" id="bl-o-hr">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 잃는 혈액 15 %(약 750 mL)에서는 심박이 조금 오르고 혈압은 거의 그대로다. 헌혈(약 400 mL)이 안전한 이유다. ② 30 %로 올리면 심박이 크게 오르고 혈압이 내려가기 시작한다. 쇼크 지수(심박 ÷ 수축기 혈압)가 1을 넘는다. ③ 압반사를 끄고 다시 재생한다. 같은 출혈에도 혈압이 훨씬 일찍 무너진다. ④ 35 % 출혈 뒤 식염수 1,500 mL와 혈액 1,500 mL를 비교한다. 식염수는 대부분 혈관 밖으로 빠져나가 약 3분의 1만 남는다. (BD.baroLoop: 혈액량 5,000 mL, 출혈은 30~150초에 고르게, 수액은 300~420초에 고르게. 식염수는 넣은 양의 1/3만 혈관에 남는다고 단순화했다. 쇼크 분류는 외상 소생 교육에서 흔히 쓰는 잃은 혈액 비율 기준이며, 실제 판단은 여러 징후를 함께 본다.)</div>
+    </div>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>분류</th><th class="num">잃은 혈액</th><th>심박수</th><th>혈압</th><th>몸의 모습</th></tr></thead>
+      <tbody>
+        <tr><td>Ⅰ</td><td class="num">&lt; 15 %</td><td>거의 그대로</td><td>정상</td><td>약간 불안</td></tr>
+        <tr><td>Ⅱ</td><td class="num">15~30 %</td><td>오른다</td><td>수축기는 대개 정상, 맥압이 줄어든다</td><td>창백, 차가운 손발</td></tr>
+        <tr><td>Ⅲ</td><td class="num">30~40 %</td><td>크게 오른다</td><td>떨어진다</td><td>소변이 준다, 혼란</td></tr>
+        <tr><td>Ⅳ</td><td class="num">&gt; 40 %</td><td>매우 빠르거나 약하다</td><td>크게 떨어진다</td><td>의식 저하, 생명 위협</td></tr>
+      </tbody>
+    </table></div>
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 출혈, 어지럼, 숨가쁨, 가슴 통증 같은 증상이 있거나 검사 수치가 걱정되면 의료진과 상담하세요. 응급 상황에서는 즉시 응급 구조를 요청하세요.</p>
+  </section>
+
+  <section id="me">
+    <h2>내 몸 넣어 보기</h2>
+    <p>이번에는 다온 대신 자기 숫자를 넣어 보자. 나이, 성별, 키, 몸무게, 안정 심박수, 혈압, 공복 혈당을 넣으면 이 책에서 쓴 공식들이 한꺼번에 계산된다. 줄을 누르면 그 숫자가 무슨 뜻인지와 자세히 다룬 장이 아래에 나온다. 입력한 값은 이 브라우저 밖으로 나가지 않는다.</p>
+
+    <div class="sim" id="sim-me" data-desc="자기 나이·성별·키·몸무게·안정 심박·혈압·공복 혈당을 넣어 BMI, 체표면적, 기초대사량과 하루 소비 에너지, 심박 구간, 예측 폐 부피, 혈압·혈당 분류를 한 장의 성적표로 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>내 몸의 성적표</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="me-cv"></canvas><span class="hint">줄을 눌러 설명을 본다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>성별(공식 선택)</span><div class="seg" id="me-sex"><button data-value="m" class="on">남</button><button data-value="f">여</button></div></div>
+          <label class="ctrl"><span>나이 <output id="me-age-out"></output></span><input type="range" id="me-age" min="18" max="80" step="1" value="34"></label>
+          <label class="ctrl"><span>키 <output id="me-cm-out"></output></span><input type="range" id="me-cm" min="140" max="200" step="1" value="175"></label>
+          <label class="ctrl"><span>몸무게 <output id="me-kg-out"></output></span><input type="range" id="me-kg" min="40" max="130" step="0.5" value="78"></label>
+          <label class="ctrl"><span>안정 심박수 <output id="me-hr-out"></output></span><input type="range" id="me-hr" min="40" max="110" step="1" value="72"></label>
+          <label class="ctrl"><span>혈압(수축기) <output id="me-sbp-out"></output></span><input type="range" id="me-sbp" min="85" max="190" step="1" value="128"></label>
+          <label class="ctrl"><span>혈압(이완기) <output id="me-dbp-out"></output></span><input type="range" id="me-dbp" min="50" max="115" step="1" value="82"></label>
+          <label class="ctrl"><span>공복 혈당 <output id="me-fpg-out"></output></span><input type="range" id="me-fpg" min="60" max="160" step="1" value="98"></label>
+          <div class="ctrl"><span>활동 수준</span><div class="seg" id="me-pal"><button data-value="1.2">거의 앉아서</button><button data-value="1.4" class="on">가벼움</button><button data-value="1.6">보통</button><button data-value="1.8">활발</button></div></div>
+          <div class="btn-row"><button class="btn" id="me-daon">다온의 값으로</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="me-info">왼쪽 성적표의 줄을 누르면 설명이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">체표면적</span><span class="v" id="me-o-bsa">—</span></div>
+        <div class="stat"><span class="k">몸의 물 · 혈액</span><span class="v" id="me-o-water">—</span></div>
+        <div class="stat"><span class="k">최대 심박수(어림)</span><span class="v" id="me-o-hrmax">—</span></div>
+        <div class="stat"><span class="k">기초대사 · 하루 소비</span><span class="v" id="me-o-ee">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "다온의 값으로"를 누르고 BMI 25.5, 혈압 128/82(고혈압 전단계), 혈당 98(정상 상한 근처)을 확인한다. ② 몸무게만 73.7 kg으로 내린다. BMI가 24.1로 한 칸 내려오고 기초대사량은 약 43 kcal 준다. ③ 나이를 60으로 올린다. 최대 심박수와 심박 구간, 예측 폐활량이 함께 내려간다. (BMI 구간은 대한비만학회, 혈압 분류는 BD.bpClass, 공복 혈당은 BD.glucoseClass를 따른다. 기준은 학회·시기에 따라 다르다. 기초대사량은 Mifflin-St Jeor, 최대 심박수는 Tanaka, 폐 부피는 ERS 1993 예측식, 혈액량은 체중의 약 7 %(여 6.5 %)로 어림한 값이다. 예측식은 같은 키·나이 집단의 평균일 뿐 개인의 정상 여부를 판정하지 않는다.)</div>
+    </div>
+  </section>
+
+  <section id="limits">
+    <h2>무엇이 먼저 한계에 닿나</h2>
+    <p>몸의 한 조건을 끝까지 밀면 어느 계통이 먼저 손을 드는가. 빠르게 달리면 산소 섭취나 젖산이, 더운 날에는 체온이, 높은 산에서는 산소 포화도가, 숨을 참으면 이산화탄소가 먼저 한계에 닿는다. 아래 그래프는 계통마다 "한계까지 몇 %에 와 있는가"를 같은 축에 그렸다. 100 % 선을 가장 먼저 넘는 선이 그 조건의 병목이다.</p>
+
+    <div class="sim" id="sim-limit" data-desc="속도·더위·고도·숨 참기 가운데 하나를 끝까지 밀며 심장·산소 섭취·젖산·환기·체온·수분·포화도·CO₂ 가운데 어느 계통이 먼저 100 % 한계선에 닿는지 찾는다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>병목 찾기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="lm-cv"></canvas><span class="hint">세로 커서를 끈다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>밀어 볼 조건</span><div class="seg" id="lm-mode"><button data-value="speed" class="on">달리기 속도</button><button data-value="heat">더위</button><button data-value="alt">고도</button><button data-value="hold">숨 참기</button></div></div>
+          <label class="check"><input type="checkbox" id="lm-hyper"> 숨 참기 전 과호흡(위험, 모델로만)</label>
+          <label class="check"><input type="checkbox" id="lm-after"> 12주 훈련 뒤의 다온</label>
+        </div>
+      </div>
+      <div class="info-panel" id="lm-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">커서의 조건</span><span class="v" id="lm-o-x">—</span></div>
+        <div class="stat"><span class="k">먼저 닿는 한계</span><span class="v" id="lm-o-first" style="font-family:var(--font);font-size:16px">—</span></div>
+        <div class="stat"><span class="k">한계가 시작되는 지점</span><span class="v" id="lm-o-at">—</span></div>
+        <div class="stat"><span class="k">커서에서 가장 바쁜 계통</span><span class="v" id="lm-o-top" style="font-family:var(--font);font-size:16px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "달리기 속도"에서 40분을 버틸 수 있는 가장 빠른 속도를 찾는다. 다온은 산소 섭취의 최대보다 젖산이 먼저 한계에 닿는다. "12주 뒤"를 켜면 그 지점이 오른쪽으로 옮겨 간다. ② "더위"에서는 대회 속도로 58분을 달릴 때 체온이 병목이다. 약 30 °C 근처부터 위험해진다. ③ "고도"에서는 걷기만 해도 산소 포화도가 먼저 한계에 닿는다. ④ "숨 참기"에서 평소에는 CO₂ 충동이 먼저 와서 숨을 쉬게 만든다. 과호흡을 켜면 충동보다 포화도 저하가 먼저 온다. 물속에서 정신을 잃는 사고가 이렇게 생긴다. (한계 기준: 심박 = 최대 심박수, 젖산 = 8 mmol/L, 환기 = 140 L/min, 체온 = 40 °C, 수분 = 체중의 3 %, 포화도 = 80 %, CO₂ 충동 = BD.breathHold의 urge 1. 속도는 40분, 더위는 대회 속도 58분·습도 60 %, 고도는 5 km/h 걷기 기준의 교육용 계산이다.)</div>
+    </div>
+
+    <p>병목은 조건에 따라 옮겨 다닌다. 훈련은 젖산 병목을 오른쪽으로 밀고, 더위 적응은 체온 병목을, 고지대 순응은 포화도 병목을 민다. 그래서 "체력이 좋다"는 말은 한 가지 숫자로 줄여지지 않는다. 어느 조건에서의 체력인지를 함께 물어야 한다.</p>
+  </section>
+
+  <section id="daon">
+    <h2>다온의 12주를 돌아보며</h2>
+    <p>책의 첫 장에서 다온은 "이 몸이 10 km를 달리려면 무엇이 얼마나 바뀌어야 하는가"를 물었다. 장마다 한 계통씩 들여다본 답을 모으면 아래와 같다. 위의 시뮬레이터들에서 "오늘"과 "12주 뒤"를 오가며 숫자를 직접 확인해 보자.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>항목</th><th class="num">시작</th><th class="num">12주 뒤</th><th>무엇이 바꾸었나</th></tr></thead>
+      <tbody>
+        <tr><td>VO₂max</td><td class="num">38 mL/kg/min</td><td class="num">43</td><td>1회 박출량 증가, 근육의 모세혈관·미토콘드리아 (<a href="exercise.html">12장</a>)</td></tr>
+        <tr><td>젖산 역치</td><td class="num">60 %</td><td class="num">68 %</td><td>근육의 산화 능력 (<a href="exercise.html">12장</a>)</td></tr>
+        <tr><td>10 km 기록(모델)</td><td class="num">약 58분</td><td class="num">약 50분</td><td>더 높은 비율을 오래 버틴다</td></tr>
+        <tr><td>안정 심박수</td><td class="num">72 bpm</td><td class="num">약 64</td><td>부교감 긴장 증가 (<a href="ecg.html">5장</a>)</td></tr>
+        <tr><td>몸무게</td><td class="num">78 kg</td><td class="num">약 73.7 kg</td><td>하루 300 kcal 덜 먹고 주 3~4회 달리기 (<a href="weight.html">14장</a>)</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 20장</span></div>
+      <h4>12주 뒤: VO₂max 43, 젖산 역치 68 %, 10 km 약 50분, 몸무게 약 73.7 kg, 안정 심박 약 64</h4>
+      <p>대회 날 실험실을 "12주 뒤"로 돌리면 다온은 시속 약 11.9 km로 달려 약 50분에 들어온다. 훈련 전 몸이었다면 시속 약 10.4 km, 약 58분이다. 레이스 중 심박은 두 몸 모두 160대 후반에서 170대로 비슷하다. 다른 것은 그 심박에서 낼 수 있는 속도다. 훈련은 심장을 더 빨리 뛰게 하지 않았다. 같은 심박에서 더 많은 피를 보내고(1회 박출량), 그 피의 산소를 근육이 더 잘 쓰게(미토콘드리아) 만들었다. 몸무게가 4 kg 남짓 줄어 같은 산소로 옮길 짐도 가벼워졌다. 24 °C에서 결승 무렵 심부 체온은 약 38.3~38.5 °C, 땀은 약 0.7~0.8 L로, 대회 조건에서는 체온과 물이 아직 병목이 아니다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>심장·폐·근육·대사·체온·수분이 한 번에 움직이는 대회 날. 훈련 전후 기록 차이 약 8분과 그 이유.</div><div><b>아직 모르는 것</b>대회가 30 °C를 넘거나 고지대에서 열린다면 병목이 체온·산소로 옮겨 간다. 그때의 전략은 이 책 밖(FitBook)의 이야기다.</div><div><b>다음 단계</b><a href="glossary.html">21장</a>의 용어집과 종합 퀴즈로 책 전체를 점검한다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>몸의 계통들은 서로의 입력이다. 달리기 하나가 심박·환기·젖산·체온·땀·혈당·코르티솔을 서로 다른 속도로 움직인다(초, 분, 수십 분, 시간, 하루).</li>
+      <li>대회 날 심박은 속도가 같아도 체온과 탈수 때문에 서서히 오른다(심박 표류). 훈련은 같은 심박·같은 젖산에서 더 빠르게 달리게 만든다.</li>
+      <li>고지대에서 몸이 바꿀 수 있는 것은 폐포의 CO₂다. 과환기로 PaCO₂를 낮춰 폐포 PO₂를 올리고, 며칠~몇 주에 걸쳐 콩팥(pH 보정)과 골수(적혈구)가 이를 뒷받침한다.</li>
+      <li>출혈 초기에는 압반사가 심박수와 혈관 수축으로 혈압을 지킨다. 혈압이 떨어지기 시작하면 보상의 끝이다. 식염수는 대부분 혈관 밖으로 빠져나간다.</li>
+      <li>BMI, 기초대사량, 최대 심박수, 예측 폐활량은 집단의 평균을 주는 공식이다. 개인의 정상 여부는 한 숫자가 아니라 여러 숫자와 경과로 판단한다.</li>
+      <li>한 조건을 끝까지 밀면 먼저 무너지는 계통(병목)이 있고, 병목은 조건에 따라 바뀐다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>같은 속도로 오래 달리는데 심박수가 조금씩 오르는 주된 이유로 알맞은 것은?</p>
+        <div class="opts">
+          <button class="opt">근육이 산소를 덜 쓰게 되어서</button>
+          <button class="opt" data-correct>체온이 오르고 땀으로 혈장이 줄어 1회 박출량이 줄기 때문에</button>
+          <button class="opt">젖산이 모두 사라져서</button>
+          <button class="opt">압반사가 꺼져서</button>
+        </div>
+        <div class="quiz-exp">피부로 피를 더 보내 열을 버리고 땀으로 물을 잃으면 심장으로 돌아오는 피(앞부하)가 줄어 1회 박출량이 준다. 같은 심박출량을 지키려면 심박수가 올라야 한다. 이것을 심박 표류라 한다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>해발 4,500 m의 대기압이 약 433 mmHg일 때 흡입 산소 분압(PIO₂ = 0.21 × (대기압 − 47))에 가장 가까운 것은?</p>
+        <div class="opts">
+          <button class="opt">91 mmHg</button>
+          <button class="opt">150 mmHg</button>
+          <button class="opt" data-correct>81 mmHg</button>
+          <button class="opt">47 mmHg</button>
+        </div>
+        <div class="quiz-exp">0.21 × (433 − 47) = 0.21 × 386 ≈ 81 mmHg. 해수면의 약 150 mmHg의 절반을 조금 넘는다. 여기서 PaCO₂/R만큼 더 빠진 것이 폐포 PO₂다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>혈액의 25 %를 잃은 직후에 가장 먼저, 가장 뚜렷하게 나타나는 변화는?</p>
+        <div class="opts">
+          <button class="opt" data-correct>심박수 증가(혈압은 아직 비교적 유지)</button>
+          <button class="opt">산소 포화도의 큰 저하</button>
+          <button class="opt">심부 체온 상승</button>
+          <button class="opt">공복 혈당 저하</button>
+        </div>
+        <div class="quiz-exp">압반사가 혈압의 작은 하락을 감지해 교감 신경을 올린다. 심박수가 오르고 혈관이 조여 혈압을 지킨다. 포화도는 폐가 정상이면 거의 그대로다. 혈압이 떨어지는 것은 보상이 한계에 다다른 뒤다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>34세 다온(안정 심박 72)의 최대 심박수를 Tanaka 식(208 − 0.7 × 나이)으로 어림하고, 카르보넨 방식으로 강도 70 %의 목표 심박을 구하면?</p>
+        <div class="opts">
+          <button class="opt">약 129 bpm</button>
+          <button class="opt" data-correct>약 151 bpm</button>
+          <button class="opt">약 165 bpm</button>
+          <button class="opt">약 184 bpm</button>
+        </div>
+        <div class="quiz-exp">최대 심박수 = 208 − 23.8 = 184.2. 중간값을 반올림하지 않고 목표를 계산하면 72 + 0.7 × (184.2 − 72) = 72 + 78.54 = 150.54 ≈ 151 bpm. 129 bpm은 최대 심박수의 70 %를 단순히 곱한 값(184 × 0.7)이다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>숨 참기 전에 과호흡을 하면 위험한 이유로 알맞은 것은?</p>
+        <div class="opts">
+          <button class="opt">폐에 산소가 너무 많이 들어가 폐가 상한다</button>
+          <button class="opt">혈액의 산소 포화도가 100 %를 넘는다</button>
+          <button class="opt">이산화탄소가 너무 빨리 쌓인다</button>
+          <button class="opt" data-correct>시작 PaCO₂가 낮아 숨을 쉬고 싶은 충동이 늦게 오고, 그 전에 산소가 먼저 바닥난다</button>
+        </div>
+        <div class="quiz-exp">숨을 쉬게 만드는 신호는 주로 CO₂다. 과호흡으로 CO₂를 미리 빼 두면 충동이 늦게 오지만 산소 저장량은 거의 늘지 않는다. 그래서 충동보다 저산소가 먼저 와 경고 없이 의식을 잃을 수 있다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  var $ = function (id) { return document.getElementById(id); };
+  var MON = { txt: "#c9d3e6", dim: "#7f8aa3", grid: "rgba(120,140,170,0.14)", glu: "#ffd43b", core: "#ff922b", cort: "#b197fc", lac: "#f783ac", bad: "#ff6b6b", ok: "#69db7c", vol: "#74c0fc" };
+
+  /* ===== 공통 모델 (이 장 전용) ===== */
+  var KG = 78;
+  /** VO2(mL/kg/min) → 대사량(W): 산소 1 L ≈ 4.9 kcal, 1 kcal/min ≈ 69.8 W */
+  function metW(vo2, kg) { return (vo2 * (kg || KG) / 1000) * 4.9 * 69.78; }
+  /** 고도 모델. 과환기 크기는 Rahn–Otis 곡선을 닮은 경험식, 나머지는 엔진(patm, pio2, pao2, satO2, ph, o2Content) */
+  function ALT(h, days, ex) {
+    ex = ex || 0;
+    var pb = BD.patm(h), a = 1 - Math.exp(-(days || 0) / 4);
+    var drop = 29 * Math.pow(Math.max(0, 1 - pb / 760) / 0.69, 2.07);
+    var paco2 = 40 - drop * (0.5 + 0.5 * a);
+    var hco3 = 24 - (0.2 + 0.3 * a) * (40 - paco2);
+    var ph = BD.ph(hco3, paco2);
+    var pio2 = BD.pio2(pb, 0.21), pA = BD.pao2(pb, 0.21, paco2);
+    var aa = 4 + 14 * ex * Math.max(0, 1 - pA / 105);
+    var pa = Math.max(1, pA - aa);
+    var sat = BD.satO2(pa, { ph: ph, pco2: paco2 });
+    var hb = 15 + 1.6 * (1 - Math.exp(-(days || 0) / 18)) * Math.min(1, h / 4000);
+    var cao2 = BD.o2Content(hb, sat, pa), cao2Sea = BD.o2Content(15, BD.satO2(97), 97);
+    var veF = 40 / paco2;
+    var vo2maxF = BD.clamp(Math.pow(sat / 0.975, 2) * (hb / 15), 0.12, 1);
+    var hrF = Math.pow(cao2Sea / Math.max(cao2, 2), 1 - 0.55 * a);
+    return { pb: pb, pio2: pio2, pA: pA, pa: pa, paco2: paco2, ph: ph, hco3: hco3, sat: sat, hb: hb, cao2: cao2, veF: veF, vo2maxF: vo2maxF, hrF: hrF };
+  }
+  /** 압반사 루프의 정상 상태(BD.baroLoop을 120초 돌린 끝값), 혈액량·운동 강도로 캐시 */
+  var baroCache = {};
+  function baroSS(vol, ex) {
+    var v = Math.round(vol / 50) * 50, e = Math.round(BD.clamp(ex, 0, 1) * 20) / 20, key = v + "|" + e;
+    if (!baroCache[key]) {
+      var r = BD.baroLoop({ tstop: 120, vol: v, events: [{ t: 0, kind: "exercise", value: e }] });
+      var n = r.t.length - 1;
+      baroCache[key] = { map: r.map[n], sbp: r.sbp[n], dbp: r.dbp[n], hr: r.hr[n] };
+    }
+    return baroCache[key];
+  }
+  function clock(min) { var m = Math.floor(min) % 1440; return String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"); }
+  function mmss(min) { var s = Math.round(min * 60); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+
+  /* 실시간 파형 발생기(심전도·동맥압·맥파·호흡) */
+  var ecgCache = {};
+  function ecgAt(hr, f) {
+    var hrR = BD.clamp(Math.round(hr / 5) * 5, 30, 220);
+    var e = ecgCache[hrR] || (ecgCache[hrR] = BD.ecg({ hr: hrR, hrv: 0, resp: 0, noise: 0.004, duration: 5 }));
+    var RR = 60 / hrR, r0 = e.beats[2].r;
+    return e.v(r0 - 0.25 * RR + f * RR);
+  }
+  function abpShape(s, RR) {
+    var k = Math.min(1, Math.sqrt(RR / 0.83)), up = 0.05 * k, tp = 0.15 * k, ej = 0.3 * k, notch = 0.33 * k, tau = 0.38, end = RR + up;
+    var base = function (tt) { var z = Math.exp(-(end - notch) / tau); return 0.5 * (Math.exp(-(tt - notch) / tau) - z) / (1 - z); };
+    if (s < up) return Math.max(0, base(s + RR));
+    if (s < tp) return Math.sin((Math.PI / 2) * (s - up) / (tp - up));
+    if (s < ej) return 1 - 0.42 * Math.pow((s - tp) / (ej - tp), 1.2);
+    if (s < notch) return 0.58 - 0.08 * (s - ej) / (notch - ej);
+    var bump = s < notch + 0.1 * k ? 0.05 * Math.sin(Math.PI * (s - notch) / (0.1 * k)) : 0;
+    return base(s) + bump;
+  }
+  function WaveGen(W) {
+    var N = W * 100, e = [], p = [], s = [], r = [], pos = 0, bph = 0, rph = 0, acc = 0;
+    for (var i = 0; i < N; i++) { e.push([i / 100, NaN]); p.push([i / 100, NaN]); s.push([i / 100, NaN]); r.push([i / 100, NaN]); }
+    return {
+      e: e, p: p, s: s, r: r, W: W,
+      sweep: function () { return pos / 100; },
+      advance: function (dt, hr, sbp, dbp, rr) {
+        acc = Math.min(acc + dt, 0.12);
+        hr = Math.max(20, hr); rr = Math.max(2, rr);
+        while (acc >= 0.01) {
+          acc -= 0.01; bph += (hr / 60) * 0.01; rph += (rr / 60) * 0.01;
+          var f = bph % 1, RR = 60 / hr;
+          e[pos][1] = ecgAt(hr, f);
+          p[pos][1] = dbp + (sbp - dbp) * abpShape(((f - 0.25 + 1) % 1) * RR, RR);
+          s[pos][1] = 0.08 + 0.85 * abpShape(((f - 0.36 + 1) % 1) * RR, RR);
+          r[pos][1] = 0.5 - 0.5 * Math.cos(2 * Math.PI * (rph % 1));
+          pos = (pos + 1) % N;
+        }
+      },
+    };
+  }
+
+  /* ---------------------------------------------------------- 1. 가상 인체 모니터 */
+  (function () {
+    var WEATHER = [{ ta: 24, rh: 60, k: "24 °C · 60 %" }, { ta: 32, rh: 70, k: "32 °C · 70 %" }, { ta: 8, rh: 50, k: "8 °C · 50 %" }];
+    var ALTS = [0, 1500, 3000, 4500];
+    var WIN = { 1: 600, 10: 1800, 60: 7200, 300: 21600 };
+    var EVC = { run: "#69db7c", stop: "#7f8aa3", eat: "#ffd43b", drink: "#74c0fc", alt: "#b197fc", heat: "#ff922b", bleed: "#ff6b6b", fluid: "#66d9e8" };
+    var S, segTh, gluRes, hpaRes, dirtyGlu, dirtyHpa, paused = false, lastUi = 0;
+    var wave = WaveGen(6);
+    wave.advance(0.1, 72, 123, 78, 13); for (var wi = 0; wi < 60; wi++) wave.advance(0.1, 72, 123, 78, 13);
+    var getPace = BB.range("vm-pace", function (v) { return v.toFixed(1) + " km/h"; });
+    var getSpeed = BB.seg("vm-speed");
+    function reset() {
+      S = { t: 0, running: false, altI: 0, wI: 0, bleed: 0, fluids: [], meals: [], runs: [], stress: [], events: [],
+        vo2: 3.6, hr: 72, lac: 1.0, map: 93, sbp: 123, dbp: 78, spo2: 97.6, ve: 6.9, rr: 13.5, core: 37.0, skin: 33.5,
+        sweat: 0, urine: 0, insens: 0, absorbed: 0, pending: 0, gly: 400, glyIn: 0, glu: 98, cort: 15, hist: [], lastS: -1e9, vol: 5000 };
+      segTh = null; gluRes = null; hpaRes = null; dirtyGlu = true; dirtyHpa = true;
+      $("vm-run").textContent = "달리기 시작"; $("vm-run").classList.remove("on");
+      updButtons(); renderLog();
+    }
+    function nowMin() { return S.t / 60; }
+    function addEv(kind, label) { S.events.push({ t: S.t, kind: kind, label: label }); renderLog(); }
+    function updButtons() {
+      $("vm-alt").textContent = "고도 " + ALTS[(S.altI + 1) % ALTS.length].toLocaleString() + " m로";
+      $("vm-heat").textContent = "날씨 " + WEATHER[(S.wI + 1) % WEATHER.length].k.split(" · ")[0] + "로";
+    }
+    function renderLog() {
+      var ev = S.events.slice(-4).reverse().map(function (e) { return "<div><b>" + clock(420 + e.t / 60) + "</b>" + e.label + "</div>"; }).join("");
+      var warn = [];
+      if (S.map < 65) warn.push("평균 동맥압 65 mmHg 아래: 장기로 가는 피가 모자란다");
+      if (S.spo2 < 90) warn.push("산소 포화도 90 % 아래: 저산소");
+      if (S.core > 39.5) warn.push("심부 체온 39.5 °C 넘음: 열 질환 위험");
+      if (S.glu < 70) warn.push("혈당 70 mg/dL 아래");
+      if (S.lac > 6) warn.push("젖산 6 mmol/L 넘음: 이 속도는 오래 못 버틴다");
+      $("vm-log").innerHTML = (warn.length ? warn.map(function (w) { return '<div class="warn-t">경고: ' + w + "</div>"; }).join("") : "") +
+        (ev || "<div>아직 아무 일도 일어나지 않았다. 오른쪽 단추로 사건을 건다.</div>");
+    }
+    function ensureGlu() {
+      var nm = nowMin();
+      if (!dirtyGlu && gluRes && nm < gluRes.tstop - 5) return;
+      var ex = S.runs.map(function (r) { return { t0: r.t0 / 60, t1: r.t1 == null ? 1e6 : r.t1 / 60, x: 0.12 * r.x }; });
+      var tstop = Math.ceil(nm) + 360;
+      gluRes = BD.glucose({ kg: KG, gb: 98, meals: S.meals.map(function (m) { return { t: m.t / 60, g: m.g }; }), exercise: ex, tstop: tstop, dt: 0.5 });
+      gluRes.tstop = tstop; dirtyGlu = false;
+    }
+    function ensureHpa() {
+      var abs = 1440 + 420 + nowMin();
+      if (!dirtyHpa && hpaRes && abs < hpaRes.days * 1440 - 30) return;
+      var days = Math.ceil((abs + 600) / 1440);
+      var st = S.stress.map(function (q) { return { t: 1440 + 420 + q.t / 60, dur: q.dur == null ? 1e5 : q.dur / 60, amp: q.amp }; });
+      hpaRes = BD.hpa({ days: days, stress: st }); hpaRes.days = days; dirtyHpa = false;
+    }
+    function step(dt) {
+      var W = WEATHER[S.wI], h = ALTS[S.altI];
+      var A0 = ALT(h, 0, 0), vmaxA = 38 * A0.vo2maxF;
+      var d = S.running ? BD.danielsVO2(getPace() * 1000 / 60) : 4.0;
+      var dCap = Math.min(d, vmaxA * 1.02);
+      S.vo2 += (dCap - S.vo2) * (1 - Math.exp(-dt / (dCap > S.vo2 ? 35 : 50)));
+      var x = S.vo2 / vmaxA, xd = Math.min(1.25, d / vmaxA);
+      var A = ALT(h, 0, Math.min(1, x));
+      var o = { vo2max: vmaxA, lt: 0.6, hrRest: 72, hrMax: 184, kg: KG };
+      var st = BD.steady(Math.min(1, x), o), lacT = BD.steady(xd, o).lactate;
+      S.lac += (lacT - S.lac) * (1 - Math.exp(-dt / (lacT > S.lac ? 150 : 600)));
+      // 물: 땀·비감각 손실·소변 − 흡수한 물
+      var a = S.pending * (1 - Math.exp(-dt / 1200)); S.pending -= a; S.absorbed += a;
+      S.insens += 0.6 / 60 * dt / 1000;
+      var def = S.sweat + S.insens + S.urine - S.absorbed;                 // L
+      var tbw = 46.8 - def, posm = (46.8 * 287 - S.sweat * 80) / tbw;
+      var adh = BD.adh(posm, Math.max(0, def / 46.8)), uosm = BD.urineOsm(adh);
+      var urine = BD.clamp((900 / 1440) / uosm * 1000, 0.3, 16);           // mL/min
+      S.urine += urine / 60 * dt / 1000; S.posm = posm; S.uflow = urine;
+      var fl = 0; S.fluids.forEach(function (f) { fl += f.ml * (0.25 + 0.75 * Math.exp(-(S.t - f.t) / 1200)); });
+      S.vol = 5000 - S.bleed + fl - 120 * Math.max(0, def);
+      var dehyd = Math.max(0, def) / KG * 100;
+      // 순환: 압반사 정상 상태 + 운동·체온·탈수·고도
+      var bs = baroSS(S.vol, Math.min(1, x)), b0 = baroSS(5000, Math.min(1, x));
+      var hrT = st.hr + 72 * (A.hrF - 1) * (1 - Math.min(1, x)) + 8 * Math.max(0, S.core - 37.5) + 2.5 * dehyd + (bs.hr - b0.hr);
+      hrT = Math.min(192, hrT);
+      S.hr += (hrT - S.hr) * (1 - Math.exp(-dt / 20));
+      var hot = 4 * Math.max(0, S.core - 38);
+      var k = 1 - Math.exp(-dt / 15);
+      S.map += (bs.map - hot - S.map) * k; S.sbp += (bs.sbp - hot - S.sbp) * k; S.dbp += (bs.dbp - hot - S.dbp) * k;
+      // 호흡
+      var veT = st.ve * A.veF * (1 + 0.06 * Math.max(0, S.lac - 4));
+      S.ve += (veT - S.ve) * (1 - Math.exp(-dt / 15));
+      S.rr = S.ve / Math.min(2.6, 0.5 + 1.7 * Math.min(1, x));
+      S.spo2 += (A.sat * 100 - S.spo2) * (1 - Math.exp(-dt / 20));
+      // 체온: 조건이 바뀌면 지금 체온에서 BD.thermo를 다시 시작한다
+      var met = metW(d), wind = S.running ? getPace() / 3.6 : 0.4;
+      var key = Math.round(met / 25) + "|" + S.wI + "|" + (S.running ? 1 : 0);
+      if (!segTh || segTh.key !== key || (S.t - segTh.t0) / 60 > 170)
+        segTh = { key: key, t0: S.t, r: BD.thermo({ core0: S.core, skin0: S.skin, met: met, ta: W.ta, rh: W.rh, wind: wind, clo: S.running ? 0.3 : 0.6, kg: KG, cm: 175, minutes: 180 }) };
+      var tm = (S.t + dt - segTh.t0) / 60;
+      S.core = BD.interp(segTh.r.t, segTh.r.core, tm); S.skin = BD.interp(segTh.r.t, segTh.r.skin, tm);
+      S.sweatRate = BD.interp(segTh.r.t, segTh.r.sweat, tm);
+      S.sweat += S.sweatRate * dt / 3600;
+      // 에너지: 글리코겐
+      var vo2L = S.vo2 * KG / 1000, kcal = BD.weir(vo2L, vo2L * st.rer);
+      S.gly -= kcal * BD.carbFrac(st.rer) / 4 * (x > 0.3 ? 0.8 : 0.3) * dt / 60;
+      var gIn = S.glyIn * (1 - Math.exp(-dt / 5400)); S.glyIn -= gIn; S.gly = Math.min(500, S.gly + gIn);
+      S.gly = Math.max(0, S.gly);
+      S.t += dt;
+      ensureGlu(); ensureHpa();
+      S.glu = BD.interp(gluRes.t, gluRes.g, nowMin());
+      S.cort = BD.interp(hpaRes.t, hpaRes.c, 1440 + 420 + nowMin());
+      S.x = x; S.vmaxA = vmaxA;
+      var win = WIN[getSpeed()] || 7200, every = Math.max(2, win / 400);
+      if (S.t - S.lastS >= every) {
+        S.lastS = S.t;
+        S.hist.push({ t: S.t, glu: S.glu, core: S.core, cort: S.cort, lac: S.lac, hr: S.hr, map: S.map });
+        while (S.hist.length > 4000 || (S.hist.length && S.hist[0].t < S.t - 21800)) S.hist.shift();
+      }
+    }
+    // 사건 단추
+    $("vm-run").addEventListener("click", function () {
+      if (!S.running) {
+        S.running = true; var x = BD.danielsVO2(getPace() * 1000 / 60) / 38;
+        S.runs.push({ t0: S.t, t1: null, x: Math.min(1, x) }); S.stress.push({ t: S.t, dur: null, amp: 3 * Math.max(0, Math.min(1, x) - 0.4) / 0.6 });
+        dirtyGlu = dirtyHpa = true; this.textContent = "멈추기"; this.classList.add("on");
+        addEv("run", "달리기 시작(" + getPace().toFixed(1) + " km/h)");
+      } else {
+        S.running = false; S.runs[S.runs.length - 1].t1 = S.t; var q = S.stress[S.stress.length - 1]; q.dur = S.t - q.t;
+        dirtyGlu = dirtyHpa = true; this.textContent = "달리기 시작"; this.classList.remove("on");
+        addEv("stop", "멈춤: " + Math.round((S.t - S.runs[S.runs.length - 1].t0) / 60) + "분 달렸다");
+      }
+    });
+    $("vm-eat").addEventListener("click", function () { S.meals.push({ t: S.t, g: 90 }); S.glyIn += 40; dirtyGlu = true; addEv("eat", "식사: 탄수화물 90 g"); });
+    $("vm-drink").addEventListener("click", function () { S.pending += 0.5; addEv("drink", "물 500 mL"); });
+    $("vm-alt").addEventListener("click", function () { S.altI = (S.altI + 1) % ALTS.length; updButtons(); addEv("alt", "고도 " + ALTS[S.altI].toLocaleString() + " m(대기압 " + Math.round(BD.patm(ALTS[S.altI])) + " mmHg)"); });
+    $("vm-heat").addEventListener("click", function () { S.wI = (S.wI + 1) % WEATHER.length; updButtons(); addEv("heat", "날씨 " + WEATHER[S.wI].k); });
+    $("vm-bleed").addEventListener("click", function () { S.bleed += 500; S.stress.push({ t: S.t, dur: 2700, amp: 3 }); dirtyHpa = true; addEv("bleed", "출혈 500 mL(누적 " + S.bleed + " mL)"); });
+    $("vm-fluid").addEventListener("click", function () { S.fluids.push({ t: S.t, ml: 500 }); addEv("fluid", "수액 500 mL(식염수)"); });
+    $("vm-pause").addEventListener("click", function () { paused = !paused; this.textContent = paused ? "다시 흐르기" : "일시정지"; this.classList.toggle("on", paused); });
+    $("vm-reset").addEventListener("click", reset);
+    reset();
+
+    function trend(ctx, box, key, col, rng, label, fmt, tNow, win) {
+      ctx.strokeStyle = MON.grid; ctx.lineWidth = 1; ctx.strokeRect(box.x, box.y, box.w, box.h);
+      var X = function (t) { return box.x + (1 - (tNow - t) / win) * box.w; }, Y = function (v) { return box.y + box.h - (BD.clamp(v, rng[0], rng[1]) - rng[0]) / (rng[1] - rng[0]) * box.h; };
+      ctx.font = BB.font(9.5, true); ctx.fillStyle = MON.dim; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      [rng[0], rng[1]].forEach(function (v) { ctx.fillText(String(v), box.x - 3, Y(v)); });
+      if (rng[2] != null) { ctx.strokeStyle = "rgba(255,107,107,0.45)"; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(box.x, Y(rng[2])); ctx.lineTo(box.x + box.w, Y(rng[2])); ctx.stroke(); ctx.setLineDash([]); }
+      S.events.forEach(function (e) { if (e.t < tNow - win) return; var x = X(e.t); ctx.strokeStyle = EVC[e.kind] || MON.dim; ctx.globalAlpha = 0.5; ctx.beginPath(); ctx.moveTo(x, box.y); ctx.lineTo(x, box.y + box.h); ctx.stroke(); ctx.globalAlpha = 1; ctx.fillStyle = EVC[e.kind] || MON.dim; ctx.beginPath(); ctx.moveTo(x - 3.5, box.y); ctx.lineTo(x + 3.5, box.y); ctx.lineTo(x, box.y + 5); ctx.fill(); });
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      ctx.strokeStyle = col; ctx.lineWidth = 1.8; ctx.beginPath();
+      var started = false;
+      S.hist.forEach(function (q) { if (q.t < tNow - win - 60) return; var x = X(q.t), y = Y(q[key]); started ? ctx.lineTo(x, y) : ctx.moveTo(x, y); started = true; });
+      ctx.stroke(); ctx.restore();
+      var cur = S[key];
+      ctx.font = BB.font(10.5, false, 600); ctx.fillStyle = col; ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText(label, box.x + 4, box.y + 4);
+      ctx.font = BB.font(13, true, 700); ctx.textAlign = "right"; ctx.fillText(fmt(cur), box.x + box.w - 4, box.y + 3);
+    }
+    var cv = BB.canvas("#vm-cv", function (ctx, w, h) {
+      var narrow = w < 560, monH = narrow ? 300 : 310;
+      var wide = w >= 520;
+      var sp = Math.round(S.spo2), alarmBP = S.map < 65;
+      BD.monitor(ctx, { x: 0, y: 0, w: w, h: monH }, {
+        t: [0, wave.W], gridDt: 0.5, sweep: wave.sweep(),
+        traces: [
+          { label: "II", color: BB.trace(1), data: wave.e, range: [-0.45, 1.4] },
+          { label: "ABP", color: BB.trace(2), data: wave.p, range: [30, 200] },
+          { label: "Pleth", color: BB.trace(3), data: wave.s, range: [-0.05, 1.05] },
+          { label: "Resp", color: BB.trace(4), data: wave.r, range: [-0.1, 1.1] },
+        ],
+        numerics: [
+          { label: "HR", value: String(Math.round(S.hr)), unit: "bpm", color: BB.trace(1), alarm: S.hr > 185 },
+          { label: "ABP", value: wide ? Math.round(S.sbp) + "/" + Math.round(S.dbp) : String(Math.round(S.map)), unit: wide ? "mmHg" : "평균 mmHg", sub: wide ? "(" + Math.round(S.map) + ")" : Math.round(S.sbp) + "/" + Math.round(S.dbp), color: BB.trace(2), alarm: alarmBP },
+          { label: "SpO2", value: String(sp), unit: "%", color: BB.trace(3), alarm: sp < 90 },
+          { label: "RR", value: String(Math.round(S.rr)), unit: "/min", sub: "VE " + Math.round(S.ve), color: BB.trace(4) },
+          { label: "TEMP", value: S.core.toFixed(1), unit: "°C 심부", color: MON.core, alarm: S.core > 39.5 },
+        ],
+      });
+      // 추세(2×2)
+      var top = monH + 8, win = WIN[getSpeed()] || 7200;
+      ctx.fillStyle = MON.dim; ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      var wl = win >= 3600 ? (win / 3600) + "시간" : (win / 60) + "분";
+      ctx.fillText("추세: 지난 " + wl + " · " + clock(420 + S.t / 60) + "  " + (ALTS[S.altI] ? ALTS[S.altI].toLocaleString() + " m · " : "") + WEATHER[S.wI].k, 8, top);
+      var gx = 34, gw = (w - gx - 12 - 28) / 2, gh = (h - top - 18 - 24 - 8) / 2;
+      var boxes = [{ x: gx, y: top + 18, w: gw, h: gh }, { x: gx + gw + 28, y: top + 18, w: gw, h: gh }, { x: gx, y: top + 42 + gh, w: gw, h: gh }, { x: gx + gw + 28, y: top + 42 + gh, w: gw, h: gh }];
+      trend(ctx, boxes[0], "glu", MON.glu, [40, 200, 70], "혈당 mg/dL", function (v) { return Math.round(v); }, S.t, win);
+      trend(ctx, boxes[1], "core", MON.core, [36, 41, 39.5], "심부 체온 °C", function (v) { return v.toFixed(2); }, S.t, win);
+      trend(ctx, boxes[2], "cort", MON.cort, [0, 30], "코르티솔 µg/dL", function (v) { return v.toFixed(1); }, S.t, win);
+      trend(ctx, boxes[3], "lac", MON.lac, [0, 12, 4], "젖산 mmol/L", function (v) { return v.toFixed(1); }, S.t, win);
+      if (paused) { ctx.fillStyle = "rgba(255,212,59,0.9)"; ctx.font = BB.font(12, false, 700); ctx.textAlign = "right"; ctx.textBaseline = "top"; ctx.fillText("일시정지", w - 10, top); }
+    }, { get height() { var p = $("vm-cv").parentElement.clientWidth; return p < 560 ? 590 : 560; } });
+    BB.loop($("sim-monitor"), function (dt) {
+      if (!paused) {
+        var simDt = dt * (Number(getSpeed()) || 60), n = Math.max(1, Math.ceil(simDt / 2));
+        for (var i = 0; i < n; i++) step(simDt / n);
+      }
+      wave.advance(dt, S.hr, S.sbp, S.dbp, S.rr);
+      cv.redraw();
+      var now = performance.now();
+      if (now - lastUi > 250) {
+        lastUi = now;
+        BB.stat("vm-o-clock", clock(420 + S.t / 60));
+        BB.stat("vm-o-vo2", S.vo2.toFixed(1) + "<small>mL/kg/min · " + Math.round(S.x * 100) + "%</small>");
+        BB.stat("vm-o-gly", Math.round(S.gly) + "<small>g</small>");
+        var def = S.sweat + S.insens + S.urine - S.absorbed;
+        BB.stat("vm-o-water", (def >= 0 ? "−" : "+") + Math.abs(def).toFixed(2) + "<small>L · 소변 " + S.uflow.toFixed(1) + " mL/min</small>");
+        BB.stat("vm-o-vol", (S.vol / 1000).toFixed(2) + "<small>L</small>");
+        renderLog();
+      }
+    });
+  })();
+
+  /* ---------------------------------------------------------- 2. 다온의 대회 날 */
+  function raceSim(who, gel) {
+    var Aft = who === "after";
+    var vmax = Aft ? 43 : 38, lt = Aft ? 0.68 : 0.6, hrRest = Aft ? 64 : 72, kg = Aft ? 73.7 : 78, hrMax = 184;
+    var plan = BD.racePlan(vmax, lt);
+    var MULT = [0.985, 1.0, 1.005, 1.005, 1.0, 1.005, 1.0, 1.0, 0.995, 0.975];
+    var WU = 15, ST = 25;
+    var kmT = [ST];
+    for (var k = 0; k < 10; k++) kmT.push(kmT[k] + (60 / plan.kmh) * MULT[k]);
+    var fin = kmT[10], end = fin + 25;
+    var dt = 0.25, out = { t: [], km: [], hr: [], lac: [], core: [], sweat: [], glu: [], gly: [], kmT: kmT, fin: fin, end: end, plan: plan, raceTime: fin - ST, start: ST };
+    var wuV = BD.runVO2(8), standV = 5;
+    function kmIdx(t) { var q = 0; while (q < 9 && t >= kmT[q + 1]) q++; return q; }
+    function demandAt(t) {
+      if (t < WU) return wuV;
+      if (t < ST) return standV;
+      if (t < fin) return plan.vo2 / MULT[kmIdx(t)];
+      return t < fin + 6 ? 8 : 4.5;
+    }
+    var sched = [];
+    for (var s = 0; s < end; s += 1) sched.push({ t0: s, t1: s + 1, met: metW(demandAt(s + 0.5), kg) });
+    var th = BD.thermo({ minutes: Math.ceil(end) + 1, ta: 24, rh: 60, wind: 2.9, clo: 0.3, kg: kg, cm: 175, met: 100, schedule: sched });
+    var OFF = 150, meals = [{ t: 0, g: 80 }];
+    if (gel) meals.push({ t: OFF + kmT[5], g: 25, gi: 1.6 });
+    var ex = [{ t0: OFF, t1: OFF + WU, x: 0.06 }, { t0: OFF + ST, t1: OFF + fin, x: 0.12 * plan.frac }];
+    var gl = BD.glucose({ kg: kg, gb: Aft ? 94 : 98, meals: meals, exercise: ex, tstop: OFF + end + 2, dt: 0.5 });
+    var vo2 = 3.5, lac = 1.0, gly = 400, hr = hrRest;
+    for (var t = 0; t <= end + 1e-9; t += dt) {
+      var d = demandAt(t);
+      vo2 += (d - vo2) * (1 - Math.exp(-dt / (d > vo2 ? 0.5 : 0.8)));
+      var st = BD.steady(vo2 / vmax, { vo2max: vmax, lt: lt, hrRest: hrRest, hrMax: hrMax, kg: kg });
+      lac += (st.lactate - lac) * (1 - Math.exp(-dt / (st.lactate > lac ? 3 : 12)));
+      var core = BD.interp(th.t, th.core, t), sweat = BD.interp(th.t, th.loss, t);
+      var dehyd = (sweat - (t > kmT[5] ? 0.15 : 0)) / kg * 100;
+      var hrT = Math.min(hrMax, st.hr + 8 * Math.max(0, core - 37.6) + 2.5 * Math.max(0, dehyd));
+      hr += (hrT - hr) * (1 - Math.exp(-dt / 0.4));
+      var vL = vo2 * kg / 1000, kcal = BD.weir(vL, vL * st.rer);
+      gly -= kcal * BD.carbFrac(st.rer) / 4 * dt * 0.8;
+      var km = t < ST ? 0 : t >= fin ? 10 : kmIdx(t) + (t - kmT[kmIdx(t)]) / (kmT[kmIdx(t) + 1] - kmT[kmIdx(t)]);
+      out.t.push(t); out.km.push(km); out.hr.push(hr); out.lac.push(lac); out.core.push(core); out.sweat.push(sweat);
+      out.glu.push(BD.interp(gl.t, gl.g, OFF + t)); out.gly.push(gly);
+    }
+    out.splits = [];
+    for (var q = 0; q < 10; q++) {
+      var hs = [], ls = 0;
+      for (var i = 0; i < out.t.length; i++) if (out.t[i] >= kmT[q] && out.t[i] < kmT[q + 1]) { hs.push(out.hr[i]); ls = out.lac[i]; }
+      out.splits.push({ time: kmT[q + 1] - kmT[q], hr: BD.mean(hs), lac: ls });
+    }
+    return out;
+  }
+  (function () {
+    var cache = {}, cur = 0, playing = true, lay = null;
+    function get(who, gel) { var k = who + (gel ? 1 : 0); return cache[k] || (cache[k] = raceSim(who, gel)); }
+    var who = BB.seg("rc-who", function () { stats(); cv.redraw(); });
+    var cv = null;
+    ["rc-ov", "rc-gel"].forEach(function (id) { $(id).addEventListener("change", function () { stats(); cv.redraw(); }); });
+    function at(R, key, t) { return BD.interp(R.t, R[key], t); }
+    function stats() {
+      var R = get(who(), $("rc-gel").checked);
+      var hs = [], mx = 0;
+      for (var i = 0; i < R.t.length; i++) { if (R.t[i] >= R.start && R.t[i] < R.fin) hs.push(R.hr[i]); mx = Math.max(mx, R.core[i]); }
+      BB.stat("rc-o-t", mmss(R.raceTime) + "<small>분:초</small>");
+      BB.stat("rc-o-hr", Math.round(BD.mean(hs)) + "<small>bpm</small>");
+      BB.stat("rc-o-core", mx.toFixed(2) + "<small>°C</small>");
+      BB.stat("rc-o-sw", at(R, "sweat", R.fin).toFixed(2) + "<small>L</small>");
+      BB.stat("rc-o-gly", Math.round(400 - at(R, "gly", R.fin)) + "<small>g / 400</small>");
+    }
+    stats();
+    cv = BB.canvas("#rc-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 620, gel = $("rc-gel").checked;
+      var R = get(who(), gel), O = $("rc-ov").checked ? get(who() === "now" ? "after" : "now", gel) : null;
+      var tEnd = Math.max(R.end, O ? O.end : 0);
+      var cx0 = 52, cx1 = narrow ? w - 14 : w * 0.66;
+      // 트랙
+      var ty = 46, tx0 = cx0, tx1 = cx1;
+      ctx.strokeStyle = p.border; ctx.lineWidth = 8; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(tx0, ty); ctx.lineTo(tx1, ty); ctx.stroke(); ctx.lineCap = "butt";
+      ctx.font = BB.font(10, true); ctx.fillStyle = p.dim; ctx.textAlign = "center"; ctx.textBaseline = "top";
+      for (var k = 0; k <= 10; k++) { var kx = tx0 + (tx1 - tx0) * k / 10; ctx.fillStyle = p.dim; ctx.fillRect(kx - 0.5, ty + 5, 1, 5); if (!narrow || k % 2 === 0) ctx.fillText(k + (k === 10 ? " km" : ""), kx, ty + 11); }
+      var mainX = tx0 + (tx1 - tx0) * at(R, "km", cur) / 10;
+      var runner = function (Rr, col, ghost, lbl) {
+        var km = at(Rr, "km", cur), x = tx0 + (tx1 - tx0) * km / 10;
+        var lift = ghost && Math.abs(x - mainX) < 56 ? 13 : 0;
+        ctx.globalAlpha = ghost ? 0.45 : 1; ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, ty, ghost ? 6 : 8, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = p.bg; ctx.lineWidth = 2; ctx.stroke();
+        ctx.font = BB.font(10.5, false, 700); ctx.textAlign = "center"; ctx.textBaseline = "bottom"; ctx.fillStyle = col; ctx.fillText(lbl, BD.clamp(x, tx0 + 20, tx1 - 20), ty - (ghost ? 8 + lift : 10));
+        ctx.globalAlpha = 1;
+      };
+      var nameOf = function (k) { return k === "now" ? "오늘" : "12주 뒤"; };
+      if (O) runner(O, p.dim, true, nameOf(who() === "now" ? "after" : "now"));
+      runner(R, p.accent, false, nameOf(who()));
+      var phase = cur < 15 ? "몸풀기 조깅" : cur < R.start ? "출발 대기" : cur < R.fin ? "레이스 " + at(R, "km", cur).toFixed(1) + " km" : "결승 뒤 회복";
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText(phase, 8, 2);
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11, true); ctx.textAlign = "right"; ctx.fillText("경과 " + mmss(cur), narrow ? w - 8 : cx1, 2);
+      // 그래프 행
+      var rows = [
+        { key: "hr", y: [60, 190], label: "심박수 bpm", col: BB.color("art"), fmt: function (v) { return Math.round(v); } },
+        { key: "lac", y: [0, 8], label: "젖산 mmol/L", col: p.warn, fmt: function (v) { return v.toFixed(1); }, hl: 4 },
+        { key: "core", y: [36.8, 39.2], label: "심부 체온 °C", col: BB.color("heat"), fmt: function (v) { return v.toFixed(2); } },
+        { key: "glu", y: [60, 160], label: "혈당 mg/dL", col: BB.color("glu"), fmt: function (v) { return Math.round(v); } },
+        { key: "sweat", y: [0, 1.2], label: "누적 땀 L", col: BB.color("water"), fmt: function (v) { return v.toFixed(2); } },
+      ];
+      var top = 72, rh = narrow ? 66 : (h - top - 34) / rows.length;
+      var X = null;
+      rows.forEach(function (r, i) {
+        var box = { x: cx0, y: top + i * rh + 4, w: cx1 - cx0, h: rh - 14 };
+        var last = i === rows.length - 1;
+        var ser = [];
+        if (O) ser.push({ data: O.t.map(function (t, j) { return [t, O[r.key][j]]; }), color: BB.alpha(p.dim, 0.55), width: 1.4, dash: [4, 3] });
+        ser.push({ data: R.t.map(function (t, j) { return [t, R[r.key][j]]; }), color: r.col, width: 2.2 });
+        var c = BB.chart(ctx, box, { x: [0, tEnd], y: r.y, yTicks: [r.y[0], r.y[1]], xTicks: last ? [0, 15, 25, 45, 65, 85].filter(function (v) { return v <= tEnd; }) : [], series: ser,
+          bands: [{ x0: R.start, x1: R.fin, color: BB.alpha(p.accent, 0.06) }], hlines: r.hl ? [{ y: r.hl, color: BB.alpha(p.warn, 0.7) }] : [] });
+        X = c.X;
+        ctx.fillStyle = r.col; ctx.font = BB.font(11, false, 600); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText(r.label, box.x + 4, box.y + 2);
+        var v = at(R, r.key, cur);
+        ctx.fillStyle = r.col; ctx.beginPath(); ctx.arc(c.X(cur), c.Y(BD.clamp(v, r.y[0], r.y[1])), 4, 0, Math.PI * 2); ctx.fill();
+        ctx.font = BB.font(12, true, 700); ctx.textAlign = "right"; ctx.fillStyle = p.text; ctx.fillText(r.fmt(v), box.x + box.w - 4, box.y + 2);
+      });
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "center"; ctx.textBaseline = "top";
+      var yAx = top + rows.length * rh + 6;
+      ctx.fillText("시간(분) · 연한 띠 = 레이스", (cx0 + cx1) / 2, yAx + 8);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(X(cur), top); ctx.lineTo(X(cur), top + rows.length * rh - 8); ctx.stroke();
+      lay = { x0: cx0, x1: cx1, tEnd: tEnd };
+      // 구간 기록표
+      var sx = narrow ? 14 : cx1 + 22, sy = narrow ? yAx + 34 : 74, sw = narrow ? w - 28 : w - cx1 - 30;
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("구간 기록(" + nameOf(who()) + ")", sx, sy - 22);
+      var cols = [0, 0.22, 0.55, 0.8].map(function (f) { return sx + f * sw; });
+      ctx.font = BB.font(10.5); ctx.fillStyle = p.dim;
+      ["km", "구간", "평균 심박", "젖산"].forEach(function (s2, j) { ctx.textAlign = j ? "right" : "left"; ctx.fillText(s2, j ? cols[j] + (j === 3 ? sw * 0.2 : sw * 0.2) - 4 : cols[0], sy); });
+      var curKm = cur >= R.start && cur < R.fin ? Math.floor(at(R, "km", cur)) : -1;
+      R.splits.forEach(function (sp, q) {
+        var yy = sy + 16 + q * 17;
+        if (q === curKm) { ctx.fillStyle = BB.alpha(p.accent, 0.14); ctx.fillRect(sx - 4, yy - 2, sw + 4, 17); }
+        var done = cur >= R.kmT[q + 1];
+        ctx.fillStyle = done || q === curKm ? p.text : p.faint; ctx.font = BB.font(11, true);
+        ctx.textAlign = "left"; ctx.fillText(String(q + 1), cols[0], yy);
+        ctx.textAlign = "right";
+        ctx.fillText(mmss(sp.time), cols[1] + sw * 0.2 - 4, yy);
+        ctx.fillText(Math.round(sp.hr), cols[2] + sw * 0.2 - 4, yy);
+        ctx.fillStyle = sp.lac > 4.2 ? p.bad : done || q === curKm ? p.text : p.faint; ctx.fillText(sp.lac.toFixed(1), cols[3] + sw * 0.2 - 4, yy);
+      });
+      var yy2 = sy + 16 + 10 * 17 + 4;
+      ctx.strokeStyle = p.border; ctx.beginPath(); ctx.moveTo(sx, yy2 - 2); ctx.lineTo(sx + sw, yy2 - 2); ctx.stroke();
+      ctx.fillStyle = p.text; ctx.font = BB.font(11.5, true, 700); ctx.textAlign = "left"; ctx.fillText("합계", sx, yy2 + 2); ctx.textAlign = "right"; ctx.fillText(mmss(R.raceTime), cols[1] + sw * 0.2 - 4, yy2 + 2);
+      if (O) { ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "left"; ctx.fillText(nameOf(who() === "now" ? "after" : "now") + ": " + mmss(O.raceTime) + " (차이 " + mmss(Math.abs(O.raceTime - R.raceTime)) + ")", sx, yy2 + 20); }
+    }, { get height() { return $("rc-cv").parentElement.clientWidth < 620 ? 670 : 480; } });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; cur = BD.clamp((x - lay.x0) / (lay.x1 - lay.x0) * lay.tEnd, 0, lay.tEnd); playing = false; $("rc-play").textContent = "재생"; cv.redraw(); } });
+    $("rc-play").addEventListener("click", function () { playing = !playing; if (playing && lay && cur >= lay.tEnd - 0.1) cur = 0; this.textContent = playing ? "일시정지" : "재생"; });
+    $("rc-re").addEventListener("click", function () { cur = 0; playing = true; $("rc-play").textContent = "일시정지"; cv.redraw(); });
+    BB.loop($("sim-race"), function (dt) {
+      if (!playing || !lay) return;
+      cur += dt * 5;
+      if (cur >= lay.tEnd) { cur = lay.tEnd; playing = false; $("rc-play").textContent = "재생"; }
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 3. 고지대 */
+  (function () {
+    var lay = null, cv = null;
+    var MARKS = [{ h: 1947, k: "한라산" }, { h: 3640, k: "라파스(도시)" }, { h: 5364, k: "에베레스트 베이스캠프" }, { h: 8848, k: "에베레스트" }];
+    var getH = BB.range("al-h", function (v) { return Math.round(v).toLocaleString() + " m"; }, function () { calc(); });
+    var getD = BB.range("al-d", function (v) { return v + "일"; }, function () { calc(); });
+    var exSel = BB.seg("al-ex", function () { calc(); });
+    var R = null;
+    function compute(h, days, walk) {
+      var A0 = ALT(h, days, 0), vmaxA = 38 * A0.vo2maxF;
+      var vo2 = walk ? BD.walkVO2(5) : 3.5, x = vo2 / vmaxA;
+      var A = ALT(h, days, walk ? Math.min(1, x) : 0);
+      var st = BD.steady(Math.min(1, x), { vo2max: vmaxA, lt: 0.6, hrRest: 72, hrMax: 184 });
+      var hr = Math.min(190, st.hr + 72 * (A.hrF - 1) * (1 - Math.min(1, x)));
+      return { A: A, vmaxA: vmaxA, x: x, hr: hr, ve: st.ve * A.veF, sea: ALT(0, 0, walk ? Math.min(1, vo2 / 38) : 0) };
+    }
+    function calc() {
+      R = compute(getH(), getD(), exSel() === "walk");
+      var A = R.A;
+      BB.stat("al-o-pb", Math.round(A.pb) + "<small>mmHg</small>");
+      BB.stat("al-o-pa", Math.round(A.pA) + " / " + Math.round(A.paco2) + "<small>mmHg</small>");
+      BB.stat("al-o-sat", (A.sat * 100).toFixed(1) + "<small>%</small>");
+      BB.stat("al-o-hr", Math.round(R.hr) + " · " + R.ve.toFixed(1) + "<small>L/min</small>");
+      BB.stat("al-o-vm", R.vmaxA.toFixed(1) + "<small>(" + Math.round(R.vmaxA / 38 * 100) + "%)</small>");
+      if (cv) cv.redraw();
+    }
+    calc();
+    cv = BB.canvas("#al-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 600, A = R.A, H = getH();
+      // 산
+      var mw = narrow ? w : w * 0.42, mh = narrow ? 250 : h;
+      var my0 = 22, my1 = mh - 22;
+      var Y = function (alt) { return my1 - (alt / 9000) * (my1 - my0); };
+      var ax = 46;
+      ctx.font = BB.font(10, true); ctx.fillStyle = p.dim; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      for (var a = 0; a <= 8000; a += 2000) { ctx.strokeStyle = p.grid; ctx.beginPath(); ctx.moveTo(ax, Y(a)); ctx.lineTo(mw - 8, Y(a)); ctx.stroke(); ctx.fillText((a / 1000) + " km", ax - 4, Y(a)); }
+      // 위험 띠
+      [[2500, 5500, BB.alpha(p.warn, 0.07), "고산병이 흔한 높이"], [5500, 8000, BB.alpha(p.bad, 0.07), "오래 살 수 없는 높이"], [8000, 9000, BB.alpha(p.bad, 0.15), "죽음의 지대"]].forEach(function (z) {
+        ctx.fillStyle = z[2]; ctx.fillRect(ax, Y(z[1]), mw - 8 - ax, Y(z[0]) - Y(z[1]));
+        ctx.fillStyle = p.faint; ctx.font = BB.font(9.5); ctx.textAlign = "right"; ctx.textBaseline = "top"; ctx.fillText(z[3], mw - 12, Y(z[1]) + 2);
+      });
+      var px = function (f) { return ax + f * (mw - 8 - ax); };
+      var prof = [[0, 0], [0.1, 300], [0.22, 1500], [0.32, 2600], [0.42, 4200], [0.5, 5400], [0.6, 7000], [0.68, 8848], [0.76, 7600], [0.86, 6200], [1, 4000], [1, 0]];
+      ctx.beginPath(); ctx.moveTo(px(0), Y(0));
+      prof.forEach(function (q) { ctx.lineTo(px(q[0]), Y(q[1])); }); ctx.closePath();
+      ctx.fillStyle = BB.alpha(p.text, 0.1); ctx.fill(); ctx.strokeStyle = BB.alpha(p.text, 0.35); ctx.lineWidth = 1.2; ctx.stroke();
+      ctx.save(); ctx.clip(); ctx.fillStyle = BB.alpha(p.bg, 0.75); ctx.fillRect(ax, Y(9000), mw, Y(5600) - Y(9000)); ctx.restore();
+      ctx.strokeStyle = BB.alpha(p.text, 0.35); ctx.beginPath(); ctx.moveTo(px(0), Y(0)); prof.slice(0, 11).forEach(function (q) { ctx.lineTo(px(q[0]), Y(q[1])); }); ctx.stroke();
+      // 표지
+      ctx.font = BB.font(10); ctx.textBaseline = "middle";
+      MARKS.forEach(function (m) {
+        ctx.fillStyle = p.dim; ctx.beginPath(); ctx.arc(ax + 3, Y(m.h), 2.5, 0, Math.PI * 2); ctx.fill();
+        ctx.textAlign = "left"; ctx.fillText(m.k + " " + m.h.toLocaleString(), ax + 9, Y(m.h));
+      });
+      // 등반가: 오르막 위 위치
+      var fx = 0; for (var i = 1; i < 7; i++) { if (H <= prof[i][1]) { fx = prof[i - 1][0] + (prof[i][0] - prof[i - 1][0]) * (H - prof[i - 1][1]) / (prof[i][1] - prof[i - 1][1]); break; } fx = prof[i][0]; }
+      var cxp = Math.max(px(fx), ax + 150 * (narrow ? 0.9 : 0.6)), cyp = Y(H);
+      var col = A.sat < 0.8 ? p.bad : A.sat < 0.9 ? p.warn : p.ok;
+      ctx.fillStyle = p.bg; ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cxp, cyp, 9, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = col; ctx.beginPath(); ctx.arc(cxp, cyp, 3.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, true, 700); ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+      ctx.fillText(Math.round(H).toLocaleString() + " m", Math.min(cxp + 12, mw - 70), cyp - 6);
+      lay = { Y0: my1, Y1: my0, x1: mw };
+      // 산소 계단
+      var bx = narrow ? 52 : mw + 58, by = narrow ? mh + 18 : 22, bw = narrow ? w - 66 : w - mw - 72, bh = narrow ? 200 : h * 0.56;
+      var steps = [["대기", 0.21 * A.pb, 0.21 * 760], ["기도", A.pio2, BD.pio2(760)], ["폐포", A.pA, R.sea.pA], ["동맥", A.pa, R.sea.pa]];
+      var c = BB.chart(ctx, { x: bx, y: by, w: bw, h: bh }, { x: [0, 4], y: [0, 170], xTicks: [], yLabel: "산소 분압(mmHg)" });
+      var seg = function (k, v) { return [[k, v], [k + 1, v]]; };
+      var cur = [], ghost = [];
+      steps.forEach(function (s, k) { cur = cur.concat(seg(k, s[1])); ghost = ghost.concat(seg(k, s[2])); });
+      BB.chart(ctx, { x: bx, y: by, w: bw, h: bh }, { x: [0, 4], y: [0, 170], xTicks: [], yTicks: [], series: [{ data: ghost, color: BB.alpha(p.dim, 0.7), width: 1.6, dash: [5, 4] }, { data: cur, color: BB.color("o2") || p.accent2, width: 3, fill: BB.alpha(BB.color("o2") || p.accent2, 0.12) }] });
+      ctx.font = BB.font(11, false, 600); ctx.textAlign = "center";
+      steps.forEach(function (s, k) {
+        ctx.fillStyle = p.dim; ctx.textBaseline = "top"; ctx.fillText(s[0], c.X(k + 0.5), by + bh + 5);
+        ctx.fillStyle = p.text; ctx.textBaseline = "bottom"; ctx.font = BB.font(11.5, true, 700); ctx.fillText(Math.round(s[1]), c.X(k + 0.5), c.Y(s[1]) - 3); ctx.font = BB.font(11, false, 600);
+      });
+      ctx.fillStyle = p.dim; ctx.font = BB.font(10.5); ctx.textAlign = "right"; ctx.textBaseline = "top"; ctx.fillText("점선: 해수면", bx + bw - 4, by + 4);
+      // 포화도 계기판 + 숫자
+      var gy = by + bh + 34, gr = narrow ? 56 : Math.min(64, bw * 0.24);
+      var gcx = narrow ? w * 0.5 : bx + gr + 4, gcy = gy + gr + 6;
+      BD.gauge(ctx, gcx, gcy, gr, A.sat * 100, { min: 0, max: 100, zones: [{ to: 80, color: BB.alpha(p.bad, 0.6) }, { to: 90, color: BB.alpha(p.warn, 0.6) }, { to: 100, color: BB.alpha(p.ok, 0.6) }], label: "산소 포화도", text: (A.sat * 100).toFixed(0) + "%" });
+      var lx = narrow ? 16 : gcx + gr + 22, ly = narrow ? gcy + 34 : gy + 2, rx = narrow ? w - 16 : Math.min(w - 8, lx + 220);
+      var lines = [["PaCO₂", A.paco2.toFixed(1) + " mmHg", A.paco2 < 32 ? p.accent2 : p.text], ["pH", A.ph.toFixed(2), A.ph > 7.45 ? p.warn : p.text], ["헤모글로빈", A.hb.toFixed(1) + " g/dL", p.text], ["동맥 산소 함량", A.cao2.toFixed(1) + " mL/dL", p.text], ["심박 · 환기", Math.round(R.hr) + " bpm · " + R.ve.toFixed(1) + " L/min", p.text]];
+      ctx.textAlign = "left"; ctx.textBaseline = "top";
+      lines.forEach(function (l, k) { ctx.font = BB.font(10.5); ctx.fillStyle = p.dim; ctx.fillText(l[0], lx, ly + k * 20); ctx.font = BB.font(12, true, 700); ctx.fillStyle = l[2]; ctx.textAlign = "right"; ctx.fillText(l[1], rx, ly + k * 20); ctx.textAlign = "left"; });
+      var msg = R.x > 1 ? "이 높이에서는 걷기조차 최대 산소 섭취량을 넘는다" : A.sat < 0.6 && getD() < 3 ? "순응 없이 이 높이에 오면 몇 분 안에 의식을 잃을 수 있다" : A.sat < 0.85 ? "두통·구역·불면 같은 급성 고산병이 흔하다" : "";
+      var my = narrow ? ly + 5 * 20 + 8 : Math.max(gcy + 30, ly + 5 * 20 + 6);
+      if (msg) { ctx.fillStyle = A.sat < 0.6 || R.x > 1 ? p.bad : p.warn; ctx.font = BB.font(11.5, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; BB.wrapText(ctx, msg, narrow ? 16 : bx, my, w - (narrow ? 32 : bx + 10), 15, 2); }
+    }, { get height() { return $("al-cv").parentElement.clientWidth < 600 ? 770 : 460; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay || x > lay.x1) return; var hh = (lay.Y0 - y) / (lay.Y0 - lay.Y1) * 9000; getH.set(Math.round(BD.clamp(hh, 0, 8848))); } });
+  })();
+
+  /* ---------------------------------------------------------- 4. 출혈과 수액 */
+  (function () {
+    var cache = {}, res = null, tc = 0, lay = null, playing = true;
+    var wave = WaveGen(5);
+    for (var wi = 0; wi < 50; wi++) wave.advance(0.1, 72, 120, 80, 14);
+    var getP = BB.range("bl-p", function (v) { return v + "% (" + (v * 50).toLocaleString() + " mL)"; }, BB.debounce(run, 60));
+    var getV = BB.range("bl-v", function (v) { return v.toLocaleString() + " mL"; }, BB.debounce(run, 60));
+    var ft = BB.seg("bl-ft", run);
+    $("bl-baro").addEventListener("change", run);
+    $("bl-go").addEventListener("click", function () { tc = 0; playing = true; });
+    function run() {
+      var loss = getP() * 50, kind = ft(), amt = kind === "none" ? 0 : getV(), keep = kind === "saline" ? 1 / 3 : 1, gain = $("bl-baro").checked ? 1 : 0;
+      var key = [loss, kind, amt, gain].join("|");
+      if (!cache[key]) {
+        var ev = [];
+        for (var i = 0; i < 120; i++) ev.push({ t: 30 + i, kind: "bleed", value: loss / 120 });
+        for (var j = 0; j < 120 && amt > 0; j++) ev.push({ t: 300 + j, kind: "infuse", value: amt * keep / 120 });
+        var r = BD.baroLoop({ tstop: 600, baro: gain, events: ev });
+        r.loss = loss; r.amt = amt; r.kind = kind; r.keep = keep;
+        cache[key] = r;
+      }
+      res = cache[key];
+    }
+    run();
+    function idx(t) { return Math.min(res.t.length - 1, Math.max(0, Math.round(t / (res.t[1] - res.t[0])))); }
+    function lostAt(t) { return res.loss * BD.clamp((t - 30) / 120, 0, 1); }
+    function inAt(t) { return res.amt * res.keep * BD.clamp((t - 300) / 120, 0, 1); }
+    function cls(pct) { return pct < 15 ? "Ⅰ" : pct < 30 ? "Ⅱ" : pct < 40 ? "Ⅲ" : "Ⅳ"; }
+    var cv = BB.canvas("#bl-cv", function (ctx, w, h) {
+      var i = idx(tc), wide = w >= 520;
+      var map = res.map[i], sbp = res.sbp[i], dbp = res.dbp[i], hr = res.hr[i];
+      var si = hr / Math.max(1, sbp);
+      var vol = 5000 - lostAt(tc) + inAt(tc);
+      var monH = 200;
+      BD.monitor(ctx, { x: 0, y: 0, w: w, h: monH }, {
+        t: [0, wave.W], gridDt: 0.5, sweep: wave.sweep(),
+        traces: [{ label: "II", color: BB.trace(1), data: wave.e, range: [-0.45, 1.4] }, { label: "ABP", color: BB.trace(2), data: wave.p, range: [20, 180] }],
+        numerics: [
+          { label: "HR", value: String(Math.round(hr)), unit: "bpm", color: BB.trace(1), alarm: hr > 120 },
+          { label: "ABP", value: wide ? Math.round(sbp) + "/" + Math.round(dbp) : String(Math.round(map)), unit: wide ? "mmHg" : "평균 mmHg", sub: wide ? "(" + Math.round(map) + ")" : Math.round(sbp) + "/" + Math.round(dbp), color: BB.trace(2), alarm: map < 65 },
+          { label: "SI", value: si.toFixed(2), unit: "쇼크 지수", color: si > 1 ? MON.bad : MON.txt, alarm: si > 1 },
+        ],
+      });
+      // 추세: MAP·HR
+      var tb = { x: 40, y: monH + 22, w: w - 52, h: h - monH - 116 };
+      var X = function (t) { return tb.x + t / 600 * tb.w; };
+      var Yp = function (v) { return tb.y + tb.h - BD.clamp(v, 0, 180) / 180 * tb.h; };
+      ctx.fillStyle = "rgba(255,107,107,0.10)"; ctx.fillRect(X(30), tb.y, X(150) - X(30), tb.h);
+      if (res.amt > 0) { ctx.fillStyle = "rgba(102,217,232,0.10)"; ctx.fillRect(X(300), tb.y, X(420) - X(300), tb.h); }
+      ctx.strokeStyle = MON.grid; ctx.strokeRect(tb.x, tb.y, tb.w, tb.h);
+      ctx.font = BB.font(9.5, true); ctx.fillStyle = MON.dim; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      [0, 60, 120, 180].forEach(function (v) { ctx.fillText(v, tb.x - 4, Yp(v)); });
+      ctx.textAlign = "center"; ctx.textBaseline = "top";
+      [0, 2, 4, 6, 8, 10].forEach(function (m) { ctx.fillText(m + "분", X(m * 60), tb.y + tb.h + 3); });
+      ctx.strokeStyle = "rgba(255,107,107,0.5)"; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(tb.x, Yp(65)); ctx.lineTo(tb.x + tb.w, Yp(65)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = MON.bad; ctx.font = BB.font(9.5); ctx.textAlign = "right"; ctx.textBaseline = "bottom"; ctx.fillText("MAP 65", tb.x + tb.w - 3, Yp(65) - 1);
+      function line(arr, col) { ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath(); for (var k = 0; k < res.t.length; k += 2) { var x = X(res.t[k]), y = Yp(arr[k]); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); }
+      line(res.map, BB.trace(2)); line(res.hr, BB.trace(1));
+      ctx.font = BB.font(10.5, false, 600); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillStyle = BB.trace(2); ctx.fillText("평균 동맥압", tb.x + 4, tb.y + 3); ctx.fillStyle = BB.trace(1); ctx.fillText("심박수", tb.x + 80, tb.y + 3);
+      ctx.textBaseline = "bottom"; ctx.fillStyle = MON.bad; ctx.fillText("출혈", X(30) + 3, tb.y + tb.h - 3); if (res.amt > 0) { ctx.fillStyle = "#66d9e8"; ctx.fillText(res.kind === "blood" ? "수혈" : "식염수", X(300) + 3, tb.y + tb.h - 3); }
+      ctx.strokeStyle = MON.txt; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(X(tc), tb.y); ctx.lineTo(X(tc), tb.y + tb.h); ctx.stroke();
+      ctx.fillStyle = "#0b0d12"; ctx.strokeStyle = MON.txt; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(X(tc), tb.y + tb.h, 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      lay = tb;
+      // 혈액량 막대와 쇼크 분류
+      var vb = { x: 40, y: h - 62, w: w - 52, h: 14 };
+      var VX = function (v) { return vb.x + (v / 5500) * vb.w; };
+      [[5000, 4250, "Ⅰ"], [4250, 3500, "Ⅱ"], [3500, 3000, "Ⅲ"], [3000, 0, "Ⅳ"]].forEach(function (z, k) {
+        ctx.fillStyle = ["rgba(105,219,124,0.22)", "rgba(255,212,59,0.22)", "rgba(255,146,43,0.28)", "rgba(255,107,107,0.28)"][k];
+        ctx.fillRect(VX(z[1]), vb.y, VX(z[0]) - VX(z[1]), vb.h);
+        ctx.fillStyle = MON.dim; ctx.font = BB.font(9.5); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(z[2], (VX(z[0]) + VX(z[1])) / 2, vb.y + vb.h + 2);
+      });
+      ctx.fillStyle = MON.vol; ctx.fillRect(vb.x, vb.y + 4, VX(vol) - vb.x, vb.h - 8);
+      ctx.fillStyle = MON.txt; ctx.font = BB.font(10.5, false, 600); ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+      ctx.fillText("순환 혈액량 " + (vol / 1000).toFixed(2) + " L · 잃은 양 기준 분류 " + cls(lostAt(tc) / 50), vb.x, vb.y - 3);
+      ctx.fillStyle = MON.dim; ctx.textAlign = "right"; ctx.fillText(Math.round(tc / 60) + "분 " + String(Math.round(tc % 60)).padStart(2, "0") + "초", vb.x + vb.w, vb.y - 3);
+      BB.stat("bl-o-loss", Math.round(lostAt(tc)) + "<small>mL · " + Math.round(lostAt(tc) / 50) + "%</small>");
+      BB.stat("bl-o-cls", "분류 " + cls(lostAt(tc) / 50));
+      BB.stat("bl-o-map", Math.round(map) + "<small>mmHg</small>");
+      BB.stat("bl-o-hr", Math.round(hr) + " · " + si.toFixed(2));
+    }, { get height() { return $("bl-cv").parentElement.clientWidth < 560 ? 470 : 450; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay || y < lay.y - 10) return; tc = BD.clamp((x - lay.x) / lay.w * 600, 0, 599); playing = false; } , end: function () { playing = true; } });
+    BB.loop($("sim-bleed"), function (dt) {
+      if (playing) { tc += dt * 20; if (tc >= 600) tc = 0; }
+      var i = idx(tc);
+      wave.advance(dt, res.hr[i], res.sbp[i], res.dbp[i], 14);
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 5. 내 몸 넣어 보기 */
+  (function () {
+    var sel = null, rowsLay = [], cv = null;
+    var sex = BB.seg("me-sex", upd), pal = BB.seg("me-pal", upd);
+    var rd = function (id, f) { return BB.range(id, f, upd); };
+    var age = rd("me-age", function (v) { return v + "세"; }), cm = rd("me-cm", function (v) { return v + " cm"; }), kg = rd("me-kg", function (v) { return v.toFixed(1) + " kg"; });
+    var hr = rd("me-hr", function (v) { return v + " bpm"; }), sbp = rd("me-sbp", function (v) { return v + " mmHg"; }), dbp = rd("me-dbp", function (v) { return v + " mmHg"; }), fpg = rd("me-fpg", function (v) { return v + " mg/dL"; });
+    $("me-daon").addEventListener("click", function () { sex.set("m"); age.set(34); cm.set(175); kg.set(78); hr.set(72); sbp.set(128); dbp.set(82); fpg.set(98); pal.set("1.4"); });
+    var INFO = {
+      bmi: '<h4>체질량 지수(BMI)</h4><p>몸무게(kg)를 키(m)의 제곱으로 나눈 값이다. 국내 기준(대한비만학회)은 18.5 미만 저체중, 23 미만 정상, 25 미만 비만 전단계, 25 이상 비만이다. 근육이 많은 사람과 지방이 많은 사람을 구별하지 못하므로 허리둘레·체지방과 함께 본다. <a href="weight.html">14장</a>, <a href="overview.html">1장</a></p>',
+      sbp: '<h4>수축기 혈압</h4><p>심장이 피를 밀어낼 때 동맥에 걸리는 최고 압력이다. 혈압 분류는 수축기와 이완기 중 높은 쪽 등급을 따른다. 한 번 잰 값보다 여러 날 반복해 잰 평균이 중요하다. <a href="vessels.html">6장</a></p>',
+      dbp: '<h4>이완기 혈압</h4><p>심장이 쉬는 동안 동맥 탄성이 유지하는 최저 압력이다. 말초 혈관 저항이 높을수록 오른다. <a href="vessels.html">6장</a></p>',
+      fpg: '<h4>공복 혈당</h4><p>8시간 이상 굶은 뒤의 혈당이다. 100 미만 정상, 100~125 공복혈당장애(당뇨 전단계), 126 이상이 반복되면 당뇨병 범위로 본다. 한 번의 값이 아니라 HbA1c·식후 혈당과 함께 판단한다. <a href="glucose.html">15장</a></p>',
+      hr: '<h4>안정 심박수</h4><p>앉아서 몇 분 쉰 뒤의 심박수다. 성인 대개 60~100 bpm이며, 지구력 훈련을 하면 부교감 긴장이 늘어 50대까지 내려가기도 한다. <a href="ecg.html">5장</a>, <a href="flow.html">7장</a></p>',
+      zones: '<h4>심박 구간(카르보넨)</h4><p>목표 심박 = 안정 심박 + 강도 × (최대 심박 − 안정 심박). 최대 심박수는 Tanaka 식(208 − 0.7 × 나이)으로 어림했다. 실제 최대 심박수는 같은 나이에서도 ±10 bpm 넘게 다르다. <a href="flow.html">7장</a>, <a href="exercise.html">12장</a></p>',
+      energy: '<h4>기초대사량과 하루 소비 에너지</h4><p>기초대사량은 Mifflin-St Jeor 식으로, 하루 소비 에너지는 기초대사량 × 활동 계수(PAL)로 어림했다. 실제 값은 ±10 % 이상 다를 수 있다. <a href="metabolism.html">13장</a></p>',
+      lung: '<h4>예측 폐 부피</h4><p>키·나이·성별이 같은 건강한 사람들의 평균(ERS 1993 예측식)이다. 폐활량(VC) = 날숨 예비량 + 1회 호흡량 + 들숨 예비량. 잔기량은 아무리 내쉬어도 남는 공기다. 실제 폐 기능 검사는 예측값의 몇 %인지로 읽는다. <a href="lungs.html">8장</a></p>',
+    };
+    function calc() {
+      var s = sex(), a = age(), H = cm(), K = kg();
+      var bmi = BD.bmi(K, H), hrmax = BD.hrMax(a), bmr = BD.bmr(K, H, a, s), tdee = BD.tdee(bmr, Number(pal()));
+      var lv = BD.lungVolumes(H, a, s);
+      return { bmi: bmi, hrmax: hrmax, bmr: bmr, tdee: tdee, lv: lv, bp: BD.bpClass(sbp(), dbp()), gc: BD.glucoseClass(fpg()), bsa: BD.bsa(K, H), tbw: BD.tbw(K, s), blood: K * (s === "f" ? 0.065 : 0.07) };
+    }
+    function upd() {
+      var c = calc();
+      BB.stat("me-o-bsa", c.bsa.toFixed(2) + "<small>m²</small>");
+      BB.stat("me-o-water", c.tbw.toFixed(1) + " · " + c.blood.toFixed(1) + "<small>L</small>");
+      BB.stat("me-o-hrmax", Math.round(c.hrmax) + "<small>bpm</small>");
+      BB.stat("me-o-ee", Math.round(c.bmr).toLocaleString() + " · " + Math.round(c.tdee).toLocaleString() + "<small>kcal</small>");
+      if (cv) cv.redraw();
+    }
+    upd();
+    cv = BB.canvas("#me-cv", function (ctx, w, h) {
+      var p = P(), c = calc(), L = 14, R = w - 14, bw = R - L;
+      var ok = p.ok, wa = p.warn, bad = p.bad;
+      var rows = [
+        { key: "bmi", label: "체질량 지수", val: c.bmi, txt: c.bmi.toFixed(1) + " kg/m²", rng: [15, 35], zones: [[15, 18.5, wa, "저체중"], [18.5, 23, ok, "정상"], [23, 25, wa, "비만 전단계"], [25, 30, bad, "1단계 비만"], [30, 35, bad, "2단계 이상"]] },
+        { key: "sbp", label: "수축기 혈압", val: sbp(), txt: sbp() + " mmHg · " + c.bp.label, rng: [85, 190], zones: [[85, 90, wa, ""], [90, 120, ok, "정상"], [120, 130, wa, "주의"], [130, 140, wa, "전단계"], [140, 160, bad, "1기"], [160, 190, bad, "2기+"]] },
+        { key: "dbp", label: "이완기 혈압", val: dbp(), txt: dbp() + " mmHg", rng: [50, 115], zones: [[50, 60, wa, ""], [60, 80, ok, "정상"], [80, 90, wa, "전단계"], [90, 100, bad, "1기"], [100, 115, bad, "2기+"]] },
+        { key: "fpg", label: "공복 혈당", val: fpg(), txt: fpg() + " mg/dL · " + c.gc.label, rng: [60, 160], zones: [[60, 70, wa, "저혈당"], [70, 100, ok, "정상"], [100, 126, wa, "공복혈당장애"], [126, 160, bad, "당뇨 범위"]] },
+        { key: "hr", label: "안정 심박수", val: hr(), txt: hr() + " bpm", rng: [40, 110], zones: [[40, 60, p.accent2, "느림(훈련 시 흔함)"], [60, 100, ok, "보통"], [100, 110, wa, "빠름"]] },
+        { key: "zones", label: "심박 구간(카르보넨)", txt: "최대 약 " + Math.round(c.hrmax) + " bpm" },
+        { key: "energy", label: "하루 에너지", txt: Math.round(c.tdee).toLocaleString() + " kcal/일" },
+        { key: "lung", label: "예측 폐 부피", txt: "폐활량 " + c.lv.vc.toFixed(2) + " L · FEV₁ " + c.lv.fev1.toFixed(2) + " L" },
+      ];
+      var rh = (h - 34) / 8, y = 8;
+      rowsLay = [];
+      rows.forEach(function (r) {
+        var on = sel === r.key;
+        if (on) { ctx.fillStyle = BB.alpha(p.accent, 0.08); BB.rrect(ctx, 4, y - 4, w - 8, rh - 2, 8); ctx.fill(); }
+        ctx.font = BB.font(12, false, 700); ctx.fillStyle = p.text; ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText(r.label, L, y);
+        ctx.font = BB.font(11.5, false, 600); ctx.fillStyle = p.dim; ctx.textAlign = "right"; ctx.fillText(r.txt, R, y);
+        var by = y + 19, bh = 12;
+        if (r.zones) {
+          var X = function (v) { return L + (BD.clamp(v, r.rng[0], r.rng[1]) - r.rng[0]) / (r.rng[1] - r.rng[0]) * bw; };
+          r.zones.forEach(function (z) {
+            ctx.fillStyle = BB.alpha(z[2], 0.32); ctx.fillRect(X(z[0]), by, X(z[1]) - X(z[0]) - 1, bh);
+            ctx.font = BB.font(9.5); if (z[3] && X(z[1]) - X(z[0]) > ctx.measureText(z[3]).width + 4) { ctx.fillStyle = p.dim; ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(z[3], (X(z[0]) + X(z[1])) / 2, by + bh + 2); }
+          });
+          var mx = X(r.val);
+          ctx.fillStyle = p.text; ctx.beginPath(); ctx.moveTo(mx, by + bh + 1); ctx.lineTo(mx - 6, by - 6); ctx.lineTo(mx + 6, by - 6); ctx.closePath(); ctx.fill();
+        } else if (r.key === "zones") {
+          var hrR = hr(), mxh = c.hrmax, lo = hrR + 0.5 * (mxh - hrR);
+          var Xz = function (v) { return L + (v - lo) / (mxh - lo) * bw; };
+          var cols = [p.accent2, ok, wa, p.bad, BB.color("art")];
+          BD.HR_ZONES.forEach(function (z, k) {
+            var a = BD.karvonen(z.lo, hrR, mxh), b = BD.karvonen(z.hi, hrR, mxh);
+            ctx.fillStyle = BB.alpha(cols[k], 0.45); ctx.fillRect(Xz(a), by, Xz(b) - Xz(a) - 1, bh);
+            ctx.fillStyle = p.text; ctx.font = BB.font(9.5, true, 700); ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("Z" + z.z, (Xz(a) + Xz(b)) / 2, by + bh / 2);
+            ctx.fillStyle = p.dim; ctx.font = BB.font(9.5, true); ctx.textBaseline = "top"; ctx.fillText(Math.round(a), Xz(a), by + bh + 2);
+          });
+          ctx.fillText(Math.round(mxh), Xz(mxh) - 8, by + bh + 2);
+        } else if (r.key === "energy") {
+          var mx2 = Math.max(4000, c.tdee * 1.05), Xe = function (v) { return L + v / mx2 * bw; };
+          ctx.fillStyle = BB.alpha(BB.color("carb"), 0.55); ctx.fillRect(L, by, Xe(c.bmr) - L, bh);
+          ctx.fillStyle = BB.alpha(BB.color("fat"), 0.55); ctx.fillRect(Xe(c.bmr), by, Xe(c.tdee) - Xe(c.bmr), bh);
+          ctx.fillStyle = p.dim; ctx.font = BB.font(9.5); ctx.textAlign = "left"; ctx.textBaseline = "top";
+          ctx.fillText("기초대사 " + Math.round(c.bmr).toLocaleString(), L, by + bh + 2);
+          ctx.textAlign = "right"; ctx.fillText("+ 활동·식사 " + Math.round(c.tdee - c.bmr).toLocaleString(), Xe(c.tdee), by + bh + 2);
+        } else if (r.key === "lung") {
+          var lv = c.lv, Xl = function (v) { return L + v / (lv.tlc * 1.25) * bw; };
+          var parts = [["잔기량", lv.rv, p.faint], ["날숨 예비", lv.erv, p.accent2], ["1회", lv.vt, ok], ["들숨 예비", lv.irv, BB.color("o2") || p.accent2]];
+          var acc = 0;
+          parts.forEach(function (q, k) {
+            ctx.fillStyle = BB.alpha(q[2], k ? 0.5 : 0.35); ctx.fillRect(Xl(acc), by, Xl(acc + q[1]) - Xl(acc) - 1, bh);
+            if (Xl(acc + q[1]) - Xl(acc) > 40) { ctx.fillStyle = p.dim; ctx.font = BB.font(9.5); ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(q[0], (Xl(acc) + Xl(acc + q[1])) / 2, by + bh + 2); }
+            acc += q[1];
+          });
+          ctx.fillStyle = p.dim; ctx.font = BB.font(9.5, true); ctx.textAlign = "left"; ctx.textBaseline = "middle"; ctx.fillText("전체 " + lv.tlc.toFixed(1) + " L", Xl(acc) + 4, by + bh / 2);
+        }
+        rowsLay.push({ key: r.key, y0: y - 4, y1: y + rh - 6 });
+        y += rh;
+      });
+    }, { get height() { return $("me-cv").parentElement.clientWidth < 560 ? 8 * 54 + 34 : 8 * 66 + 34; } });
+    BB.drag(cv.canvas, { start: function (x, y) { var r = rowsLay.find(function (q) { return y >= q.y0 && y <= q.y1; }); if (r) { sel = r.key; $("me-info").innerHTML = INFO[r.key]; cv.redraw(); } } });
+  })();
+
+  /* ---------------------------------------------------------- 6. 병목 찾기 */
+  (function () {
+    var cache = {}, cur = null, lay = null, cv = null, data = null;
+    var mode = BB.seg("lm-mode", function () { cur = null; build(); });
+    $("lm-hyper").addEventListener("change", build); $("lm-after").addEventListener("change", build);
+    var SYS = {
+      heart: { name: "심장(최대 심박)", col: function () { return BB.color("art"); } },
+      vo2: { name: "산소 섭취(VO₂max)", col: function () { return BB.color("prot") || P().accent2; } },
+      lac: { name: "젖산(8 mmol/L)", col: function () { return P().warn; } },
+      ve: { name: "환기(140 L/min)", col: function () { return BB.segColor("resp"); } },
+      core: { name: "체온(40 °C)", col: function () { return BB.color("heat"); } },
+      water: { name: "수분(체중 3 %)", col: function () { return BB.color("water"); } },
+      sat: { name: "산소 포화도(80 %)", col: function () { return P().accent2; } },
+      co2: { name: "CO₂ 충동", col: function () { return BB.color("co2") || P().dim; } },
+    };
+    var INFO = {
+      speed: "<h4>달리기 속도: 40분 동안</h4><p>속도를 올리면 산소 비용(다니엘스 식)이 오르고, 젖산은 역치를 넘는 순간부터 지수적으로 쌓인다. 40분을 버틸 수 있는 속도는 산소 섭취의 최대가 아니라 젖산이 정한다.</p>",
+      heat: "<h4>더위: 대회 속도 58분, 습도 60 %</h4><p>기온이 오르면 피부와 공기의 온도 차가 줄고 땀의 증발도 어려워져 열이 쌓인다. 체온과 함께 땀이 늘어 수분도 바빠지고, 심박은 표류한다.</p>",
+      alt: "<h4>고도: 5 km/h로 걷기</h4><p>높이 올라갈수록 같은 걷기가 줄어든 VO₂max의 더 큰 비율이 된다. 그보다 먼저 산소 포화도가 80 % 아래로 떨어진다.</p>",
+      hold: "<h4>숨 참기: 쉬는 상태</h4><p>평소에는 쌓이는 CO₂가 참을 수 없는 충동을 만들어 산소가 위험해지기 전에 숨을 쉬게 한다. 과호흡으로 CO₂를 미리 빼면 충동이 늦어져 저산소가 먼저 온다. 실제로 하지 않는다.</p>",
+    };
+    function build() {
+      var m = mode(), aft = $("lm-after").checked, hy = $("lm-hyper").checked;
+      var key = m + (aft ? 1 : 0) + (m === "hold" && hy ? 1 : 0);
+      var vmax = aft ? 43 : 38, lt = aft ? 0.68 : 0.6, hrRest = aft ? 64 : 72, kg = aft ? 73.7 : KG;
+      var o = { vo2max: vmax, lt: lt, hrRest: hrRest, hrMax: 184, kg: kg };
+      if (!cache[key]) {
+        var xs = [], L = {}, keys;
+        var push = function (k, v) { (L[k] = L[k] || []).push(v); };
+        if (m === "speed") {
+          keys = ["heart", "vo2", "lac", "ve", "core", "water"];
+          for (var v = 6; v <= 20.001; v += 0.5) {
+            var vo2 = BD.danielsVO2(v * 1000 / 60), x = vo2 / vmax, st = BD.steady(Math.min(1.2, x), o);
+            var th = BD.thermo({ minutes: 40, met: metW(Math.min(vo2, vmax), kg), ta: 24, rh: 60, wind: v / 3.6, clo: 0.3, kg: kg });
+            xs.push(v); push("heart", st.hr / 184); push("vo2", x); push("lac", st.lactate / 8); push("ve", st.ve / 140);
+            push("core", (th.core[th.core.length - 1] - 37) / 3); push("water", th.loss[th.loss.length - 1] / (0.03 * kg));
+          }
+          cache[key] = { xs: xs, L: L, keys: keys, unit: "km/h", fmt: function (q) { return q.toFixed(1) + " km/h"; }, xl: "달리기 속도(km/h)", def: aft ? 11.9 : 10.4 };
+        } else if (m === "heat") {
+          keys = ["heart", "vo2", "lac", "core", "water"];
+          var plan = BD.racePlan(vmax, lt), st2 = BD.steady(plan.frac, o);
+          for (var ta = 10; ta <= 40.001; ta += 1.5) {
+            var th2 = BD.thermo({ minutes: 58, met: metW(plan.vo2, kg), ta: ta, rh: 60, wind: plan.kmh / 3.6, clo: 0.3, kg: kg });
+            var core = th2.core[th2.core.length - 1], loss = th2.loss[th2.loss.length - 1];
+            xs.push(ta); push("heart", Math.min(184, st2.hr + 8 * Math.max(0, core - 37.6) + 2.5 * loss / kg * 100) / 184); push("vo2", plan.frac); push("lac", st2.lactate / 8);
+            push("core", (core - 37) / 3); push("water", loss / (0.03 * kg));
+          }
+          cache[key] = { xs: xs, L: L, keys: keys, unit: "°C", fmt: function (q) { return q.toFixed(1) + " °C"; }, xl: "기온(°C), 습도 60 %", def: 24 };
+        } else if (m === "alt") {
+          keys = ["sat", "vo2", "heart", "ve", "lac"];
+          for (var hh = 0; hh <= 8848; hh += 316) {
+            var A0 = ALT(hh, 0, 0), vA = vmax * A0.vo2maxF, w2 = BD.walkVO2(5), xa = w2 / vA, A = ALT(hh, 0, Math.min(1, xa));
+            var st3 = BD.steady(Math.min(1.2, xa), Object.assign({}, o, { vo2max: vA }));
+            xs.push(hh); push("sat", (0.975 - A.sat) / (0.975 - 0.8)); push("vo2", xa); push("heart", Math.min(200, st3.hr + hrRest * (A.hrF - 1) * (1 - Math.min(1, xa))) / 184);
+            push("ve", st3.ve * A.veF / 140); push("lac", st3.lactate / 8);
+          }
+          cache[key] = { xs: xs, L: L, keys: keys, unit: "m", fmt: function (q) { return Math.round(q).toLocaleString() + " m"; }, xl: "고도(m)", def: 3000 };
+        } else {
+          keys = ["co2", "sat"];
+          var bh = BD.breathHold({ hyper: hy ? 25 : 40, after: 400, tmax: 240 });
+          for (var i = 0; i < bh.t.length; i += 4) { xs.push(bh.t[i]); push("co2", bh.urge[i]); push("sat", Math.max(0, (0.975 - bh.sao2[i]) / (0.975 - 0.8))); }
+          cache[key] = { xs: xs, L: L, keys: keys, unit: "s", fmt: function (q) { return Math.round(q) + "초"; }, xl: "숨 참은 시간(초)", def: 60 };
+        }
+        // 각 계통이 100 %에 처음 닿는 x
+        var D = cache[key]; D.first = {};
+        D.keys.forEach(function (k2) { var arr = D.L[k2]; for (var j = 0; j < arr.length; j++) if (arr[j] >= 1) { D.first[k2] = j ? D.xs[j - 1] + (D.xs[j] - D.xs[j - 1]) * (1 - arr[j - 1]) / (arr[j] - arr[j - 1]) : D.xs[0]; break; } });
+        var best = null; D.keys.forEach(function (k3) { if (D.first[k3] != null && (best == null || D.first[k3] < D.first[best])) best = k3; });
+        D.best = best;
+      }
+      data = cache[key];
+      if (cur == null || cur < data.xs[0] || cur > data.xs[data.xs.length - 1]) cur = data.def;
+      $("lm-info").innerHTML = INFO[m];
+      BB.stat("lm-o-first", data.best ? SYS[data.best].name : "범위 안에서는 없음");
+      BB.stat("lm-o-at", data.best ? data.fmt(data.first[data.best]) : "—");
+      if (cv) cv.redraw();
+    }
+    build();
+    cv = BB.canvas("#lm-cv", function (ctx, w, h) {
+      var p = P(), D = data, narrow = w < 600;
+      var box = narrow ? { x: 56, y: 16, w: w - 70, h: 250 } : { x: 52, y: 16, w: w * 0.62 - 60, h: h - 60 };
+      var x0 = D.xs[0], x1 = D.xs[D.xs.length - 1];
+      var ser = D.keys.map(function (k) { return { data: D.xs.map(function (x, i) { return [x, Math.min(1.4, D.L[k][i]) * 100]; }), color: SYS[k].col(), width: k === D.best ? 3.2 : 2 }; });
+      var c = BB.chart(ctx, box, { x: [x0, x1], y: [0, 140], xLabel: D.xl, yLabel: "한계까지(%)", series: ser, hlines: [{ y: 100, color: p.bad, label: "한계" }] });
+      if (D.best) {
+        var fx = D.first[D.best];
+        ctx.fillStyle = p.bad; ctx.beginPath(); ctx.arc(c.X(fx), c.Y(100), 6, 0, Math.PI * 2); ctx.fill();
+        ctx.font = BB.font(11.5, false, 700); ctx.textAlign = c.X(fx) > box.x + box.w * 0.6 ? "right" : "left"; ctx.textBaseline = "bottom";
+        ctx.fillText("먼저: " + SYS[D.best].name.split("(")[0] + " · " + D.fmt(fx), c.X(fx) + (ctx.textAlign === "left" ? 8 : -8), c.Y(100) - 16);
+      }
+      // 커서
+      var cx = c.X(cur);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(cx, box.y); ctx.lineTo(cx, box.y + box.h); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = p.bg; ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, box.y + box.h, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      lay = c;
+      // 막대 패널
+      var bx = narrow ? 16 : w * 0.62 + 10, by = narrow ? box.y + box.h + 58 : 26, bw = narrow ? w - 32 : w * 0.38 - 26;
+      ctx.fillStyle = p.text; ctx.font = BB.font(12, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("커서 " + D.fmt(cur) + "에서", bx, by - 2);
+      var vals = D.keys.map(function (k) { return { k: k, v: BD.interp(D.xs, D.L[k], cur) }; });
+      var top = vals.slice().sort(function (a, b) { return b.v - a.v; })[0];
+      vals.forEach(function (q, i) {
+        var yy = by + 22 + i * 34;
+        ctx.fillStyle = SYS[q.k].col(); ctx.fillRect(bx, yy + 2, 10, 10); ctx.font = BB.font(11, false, q.k === top.k ? 700 : 500); ctx.fillStyle = q.k === top.k ? p.text : p.dim; ctx.textAlign = "left"; ctx.fillText(SYS[q.k].name, bx + 15, yy);
+        ctx.font = BB.font(11, true, 700); ctx.textAlign = "right"; ctx.fillStyle = q.v >= 1 ? p.bad : p.text; ctx.fillText(Math.round(q.v * 100) + "%", bx + bw, yy);
+        var yb = yy + 15;
+        ctx.fillStyle = p.surface; ctx.fillRect(bx, yb, bw, 8);
+        ctx.fillStyle = q.v >= 1 ? p.bad : q.v >= 0.75 ? p.warn : p.ok; ctx.fillRect(bx, yb, bw * BD.clamp(q.v / 1.3, 0, 1), 8);
+        ctx.fillStyle = p.bad; ctx.fillRect(bx + bw / 1.3, yb - 2, 1.5, 12);
+      });
+      BB.stat("lm-o-x", D.fmt(cur));
+      BB.stat("lm-o-top", SYS[top.k].name.split("(")[0] + " " + Math.round(top.v * 100) + "%");
+    }, { get height() { return $("lm-cv").parentElement.clientWidth < 600 ? 330 + 6 * 34 + 40 : 380; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.box; if (y > b.y + b.h + 30) return; var f = BD.clamp((x - b.x) / b.w, 0, 1); cur = data.xs[0] + f * (data.xs[data.xs.length - 1] - data.xs[0]); cv.redraw(); } });
+  })();
+})();
+</script>
+</body>
+</html>

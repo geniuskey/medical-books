@@ -1,0 +1,949 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "심박출량 = 심박수 × 1회 박출량. 심박수만 올리면 왜 심박출량이 꺾이는지, 이완기와 충만 시간, 픽 원리, 운동할 때 근육으로 옮겨 가는 혈류, 카르보넨 심박 구간과 심박수의 오르내림을 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>심박수와 혈류 · BodyBook</title>
+<meta name="description" content="심박출량 = 심박수 × 1회 박출량. 심박수만 올리면 왜 심박출량이 꺾이는지, 이완기와 충만 시간, 픽 원리, 운동할 때 근육으로 옮겨 가는 혈류, 카르보넨 심박 구간과 심박수의 오르내림을 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/flow.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="심박수와 혈류 · BodyBook">
+<meta property="og:description" content="심박출량 = 심박수 × 1회 박출량. 심박수만 올리면 왜 심박출량이 꺾이는지, 이완기와 충만 시간, 픽 원리, 운동할 때 근육으로 옮겨 가는 혈류, 카르보넨 심박 구간과 심박수의 오르내림을 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/flow.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/flow.html#chapter","name":"심박수와 혈류","headline":"심박수와 혈류 · BodyBook","description":"심박출량 = 심박수 × 1회 박출량. 심박수만 올리면 왜 심박출량이 꺾이는지, 이완기와 충만 시간, 픽 원리, 운동할 때 근육으로 옮겨 가는 혈류, 카르보넨 심박 구간과 심박수의 오르내림을 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/flow.html","position":7,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"7. 심박수와 혈류","item":"https://medical.euiyun.com/body/chapters/flow.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<!--head:end-->
+<style>
+  .fl-zone-row { display: flex; flex-wrap: wrap; gap: 6px; }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="flow">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 07</div>
+    <h1>심박수와 혈류</h1>
+    <p class="lead">달리기 앱은 심박수를 보여 주며 "구간 3", "구간 4"라고 말한다. 그런데 몸이 정말로 신경 쓰는 숫자는 심박수가 아니라 1분에 얼마나 많은 피가 어디로 가느냐다. 심장은 박자를 올리고, 한 번에 더 많이 짜내고, 혈관은 근육 쪽 꼭지를 열고 다른 쪽을 조인다. 이 장은 심박수를 올릴 때 얻는 것과 잃는 것, 피가 몸 안에서 어떻게 다시 나뉘는지, 그리고 다온의 심박 구간을 직접 계산한다.</p>
+    <ul class="objectives">
+      <li>심박출량 = 심박수 × 1회 박출량을 쓰고, 심박수만 올리면 심박출량이 어디서 꺾이는지 설명한다.</li>
+      <li>심박수가 오를 때 수축기보다 이완기가 훨씬 많이 줄어드는 것과 그 결과를 안다.</li>
+      <li>픽 원리로 산소 소비량과 동정맥 산소 차에서 심박출량을 구한다.</li>
+      <li>안정과 운동에서 장기별 혈류 배분이 어떻게 달라지는지 말한다.</li>
+      <li>카르보넨 식으로 심박 구간을 정하고, 운동 시작·끝의 심박수 변화와 훈련의 효과를 읽는다.</li>
+    </ul>
+  </header>
+
+  <section id="cohr">
+    <h2>심박수를 올리면 심박출량은 계속 늘까</h2>
+    <p>심장이 1분에 내보내는 피의 양이 <span class="term">심박출량</span><span class="en">(Cardiac output, CO)</span>이다. 한 번에 내보내는 양(<span class="term">1회 박출량</span><span class="en">(Stroke volume, SV)</span>)에 1분의 박동 수를 곱하면 된다.</p>
+    <div class="formula">$$CO = HR \times SV$$
+      <div class="where">\(CO\) 심박출량(안정 약 5 L/min), \(HR\) 심박수(약 70 bpm), \(SV\) 1회 박출량(약 70 mL). 70 × 70 mL = 4.9 L/min.</div>
+    </div>
+    <p>식만 보면 심박수를 두 배로 올리면 심박출량도 두 배가 될 것 같다. 실제로 심장 박동기로 박자만 올리는 실험을 하면 그렇지 않다. 박동이 빨라지면 한 박동의 시간이 짧아지는데, 그 짧아진 몫의 대부분이 <b>피를 채우는 시간</b>에서 나오기 때문이다. 아래에서 곡선 위의 점을 끌어 보자.</p>
+
+    <div class="sim" id="sim-co-hr" data-desc="심박수만 올리면(페이싱) 심박출량이 늘다가 약 120 bpm 근처에서 꺾이고, 운동처럼 수축력·정맥 환류·이완 속도가 함께 오르면 190 가까이까지 계속 는다: 곡선 위 점을 끌며 충만 시간과 1회 박출량을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>심박수와 심박출량: 어디서 꺾이는가</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="co-cv"></canvas><span class="hint">곡선 위의 점을 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="co-mode"><button data-value="pace" class="on">심박수만(페이싱)</button><button data-value="run">운동처럼</button></div>
+          <label class="check"><input type="checkbox" id="co-sv" checked> 1회 박출량 곡선 보기</label>
+          <div class="btn-row"><button class="btn" id="co-72">다온 안정 72</button><button class="btn" id="co-168">대회 속도 168</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--bad)"></i>심박수만 올림</span><span><i style="background:var(--ok)"></i>운동처럼(수축력·정맥 환류·이완 속도↑, 저항↓)</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">심박수</span><span class="v" id="co-o-hr">—</span></div>
+        <div class="stat"><span class="k">1회 박출량</span><span class="v" id="co-o-sv">—</span></div>
+        <div class="stat"><span class="k">심박출량</span><span class="v" id="co-o-co">—</span></div>
+        <div class="stat"><span class="k">충만 시간 / 한 주기</span><span class="v" id="co-o-fill">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "심박수만"에서 점을 72 → 120으로 끈다. 심박출량이 약 5.2에서 6.3 L/min으로 는다. ② 계속 180까지 끈다. 충만 시간이 0.1초 아래로 줄고 박출량이 30 mL 아래로 떨어져 심박출량이 오히려 준다(빨간 경고). ③ "운동처럼"으로 바꾼다. 같은 심박수에서 박출량이 훨씬 크고, 곡선이 190 가까이까지 오른다. 교감 신경이 이완을 빠르게 하고, 근육 펌프가 피를 밀어 넣어 짧은 시간에도 채우기 때문이다. (곡선의 점마다 엔진 BD.heart로 심장을 따로 돌린 값(BD.heartSweep). 심박수만: 다온 안정 설정, 운동처럼: 대회 속도 설정에서 심박수만 바꿨다.)</div>
+    </div>
+
+    <p>박자만 빨라진 심장은 약 120 bpm 근처에서 한계에 닿는다. 그런데 운동하는 사람의 심박출량은 180 bpm에서도 계속 오른다. 차이는 박자 말고도 바뀌는 것들이다. 교감 신경은 수축을 세게 하고 이완도 빠르게 하며, 다리 근육의 펌프와 정맥 수축이 피를 심장으로 밀어 넣고, 근육의 혈관이 열려 내보낼 때의 저항이 준다. 심박수만 올리는 것은 운동이 아니다. 빈맥으로 심장이 빨리 뛰는 사람이 오히려 어지러운 이유다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-19-35.webp" width="1200" height="684" loading="lazy" decoding="async" alt="심박수와 1회 박출량을 거쳐 심박출량을 정하는 요인들의 흐름도">
+      <figcaption><b>심박출량을 정하는 다섯 손잡이.</b> 왼쪽 갈래(노랑)는 심박수로, 자율신경과 호르몬, 심방 반사가 정한다. 오른쪽 갈래(분홍)는 1회 박출량으로, 정맥 환류와 충만 시간이 앞부하(이완기말 부피)를, 자율신경과 호르몬이 수축력을, 혈관 수축·이완이 후부하를 바꿔 정한다(4장). 두 갈래는 독립적이지 않다. 심박수가 오르면 충만 시간이 줄어 박출량을 깎는다. 운동은 교감 신경과 근육 펌프로 앞부하와 수축력을 함께 올려 이 손실을 메운다.<span class="fig-words">Heart rate (HR) 심박수 · Stroke volume (SV) 1회 박출량 · Cardiac output (CO) 심박출량 · Venous return 정맥 환류 · Filling time 충만 시간 · Autonomic innervation 자율신경 · Preload 앞부하 · Contractility 수축력 · Afterload 후부하 · EDV/ESV 이완기말/수축기말 부피</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/19-4-cardiac-physiology">그림 19.35</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+  </section>
+
+  <section id="area">
+    <h2>넓이로 보는 심박출량</h2>
+    <p>심박출량은 가로가 심박수, 세로가 1회 박출량인 직사각형의 넓이다. 같은 넓이를 만드는 방법은 여럿이다. "느리고 크게"도, "빠르고 작게"도 같은 5 L/min을 낼 수 있다. 하지만 아무 직사각형이나 가능한 것은 아니다. 심박수가 오르면 박출량의 천장이 내려오기 때문이다.</p>
+
+    <div class="sim" id="sim-rect" data-desc="가로 심박수 × 세로 1회 박출량인 직사각형의 모서리를 끌어 심박출량(넓이)을 만들고, 같은 심박출량을 잇는 곡선과 심장이 낼 수 있는 한계선을 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>심박출량 직사각형</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="rc-cv"></canvas><span class="hint">모서리 손잡이를 끈다</span></div>
+        <div class="sim-controls">
+          <div class="btn-row"><button class="btn" data-p="72,72">다온 안정</button><button class="btn" data-p="48,88">지구력 선수 안정</button><button class="btn" data-p="168,107">다온 대회 속도</button><button class="btn" data-p="130,40">출혈·빈맥</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">심박수</span><span class="v" id="rc-o-hr">—</span></div>
+        <div class="stat"><span class="k">1회 박출량</span><span class="v" id="rc-o-sv">—</span></div>
+        <div class="stat"><span class="k">심박출량(넓이)</span><span class="v" id="rc-o-co">—</span></div>
+        <div class="stat"><span class="k">판정</span><span class="v" id="rc-o-ok" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "다온 안정"과 "지구력 선수 안정"을 번갈아 누른다. 직사각형의 모양은 다르지만 넓이는 둘 다 약 4~5 L/min, 같은 곡선 근처다. ② "다온 대회 속도"는 넓이가 약 18 L/min. ③ 모서리를 오른쪽 위로 끌어 200 bpm에 박출량 120 mL를 만들어 본다. 회색 한계선(운동 중 심장이 낼 수 있는 박출량의 천장)을 넘어 '불가능'이 뜬다. (한계선은 대회 속도 설정에서 심박수만 바꿔 엔진으로 구한 1회 박출량. 위 시뮬레이터와 같은 계산.)</div>
+    </div>
+  </section>
+
+  <section id="diastole">
+    <h2>짧아지는 것은 이완기다</h2>
+    <p>심박수 72에서 한 주기는 약 0.83초, 그중 수축기가 약 0.33초, 이완기가 약 0.5초다. 심박수 150이면 한 주기가 0.4초로 반이 되는데, 수축기는 약 0.26초로 조금밖에 줄지 않는다. 남는 이완기는 약 0.14초. <b>이완기가 거의 다 깎인다</b>. 심실은 이완기에만 피를 채우고, 심장 근육 자신도 이완기에만 관상동맥으로 피를 받는다(수축할 때는 근육이 혈관을 누른다).</p>
+
+    <div class="sim" id="sim-cycle" data-desc="심박수를 올리며 한 주기 안의 수축기와 이완기가 각각 얼마나 줄어드는지, 좌심실 부피가 채워지는 곡선이 어디서 잘리는지 본다: 교감 신경이 수축·이완을 빠르게 하면 무엇이 달라지는가">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>수축기와 이완기의 나눔</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cy-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>심박수 <output id="cy-hr-out"></output></span><input type="range" id="cy-hr" min="45" max="200" step="1" value="72"></label>
+          <label class="check"><input type="checkbox" id="cy-sym"> 교감 신경(수축·이완을 빠르게)</label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent-2)"></i>수축기</span><span><i style="background:var(--accent)"></i>이완기</span><span><i style="background:var(--art)"></i>좌심실 부피</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">한 주기</span><span class="v" id="cy-o-t">—</span></div>
+        <div class="stat"><span class="k">수축기</span><span class="v" id="cy-o-s">—</span></div>
+        <div class="stat"><span class="k">이완기</span><span class="v" id="cy-o-d">—</span></div>
+        <div class="stat"><span class="k">이완기말 부피</span><span class="v" id="cy-o-edv">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 심박수를 72에서 150으로 올린다. 위 띠에서 수축기는 조금, 이완기는 크게 준다. 아래 그래프의 짧은 세로선이 채우다 잘린 곳이다. ② 이완기말 부피가 줄어드는 것을 본다. 빠른 충만(곡선의 가파른 앞부분)은 지켜지고 느린 충만이 먼저 사라진다. ③ "교감 신경"을 켠다. 수축과 이완이 빨라져 같은 심박수에서 이완기가 길어진다. (엔진 BD.heart, 다온 안정 설정. 교감 신경 = tscale 0.8. 오른쪽 작은 그래프는 심박수별 수축기·이완기 길이.)</div>
+    </div>
+    <p>이 때문에 심박수가 너무 빠른 빈맥은 두 번 해롭다. 심실이 덜 채워져 박출량이 줄고, 심장 근육은 더 많이 일하는데 피를 받을 시간은 줄어든다. 관상동맥이 좁아진 사람이 빨리 뛸 때 가슴 통증이 오는 이유다.</p>
+  </section>
+
+  <section id="fick">
+    <h2>픽 원리: 산소로 심박출량 재기</h2>
+    <p>심박출량을 직접 재기는 어렵다. 1870년 생리학자 픽은 우회로를 생각했다. 몸이 1분에 쓰는 산소(\(\dot V O_2\))는 모두 피가 날라 왔다. 피 1 dL이 조직을 한 번 지나며 내려놓는 산소가 동맥과 정맥의 산소 함량 차이라면, 1분에 지나간 피의 양은 둘을 나누면 나온다.</p>
+    <div class="formula">$$CO = \frac{\dot V O_2}{C_aO_2 - C_vO_2}$$
+      <div class="where">\(\dot V O_2\) 산소 소비량(안정 약 250 mL/min), \(C_aO_2\) 동맥혈 산소 함량(약 20 mL/dL), \(C_vO_2\) 혼합 정맥혈 산소 함량(안정 약 15 mL/dL). 250 ÷ 5 mL/dL = 50 dL/min = 5 L/min.</div>
+    </div>
+
+    <div class="sim" id="sim-fick" data-desc="정맥혈 산소 함량 막대를 끌어 조직이 피에서 산소를 얼마나 빼내는지 바꾸고, 산소 소비량과 함께 픽 원리로 심박출량을 구한다: 운동할 때 심장은 더 보내고 조직은 더 빼낸다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>픽 원리: 산소 장부로 심박출량 구하기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="fk-cv"></canvas><span class="hint">정맥혈 막대의 높이를 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>산소 소비량 V̇O₂ <output id="fk-vo2-out"></output></span><input type="range" id="fk-vo2" min="200" max="3500" step="10" value="270"></label>
+          <label class="ctrl"><span>헤모글로빈 <output id="fk-hb-out"></output></span><input type="range" id="fk-hb" min="8" max="18" step="0.5" value="15"></label>
+          <div class="btn-row"><button class="btn" id="fk-rest">다온 안정</button><button class="btn" id="fk-race">다온 대회 속도</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">동맥 / 정맥 산소</span><span class="v" id="fk-o-c">—</span></div>
+        <div class="stat"><span class="k">동정맥 산소 차</span><span class="v" id="fk-o-d">—</span></div>
+        <div class="stat"><span class="k">산소 추출률</span><span class="v" id="fk-o-e">—</span></div>
+        <div class="stat"><span class="k">심박출량</span><span class="v" id="fk-o-co">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "다온 안정"(V̇O₂ 약 270 mL/min)에서 정맥 막대가 약 15 mL/dL이면 심박출량 약 5.2 L/min. ② "다온 대회 속도"는 V̇O₂ 약 2,340 mL/min(VO2max 38의 79 %). 4장의 대회 속도 심박출량 18 L/min이 되려면 정맥 산소가 약 7 mL/dL까지 내려가야 한다. 근육이 피 속 산소의 2/3를 빼낸다. ③ 헤모글로빈을 10으로 내린다(빈혈). 같은 V̇O₂와 같은 정맥 산소면 심장이 훨씬 더 보내야 한다. (동맥 포화도 97 %, PaO2 95 mmHg로 고정. 산소 함량 = 1.34 × Hb × 포화도 + 0.003 × PO2, BD.o2Content.)</div>
+    </div>
+    <p>운동할 때 산소 소비는 10배 가까이 늘지만 심박출량은 3~4배만 는다. 나머지는 조직이 같은 피에서 산소를 더 많이 빼내서(동정맥 산소 차가 5 → 13~15 mL/dL) 메운다. 훈련은 두 길을 모두 넓힌다. 심장은 더 많이 보내고, 근육은 모세혈관과 미토콘드리아가 늘어 더 많이 빼낸다(<a href="exercise.html">12장</a>).</p>
+  </section>
+
+  <section id="distribution">
+    <h2>피는 어디로 가는가</h2>
+    <p>쉬는 동안 심박출량 약 5 L/min의 가장 큰 몫은 소화관과 간(약 25 %), 콩팥(약 20 %), 골격근(약 20 %), 뇌(약 15 %)로 간다. 무게가 몸의 0.5 %도 안 되는 콩팥이 피의 5분의 1을 받는 것은 피를 걸러야 하기 때문이고, 뇌는 무게의 2 %로 약 15 %를 받는다. 심장 근육 자신은 약 4~5 %를 쓴다.</p>
+    <p>달리기를 시작하면 배분이 완전히 바뀐다. 근육의 세동맥은 대사 물질(이산화탄소, 젖산, 아데노신, 칼륨)에 반응해 활짝 열리고, 교감 신경은 소화관·콩팥·쉬는 근육의 혈관을 조인다. 뇌는 절대량을 거의 그대로 지킨다. 아래에서 운동 강도를 올리며 몸을 보자.</p>
+
+    <div class="sim" id="sim-distribution" data-desc="사람 실루엣 위에서 운동 강도를 올리면 심박출량이 5에서 18 L/min으로 늘며 골격근 혈류가 20 %에서 80 % 넘게로 옮겨 가는 것을 흐르는 피와 도넛 그래프로 본다: 뇌 혈류는 절대량을 지킨다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>혈류 배분: 쉴 때와 달릴 때</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ds-cv"></canvas><span class="hint">장기를 누르면 설명이 나온다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>운동 강도 <output id="ds-x-out"></output></span><input type="range" id="ds-x" min="0" max="1" step="0.05" value="0"></label>
+          <div class="seg" id="ds-unit"><button data-value="pct" class="on">비율(%)</button><button data-value="abs">절대량(mL/min)</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="ds-info">장기를 누르면 그 장기의 혈류 이야기가 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">심박출량</span><span class="v" id="ds-o-co">—</span></div>
+        <div class="stat"><span class="k">골격근</span><span class="v" id="ds-o-mu">—</span></div>
+        <div class="stat"><span class="k">뇌</span><span class="v" id="ds-o-br">—</span></div>
+        <div class="stat"><span class="k">소화관·간 + 콩팥</span><span class="v" id="ds-o-gk">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 강도를 1(대회 속도)로 민다. 심박출량은 약 3.5배로 늘고 골격근 몫이 20 %에서 80 % 넘게로 커진다. ② "절대량"으로 바꿔 뇌를 본다. 비율은 15 %에서 4 %로 줄지만 절대량(약 750 mL/min)은 그대로다. ③ 소화관·간과 콩팥은 절대량까지 줄어 각각 절반 가까이 된다. 달리기 직전에 많이 먹으면 속이 불편한 이유 중 하나다. 피부는 체온을 식히려 중간 강도까지는 는다. (안정 배분은 교과서 대표값, 대회 속도 배분은 다온의 심박출량 18 L/min에 맞춰 어림한 교육용 값. 사이는 직선으로 이었다.)</div>
+    </div>
+  </section>
+
+  <section id="zones">
+    <h2>다온의 심박 구간</h2>
+    <p>운동 강도를 심박수로 정할 때 흔히 쓰는 것이 <span class="term">카르보넨 식</span><span class="en">(Karvonen formula)</span>이다. 최대 심박수에서 안정 심박수를 뺀 <span class="term">심박 예비량</span><span class="en">(Heart rate reserve, HRR)</span>의 몇 %를 안정 심박수에 더한다. 안정 심박수가 낮은 사람은 같은 %에서도 목표가 조금 다르게 나와, 최대 심박수의 %만 쓰는 방법보다 개인차를 더 반영한다.</p>
+    <div class="formula">$$HR_{목표} = HR_{안정} + x \times (HR_{최대} - HR_{안정}), \qquad HR_{최대} \approx 208 - 0.7 \times 나이$$
+      <div class="where">\(x\) 강도(0.5~1.0), \(HR_{최대}\)는 Tanaka 식(34세면 약 184 bpm). 흔히 쓰는 220 − 나이(186)와 비슷하지만 나이가 많을수록 차이가 커진다. 어느 식이든 실제 최대 심박수와 ±10 bpm 이상 어긋날 수 있다.</div>
+    </div>
+
+    <div class="sim" id="sim-karvonen" data-desc="나이와 안정 심박수로 카르보넨 심박 구간 Z1~Z5를 계산하고, 심박수 막대 위 표시를 끌어 지금 심박수가 어느 구간인지, 최대 심박수의 % 방식과 무엇이 다른지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>카르보넨 심박 구간 계산기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="kv-cv"></canvas><span class="hint">오른쪽 표시를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="kv-who"><button data-value="daon" class="on">다온</button><button data-value="me">내 숫자</button></div>
+          <label class="ctrl"><span>나이 <output id="kv-age-out"></output></span><input type="range" id="kv-age" min="15" max="80" step="1" value="34"></label>
+          <label class="ctrl"><span>안정 심박수 <output id="kv-rest-out"></output></span><input type="range" id="kv-rest" min="40" max="95" step="1" value="72"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">최대 심박수(Tanaka)</span><span class="v" id="kv-o-max">—</span></div>
+        <div class="stat"><span class="k">심박 예비량</span><span class="v" id="kv-o-hrr">—</span></div>
+        <div class="stat"><span class="k">표시한 심박수</span><span class="v" id="kv-o-hr">—</span></div>
+        <div class="stat"><span class="k">구간</span><span class="v" id="kv-o-z" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "다온"에서 다섯 구간을 읽는다. Z1 128–139, Z2 139–151, Z3 151–162, Z4 162–173, Z5 173–184 bpm. ② 표시를 161에 놓는다. 다온의 10 km 대회 목표 심박(젖산 역치 근처의 지속 가능한 속도)이 Z3 꼭대기에 있다. ③ "내 숫자"를 골라 자기 나이와 아침 안정 심박수를 넣는다. 안정 심박수가 낮을수록 같은 구간의 아래쪽 경계가 낮아진다. 왼쪽 회색 막대(최대 심박수의 % 방식)와 비교한다. (BD.karvonen, BD.hrMax, BD.HR_ZONES. 구간 이름과 경계는 단체·기기마다 조금씩 다르다.)</div>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>구간</th><th>이름</th><th class="num">심박 예비량의 %</th><th class="num">다온(안정 72, 최대 184)</th><th>느낌</th></tr></thead>
+      <tbody>
+        <tr><td>Z1</td><td>회복</td><td class="num">50~60 %</td><td class="num">128~139</td><td>아주 편하다</td></tr>
+        <tr><td>Z2</td><td>유산소 기초</td><td class="num">60~70 %</td><td class="num">139~151</td><td>대화가 된다</td></tr>
+        <tr><td>Z3</td><td>템포</td><td class="num">70~80 %</td><td class="num">151~162</td><td>짧은 문장만</td></tr>
+        <tr><td>Z4</td><td>역치</td><td class="num">80~90 %</td><td class="num">162~173</td><td>몇 마디</td></tr>
+        <tr><td>Z5</td><td>최대</td><td class="num">90~100 %</td><td class="num">173~184</td><td>말하기 어렵다</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout warn">
+      <strong>최대 심박수를 혼자 확인하려 하지 말 것</strong>
+      최대 심박수를 '직접 재 보겠다'며 혼자 전력 질주를 되풀이하는 것은 위험할 수 있다. 특히 운동을 오래 쉬었거나 혈압·심장 질환이 의심되면 더 그렇다. 운동 중 가슴 통증·압박감, 심한 숨가쁨, 어지러움, 두근거림이 생기면 바로 멈춘다. 정확한 최대 심박수와 구간은 의료진이 감독하는 운동 부하 검사로 정한다.
+    </div>
+  </section>
+
+  <section id="kinetics">
+    <h2>심박수는 어떻게 오르고 내려오는가</h2>
+    <p>달리기를 시작하면 심박수는 계단처럼 한 번에 오르지 않는다. 처음 10초 남짓은 미주 신경의 브레이크를 놓으며 빠르게 오르고(<a href="ecg.html">5장</a>), 그다음 교감 신경과 혈중 아드레날린이 천천히 나머지를 올린다. 멈추면 반대로 미주 신경이 먼저 돌아와 첫 1분 동안 빠르게 내려온다. 이 <span class="term">회복 심박수</span><span class="en">(Heart rate recovery)</span>, 즉 운동을 멈춘 뒤 1분 동안 떨어진 폭은 자율신경의 건강을 보여 주는 숫자로 쓰인다. 훈련한 사람일수록 빨리 오르고 빨리 내려온다.</p>
+
+    <div class="sim" id="sim-kinetics" data-desc="운동을 시작하고 멈출 때 심박수가 빠른 부교감 성분과 느린 교감 성분으로 오르내리는 모습을 재생하고, 훈련 전후의 정상 상태 심박수와 1분 회복 심박수를 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>심박수의 오르막과 내리막</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="kn-cv"></canvas><span class="hint">그래프를 끌어 시간을 옮긴다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>운동 강도(훈련 전 기준 %HRR) <output id="kn-x-out"></output></span><input type="range" id="kn-x" min="0.3" max="0.95" step="0.05" value="0.7"></label>
+          <div class="seg" id="kn-fit"><button data-value="pre" class="on">훈련 전</button><button data-value="post">12주 훈련 후</button><button data-value="both">겹쳐 보기</button></div>
+          <div class="btn-row"><button class="btn primary" id="kn-play">재생</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">지금 심박수</span><span class="v" id="kn-o-hr">—</span></div>
+        <div class="stat"><span class="k">운동 끝 심박수</span><span class="v" id="kn-o-ss">—</span></div>
+        <div class="stat"><span class="k">1분 회복 폭</span><span class="v" id="kn-o-hrr">—</span></div>
+        <div class="stat"><span class="k">절반까지 오르는 시간</span><span class="v" id="kn-o-half">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "재생"을 누른다. 2분에 운동을 시작하면 처음 십여 초 동안 가파르게 오르고(미주 신경 해제) 그 뒤 천천히 오른다. 같은 강도를 유지해도 조금씩 오르는 것은 심박 표류다. ② 7분에 멈춘 뒤 1분 동안 떨어진 폭(회복 폭)을 읽는다. 12 bpm보다 작으면 회복이 느린 편으로 본다. ③ "겹쳐 보기"를 고른다. 훈련 뒤에는 같은 운동에서 심박수가 덜 오르고(박출량이 커져서), 더 빨리 오르고, 더 빨리 내려온다. (빠른 성분 τ 약 6초 + 느린 성분 τ 30~45초의 1차 응답 두 개를 더한 교육용 모델. 훈련 후 안정 심박 64는 5장의 결과.)</div>
+    </div>
+  </section>
+
+  <section id="athlete">
+    <h2>느리고 큰 심장</h2>
+    <p>지구력 선수의 안정 심박수는 40~50 bpm인 경우가 많다. 그래도 어지럽지 않은 것은 한 번에 내보내는 양이 크기 때문이다. 오랜 지구력 훈련은 좌심실을 조금 키우고(벽이 두꺼워지기보다 안이 넓어진다), 혈액량을 늘리고, 미주 신경 긴장을 높인다. 같은 심박출량을 더 적은 박동으로 만드니 박동마다 이완기가 길어지고, 심장이 더 높은 최대 심박출량에 닿을 여유가 생긴다.</p>
+
+    <div class="sim" id="sim-athlete" data-desc="같은 심박출량을 내야 할 때 운동을 안 하던 심장과 지구력 선수의 심장이 각각 몇 번 뛰어야 하는지, 뛰는 두 심장과 최대 심박수 한계로 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>같은 심박출량, 다른 심장</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="at-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>필요한 심박출량 <output id="at-co-out"></output></span><input type="range" id="at-co" min="5" max="25" step="0.5" value="5"></label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">운동 안 하던 심장</span><span class="v" id="at-o-u">—</span></div>
+        <div class="stat"><span class="k">지구력 선수</span><span class="v" id="at-o-t">—</span></div>
+        <div class="stat"><span class="k">최대 심박출량(어림)</span><span class="v" id="at-o-max">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 5 L/min에서 두 심장의 박자를 비교한다. 선수의 심장은 크게 천천히 뛴다. ② 15 L/min으로 올린다. 같은 일을 하는데 선수의 심박수가 30 bpm 넘게 낮다. ③ 21 L/min을 넘기면 운동 안 하던 심장은 최대 심박수(184)에 닿아 더 못 올린다(경고). 선수는 아직 여유가 있다. 최대 심박수는 훈련으로 거의 바뀌지 않으므로 최대 심박출량의 차이는 박출량의 차이다. (안정 박출량: 다온 72 mL, 선수 약 88 mL(BD.HEART_PRESETS.athlete). 운동 중 박출량은 각각 107, 130 mL까지 직선으로 늘린다고 어림했다.)</div>
+    </div>
+  </section>
+
+  <section id="daon">
+    <h2>다온이 달릴 때의 모니터</h2>
+    <p>이제 다온에게 모니터를 붙이고 달리게 해 보자. 속도를 올리면 심박수는 몇십 초에 걸쳐 따라 오르고, 혈압은 수축기만 오르며, 심박출량과 근육 혈류가 커진다. 아래 띠의 색은 다온의 카르보넨 구간이다.</p>
+
+    <div class="sim" id="sim-daon-run" data-big data-desc="다온에게 모니터를 붙이고 달리는 속도를 바꾸면 심박수가 따라 오르며 심전도·동맥압·심박출량·근육 혈류가 바뀌고, 심박수 추세가 다온의 카르보넨 구간과 대회 목표 161 bpm 위를 지나가는 것을 실시간으로 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>다온의 달리기 모니터</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view monitor"><canvas id="dr-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>달리는 강도 <output id="dr-x-out"></output></span><input type="range" id="dr-x" min="0" max="1" step="0.05" value="0"></label>
+          <label class="ctrl"><span>시간 배속 <output id="dr-sp-out"></output></span><input type="range" id="dr-sp" min="1" max="20" step="1" value="8"></label>
+          <div class="btn-row"><button class="btn primary" id="dr-race">대회 순서 재생</button><button class="btn" id="dr-re">처음부터</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">심박수 · 구간</span><span class="v" id="dr-o-hr">—</span></div>
+        <div class="stat"><span class="k">1회 박출량</span><span class="v" id="dr-o-sv">—</span></div>
+        <div class="stat"><span class="k">심박출량</span><span class="v" id="dr-o-co">—</span></div>
+        <div class="stat"><span class="k">근육으로 가는 피</span><span class="v" id="dr-o-mu">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 강도를 0.6으로 올린다. 심박수가 몇십 초에 걸쳐 오르고 혈압 파형의 꼭대기가 높아지며 바닥은 오히려 조금 내려간다(근육 혈관이 열려서). ② "대회 순서 재생"을 누른다. 쉼 → 몸풀기 → 대회 속도 → 정리 운동 순서로, 심박수 추세가 Z2를 지나 대회 목표 161 근처까지 오르는 것을 본다. ③ 강도를 1로 두면 엔진의 대회 속도 설정(심박 168, 심박출량 약 18 L/min)에 닿는다. 계획보다 조금 빠른, Z4 들머리다. (강도 0 = BD.HEART_PRESETS.daon, 1 = run. 사이 값은 다섯 점을 엔진으로 돌려 보간했다. 말초 저항은 직선 대신 기하급수로 줄였다(근육 혈관은 낮은 강도에서 이미 크게 열린다. 직선으로 줄이면 중간 강도에서 확장기 혈압이 비현실적으로 오른다). 심박수는 τ 약 30초로 목표를 따라간다. 심박 표류·체온 상승은 넣지 않았다.)</div>
+    </div>
+
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 심박수 구간은 건강한 사람을 위한 일반적인 안내이며, 심장 질환이 있거나 심장 박동에 영향을 주는 약(예: 베타 차단제)을 먹는 사람은 숫자가 맞지 않을 수 있습니다. 운동을 새로 시작하기 전 걱정되는 증상이나 질환이 있으면 의료진과 상담하세요.</p>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 7장</span></div>
+      <h4>심박 구간 Z1 128–139 … Z5 173–184, 대회 목표 심박 약 161</h4>
+      <p>34세 다온의 최대 심박수는 Tanaka 식으로 약 184 bpm, 안정 심박 72 bpm이면 심박 예비량은 112다. 카르보넨 구간은 Z1 128–139, Z2 139–151, Z3 151–162, Z4 162–173, Z5 173–184 bpm이다. 지금 실력으로 10 km를 약 58분에 달리는 대회 계획 속도(VO2max의 약 79 %)에서 심박수는 약 161, Z3의 꼭대기다. 엔진으로 심박수만 올려 보면 다온의 심장은 약 110~130 bpm에서 심박출량 약 6.3 L/min으로 꺾이지만, 운동처럼 수축력·정맥 환류·이완 속도가 함께 오르면 약 190 bpm까지 늘어 대회 속도에서 약 18 L/min을 낸다. 그때 피의 80 % 넘게가 다리와 몸통의 근육으로 가고, 뇌는 절대량 약 750 mL/min을 지킨다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>다온의 다섯 심박 구간과 대회 목표 심박 161. 심박수만으로는 심박출량을 늘릴 수 없고, 운동에서는 혈류가 근육으로 옮겨 간다.</div><div><b>아직 모르는 것</b>근육으로 간 그 많은 피에 산소를 채우는 폐는 얼마나 숨을 쉬어야 하는가.</div><div><b>다음 단계</b><a href="lungs.html">8장</a>에서 다온의 폐활량과 대회 속도의 분당 환기량을 본다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>심박출량 = 심박수 × 1회 박출량(안정 약 70 × 70 mL ≈ 5 L/min). 넓이가 같은 여러 조합이 가능하지만, 심박수가 오르면 박출량의 천장이 내려온다.</li>
+      <li>심박수가 오르면 짧아지는 것은 주로 이완기(충만 시간)다. 박자만 올리면 약 120 bpm 근처에서 심박출량이 꺾인다. 운동에서는 수축력·정맥 환류·이완 속도가 함께 올라 180 bpm 넘게까지 늘어난다.</li>
+      <li>픽 원리: CO = V̇O₂ / (CaO₂ − CvO₂). 운동 중 산소 공급은 심박출량 증가와 조직의 산소 추출 증가(동정맥 산소 차 5 → 13 mL/dL)가 함께 맡는다.</li>
+      <li>안정 시 혈류는 소화관·간 약 25 %, 콩팥 약 20 %, 근육 약 20 %, 뇌 약 15 %, 심장 약 4~5 %. 격한 운동에서는 근육이 80 % 넘게 받고 뇌는 절대량을 지킨다.</li>
+      <li>카르보넨: 목표 심박 = 안정 + 강도 × (최대 − 안정), 최대 ≈ 208 − 0.7 × 나이. 다온은 Z1 128–139 … Z5 173–184, 대회 목표 약 161.</li>
+      <li>심박수는 빠른 부교감 성분과 느린 교감 성분으로 오르내린다. 훈련하면 안정·운동 심박이 낮아지고 회복이 빨라지며, 같은 심박출량을 더 큰 박출량과 더 적은 박동으로 만든다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>심박 조율기로 심박수만 72에서 180 bpm으로 올렸을 때 일어나는 일로 가장 알맞은 것은?</p>
+        <div class="opts">
+          <button class="opt">박출량은 그대로라 심박출량이 2.5배가 된다</button>
+          <button class="opt" data-correct>이완기가 크게 짧아져 박출량이 줄고, 심박출량은 오히려 줄 수 있다</button>
+          <button class="opt">수축기가 크게 짧아져 박출량이 는다</button>
+          <button class="opt">혈압이 크게 올라 박출량이 는다</button>
+        </div>
+        <div class="quiz-exp">한 주기가 짧아질 때 줄어드는 것은 주로 이완기, 곧 심실이 채워지는 시간이다. 박자만 빨라지면 박출량이 급격히 줄어 약 120 bpm 근처에서 심박출량이 꺾인다. 운동에서는 수축력·정맥 환류·이완 속도가 함께 올라 이 한계를 미룬다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>산소 소비량 300 mL/min, 동맥혈 산소 함량 20 mL/dL, 혼합 정맥혈 산소 함량 14 mL/dL이다. 픽 원리로 구한 심박출량은?</p>
+        <div class="opts">
+          <button class="opt">2 L/min</button>
+          <button class="opt">6 L/min</button>
+          <button class="opt" data-correct>5 L/min</button>
+          <button class="opt">15 L/min</button>
+        </div>
+        <div class="quiz-exp">동정맥 산소 차 = 20 − 14 = 6 mL/dL. CO = 300 ÷ 6 = 50 dL/min = 5 L/min.</div>
+      </div>
+      <div class="quiz-q">
+        <p>나이 40세, 안정 심박수 60 bpm인 사람의 카르보넨 70 % 목표 심박수에 가장 가까운 것은? (최대 심박수는 208 − 0.7 × 나이)</p>
+        <div class="opts">
+          <button class="opt">126 bpm</button>
+          <button class="opt">140 bpm</button>
+          <button class="opt">168 bpm</button>
+          <button class="opt" data-correct>144 bpm</button>
+        </div>
+        <div class="quiz-exp">최대 = 208 − 28 = 180. 예비량 = 180 − 60 = 120. 목표 = 60 + 0.7 × 120 = 144 bpm. 최대 심박수의 70 %만 쓰면 126으로 더 낮게 나온다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>쉬다가 격하게 달릴 때 장기별 혈류 변화로 옳은 것은?</p>
+        <div class="opts">
+          <button class="opt" data-correct>골격근의 몫은 80 % 넘게 커지고, 뇌는 비율은 줄지만 절대량은 거의 그대로다</button>
+          <button class="opt">모든 장기의 혈류가 심박출량과 같은 비율로 늘어난다</button>
+          <button class="opt">뇌 혈류가 가장 많이 늘어 집중력이 높아진다</button>
+          <button class="opt">콩팥 혈류는 걸러야 할 노폐물이 늘어 크게 증가한다</button>
+        </div>
+        <div class="quiz-exp">근육의 세동맥은 대사 물질에 반응해 활짝 열리고, 교감 신경은 소화관·콩팥 혈관을 조인다. 뇌는 자기 조절로 혈류를 약 750 mL/min 근처로 지킨다. 심박출량이 커지니 뇌의 비율은 15 %에서 몇 %로 줄어든다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>지구력 선수의 안정 심박수가 45 bpm인데도 심박출량이 정상인 가장 주된 이유는?</p>
+        <div class="opts">
+          <button class="opt">최대 심박수가 높아져서</button>
+          <button class="opt">산소 소비량이 보통 사람의 절반이라서</button>
+          <button class="opt" data-correct>1회 박출량이 커서 적은 박동으로 같은 양을 보내서</button>
+          <button class="opt">혈압이 높아 피가 빨리 돌아서</button>
+        </div>
+        <div class="quiz-exp">훈련은 좌심실 안을 넓히고 혈액량과 미주 신경 긴장을 늘린다. 45 bpm × 약 110 mL ≈ 5 L/min. 최대 심박수는 훈련으로 거의 바뀌지 않는다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  function viewW(id) { return document.getElementById(id).parentElement.clientWidth; }
+  function fmt0(x) { return Math.round(x).toString(); }
+  function txt(ctx, s, x, y, o) {
+    o = o || {};
+    ctx.font = BB.font(o.size || 11, o.mono, o.weight); ctx.fillStyle = o.color || P().dim;
+    ctx.textAlign = o.align || "left"; ctx.textBaseline = o.base || "middle"; ctx.fillText(s, x, y);
+  }
+  function handle(ctx, x, y, col, r) {
+    var p = P(); ctx.fillStyle = p.bg; ctx.strokeStyle = col || p.text; ctx.lineWidth = 2.2;
+    ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }
+  /* 공통: 심장 모델 캐시와 느린 계산 줄 세우기 */
+  var cache = {};
+  function run(o) { var key = JSON.stringify(o); if (!cache[key]) cache[key] = BD.heart(o); return cache[key]; }
+  var jobs = [], busy = false;
+  function queue(fn) { jobs.push(fn); if (!busy) { busy = true; setTimeout(work, 30); } }
+  function work() { var t0 = Date.now(); while (jobs.length && Date.now() - t0 < 25) { try { jobs.shift()(); } catch (e) { console.error(e); } } if (jobs.length) setTimeout(work, 16); else busy = false; }
+  /** 충만 시간(s): 승모판으로 피가 들어오는 시간의 합 */
+  function fillTime(r) { var n = 0; for (var i = 0; i < r.qmv.length; i++) if (r.qmv[i] > 0) n++; return n * (r.T / r.qmv.length); }
+  var PACE = { rs: 1.15 }, RUNO = { emax: 5.5, vs: 700, rs: 0.32, tscale: 0.8, ca: 0.8 };
+  var HRS = []; for (var h0 = 40; h0 <= 220; h0 += 10) HRS.push(h0);
+  var SWEEP = { pace: [], run: [], listeners: [] };
+  function sweepNotify() { SWEEP.listeners.forEach(function (f) { f(); }); }
+  HRS.forEach(function (hr) {
+    queue(function () { var r = BD.heartSweep([hr], PACE)[0]; SWEEP.pace.push(r); sweepNotify(); });
+    queue(function () { var r = BD.heartSweep([hr], RUNO)[0]; SWEEP.run.push(r); sweepNotify(); });
+  });
+  function svOn(curve, hr) { var c = SWEEP[curve]; if (c.length < 2) return null; var xs = c.map(function (q) { return q.hr; }), ys = c.map(function (q) { return q.sv; }); if (hr > xs[xs.length - 1] + 0.1) return null; return BD.interp(xs, ys, hr); }
+  var ZONES = BD.HR_ZONES.map(function (z) { return { z: z.z, name: z.name, lo: BD.karvonen(z.lo, 72, BD.hrMax(34)), hi: BD.karvonen(z.hi, 72, BD.hrMax(34)) }; });
+  function zoneOf(hr, zs) { zs = zs || ZONES; for (var i = zs.length - 1; i >= 0; i--) if (hr >= zs[i].lo - 0.5) return zs[i]; return null; }
+  function zoneCol(z) { var p = P(); return [p.accent, p.ok, p.warn, BB.color("heat"), p.bad][z - 1]; }
+
+  /* ---------------------------------------------------------- 1. 심박수와 심박출량 */
+  (function () {
+    var hr = 72, mode = "pace", lay = null, cv = null, cur = null, dragging = false;
+    function calc() {
+      cur = run(Object.assign({ hr: hr, beats: 8 }, mode === "pace" ? PACE : RUNO));
+      var ft = fillTime(cur);
+      BB.stat("co-o-hr", hr + "<small>bpm</small>");
+      BB.stat("co-o-sv", fmt0(cur.sv) + "<small>mL</small>");
+      BB.stat("co-o-co", "<span class='" + (mode === "pace" && hr > 130 ? "bad-t" : "") + "'>" + cur.co.toFixed(1) + "</span><small>L/min</small>");
+      BB.stat("co-o-fill", fmt0(ft * 1000) + " / " + fmt0(cur.T * 1000) + "<small>ms</small>");
+      if (cv) cv.redraw();
+    }
+    var dcalc = BB.debounce(calc, 60);
+    BB.seg("co-mode", function (v) { mode = v; calc(); });
+    document.getElementById("co-sv").addEventListener("change", function () { cv.redraw(); });
+    document.getElementById("co-72").addEventListener("click", function () { hr = 72; calc(); });
+    document.getElementById("co-168").addEventListener("click", function () { hr = 168; calc(); });
+    SWEEP.listeners.push(function () { if (cv) cv.redraw(); });
+    calc();
+    cv = BB.canvas("#co-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, showSv = document.getElementById("co-sv").checked;
+      var box = { x: 52, y: 18, w: w - (showSv ? 100 : 66), h: h - (narrow ? 176 : 150) };
+      var sortd = function (a) { return a.slice().sort(function (x, y) { return x.hr - y.hr; }); };
+      var pa = sortd(SWEEP.pace), ra = sortd(SWEEP.run);
+      var series = [{ data: pa.map(function (q) { return [q.hr, q.co]; }), color: p.bad, width: mode === "pace" ? 3 : 1.6 }, { data: ra.map(function (q) { return [q.hr, q.co]; }), color: p.ok, width: mode === "run" ? 3 : 1.6 }];
+      var c = BB.chart(ctx, box, { x: [40, 220], y: [0, 22], xLabel: "심박수(bpm)", yLabel: "심박출량(L/min)", xTicks: [40, 70, 100, 130, 160, 190, 220], series: series });
+      // 1회 박출량(오른쪽 축)
+      if (showSv) {
+        var Ys = function (v) { return box.y + box.h - (v / 140) * box.h; };
+        [[pa, p.bad], [ra, p.ok]].forEach(function (s) { ctx.strokeStyle = BB.alpha(s[1], 0.6); ctx.setLineDash([5, 4]); ctx.lineWidth = 1.6; ctx.beginPath(); s[0].forEach(function (q, i) { i ? ctx.lineTo(c.X(q.hr), Ys(q.sv)) : ctx.moveTo(c.X(q.hr), Ys(q.sv)); }); ctx.stroke(); ctx.setLineDash([]); });
+        ctx.fillStyle = p.dim; ctx.font = BB.font(10, true); ctx.textAlign = "left"; ctx.textBaseline = "middle";
+        [0, 35, 70, 105, 140].forEach(function (v) { ctx.fillText(String(v), box.x + box.w + 6, Ys(v)); });
+        ctx.save(); ctx.translate(w - 8, box.y + box.h / 2); ctx.rotate(Math.PI / 2); txt(ctx, "1회 박출량(mL, 점선)", 0, 0, { align: "center", size: 11 }); ctx.restore();
+      }
+      // 최고점 표시
+      [[pa, p.bad], [ra, p.ok]].forEach(function (s) {
+        if (s[0].length < 4) return; var best = s[0].reduce(function (a, b) { return b.co > a.co ? b : a; });
+        ctx.strokeStyle = s[1]; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(c.X(best.hr), c.Y(best.co), 5, 0, Math.PI * 2); ctx.stroke();
+        txt(ctx, "꺾임 " + best.hr + " bpm · " + best.co.toFixed(1), c.X(best.hr) + (best.hr > 170 ? -8 : 8), c.Y(best.co) - 12, { size: 11, weight: 700, color: s[1], align: best.hr > 170 ? "right" : "left" });
+      });
+      if (SWEEP.pace.length + SWEEP.run.length < HRS.length * 2) txt(ctx, "곡선 계산 중… " + Math.round(((SWEEP.pace.length + SWEEP.run.length) / (HRS.length * 2)) * 100) + "%", box.x + box.w - 6, box.y + 10, { align: "right", size: 11 });
+      // 동작점
+      var col = mode === "pace" ? p.bad : p.ok;
+      ctx.strokeStyle = BB.alpha(p.text, 0.4); ctx.setLineDash([3, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(c.X(hr), box.y); ctx.lineTo(c.X(hr), box.y + box.h); ctx.stroke(); ctx.setLineDash([]);
+      handle(ctx, c.X(hr), c.Y(cur.co), col, 8);
+      if (mode === "pace" && hr > 140) txt(ctx, "채울 시간이 없다: 박출량 " + fmt0(cur.sv) + " mL", box.x + 8, box.y + 12, { size: 12, weight: 700, color: p.bad });
+      lay = { c: c, box: box };
+      // 아래: 한 주기 띠(수축기 / 이완기 / 충만)
+      var bb = { x: box.x, y: h - (narrow ? 74 : 62), w: box.w, h: 22 };
+      var maxT = 60 / 40, T = cur.T, sys = cur.events.avClose || 0.3, ft = fillTime(cur);
+      var Xb = function (t) { return bb.x + (t / maxT) * bb.w; };
+      txt(ctx, "한 주기(" + fmt0(T * 1000) + " ms)", bb.x, bb.y - 10, { size: 11, weight: 600, color: p.text });
+      ctx.fillStyle = BB.alpha(p.accent2, 0.7); ctx.fillRect(Xb(0), bb.y, Xb(sys) - Xb(0), bb.h);
+      ctx.fillStyle = BB.alpha(p.accent, 0.35); ctx.fillRect(Xb(sys), bb.y, Xb(T) - Xb(sys), bb.h);
+      ctx.fillStyle = BB.alpha(p.accent, 0.85); ctx.fillRect(Xb(T - ft), bb.y + 6, Xb(T) - Xb(T - ft), bb.h - 12);
+      ctx.strokeStyle = p.border; ctx.strokeRect(Xb(0), bb.y, Xb(T) - Xb(0), bb.h);
+      txt(ctx, "수축기 " + fmt0(sys * 1000), Xb(0) + 4, bb.y + bb.h + 10, { size: 10.5, color: p.accent2 });
+      txt(ctx, "충만 " + fmt0(ft * 1000) + " ms", Math.max(Xb(T), Xb(sys) + 90), bb.y + bb.h + 10, { size: 10.5, color: p.accent, align: "right" });
+      txt(ctx, "40 bpm의 한 주기(1.5 s) 기준", bb.x + bb.w, bb.y - 10, { size: 10, align: "right" });
+    }, { get height() { return viewW("co-cv") < 560 ? 420 : 380; } });
+    BB.drag(cv.canvas, {
+      start: function (x, y) { dragging = !!lay && y < lay.box.y + lay.box.h + 20; },
+      move: function (x) { if (!dragging) return; var v = 40 + ((x - lay.box.x) / lay.box.w) * 180; hr = Math.round(BB.clamp(v, 40, 220) / 2) * 2; cv.redraw(); dcalc(); },
+      end: function () { dragging = false; },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 2. 직사각형 */
+  (function () {
+    var hr = 72, sv = 72, lay = null, cv = null;
+    function out() {
+      var co = (hr * sv) / 1000, cap = svOn("run", hr);
+      BB.stat("rc-o-hr", fmt0(hr) + "<small>bpm</small>"); BB.stat("rc-o-sv", fmt0(sv) + "<small>mL</small>");
+      BB.stat("rc-o-co", co.toFixed(1) + "<small>L/min</small>");
+      var bad = hr > 184 || (cap != null && sv > cap + 3);
+      BB.stat("rc-o-ok", bad ? "<span class='bad-t'>불가능(한계 밖)</span>" : "<span class='ok-t'>가능</span>");
+      if (cv) cv.redraw();
+    }
+    [].forEach.call(document.querySelectorAll("#sim-rect [data-p]"), function (b) { b.addEventListener("click", function () { var v = b.dataset.p.split(","); hr = +v[0]; sv = +v[1]; out(); }); });
+    SWEEP.listeners.push(function () { if (cv) cv.redraw(); });
+    out();
+    cv = BB.canvas("#rc-cv", function (ctx, w, h) {
+      var p = P();
+      var box = { x: 52, y: 16, w: w - 68, h: h - 62 };
+      var c = BB.chart(ctx, box, { x: [0, 220], y: [0, 160], xLabel: "심박수(bpm)", yLabel: "1회 박출량(mL)", xTicks: [0, 40, 80, 120, 160, 200] });
+      // 같은 심박출량 곡선
+      var narrowR = w < 560; [5, 10, 15, 20, 25].forEach(function (co) {
+        ctx.strokeStyle = BB.alpha(p.accent, 0.35); ctx.lineWidth = 1.2; ctx.setLineDash([4, 4]); ctx.beginPath();
+        var st = false; for (var x = 20; x <= 220; x += 2) { var y = (co * 1000) / x; if (y > 160) continue; st ? ctx.lineTo(c.X(x), c.Y(y)) : ctx.moveTo(c.X(x), c.Y(y)); st = true; } ctx.stroke(); ctx.setLineDash([]);
+        if (narrowR && co % 10 !== 0 && co !== 5) return; var lx = Math.min(214, Math.max((co * 1000) / 150, 30)); txt(ctx, co + (narrowR ? "" : " L/min"), c.X(lx), c.Y((co * 1000) / lx) - 8, { size: 10.5, color: p.accent, align: "right" });
+      });
+      // 한계선
+      var ra = SWEEP.run.slice().sort(function (a, b) { return a.hr - b.hr; });
+      if (ra.length > 2) {
+        ctx.fillStyle = BB.alpha(p.dim, 0.12); ctx.beginPath(); ctx.moveTo(c.X(ra[0].hr), c.Y(160));
+        ra.forEach(function (q) { ctx.lineTo(c.X(q.hr), c.Y(q.sv)); }); ctx.lineTo(c.X(ra[ra.length - 1].hr), c.Y(160)); ctx.closePath(); ctx.fill();
+        ctx.strokeStyle = p.dim; ctx.lineWidth = 2; ctx.beginPath(); ra.forEach(function (q, i) { i ? ctx.lineTo(c.X(q.hr), c.Y(q.sv)) : ctx.moveTo(c.X(q.hr), c.Y(q.sv)); }); ctx.stroke();
+        txt(ctx, "심장이 낼 수 있는 박출량의 천장", c.X(60), c.Y(132), { size: 11, color: p.dim });
+      }
+      ctx.fillStyle = BB.alpha(p.bad, 0.08); ctx.fillRect(c.X(184), box.y, c.X(220) - c.X(184), box.h);
+      txt(ctx, w < 560 ? ">184" : "최대 심박 184 넘음", c.X(202), box.y + 10, { size: 10.5, color: p.bad, align: "center" });
+      // 직사각형
+      var co = (hr * sv) / 1000, cap = svOn("run", hr), bad = hr > 184 || (cap != null && sv > cap + 3);
+      var col = bad ? p.bad : p.accent2;
+      ctx.fillStyle = BB.alpha(col, 0.22); ctx.fillRect(c.X(0), c.Y(sv), c.X(hr) - c.X(0), c.Y(0) - c.Y(sv));
+      ctx.strokeStyle = col; ctx.lineWidth = 2.2; ctx.strokeRect(c.X(0), c.Y(sv), c.X(hr) - c.X(0), c.Y(0) - c.Y(sv));
+      txt(ctx, co.toFixed(1) + " L/min", (c.X(0) + c.X(hr)) / 2, (c.Y(sv) + c.Y(0)) / 2, { size: Math.max(13, Math.min(22, (c.X(hr) - c.X(0)) / 6)), mono: true, weight: 700, color: col, align: "center" });
+      handle(ctx, c.X(hr), c.Y(sv), col, 9);
+      if (bad) txt(ctx, "불가능", c.X(hr) + 12, c.Y(sv) - 12, { size: 12, weight: 700, color: p.bad });
+      lay = { c: c, box: box };
+    }, { aspect: 0.68, minHeight: 320, maxHeight: 440 });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.box; hr = Math.round(BB.clamp(((x - b.x) / b.w) * 220, 30, 220)); sv = Math.round(BB.clamp(((b.y + b.h - y) / b.h) * 160, 10, 160)); out(); } });
+  })();
+
+  /* ---------------------------------------------------------- 3. 수축기와 이완기 */
+  (function () {
+    var res = null, base = null, cv = null, durs = [];
+    function opts(hr) { var o = { hr: hr, rs: 1.15, beats: 8 }; if (document.getElementById("cy-sym").checked) o.tscale = 0.8; return o; }
+    function calc() {
+      res = run(opts(getHr())); base = run({ hr: 72, rs: 1.15, beats: 8 });
+      var sys = res.events.avClose;
+      BB.stat("cy-o-t", fmt0(res.T * 1000) + "<small>ms</small>");
+      BB.stat("cy-o-s", fmt0(sys * 1000) + "<small>ms</small>");
+      BB.stat("cy-o-d", "<span class='" + (res.T - sys < 0.15 ? "bad-t" : "") + "'>" + fmt0((res.T - sys) * 1000) + "</span><small>ms</small>");
+      BB.stat("cy-o-edv", fmt0(res.edv) + "<small>mL</small>");
+      if (cv) cv.redraw();
+    }
+    function buildDurs() {
+      durs = []; var sym = document.getElementById("cy-sym").checked;
+      [50, 70, 90, 110, 130, 150, 170, 190].forEach(function (hr) { queue(function () { var r = run(opts(hr)); if (document.getElementById("cy-sym").checked !== sym) return; durs.push([hr, r.events.avClose, r.T - r.events.avClose]); durs.sort(function (a, b) { return a[0] - b[0]; }); if (cv) cv.redraw(); }); });
+    }
+    var getHr = BB.range("cy-hr", function (v) { return v + " bpm"; }, BB.debounce(calc, 60));
+    document.getElementById("cy-sym").addEventListener("change", function () { calc(); buildDurs(); });
+    calc(); buildDurs();
+    cv = BB.canvas("#cy-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, art = BB.color("art");
+      // 위: 한 주기 띠
+      var maxT = 60 / 45, L = 52, R = narrow ? w - 14 : w * 0.64;
+      var Xt = function (t) { return L + (t / maxT) * (R - L); };
+      var sys = res.events.avClose, T = res.T, by = 22;
+      ctx.fillStyle = BB.alpha(p.accent2, 0.75); ctx.fillRect(Xt(0), by, Xt(sys) - Xt(0), 24);
+      ctx.fillStyle = BB.alpha(p.accent, 0.55); ctx.fillRect(Xt(sys), by, Xt(T) - Xt(sys), 24);
+      txt(ctx, "수축기", (Xt(0) + Xt(sys)) / 2, by + 12, { align: "center", size: 11, weight: 700, color: "#fff" });
+      if (Xt(T) - Xt(sys) > 50) txt(ctx, "이완기", (Xt(sys) + Xt(T)) / 2, by + 12, { align: "center", size: 11, weight: 700, color: "#fff" });
+      var bsys = base.events.avClose;
+      ctx.strokeStyle = BB.alpha(p.dim, 0.7); ctx.setLineDash([3, 3]); ctx.strokeRect(Xt(0), by + 30, Xt(base.T) - Xt(0), 8); ctx.setLineDash([]);
+      txt(ctx, "72 bpm의 주기", Xt(base.T) + 4, by + 34, { size: 10, color: p.dim });
+      txt(ctx, "한 주기 " + fmt0(T * 1000) + " ms", L, 10, { size: 11, weight: 700, color: p.text });
+      // 가운데: 좌심실 부피(수축 시작부터)
+      var box = { x: L, y: by + 64, w: R - L, h: h - by - 64 - (narrow ? 210 : 44) };
+      var c = BB.chart(ctx, box, { x: [0, maxT], y: [30, 140], xLabel: narrow ? "" : "수축 시작부터 시간(s)", yLabel: "좌심실 부피(mL)", xFmt: function (v) { return v.toFixed(1); } });
+      var line = function (r, col, wd, dash) { ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.setLineDash(dash || []); ctx.beginPath(); for (var i = 0; i < r.t.length; i += 3) { var x = c.X(r.t[i]), y = c.Y(r.vlv[i]); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); ctx.setLineDash([]); };
+      line(base, BB.alpha(p.dim, 0.7), 1.5, [5, 4]);
+      // 기준 곡선을 이완기 끝까지 이어 보면? 현재 곡선
+      line(res, art, 2.6);
+      ctx.strokeStyle = art; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(c.X(T), c.Y(res.vlv[res.vlv.length - 1]) - 10); ctx.lineTo(c.X(T), c.Y(res.vlv[res.vlv.length - 1]) + 10); ctx.stroke();
+      txt(ctx, "여기서 잘림: EDV " + fmt0(res.edv) + " mL", c.X(T) + 6, c.Y(res.vlv[res.vlv.length - 1]) - 14, { size: 11, weight: 700, color: art, align: c.X(T) > box.x + box.w * 0.6 ? "right" : "left" });
+      txt(ctx, "점선: 72 bpm", box.x + box.w - 4, box.y + 10, { size: 10.5, align: "right" });
+      // 오른쪽(아래): 심박수별 길이
+      var b2 = narrow ? { x: 52, y: h - 170, w: w - 66, h: 120 } : { x: w * 0.64 + 58, y: 30, w: w * 0.36 - 72, h: h - 80 };
+      var c2 = BB.chart(ctx, b2, { x: [50, 190], y: [0, 0.9], xLabel: "심박수", yLabel: narrow ? "" : "길이(s)", xTicks: [50, 90, 130, 170], yTicks: [0, 0.3, 0.6, 0.9], yFmt: function (v) { return v.toFixed(1); },
+        series: [{ data: durs.map(function (d) { return [d[0], d[1]]; }), color: p.accent2, width: 2.4 }, { data: durs.map(function (d) { return [d[0], d[2]]; }), color: p.accent, width: 2.4 }],
+        points: [{ x: getHr(), y: sys, color: p.accent2, r: 5 }, { x: getHr(), y: T - sys, color: p.accent, r: 5 }] });
+      txt(ctx, "수축기", c2.X(186), c2.Y(0.3), { size: 10.5, color: p.accent2, align: "right" });
+      txt(ctx, "이완기", c2.X(60), c2.Y(0.82), { size: 10.5, color: p.accent });
+    }, { get height() { return viewW("cy-cv") < 560 ? 520 : 340; } });
+  })();
+
+  /* ---------------------------------------------------------- 4. 픽 원리 */
+  (function () {
+    var cvO2 = 14.6, lay = null, cv = null, t = 0;
+    function cao2() { return BD.o2Content(getHb(), 0.97, 95); }
+    function out() {
+      var ca = cao2(); cvO2 = Math.min(cvO2, ca - 0.5);
+      var d = ca - cvO2, co = getVo2() / d / 10;
+      BB.stat("fk-o-c", ca.toFixed(1) + " / " + cvO2.toFixed(1) + "<small>mL/dL</small>");
+      BB.stat("fk-o-d", d.toFixed(1) + "<small>mL/dL</small>");
+      BB.stat("fk-o-e", fmt0((d / ca) * 100) + "<small>%</small>");
+      BB.stat("fk-o-co", "<span class='" + (co > 25 ? "bad-t" : "") + "'>" + co.toFixed(1) + "</span><small>L/min</small>");
+      out.co = co;
+    }
+    var getVo2 = BB.range("fk-vo2", function (v) { return fmt0(v) + " mL/min"; }, out);
+    var getHb = BB.range("fk-hb", function (v) { return v.toFixed(1) + " g/dL"; }, out);
+    document.getElementById("fk-rest").addEventListener("click", function () { cvO2 = 14.6; getHb.set(15); getVo2.set(270); });
+    document.getElementById("fk-race").addEventListener("click", function () { cvO2 = 6.8; getHb.set(15); getVo2.set(2340); });
+    out();
+    cv = BB.canvas("#fk-cv", function (ctx, w, h) {
+      var p = P(), art = BB.color("art"), ven = BB.color("ven"), narrow = w < 560, ca = cao2();
+      // 막대 두 개
+      var bx = narrow ? 34 : 60, bw = 46, gap = 34, top = 30, bh = h - (narrow ? 170 : 80);
+      var Y = function (v) { return top + bh - (v / 24) * bh; };
+      ctx.strokeStyle = p.grid; [0, 5, 10, 15, 20].forEach(function (v) { ctx.beginPath(); ctx.moveTo(bx - 4, Y(v)); ctx.lineTo(bx + 2 * bw + gap + 4, Y(v)); ctx.stroke(); txt(ctx, String(v), bx - 8, Y(v), { size: 10, mono: true, align: "right" }); });
+      ctx.fillStyle = BB.alpha(art, 0.75); ctx.fillRect(bx, Y(ca), bw, Y(0) - Y(ca));
+      ctx.fillStyle = BB.alpha(ven, 0.75); ctx.fillRect(bx + bw + gap, Y(cvO2), bw, Y(0) - Y(cvO2));
+      ctx.fillStyle = BB.alpha(p.warn, 0.3); ctx.fillRect(bx + bw + gap, Y(ca), bw, Y(cvO2) - Y(ca));
+      ctx.strokeStyle = p.warn; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(bx, Y(ca)); ctx.lineTo(bx + 2 * bw + gap, Y(ca)); ctx.stroke(); ctx.setLineDash([]);
+      txt(ctx, "빼낸 산소 " + (ca - cvO2).toFixed(1), bx + bw + gap + bw / 2, Y(ca) - 10, { align: "center", size: 10.5, weight: 700, color: p.text });
+      handle(ctx, bx + bw + gap + bw / 2, Y(cvO2), ven, 8);
+      txt(ctx, "동맥", bx + bw / 2, Y(0) + 14, { align: "center", size: 11, weight: 700, color: art });
+      txt(ctx, "정맥", bx + bw + gap + bw / 2, Y(0) + 14, { align: "center", size: 11, weight: 700, color: ven });
+      txt(ctx, "산소 함량(mL/dL)", bx - 26, 12, { size: 11 });
+      lay = { Y: Y, x0: bx + bw + gap - 20, x1: bx + 2 * bw + gap + 20, top: top, bh: bh };
+      // 오른쪽: 흐르는 피와 계산
+      var rx = bx + 2 * bw + gap + 40, rw = w - rx - 14;
+      var cy = narrow ? h * 0.32 : h * 0.36;
+      var co = out.co, sp = Math.min(co, 30);
+      ctx.fillStyle = BB.alpha(BB.color("prot"), 0.2); BB.rrect(ctx, rx + rw * 0.35, cy - 34, rw * 0.3, 68, 10); ctx.fill();
+      txt(ctx, "근육·조직", rx + rw * 0.5, cy - 44, { align: "center", size: 11, weight: 600, color: p.text });
+      ctx.strokeStyle = BB.alpha(art, 0.4); ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(rx, cy); ctx.lineTo(rx + rw * 0.5, cy); ctx.stroke();
+      ctx.strokeStyle = BB.alpha(ven, 0.4); ctx.beginPath(); ctx.moveTo(rx + rw * 0.5, cy); ctx.lineTo(rx + rw, cy); ctx.stroke();
+      BD.flowDots(ctx, [[rx, cy], [rx + rw * 0.5, cy]], t * 12 * sp, { color: art, gap: 14, r: 3 });
+      BD.flowDots(ctx, [[rx + rw * 0.5, cy], [rx + rw, cy]], t * 12 * sp, { color: ven, gap: 14, r: 3 });
+      // O2 분자가 빠져나가는 그림
+      var nO = Math.round((ca - cvO2) * 1.2);
+      for (var k = 0; k < nO; k++) { var ph = (t * 0.8 + k / nO) % 1; ctx.fillStyle = BB.alpha(BB.color("o2"), 1 - ph); ctx.beginPath(); ctx.arc(rx + rw * (0.4 + 0.2 * (k / Math.max(1, nO))), cy - 6 - ph * 24, 2.4, 0, Math.PI * 2); ctx.fill(); }
+      var ty = cy + 60; if (narrow) { rx = 16; ty = h - 92; }
+      txt(ctx, "CO = V̇O₂ ÷ (CaO₂ − CvO₂)", rx, ty, { size: 12.5, weight: 700, color: p.text });
+      txt(ctx, "= " + fmt0(getVo2()) + " ÷ (" + ca.toFixed(1) + " − " + cvO2.toFixed(1) + ") mL/dL", rx, ty + 22, { size: 12, mono: true, color: p.text });
+      txt(ctx, "= " + co.toFixed(1) + " L/min", rx, ty + 46, { size: 18, mono: true, weight: 700, color: co > 25 ? p.bad : p.accent });
+      if (co > 25) txt(ctx, "심장이 낼 수 없는 양: 조직이 더 빼내야 한다", rx, ty + 72, { size: 11.5, weight: 700, color: p.bad });
+    }, { get height() { return viewW("fk-cv") < 560 ? 430 : 320; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay || x < lay.x0 - 20 || x > lay.x1 + 20) return; cvO2 = BB.clamp(((lay.top + lay.bh - y) / lay.bh) * 24, 3, 22); out(); cv.redraw(); } });
+    BB.loop(document.getElementById("sim-fick"), function (dt) { t += dt; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 5. 혈류 배분 */
+  (function () {
+    var ORG = [
+      { k: "brain", n: "뇌", r: 750, e: 750, info: "뇌는 자기 조절로 평균 동맥압이 60~150 mmHg 사이에서 변해도 혈류를 거의 일정하게 지킨다. 운동 중에도 절대량은 비슷하다. 다만 숨을 몰아쉬어 이산화탄소가 너무 빠지면 뇌혈관이 좁아진다(<a href=\"breathing.html\">10장</a>)." },
+      { k: "heart", n: "심장", r: 230, e: 800, info: "심장 근육은 쉴 때도 피 속 산소의 약 70 %를 빼내 쓴다. 더 빼낼 여유가 없으니 일이 늘면 관상동맥 혈류를 늘리는 수밖에 없다. 대회 속도에서 3~4배로 는다." },
+      { k: "liver", n: "소화관·간", r: 1300, e: 520, info: "쉴 때 가장 큰 몫(약 25 %)을 받는다. 운동하면 교감 신경이 내장 혈관을 조여 절반 넘게 줄이고, 그 피가 근육으로 간다. 내장 정맥의 피도 짜내 심장으로 돌려보낸다." },
+      { k: "kidneys", n: "콩팥", r: 1040, e: 520, info: "몸무게의 0.5 %인데 심박출량의 약 20 %를 받는다. 피를 거르는 것이 일이기 때문이다(<a href=\"kidney.html\">18장</a>). 격한 운동에서는 절반 가까이로 줄어 소변도 준다." },
+      { k: "muscle", n: "골격근", r: 1040, e: 14700, info: "쉴 때는 근육 모세혈관의 상당수가 닫혀 있다. 운동하면 대사 물질이 세동맥을 열고 쉬던 모세혈관이 열려 혈류가 10배 넘게 는다. 근육 펌프는 정맥 피를 심장으로 밀어 올린다." },
+      { k: "skin", n: "피부", r: 430, e: 520, info: "피부 혈류는 체온 조절 장치다. 운동 초반에는 교감 신경 때문에 줄었다가 체온이 오르면 늘어 열을 내보낸다. 너무 덥고 강도가 높으면 근육과 피부가 피를 두고 다툰다(<a href=\"thermo.html\">19장</a>)." },
+      { k: "other", n: "그 밖", r: 410, e: 240, info: "뼈, 지방 조직, 생식 기관 등. 운동 중에는 줄어든다." },
+    ];
+    var x = 0, unit = "pct", sel = null, pos = null, t = 0, cv = null;
+    function flows() { return ORG.map(function (o) { var mid = o.k === "skin" ? Math.sin(Math.PI * x) * 450 : 0; return o.r + (o.e - o.r) * x + mid; }); }
+    function out() {
+      var f = flows(), co = BD.sum(f);
+      BB.stat("ds-o-co", (co / 1000).toFixed(1) + "<small>L/min</small>");
+      BB.stat("ds-o-mu", fmt0(f[4]) + "<small>mL/min · " + fmt0((f[4] / co) * 100) + "%</small>");
+      BB.stat("ds-o-br", fmt0(f[0]) + "<small>mL/min · " + fmt0((f[0] / co) * 100) + "%</small>");
+      BB.stat("ds-o-gk", fmt0(f[2] + f[3]) + "<small>mL/min</small>");
+    }
+    var getX = BB.range("ds-x", function (v) { return v === 0 ? "안정" : v === 1 ? "대회 속도" : Math.round(v * 100) + "%"; }, function (v) { x = v; out(); });
+    BB.seg("ds-unit", function (v) { unit = v; });
+    out();
+    var cols = function () { var p = P(); return [p.accent2, BB.color("art"), BB.color("carb"), BB.color("water"), BB.color("seg-musc"), BB.color("heat"), p.dim]; };
+    cv = BB.canvas("#ds-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, f = flows(), co = BD.sum(f), C = cols();
+      var H = narrow ? 250 : h - 30, cx = narrow ? w * 0.5 : w * 0.24, top = 12;
+      var org = {}; var keys = ["brain", "heart", "liver", "kidneys", "muscle", "skin"];
+      keys.forEach(function (k, i) { org[k === "liver" ? "gut" : k] = C[i]; });
+      org.liver = C[2];
+      var ps = BD.body(ctx, cx, top, H, { organs: { brain: C[0], heart: C[1], liver: C[2], gut: C[2], kidneys: C[3], muscle: C[4], skin: C[5] }, alpha: 0.25 });
+      pos = ps;
+      // 흐르는 피: 심장 → 장기
+      var hp = ps.heart;
+      ["brain", "liver", "kidneys", "muscle", "skin", "gut"].forEach(function (k) {
+        var idx = k === "gut" ? 2 : ["brain", "heart", "liver", "kidneys", "muscle", "skin"].indexOf(k);
+        var q = k === "gut" ? f[2] * 0.5 : k === "liver" ? f[2] * 0.5 : f[idx];
+        var o = ps[k], tx = o.x, ty = o.y;
+        if (k === "muscle") { BD.flowDots(ctx, [[hp.x, hp.y], [cx, ps.bladder.y], [o.x + 5.6 * H / 100 * 0, ty]], t * 6 * Math.sqrt(q), { color: BB.color("art"), gap: 12 - Math.min(8, q / 2000), r: 1.6 + Math.min(1.8, q / 6000) }); BD.flowDots(ctx, [[hp.x, hp.y], [cx, ps.bladder.y], [cx + 5.6 * H / 100, ty]], t * 6 * Math.sqrt(q), { color: BB.color("art"), gap: 12 - Math.min(8, q / 2000), r: 1.6 + Math.min(1.8, q / 6000) }); return; }
+        if (k === "skin") { tx = cx + 13 * H / 100; ty = ps.heart.y + 12 * H / 100; }
+        BD.flowDots(ctx, [[hp.x, hp.y], [tx, ty]], t * 6 * Math.sqrt(q), { color: BB.color("art"), gap: 12, r: 1.4 + Math.min(1.6, q / 1500) });
+      });
+      // 선택 강조
+      if (sel && ps[sel === "liver" ? "liver" : sel]) { var s = ps[sel]; ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(s.x, s.y, s.rx + 5, s.ry + 5, 0, 0, Math.PI * 2); ctx.stroke(); }
+      // 도넛
+      var dR = narrow ? Math.min(w * 0.22, 74) : Math.min(h * 0.3, w * 0.13);
+      var dcx = narrow ? w * 0.3 : w * 0.56, dcy = narrow ? top + H + dR + 26 : h * 0.5;
+      var items = ORG.map(function (o, i) { return { label: o.n, value: f[i], color: C[i] }; });
+      BB.donut(ctx, dcx, dcy, dR, items, { inner: 0.58, center: { big: (co / 1000).toFixed(1), small: "L/min" }, highlight: sel ? ORG.findIndex(function (o) { return o.k === sel; }) : undefined });
+      // 범례 + 값
+      var lx = narrow ? w * 0.56 : dcx + dR + 22, ly = dcy - (ORG.length * 19) / 2 + 8;
+      ORG.forEach(function (o, i) {
+        var y = ly + i * 19; ctx.fillStyle = C[i]; ctx.fillRect(lx, y - 5, 10, 10);
+        txt(ctx, o.n, lx + 15, y, { size: 11.5, color: p.text, weight: sel === o.k ? 700 : 400 });
+        var val = unit === "pct" ? fmt0((f[i] / co) * 100) + "%" : fmt0(f[i]);
+        txt(ctx, val, lx + (narrow ? 130 : 150), y, { size: 11.5, mono: true, align: "right", color: p.text, weight: 700 });
+      });
+      txt(ctx, unit === "pct" ? "심박출량 대비 %" : "mL/min", lx, ly - 18, { size: 10.5 });
+      if (x > 0.5) txt(ctx, "근육 " + fmt0((f[4] / co) * 100) + " %", cx, top + H + (narrow ? 8 : -2), { align: "center", size: 12, weight: 700, color: C[4] });
+    }, { get height() { return viewW("ds-cv") < 560 ? 470 : 360; } });
+    BB.drag(cv.canvas, { start: function (px, py) {
+      if (!pos) return; var best = null, bd = 1e9;
+      ["brain", "heart", "liver", "gut", "kidneys", "muscle"].forEach(function (k) { var o = pos[k]; var d = Math.hypot((px - o.x) / (o.rx + 6), (py - o.y) / (o.ry + 6)); if (d < 1 && d < bd) { bd = d; best = k; } });
+      if (!best) { var sk = pos.skin; if (Math.abs(py - pos.heart.y) < 200 && Math.abs(Math.abs(px - pos.brain.x) - 13 * (pos.brain.rx / 5.2)) < 14) best = "skin"; }
+      if (best === "gut") best = "liver";
+      if (!best) return; sel = best;
+      var o = ORG.find(function (q) { return q.k === best; });
+      document.getElementById("ds-info").innerHTML = "<h4>" + o.n + "</h4><p>" + o.info + "</p>";
+    } });
+    BB.loop(document.getElementById("sim-distribution"), function (dt) { t += dt; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 6. 카르보넨 */
+  (function () {
+    var who = "daon", mark = 161, lay = null, cv = null, dragging = false;
+    var getAge = BB.range("kv-age", function (v) { return v + "세"; }, function () { out(); });
+    var getRest = BB.range("kv-rest", function (v) { return v + " bpm"; }, function () { out(); });
+    function nums() { var age = getAge(), rest = getRest(), mx = BD.hrMax(age); return { age: age, rest: rest, mx: mx, zs: BD.HR_ZONES.map(function (z) { return { z: z.z, name: z.name, lo: BD.karvonen(z.lo, rest, mx), hi: BD.karvonen(z.hi, rest, mx), plo: z.lo * mx, phi: z.hi * mx }; }) }; }
+    function out() {
+      var n = nums(); mark = BB.clamp(mark, n.rest, n.mx);
+      BB.stat("kv-o-max", fmt0(n.mx) + "<small>bpm</small>");
+      BB.stat("kv-o-hrr", fmt0(n.mx - n.rest) + "<small>bpm</small>");
+      BB.stat("kv-o-hr", fmt0(mark) + "<small>bpm · " + fmt0(((mark - n.rest) / (n.mx - n.rest)) * 100) + "% HRR</small>");
+      var z = zoneOf(mark, n.zs);
+      BB.stat("kv-o-z", z ? "Z" + z.z + " " + z.name : "Z1 아래(가벼운 활동)");
+      if (cv) cv.redraw();
+    }
+    BB.seg("kv-who", function (v) { who = v; if (v === "daon") { getAge.set(34); getRest.set(72); mark = 161; } getAge.el.disabled = getRest.el.disabled = v === "daon"; out(); });
+    getAge.el.disabled = getRest.el.disabled = true;
+    out();
+    cv = BB.canvas("#kv-cv", function (ctx, w, h) {
+      var p = P(), n = nums(), narrow = w < 560;
+      var top = 26, bot = h - (narrow ? 52 : 30), lo = 40, hi = 200;
+      var Y = function (v) { return bot - ((v - lo) / (hi - lo)) * (bot - top); };
+      var x1 = narrow ? 60 : 110, cw = narrow ? 70 : 110, x2 = x1 + cw + (narrow ? 34 : 60), kw = narrow ? w - x2 - 70 : 170;
+      // 눈금
+      ctx.strokeStyle = p.grid; for (var v = 40; v <= 200; v += 20) { ctx.beginPath(); ctx.moveTo(x1 - 6, Y(v)); ctx.lineTo(x2 + kw + 6, Y(v)); ctx.stroke(); txt(ctx, String(v), x1 - 10, Y(v), { align: "right", size: 10, mono: true }); }
+      txt(ctx, "bpm", x1 - 10, top - 14, { align: "right", size: 10 });
+      // 왼쪽: 최대 심박수의 % 방식
+      n.zs.forEach(function (z) { ctx.fillStyle = BB.alpha(zoneCol(z.z), 0.18); ctx.fillRect(x1, Y(z.phi), cw, Y(z.plo) - Y(z.phi)); ctx.strokeStyle = BB.alpha(p.dim, 0.4); ctx.strokeRect(x1, Y(z.phi), cw, Y(z.plo) - Y(z.phi)); txt(ctx, "Z" + z.z + " " + fmt0(z.plo) + "–" + fmt0(z.phi), x1 + cw / 2, (Y(z.plo) + Y(z.phi)) / 2, { align: "center", size: narrow ? 9.5 : 10.5, color: p.dim }); });
+      txt(ctx, narrow ? "%최대" : "최대 심박수의 %", x1 + cw / 2, top - 14, { align: "center", size: 11, weight: 600 });
+      // 오른쪽: 카르보넨
+      n.zs.forEach(function (z) {
+        ctx.fillStyle = BB.alpha(zoneCol(z.z), 0.55); ctx.fillRect(x2, Y(z.hi), kw, Y(z.lo) - Y(z.hi));
+        txt(ctx, "Z" + z.z + (narrow ? "" : " " + z.name), x2 + 8, (Y(z.lo) + Y(z.hi)) / 2, { size: 11.5, weight: 700, color: p.text });
+        txt(ctx, fmt0(z.lo) + "–" + fmt0(z.hi), x2 + kw - 6, (Y(z.lo) + Y(z.hi)) / 2, { size: 11.5, mono: true, weight: 700, color: p.text, align: "right" });
+      });
+      txt(ctx, "카르보넨(HRR)", x2 + kw / 2, top - 14, { align: "center", size: 11, weight: 600, color: p.text });
+      // 안정·최대 선
+      [[n.rest, "안정 " + n.rest], [n.mx, "최대 " + fmt0(n.mx)]].forEach(function (L) { ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(x2, Y(L[0])); ctx.lineTo(x2 + kw, Y(L[0])); ctx.stroke(); txt(ctx, L[1], x2 + 6, Y(L[0]) + (L[0] === n.rest ? 10 : -9), { size: 10.5, weight: 600, color: p.text }); });
+      if (who === "daon") { ctx.strokeStyle = p.bad; ctx.setLineDash([5, 3]); ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(x1, Y(161)); ctx.lineTo(x2 + kw, Y(161)); ctx.stroke(); ctx.setLineDash([]); if (narrow) txt(ctx, "빨간 점선: 대회 목표 161", x2, bot + 16, { size: 10.5, weight: 700, color: p.bad }); else txt(ctx, "대회 목표 161", x1 + cw + 4, Y(161) - 8, { size: 10.5, weight: 700, color: p.bad }); }
+      // 표시(끌기)
+      var mx = x2 + kw + 18; handle(ctx, mx, Y(mark), p.text, 9);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x2 + kw, Y(mark)); ctx.lineTo(mx - 9, Y(mark)); ctx.stroke();
+      txt(ctx, fmt0(mark), mx + 12, Y(mark), { size: 13, mono: true, weight: 700, color: p.text });
+      lay = { Y: Y, top: top, bot: bot, lo: lo, hi: hi, mx: mx };
+    }, { get height() { return viewW("kv-cv") < 560 ? 400 : 380; } });
+    BB.drag(cv.canvas, {
+      start: function (x) { dragging = !!lay && x > lay.mx - 80; },
+      move: function (x, y) { if (!dragging) return; mark = Math.round(lay.lo + ((lay.bot - y) / (lay.bot - lay.top)) * (lay.hi - lay.lo)); out(); },
+      end: function () { dragging = false; },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 7. 오르내림 */
+  (function () {
+    var fit = "pre", tNow = 12, playing = false, lay = null, cv = null, dragging = false;
+    var T_ON = 2, T_OFF = 7, T_END = 12;
+    function curve(post) {
+      var rest = post ? 64 : 72, x = getX(), target = 72 + x * (184 - 72);
+      if (post) target = rest + (target - 72) * 0.82;
+      var tf = 6 / 60, ts = (post ? 30 : 45) / 60, tfo = (post ? 22 : 32) / 60, tso = 3.5;
+      var fr = 0.4;  // 빠른 성분 비율(오르막)
+      var pts = [], endHr = null;
+      for (var t = 0; t <= T_END + 1e-9; t += 1 / 60) {
+        var hr;
+        if (t < T_ON) hr = rest;
+        else if (t < T_OFF) { var d = t - T_ON; hr = rest + (target - rest) * (fr * (1 - Math.exp(-d / tf)) + (1 - fr) * (1 - Math.exp(-d / ts))) + 0.6 * d; }
+        else {
+          if (endHr == null) endHr = pts[pts.length - 1][1];
+          var d2 = t - T_OFF, A = endHr - rest; hr = rest + A * ((post ? 0.42 : 0.33) * Math.exp(-d2 / tfo) + (post ? 0.58 : 0.67) * Math.exp(-d2 / tso));
+        }
+        pts.push([t, hr]);
+      }
+      var at = function (tt) { return BD.interp(pts.map(function (q) { return q[0]; }), pts.map(function (q) { return q[1]; }), tt); };
+      var eh = at(T_OFF), half = null; for (var k = 0; k < pts.length; k++) if (pts[k][0] >= T_ON && pts[k][1] >= rest + (eh - rest) / 2) { half = (pts[k][0] - T_ON) * 60; break; }
+      return { pts: pts, at: at, end: eh, hrr1: eh - at(T_OFF + 1), half: half, rest: rest };
+    }
+    function out() {
+      var c = curve(fit === "post");
+      BB.stat("kn-o-hr", fmt0(c.at(tNow)) + "<small>bpm</small>");
+      BB.stat("kn-o-ss", fmt0(c.end) + "<small>bpm</small>");
+      BB.stat("kn-o-hrr", fmt0(c.hrr1) + "<small>bpm</small>");
+      BB.stat("kn-o-half", fmt0(c.half) + "<small>s</small>");
+      if (cv) cv.redraw();
+    }
+    var getX = BB.range("kn-x", function (v) { return Math.round(v * 100) + "%"; }, out);
+    BB.seg("kn-fit", function (v) { fit = v; out(); });
+    var btn = document.getElementById("kn-play");
+    btn.addEventListener("click", function () { if (!playing && tNow >= T_END) tNow = 0; playing = !playing; btn.textContent = playing ? "멈춤" : "재생"; });
+    out();
+    cv = BB.canvas("#kn-cv", function (ctx, w, h) {
+      var p = P();
+      var box = { x: 52, y: 22, w: w - 68, h: h - 70 };
+      var pre = curve(false), post = curve(true);
+      var showPre = fit !== "post", showPost = fit !== "pre";
+      var cut = function (pts) { return pts.filter(function (q) { return q[0] <= tNow; }); };
+      var series = [];
+      if (showPre) series.push({ data: pre.pts, color: BB.alpha(p.bad, 0.25), width: 1.4 }, { data: cut(pre.pts), color: p.bad, width: 2.6 });
+      if (showPost) series.push({ data: post.pts, color: BB.alpha(p.ok, 0.25), width: 1.4 }, { data: cut(post.pts), color: p.ok, width: 2.6 });
+      var c = BB.chart(ctx, box, { x: [0, T_END], y: [50, 190], xLabel: "시간(분)", yLabel: "심박수(bpm)", xTicks: [0, 2, 4, 6, 8, 10, 12],
+        bands: [{ x0: T_ON, x1: T_OFF, color: BB.alpha(p.accent, 0.06) }], series: series });
+      txt(ctx, "운동", c.X((T_ON + T_OFF) / 2), box.y + 10, { align: "center", size: 11, weight: 600, color: p.accent });
+      txt(ctx, "회복", c.X((T_OFF + T_END) / 2), box.y + 10, { align: "center", size: 11, weight: 600 });
+      // 1분 회복 표시
+      var cc = fit === "post" ? post : pre, col = fit === "post" ? p.ok : p.bad;
+      if (tNow >= T_OFF + 1) {
+        ctx.strokeStyle = col; ctx.lineWidth = 1.4; ctx.setLineDash([3, 3]);
+        ctx.beginPath(); ctx.moveTo(c.X(T_OFF), c.Y(cc.end)); ctx.lineTo(c.X(T_OFF + 1), c.Y(cc.end)); ctx.lineTo(c.X(T_OFF + 1), c.Y(cc.at(T_OFF + 1))); ctx.stroke(); ctx.setLineDash([]);
+        txt(ctx, "1분에 −" + fmt0(cc.hrr1), c.X(T_OFF + 1) + 6, c.Y((cc.end + cc.at(T_OFF + 1)) / 2), { size: 11.5, weight: 700, color: col });
+      }
+      // 빠른 성분 표시
+      txt(ctx, "① 미주 신경 해제(몇 초)", c.X(T_ON) + 6, c.Y(cc.rest + (cc.end - cc.rest) * 0.3), { size: 10.5, color: p.dim });
+      txt(ctx, "② 교감 신경(수십 초)", c.X(T_ON + 1.1), c.Y(cc.end) + 16, { size: 10.5, color: p.dim });
+      // 커서
+      var x = c.X(tNow); ctx.strokeStyle = p.text; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(x, box.y); ctx.lineTo(x, box.y + box.h); ctx.stroke();
+      if (showPre) handle(ctx, x, c.Y(pre.at(tNow)), p.bad, 6);
+      if (showPost) handle(ctx, x, c.Y(post.at(tNow)), p.ok, 6);
+      txt(ctx, fit === "both" ? "빨강: 훈련 전 · 초록: 12주 뒤" : fit === "post" ? "12주 훈련 뒤(안정 64)" : "훈련 전(안정 72)", box.x + box.w - 4, box.y + box.h - 12, { align: "right", size: 11, weight: 600, color: p.text });
+      lay = { c: c, box: box };
+    }, { aspect: 0.56, minHeight: 300, maxHeight: 400 });
+    BB.drag(cv.canvas, {
+      start: function () { dragging = true; playing = false; btn.textContent = "재생"; },
+      move: function (x) { if (!lay || !dragging) return; tNow = BB.clamp(((x - lay.box.x) / lay.box.w) * T_END, 0, T_END); out(); },
+      end: function () { dragging = false; },
+    });
+    BB.loop(document.getElementById("sim-kinetics"), function (dt) { if (playing) { tNow += dt * 0.5; if (tNow >= T_END) { tNow = T_END; playing = false; btn.textContent = "재생"; } out(); } });
+  })();
+
+  /* ---------------------------------------------------------- 8. 선수의 심장 */
+  (function () {
+    var ph = [0, 0], cv = null, HRMAX = 184;
+    var U = { n: "운동 안 하던 심장(다온)", sv0: 72, sv1: 107, c0: 5.2, c1: 18 }, A = { n: "지구력 선수", sv0: 88, sv1: 130, c0: 4.2, c1: 24 };
+    function svOf(o, co) { return BB.clamp(o.sv0 + (o.sv1 - o.sv0) * (co - o.c0) / (o.c1 - o.c0), o.sv0 * 0.95, o.sv1); }
+    function st(o) { var co = getCo(), sv = svOf(o, co), hr = (co * 1000) / sv; var cap = hr > HRMAX; if (cap) hr = HRMAX; return { sv: sv, hr: hr, cap: cap, co: cap ? HRMAX * sv / 1000 : co }; }
+    function out() {
+      var u = st(U), a = st(A);
+      BB.stat("at-o-u", "<span class='" + (u.cap ? "bad-t" : "") + "'>" + fmt0(u.hr) + "</span><small>bpm × " + fmt0(u.sv) + " mL</small>");
+      BB.stat("at-o-t", fmt0(a.hr) + "<small>bpm × " + fmt0(a.sv) + " mL</small>");
+      BB.stat("at-o-max", (HRMAX * U.sv1 / 1000).toFixed(1) + " / " + (HRMAX * A.sv1 / 1000).toFixed(1) + "<small>L/min</small>");
+    }
+    var getCo = BB.range("at-co", function (v) { return v.toFixed(1) + " L/min"; }, out);
+    out();
+    cv = BB.canvas("#at-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      [U, A].forEach(function (o, i) {
+        var s = st(o), cx = narrow ? w * (0.27 + 0.48 * i) : w * (0.25 + 0.5 * i), cy = narrow ? 120 : 135;
+        var sz = (narrow ? 44 : 58) * (0.85 + 0.25 * (s.sv / 130));
+        var phs = ph[i] % 1, sq = phs < 0.35 ? Math.sin((phs / 0.35) * Math.PI) : 0;
+        BD.heartDiagram(ctx, cx, cy, sz, { lv: 0.9 - 0.55 * sq, rv: 0.9 - 0.55 * sq, la: 0.5 + 0.4 * sq, ra: 0.5 + 0.4 * sq, active: sq > 0.1 ? "ventricles" : null, aortic: sq > 0.1, pulmonic: sq > 0.1, mitral: sq <= 0.1, tricuspid: sq <= 0.1 });
+        txt(ctx, o.n, cx, 14, { align: "center", size: narrow ? 11 : 12.5, weight: 700, color: p.text });
+        // 심박수 막대
+        var by = narrow ? 230 : 250, bw = narrow ? w * 0.4 : w * 0.36, bx = cx - bw / 2;
+        ctx.fillStyle = BB.alpha(p.dim, 0.15); ctx.fillRect(bx, by, bw, 16);
+        var fr = s.hr / 200; ctx.fillStyle = s.cap ? p.bad : i ? p.ok : p.accent; ctx.fillRect(bx, by, bw * fr, 16);
+        ctx.strokeStyle = p.bad; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(bx + bw * (HRMAX / 200), by - 4); ctx.lineTo(bx + bw * (HRMAX / 200), by + 20); ctx.stroke();
+        txt(ctx, fmt0(s.hr) + " bpm", bx, by - 10, { size: 13, mono: true, weight: 700, color: s.cap ? p.bad : p.text });
+        txt(ctx, "최대 184", bx + bw, by + 30, { size: 10, align: "right", color: p.bad });
+        txt(ctx, "박출량 " + fmt0(s.sv) + " mL", bx, by + 30, { size: 11, color: p.dim });
+        if (s.cap) txt(ctx, "한계: " + s.co.toFixed(1) + " L/min까지만", cx, by + 50, { align: "center", size: 12, weight: 700, color: p.bad });
+      });
+      txt(ctx, "필요한 심박출량 " + getCo().toFixed(1) + " L/min", w / 2, h - 12, { align: "center", size: 12, weight: 600, color: p.text });
+    }, { get height() { return viewW("at-cv") < 560 ? 320 : 340; } });
+    BB.loop(document.getElementById("sim-athlete"), function (dt) { var u = st(U), a = st(A); ph[0] += dt * u.hr / 60 * 0.5; ph[1] += dt * a.hr / 60 * 0.5; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 9. 다온 달리기 모니터 */
+  (function () {
+    var XS = [0, 0.25, 0.5, 0.75, 1], pts = [], xEff = 0, tSim = 0, hist = [], beats = [], ph = 0, prog = null, cv = null;
+        function oAt(x) { var L = function (a, b) { return a + (b - a) * x; }; return { hr: Math.round(L(72, 168)), emax: +L(2.8, 5.5).toFixed(3), vs: Math.round(L(440, 700)), rs: +(1.15 * Math.pow(0.32 / 1.15, Math.pow(x, 0.7))).toFixed(3), tscale: +L(1, 0.8).toFixed(3), ca: +L(1.35, 0.8).toFixed(3), beats: 8 }; }
+    XS.forEach(function (x, i) { queue(function () { var r = run(oAt(x)); pts[i] = { x: x, sv: r.sv, co: r.co, sbp: r.sbp, dbp: r.dbp }; }); });
+    function val(k, x) { var ok = pts.filter(Boolean); if (ok.length < 2) return { sv: 72, co: 5.2, sbp: 123, dbp: 85 }[k]; return BD.interp(ok.map(function (q) { return q.x; }), ok.map(function (q) { return q[k]; }), x); }
+    var TPL = BD.ecg({ hr: 60, hrv: 0, resp: 0, noise: 0, duration: 5 }), TR = TPL.beats[2].r;
+    function beatShape(d, rr) { var k = Math.sqrt(BB.clamp(rr, 0.3, 1.6)); if (d > 0.05) d = 0.05 + (d - 0.05) / k; if (d < -0.3 || d > 0.55) return 0; return TPL.v(TR + d); }
+    var WK0 = BD.windkessel({ hr: 60, sv: 70 }), SHX = WK0.t.map(function (q) { return q / WK0.T; }), SHY = WK0.p.map(function (v) { return (v - WK0.dbp) / WK0.pp; });
+    function shape(f) { f = ((f % 1) + 1) % 1; return BD.interp(SHX, SHY, f); }
+    var getX = BB.range("dr-x", function (v) { return v === 0 ? "쉼" : v <= 0.3 ? "걷기 " + Math.round(v * 100) + "%" : v < 0.8 ? "조깅 " + Math.round(v * 100) + "%" : v < 1 ? "빠르게 " + Math.round(v * 100) + "%" : "대회 속도(엔진 프리셋)"; });
+    var getSp = BB.range("dr-sp", function (v) { return v + "×"; });
+    var RACE = [[0, 0], [60, 0.35], [240, 0.88], [600, 0.2], [720, 0]];
+    var raceBtn = document.getElementById("dr-race");
+    raceBtn.addEventListener("click", function () { prog = prog ? null : { t0: tSim }; raceBtn.textContent = prog ? "재생 멈춤" : "대회 순서 재생"; });
+    document.getElementById("dr-re").addEventListener("click", function () { tSim = 0; xEff = 0; hist = []; beats = []; prog = null; raceBtn.textContent = "대회 순서 재생"; getX.set(0); });
+    var hrNow = 72, mapNow = 97;
+    function step(dtReal) {
+      var dt = dtReal * getSp(), n = Math.max(1, Math.ceil(dt / 0.02)), hh = dt / n;
+      for (var k = 0; k < n; k++) {
+        tSim += hh;
+        if (prog) { var tp = tSim - prog.t0, tgt = 0; for (var i = 0; i < RACE.length; i++) if (tp >= RACE[i][0]) tgt = RACE[i][1]; if (Math.abs(getX() - tgt) > 0.01) getX.set(tgt); if (tp > 760) { prog = null; raceBtn.textContent = "대회 순서 재생"; } }
+        xEff += ((getX() - xEff) * hh) / 30;
+        hrNow = 72 + (168 - 72) * xEff;
+      }
+      if (!hist.length || tSim - hist[hist.length - 1][0] > 2) hist.push([tSim, hrNow]);
+      while (hist.length && hist[0][0] < tSim - 900) hist.shift();
+    }
+    // 실시간 파형용(실제 시간): 박동 위상은 실제 시간으로 진행
+    var tReal = 0;
+    for (var b0 = -7; b0 < 0; b0 += 60 / 72) beats.push([b0, 123, 85]);
+    function stepWave(dt) {
+      tReal += dt; ph += (hrNow / 60) * dt;
+      if (ph >= 1) { ph -= 1; beats.push([tReal, val("sbp", xEff), val("dbp", xEff)]); }
+      while (beats.length && beats[0][0] < tReal - 8) beats.shift();
+    }
+    function ecgAt(t) { var y = 0; for (var i = 0; i < beats.length; i++) { var d = t - beats[i][0]; if (d < -0.3 || d > 0.6) continue; var rr = i > 0 ? beats[i][0] - beats[i - 1][0] : 60 / hrNow; y += beatShape(d, rr); } return y; }
+    function abpAt(t) { var i = -1; for (var j = beats.length - 1; j >= 0; j--) if (beats[j][0] <= t - 0.15) { i = j; break; } if (i < 0) return NaN; var b = beats[i], nx = beats[i + 1] ? beats[i + 1][0] : b[0] + 60 / hrNow; return b[2] + (b[1] - b[2]) * shape((t - 0.15 - b[0]) / (nx - b[0])); }
+    function muscleFrac(x) { var co = 5200 + (18000 - 5200) * x; var mu = 1040 + (14700 - 1040) * x; return mu / co; }
+    cv = BB.canvas("#dr-cv", function (ctx, w, h) {
+      var narrow = w < 560, topH = Math.round(h * 0.56), z = zoneOf(hrNow);
+      var sv = val("sv", xEff), co = val("co", xEff);
+      BD.monitor(ctx, { x: 0, y: 0, w: w, h: topH }, {
+        t: [tReal - 5, tReal], gridDt: 1,
+        traces: [
+          { label: "ECG II", color: BB.trace(1), data: function (q) { return ecgAt(q); }, range: [-0.6, 1.5] },
+          { label: "ABP mmHg", color: BB.trace(2), data: function (q) { return abpAt(q); }, range: [40, 170] },
+        ],
+        numerics: [
+          { label: "HR " + (z ? "Z" + z.z : ""), value: fmt0(hrNow), unit: "bpm", color: BB.trace(1), alarm: hrNow > 184 },
+          { label: "ABP", value: fmt0(val("sbp", xEff)) + "/" + fmt0(val("dbp", xEff)), unit: "mmHg", color: BB.trace(2) },
+        ],
+      });
+      // 아래: 심박수 추세 + 구간 띠
+      var r = BD.monitor(ctx, { x: 0, y: topH + 4, w: w, h: h - topH - 4 }, {
+        t: [Math.max(0, tSim - 900), Math.max(900, tSim)], gridDt: 60,
+        traces: [{ label: "심박수 추세(최근 15분, 구간 띠)", color: BB.trace(1), data: hist.length ? hist : [[0, NaN]], range: [60, 190], width: 2.2 }],
+        numerics: [{ label: "CO", value: co.toFixed(1), unit: "L/min", color: BB.trace(3) }, { label: "근육 혈류", value: fmt0(muscleFrac(xEff) * 100) + "%", unit: "of CO", color: BB.trace(4) }],
+      });
+      var row = r.rows[0];
+      ZONES.forEach(function (zz) { var y1 = row.Y(zz.hi), y0 = row.Y(zz.lo); ctx.fillStyle = BB.alpha(zoneCol(zz.z), 0.13); ctx.fillRect(row.x, y1, row.w, y0 - y1); ctx.fillStyle = BB.alpha(zoneCol(zz.z), 0.9); ctx.font = BB.font(10, true, 700); ctx.textAlign = "right"; ctx.textBaseline = "middle"; ctx.fillText("Z" + zz.z, row.x + row.w - 4, (y0 + y1) / 2); });
+      ctx.strokeStyle = "rgba(255,77,94,0.8)"; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(row.x, row.Y(161)); ctx.lineTo(row.x + row.w, row.Y(161)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = "#ff8a95"; ctx.font = BB.font(10.5, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText("대회 목표 161", row.x + 4, row.Y(161) - 2);
+      ctx.fillStyle = "#cfd6e4"; ctx.font = BB.font(10.5, true); ctx.textAlign = "left"; ctx.textBaseline = "bottom"; ctx.fillText(Math.floor(tSim / 60) + "분 " + fmt0(tSim % 60) + "초", row.x + 4, row.y + row.h - 2);
+      BB.stat("dr-o-hr", fmt0(hrNow) + "<small>bpm · " + (z ? "Z" + z.z + " " + z.name : "Z1 아래") + "</small>");
+      BB.stat("dr-o-sv", fmt0(sv) + "<small>mL</small>");
+      BB.stat("dr-o-co", co.toFixed(1) + "<small>L/min</small>");
+      BB.stat("dr-o-mu", fmt0(muscleFrac(xEff) * 100) + "<small>% · " + (co * muscleFrac(xEff)).toFixed(1) + " L/min</small>");
+    }, { get height() { return viewW("dr-cv") < 560 ? 440 : 420; } });
+    BB.loop(document.getElementById("sim-daon-run"), function (dt) { step(dt); stepWave(dt); cv.redraw(); });
+  })();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "id": "bodybook",
+  "title": "BodyBook",
+  "description": "심장, 폐, 근육, 호르몬. 몸은 어떻게 돌아가나. 심박과 혈압, 호흡과 산소, 근육의 힘, 에너지 대사, 혈당과 인슐린, 호르몬 피드백까지 시뮬레이터로 직접 돌려 보며 배우는 생리학 교과서.",
+  "url": "https://medical.euiyun.com/body/",
+  "repo": "https://github.com/geniuskey/medical-books",
+  "field": "health",
+  "status": "writing",
+  "domain": "medical.euiyun.com",
+  "basePath": "/body/"
+}

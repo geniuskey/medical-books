@@ -1,0 +1,1265 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "근육은 어떻게 힘을 만드는가. 근육에서 필라멘트까지 확대, 미끄러지는 필라멘트와 교차다리 주기, 흥분-수축 연결, 연축과 강축, 길이-장력과 힘-속도, 운동 단위 동원과 근섬유 유형을 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>근육: 힘을 만드는 분자 기계 · BodyBook</title>
+<meta name="description" content="근육은 어떻게 힘을 만드는가. 근육에서 필라멘트까지 확대, 미끄러지는 필라멘트와 교차다리 주기, 흥분-수축 연결, 연축과 강축, 길이-장력과 힘-속도, 운동 단위 동원과 근섬유 유형을 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/muscle.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="근육: 힘을 만드는 분자 기계 · BodyBook">
+<meta property="og:description" content="근육은 어떻게 힘을 만드는가. 근육에서 필라멘트까지 확대, 미끄러지는 필라멘트와 교차다리 주기, 흥분-수축 연결, 연축과 강축, 길이-장력과 힘-속도, 운동 단위 동원과 근섬유 유형을 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/muscle.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/muscle.html#chapter","name":"근육: 힘을 만드는 분자 기계","headline":"근육: 힘을 만드는 분자 기계 · BodyBook","description":"근육은 어떻게 힘을 만드는가. 근육에서 필라멘트까지 확대, 미끄러지는 필라멘트와 교차다리 주기, 흥분-수축 연결, 연축과 강축, 길이-장력과 힘-속도, 운동 단위 동원과 근섬유 유형을 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/muscle.html","position":11,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"11. 근육: 힘을 만드는 분자 기계","item":"https://medical.euiyun.com/body/chapters/muscle.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<!--head:end-->
+<style>
+  .cyc-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 18px 0; }
+  .cyc-chips span { font-size: 12.5px; padding: 2px 9px; border-radius: 999px; background: var(--surface); color: var(--text-dim); border: 1px solid var(--border); }
+  .cyc-chips span.on { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="muscle">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 11</div>
+    <h1>근육: 힘을 만드는 분자 기계</h1>
+    <p class="lead">한 걸음을 내디딜 때 허벅지 근육 안에서는 수십억 개의 분자 손이 동시에 줄을 잡아당긴다. 손 하나가 움직이는 거리는 10 nm, 머리카락 굵기의 1만분의 1이다. 그런데 그 작은 당김이 직렬로, 병렬로 쌓여 몸무게를 들어 올리고 시속 10 km로 몸을 밀어낸다. 이 장은 근육을 분자까지 확대해 들어가 힘이 어디서 생기는지 보고, 다시 거꾸로 나와 신경이 그 힘을 어떻게 조절하는지 따라간다.</p>
+    <ul class="objectives">
+      <li>근육 → 근다발 → 근섬유 → 근원섬유 → 근절 → 필라멘트의 크기와 구조를 구분한다.</li>
+      <li>미끄러지는 필라멘트와 교차다리 주기로 수축을 설명하고, ATP와 칼슘이 각각 어디에 쓰이는지 말한다.</li>
+      <li>활동 전위가 칼슘 방출을 거쳐 힘이 되는 흥분-수축 연결과, 자극 빈도에 따른 연축·가중·강축을 구별한다.</li>
+      <li>길이-장력 관계와 힘-속도 관계를 필라멘트의 겹침과 교차다리의 속도로 설명하고, 파워가 최대인 지점을 찾는다.</li>
+      <li>운동 단위의 크기 원리와 발화율 조절, 근섬유 유형에 따른 피로의 차이를 다온의 달리기에 적용한다.</li>
+    </ul>
+  </header>
+
+  <section id="structure">
+    <h2>근육을 확대하면</h2>
+    <p>근육은 당기기만 한다. 미는 근육은 없다. 팔을 굽힐 때는 앞쪽 근육이, 펼 때는 뒤쪽 근육이 당긴다. 이 단순한 성질은 근육 안의 구조가 처음부터 끝까지 "줄을 당기는" 방향으로 짜여 있기 때문이다. 줄 안에 줄이 있고, 그 안에 또 줄이 있다.</p>
+    <p>허벅지 앞쪽의 <span class="term">넙다리네갈래근</span><span class="en">(Quadriceps femoris)</span>을 예로 들어 보자. 근육은 막으로 싸인 <span class="term">근다발</span><span class="en">(Fascicle)</span> 수백 개로, 근다발은 근육 세포인 <span class="term">근섬유</span><span class="en">(Muscle fiber)</span> 수백 개로 되어 있다. 근섬유 하나는 굵기 50~100 µm에 길이가 수 cm인, 핵이 수백 개 있는 거대한 세포다. 그 안을 <span class="term">근원섬유</span><span class="en">(Myofibril)</span>가 가득 채우고, 근원섬유는 길이 2 µm 남짓한 수축 단위 <span class="term">근절</span><span class="en">(Sarcomere)</span>이 사슬처럼 이어진 것이다. 아래에서 화면을 좌우로 끌어 일곱 자릿수를 내려가 보자.</p>
+
+    <div class="sim" id="mu-zoom" data-desc="허벅지 근육에서 근다발, 근섬유, 근원섬유, 근절, 액틴·미오신 필라멘트까지 화면을 끌어 일곱 자릿수를 확대해 내려간다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>근육에서 분자까지 확대하기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="zm-cv"></canvas><span class="hint">좌우로 끌어 확대·축소</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>확대 단계 <output id="zm-z-out"></output></span><input type="range" id="zm-z" min="0" max="5" step="0.01" value="0"></label>
+          <div class="btn-row"><button class="btn" id="zm-out">한 단계 밖으로</button><button class="btn primary" id="zm-in">한 단계 안으로</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="zm-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">지금 단계</span><span class="v" id="zm-o-lv" style="font-family:var(--font);font-size:16px">—</span></div>
+        <div class="stat"><span class="k">화면 폭</span><span class="v" id="zm-o-fov">—</span></div>
+        <div class="stat"><span class="k">이 단계의 크기</span><span class="v" id="zm-o-sz" style="font-family:var(--font);font-size:14px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 화면을 오른쪽으로 천천히 끌며 가운데 점선 상자가 다음 단계가 되는 것을 본다. ② 아래 눈금자에서 화면 폭이 0.5 m에서 수십 nm까지 줄어드는 것을 확인한다. 일곱 자릿수다. ③ 근원섬유 단계의 줄무늬(진한 띠와 옅은 띠)가 근절 단계에서 어떤 필라멘트가 겹친 곳인지 찾는다. (모양은 설명용으로 단순하게 그렸고, 크기는 사람 골격근의 대표값이다.)</div>
+    </div>
+
+    <p>골격근을 현미경으로 보면 가로 줄무늬가 보여 <span class="term">가로무늬근</span><span class="en">(Striated muscle)</span>이라 부른다. 줄무늬의 정체가 근절이다. 근절은 두 종류의 단백질 실이 엇갈려 겹친 구조다. 굵은 실은 <span class="term">미오신</span><span class="en">(Myosin)</span>, 가는 실은 <span class="term">액틴</span><span class="en">(Actin)</span>이다. 가는 실은 양 끝의 <span class="term">Z선</span><span class="en">(Z-line)</span>에 박혀 있고, 굵은 실은 가운데 <span class="term">M선</span><span class="en">(M-line)</span>에 묶여 있다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-10-5.webp" width="830" height="765" loading="lazy" decoding="async" alt="근절의 Z선, I띠, A띠, H대, M선과 굵은 필라멘트(미오신), 가는 필라멘트(액틴, 트로포닌, 트로포미오신)">
+      <figcaption><b>근절의 띠.</b> Z선에서 다음 Z선까지가 근절 하나다. 굵은 필라멘트(미오신)가 있는 곳이 진하게 보이는 A띠, 가는 필라멘트(액틴)만 있는 곳이 옅은 I띠, A띠 가운데 가는 필라멘트가 닿지 않는 곳이 H대, 그 한가운데가 M선이다. 미오신 머리는 액틴의 결합 자리를 붙잡고 당기고(교차다리), 트로포닌과 트로포미오신이 그 자리를 가렸다 열었다 한다. 수축하면 I띠와 H대는 줄지만 A띠는 그대로다. 필라멘트가 짧아지는 것이 아니라 서로 미끄러져 겹치기 때문이다.<span class="fig-words">Z line Z선 · H zone H대 · M line M선 · Lighter I band 옅은 I띠 · Darker A band 진한 A띠 · Thick/Thin filament 굵은/가는 필라멘트 · Myosin 미오신 · Actin 액틴 · Troponin 트로포닌 · Tropomyosin 트로포미오신</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/10-2-skeletal-muscle">그림 10.5</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+    <p>확대하기 전에 전체부터 보자. 사람의 골격근은 600개가 넘고 몸무게의 약 40 %를 차지한다. 근육은 힘줄로 두 뼈에 붙어 관절을 가로지르고, 당기기만 할 수 있어서 대개 반대쪽에 짝 근육이 있다.</p>
+
+    <div class="sim model3d" id="sim-mu-3d" data-model="muscles" data-orbit="0deg 85deg auto" data-desc="실제 인체 데이터로 만든 골격근과 뼈대 3D 모델을 돌려 보며 근육이 뼈에 붙어 관절을 움직이는 모습을 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 골격근</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="muscles" title="몸무게의 약 40 %">골격근</button><button type="button" data-part="skeleton">뼈대</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="muscles">근육 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① "근육 반투명"을 눌러 허벅지 앞 근육(넙다리네갈래근)이 엉덩이뼈와 정강뼈 사이에서 무릎을 가로지르는 것을 본다. 다온이 달릴 때 가장 많이 쓰는 근육이다. ② 모델을 뒤로 돌려 종아리 근육과 허벅지 뒤 근육을 찾는다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+  </section>
+
+  <section id="sliding">
+    <h2>미끄러지는 필라멘트</h2>
+    <p>1954년 두 연구진이 같은 해에 같은 사실을 발표했다. 근육이 짧아질 때 A띠의 길이는 변하지 않고 I띠와 H대만 줄어든다. 이것은 실 자체가 줄어드는 것이 아니라 가는 실이 굵은 실 사이로 <b>미끄러져 들어간다</b>는 뜻이다. 이를 <span class="term">미끄러지는 필라멘트 이론</span><span class="en">(Sliding filament theory)</span>이라 한다.</p>
+    <p>아래 근절의 오른쪽 Z선 손잡이를 끌어 근절 길이를 바꿔 보자. 띠마다 길이가 함께 표시된다. "수축 재생"을 누르면 근절이 저절로 줄었다 늘어난다.</p>
+
+    <div class="sim" id="mu-slide" data-desc="근절의 Z선을 끌어 길이를 바꾸며 A띠는 그대로이고 I띠와 H대만 줄어드는 것, 그리고 미오신 머리가 닿을 수 있는 겹침이 어떻게 변하는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>근절을 직접 줄이고 늘이기</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="sl-cv"></canvas><span class="hint">Z선 손잡이를 좌우로 끈다</span></div>
+      </div>
+      <div class="sim-controls" style="padding:10px 18px 0">
+        <div class="btn-row"><button class="btn primary" id="sl-go">수축 재생</button><button class="btn" id="sl-re">휴식 길이(2.2 µm)로</button></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent-2)"></i>가는 필라멘트(액틴)</span><span><i style="background:var(--prot)"></i>굵은 필라멘트(미오신)</span><span><i style="background:var(--ok)"></i>붙을 수 있는 미오신 머리</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">근절 길이</span><span class="v" id="sl-o-sl">—</span></div>
+        <div class="stat"><span class="k">A띠 / I띠</span><span class="v" id="sl-o-ai">—</span></div>
+        <div class="stat"><span class="k">H대</span><span class="v" id="sl-o-h">—</span></div>
+        <div class="stat"><span class="k">붙을 수 있는 머리</span><span class="v" id="sl-o-x">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① Z선을 3.0 µm에서 2.0 µm까지 끈다. A띠 1.6 µm는 그대로이고 I띠와 H대가 함께 준다. ② 2.0 µm 아래로 더 줄이면 양쪽 가는 필라멘트가 가운데서 서로 겹치기 시작하고, 1.6 µm 근처에서는 굵은 필라멘트가 Z선에 부딪힌다. ③ 3.6 µm 넘게 늘이면 가는 필라멘트가 굵은 필라멘트에서 완전히 빠져 붙을 머리가 하나도 없다. (개구리 근섬유 필라멘트 길이: 굵은 1.6 µm, 가는 1.0 µm, 가운데 머리 없는 부분 0.2 µm)</div>
+    </div>
+
+    <p>근절 하나가 2.2 µm에서 1.9 µm로 0.3 µm 줄어드는 것은 작아 보인다. 하지만 길이 10 cm인 근섬유에는 근절이 약 4만 5천 개 직렬로 이어져 있다. 모두 동시에 0.3 µm씩 줄면 근섬유는 약 1.4 cm 짧아진다. 직렬 연결은 <b>거리와 속도</b>를 더하고, 병렬 연결(한 근섬유 안의 근원섬유 수천 개, 근육 안의 근섬유 수십만 개)은 <b>힘</b>을 더한다.</p>
+  </section>
+
+  <section id="crossbridge">
+    <h2>교차다리 주기: ATP 하나에 10 nm</h2>
+    <p>가는 실을 끌어당기는 것은 굵은 실에서 튀어나온 미오신 <b>머리</b>다. 머리는 액틴에 붙어 고개를 꺾어 실을 약 10 nm 당기고, 떨어져서 다시 고개를 들고, 다시 붙는다. 머리가 액틴과 이루는 다리를 <span class="term">교차다리</span><span class="en">(Cross-bridge)</span>라 하고, 이 한 바퀴를 교차다리 주기라 한다. 한 바퀴에 ATP 하나가 쓰인다.</p>
+    <p>그런데 ATP가 쓰이는 곳이 직관과 다르다. ATP는 머리가 <b>힘을 낼 때</b>가 아니라 <b>떨어질 때</b>와 <b>다시 장전할 때</b> 필요하다. 아래에서 한 단계씩 넘겨 보고, ATP를 빼 보자. 칼슘을 빼면 무슨 일이 생기는지도 보자.</p>
+
+    <div class="sim" id="mu-cycle" data-desc="미오신 머리가 붙고, 당기고, ATP로 떨어지고, 다시 장전하는 교차다리 주기를 한 단계씩 넘기며, ATP를 빼면 경직, 칼슘을 빼면 이완되는 것을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>교차다리 한 바퀴</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cy-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="check"><input type="checkbox" id="cy-ca" checked> 칼슘(Ca²⁺) 있음</label>
+          <label class="check"><input type="checkbox" id="cy-atp" checked> ATP 있음</label>
+          <label class="ctrl"><span>속도 <output id="cy-sp-out"></output></span><input type="range" id="cy-sp" min="0.3" max="3" step="0.1" value="1"></label>
+          <div class="btn-row"><button class="btn primary" id="cy-go">멈춤</button><button class="btn" id="cy-step">한 단계</button></div>
+        </div>
+      </div>
+      <div class="cyc-chips" id="cy-chips"></div>
+      <div class="info-panel" id="cy-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">당긴 거리</span><span class="v" id="cy-o-d">—</span></div>
+        <div class="stat"><span class="k">쓴 ATP</span><span class="v" id="cy-o-atp">—</span></div>
+        <div class="stat"><span class="k">상태</span><span class="v" id="cy-o-st" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 재생을 멈추고 "한 단계"로 다섯 단계를 짚는다. 액틴이 오른쪽(M선 쪽)으로 움직이는 것은 "힘내기" 단계뿐이다. ② ATP를 끈다. 머리가 액틴에 붙은 채 떨어지지 못한다. 이것이 경직(사후 경직)이다. ③ ATP는 켜고 칼슘을 끈다. 머리는 장전된 채 기다리지만 결합 자리가 트로포미오신에 가려 붙지 못한다. 근육이 쉬는 상태다. (머리 하나만 그렸다. 실제로는 수많은 머리가 서로 다른 박자로 돌아 실이 끊김 없이 당겨진다.)</div>
+    </div>
+
+    <p>쉬는 근육에서 액틴의 결합 자리는 <span class="term">트로포미오신</span><span class="en">(Tropomyosin)</span>이라는 가는 끈이 덮고 있다. 칼슘이 <span class="term">트로포닌</span><span class="en">(Troponin)</span>에 붙으면 끈이 옆으로 비켜나 자리가 드러난다. 그래서 칼슘은 수축의 <b>스위치</b>, ATP는 <b>연료</b>다. 둘 중 하나만 없어도 수축은 멈추지만 멈추는 모습은 정반대다. 칼슘이 없으면 근육은 풀리고, ATP가 없으면 근육은 굳는다.</p>
+    <div class="callout deep">
+      <strong>사후 경직</strong>
+      숨이 멎으면 몇 시간 안에 근육의 ATP가 바닥나고, 붙어 있던 머리가 떨어지지 못해 온몸이 굳는다. 하루 이틀 뒤 단백질 자체가 분해되면서 다시 풀린다. 살아 있는 근육이 늘 부드러운 것은 ATP가 머리를 끊임없이 떼어 주기 때문이다.
+    </div>
+  </section>
+
+  <section id="ecc">
+    <h2>흥분-수축 연결: 전기가 칼슘이 되기까지</h2>
+    <p>칼슘 스위치를 켜는 것은 신경이다. 운동 신경 끝에서 아세틸콜린이 나오면 근섬유 막에 <span class="term">활동 전위</span><span class="en">(Action potential)</span>가 생겨 막을 따라 퍼진다(<a href="nerve.html">16장</a>). 막은 근절마다 세포 속으로 깊이 파고든 관, <span class="term">T세관</span><span class="en">(Transverse tubule)</span>을 만들어 전기를 섬유 한가운데까지 2~3 ms 안에 전한다. T세관 양옆에는 칼슘을 잔뜩 모아 둔 주머니인 <span class="term">근소포체</span><span class="en">(Sarcoplasmic reticulum, SR)</span>가 붙어 있다. 전압이 바뀌면 근소포체의 문이 열려 칼슘이 쏟아진다.</p>
+    <p>이 과정을 <span class="term">흥분-수축 연결</span><span class="en">(Excitation–contraction coupling)</span>이라 한다. 아래에서 재생 속도를 낮춰 전기 → 칼슘 → 힘의 순서와 시간 차를 보자.</p>
+
+    <div class="sim" id="mu-ec" data-desc="자극 한 번이 근섬유 막과 T세관을 따라 퍼지고, 근소포체에서 칼슘이 쏟아졌다 다시 회수되며 힘이 오르내리는 순서를 느린 화면으로 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>전기에서 칼슘, 칼슘에서 힘</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ec-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="ec-type"><button data-value="fast" class="on">빠른 섬유</button><button data-value="slow">느린 섬유</button></div>
+          <label class="ctrl"><span>재생 속도 <output id="ec-sp-out"></output></span><input type="range" id="ec-sp" min="5" max="200" step="5" value="40"></label>
+          <div class="btn-row"><button class="btn primary" id="ec-go">다시 자극</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--nerve)"></i>막전위</span><span><i style="background:var(--warn)"></i>칼슘(세포질)</span><span><i style="background:var(--accent)"></i>힘</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">자극 뒤</span><span class="v" id="ec-o-t">—</span></div>
+        <div class="stat"><span class="k">막전위</span><span class="v" id="ec-o-v">—</span></div>
+        <div class="stat"><span class="k">칼슘 / 힘</span><span class="v" id="ec-o-cf">—</span></div>
+        <div class="stat"><span class="k">힘 최고점까지</span><span class="v" id="ec-o-tp">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 재생 속도를 10 ms/s로 낮춘다. 활동 전위는 몇 ms 만에 끝나지만 칼슘은 수십 ms, 힘은 그보다 더 오래 남는다. ② 칼슘 곡선(노랑)이 떨어지기 시작한 뒤에도 힘(빨강)이 한동안 오르는 것을 본다. 교차다리가 붙고 힘이 쌓이는 데 시간이 걸린다. ③ "느린 섬유"로 바꾼다. 칼슘 회수가 느려 힘이 늦게 오르고 오래 간다. (교육용 모델: 칼슘 → 힘을 1차 지연으로 근사했다. 단일 연축의 크기는 최대 강축의 약 36 %.)</div>
+    </div>
+
+    <p>전기 신호는 1~2 ms면 끝나지만 힘은 수십 ms 뒤에야 최고점에 이른다. 칼슘이 다시 근소포체로 펌프질되어 들어가야(이것도 ATP를 쓴다) 근육이 풀린다. 자극 한 번에 대한 이 한 번의 수축과 이완을 <span class="term">연축</span><span class="en">(Twitch)</span>이라 한다. 연축은 근육이 낼 수 있는 힘의 일부일 뿐이다. 자극이 이어지면 무슨 일이 생길까.</p>
+  </section>
+
+  <section id="summation">
+    <h2>연축에서 강축으로</h2>
+    <p>앞의 연축이 다 풀리기 전에 다음 자극이 오면, 칼슘이 다 회수되기 전에 다시 쏟아지고 힘이 위에 쌓인다. 이것이 <span class="term">가중</span><span class="en">(Summation)</span>이다. 자극이 더 잦아지면 힘이 톱니처럼 출렁이는 <span class="term">불완전 강축</span><span class="en">(Unfused tetanus)</span>, 더 잦으면 매끈한 고원인 <span class="term">완전 강축</span><span class="en">(Fused tetanus)</span>이 된다. 신경은 자극의 <b>빈도</b>로 힘을 조절한다.</p>
+
+    <div class="sim" id="mu-sum" data-desc="자극 빈도를 1 Hz에서 100 Hz까지 올리며 단일 연축이 가중, 불완전 강축, 완전 강축으로 바뀌는 것을 빠른 섬유와 느린 섬유에서 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>자극 빈도와 강축</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="sm-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>자극 빈도 <output id="sm-f-out"></output></span><input type="range" id="sm-f" min="1" max="100" step="1" value="8"></label>
+          <div class="seg" id="sm-type"><button data-value="fast" class="on">빠른 섬유</button><button data-value="slow">느린 섬유</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">최고 힘</span><span class="v" id="sm-o-pk">—</span></div>
+        <div class="stat"><span class="k">연축의 몇 배</span><span class="v" id="sm-o-x">—</span></div>
+        <div class="stat"><span class="k">모양</span><span class="v" id="sm-o-k" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 빈도를 2 → 10 → 25 → 60 Hz로 올리며 연축이 따로 → 가중 → 불완전 강축 → 완전 강축으로 바뀌는 것을 본다. ② 같은 20 Hz에서 빠른 섬유와 느린 섬유를 비교한다. 느린 섬유는 한 번의 연축이 길어 낮은 빈도에서 이미 매끈하게 합쳐진다. ③ 오른쪽 그래프(끌어서 빈도를 고를 수도 있다)에서 최고 힘이 빈도에 따라 S자로 오르는 것을 본다. 강축은 연축의 약 3배다. (자극 0.6초, 피로 없음. BD.twitchTrain 교육용 모델)</div>
+    </div>
+
+    <p>실제 운동 신경은 보통 초당 8~50번 발화한다. 단일 연축은 쓸모가 거의 없고, 우리가 쓰는 힘은 거의 모두 불완전·완전 강축이다. 강축이 연축보다 센 이유는 칼슘이 오래 높게 유지되어 결합 자리가 계속 드러나 있고, 근육 안의 탄성 성분(힘줄 등)이 다 늘어날 시간이 있기 때문이다.</p>
+  </section>
+
+  <section id="length">
+    <h2>길이-장력: 너무 짧아도, 너무 길어도 약하다</h2>
+    <p>같은 자극이라도 근육이 얼마나 늘어난 상태에서 수축하느냐에 따라 힘이 다르다. 근절 길이마다 낼 수 있는 힘을 그린 것이 <span class="term">길이-장력 관계</span><span class="en">(Length–tension relationship)</span>다. 앞에서 본 필라멘트 겹침이 그대로 설명한다. 미오신 머리가 액틴에 가장 많이 닿는 2.0~2.25 µm에서 힘이 가장 크고, 늘이면 겹침이 줄어 약해지고, 줄이면 가는 필라멘트끼리 부딪치고 굵은 필라멘트가 Z선에 걸려 약해진다.</p>
+    <p>근육을 많이 늘이면 수축하지 않아도 고무줄처럼 버티는 힘, <span class="term">수동 장력</span><span class="en">(Passive tension)</span>이 생긴다. 근절 안의 거대한 용수철 단백질인 티틴과 결합 조직이 만든다. 아래에서 점을 끌어 근절 길이를 바꿔 보자.</p>
+
+    <div class="sim" id="mu-lt" data-desc="길이-장력 곡선 위의 점을 끌어 근절 길이를 바꾸면, 그 길이의 필라멘트 겹침 그림과 능동·수동·전체 장력이 함께 바뀐다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>길이-장력 곡선과 겹침</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="lt-cv"></canvas><span class="hint">곡선 위의 점을 좌우로 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>능동 장력(수축)</span><span><i style="background:var(--warn)"></i>수동 장력(늘어난 탄성)</span><span><i style="background:var(--text-dim)"></i>합계</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">근절 길이</span><span class="v" id="lt-o-sl">—</span></div>
+        <div class="stat"><span class="k">능동 장력</span><span class="v" id="lt-o-a">—</span></div>
+        <div class="stat"><span class="k">수동 장력</span><span class="v" id="lt-o-p">—</span></div>
+        <div class="stat"><span class="k">합계</span><span class="v" id="lt-o-t">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 2.0~2.25 µm의 고원에 둔다. 머리가 모두 액틴에 닿고 가는 필라멘트끼리 겹치지 않는다. ② 3.0 µm로 늘인다. 능동 장력은 절반쯤으로 줄지만 수동 장력이 커져 합계는 크게 줄지 않는다. ③ 3.6 µm 넘게 늘이면 능동 장력은 0이 되고 수동 장력만 가파르게 오른다. 근육이 찢어지는 영역이다. (개구리 근섬유 실험 곡선 모양, 최대 = 1로 정규화. 몸 안의 근육은 대개 1.8~3.0 µm 사이에서 일한다.)</div>
+    </div>
+
+    <p>몸 안의 근육은 뼈에 붙은 위치 때문에 대부분 고원 근처에서 일하도록 맞춰져 있다. 쪼그려 앉은 자세에서 일어서기 어려운 것은 무릎이 깊게 굽어 넙다리네갈래근이 길게 늘어나 있고, 동시에 지렛대 팔이 불리하기 때문이다. 심장 근육은 반대로 고원보다 짧은 쪽에서 일해, 늘어날수록 힘이 커지는 구간을 쓴다. 그것이 <a href="heart.html">4장</a>의 프랭크-스탈링 법칙이다.</p>
+  </section>
+
+  <section id="velocity">
+    <h2>힘-속도: 빠르면 약하고, 늘어나며 버티면 가장 세다</h2>
+    <p>무거운 바벨은 천천히, 가벼운 공은 빠르게 던진다. 근육은 빨리 짧아질수록 힘이 약하다. 교차다리가 빠르게 지나가면 붙어서 힘을 내는 머리의 비율이 줄기 때문이다. 이것이 <span class="term">힘-속도 관계</span><span class="en">(Force–velocity relationship)</span>다. 1938년 힐이 쌍곡선으로 정리했다.</p>
+    <div class="formula">$$(F + a)(v + b) = (F_0 + a)\,b$$
+      <div class="where">\(F\) 힘, \(v\) 짧아지는 속도, \(F_0\) 최대 등척성 힘(속도 0), \(a, b\) 곡률 상수(\(a/F_0\) ≈ 0.25). 힘이 0이면 속도가 최대 \(v_{max}\)(근섬유 길이의 초당 수 배)</div>
+    </div>
+    <p>근육이 내는 <b>파워</b>(힘 × 속도)는 양 끝에서 0이다. 속도 0이면 아무것도 움직이지 않고, 최대 속도면 힘이 0이다. 그 사이 어딘가에 최댓값이 있다. 아래에서 점을 끌어 찾아보자. 왼쪽 음수 영역은 근육이 버티면서 <b>늘어나는</b> <span class="term">신장성 수축</span><span class="en">(Eccentric contraction)</span>이다.</p>
+
+    <div class="sim" id="mu-fv" data-desc="힘-속도 곡선 위의 점을 끌어 단축성·등척성·신장성 수축의 힘과 파워를 비교하고, 파워가 최대 속도의 약 3분의 1에서 가장 큰 것을 찾는다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>힘-속도 곡선과 파워</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="fv-cv"></canvas><span class="hint">곡선 위의 점을 좌우로 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>힘</span><span><i style="background:var(--ok)"></i>파워 = 힘 × 속도</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">수축 종류</span><span class="v" id="fv-o-k" style="font-family:var(--font);font-size:15px">—</span></div>
+        <div class="stat"><span class="k">힘 (F/F₀)</span><span class="v" id="fv-o-f">—</span></div>
+        <div class="stat"><span class="k">속도 (v/vmax)</span><span class="v" id="fv-o-v">—</span></div>
+        <div class="stat"><span class="k">파워(최대 대비)</span><span class="v" id="fv-o-p">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 점을 오른쪽 끝(최대 속도)과 0(등척성)에 차례로 둔다. 둘 다 파워가 0이다. ② 파워가 가장 큰 점을 찾는다. 속도 약 0.3 vmax, 힘 약 0.3 F₀다. ③ 점을 왼쪽(신장성)으로 끈다. 늘어나며 버티는 힘은 최대 등척성 힘의 약 1.6배까지 오른다. 계단을 내려올 때, 달릴 때 착지하는 순간이 이렇다. (힐 방정식 a/F₀ = 0.25, 신장성 쪽은 실험 모양을 본뜬 근사)</div>
+    </div>
+
+    <p>파워가 최대인 지점이 속도의 약 3분의 1이라는 사실은 자전거 기어와 달리기 보폭에 그대로 쓰인다. 같은 속도로 달릴 때 보폭을 크게 하고 발을 덜 구르면 한 걸음마다 큰 힘을 천천히 내야 하고, 보폭을 줄이고 회전수를 높이면 작은 힘을 빠르게 낸다. 근육이 파워를 잘 내는 속도 범위에 머물도록 몸은 속도에 따라 보폭과 회전수를 함께 조절한다. 신장성 수축은 같은 힘에 에너지를 적게 쓰지만, 근섬유에 미세한 손상을 많이 남긴다. 내리막을 오래 달린 다음 날 허벅지가 유난히 뻐근한 이유다.</p>
+    <div class="callout warn">
+      <strong>신장성 운동을 갑자기 몰아서 하지 않는다</strong>
+      평소 하지 않던 긴 내리막 달리기, 무거운 무게를 천천히 내리는 동작을 한꺼번에 많이 하면 근섬유가 크게 손상되어 근육 단백질이 피로 새어 나오는 횡문근융해증이 생길 수 있다. 소변이 콜라색이 되거나 근육이 심하게 붓고 아프면 바로 의료진을 찾아야 한다. 이 장의 시뮬레이터는 원리를 보여 줄 뿐이며, 강도는 몇 주에 걸쳐 조금씩 늘리는 것이 일반적인 원칙이다.
+    </div>
+  </section>
+
+  <section id="units">
+    <h2>운동 단위: 신경이 힘을 조절하는 두 가지 방법</h2>
+    <p>근섬유는 혼자 움직이지 않는다. 척수의 운동 신경 세포 하나가 근섬유 여러 개를 맡고, 신경 세포가 발화하면 맡은 근섬유가 한꺼번에 수축한다. 이 묶음을 <span class="term">운동 단위</span><span class="en">(Motor unit)</span>라 한다. 눈 근육처럼 섬세한 근육은 한 단위가 섬유 10개 남짓이고, 허벅지 근육은 한 단위가 섬유 1,000개가 넘는다.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 480 280" role="img" aria-label="운동 단위: 척수의 작은 신경과 큰 신경이 각각 근육 속에 흩어진 근섬유 여러 개를 맡는다">
+        <defs><marker id="mu-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+        <rect x="16" y="30" width="120" height="200" rx="40" class="f-surface"/>
+        <text x="76" y="22" text-anchor="middle" class="lbl-b">척수</text>
+        <circle cx="62" cy="90" r="9" class="f-acc"/>
+        <circle cx="80" cy="170" r="18" class="f-acc2"/>
+        <text x="62" y="118" text-anchor="middle" class="lbl-dim">작은 신경</text>
+        <text x="80" y="206" text-anchor="middle" class="lbl-dim">큰 신경</text>
+        <ellipse cx="350" cy="140" rx="120" ry="100" class="f-surface"/>
+        <text x="350" y="30" text-anchor="middle" class="lbl-b">근육 단면</text>
+        <path d="M71 90 C180 90 220 80 270 90" class="s-acc" fill="none" stroke-width="1.6"/>
+        <path d="M270 90 L300 70 M270 90 L330 120 M270 90 L360 82 M300 70 L410 110" class="s-acc" fill="none" stroke-width="1.2"/>
+        <path d="M98 170 C180 170 220 180 260 180" class="s-acc2" fill="none" stroke-width="3"/>
+        <path d="M260 180 L290 210 M260 180 L320 160 M260 180 L340 200 M320 160 L380 150 M320 160 L400 180 M340 200 L420 200 M290 210 L360 228 M380 150 L430 140" class="s-acc2" fill="none" stroke-width="1.8"/>
+        <g class="f-acc"><circle cx="300" cy="70" r="6"/><circle cx="330" cy="120" r="6"/><circle cx="360" cy="82" r="6"/><circle cx="410" cy="110" r="6"/></g>
+        <g class="f-acc2"><circle cx="290" cy="210" r="8"/><circle cx="320" cy="160" r="8"/><circle cx="340" cy="200" r="8"/><circle cx="380" cy="150" r="8"/><circle cx="400" cy="180" r="8"/><circle cx="420" cy="200" r="8"/><circle cx="360" cy="228" r="8"/><circle cx="430" cy="140" r="8"/></g>
+        <g class="f-elev"><circle cx="280" cy="120" r="6"/><circle cx="310" cy="100" r="6"/><circle cx="380" cy="110" r="7"/><circle cx="300" cy="140" r="7"/><circle cx="350" cy="130" r="6"/><circle cx="400" cy="70" r="6"/><circle cx="260" cy="150" r="6"/><circle cx="430" cy="170" r="7"/><circle cx="320" cy="230" r="6"/><circle cx="350" cy="168" r="7"/><circle cx="390" cy="220" r="6"/></g>
+        <text x="20" y="262" class="lbl-dim">작은 단위: 섬유가 적고 가늘다, 먼저 켜진다, 지치지 않는다</text>
+        <text x="20" y="278" class="lbl-dim">큰 단위: 섬유가 많고 굵다, 나중에 켜진다, 빨리 지친다</text>
+      </svg>
+      <figcaption><b>운동 단위.</b> 신경 세포 하나와 그것이 맡은 근섬유를 합쳐 운동 단위라 한다. 한 단위의 섬유는 근육 속에 흩어져 있어, 일부 단위만 켜져도 근육 전체가 고르게 당긴다. 작은 신경 세포는 적은 입력에도 쉽게 발화하므로 먼저 켜진다.</figcaption>
+    </figure>
+
+    <p>뇌가 근육에 "조금 더"라고 명령하면 두 가지가 함께 일어난다. 쉬던 단위가 새로 켜지는 <span class="term">동원</span><span class="en">(Recruitment)</span>과, 이미 켜진 단위가 더 자주 발화하는 <span class="term">발화율 조절</span><span class="en">(Rate coding)</span>이다. 동원에는 순서가 있다. 신경 세포가 작을수록 막 저항이 커 같은 입력에도 먼저 역치에 닿으므로, 작고 지치지 않는 단위부터 크고 센 단위 순으로 켜진다. 이를 <span class="term">헤네만의 크기 원리</span><span class="en">(Henneman's size principle)</span>라 한다.</p>
+
+    <div class="sim" id="mu-mu" data-desc="중추 명령을 올리며 60개 운동 단위가 작은 것부터 차례로 켜지고 발화율이 빨라지는 것을 보고, 동원과 발화율이 각각 힘에 얼마나 보태는지 비교한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>운동 단위 60개의 동원</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="mn-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>중추 명령(노력) <output id="mn-d-out"></output></span><input type="range" id="mn-d" min="0" max="1" step="0.01" value="0.2"></label>
+          <label class="ctrl"><span>깜박임 속도 <output id="mn-s-out"></output></span><input type="range" id="mn-s" min="0.05" max="1" step="0.05" value="0.25"></label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--art)"></i>제1형(느린)</span><span><i style="background:var(--heat)"></i>제2a형</span><span><i style="background:var(--fat)"></i>제2x형(빠른)</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">켜진 단위</span><span class="v" id="mn-o-n">—</span></div>
+        <div class="stat"><span class="k">근육의 힘</span><span class="v" id="mn-o-f">—</span></div>
+        <div class="stat"><span class="k">첫 단위 발화율</span><span class="v" id="mn-o-r">—</span></div>
+        <div class="stat"><span class="k">가장 큰 켜진 단위</span><span class="v" id="mn-o-b">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 명령을 0에서 천천히 올린다. 작은 빨간 단위(제1형)부터 켜지고, 큰 노란 단위(제2x형)는 명령이 0.4를 넘어야 켜지기 시작한다. ② 명령 0.7 이상에서는 모든 단위가 이미 켜져 있다. 그 위로 힘을 더 올리는 것은 발화율뿐이다. ③ 아래 그래프(끌어서 명령을 바꿀 수도 있다)에서 점선(발화율을 8 Hz로 고정한 경우)과 실선의 차이가 발화율 조절의 몫이다. (60개 단위, 동원 역치는 지수 분포로 60배 범위, 큰 단위일수록 힘이 크다. BD.motorUnits 교육용 모델)</div>
+    </div>
+
+    <p>크기 원리 덕분에 신경계는 단위 하나하나를 고를 필요가 없다. "얼마나 세게"라는 한 가지 명령만 보내면 알맞은 단위가 알맞은 순서로 켜진다. 약한 힘을 섬세하게 조절할 때는 작은 단위가 하나씩 더해지니 힘이 조금씩 늘고, 큰 힘이 필요할 때는 큰 단위가 한꺼번에 큰 몫을 더한다. 힘이 커질수록 힘 조절의 눈금도 커지는 셈이다.</p>
+  </section>
+
+  <section id="fibers">
+    <h2>근섬유 유형과 피로</h2>
+    <p>운동 단위의 크기와 근섬유의 성질은 함께 간다. 작은 단위의 섬유는 미토콘드리아와 모세혈관, 산소를 붙잡는 미오글로빈이 많아 붉고, 천천히 수축하지만 지치지 않는다. 큰 단위의 섬유는 굵고 빠르며 센 대신 해당 과정에 기대어 금세 지친다. 사람 근섬유는 보통 세 가지로 나눈다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>유형</th><th class="num">연축 최고점까지</th><th class="num">단위 힘(상대)</th><th>피로 저항</th><th>미토콘드리아·미오글로빈</th><th>주 연료</th></tr></thead>
+      <tbody>
+        <tr><td>제1형(느린 산화)</td><td class="num">약 100 ms</td><td class="num">1</td><td>매우 강함</td><td>많다(붉은색)</td><td>지방·포도당 산화</td></tr>
+        <tr><td>제2a형(빠른 산화-해당)</td><td class="num">약 50 ms</td><td class="num">2.5</td><td>중간</td><td>중간</td><td>산화 + 해당</td></tr>
+        <tr><td>제2x형(빠른 해당)</td><td class="num">약 25 ms</td><td class="num">4</td><td>약함</td><td>적다(흰색)</td><td>해당·인산크레아틴</td></tr>
+      </tbody>
+    </table></div>
+    <p>섬유 비율은 사람마다, 근육마다 다르다. 허벅지 근육의 제1형 비율은 보통 사람이 약 50 %, 마라톤 선수는 70~80 %, 단거리 선수는 30 % 안팎이다. 비율의 상당 부분은 타고나고, 훈련은 제2x형을 제2a형 쪽으로 옮기는 일(산화 능력을 키우는 일)을 주로 한다. 아래에서 근육의 섬유 비율을 바꿔 가며 반복 수축을 시켜 보자.</p>
+
+    <div class="sim" id="mu-fib" data-desc="근육의 제1형 섬유 비율과 수축 방식을 바꿔 2분 동안 반복 수축을 시키면, 섬유 유형마다 힘이 얼마나 빨리 떨어지고 근육 전체의 힘이 어떻게 변하는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>섬유 유형별 피로 곡선</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="fb-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>제1형 섬유 비율 <output id="fb-s-out"></output></span><input type="range" id="fb-s" min="0.1" max="0.9" step="0.05" value="0.5"></label>
+          <div class="seg" id="fb-mode"><button data-value="burke" class="on">1초마다 0.33초 수축</button><button data-value="hold">계속 최대 수축</button></div>
+          <div class="btn-row"><button class="btn primary" id="fb-go">다시 재생</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">경과</span><span class="v" id="fb-o-t">—</span></div>
+        <div class="stat"><span class="k">근육 전체 힘(처음 대비)</span><span class="v" id="fb-o-f">—</span></div>
+        <div class="stat"><span class="k">남은 힘 I / IIa / IIx</span><span class="v" id="fb-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 기본 상태(제1형 50 %)에서 2분을 돌린다. 노란 제2x형은 1분 만에 힘의 절반 넘게 잃고, 빨간 제1형은 거의 그대로다. ② 비율을 0.8(지구력 선수형)과 0.2(단거리 선수형)로 바꿔 오른쪽 그래프를 비교한다. 처음 힘은 단거리형이 세고, 2분 뒤 남은 힘은 지구력형이 많다. ③ "계속 최대 수축"으로 바꾼다. 쉬는 틈이 없어 모든 유형이 훨씬 빨리 지친다. (교육용 모델: 수축 중에는 유형별 속도로 힘이 줄고 쉬는 동안 회복한다. 제2형 중 60 %를 2a형, 40 %를 2x형으로 두었다.)</div>
+    </div>
+
+    <p>운동 중 근육이 지치는 이유는 한 가지가 아니다. 짧고 센 운동에서는 인산크레아틴이 바닥나고 무기 인산이 쌓여 교차다리와 칼슘 방출이 방해받는다. 오래 하는 운동에서는 근육 글리코겐이 줄어든다. 중추 신경계가 명령을 줄이는 것(중추 피로)도 한몫한다. 다음 장(<a href="exercise.html">12장</a>)에서 에너지 쪽에서 다시 본다.</p>
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 나이가 들며 근육량과 근력이 지나치게 줄어드는 근감소증, 이유 없는 근육 약화나 경련, 심한 근육통이 있으면 의료진과 상담하세요.</p>
+  </section>
+
+  <section id="daon">
+    <h2>다온의 허벅지: 편한 달리기와 막판 스퍼트</h2>
+    <p>다온의 넙다리네갈래근은 보통 사람처럼 제1형과 제2형 섬유가 대략 반반이라고 가정하자. 달리는 동안 착지마다 무릎이 굽는 것을 버티고 다시 펴려면 이 근육이 한 걸음마다 최대 힘의 일부를 내야 한다. 편하게 뛸 때는 최대의 약 16 %, 대회 속도에서는 약 22 %, 마지막 400 m 스퍼트에서는 약 60 %로 어림했다. 아래 시뮬레이터는 이 목표 힘을 내려고 신경이 어떤 단위를 켜는지, 그리고 단위가 지쳐 가면 무슨 일이 생기는지 거리마다 계산한다.</p>
+
+    <div class="sim" id="mu-daon" data-big data-desc="다온의 허벅지 근육 단면에서 편한 달리기와 10 km 대회의 막판 스퍼트 동안 어떤 운동 단위가 켜지는지, 지쳐 가는 섬유를 대신해 더 큰 단위가 동원되는 과정을 거리를 따라 재생한다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>다온의 허벅지, 출발에서 결승선까지</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="dn-cv"></canvas><span class="hint">아래 코스 막대를 끌어 지점을 고른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="dn-mode"><button data-value="race" class="on">10 km 대회</button><button data-value="jog">편한 달리기 5 km</button></div>
+          <label class="ctrl"><span>스퍼트 세기 <output id="dn-sp-out"></output></span><input type="range" id="dn-sp" min="0.3" max="0.95" step="0.05" value="0.6"></label>
+          <label class="ctrl"><span>재생 속도 <output id="dn-v-out"></output></span><input type="range" id="dn-v" min="0.2" max="3" step="0.1" value="1"></label>
+          <div class="btn-row"><button class="btn primary" id="dn-go">멈춤</button><button class="btn" id="dn-re">처음부터</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--art)"></i>제1형</span><span><i style="background:var(--heat)"></i>제2a형</span><span><i style="background:var(--fat)"></i>제2x형</span><span><i style="background:var(--accent-2)"></i>중추 명령</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">지점</span><span class="v" id="dn-o-x">—</span></div>
+        <div class="stat"><span class="k">필요한 힘 / 낸 힘</span><span class="v" id="dn-o-f">—</span></div>
+        <div class="stat"><span class="k">켜진 단위</span><span class="v" id="dn-o-n">—</span></div>
+        <div class="stat"><span class="k">남은 힘 I / IIa / IIx</span><span class="v" id="dn-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "10 km 대회"를 처음부터 재생한다. 대회 속도에서는 60개 중 45개 남짓(제1형 전부와 제2a형 일부)이 켜지고 노란 제2x형은 꺼져 있다. ② 거리가 지날수록 같은 힘을 내는데도 중추 명령(파랑)이 조금씩 오르고 켜진 단위가 늘어난다. 지친 섬유의 몫을 새 단위가 메운다. ③ 마지막 400 m에서 큰 단위까지 켜지며 제2x형의 남은 힘이 빠르게 떨어진다. 스퍼트 세기를 0.95로 올리면 지친 근육이 목표 힘을 다 내지 못한다(빨간 경고). (교육용 모델: 걸음마다의 힘을 평균 목표 힘으로 단순화했고, 유형별 피로 속도는 위 시뮬레이터와 같은 생각으로 정했다. 대회 시간 58분, 편한 달리기 35분.)</div>
+    </div>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 11장</span></div>
+      <h4>대회 속도에서는 운동 단위 60개 중 약 45개, 막판 스퍼트에서는 거의 전부</h4>
+      <p>다온의 허벅지 근육을 섬유 비율 약 반반으로 놓고 운동 단위 모델로 계산하면, 편한 달리기(최대 힘의 약 16 %)에는 60개 단위 중 약 40개, 10 km 대회 속도(약 22 %)에는 약 45개가 켜진다. 모두 작은 제1형 단위와 일부 제2a형 단위이고, 빠르게 지치는 제2x형 단위는 쉬고 있다. 결승선 400 m 앞에서 힘을 약 60 %로 올리면 중추 명령이 크게 오르며 59~60개, 즉 제2x형까지 거의 전부 켜지고, 이 단위들은 1~2분 만에 힘을 잃기 시작한다. 같은 속도에서 보폭을 줄이고 회전수를 조금 높이면 한 걸음의 힘이 줄어 큰 단위를 덜 쓰게 된다. 힘-속도 곡선에서 파워가 큰 영역에 근육을 머물게 하는 방법이다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>대회 속도는 주로 제1형·제2a형 단위가 감당한다. 스퍼트는 크기 원리의 마지막 단위까지 꺼내 쓰는 일이다.</div><div><b>아직 모르는 것</b>58분 동안 이 단위들에 ATP를 대는 에너지는 어디서 오는가. 왜 다온은 산소를 더 들이마실 수 있어도 더 빨리 달리지 못하는가.</div><div><b>다음 단계</b><a href="exercise.html">12장</a>에서 에너지 시스템, 젖산 역치, VO2max로 다온의 10 km 기록을 계산하고 12주 훈련을 계획한다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>근육 → 근다발 → 근섬유 → 근원섬유 → 근절 → 필라멘트. 근절(약 2.2 µm)이 수축 단위이고, 직렬 연결은 거리와 속도를, 병렬 연결은 힘을 더한다.</li>
+      <li>수축할 때 필라멘트는 짧아지지 않고 미끄러진다. A띠(1.6 µm)는 그대로, I띠와 H대가 준다.</li>
+      <li>교차다리 한 바퀴는 약 10 nm, ATP 하나. ATP는 머리를 떼고 다시 장전하는 데 쓰인다. ATP가 없으면 경직, 칼슘이 없으면 이완.</li>
+      <li>활동 전위 → T세관 → 근소포체 칼슘 방출 → 트로포닌·트로포미오신 → 교차다리. 자극이 잦아지면 연축이 가중되어 강축(연축의 약 3배)이 된다.</li>
+      <li>힘은 근절 길이 2.0~2.25 µm에서 가장 크고(길이-장력), 빨리 짧아질수록 작다(힘-속도). 파워는 최대 속도의 약 3분의 1에서 최대, 신장성 수축은 최대 등척성 힘의 약 1.6배까지 버틴다.</li>
+      <li>신경은 작은 단위부터 큰 단위 순으로 동원하고(크기 원리) 발화율을 높여 힘을 올린다. 제1형은 느리고 지치지 않으며, 제2x형은 빠르고 세지만 금세 지친다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>근육이 수축해 근절이 짧아질 때 길이가 <b>변하지 않는</b> 것은?</p>
+        <div class="opts">
+          <button class="opt">I띠</button>
+          <button class="opt">H대</button>
+          <button class="opt" data-correct>A띠</button>
+          <button class="opt">Z선 사이의 거리</button>
+        </div>
+        <div class="quiz-exp">A띠는 굵은 필라멘트(미오신)의 길이 그 자체라 변하지 않는다. 가는 필라멘트가 굵은 필라멘트 사이로 미끄러져 들어가면서 I띠와 H대, 그리고 Z선 사이의 거리(근절 길이)가 준다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>근육 세포 안에서 ATP가 갑자기 바닥났다. 교차다리는 어떤 상태로 멈추는가?</p>
+        <div class="opts">
+          <button class="opt" data-correct>미오신 머리가 액틴에 붙은 채 떨어지지 못해 근육이 굳는다</button>
+          <button class="opt">미오신 머리가 모두 떨어져 근육이 축 늘어진다</button>
+          <button class="opt">트로포미오신이 결합 자리를 덮어 근육이 풀린다</button>
+          <button class="opt">칼슘이 근소포체로 돌아가 이완된다</button>
+        </div>
+        <div class="quiz-exp">ATP가 머리에 붙어야 머리가 액틴에서 떨어진다. ATP가 없으면 힘내기를 마친 머리가 붙은 채 남아 경직 상태가 된다. 사후 경직의 원리다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>최대 등척성 힘이 1,000 N, 최대 단축 속도가 1.0 m/s인 근육이 0.3 m/s로 짧아지며 약 320 N을 낸다. 이때 파워는?</p>
+        <div class="opts">
+          <button class="opt">약 30 W</button>
+          <button class="opt">약 300 W</button>
+          <button class="opt">약 1,000 W</button>
+          <button class="opt" data-correct>약 96 W</button>
+        </div>
+        <div class="quiz-exp">파워 = 힘 × 속도 = 320 N × 0.3 m/s = 96 W. 힘-속도 곡선에서 파워가 가장 큰 곳(속도 약 0.3 vmax, 힘 약 0.3 F₀)이며, 최대 힘 × 최대 속도(1,000 W)의 약 10 %다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>천천히 걷다가 점점 빨리 뛰기 시작할 때 운동 단위가 켜지는 순서로 옳은 것은?</p>
+        <div class="opts">
+          <button class="opt">크고 빠른 제2x형 단위부터 켜진다</button>
+          <button class="opt" data-correct>작고 지치지 않는 제1형 단위부터 켜지고 큰 단위가 뒤따른다</button>
+          <button class="opt">모든 단위가 함께 켜지고 발화율만 달라진다</button>
+          <button class="opt">무작위로 켜진다</button>
+        </div>
+        <div class="quiz-exp">헤네만의 크기 원리: 작은 운동 신경 세포는 같은 입력에도 먼저 역치에 닿는다. 그래서 약한 힘은 지치지 않는 작은 단위가 맡고, 큰 힘이 필요할 때에야 크고 센 단위가 더해진다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>길이 9 cm인 근섬유의 근절(2.25 µm)이 모두 1.95 µm로 짧아졌다. 근섬유는 대략 얼마나 짧아지는가?</p>
+        <div class="opts">
+          <button class="opt">약 0.3 µm</button>
+          <button class="opt">약 1.2 mm</button>
+          <button class="opt" data-correct>약 1.2 cm</button>
+          <button class="opt">약 4.5 cm</button>
+        </div>
+        <div class="quiz-exp">근절 수 = 9 cm ÷ 2.25 µm = 90,000 µm ÷ 2.25 µm = 40,000개. 하나당 0.3 µm씩 줄면 40,000 × 0.3 µm = 12,000 µm = 1.2 cm. 직렬로 이어진 근절이 작은 단축을 더해 큰 움직임을 만든다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  function wOf(id) { var el = document.getElementById(id); return el && el.parentElement ? el.parentElement.clientWidth : 600; }
+  function TC(t) { return t === "I" ? BB.color("art") : t === "IIa" ? BB.color("heat") : BB.color("fat"); }
+  function txt(ctx, s, x, y, o) {
+    o = o || {};
+    ctx.font = BB.font(o.size || 11, o.mono, o.weight);
+    ctx.fillStyle = o.color || P().dim;
+    ctx.textAlign = o.align || "left"; ctx.textBaseline = o.base || "alphabetic";
+    ctx.fillText(s, x, y);
+  }
+  function handle(ctx, x, y, r, col) {
+    var p = P();
+    ctx.fillStyle = p.bg; ctx.strokeStyle = col || p.text; ctx.lineWidth = 2.4;
+    ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }
+  /** 근절 그리기: 가운데 cx, 1 µm = k px, 근절 길이 sl(µm), 반높이 hh */
+  function drawSarc(ctx, cx, cy, k, sl, hh, o) {
+    o = o || {};
+    var p = P(), myo = BB.color("prot"), act = p.accent2;
+    var zl = cx - (sl / 2) * k, zr = cx + (sl / 2) * k;
+    var g = hh / 3.5, thick = [cy - 2 * g, cy, cy + 2 * g], thin = [cy - 3 * g, cy - g, cy + g, cy + 3 * g];
+    // 가는 필라멘트
+    ctx.lineCap = "round";
+    thin.forEach(function (y, i) {
+      ctx.strokeStyle = act; ctx.lineWidth = Math.max(1.6, g * 0.22);
+      ctx.beginPath(); ctx.moveTo(zl, y - 1); ctx.lineTo(zl + 1.0 * k, y - 1); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(zr, y + 1); ctx.lineTo(zr - 1.0 * k, y + 1); ctx.stroke();
+    });
+    // 굵은 필라멘트 + 머리
+    var hs = Math.max(5, 0.07 * k), ph = o.phase || 0, ov = 0, tot = 0;
+    thick.forEach(function (y) {
+      ctx.strokeStyle = myo; ctx.lineWidth = Math.max(3, g * 0.55);
+      ctx.beginPath(); ctx.moveTo(cx - 0.8 * k, y); ctx.lineTo(cx + 0.8 * k, y); ctx.stroke();
+      for (var side = -1; side <= 1; side += 2) {
+        for (var d = 0.12 * k; d <= 0.8 * k; d += hs) {
+          var x = cx + side * d;
+          var att = side < 0 ? x <= zl + 1.0 * k && x >= zl : x >= zr - 1.0 * k && x <= zr;
+          tot++; if (att) ov++;
+          [-1, 1].forEach(function (up) {
+            var ty = y + up * g * (att ? 0.82 : 0.45);
+            var lean = att ? side * (0.25 + 0.15 * Math.sin(ph + d * 0.3)) * g : side * 0.15 * g;
+            ctx.strokeStyle = att ? p.ok : BB.alpha(myo, 0.75); ctx.lineWidth = att ? 1.6 : 1.2;
+            ctx.beginPath(); ctx.moveTo(x, y + up * g * 0.25); ctx.lineTo(x - lean, ty); ctx.stroke();
+          });
+        }
+      }
+    });
+    // Z선, M선
+    ctx.strokeStyle = p.text; ctx.lineWidth = 3;
+    [zl, zr].forEach(function (z) { ctx.beginPath(); ctx.moveTo(z, cy - hh); ctx.lineTo(z, cy + hh); ctx.stroke(); });
+    ctx.strokeStyle = BB.alpha(p.text, 0.4); ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+    ctx.beginPath(); ctx.moveTo(cx, cy - hh + 4); ctx.lineTo(cx, cy + hh - 4); ctx.stroke(); ctx.setLineDash([]);
+    ctx.lineCap = "butt";
+    if (sl < 1.62) { ctx.fillStyle = BB.alpha(p.bad, 0.25); ctx.fillRect(zl - 4, cy - hh, 8, 2 * hh); ctx.fillRect(zr - 4, cy - hh, 8, 2 * hh); }
+    return { zl: zl, zr: zr, frac: tot ? ov / tot : 0 };
+  }
+  /** 근절 길이에 따른 겹침 수치 */
+  function bands(sl) {
+    var A = 1.6, I = Math.max(0, sl - 1.6), H = Math.max(0, sl - 2.0);
+    var heads = Math.max(0, Math.min(1.0, sl / 2 - 0.1) - Math.max(0, sl / 2 - 0.8)) / 0.7;
+    return { A: A, I: I, H: H, heads: BB.clamp(heads, 0, 1) };
+  }
+
+  /* ---------------------------------------------------------- 1. 확대 */
+  (function () {
+    var LV = [
+      { name: "근육", fov: 0.5, size: "길이 약 40 cm", info: "<h4>근육: 넙다리네갈래근</h4><p>허벅지 앞의 네 갈래 근육이다. 위아래 끝은 힘줄이 되어 뼈에 붙는다. 근육 전체가 막(근외막)으로 싸여 있고, 그 안에 근다발 수백 개가 같은 방향으로 놓여 있다. 가운데 점선 상자를 확대해 들어가 보자.</p>" },
+      { name: "근다발", fov: 4e-3, size: "굵기 약 1 mm", info: "<h4>근다발</h4><p>근섬유 수십~수백 개를 막(근주막)이 한 묶음으로 싼 것이다. 고기를 결대로 찢으면 갈라지는 단위가 근다발이다. 묶음 사이로 혈관과 신경이 지나간다.</p>" },
+      { name: "근섬유", fov: 2.5e-4, size: "굵기 50~100 µm", info: "<h4>근섬유(근육 세포)</h4><p>세포 하나가 근육 길이만큼 길다(수 cm). 발생할 때 세포 수백 개가 합쳐져 핵이 막 바로 아래에 수백 개 있다. 가로 줄무늬가 보이고, 안은 근원섬유 1,000~2,000개로 가득하다.</p>" },
+      { name: "근원섬유", fov: 1.2e-5, size: "굵기 약 1 µm", info: "<h4>근원섬유</h4><p>근절이 사슬처럼 직렬로 이어진 실이다. 진한 띠(A띠)와 옅은 띠(I띠)가 번갈아 나타나고, 옅은 띠 가운데에 Z선이 있다. 1 cm에 근절이 약 4,500개 들어간다.</p>" },
+      { name: "근절", fov: 3.2e-6, size: "길이 약 2.2 µm", info: "<h4>근절</h4><p>Z선에서 Z선까지가 수축의 단위다. 가는 필라멘트(액틴)가 양쪽 Z선에서 가운데로, 굵은 필라멘트(미오신)가 가운데에서 양쪽으로 뻗어 엇갈려 겹친다. 초록 머리가 액틴을 잡아당긴다.</p>" },
+      { name: "필라멘트", fov: 8e-8, size: "액틴 약 7 nm, 미오신 약 15 nm", info: "<h4>액틴과 미오신</h4><p>가는 필라멘트는 구슬(액틴 분자)이 두 줄로 꼬인 사슬이고, 그 홈을 트로포미오신 끈이 따라가며 트로포닌이 군데군데 붙어 있다. 굵은 필라멘트에는 미오신 분자 약 300개의 머리가 사방으로 튀어나와 있다.</p>" },
+    ];
+    var z = 0, zt = null, lay = null;
+    var getZ = BB.range("zm-z", function (v) { return (Math.round(v * 10) / 10).toFixed(1); }, function (v) { z = v; zt = null; });
+    var mus = function () { return BB.color("seg-musc"); };
+    function target(ctx, W, H) {
+      var p = P(); ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.setLineDash([5, 4]);
+      ctx.strokeRect(-W * 0.125, -H * 0.125, W * 0.25, H * 0.25); ctx.setLineDash([]);
+    }
+    function L0(ctx, W, H, p) {
+      var m = mus();
+      ctx.fillStyle = BB.alpha(p.dim, 0.35);
+      [-1, 1].forEach(function (s) { ctx.beginPath(); ctx.moveTo(s * 0.49 * W, -0.02 * H); ctx.lineTo(s * 0.3 * W, -0.07 * H); ctx.lineTo(s * 0.3 * W, 0.07 * H); ctx.lineTo(s * 0.49 * W, 0.02 * H); ctx.closePath(); ctx.fill(); });
+      ctx.beginPath(); ctx.moveTo(-0.36 * W, 0); ctx.bezierCurveTo(-0.2 * W, -0.42 * H, 0.2 * W, -0.42 * H, 0.36 * W, 0); ctx.bezierCurveTo(0.2 * W, 0.42 * H, -0.2 * W, 0.42 * H, -0.36 * W, 0); ctx.closePath();
+      ctx.fillStyle = BB.alpha(m, 0.3); ctx.fill(); ctx.strokeStyle = m; ctx.lineWidth = 2; ctx.stroke();
+      ctx.save(); ctx.clip();
+      ctx.strokeStyle = BB.alpha(m, 0.55); ctx.lineWidth = 1;
+      for (var k = -6; k <= 6; k++) { ctx.beginPath(); ctx.moveTo(-0.36 * W, 0); ctx.bezierCurveTo(-0.2 * W, k * 0.055 * H, 0.2 * W, k * 0.055 * H, 0.36 * W, 0); ctx.stroke(); }
+      ctx.restore();
+      target(ctx, W, H);
+    }
+    function L1(ctx, W, H, p) {
+      var m = mus();
+      ctx.fillStyle = BB.alpha(m, 0.12); BB.rrect(ctx, -0.47 * W, -0.38 * H, 0.94 * W, 0.76 * H, 16); ctx.fill();
+      ctx.strokeStyle = m; ctx.lineWidth = 2; ctx.stroke();
+      var n = 9;
+      for (var i = 0; i < n; i++) {
+        var y = -0.32 * H + (i * 0.64 * H) / (n - 1), hh = 0.03 * H;
+        ctx.fillStyle = BB.alpha(m, 0.25 + 0.1 * (i % 2)); BB.rrect(ctx, -0.44 * W, y - hh, 0.88 * W, 2 * hh, hh); ctx.fill();
+        ctx.strokeStyle = BB.alpha(m, 0.6); ctx.lineWidth = 1; ctx.stroke();
+      }
+      ctx.fillStyle = BB.alpha(p.surface, 0.9); ctx.beginPath(); ctx.ellipse(-0.47 * W, 0, 0.045 * W, 0.38 * H, 0, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = m; ctx.stroke();
+      ctx.fillStyle = BB.alpha(m, 0.6);
+      for (var j = 0; j < 9; j++) { ctx.beginPath(); ctx.arc(-0.47 * W + ((j % 2) - 0.5) * 0.02 * W, -0.32 * H + j * 0.08 * H, 0.012 * W, 0, Math.PI * 2); ctx.fill(); }
+      target(ctx, W, H);
+    }
+    function L2(ctx, W, H, p) {
+      var m = mus(), my = BB.color("prot");
+      ctx.fillStyle = BB.alpha(m, 0.2); BB.rrect(ctx, -0.47 * W, -0.22 * H, 0.94 * W, 0.44 * H, 0.2 * H); ctx.fill();
+      ctx.save(); ctx.clip();
+      for (var x = -0.47 * W; x < 0.47 * W; x += 0.016 * W) { ctx.fillStyle = BB.alpha(my, 0.28); ctx.fillRect(x, -0.22 * H, 0.009 * W, 0.44 * H); }
+      ctx.restore();
+      ctx.strokeStyle = m; ctx.lineWidth = 2; BB.rrect(ctx, -0.47 * W, -0.22 * H, 0.94 * W, 0.44 * H, 0.2 * H); ctx.stroke();
+      ctx.fillStyle = BB.alpha(p.accent2, 0.7);
+      [-0.38, -0.2, 0.05, 0.3].forEach(function (fx, i) { ctx.beginPath(); ctx.ellipse(fx * W, (i % 2 ? 0.19 : -0.19) * H, 0.03 * W, 0.018 * H, 0, 0, Math.PI * 2); ctx.fill(); });
+      target(ctx, W, H);
+    }
+    function L3(ctx, W, H, p) {
+      var my = BB.color("prot"), ps = 0.22 * W;
+      [-0.22, 0, 0.22].forEach(function (fy) {
+        var y = fy * H, hh = 0.07 * H;
+        ctx.fillStyle = BB.alpha(p.accent2, 0.14); ctx.fillRect(-0.48 * W, y - hh, 0.96 * W, 2 * hh);
+        for (var c = -2; c <= 2; c++) {
+          var x = c * ps;
+          ctx.fillStyle = BB.alpha(my, 0.5); ctx.fillRect(x - 0.3 * ps, y - hh, 0.6 * ps, 2 * hh);
+          ctx.fillStyle = BB.alpha(my, 0.25); ctx.fillRect(x - 0.06 * ps, y - hh, 0.12 * ps, 2 * hh);
+          ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x + ps / 2, y - hh); ctx.lineTo(x + ps / 2, y + hh); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(x - ps / 2, y - hh); ctx.lineTo(x - ps / 2, y + hh); ctx.stroke();
+        }
+      });
+      target(ctx, W, H);
+    }
+    function L4(ctx, W, H) { drawSarc(ctx, 0, 0, (0.84 * W) / 2.4, 2.4, 0.34 * H, {}); target(ctx, W, H); }
+    function L5(ctx, W, H, p) {
+      var act = p.accent2, my = BB.color("prot"), r = 0.022 * W;
+      [-0.25, 0.25].forEach(function (fy) {
+        var y = fy * H;
+        for (var x = -0.52 * W, i = 0; x < 0.52 * W; x += r * 1.7, i++) {
+          var ph = i * 0.5;
+          ctx.fillStyle = BB.alpha(act, 0.9); ctx.beginPath(); ctx.arc(x, y + Math.sin(ph) * r * 0.9, r, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = BB.alpha(act, 0.55); ctx.beginPath(); ctx.arc(x + r * 0.85, y - Math.sin(ph) * r * 0.9, r, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.strokeStyle = p.warn; ctx.lineWidth = 2.2; ctx.beginPath();
+        for (var x2 = -0.52 * W; x2 < 0.52 * W; x2 += 4) { var yy = y + Math.sin(x2 / (r * 3.4)) * r * 0.6 + (fy < 0 ? r * 0.9 : -r * 0.9); x2 === -0.52 * W ? ctx.moveTo(x2, yy) : ctx.lineTo(x2, yy); }
+        ctx.stroke();
+        ctx.fillStyle = p.ok; for (var x3 = -0.45 * W; x3 < 0.5 * W; x3 += 0.2 * W) { ctx.beginPath(); ctx.arc(x3, y + (fy < 0 ? r * 1.3 : -r * 1.3), r * 0.55, 0, Math.PI * 2); ctx.fill(); }
+      });
+      ctx.fillStyle = my; BB.rrect(ctx, -0.52 * W, -0.04 * H, 1.04 * W, 0.08 * H, 0.04 * H); ctx.fill();
+      for (var x4 = -0.46 * W, j = 0; x4 < 0.48 * W; x4 += 0.075 * W, j++) {
+        var up = j % 2 ? -1 : 1, hx = x4 + 0.03 * W, hy = up * 0.165 * H;
+        ctx.strokeStyle = my; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(x4, up * 0.04 * H); ctx.lineTo(hx, hy); ctx.stroke();
+        ctx.fillStyle = BB.alpha(my, 0.85); ctx.beginPath(); ctx.ellipse(hx, hy, 0.022 * W, 0.035 * H, 0.5 * up, 0, Math.PI * 2); ctx.fill();
+      }
+    }
+    var DR = [L0, L1, L2, L3, L4, L5];
+    var LBL = [
+      [["힘줄", -0.42, -0.12], ["근육의 몸통", 0, -0.36]],
+      [["근섬유", 0.2, -0.36], ["근다발 단면", -0.4, 0.47]],
+      [["핵", -0.38, -0.27], ["가로 줄무늬", 0.18, 0.32]],
+      [["A띠(진함)", 0, -0.33], ["Z선", 0.11, 0.36]],
+      [["Z선", -0.42, -0.4], ["M선", 0, -0.4], ["Z선", 0.42, -0.4]],
+      [["액틴(가는)", -0.32, -0.38], ["트로포미오신", 0.25, -0.38], ["미오신 머리", 0.3, 0.06]],
+    ];
+    function fovAt(zz) { var i = Math.min(4, Math.floor(zz)), f = zz - i; return Math.exp(Math.log(LV[i].fov) + (Math.log(LV[i + 1].fov) - Math.log(LV[i].fov)) * f); }
+    function siLen(m) {
+      if (m >= 0.01) return BB.fmt(m * 100, 2) + " cm";
+      if (m >= 1e-3) return BB.fmt(m * 1000, 2) + " mm";
+      if (m >= 1e-6) return BB.fmt(m * 1e6, 2) + " µm";
+      return BB.fmt(m * 1e9, 2) + " nm";
+    }
+    var cv = BB.canvas("#zm-cv", function (ctx, w, h) {
+      var p = P(), top = 34, bot = 74, W = w, H = h - top - bot, cx = w / 2, cy = top + H / 2;
+      var i = Math.min(4, Math.floor(z)), f = z - i;
+      if (z >= 5) { i = 5; f = 0; }
+      ctx.save(); ctx.beginPath(); ctx.rect(0, top, w, H); ctx.clip();
+      var sc = Math.min(W, H * 2.2), VW = sc, VH = sc / 2.2;
+      [[i, 1 + 3 * f, 1 - f], [i + 1, 0.25 + 0.75 * f, f]].forEach(function (d) {
+        if (d[0] > 5 || d[2] <= 0.01) return;
+        ctx.save(); ctx.globalAlpha = Math.min(1, d[2] * 1.4); ctx.translate(cx, cy); ctx.scale(d[1], d[1]);
+        DR[d[0]](ctx, VW, VH, p); ctx.restore();
+      });
+      ctx.restore();
+      // 이름표(가장 가까운 단계)
+      var lv = Math.round(z), sF = lv === i ? 1 + 3 * f : 0.25 + 0.75 * f;
+      if (Math.abs(z - lv) < 0.18) {
+        LBL[lv].forEach(function (L) {
+          var x = cx + L[1] * VW * sF, y = cy + L[2] * VH * sF;
+          ctx.font = BB.font(11.5, false, 600); var tw = ctx.measureText(L[0]).width;
+          ctx.fillStyle = BB.alpha(p.bg, 0.8); ctx.fillRect(x - tw / 2 - 4, y - 9, tw + 8, 17);
+          txt(ctx, L[0], x, y, { color: p.text, align: "center", base: "middle", size: 11.5, weight: 600 });
+        });
+      }
+      // 단계 표시(위)
+      var bw = (w - 20) / 6;
+      LV.forEach(function (L, k) {
+        var on = Math.round(z) === k;
+        ctx.fillStyle = on ? p.accent : BB.alpha(p.text, 0.06); BB.rrect(ctx, 10 + k * bw + 2, 6, bw - 4, 22, 6); ctx.fill();
+        txt(ctx, L.name, 10 + k * bw + bw / 2, 17, { color: on ? "#fff" : p.dim, align: "center", base: "middle", size: w < 420 ? 10 : 11.5, weight: on ? 700 : 400 });
+      });
+      // 아래: 로그 눈금자(1 m ~ 1 nm)
+      var fov = fovAt(Math.min(z, 4.999)); if (z >= 5) fov = LV[5].fov;
+      var rx0 = 20, rx1 = w - 20, ry = h - 50;
+      var RX = function (m) { return rx0 + ((0 - Math.log10(m)) / 9) * (rx1 - rx0); };
+      ctx.strokeStyle = p.axis; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(rx0, ry); ctx.lineTo(rx1, ry); ctx.stroke();
+      [[1, "1 m"], [1e-2, "1 cm"], [1e-3, "1 mm"], [1e-6, "1 µm"], [1e-9, "1 nm"]].forEach(function (t) {
+        var x = RX(t[0]); ctx.beginPath(); ctx.moveTo(x, ry - 4); ctx.lineTo(x, ry + 4); ctx.stroke();
+        txt(ctx, t[1], x, ry + 7, { align: "center", base: "top", size: 10.5, mono: true });
+      });
+      LV.forEach(function (L) { ctx.fillStyle = BB.alpha(p.text, 0.25); ctx.beginPath(); ctx.arc(RX(L.fov), ry, 3, 0, Math.PI * 2); ctx.fill(); });
+      var mx = RX(fov);
+      ctx.fillStyle = p.accent; ctx.beginPath(); ctx.moveTo(mx, ry - 2); ctx.lineTo(mx - 6, ry - 11); ctx.lineTo(mx + 6, ry - 11); ctx.closePath(); ctx.fill();
+      txt(ctx, "화면 폭 " + siLen(fov), BB.clamp(mx, 60, w - 60), ry - 14, { color: p.accent, align: "center", size: 11.5, weight: 700 });
+      lay = { w: w };
+      BB.stat("zm-o-lv", LV[lv].name);
+      BB.stat("zm-o-fov", siLen(fov));
+      BB.stat("zm-o-sz", LV[lv].size);
+      var inf = document.getElementById("zm-info"); if (inf.dataset.lv !== String(lv)) { inf.dataset.lv = lv; inf.innerHTML = LV[lv].info; }
+    }, { get height() { return wOf("zm-cv") < 520 ? 340 : 380; } });
+    var x0 = 0, z0 = 0;
+    BB.drag(cv.canvas, {
+      start: function (x) { x0 = x; z0 = z; zt = null; },
+      move: function (x) { if (!lay) return; z = BB.clamp(z0 + (x - x0) / (lay.w * 0.18), 0, 5); getZ.el.value = z; getZ.el.dispatchEvent(new Event("input")); },
+    });
+    document.getElementById("zm-in").addEventListener("click", function () { zt = Math.min(5, Math.floor(z + 1e-6) + 1); });
+    document.getElementById("zm-out").addEventListener("click", function () { zt = Math.max(0, Math.ceil(z - 1e-6) - 1); });
+    var lastZ = -1;
+    BB.loop(document.getElementById("mu-zoom"), function (dt) {
+      if (zt != null) {
+        var d = zt - z; if (Math.abs(d) < 0.005) { z = zt; zt = null; } else z += Math.sign(d) * Math.min(Math.abs(d), dt * 1.2);
+        getZ.el.value = z; getZ.el.style.setProperty("--fill", (z / 5) * 100 + "%"); document.getElementById("zm-z-out").textContent = z.toFixed(1);
+      }
+      if (z !== lastZ) { lastZ = z; cv.redraw(); }
+    });
+  })();
+
+  /* ---------------------------------------------------------- 2. 미끄러지는 필라멘트 */
+  (function () {
+    var sl = 2.6, playing = false, t = 0, lay = null, ph = 0;
+    var cv = BB.canvas("#sl-cv", function (ctx, w, h) {
+      var p = P(), k = Math.min(160, (w - 40) / 3.9), cx = w / 2, cy = 56 + (h * 0.42) / 2, hh = h * 0.2;
+      var r = drawSarc(ctx, cx, cy, k, sl, hh, { phase: ph });
+      handle(ctx, r.zr, cy - hh - 10, 8, p.accent); handle(ctx, r.zl, cy - hh - 10, 6, p.dim);
+      lay = { cx: cx, k: k, cy: cy, hh: hh };
+      var b = bands(sl);
+      // 띠 괄호
+      var y1 = cy + hh + 22, y2 = y1 + 30, y3 = y2 + 30;
+      function bracket(x0, x1, y, label, col) {
+        if (x1 - x0 < 2) { txt(ctx, label, (x0 + x1) / 2, y + 2, { color: col, align: "center", base: "top", size: 11.5, weight: 600 }); return; }
+        ctx.strokeStyle = col; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(x0, y - 5); ctx.lineTo(x0, y); ctx.lineTo(x1, y); ctx.lineTo(x1, y - 5); ctx.stroke();
+        txt(ctx, label, (x0 + x1) / 2, y + 3, { color: col, align: "center", base: "top", size: 11.5, weight: 600 });
+      }
+      var tl = cx - 0.8 * k, tr = cx + 0.8 * k;
+      bracket(tl, tr, y1, "A띠 " + b.A.toFixed(2) + " µm", BB.color("prot"));
+      if (b.H > 0) bracket(r.zl + k, r.zr - k, y2, "H대 " + b.H.toFixed(2), p.dim); else txt(ctx, "H대 없음(가는 필라멘트끼리 겹침)", cx, y2 + 3, { color: sl < 1.95 ? p.warn : p.dim, align: "center", base: "top", size: 11.5 });
+      if (b.I > 0) { bracket(r.zl, Math.min(tl, r.zr), y3, "I/2", p.accent2); bracket(Math.max(tr, r.zl), r.zr, y3, "I/2", p.accent2); }
+      txt(ctx, "근절 " + sl.toFixed(2) + " µm", 12, 18, { color: p.text, size: 13, weight: 700 });
+      // 겹침 막대
+      var gx = w - 150, gy = 8;
+      txt(ctx, "붙을 수 있는 머리", gx, gy + 10, { size: 11 });
+      ctx.fillStyle = BB.alpha(p.text, 0.08); ctx.fillRect(gx, gy + 16, 136, 9);
+      ctx.fillStyle = b.heads > 0.95 ? p.ok : b.heads > 0.3 ? p.warn : p.bad; ctx.fillRect(gx, gy + 16, 136 * b.heads, 9);
+      if (sl > 3.6) txt(ctx, "겹침 없음: 힘을 낼 수 없다", cx, cy - hh - 26, { color: p.bad, align: "center", size: 12, weight: 700 });
+      else if (sl < 1.65) txt(ctx, "굵은 필라멘트가 Z선에 부딪힌다", cx, cy - hh - 26, { color: p.bad, align: "center", size: 12, weight: 700 });
+      BB.stat("sl-o-sl", sl.toFixed(2) + "<small>µm</small>");
+      BB.stat("sl-o-ai", b.A.toFixed(1) + " / " + b.I.toFixed(2) + "<small>µm</small>");
+      BB.stat("sl-o-h", b.H.toFixed(2) + "<small>µm</small>");
+      BB.stat("sl-o-x", Math.round(b.heads * 100) + "<small>%</small>");
+    }, { get height() { return wOf("sl-cv") < 520 ? 330 : 340; } });
+    BB.drag(cv.canvas, { start: function () { playing = false; btn.textContent = "수축 재생"; }, move: function (x) { if (!lay) return; sl = BB.clamp((Math.abs(x - lay.cx) * 2) / lay.k, 1.3, 3.8); cv.redraw(); } });
+    var btn = document.getElementById("sl-go");
+    btn.addEventListener("click", function () { playing = !playing; btn.textContent = playing ? "멈춤" : "수축 재생"; if (playing) t = Math.acos(BB.clamp((sl - 2.5) / 0.55, -1, 1)); });
+    document.getElementById("sl-re").addEventListener("click", function () { playing = false; btn.textContent = "수축 재생"; sl = 2.2; cv.redraw(); });
+    BB.loop(document.getElementById("mu-slide"), function (dt) { if (!playing) return; t += dt * 1.2; var prev = sl; sl = 2.5 + 0.55 * Math.cos(t); if (sl < prev) ph += dt * 30; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 3. 교차다리 주기 */
+  (function () {
+    var ST = [
+      { name: "경직 결합", ang: 35, att: true, nuc: "", info: "<h4>① 경직 결합</h4><p>힘내기를 마친 머리가 액틴에 단단히 붙어 있다. 머리에는 아무것도 붙어 있지 않다. ATP가 와서 붙어야만 이 결합이 풀린다.</p>" },
+      { name: "ATP 결합·분리", ang: 35, att: false, nuc: "ATP", info: "<h4>② ATP가 붙어 머리가 떨어진다</h4><p>ATP 하나가 머리의 주머니에 들어가면 액틴과의 결합이 약해져 머리가 떨어진다. ATP는 아직 쪼개지지 않았다.</p>" },
+      { name: "가수분해·장전", ang: -35, att: false, nuc: "ADP·Pi", info: "<h4>③ ATP 분해로 머리를 장전한다</h4><p>머리가 ATP를 ADP와 무기 인산(Pi)으로 쪼개며 그 에너지로 고개를 젖힌다. 활을 당겨 놓은 것과 같다. 쪼갠 조각은 아직 머리에 쥐고 있다.</p>" },
+      { name: "결합", ang: -35, att: true, nuc: "ADP·Pi", info: "<h4>④ 액틴에 붙는다</h4><p>장전된 머리가 다음 액틴 분자에 붙는다. 칼슘이 트로포닌에 붙어 트로포미오신이 비켜나 있을 때만 가능하다.</p>" },
+      { name: "힘내기", ang: 35, att: true, nuc: "ADP", info: "<h4>⑤ 힘내기(파워 스트로크)</h4><p>무기 인산이 떨어지는 순간 머리가 고개를 꺾어 액틴을 M선 쪽으로 약 10 nm 당긴다. 이어 ADP가 떨어지면 다시 ① 경직 결합이다.</p>" },
+    ];
+    var SHORT = ["경직 결합", "ATP·분리", "장전", "결합", "힘내기"];
+    var st = 0, prev = 0, a = 1, shift = 0, shiftFrom = 0, moved = 0, used = 0, playing = true, timer = 0, msg = "";
+    var chips = document.getElementById("cy-chips");
+    chips.innerHTML = ST.map(function (s, i) { return "<span>" + (i + 1) + " " + s.name + "</span>"; }).join("");
+    var getSp = BB.range("cy-sp", function (v) { return v.toFixed(1) + "×"; });
+    var ca = document.getElementById("cy-ca"), atp = document.getElementById("cy-atp");
+    function next() {
+      if (a < 1) return;
+      var n = (st + 1) % 5;
+      if (st === 0 && !atp.checked) { msg = "경직: ATP가 없어 머리가 떨어지지 못한다"; return; }
+      if (st === 2 && !ca.checked) { msg = "이완: 결합 자리가 트로포미오신에 가려 있다"; return; }
+      msg = "";
+      if (n === 1) used++;
+      if (n === 4) { shiftFrom = shift; moved += 10; }
+      prev = st; st = n; a = 0;
+      [].forEach.call(chips.children, function (el, k) { el.classList.toggle("on", k === st); });
+      document.getElementById("cy-info").innerHTML = ST[st].info;
+    }
+    [].forEach.call(chips.children, function (el, k) { el.classList.toggle("on", k === st); });
+    document.getElementById("cy-info").innerHTML = ST[0].info;
+    var cv = BB.canvas("#cy-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var SW = narrow ? w : w * 0.55, SH = narrow ? h * 0.56 : h;
+      var nm = Math.max(2.4, SW / 110);   // px per nm
+      var ay = SH * 0.3, my = SH * 0.8, act = p.accent2, myo = BB.color("prot");
+      var e = a < 1 ? (1 - Math.cos(Math.PI * a)) / 2 : 1;
+      var curShift = st === 4 ? shiftFrom + 10 * e : shift;
+      // 액틴(구슬 두 줄), 5.5 nm 간격
+      var sp = 5.5 * nm, off = ((curShift * nm) % sp + sp) % sp;
+      ctx.save(); ctx.beginPath(); ctx.rect(0, 0, SW, SH); ctx.clip();
+      for (var x = -sp + off, i = 0; x < SW + sp; x += sp, i++) {
+        ctx.fillStyle = BB.alpha(act, 0.85); ctx.beginPath(); ctx.arc(x, ay - 4, sp * 0.45, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = BB.alpha(act, 0.5); ctx.beginPath(); ctx.arc(x + sp / 2, ay + 4, sp * 0.45, 0, Math.PI * 2); ctx.fill();
+      }
+      // 결합 자리(머리 위 액틴 분자)
+      var hx = SW * 0.42;
+      var siteOn = ca.checked;
+      ctx.fillStyle = siteOn ? p.ok : BB.alpha(p.ok, 0.25);
+      for (var x2 = -sp * 2 + off; x2 < SW + sp; x2 += sp * 2) { ctx.beginPath(); ctx.arc(x2 + sp / 2, ay + 4 + sp * 0.25, 3, 0, Math.PI * 2); ctx.fill(); }
+      // 트로포미오신: 칼슘 없으면 결합 자리를 덮는다
+      var ty = siteOn ? ay - sp * 0.55 : ay + sp * 0.5;
+      ctx.strokeStyle = p.warn; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(0, ty); ctx.lineTo(SW, ty); ctx.stroke();
+      for (var x3 = (off % (sp * 7)) - sp * 7; x3 < SW; x3 += sp * 7) {
+        ctx.fillStyle = BB.color("nerve"); BB.rrect(ctx, x3 - 6, ty - 7, 12, 14, 4); ctx.fill();
+        if (siteOn) { ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(x3 + 9, ty - 9, 3.2, 0, Math.PI * 2); ctx.fill(); }
+      }
+      ctx.restore();
+      txt(ctx, "액틴(가는 필라멘트)", 8, ay - sp - 12, { color: act, size: 11.5, weight: 600 });
+      txt(ctx, siteOn ? "트로포미오신 비켜남 · Ca²⁺ 붙은 트로포닌" : "트로포미오신이 결합 자리를 덮음", 8, SH * 0.06 + 2, { color: siteOn ? p.ok : p.warn, size: 11, base: "top" });
+      // 굵은 필라멘트
+      ctx.fillStyle = myo; BB.rrect(ctx, 0, my - 7, SW, 14, 7); ctx.fill();
+      txt(ctx, "미오신(굵은 필라멘트)", 8, my + 22, { color: myo, size: 11.5, weight: 600 });
+      txt(ctx, "M선 쪽 →", SW - 8, my + 22, { align: "right", size: 11 });
+      // 머리 각도
+      var a0 = ST[prev].ang, a1 = ST[st].ang, ang = (a0 + (a1 - a0) * e) * Math.PI / 180;
+      var att0 = ST[prev].att, att1 = ST[st].att, reach = (my - 7) - (ay + sp * 0.5);
+      var attach = att0 && att1 ? 1 : !att0 && !att1 ? 0 : att1 ? e : 1 - e;
+      var L = reach * (0.72 + 0.28 * attach) / Math.cos(ang);
+      var bx = hx - Math.sin(-35 * Math.PI / 180) * 0, by = my - 7;
+      var tx = bx + Math.sin(ang) * L, tyy = by - Math.cos(ang) * L;
+      ctx.strokeStyle = myo; ctx.lineWidth = 5; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(tx, tyy); ctx.stroke(); ctx.lineCap = "butt";
+      ctx.fillStyle = attach > 0.9 ? p.ok : BB.alpha(myo, 0.9);
+      ctx.beginPath(); ctx.ellipse(tx, tyy, 13, 9, ang, 0, Math.PI * 2); ctx.fill();
+      // 뉴클레오타이드
+      var nuc = ST[st].nuc;
+      if (nuc) {
+        ctx.font = BB.font(11, true, 700); var tw = ctx.measureText(nuc).width;
+        ctx.fillStyle = p.ok; BB.rrect(ctx, tx + 14, tyy + 4, tw + 10, 17, 8); ctx.fill();
+        txt(ctx, nuc, tx + 19, tyy + 12.5, { color: "#fff", size: 11, mono: true, weight: 700, base: "middle" });
+      }
+      if (st === 4 && a < 1) { txt(ctx, "Pi", tx - 30 - 30 * e, tyy + 20 + 20 * e, { color: p.ok, size: 11, mono: true, weight: 700 }); }
+      if (st === 0 && a < 1) { txt(ctx, "ADP", tx - 34 - 30 * e, tyy + 22 + 18 * e, { color: p.ok, size: 11, mono: true, weight: 700 }); }
+      // 당긴 거리 화살표
+      if (st === 4) { ctx.strokeStyle = p.accent; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(hx - 20, ay - sp - 4); ctx.lineTo(hx - 20 + 10 * nm * e, ay - sp - 4); ctx.stroke(); txt(ctx, "10 nm", hx - 20 + 5 * nm, ay - sp - 10, { color: p.accent, align: "center", size: 11, weight: 700, mono: true }); }
+      if (msg) { ctx.fillStyle = BB.alpha(p.bad, 0.12); ctx.fillRect(0, SH - 24, SW, 24); txt(ctx, msg, SW / 2, SH - 12, { color: p.bad, align: "center", base: "middle", size: 12, weight: 700 }); }
+      // 주기 고리
+      var rcx = narrow ? w / 2 : w * 0.77, rcy = narrow ? SH + (h - SH) / 2 : h / 2, R = narrow ? Math.min(w * 0.24, (h - SH) * 0.34) : Math.min(w * 0.1, h * 0.3);
+      ctx.strokeStyle = p.border; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(rcx, rcy, R, 0, Math.PI * 2); ctx.stroke();
+      ST.forEach(function (s, k) {
+        var th = -Math.PI / 2 + (k * 2 * Math.PI) / 5, x = rcx + Math.cos(th) * R, y = rcy + Math.sin(th) * R;
+        ctx.fillStyle = k === st ? p.accent : p.bg; ctx.strokeStyle = k === st ? p.accent : p.dim; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(x, y, 12, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        txt(ctx, String(k + 1), x, y + 0.5, { color: k === st ? "#fff" : p.text, align: "center", base: "middle", size: 11.5, mono: true, weight: 700 });
+        var lx = rcx + Math.cos(th) * (R + 20), ly = rcy + Math.sin(th) * (R + 20);
+        txt(ctx, SHORT[k], lx, ly, { color: k === st ? p.text : p.dim, align: Math.cos(th) > 0.2 ? "left" : Math.cos(th) < -0.2 ? "right" : "center", base: "middle", size: 11, weight: k === st ? 700 : 400 });
+      });
+      txt(ctx, "ATP 1개", rcx, rcy - 6, { align: "center", size: 11, color: p.ok, weight: 700 });
+      txt(ctx, "= 1바퀴", rcx, rcy + 9, { align: "center", size: 11 });
+      BB.stat("cy-o-d", moved + "<small>nm</small>");
+      BB.stat("cy-o-atp", used + "<small>개</small>");
+      BB.stat("cy-o-st", msg ? (msg.indexOf("경직") === 0 ? "경직(굳음)" : "이완(쉼)") : ST[st].name);
+    }, { get height() { return wOf("cy-cv") < 560 ? 500 : 320; } });
+    var btn = document.getElementById("cy-go");
+    btn.addEventListener("click", function () { playing = !playing; btn.textContent = playing ? "멈춤" : "재생"; });
+    document.getElementById("cy-step").addEventListener("click", function () { a = 1; if (st === 4) shift = shiftFrom + 10; next(); cv.redraw(); });
+    [ca, atp].forEach(function (el) { el.addEventListener("change", function () { msg = ""; timer = 0; cv.redraw(); }); });
+    BB.loop(document.getElementById("mu-cycle"), function (dt) {
+      var sp = getSp();
+      if (a < 1) { a = Math.min(1, a + dt * 2.2 * sp); if (a >= 1 && st === 4) shift = shiftFrom + 10; }
+      else if (playing) { timer += dt * sp; if (timer > 0.6) { timer = 0; next(); } }
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 4. 흥분-수축 연결 */
+  (function () {
+    var tms = 0, res = null, type = "fast";
+    function calc() { res = BD.twitchTrain({ freq: 1, n: 1, t0: 0.003, tstop: type === "slow" ? 0.45 : 0.25, type: type }); }
+    var getType = BB.seg("ec-type", function (v) { type = v; calc(); tms = 0; });
+    var getSp = BB.range("ec-sp", function (v) { return v + " ms/s"; });
+    calc();
+    function vm(t) { var d = t - 3; if (d < 0) return -85; if (d < 0.5) return -85 + 115 * (d / 0.5); if (d < 2.5) return 30 - 115 * ((d - 0.5) / 2); return -85; }
+    function at(arr, t) { var i = Math.min(arr.length - 1, Math.max(0, Math.round((t / 1000) / 0.002))); return arr[i]; }
+    var rng = BB.rng(7), dots = [];
+    for (var i = 0; i < 70; i++) dots.push([rng(), rng(), rng()]);
+    var cv = BB.canvas("#ec-cv", function (ctx, w, h) {
+      var p = P(), T = type === "slow" ? 450 : 250, narrow = w < 560;
+      var sh = narrow ? h * 0.48 : h * 0.5;
+      var cx = w / 2, mem = 26, nerveC = BB.color("nerve"), caC = p.warn;
+      // 막과 신경 끝
+      ctx.fillStyle = BB.alpha(BB.color("seg-musc"), 0.08); ctx.fillRect(10, mem, w - 20, sh - mem);
+      ctx.strokeStyle = p.dim; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(10, mem); ctx.lineTo(cx - 12, mem); ctx.lineTo(cx - 12, sh * 0.78); ctx.moveTo(cx + 12, sh * 0.78); ctx.lineTo(cx + 12, mem); ctx.lineTo(w - 10, mem); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx - 12, sh * 0.78); ctx.lineTo(cx + 12, sh * 0.78); ctx.stroke();
+      ctx.fillStyle = nerveC; ctx.beginPath(); ctx.ellipse(48, mem - 8, 26, 9, 0, 0, Math.PI * 2); ctx.fill();
+      txt(ctx, "신경 끝", 80, mem - 6, { color: nerveC, size: 11, weight: 600 });
+      txt(ctx, "T세관", cx + 18, sh * 0.72, { size: 11 });
+      // 활동 전위 빛: 0~3 ms 막을 따라, 3~5 ms T세관 아래로
+      var glow = function (x, y) { ctx.fillStyle = BB.alpha(nerveC, 0.85); ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI * 2); ctx.fill(); };
+      if (tms >= 0 && tms < 3) { var fx = tms / 3; glow(48 + (cx - 60) * fx, mem); glow(w - 48 - (w - cx - 60) * fx, mem); }
+      else if (tms >= 3 && tms < 5) { var fy = (tms - 3) / 2; glow(cx - 12, mem + (sh * 0.78 - mem) * fy); glow(cx + 12, mem + (sh * 0.78 - mem) * fy); }
+      // 근소포체 주머니
+      var srw = Math.min(110, w * 0.25), srh = 26;
+      [[cx - 18 - srw, sh * 0.42], [cx + 18, sh * 0.42]].forEach(function (s) {
+        ctx.fillStyle = BB.alpha(caC, 0.18); ctx.strokeStyle = caC; ctx.lineWidth = 1.5; BB.rrect(ctx, s[0], s[1] - srh / 2, srw, srh, 12); ctx.fill(); ctx.stroke();
+      });
+      txt(ctx, "근소포체(Ca²⁺ 저장)", cx - 18 - srw, sh * 0.42 - srh / 2 - 6, { color: caC, size: 11, weight: 600 });
+      // 칼슘 점
+      var c = tms >= 0 ? at(res.ca, tms) : 0, f = tms >= 0 ? at(res.f, tms) : 0;
+      dots.forEach(function (d, k) {
+        var side = k % 2 ? 1 : -1, sx = side < 0 ? cx - 18 - srw * d[0] : cx + 18 + srw * d[0];
+        var spread = BB.clamp(c * 1.1, 0, 1), y0 = sh * 0.42 + (d[1] - 0.5) * srh * 0.6;
+        var x = sx + side * spread * d[2] * 40 * (d[0] - 0.3), y = y0 + spread * (sh * 0.92 - y0) * d[2];
+        ctx.fillStyle = caC; ctx.beginPath(); ctx.arc(x, y, 2.6, 0, Math.PI * 2); ctx.fill();
+      });
+      // 근원섬유(아래쪽): 힘에 따라 짧아짐
+      var sl = 2.5 - 0.35 * f, kk = Math.min(60, w / 9);
+      for (var j = -1; j <= 1; j++) drawSarc(ctx, cx + j * 2.5 * kk, sh * 0.9, kk, sl, 8, { phase: tms * 0.2 });
+      // 아래 그래프
+      var box = { x: 50, y: sh + 34, w: w - 66, h: h - sh - 80 };
+      var c2 = BB.chart(ctx, box, { x: [0, T], y: [0, 1.1], xLabel: "자극 뒤 시간(ms)", yTicks: [0, 0.5, 1], yFmt: function (v) { return v.toFixed(1); } });
+      var sCa = [], sF = [], sV = [];
+      for (var q = 0; q < res.t.length; q++) { var tt = res.t[q] * 1000; if (tt > T) break; sCa.push([tt, res.ca[q]]); sF.push([tt, res.f[q]]); }
+      for (var tt2 = 0; tt2 <= Math.min(T, 12); tt2 += 0.1) sV.push([tt2, (vm(tt2) + 85) / 115]);
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      [[sV, nerveC, 1.8], [sCa, caC, 2.2], [sF, p.accent, 2.6]].forEach(function (s) { ctx.strokeStyle = s[1]; ctx.lineWidth = s[2]; ctx.beginPath(); s[0].forEach(function (pt, k) { k ? ctx.lineTo(c2.X(pt[0]), c2.Y(pt[1])) : ctx.moveTo(c2.X(pt[0]), c2.Y(pt[1])); }); ctx.stroke(); });
+      ctx.restore();
+      txt(ctx, "정규화(최대 = 1)", box.x, box.y - 8, { size: 11 });
+      txt(ctx, "막전위", c2.X(6) + 6, box.y + 30, { color: nerveC, size: 11, weight: 600 });
+      txt(ctx, "칼슘", c2.X(T * 0.22) + 4, c2.Y(at(res.ca, T * 0.22)) - 4, { color: caC, size: 11, weight: 600 });
+      txt(ctx, "힘", c2.X(res.tPeak * 1000 - 3) + 8, c2.Y(res.peak) - 6, { color: p.accent, size: 11, weight: 600 });
+      if (tms >= 0 && tms <= T) { ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(c2.X(tms), box.y); ctx.lineTo(c2.X(tms), box.y + box.h); ctx.stroke(); }
+      BB.stat("ec-o-t", Math.max(0, tms).toFixed(1) + "<small>ms</small>");
+      BB.stat("ec-o-v", Math.round(tms >= 0 ? vm(tms) : -85) + "<small>mV</small>");
+      BB.stat("ec-o-cf", c.toFixed(2) + " / " + f.toFixed(2));
+      BB.stat("ec-o-tp", Math.round(res.tPeak * 1000 - 3) + "<small>ms</small>");
+    }, { get height() { return wOf("ec-cv") < 560 ? 480 : 420; } });
+    document.getElementById("ec-go").addEventListener("click", function () { tms = 0; });
+    BB.loop(document.getElementById("mu-ec"), function (dt) {
+      var T = type === "slow" ? 450 : 250;
+      tms += dt * getSp() * (tms < 12 ? 0.25 : 1);
+      if (tms > T + 80) tms = -40;
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 5. 가중과 강축 */
+  (function () {
+    var FQ = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 18, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 100];
+    var peaks = {};
+    ["fast", "slow"].forEach(function (ty) { peaks[ty] = FQ.map(function (f) { return [f, BD.twitchTrain({ freq: f, dur: 0.6, tstop: 0.7, type: ty }).peak]; }); });
+    var twitch = { fast: peaks.fast[0][1], slow: peaks.slow[0][1] };
+    var res, lay = null, cv = null;
+    function calc() { res = BD.twitchTrain({ freq: getF(), dur: 0.6, tstop: 1.0, type: getT() }); if (cv) cv.redraw(); }
+    var getF = BB.range("sm-f", function (v) { return v + " Hz"; }, calc);
+    var getT = BB.seg("sm-type", calc);
+    calc();
+    function kind() {
+      var f = getF(), lo = 1e9, hi = 0;
+      for (var i = 0; i < res.t.length; i++) if (res.t[i] > 0.45 && res.t[i] < 0.65) { lo = Math.min(lo, res.f[i]); hi = Math.max(hi, res.f[i]); }
+      var rip = (hi - lo) / Math.max(hi, 1e-6);
+      if (lo < 0.04 * hi) return ["연축이 따로", p0().dim];
+      if (rip > 0.35) return ["가중", p0().warn];
+      if (rip > 0.04) return ["불완전 강축", p0().accent2];
+      return ["완전 강축", p0().ok];
+    }
+    function p0() { return P(); }
+    cv = BB.canvas("#sm-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var box = narrow ? { x: 58, y: 16, w: w - 72, h: h * 0.5 - 40 } : { x: 60, y: 16, w: w * 0.62 - 72, h: h - 58 };
+      var c = BB.chart(ctx, box, { x: [0, 1000], y: [0, 1.1], xLabel: "시간(ms)", yLabel: "힘(최대 강축 = 1)", yTicks: [0, 0.36, 0.5, 1], yFmt: function (v) { return v.toFixed(2); },
+        hlines: [{ y: twitch[getT()], color: p.faint, label: "" }],
+        series: [{ data: res.t.map(function (t, i) { return [t * 1000, res.ca[i] * 0.5]; }).filter(function (_, i) { return i % 3 === 0; }), color: BB.alpha(p.warn, 0.55), width: 1.2 },
+                 { data: res.t.map(function (t, i) { return [t * 1000, res.f[i]]; }), color: p.accent, width: 2.4, fill: BB.alpha(p.accent, 0.1) }] });
+      ctx.strokeStyle = BB.color("nerve"); ctx.lineWidth = 1;
+      res.stims.forEach(function (s) { var x = c.X(s * 1000); ctx.beginPath(); ctx.moveTo(x, box.y + box.h - 8); ctx.lineTo(x, box.y + box.h); ctx.stroke(); });
+      txt(ctx, "단일 연축", box.x + box.w - 4, c.Y(twitch[getT()]) - 4, { align: "right", size: 11 });
+      txt(ctx, "칼슘(흐린 노랑) · 자극(아래 눈금)", box.x + 6, box.y + 4, { size: 11, base: "top" });
+      var k = kind();
+      txt(ctx, k[0], box.x + 6, box.y + 22, { color: k[1], size: 14, weight: 700, base: "top" });
+      // 오른쪽: 빈도-최고 힘
+      var b2 = narrow ? { x: 46, y: h * 0.5 + 18, w: w - 60, h: h * 0.5 - 62 } : { x: w * 0.62 + 40, y: 16, w: w * 0.38 - 56, h: h - 58 };
+      var c2 = BB.chart(ctx, b2, { x: [1, 100], y: [0, 1.1], logX: true, xLabel: "자극 빈도(Hz, 로그)", yTicks: [0, 0.5, 1], yFmt: function (v) { return v.toFixed(1); }, xFmt: function (v) { return String(v); },
+        series: [{ data: peaks.fast, color: getT() === "fast" ? p.accent : BB.alpha(p.dim, 0.5), width: getT() === "fast" ? 2.4 : 1.4 }, { data: peaks.slow, color: getT() === "slow" ? p.accent : BB.alpha(p.dim, 0.5), width: getT() === "slow" ? 2.4 : 1.4, dash: [5, 3] }] });
+      txt(ctx, "최고 힘", b2.x + 4, b2.y + 4, { size: 11, base: "top" });
+      txt(ctx, "실선 빠른 · 점선 느린", b2.x + 4, b2.y + 18, { size: 10.5, base: "top" });
+      handle(ctx, c2.X(getF()), c2.Y(res.peak), 7, p.accent);
+      lay = c2;
+      BB.stat("sm-o-pk", res.peak.toFixed(2));
+      BB.stat("sm-o-x", (res.peak / twitch[getT()]).toFixed(1) + "<small>배</small>");
+      BB.stat("sm-o-k", k[0]);
+    }, { get height() { return wOf("sm-cv") < 560 ? 500 : 330; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.box; if (y < b.y - 10 || y > b.y + b.h + 30 || x < b.x - 10) return; var f = Math.pow(10, BB.clamp((x - b.x) / b.w, 0, 1) * 2); getF.set(Math.round(f)); } });
+  })();
+
+  /* ---------------------------------------------------------- 6. 길이-장력 */
+  (function () {
+    var sl = 2.6, lay = null;
+    var cv = BB.canvas("#lt-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 600;
+      var box = narrow ? { x: 50, y: h * 0.36 + 10, w: w - 66, h: h * 0.64 - 80 } : { x: 54, y: 16, w: w * 0.6 - 70, h: h - 58 };
+      var A = [], Pp = [], T = [];
+      for (var s = 1.2; s <= 4.0001; s += 0.02) { var a = BD.lengthTension(s), pp = BD.passiveTension(s); A.push([s, a]); Pp.push([s, pp]); T.push([s, a + pp]); }
+      var c = BB.chart(ctx, box, { x: [1.2, 4.0], y: [0, 1.6], xLabel: "근절 길이(µm)", yLabel: "장력(최대 능동 = 1)", yTicks: [0, 0.5, 1, 1.5],
+        bands: [{ x0: 2.0, x1: 2.25, color: BB.alpha(p.ok, 0.12) }, { x0: 3.4, x1: 4.0, color: BB.alpha(p.bad, 0.08) }],
+        series: [{ data: T, color: p.dim, width: 1.6, dash: [5, 3] }, { data: Pp, color: p.warn, width: 2.2 }, { data: A, color: p.accent, width: 2.8, fill: BB.alpha(p.accent, 0.08) }] });
+      txt(ctx, "최적", c.X(2.125), box.y + 12, { color: p.ok, align: "center", size: 11, weight: 700 });
+      txt(ctx, "찢어질 위험", c.X(3.7), box.y + 12, { color: p.bad, align: "center", size: 11, weight: 700 });
+      var a = BD.lengthTension(sl), pp = BD.passiveTension(sl);
+      ctx.strokeStyle = p.text; ctx.setLineDash([3, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(c.X(sl), box.y); ctx.lineTo(c.X(sl), box.y + box.h); ctx.stroke(); ctx.setLineDash([]);
+      if (pp > 0.01) { ctx.fillStyle = p.warn; ctx.beginPath(); ctx.arc(c.X(sl), c.Y(Math.min(1.6, pp)), 4.5, 0, Math.PI * 2); ctx.fill(); }
+      handle(ctx, c.X(sl), c.Y(a), 8, p.accent);
+      lay = c;
+      // 근절 그림
+      var sx = narrow ? 10 : w * 0.6 + 10, sw = narrow ? w - 20 : w * 0.4 - 20, sy = narrow ? 14 : h * 0.18, shh = narrow ? h * 0.36 - 30 : h * 0.5;
+      ctx.fillStyle = BB.alpha(p.surface, 0.8); BB.rrect(ctx, sx, sy, sw, shh, 10); ctx.fill();
+      var k = Math.min((sw - 20) / 4.0, 70), cy = sy + shh * 0.5;
+      var r = drawSarc(ctx, sx + sw / 2, cy, k, sl, shh * 0.3, {});
+      txt(ctx, "근절 " + sl.toFixed(2) + " µm", sx + 10, sy + 16, { color: p.text, size: 12, weight: 700 });
+      var note = sl < 1.65 ? "굵은 필라멘트가 Z선에 부딪힘" : sl < 2.0 ? "가는 필라멘트끼리 겹쳐 방해" : sl <= 2.25 ? "모든 머리가 액틴에 닿음" : sl < 3.65 ? "겹침이 줄어 머리가 덜 닿음" : "겹침 없음: 능동 장력 0";
+      txt(ctx, note, sx + 10, sy + shh - 10, { color: sl <= 2.25 && sl >= 2.0 ? p.ok : sl >= 3.4 ? p.bad : p.dim, size: 11.5, weight: 600 });
+      if (sl > 3.4) txt(ctx, "수동 장력이 급격히 커진다", c.X(3.1), c.Y(1.45), { color: p.bad, align: "center", size: 12, weight: 700 });
+      BB.stat("lt-o-sl", sl.toFixed(2) + "<small>µm</small>");
+      BB.stat("lt-o-a", a.toFixed(2));
+      BB.stat("lt-o-p", pp.toFixed(2));
+      BB.stat("lt-o-t", (a + pp).toFixed(2));
+    }, { get height() { return wOf("lt-cv") < 600 ? 520 : 360; } });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; var b = lay.box; sl = BB.clamp(1.2 + ((x - b.x) / b.w) * 2.8, 1.25, 3.95); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 7. 힘-속도 */
+  (function () {
+    var v = 0.3, lay = null, pos = 0.5;
+    var cv = BB.canvas("#fv-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 600;
+      var box = narrow ? { x: 50, y: 16, w: w - 92, h: h * 0.62 - 50 } : { x: 54, y: 16, w: w * 0.7 - 80, h: h - 58 };
+      var F = [], Pw = [];
+      for (var x = -0.5; x <= 1.0001; x += 0.01) { var f = BD.forceAtV(x); F.push([x, f]); if (x >= 0) Pw.push([x, x * f * 10]); }
+      var c = BB.chart(ctx, box, { x: [-0.5, 1], y: [0, 1.7], xLabel: "속도 v/vmax (← 늘어남 · 짧아짐 →)", yLabel: "힘 F/F₀", yTicks: [0, 0.5, 1, 1.5],
+        bands: [{ x0: -0.5, x1: 0, color: BB.alpha(p.accent2, 0.07) }],
+        series: [{ data: Pw, color: p.ok, width: 2, fill: BB.alpha(p.ok, 0.12) }, { data: F, color: p.accent, width: 2.8 }] });
+      // 파워 오른쪽 축
+      ctx.fillStyle = p.ok; ctx.font = BB.font(10.5, true); ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      [0, 0.05, 0.1].forEach(function (q) { ctx.fillText(q.toFixed(2), box.x + box.w + 4, c.Y(q * 10)); });
+      txt(ctx, "파워(F₀·vmax)", box.x + box.w - 4, c.Y(1.08), { color: p.ok, align: "right", size: 11 });
+      txt(ctx, "신장성", c.X(-0.25), box.y + 12, { color: p.accent2, align: "center", size: 11.5, weight: 700 });
+      txt(ctx, "단축성", c.X(0.5), box.y + 12, { color: p.accent, align: "center", size: 11.5, weight: 700 });
+      ctx.fillStyle = p.ok; ctx.beginPath(); ctx.arc(c.X(0.3), c.Y(0.3 * BD.forceAtV(0.3) * 10), 4, 0, Math.PI * 2); ctx.fill();
+      txt(ctx, "최대 파워", c.X(0.3) + 8, c.Y(0.95) - 4, { color: p.ok, size: 11, weight: 700 });
+      var f0 = BD.forceAtV(v);
+      if (v > 0) { ctx.fillStyle = p.ok; ctx.beginPath(); ctx.arc(c.X(v), c.Y(v * f0 * 10), 5, 0, Math.PI * 2); ctx.fill(); }
+      handle(ctx, c.X(v), c.Y(f0), 8, p.accent);
+      lay = c;
+      // 장면: 도르래와 추
+      var sx = narrow ? 20 : w * 0.7 + 10, sy = narrow ? h * 0.62 + 6 : 20, sw = narrow ? w - 40 : w * 0.3 - 30, shh = narrow ? h * 0.38 - 20 : h - 50;
+      ctx.fillStyle = BB.alpha(p.surface, 0.7); BB.rrect(ctx, sx, sy, sw, shh, 10); ctx.fill();
+      var mx = sx + sw * 0.4, top = sy + 30, size = 26 + 40 * Math.min(1.6, f0) / 1.6, span = shh - 90 - size;
+      var yb = top + 40 + span * (1 - pos);
+      ctx.fillStyle = p.dim; ctx.fillRect(sx + 14, top - 8, sw - 28, 6);
+      for (var hx = sx + 18; hx < sx + sw - 16; hx += 10) { ctx.strokeStyle = p.faint; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(hx, top - 8); ctx.lineTo(hx - 6, top - 14); ctx.stroke(); }
+      var mlen = (yb - top) * 0.7, mw = 10 + 14 * Math.min(1.6, f0) / 1.6;
+      ctx.fillStyle = BB.alpha(BB.color("seg-musc"), 0.85); ctx.beginPath(); ctx.ellipse(mx, top + mlen / 2, mw / 2 + 4, mlen / 2, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = BB.color("seg-musc"); ctx.lineWidth = 1;
+      for (var q = -2; q <= 2; q++) { ctx.beginPath(); ctx.moveTo(mx + q * mw * 0.15, top + 4); ctx.lineTo(mx + q * mw * 0.15, top + mlen - 4); ctx.stroke(); }
+      ctx.strokeStyle = p.dim; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(mx, top + mlen); ctx.lineTo(mx, yb); ctx.stroke();
+      ctx.fillStyle = p.text; BB.rrect(ctx, mx - size / 2, yb, size, size * 0.8, 6); ctx.fill();
+      txt(ctx, Math.round(f0 * 100) + "%", mx, yb + size * 0.4, { color: p.bg, align: "center", base: "middle", size: 11.5, mono: true, weight: 700 });
+      txt(ctx, "근육", mx + mw / 2 + 8, top + mlen / 2, { size: 11, base: "middle" });
+      txt(ctx, "추(무게 = 힘)", mx + size / 2 + 8, yb + size * 0.4, { size: 11, base: "middle" });
+      if (Math.abs(v) > 0.005) {
+        var ax = sx + 22, ay0 = yb + size * 0.4, al = Math.min(60, 18 + Math.abs(v) * 70), dir = v > 0 ? -1 : 1;
+        ctx.strokeStyle = v > 0 ? p.accent : p.accent2; ctx.fillStyle = ctx.strokeStyle; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(ax, ay0 - dir * al / 2); ctx.lineTo(ax, ay0 + dir * al / 2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(ax, ay0 + dir * (al / 2 + 8)); ctx.lineTo(ax - 6, ay0 + dir * al / 2); ctx.lineTo(ax + 6, ay0 + dir * al / 2); ctx.closePath(); ctx.fill();
+      }
+      var kindTxt = v > 0.005 ? "단축성: 들어 올림" : v < -0.005 ? "신장성: 버티며 내려감" : "등척성: 멈춰 버팀";
+      txt(ctx, kindTxt, sx + 10, sy + shh - 6, { color: v < -0.005 ? p.accent2 : v > 0.005 ? p.accent : p.dim, size: 11.5, weight: 700 });
+      var pw = v * f0;
+      BB.stat("fv-o-k", v > 0.005 ? "단축성" : v < -0.005 ? "신장성" : "등척성");
+      BB.stat("fv-o-f", f0.toFixed(2));
+      BB.stat("fv-o-v", v.toFixed(2));
+      BB.stat("fv-o-p", v > 0 ? Math.round((pw / (0.3 * BD.forceAtV(0.3))) * 100) + "<small>%</small>" : v < 0 ? "흡수" : "0");
+    }, { get height() { return wOf("fv-cv") < 600 ? 520 : 360; } });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; var b = lay.box; if (x > b.x + b.w + 20) return; v = BB.clamp(-0.5 + ((x - b.x) / b.w) * 1.5, -0.5, 1); if (Math.abs(v) < 0.015) v = 0; cv.redraw(); } });
+    BB.loop(document.getElementById("mu-fv"), function (dt) { pos += v * dt * 1.4; if (pos > 1) pos = 0; if (pos < 0) pos = 1; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 8. 운동 단위 */
+  (function () {
+    var curve = [], rec = [];
+    for (var d = 0; d <= 1.0001; d += 0.01) {
+      var m = BD.motorUnits(d), mx = 0, r0 = 0;
+      m.units.forEach(function (u, i) { var mr = 35 + 10 * (1 - i / 60); mx += u.force * (1 - Math.exp(-mr / 14)); if (u.on) r0 += u.force * (1 - Math.exp(-8 / 14)); });
+      curve.push([d, m.total]); rec.push([d, r0 / mx]);
+    }
+    var phase = new Array(60).fill(0).map(function (_, i) { return (i * 0.37) % 1; }), flash = new Array(60).fill(0), lay = null, mu = null, cv = null;
+    function calc() { mu = BD.motorUnits(getD()); if (cv) cv.redraw(); }
+    var getD = BB.range("mn-d", function (v) { return Math.round(v * 100) + "%"; }, calc);
+    var getS = BB.range("mn-s", function (v) { return v.toFixed(2) + "×"; });
+    calc();
+    cv = BB.canvas("#mn-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var gh = narrow ? h * 0.5 : h * 0.56, cols = 10, rows = 6;
+      var cw = (w - 30) / cols, ch = (gh - 30) / rows, maxR = Math.min(cw, ch) * 0.46;
+      txt(ctx, "운동 단위 60개(크기 = 힘, 왼쪽 위부터 동원 순서)", 14, 16, { size: 11.5, color: p.text, weight: 600 });
+      mu.units.forEach(function (u, i) {
+        var cx = 15 + cw * (i % cols) + cw / 2, cy = 26 + ch * Math.floor(i / cols) + ch / 2;
+        var r = Math.max(3, maxR * Math.sqrt(u.force / 60));
+        var col = TC(u.type);
+        ctx.strokeStyle = BB.alpha(col, u.on ? 0.95 : 0.4); ctx.lineWidth = 1.5;
+        ctx.fillStyle = u.on ? BB.alpha(col, 0.25 + 0.75 * flash[i]) : "transparent";
+        ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      });
+      var box = { x: 60, y: gh + 18, w: w - 76, h: h - gh - 58 };
+      var c = BB.chart(ctx, box, { x: [0, 1], y: [0, 1], xLabel: "중추 명령", yLabel: "힘", yTicks: [0, 0.5, 1], xFmt: function (v) { return Math.round(v * 100) + "%"; }, yFmt: function (v) { return Math.round(v * 100) + "%"; },
+        series: [{ data: rec, color: p.dim, width: 1.6, dash: [5, 3] }, { data: curve, color: p.accent, width: 2.6 }] });
+      txt(ctx, "실선: 동원 + 발화율 · 점선: 발화율 8 Hz 고정", box.x + 6, box.y + 4, { size: 11, base: "top" });
+      // 동원 역치 눈금
+      mu.units.forEach(function (u) { ctx.strokeStyle = BB.alpha(TC(u.type), 0.8); ctx.lineWidth = 1; var x = c.X(u.thr); ctx.beginPath(); ctx.moveTo(x, box.y + box.h - 6); ctx.lineTo(x, box.y + box.h); ctx.stroke(); });
+      handle(ctx, c.X(getD()), c.Y(mu.total), 7, p.accent);
+      lay = c;
+      var n = mu.units.filter(function (u) { return u.on; }).length, big = null;
+      mu.units.forEach(function (u) { if (u.on) big = u; });
+      BB.stat("mn-o-n", n + "<small>/60</small>");
+      BB.stat("mn-o-f", Math.round(mu.total * 100) + "<small>% 최대</small>");
+      BB.stat("mn-o-r", Math.round(mu.units[0].rate) + "<small>Hz</small>");
+      BB.stat("mn-o-b", big ? (big.type === "I" ? "제1형" : big.type === "IIa" ? "제2a형" : "제2x형") + " ×" + big.force.toFixed(0) : "없음");
+    }, { get height() { return wOf("mn-cv") < 560 ? 480 : 420; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; var b = lay.box; if (y < b.y - 20) return; getD.set(Math.round(BB.clamp((x - b.x) / b.w, 0, 1) * 100) / 100); } });
+    BB.loop(document.getElementById("mu-mu"), function (dt) {
+      var s = getS();
+      mu.units.forEach(function (u, i) { flash[i] = Math.max(0, flash[i] - dt * 6); if (!u.on) return; phase[i] += u.rate * dt * s; if (phase[i] >= 1) { phase[i] -= Math.floor(phase[i]); flash[i] = 1; } });
+      cv.redraw();
+    });
+  })();
+
+  /* ---------------------------------------------------------- 9. 섬유 유형과 피로 */
+  (function () {
+    var K = { I: 0.0015, IIa: 0.012, IIx: 0.06 }, R = { I: 0.05, IIa: 0.02, IIx: 0.008 }, FMAX = { I: 1, IIa: 2.5, IIx: 4 };
+    var data = null, t = 0, cv = null;
+    function calc() {
+      var s = getS(), mode = getM();
+      var share = { I: s, IIa: (1 - s) * 0.6, IIx: (1 - s) * 0.4 };
+      var cap = { I: 1, IIa: 1, IIx: 1 }, out = { t: [], I: [], IIa: [], IIx: [], tot: [] }, dt = 0.05, f0 = 0;
+      ["I", "IIa", "IIx"].forEach(function (k) { f0 += share[k] * FMAX[k]; });
+      for (var tt = 0; tt <= 120.0001; tt += dt) {
+        var on = mode === "hold" ? true : (tt % 1) < 0.33;
+        ["I", "IIa", "IIx"].forEach(function (k) { if (on) cap[k] -= K[k] * cap[k] * dt; else cap[k] += R[k] * (1 - cap[k]) * dt; });
+        if (Math.round(tt / dt) % 10 === 0) {
+          out.t.push(tt); out.I.push(cap.I); out.IIa.push(cap.IIa); out.IIx.push(cap.IIx);
+          out.tot.push([share.I * FMAX.I * cap.I, share.IIa * FMAX.IIa * cap.IIa, share.IIx * FMAX.IIx * cap.IIx]);
+        }
+      }
+      out.f0 = f0; out.share = share; data = out; t = 0;
+      if (cv) cv.redraw();
+    }
+    var getS = BB.range("fb-s", function (v) { return Math.round(v * 100) + "%"; }, calc);
+    var getM = BB.seg("fb-mode", calc);
+    document.getElementById("fb-go").addEventListener("click", function () { t = 0; });
+    calc();
+    cv = BB.canvas("#fb-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, n = data.t.length, idx = Math.min(n - 1, Math.round((t / 120) * (n - 1)));
+      var b1 = narrow ? { x: 58, y: 30, w: w - 72, h: h * 0.5 - 64 } : { x: 60, y: 30, w: w * 0.5 - 76, h: h - 72 };
+      var cut = function (arr) { return data.t.slice(0, idx + 1).map(function (tt, i) { return [tt, arr[i]]; }); };
+      var c1 = BB.chart(ctx, b1, { x: [0, 120], y: [0, 1.05], xLabel: "시간(s)", yLabel: "남은 힘(처음 = 1)", yTicks: [0, 0.5, 1],
+        series: [{ data: data.t.map(function (tt, i) { return [tt, data.IIx[i]]; }), color: BB.alpha(TC("IIx"), 0.25), width: 1.4 }, { data: data.t.map(function (tt, i) { return [tt, data.IIa[i]]; }), color: BB.alpha(TC("IIa"), 0.25), width: 1.4 }, { data: cut(data.IIx), color: TC("IIx"), width: 2.4 }, { data: cut(data.IIa), color: TC("IIa"), width: 2.4 }, { data: cut(data.I), color: TC("I"), width: 2.6 }] });
+      txt(ctx, "섬유 유형별 남은 힘", b1.x, b1.y - 18, { size: 11, base: "top" });
+      var labs = [["I", "제1형"], ["IIa", "제2a형"], ["IIx", "제2x형"]].map(function (q) { return [q, c1.Y(data[q[0]][idx])]; }).sort(function (a, b) { return a[1] - b[1]; });
+      var lastY = -1e9; labs.forEach(function (L) { var y = Math.max(L[1], lastY + 14); lastY = y; txt(ctx, L[0][1], Math.min(c1.X(data.t[idx]) + 6, b1.x + b1.w - 40), y, { color: TC(L[0][0]), size: 11, weight: 700, base: "middle" }); });
+      var b2 = narrow ? { x: 58, y: h * 0.5 + 30, w: w - 72, h: h * 0.5 - 72 } : { x: w * 0.5 + 56, y: 30, w: w * 0.5 - 72, h: h - 72 };
+      var ymax = 3.4;
+      var c2 = BB.chart(ctx, b2, { x: [0, 120], y: [0, ymax], xLabel: "시간(s)", yLabel: "근육 전체 힘(상대)", yTicks: [0, 1, 2, 3] });
+      // 누적 면적
+      ctx.save(); ctx.beginPath(); ctx.rect(b2.x, b2.y, b2.w, b2.h); ctx.clip();
+      [2, 1, 0].forEach(function (lev) {
+        ctx.beginPath(); ctx.moveTo(c2.X(0), c2.Y(0));
+        for (var i = 0; i <= idx; i++) { var s = 0; for (var q = 0; q <= lev; q++) s += data.tot[i][q]; ctx.lineTo(c2.X(data.t[i]), c2.Y(s)); }
+        ctx.lineTo(c2.X(data.t[idx]), c2.Y(0)); ctx.closePath(); ctx.fillStyle = BB.alpha(TC(["I", "IIa", "IIx"][lev]), 0.7); ctx.fill();
+      });
+      ctx.restore();
+      txt(ctx, "근육 전체(유형별로 쌓음)", b2.x, b2.y - 18, { size: 11, base: "top" });
+      var now = data.tot[idx][0] + data.tot[idx][1] + data.tot[idx][2];
+      txt(ctx, "처음 " + data.f0.toFixed(2) + " → 지금 " + now.toFixed(2), b2.x + b2.w - 4, b2.y + 4, { color: p.text, align: "right", size: 11.5, weight: 700, base: "top" });
+      BB.stat("fb-o-t", Math.round(data.t[idx]) + "<small>s</small>");
+      BB.stat("fb-o-f", Math.round((now / data.f0) * 100) + "<small>%</small>");
+      BB.stat("fb-o-c", [data.I[idx], data.IIa[idx], data.IIx[idx]].map(function (x) { return Math.round(x * 100); }).join(" / ") + "<small>%</small>");
+    }, { get height() { return wOf("fb-cv") < 560 ? 500 : 320; } });
+    BB.loop(document.getElementById("mu-fib"), function (dt) { if (t < 120) { t = Math.min(120, t + dt * 12); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 10. 다온의 허벅지 */
+  (function () {
+    var K = { I: 0.004, IIa: 0.012, IIx: 0.35 }, R = { I: 0.02, IIa: 0.01, IIx: 0.05 };
+    var TYPES = ["I", "IIa", "IIx"];
+    var MAXR = [], MAXF = 0, typeMax = { I: 0, IIa: 0, IIx: 0 };
+    var base = BD.motorUnits(0);
+    base.units.forEach(function (u, i) { var m = u.force * (1 - Math.exp(-(35 + 10 * (1 - i / 60)) / 14)); MAXR.push(m); MAXF += m; typeMax[u.type] += m; });
+    function forceAt(d, cap) {
+      var m = BD.motorUnits(d), tot = 0, act = { I: 0, IIa: 0, IIx: 0 }, n = 0;
+      m.units.forEach(function (u) { tot += u.out * cap[u.type]; act[u.type] += u.out; if (u.on) n++; });
+      return { f: tot / MAXF, act: { I: act.I / typeMax.I, IIa: act.IIa / typeMax.IIa, IIx: act.IIx / typeMax.IIx }, n: n, units: m.units };
+    }
+    // 근육 단면의 섬유: 유형 비율 50/30/20, 단위마다 힘에 비례한 섬유 수
+    var fibers = [];
+    (function () {
+      var rng = BB.rng(11), N = 520, cnt = { I: 0.5, IIa: 0.3, IIx: 0.2 };
+      TYPES.forEach(function (ty) {
+        var us = base.units.map(function (u, i) { return { i: i, u: u }; }).filter(function (q) { return q.u.type === ty; });
+        var sumF = us.reduce(function (s, q) { return s + q.u.force; }, 0), nT = Math.round(N * cnt[ty]);
+        us.forEach(function (q) { var k = Math.max(1, Math.round((nT * q.u.force) / sumF)); for (var j = 0; j < k; j++) fibers.push({ unit: q.i, type: ty }); });
+      });
+      fibers.forEach(function (f) { var a = rng() * Math.PI * 2, r = Math.sqrt(rng()); f.x = Math.cos(a) * r; f.y = Math.sin(a) * r; f.r = f.type === "I" ? 0.8 : f.type === "IIa" ? 1 : 1.15; });
+    })();
+    var data = null, pos = 0, playing = true, lay = null, cv = null;
+    function calc() {
+      var mode = getMode(), spr = getSp(), km = mode === "race" ? 10 : 5, T = mode === "race" ? 57.8 : 35, N = 360;
+      var cap = { I: 1, IIa: 1, IIx: 1 }, out = [];
+      for (var i = 0; i <= N; i++) {
+        var x = (km * i) / N;
+        var fr = mode === "race" ? (x < 0.3 ? 0.26 : x < 9.6 ? 0.22 : spr) : 0.16;
+        var lo = 0, hi = 1;
+        if (forceAt(1, cap).f < fr) lo = hi = 1;
+        else for (var k = 0; k < 18; k++) { var mid = (lo + hi) / 2; if (forceAt(mid, cap).f < fr) lo = mid; else hi = mid; }
+        var r = forceAt(hi, cap), dt = T / N;
+        out.push({ x: x, d: hi, f: r.f, fr: fr, n: r.n, cap: { I: cap.I, IIa: cap.IIa, IIx: cap.IIx }, on: r.units.map(function (u) { return u.on ? u.rate : 0; }) });
+        TYPES.forEach(function (t) { cap[t] -= K[t] * r.act[t] * dt * cap[t]; cap[t] += R[t] * (1 - cap[t]) * (1 - r.act[t]) * dt; });
+      }
+      data = { pts: out, km: km, T: T };
+      if (cv) cv.redraw();
+    }
+    var getMode = BB.seg("dn-mode", function () { pos = 0; calc(); });
+    var getSp = BB.range("dn-sp", function (v) { return Math.round(v * 100) + "% 최대"; }, BB.debounce(calc, 80));
+    var getV = BB.range("dn-v", function (v) { return v.toFixed(1) + "×"; });
+    calc();
+    var pulse = 0;
+    cv = BB.canvas("#dn-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 600, pts = data.pts, n = pts.length, i = Math.min(n - 1, Math.round(pos * (n - 1))), o = pts[i];
+      // 단면
+      var R0 = narrow ? Math.min(w * 0.36, 120) : Math.min(h * 0.36, w * 0.2);
+      var ccx = narrow ? w / 2 : R0 + 30, ccy = narrow ? R0 + 30 : h * 0.44;
+      ctx.fillStyle = BB.alpha(BB.color("seg-musc"), 0.08); ctx.strokeStyle = BB.color("seg-musc"); ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.ellipse(ccx, ccy, R0 * 1.12, R0 * 1.0, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      var fr = R0 * 0.045;
+      fibers.forEach(function (f) {
+        var rate = o.on[f.unit], col = TC(f.type), cap = o.cap[f.type];
+        var x = ccx + f.x * R0 * 1.05, y = ccy + f.y * R0 * 0.94;
+        if (rate > 0) {
+          var b = 0.35 + 0.65 * cap * (0.6 + 0.4 * Math.sin(pulse * rate * 0.5 + f.unit));
+          ctx.fillStyle = BB.alpha(col, BB.clamp(b, 0.2, 1));
+        } else ctx.fillStyle = BB.alpha(p.text, 0.08);
+        ctx.beginPath(); ctx.arc(x, y, fr * f.r, 0, Math.PI * 2); ctx.fill();
+      });
+      txt(ctx, "넙다리네갈래근 단면(섬유 520개 표본)", ccx, ccy + R0 + 18, { align: "center", size: 11 });
+      txt(ctx, o.n + " / 60 단위", ccx, ccy - R0 - 10, { color: p.text, align: "center", size: 13, weight: 700 });
+      // 그래프
+      var gx = narrow ? 46 : ccx + R0 * 1.12 + 56, gw = narrow ? w - 60 : w - gx - 16;
+      var gy = narrow ? ccy + R0 + 56 : 34, gh = narrow ? h - gy - 110 : h - 138;
+      var box = { x: gx, y: gy, w: gw, h: gh };
+      var c = BB.chart(ctx, box, { x: [0, data.km], y: [0, 1.05], xLabel: "", yTicks: [0, 0.25, 0.5, 0.75, 1], yFmt: function (v) { return Math.round(v * 100) + "%"; }, xFmt: function (v) { return v + " km"; },
+        series: [
+          { data: pts.map(function (q) { return [q.x, q.cap.IIx]; }), color: BB.alpha(TC("IIx"), 0.8), width: 1.6, dash: [4, 3] },
+          { data: pts.map(function (q) { return [q.x, q.cap.IIa]; }), color: BB.alpha(TC("IIa"), 0.8), width: 1.6, dash: [4, 3] },
+          { data: pts.map(function (q) { return [q.x, q.cap.I]; }), color: BB.alpha(TC("I"), 0.8), width: 1.6, dash: [4, 3] },
+          { data: pts.map(function (q) { return [q.x, q.d]; }), color: p.accent2, width: 2.2 },
+          { data: pts.map(function (q) { return [q.x, q.fr]; }), color: p.faint, width: 1.2, dash: [2, 3] },
+          { data: pts.map(function (q) { return [q.x, q.f]; }), color: p.text, width: 2.4 },
+        ] });
+      txt(ctx, narrow ? "검정 낸 힘 · 파랑 명령 · 점선 남은 힘" : "검정: 낸 힘 · 파랑: 중추 명령 · 점선: 유형별 남은 힘", box.x, box.y - 18, { size: 11, base: "top" });
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(c.X(o.x), box.y); ctx.lineTo(c.X(o.x), box.y + box.h); ctx.stroke();
+      // 코스 막대
+      var by = box.y + box.h + 30, bx0 = box.x, bx1 = box.x + box.w;
+      ctx.fillStyle = BB.alpha(p.text, 0.08); BB.rrect(ctx, bx0, by, bx1 - bx0, 14, 7); ctx.fill();
+      ctx.fillStyle = BB.alpha(p.accent, 0.5); BB.rrect(ctx, bx0, by, (bx1 - bx0) * pos, 14, 7); ctx.fill();
+      if (data.km === 10) { ctx.fillStyle = BB.alpha(p.bad, 0.35); ctx.fillRect(c.X(9.6), by, c.X(10) - c.X(9.6), 14); txt(ctx, "스퍼트 →", c.X(9.6) - 4, box.y + box.h - 8, { color: p.bad, align: "right", size: 11, weight: 700 }); }
+      handle(ctx, bx0 + (bx1 - bx0) * pos, by + 7, 9, p.accent);
+      txt(ctx, "출발", bx0, by + 28, { size: 11 }); txt(ctx, "결승 " + data.km + " km", bx1, by + 28, { align: "right", size: 11 });
+      lay = { bx0: bx0, bx1: bx1, by: by, box: box };
+      if (o.f < o.fr - 0.01) { ctx.fillStyle = BB.alpha(p.bad, 0.12); ctx.fillRect(box.x, box.y + 20, box.w, 22); txt(ctx, "목표 힘을 다 내지 못한다: 근육이 지쳤다", box.x + box.w / 2, box.y + 31, { color: p.bad, align: "center", base: "middle", size: 12, weight: 700 }); }
+      BB.stat("dn-o-x", o.x.toFixed(2) + "<small>km</small>");
+      BB.stat("dn-o-f", Math.round(o.fr * 100) + " / " + Math.round(o.f * 100) + "<small>%</small>");
+      BB.stat("dn-o-n", o.n + "<small>/60</small>");
+      BB.stat("dn-o-c", [o.cap.I, o.cap.IIa, o.cap.IIx].map(function (x) { return Math.round(x * 100); }).join(" / ") + "<small>%</small>");
+    }, { get height() { return wOf("dn-cv") < 600 ? 640 : 420; } });
+    var btn = document.getElementById("dn-go");
+    btn.addEventListener("click", function () { playing = !playing; btn.textContent = playing ? "멈춤" : "재생"; });
+    document.getElementById("dn-re").addEventListener("click", function () { pos = 0; playing = true; btn.textContent = "멈춤"; });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay) return; if (y < lay.box.y) return; pos = BB.clamp((x - lay.bx0) / (lay.bx1 - lay.bx0), 0, 1); playing = false; btn.textContent = "재생"; cv.redraw(); } });
+    BB.loop(document.getElementById("mu-daon"), function (dt) {
+      pulse += dt * 3;
+      if (playing) { pos += (dt * getV()) / 40; if (pos > 1) { pos = 1; playing = false; btn.textContent = "재생"; } }
+      cv.redraw();
+    });
+  })();
+})();
+</script>
+</body>
+</html>

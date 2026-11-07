@@ -1,0 +1,1223 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and BodyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "심장은 누가 뛰게 하는가. 동방결절의 자동 박동, 자율신경이 박자를 바꾸는 방법, 전도 경로와 방실결절 지연, 심전도 파형과 간격 읽기, 유도와 전기축, 심박 변이와 부정맥을 시뮬레이터로 돌려 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>심장의 전기와 심전도 · BodyBook</title>
+<meta name="description" content="심장은 누가 뛰게 하는가. 동방결절의 자동 박동, 자율신경이 박자를 바꾸는 방법, 전도 경로와 방실결절 지연, 심전도 파형과 간격 읽기, 유도와 전기축, 심박 변이와 부정맥을 시뮬레이터로 돌려 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/body/chapters/ecg.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#be123c">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BodyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="심장의 전기와 심전도 · BodyBook">
+<meta property="og:description" content="심장은 누가 뛰게 하는가. 동방결절의 자동 박동, 자율신경이 박자를 바꾸는 방법, 전도 경로와 방실결절 지연, 심전도 파형과 간격 읽기, 유도와 전기축, 심박 변이와 부정맥을 시뮬레이터로 돌려 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/body/chapters/ecg.html">
+<meta property="og:image" content="https://medical.euiyun.com/body/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/body/chapters/ecg.html#chapter","name":"심장의 전기와 심전도","headline":"심장의 전기와 심전도 · BodyBook","description":"심장은 누가 뛰게 하는가. 동방결절의 자동 박동, 자율신경이 박자를 바꾸는 방법, 전도 경로와 방실결절 지연, 심전도 파형과 간격 읽기, 유도와 전기축, 심박 변이와 부정맥을 시뮬레이터로 돌려 본다.","url":"https://medical.euiyun.com/body/chapters/ecg.html","position":5,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/body/og.png","dateModified":"2026-10-16","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/body/#book","name":"BodyBook · 몸의 원리 교과서","url":"https://medical.euiyun.com/body/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BodyBook","item":"https://medical.euiyun.com/body/"},{"@type":"ListItem","position":2,"name":"5. 심장의 전기와 심전도","item":"https://medical.euiyun.com/body/chapters/ecg.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/body.js"></script>
+<!--head:end-->
+<style>
+  .ec-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 8px 18px 0; font-size: 13px; color: var(--text-dim); }
+</style>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="body"></script>
+</head>
+<body data-chapter="ecg">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 05</div>
+    <h1>심장의 전기와 심전도</h1>
+    <p class="lead">심장은 뇌가 시키지 않아도 뛴다. 오른쪽 심방 벽에 붙은 작은 세포 덩어리가 스스로 전기를 만들고, 그 전기가 정해진 길을 따라 0.2초 안에 심장 전체로 퍼지며 근육을 차례로 수축시킨다. 이 전기의 일부는 피부까지 새어 나와, 손목과 발목에 붙인 전극으로 잴 수 있다. 그것이 심전도다. 이 장은 박자를 만드는 세포, 박자를 바꾸는 신경, 전기가 지나는 길, 그리고 종이 위의 꼬불꼬불한 선을 읽는 법을 직접 돌려 본다.</p>
+    <ul class="objectives">
+      <li>동방결절 세포가 스스로 역치에 닿는 원리와 자율신경이 그 속도를 바꾸는 세 가지 방법을 설명한다.</li>
+      <li>동방결절 → 심방 → 방실결절 → 히스 다발 → 푸르키네 섬유의 전도 순서와 방실결절 지연의 의미를 안다.</li>
+      <li>심전도의 P파·QRS파·T파와 PR·QRS·QT 간격을 읽고, 심전도 종이로 심박수를 센다.</li>
+      <li>유도가 같은 전기 벡터를 서로 다른 방향에서 본 그림자라는 것을 이해한다.</li>
+      <li>심박 변이와 대표적인 부정맥이 무엇이고, 박자가 어긋날 때 펌프가 무엇을 잃는지 말한다.</li>
+    </ul>
+  </header>
+
+  <section id="pacemaker">
+    <h2>스스로 뛰는 심장: 동방결절</h2>
+    <p>개구리 심장을 꺼내 식염수에 담가 두면 한참 동안 혼자 뛴다. 신경이 모두 끊겼는데도 뛴다는 것은 박자를 만드는 장치가 심장 안에 있다는 뜻이다. 그 장치가 오른쪽 심방 위쪽 벽의 <span class="term">동방결절</span><span class="en">(Sinoatrial node, SA node)</span>이다. 길이 1~2 cm의 작은 세포 덩어리로, 심장의 <span class="term">심박 조율기</span><span class="en">(Pacemaker)</span>다.</p>
+    <p>보통의 근육 세포는 자극이 오기 전까지 막전위가 약 −90 mV에 가만히 머문다. 동방결절 세포는 다르다. 한 번 흥분한 뒤 막전위가 약 −60 mV까지 내려가자마자 다시 <b>저절로 조금씩 올라간다</b>. 이 느린 오르막(4기)이 역치(약 −40 mV)에 닿으면 칼슘 통로가 열리며 확 치솟고(0기), 칼륨이 빠져나가며 다시 내려온다(3기). 이 톱니 모양이 끝없이 되풀이된다.</p>
+    <p>오르막을 만드는 것은 막전위가 낮을 때 오히려 열리는 이상한 나트륨 통로다. 이름도 "이상한 전류"(<span class="term">펀니 전류</span><span class="en">(Funny current, I<sub>f</sub>)</span>)다. 아래 시뮬레이터에서 자율신경 두 개를 움직여 오르막이 어떻게 바뀌는지 보자.</p>
+
+    <div class="sim" id="sim-sa" data-desc="동방결절 세포의 톱니 모양 막전위: 부교감(아세틸콜린)과 교감(노르에피네프린)을 움직이고 역치·최대 이완기 전위를 직접 끌어 4기 기울기와 심박수가 어떻게 바뀌는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>동방결절의 톱니: 박자를 만드는 세포</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="sa-cv"></canvas><span class="hint">역치·이완기 전위 선을 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>부교감(미주 신경, ACh) <output id="sa-ach-out"></output></span><input type="range" id="sa-ach" min="0" max="1" step="0.01" value="0.41"></label>
+          <label class="ctrl"><span>교감(노르에피네프린) <output id="sa-ne-out"></output></span><input type="range" id="sa-ne" min="0" max="1" step="0.01" value="0"></label>
+          <label class="check"><input type="checkbox" id="sa-ghost"> 신경이 끊긴 심장과 겹쳐 보기</label>
+          <div class="btn-row"><button class="btn" id="sa-re">다온 안정 상태로</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">심박수</span><span class="v" id="sa-o-hr">—</span></div>
+        <div class="stat"><span class="k">4기 기울기</span><span class="v" id="sa-o-sl">—</span></div>
+        <div class="stat"><span class="k">4기 길이</span><span class="v" id="sa-o-t4">—</span></div>
+        <div class="stat"><span class="k">이완기 전위 → 역치</span><span class="v" id="sa-o-th">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 부교감을 0으로 내린다. 신경이 끊긴 동방결절의 내재 박동, 약 100 bpm이 나온다. 안정 시 72 bpm은 미주 신경이 늘 브레이크를 밟고 있다는 뜻이다. ② 교감을 1까지 올린다. 오르막이 가팔라지고 역치가 낮아져 190 bpm 가까이 뛴다. ③ 역치 선을 위로 끌거나 이완기 전위 선을 아래로 끈다. 올라가야 할 거리가 늘어 박자가 느려진다. ④ 부교감을 1로 올리면 30 bpm 아래로 떨어진다(경고). (BD.saNode 조각 모델: ACh는 기울기를 줄이고 이완기 전위를 낮추며, 노르에피네프린은 기울기를 키우고 역치를 낮춘다. 실제 이온 전류를 푼 것이 아니다.)</div>
+    </div>
+
+    <p>자율신경은 세 가지 손잡이로 박자를 바꾼다. 오르막의 <b>기울기</b>, 출발점인 <b>최대 이완기 전위</b>, 도착점인 <b>역치</b>다. 부교감 신경(미주 신경)의 아세틸콜린은 칼륨 통로를 열어 출발점을 낮추고 펀니 전류를 줄여 기울기를 눕힌다. 교감 신경의 노르에피네프린은 펀니 전류와 칼슘 전류를 키워 기울기를 세우고 역치를 낮춘다.</p>
+    <div class="callout">
+      <strong>안정 시 심장은 브레이크를 밟고 있다</strong>
+      심장 이식을 받은 사람의 심장은 신경이 이어져 있지 않아 쉴 때도 약 90~110 bpm으로 뛴다. 건강한 사람의 안정 심박수 60~80 bpm은 미주 신경이 늘 내재 박동을 눌러 두고 있는 결과다. 운동을 시작하면 심박수가 몇 초 만에 오르는데, 이 첫 상승은 교감 신경이 가속기를 밟기 전에 <b>미주 신경 브레이크를 놓는 것</b>만으로 일어난다.
+    </div>
+  </section>
+
+  <section id="conduction">
+    <h2>전기가 지나가는 길</h2>
+    <p>동방결절에서 시작된 흥분은 심방 근육을 타고 퍼져 두 심방을 수축시킨다. 그런데 심방과 심실 사이에는 전기가 통하지 않는 섬유 고리(판막의 받침)가 있어서, 흥분이 심실로 넘어가는 문은 단 하나, <span class="term">방실결절</span><span class="en">(Atrioventricular node, AV node)</span>뿐이다. 방실결절은 일부러 느리게 전기를 전한다. 약 0.1초의 이 <b>지연</b> 덕분에 심방이 피를 다 밀어 넣은 다음에야 심실이 수축한다.</p>
+    <p>방실결절을 지난 흥분은 <span class="term">히스 다발</span><span class="en">(Bundle of His)</span>과 좌우 다발 가지를 거쳐 심실 벽 안쪽에 그물처럼 깔린 <span class="term">푸르키네 섬유</span><span class="en">(Purkinje fibers)</span>로 초속 2~4 m의 빠른 속도로 퍼진다. 그래서 두 심실의 근육이 거의 동시에, 그것도 심첨(아래 끝)부터 위쪽으로 짜내듯 수축한다.</p>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-19-18.webp" width="1200" height="804" loading="lazy" decoding="async" alt="심장의 전도 경로: 동방결절, 결절 사이 경로, 방실결절, 히스 다발, 좌우 다발 가지, 푸르키네 섬유">
+      <figcaption><b>전도 경로와 도착 시각.</b> 흥분은 동방결절(0 ms)에서 시작해 심방 근육과 결절 사이 경로를 따라 약 40 ms 만에 방실결절에 닿는다. 방실결절에서 약 0.1초 머문 뒤 히스 다발과 좌우 다발 가지, 푸르키네 섬유를 따라 수십 ms 안에 심실 전체로 퍼진다. 시각은 교과서의 대표값을 반올림했다.<span class="fig-words">Sinoatrial (SA) node 동방결절 · Internodal 결절 사이 경로 · Bachmann's bundle 바흐만 다발 · Atrioventricular (AV) node 방실결절 · AV bundle (bundle of His) 히스 다발 · Right and left bundle branches 좌우 다발 가지 · Purkinje fibers 푸르키네 섬유</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/19-2-cardiac-muscle-and-electrical-activity">그림 19.18</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>아래에서 흥분(노란 점)이 길을 따라 움직이는 동안 오른쪽 심전도가 한 박동씩 그려진다. 방실결절 지연을 늘려 보면 P파와 QRS파 사이가 벌어진다.</p>
+
+    <div class="sim" id="sim-conduct" data-desc="흥분이 동방결절에서 방실결절, 히스 다발, 푸르키네 섬유로 퍼지는 동안 심전도가 한 박동씩 그려진다: 방실결절 지연을 늘리고 2도·3도 방실 차단을 걸어 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>흥분이 지나가는 길과 심전도</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cd-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>방실결절 지연 <output id="cd-av-out"></output></span><input type="range" id="cd-av" min="0.03" max="0.3" step="0.01" value="0.09"></label>
+          <label class="ctrl"><span>재생 속도 <output id="cd-sp-out"></output></span><input type="range" id="cd-sp" min="0.1" max="1" step="0.05" value="0.35"></label>
+          <div class="seg" id="cd-mode"><button data-value="normal" class="on">정상 전도</button><button data-value="avb2">2도 차단</button><button data-value="avb3">3도 차단</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">지금 일어나는 일</span><span class="v" id="cd-o-st" style="font-family:var(--font);font-size:15px">—</span></div>
+        <div class="stat"><span class="k">PR 간격</span><span class="v" id="cd-o-pr">—</span></div>
+        <div class="stat"><span class="k">P : QRS</span><span class="v" id="cd-o-ratio">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 재생 속도를 0.1배로 낮추고 노란 점이 방실결절(두 번째 점)에서 한참 머무는 것을 본다. 이 동안 심전도는 평평하다(PR 분절). ② 지연을 0.2초 넘게 늘린다. PR 간격이 200 ms를 넘으면 1도 방실 차단이다. 박자는 그대로 유지된다. ③ "2도 차단"은 PR이 점점 길어지다 QRS 하나가 빠진다(벤케바흐). ④ "3도 차단"에서는 심방과 심실이 서로 모르는 채 따로 뛴다. 심실은 아래쪽의 느린 예비 조율기(약 38 bpm)에 맡겨지고 QRS가 넓어진다. (흥분 시각은 대표값으로 정한 교육용 시간표이고, 파형은 BD.ecg 합성 심전도다.)</div>
+    </div>
+
+    <p>전도 경로의 각 부분은 모두 스스로 박동할 능력이 있지만 속도가 다르다. 동방결절 약 60~100, 방실결절 약 40~60, 심실의 푸르키네 섬유 약 20~40 bpm이다. 가장 빠른 동방결절이 늘 먼저 흥분을 보내 나머지를 "덮어쓰기" 때문에 평소에는 동방결절이 박자를 쥔다. 위에서 3도 차단을 걸었을 때 심실이 느리게나마 계속 뛴 것은 이 예비 조율기 덕분이다.</p>
+  </section>
+
+  <section id="waves">
+    <h2>심전도: 몸 표면에서 엿듣는 전기</h2>
+    <p>수많은 심근 세포가 한꺼번에 흥분하고 회복할 때 생기는 전류는 몸 전체로 퍼진다. 피부의 두 지점 사이 전압 차이를 시간에 따라 기록한 것이 <span class="term">심전도</span><span class="en">(Electrocardiogram, ECG)</span>다. 심전도의 각 파는 심장의 특정 부분이 흥분하거나 회복하는 순간이다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>이름</th><th>무엇이 일어나는가</th><th class="num">정상 길이</th></tr></thead>
+      <tbody>
+        <tr><td>P파</td><td>심방의 탈분극(흥분)</td><td class="num">0.08~0.11 s</td></tr>
+        <tr><td>PR 간격</td><td>심방 흥분 시작 → 심실 흥분 시작. 대부분이 방실결절 지연</td><td class="num">0.12~0.20 s</td></tr>
+        <tr><td>QRS파</td><td>심실의 탈분극. 근육이 많아 가장 크다. 심방의 회복은 이 안에 묻힌다</td><td class="num">0.12 s 미만</td></tr>
+        <tr><td>ST 분절</td><td>심실 전체가 흥분해 있는 시간(활동 전위의 고원기). 평평해야 한다</td><td class="num">—</td></tr>
+        <tr><td>T파</td><td>심실의 재분극(회복)</td><td class="num">—</td></tr>
+        <tr><td>QT 간격</td><td>심실 흥분 시작 → 회복 끝. 심박수에 따라 달라진다</td><td class="num">약 0.35~0.44 s</td></tr>
+      </tbody>
+    </table></div>
+
+    <figure class="photo">
+      <img src="../assets/figures/openstax-ap-19-23.webp" width="1200" height="779" loading="lazy" decoding="async" alt="심전도 종이의 눈금 위에 그린 정상 파형: P파, QRS 복합체, T파와 PR·QT 간격">
+      <figcaption><b>심전도 종이의 눈금.</b> 표준 기록에서 종이는 1초에 25 mm 지나가므로 작은 칸(1 mm) 하나가 0.04초, 굵은 선으로 묶인 큰 칸(5 mm) 하나가 0.2초, 큰 칸 5개가 1초다. 세로로는 1 mV가 10 mm다. 아래 확대 그림에서 P파(심방 탈분극), QRS 복합체(심실 탈분극), T파(심실 재분극)와 PR·QT 간격을 칸을 세어 읽는다.<span class="fig-words">P wave P파 · QRS complex QRS 복합체 · T wave T파 · PR/QT interval PR/QT 간격 · P-R/S-T segment PR/ST 분절 · Millivolts 밀리볼트</span><span class="credit">그림: OpenStax, <i>Anatomy and Physiology</i>(Rice University) <a href="https://openstax.org/books/anatomy-and-physiology/pages/19-2-cardiac-muscle-and-electrical-activity">그림 19.23</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>.</span></figcaption>
+    </figure>
+
+    <p>아래는 다온의 검진 심전도에서 한 박동을 확대한 것이다. 파형이나 분절을 누르면 설명이 나오고, 두 개의 세로 자(캘리퍼)를 끌어 간격을 직접 잴 수 있다.</p>
+
+    <div class="sim" id="sim-calipers" data-desc="심전도 종이 위에서 P파·QRS파·T파와 분절을 눌러 의미를 읽고, 두 개의 캘리퍼를 끌어 PR·QRS·QT 간격을 ms와 칸 수로 잰다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>한 박동 해부와 캘리퍼</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cp-cv"></canvas><span class="hint">파형을 누르거나 아래 손잡이를 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="cp-snap"><button data-value="pr" class="on">PR</button><button data-value="qrs">QRS</button><button data-value="qt">QT</button><button data-value="rr">RR</button></div>
+          <label class="ctrl"><span>심박수 <output id="cp-hr-out"></output></span><input type="range" id="cp-hr" min="50" max="130" step="1" value="72"></label>
+        </div>
+      </div>
+      <div class="info-panel" id="cp-info">파형을 누르면 설명이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">캘리퍼 간격</span><span class="v" id="cp-o-ms">—</span></div>
+        <div class="stat"><span class="k">작은 칸 / 큰 칸</span><span class="v" id="cp-o-box">—</span></div>
+        <div class="stat"><span class="k">정상 범위</span><span class="v" id="cp-o-ref" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① PR 버튼을 누르고 캘리퍼가 P파 시작과 QRS 시작에 놓인 것을 확인한다. 약 160 ms, 작은 칸 4개다. ② QRS는 작은 칸 2개 남짓(약 90 ms). 3칸(120 ms)을 넘으면 심실 안의 전도가 느리다는 신호다. ③ 심박수를 120으로 올리고 QT를 다시 잰다. 짧아진다. 그래서 QT는 심박수로 보정해서(QTc) 읽는다. (합성 심전도 BD.ecg, 유도 II 비슷한 모양. 화면의 칸은 종이와 같은 비율로 그렸다.)</div>
+    </div>
+  </section>
+
+  <section id="rate">
+    <h2>심전도 종이로 심박수 읽기</h2>
+    <p>종이 속도가 정해져 있으니 R파 사이의 칸 수만 세면 심박수가 나온다. 큰 칸 하나가 0.2초이므로 1분(60초)은 큰 칸 300개, 작은 칸 1,500개다.</p>
+    <div class="formula">$$HR = \frac{300}{\text{R–R 사이 큰 칸 수}} = \frac{1500}{\text{R–R 사이 작은 칸 수}}$$
+      <div class="where">\(HR\) 심박수(bpm). 큰 칸 4개(0.8 s)면 75 bpm, 5개(1.0 s)면 60 bpm. 리듬이 불규칙하면 6초 동안의 R파 수 × 10을 쓴다.</div>
+    </div>
+    <p>실전에서는 굵은 선 위에 놓인 R파 하나를 찾고, 그다음 굵은 선마다 "300, 150, 100, 75, 60, 50"을 외며 다음 R파가 어디쯤 오는지 본다. 아래에서 직접 해 보자.</p>
+
+    <div class="sim" id="sim-ecg-rate" data-desc="6초짜리 심전도에서 R파 사이 칸을 세어 300 규칙·1500 규칙·6초 방법으로 심박수를 읽고, 불규칙한 리듬에서 어느 방법이 틀리는지 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>칸 세어 심박수 읽기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="rt-cv"></canvas><span class="hint">빨간 캘리퍼를 다음 R파로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="rt-mode"><button data-value="sinus" class="on">규칙 리듬</button><button data-value="af">불규칙(심방세동)</button></div>
+          <div class="btn-row"><button class="btn primary" id="rt-new">새 심전도</button><button class="btn" id="rt-show">정답 보기</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">300 ÷ 큰 칸</span><span class="v" id="rt-o-300">—</span></div>
+        <div class="stat"><span class="k">1500 ÷ 작은 칸</span><span class="v" id="rt-o-1500">—</span></div>
+        <div class="stat"><span class="k">6초 R파 × 10</span><span class="v" id="rt-o-6">—</span></div>
+        <div class="stat"><span class="k">실제 평균</span><span class="v" id="rt-o-true">?</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 첫 R파는 굵은 선 위에 있다. 위쪽의 300, 150, 100 … 숫자를 보고 다음 R파가 어느 두 숫자 사이에 오는지 어림한 다음, 캘리퍼를 끌어 정확히 잰다. ② "정답 보기"로 실제 평균과 비교한다. 규칙 리듬에서는 세 방법이 거의 같다. ③ "불규칙"으로 바꾼다. R–R 간격이 박동마다 달라 300 규칙은 어느 두 박동을 고르느냐에 따라 크게 틀리고, 6초 방법이 평균에 가깝다. (종이 속도 25 mm/s 기준으로 그린 화면. 좁은 화면에서는 6초를 3초씩 두 줄로 나눴다.)</div>
+    </div>
+  </section>
+
+  <section id="leads">
+    <h2>유도: 같은 전기를 다른 방향에서 보기</h2>
+    <p>심장의 흥분은 매 순간 크기와 방향을 가진 화살표 하나(전기 쌍극자, <span class="term">심장 벡터</span><span class="en">(Cardiac vector)</span>)로 묶을 수 있다. 한 박동 동안 이 화살표는 고리를 그리며 돈다. 심방이 흥분할 때는 작게 왼쪽 아래로, 심실이 흥분할 때는 크게 왼쪽 아래로, 마지막에 잠깐 위쪽으로 향한다.</p>
+    <p>두 전극 사이의 전압은 이 화살표를 두 전극을 잇는 선에 비춘 <b>그림자</b>다. 이 선 하나를 <span class="term">유도</span><span class="en">(Lead)</span>라 한다. 오른팔-왼팔이 유도 I, 오른팔-왼다리가 유도 II, 왼팔-왼다리가 유도 III이고, 세 선은 몸 앞에 거의 정삼각형(<span class="term">아인트호벤 삼각형</span><span class="en">(Einthoven's triangle)</span>)을 이룬다. 화살표가 유도 쪽을 향하면 위로 솟은 파, 반대쪽이면 아래로 꺼진 파가 그려진다.</p>
+
+    <div class="sim" id="sim-leads" data-desc="한 박동 동안 고리를 그리며 도는 심장 벡터를 아인트호벤 삼각형의 유도 I·II·III에 비춰, 같은 전기가 유도마다 다른 모양의 파로 보이는 원리와 전기축을 직접 끌어 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>심장 벡터와 세 유도의 그림자</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ld-cv"></canvas><span class="hint">삼각형 안을 눌러 전기축을 돌린다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>QRS 전기축 <output id="ld-ax-out"></output></span><input type="range" id="ld-ax" min="-120" max="180" step="5" value="60"></label>
+          <label class="ctrl"><span>재생 속도 <output id="ld-sp-out"></output></span><input type="range" id="ld-sp" min="0.05" max="1" step="0.05" value="0.3"></label>
+          <div class="btn-row"><button class="btn" id="ld-go">일시정지</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--accent)"></i>유도 I</span><span><i style="background:var(--ok)"></i>유도 II</span><span><i style="background:var(--warn)"></i>유도 III</span><span><i style="background:var(--art)"></i>심장 벡터</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">전기축</span><span class="v" id="ld-o-ax">—</span></div>
+        <div class="stat"><span class="k">QRS 순 크기 I / II / III</span><span class="v" id="ld-o-net">—</span></div>
+        <div class="stat"><span class="k">판정</span><span class="v" id="ld-o-cls" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 재생을 느리게 두고 빨간 화살표가 고리를 그리는 동안 세 유도 위의 색 막대(그림자)가 오르내리는 것을 본다. 오른쪽 파형은 그 그림자를 시간에 따라 그린 것이다. ② 전기축을 60°에서 −60°로 돌린다. 유도 II와 III의 QRS가 아래로 뒤집힌다(왼쪽 축 편위). ③ 어느 각도에서든 II의 높이 = I + III이 성립하는지 숫자로 확인한다(아인트호벤 법칙). (정면 평면만 그린 교육용 벡터 고리. 각도는 유도 I 방향을 0°, 아래쪽을 +로 잰다.)</div>
+    </div>
+
+    <p>병원에서 쓰는 12유도 심전도는 팔다리 유도 6개(I, II, III, aVR, aVL, aVF)와 가슴 유도 6개(V1~V6)로 심장을 정면과 가로 단면에서 함께 본다. 심장의 한 부분에 피가 모자라면(심근 허혈) 그 부분을 바라보는 유도에서만 ST 분절이 올라가거나 내려가므로, 어느 유도에서 변화가 보이는지로 위치를 짐작한다.</p>
+  </section>
+
+  <section id="ap">
+    <h2>심실 근육의 긴 활동 전위</h2>
+    <p>심실 근육 세포의 활동 전위는 신경의 1 ms짜리 스파이크와 달리 약 0.25~0.3초 이어진다. 나트륨이 들어오며 확 치솟은(0기) 뒤, 칼슘이 들어오고 칼륨이 나가며 균형을 이루는 긴 <span class="term">고원기</span><span class="en">(Plateau, 2기)</span>가 있기 때문이다. 이 고원기 동안 세포는 다시 흥분하지 않는다(불응기). 그래서 심장은 골격근처럼 수축이 겹쳐 굳는 강축에 빠지지 않고, 매번 이완하며 다시 채울 시간을 얻는다.</p>
+    <p>심전도와 나란히 놓으면 대응이 분명하다. QRS파는 심실 세포들의 0기, ST 분절은 모두가 고원기에 있는 시간, T파는 3기(재분극)다. 그러니 QT 간격은 심실 활동 전위의 길이와 거의 같다.</p>
+
+    <div class="sim" id="sim-vap" data-desc="심실 근육의 활동 전위(0~4기)를 심전도의 QRS·ST·T와 같은 시간축에 나란히 놓고, 심박수에 따라 QT가 짧아지는 것과 Bazett 보정 QTc, QT 연장을 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>활동 전위와 QT 간격</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="va-cv"></canvas><span class="hint">세로 커서를 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>심박수 <output id="va-hr-out"></output></span><input type="range" id="va-hr" min="45" max="180" step="1" value="72"></label>
+          <label class="check"><input type="checkbox" id="va-long"> QT 연장(약물·저칼륨 등 가정)</label>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">R–R</span><span class="v" id="va-o-rr">—</span></div>
+        <div class="stat"><span class="k">QT</span><span class="v" id="va-o-qt">—</span></div>
+        <div class="stat"><span class="k">QTc(Bazett)</span><span class="v" id="va-o-qtc">—</span></div>
+        <div class="stat"><span class="k">커서 위치</span><span class="v" id="va-o-ph" style="font-family:var(--font);font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 커서를 QRS → ST → T로 옮기며 활동 전위의 0기 → 2기(고원) → 3기가 대응하는 것을 본다. ② 심박수를 160까지 올린다. QT는 짧아지지만 QTc는 거의 그대로다. 심장은 빨리 뛸수록 활동 전위를 줄여 이완 시간을 지킨다. ③ "QT 연장"을 켠다. QTc가 470 ms를 넘으면 빨간 경고가 뜬다. 다음 박동이 회복 중인 세포를 건드리기 쉬워져 위험한 심실 부정맥이 생길 수 있다. (활동 전위는 BD.ventricularAP 조각 모델, 끝을 T파 끝에 맞췄다. QT 연장은 ST-T 구간을 시간축으로 늘려 흉내 냈다.)</div>
+    </div>
+
+    <div class="formula">$$QT_c = \frac{QT}{\sqrt{RR}}$$
+      <div class="where">\(QT\) 측정한 QT 간격(s), \(RR\) R–R 간격(s), \(QT_c\) 심박수 60(RR 1 s)일 때로 환산한 QT(대략 남성 0.45 s, 여성 0.46 s 미만을 정상으로 본다). Bazett 식은 심박수가 아주 빠르거나 느리면 오차가 커서 다른 보정식도 쓴다.</div>
+    </div>
+  </section>
+
+  <section id="hrv">
+    <h2>박동 사이의 흔들림: 심박 변이</h2>
+    <p>건강한 심장은 메트로놈처럼 뛰지 않는다. 숨을 들이쉴 때 심박이 조금 빨라지고 내쉴 때 느려진다. 이것을 <span class="term">호흡성 동성 부정맥</span><span class="en">(Respiratory sinus arrhythmia)</span>이라 하는데, 이름과 달리 병이 아니라 미주 신경이 박동마다 브레이크를 섬세하게 조절하고 있다는 건강한 신호다. 박동 간격의 이런 흔들림 전체를 <span class="term">심박 변이</span><span class="en">(Heart rate variability, HRV)</span>라 한다.</p>
+    <p>심박 변이는 박동 간격(R–R)을 차례로 그린 <b>타코그램</b>으로 본다. 흔히 쓰는 두 숫자는 간격 전체의 표준편차 <b>SDNN</b>과 이웃 간격 차이의 제곱평균제곱근 <b>RMSSD</b>다. RMSSD는 박동 하나하나의 빠른 변화를 보므로 미주 신경의 활동을 잘 반영한다.</p>
+
+    <div class="sim" id="sim-hrv" data-desc="미주 신경 긴장과 호흡 속도를 바꾸며 심전도, 박동 간격 타코그램, 푸앵카레 그림, SDNN·RMSSD가 어떻게 달라지는지 본다: 들이쉴 때 빨라지고 내쉴 때 느려지는 호흡성 동성 부정맥">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>숨 쉴 때마다 흔들리는 박자</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="hv-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>미주 신경 긴장(ACh) <output id="hv-ach-out"></output></span><input type="range" id="hv-ach" min="0" max="0.8" step="0.01" value="0.41"></label>
+          <label class="ctrl"><span>호흡 속도 <output id="hv-rr-out"></output></span><input type="range" id="hv-rr" min="6" max="20" step="1" value="12"></label>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:var(--tr-1)"></i>심전도</span><span><i style="background:var(--accent)"></i>순간 심박수</span><span><i style="background:var(--warn)"></i>폐 부피(호흡)</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">평균 심박수</span><span class="v" id="hv-o-hr">—</span></div>
+        <div class="stat"><span class="k">SDNN</span><span class="v" id="hv-o-sdnn">—</span></div>
+        <div class="stat"><span class="k">RMSSD</span><span class="v" id="hv-o-rmssd">—</span></div>
+        <div class="stat"><span class="k">한 호흡 안의 심박 폭</span><span class="v" id="hv-o-rsa">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 노란 호흡 곡선이 오를 때(들이쉼) 파란 순간 심박수가 같이 오르는 것을 본다. ② 미주 신경 긴장을 0으로 내린다. 심박수가 100을 넘고 변이가 거의 사라진다. 스트레스, 피로, 과훈련, 탈수에서 HRV가 떨어지는 모습과 닮았다. ③ 긴장을 0.6으로 올리고 호흡을 분당 6회로 늦춘다. 한 호흡 안의 심박 폭이 커지고 푸앵카레 점들이 길게 퍼진다. (BD.ecg에 박동 흔들림과 호흡 변조를 넣은 교육용 모델. 호흡이 느릴수록 변조가 커지게 장 안에서 어림했다. 시간은 실제 속도.)</div>
+    </div>
+
+    <p>심박 변이는 사람마다 크게 다르고 나이가 들면 줄어든다. 같은 사람 안에서는 잘 쉬고 잘 회복했을 때 높고, 잠이 부족하거나 아프거나 훈련이 과했을 때 낮아진다. 그래서 운동하는 사람들은 아침 HRV를 <b>자기 자신과 비교하는</b> 회복 지표로 쓴다. 다른 사람의 숫자와 비교하는 것은 큰 의미가 없다.</p>
+  </section>
+
+  <section id="arrhythmia">
+    <h2>부정맥: 박자가 어긋날 때</h2>
+    <p>박자를 만드는 곳이나 전기가 지나는 길에 문제가 생기면 <span class="term">부정맥</span><span class="en">(Arrhythmia)</span>이 된다. 심전도는 부정맥을 가리는 가장 기본적인 검사다. 하지만 심장에게 더 중요한 질문은 "그래서 피를 얼마나 내보내는가"다. 아래 모니터에서 리듬을 바꾸면 심전도와 함께 동맥압과 어림한 심박출량이 바뀐다.</p>
+
+    <div class="sim" id="sim-arrhythmia" data-desc="환자 모니터에서 서맥, 빈맥, 심방세동, 1·2·3도 방실 차단, 심실 조기 수축, 심실세동을 골라 심전도와 동맥압, 박동마다 달라지는 박출량과 심박출량을 함께 본다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>부정맥 갤러리: 박자와 펌프</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view monitor"><canvas id="ar-cv"></canvas></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>리듬</span><select id="ar-sel">
+            <option value="sinus">정상 동리듬</option>
+            <option value="brady">동성 서맥</option>
+            <option value="tachy">동성 빈맥</option>
+            <option value="af">심방세동</option>
+            <option value="avb1">1도 방실 차단</option>
+            <option value="avb2">2도 방실 차단(벤케바흐)</option>
+            <option value="avb3">3도(완전) 방실 차단</option>
+            <option value="pvc">심실 조기 수축</option>
+            <option value="vf">심실세동</option>
+          </select></label>
+        </div>
+      </div>
+      <div class="info-panel" id="ar-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">심박수</span><span class="v" id="ar-o-hr">—</span></div>
+        <div class="stat"><span class="k">박출량 범위</span><span class="v" id="ar-o-sv">—</span></div>
+        <div class="stat"><span class="k">심박출량(어림)</span><span class="v" id="ar-o-co">—</span></div>
+        <div class="stat"><span class="k">평균 동맥압</span><span class="v" id="ar-o-map">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "심방세동"을 고른다. R파 간격이 제멋대로이고 동맥압 맥박의 높이가 박동마다 다르다. 짧은 간격 뒤의 박동은 덜 채워져 약하다. ② "심실 조기 수축"에서 일찍 온 박동은 맥박이 거의 없고, 다음 박동은 쉬는 시간이 길어 크다. ③ "3도 차단"은 심박수가 38로 떨어져 심박출량이 크게 준다. ④ "심실세동"은 전기만 요동치고 펌프가 멈춘다. 몇 초 만에 혈압이 바닥으로 떨어진다. (박출량은 직전 R–R 간격으로 정한 채움 × 심방 수축 기여로 박동마다 어림하고, 동맥압은 2요소 윈드케셀로 풀었다. 압반사 보상은 넣지 않았다.)</div>
+    </div>
+
+    <p>심방세동에서는 심방이 1분에 300~600번 잘게 떨기만 할 뿐 제대로 수축하지 못한다. 심실을 마지막에 채워 주던 <b>심방 수축</b>이 사라지는 것이다. 엔진의 심장 모델로 비교하면, 다온의 심장에서 심방 수축을 빼면 같은 심박수 72에서 심박출량이 <span id="ar-kick72">약 9 %</span> 줄고, 심박수 110에서는 <span id="ar-kick110">더 많이</span> 준다. 채울 시간이 짧을수록 심방이 밀어 넣는 마지막 몫이 중요해지기 때문이다. 떨기만 하는 심방 안에서 피가 고여 굳으면 뇌졸중의 원인이 되기도 한다.</p>
+    <p class="health-note">이 장의 수치와 시뮬레이터는 원리를 보여 주기 위한 교육용 모델입니다. 두근거림, 어지러움, 실신, 가슴 통증, 숨가쁨이 있거나 검진 심전도 결과가 걱정되면 의료진과 상담하세요. 스마트워치의 심전도·불규칙 리듬 알림은 참고일 뿐 진단이 아닙니다.</p>
+    <div class="callout warn">
+      <strong>심박을 스스로 조절하려는 실험은 하지 말 것</strong>
+      목의 경동맥을 문지르거나 세게 누르기, 숨을 참고 오래 힘주기 같은 방법은 미주 신경을 강하게 자극해 심박을 갑자기 떨어뜨리거나 실신을 일으킬 수 있다. 의료진이 감시 장비 아래에서만 하는 처치다. 고용량 카페인이나 각성제를 한꺼번에 먹는 것도 부정맥을 부를 수 있다. 쓰러진 사람이 숨을 쉬지 않으면 심실세동일 수 있으니 바로 119에 알리고 가슴 압박을 시작하며 자동 심장 충격기(AED)를 찾는다.
+    </div>
+  </section>
+
+  <section id="daon">
+    <h2>다온의 심전도와 12주</h2>
+    <p>다온의 검진 심전도는 정상 동리듬 72 bpm, PR 0.16 s, QRS 0.09 s였다. P파가 모든 QRS 앞에 하나씩 있고, 간격은 모두 정상 범위다. 다온은 12주 동안 주 3~4회 달리기를 한다. 유산소 훈련이 쌓이면 심장에 무슨 일이 생길까. 가장 먼저 드러나는 변화는 전기의 박자다. 훈련은 쉴 때의 미주 신경 긴장을 높여 동방결절의 오르막을 눕힌다.</p>
+
+    <div class="sim" id="sim-daon-ecg" data-big data-desc="다온의 12주 달리기 훈련: 주가 지날수록 미주 신경 긴장이 올라 안정 심박수가 72에서 약 64로 내려가고 심박 변이(SDNN·RMSSD)가 커지는 것을 모니터와 주별 그래프로 본다. 훈련을 멈추면 되돌아간다">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>다온의 안정 심전도, 0주에서 12주까지</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="dn-cv"></canvas><span class="hint">아래 그래프를 끌어 주를 고른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>훈련 주 <output id="dn-w-out"></output></span><input type="range" id="dn-w" min="0" max="16" step="1" value="0"></label>
+          <div class="seg" id="dn-mode"><button data-value="keep" class="on">훈련 계속</button><button data-value="stop">12주 뒤 중단</button></div>
+          <div class="btn-row"><button class="btn primary" id="dn-play">12주 재생</button></div>
+        </div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">안정 심박수</span><span class="v" id="dn-o-hr">—</span></div>
+        <div class="stat"><span class="k">하루 박동 수</span><span class="v" id="dn-o-day">—</span></div>
+        <div class="stat"><span class="k">SDNN</span><span class="v" id="dn-o-sdnn">—</span></div>
+        <div class="stat"><span class="k">RMSSD</span><span class="v" id="dn-o-rmssd">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "12주 재생"을 누른다. 모니터의 박동 간격이 조금씩 벌어지고 흔들림이 커지며, 아래 그래프에서 심박수는 내려가고 RMSSD는 올라간다. 변화는 처음 몇 주에 빠르고 뒤로 갈수록 느려진다. ② 하루 박동 수를 비교한다. 72 bpm이면 약 10만 4천 번, 64 bpm이면 약 9만 2천 번이다. ③ "12주 뒤 중단"을 고르고 16주로 민다. 훈련을 멈추면 몇 주 만에 상당 부분이 되돌아간다. (훈련 효과를 미주 신경 긴장 ACh 0.41 → 0.515로 어림한 교육용 모델: BD.saNode, BD.ecg, BD.hrvStats. 실제 변화량은 사람마다 크게 다르다.)</div>
+    </div>
+
+    <div class="casefile">
+      <div class="tag"><b>CASE 다온</b><span>다온의 기록 · 5장</span></div>
+      <h4>정상 동리듬 72 bpm, PR 0.16 s, QRS 0.09 s. 12주 뒤 안정 심박 약 64</h4>
+      <p>검진 심전도는 정상 동리듬이다. 모든 QRS 앞에 P파가 있고 PR 0.16 s(정상 0.12~0.20), QRS 0.09 s(0.12 미만), QT 약 0.38 s에 QTc 약 0.41 s로 모두 정상 범위다. 엔진의 동방결절 모델에서 신경이 끊긴 내재 박동은 약 103 bpm이므로, 다온의 72 bpm은 미주 신경이 브레이크를 꽤 밟고 있는 상태(ACh 약 0.41)다. 12주 유산소 훈련으로 미주 신경 긴장이 약 0.515로 오르면 안정 심박수는 약 64 bpm이 되고, 같은 모델에서 SDNN은 약 32 → 41 ms, RMSSD는 약 38 → 49 ms로 커진다. 하루 박동 수로는 약 1만 2천 번이 줄어든다.</p>
+      <div class="clue"><div><b>이 장에서 확인한 것</b>다온의 심전도는 전기적으로 정상이다. 훈련의 첫 신호는 느려진 안정 심박과 커진 심박 변이다.</div><div><b>아직 모르는 것</b>심박수가 느려져도 혈액은 충분히 가는가. 혈관 쪽, 곧 다온의 혈압 128/82는 무엇을 뜻하는가.</div><div><b>다음 단계</b><a href="vessels.html">6장</a>에서 혈관의 저항과 탄성, 혈압 측정과 압반사를 본다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>동방결절 세포는 4기에 막전위가 저절로 올라가 역치에 닿으며 스스로 박동한다(내재 박동 약 100 bpm). 안정 시 60~80 bpm은 미주 신경이 늘 브레이크를 밟은 결과다.</li>
+      <li>자율신경은 4기 기울기, 최대 이완기 전위, 역치를 바꿔 박자를 조절한다. 교감은 빠르게, 부교감은 느리게.</li>
+      <li>흥분은 동방결절 → 심방 → 방실결절(약 0.1 s 지연) → 히스 다발 → 푸르키네 섬유 순서로 퍼진다. 지연 덕분에 심방이 먼저 채운 뒤 심실이 수축한다.</li>
+      <li>P파는 심방 탈분극, QRS는 심실 탈분극, T파는 심실 재분극. 정상 PR 0.12~0.20 s, QRS 0.12 s 미만. QT는 심박수에 따라 변하므로 QTc = QT/√RR로 본다.</li>
+      <li>심박수 = 300 ÷ R–R 사이 큰 칸 수 = 1500 ÷ 작은 칸 수. 불규칙하면 6초 동안 R파 수 × 10. 유도는 심장 벡터를 서로 다른 방향에서 본 그림자다.</li>
+      <li>심박 변이는 미주 신경 활동의 지표다. 부정맥은 박자만이 아니라 펌프 기능을 바꾼다(심방세동은 심방 수축을, 심실세동은 펌프 자체를 잃는다).</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q">
+        <p>심장 이식을 받아 신경이 이어지지 않은 심장이 쉴 때 약 100 bpm으로 뛰는 가장 알맞은 이유는?</p>
+        <div class="opts">
+          <button class="opt">교감 신경이 계속 자극하기 때문에</button>
+          <button class="opt" data-correct>평소 박동을 눌러 두던 미주 신경의 브레이크가 없어 동방결절의 내재 박동이 드러나기 때문에</button>
+          <button class="opt">방실결절이 박자를 대신 만들기 때문에</button>
+          <button class="opt">심장 근육이 커져 더 빨리 수축하기 때문에</button>
+        </div>
+        <div class="quiz-exp">동방결절은 신경 없이도 약 100 bpm으로 박동한다. 건강한 사람의 안정 심박 60~80은 미주 신경이 4기 기울기를 눕히고 이완기 전위를 낮춰 박동을 늦춘 결과다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>규칙적인 심전도에서 R파와 다음 R파 사이가 큰 칸 4개다. 심박수는?</p>
+        <div class="opts">
+          <button class="opt">60 bpm</button>
+          <button class="opt">100 bpm</button>
+          <button class="opt" data-correct>75 bpm</button>
+          <button class="opt">120 bpm</button>
+        </div>
+        <div class="quiz-exp">큰 칸 하나가 0.2초이므로 R–R = 0.8초. 60 ÷ 0.8 = 75 bpm. 300 ÷ 4 = 75로 바로 구해도 된다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>심박수 100 bpm에서 QT가 0.36초였다. Bazett 식으로 구한 QTc에 가장 가까운 것은?</p>
+        <div class="opts">
+          <button class="opt" data-correct>0.46 s</button>
+          <button class="opt">0.36 s</button>
+          <button class="opt">0.28 s</button>
+          <button class="opt">0.60 s</button>
+        </div>
+        <div class="quiz-exp">RR = 60 ÷ 100 = 0.6 s, √0.6 ≈ 0.775. QTc = 0.36 ÷ 0.775 ≈ 0.46 s. 빠른 심박수에서 측정한 QT가 짧아 보여도 보정하면 정상 상한 근처일 수 있다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>PR 간격의 대부분을 차지하는 것은?</p>
+        <div class="opts">
+          <button class="opt">심실 근육의 재분극</button>
+          <button class="opt">푸르키네 섬유의 빠른 전도</button>
+          <button class="opt">동방결절의 4기 탈분극</button>
+          <button class="opt" data-correct>방실결절의 전도 지연</button>
+        </div>
+        <div class="quiz-exp">PR 간격(약 0.16 s)은 심방 흥분 시작부터 심실 흥분 시작까지다. 심방을 지나는 데 약 0.04 s, 히스·푸르키네는 수십 ms이고 나머지 약 0.1 s가 방실결절 지연이다. PR이 0.2 s를 넘으면 1도 방실 차단이다.</div>
+      </div>
+      <div class="quiz-q">
+        <p>심방세동에서 심박출량이 줄어드는 이유로 가장 거리가 먼 것은?</p>
+        <div class="opts">
+          <button class="opt">심방 수축이 사라져 심실의 마지막 채움이 빠진다</button>
+          <button class="opt">R–R 간격이 짧은 박동은 채울 시간이 모자라 박출량이 작다</button>
+          <button class="opt" data-correct>심실 근육의 활동 전위가 사라져 심실이 수축하지 못한다</button>
+          <button class="opt">심실 박자가 빠르면 이완기가 짧아진다</button>
+        </div>
+        <div class="quiz-exp">심방세동에서도 심실은 방실결절을 지나온 흥분으로 정상적으로 탈분극하고 수축한다(QRS가 좁다). 심실이 전기적으로 요동치기만 하고 수축하지 못하는 것은 심실세동이다.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var P = function () { return BB.palette(); };
+  function viewW(id) { return document.getElementById(id).parentElement.clientWidth; }
+  function fmt0(x) { return Math.round(x).toString(); }
+  function txt(ctx, s, x, y, o) {
+    o = o || {};
+    ctx.font = BB.font(o.size || 11, o.mono, o.weight); ctx.fillStyle = o.color || P().dim;
+    ctx.textAlign = o.align || "left"; ctx.textBaseline = o.base || "middle"; ctx.fillText(s, x, y);
+  }
+  function handle(ctx, x, y, col, r) {
+    var p = P(); ctx.fillStyle = p.bg; ctx.strokeStyle = col || p.text; ctx.lineWidth = 2.2;
+    ctx.beginPath(); ctx.arc(x, y, r || 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }
+  /** 심전도 종이 격자: 작은 칸 0.04 s × 0.1 mV, 큰 칸 0.2 s × 0.5 mV */
+  function paper(ctx, box, t0, t1, v0, v1) {
+    var p = P();
+    var X = function (t) { return box.x + ((t - t0) / (t1 - t0)) * box.w; };
+    var Y = function (v) { return box.y + box.h - ((v - v0) / (v1 - v0)) * box.h; };
+    var small = BB.alpha(p.bad, BB.isDark() ? 0.14 : 0.12), big = BB.alpha(p.bad, BB.isDark() ? 0.36 : 0.32);
+    var pxs = box.w / (t1 - t0) * 0.04, pxv = box.h / (v1 - v0) * 0.1;
+    ctx.save(); ctx.lineWidth = 1;
+    for (var k = Math.ceil(t0 / 0.04 - 1e-6); k * 0.04 <= t1 + 1e-6; k++) {
+      var big1 = k % 5 === 0; if (!big1 && pxs < 3) continue;
+      ctx.strokeStyle = big1 ? big : small; var x = Math.round(X(k * 0.04)) + 0.5;
+      ctx.beginPath(); ctx.moveTo(x, box.y); ctx.lineTo(x, box.y + box.h); ctx.stroke();
+    }
+    for (var j = Math.ceil(v0 / 0.1 - 1e-6); j * 0.1 <= v1 + 1e-6; j++) {
+      var big2 = j % 5 === 0; if (!big2 && pxv < 3) continue;
+      ctx.strokeStyle = big2 ? big : small; var y = Math.round(Y(j * 0.1)) + 0.5;
+      ctx.beginPath(); ctx.moveTo(box.x, y); ctx.lineTo(box.x + box.w, y); ctx.stroke();
+    }
+    ctx.strokeStyle = big; ctx.strokeRect(box.x + 0.5, box.y + 0.5, box.w, box.h);
+    ctx.restore();
+    return { X: X, Y: Y, T: function (x) { return t0 + ((x - box.x) / box.w) * (t1 - t0); } };
+  }
+  function trace(ctx, f, X, Y, t0, t1, col, wd, n) {
+    ctx.strokeStyle = col; ctx.lineWidth = wd || 1.6; ctx.lineJoin = "round"; ctx.beginPath();
+    n = n || 600; var started = false;
+    for (var i = 0; i <= n; i++) { var t = t0 + ((t1 - t0) * i) / n, v = f(t); if (!isFinite(v)) { started = false; continue; } var x = X(t), y = Y(v); started ? ctx.lineTo(x, y) : ctx.moveTo(x, y); started = true; }
+    ctx.stroke();
+  }
+  /** 심박 변이 모델: 미주 신경 긴장(ACh)과 호흡 속도 → BD.ecg 매개변수 */
+  function hrvParams(ach, rate) {
+    rate = rate || 12;
+    var gain = 1 + 0.5 * Math.max(0, (12 - rate) / 6);
+    return { hr: BD.saNode({ ach: ach }).hr, hrv: 0.012 + 0.045 * ach, resp: (0.2 + 0.9 * ach) * gain, respRate: rate };
+  }
+  /** 한 박동 틀(심박 60에서 만든 합성 심전도) → 심박수가 변하는 모니터용. 재분극 구간은 √RR로 줄인다 */
+  var TPL = BD.ecg({ hr: 60, hrv: 0, resp: 0, noise: 0, duration: 5 });
+  var TPL_R = TPL.beats[2].r;
+  function beatShape(d, rr) {
+    var k = Math.sqrt(BB.clamp(rr, 0.3, 1.6));
+    if (d > 0.05) d = 0.05 + (d - 0.05) / k;
+    if (d < -0.3 || d > 0.55) return 0;
+    return TPL.v(TPL_R + d);
+  }
+
+  /* ---------------------------------------------------------- 1. 동방결절 */
+  (function () {
+    var thrOff = 0, mdpOff = 0, sa, sa0 = BD.saNode({}), buf = [], tSim = 0, tc = 0, beats = [], drag = null, lay = null, cv = null;
+    function calc() {
+      sa = BD.saNode({ ach: getA(), ne: getN(), thr: -40 + thrOff, mdp: -60 + mdpOff });
+      BB.stat("sa-o-hr", fmt0(sa.hr) + "<small>bpm</small>");
+      BB.stat("sa-o-sl", fmt0(sa.slope) + "<small>mV/s</small>");
+      BB.stat("sa-o-t4", fmt0(sa.t4 * 1000) + "<small>ms</small>");
+      BB.stat("sa-o-th", fmt0(sa.mdp) + " → " + fmt0(sa.thr) + "<small>mV</small>");
+    }
+    var getA = BB.range("sa-ach", function (v) { return v.toFixed(2); }, calc);
+    var getN = BB.range("sa-ne", function (v) { return v.toFixed(2); }, calc);
+    document.getElementById("sa-ghost").addEventListener("change", function () { if (cv) cv.redraw(); });
+    document.getElementById("sa-re").addEventListener("click", function () { thrOff = 0; mdpOff = 0; getN.set(0); getA.set(0.41); });
+    calc();
+    var WIN = 4;
+    function step(dt) {
+      var n = Math.max(1, Math.round(dt / 0.004)), h = dt / n;
+      for (var i = 0; i < n; i++) {
+        tSim += h; tc += h;
+        if (tc >= sa.period) { tc -= sa.period; }
+        if (tc >= sa.t4 && tc - h < sa.t4) beats.push(tSim);
+        if (tc > sa.t4 + 0.05 && tc > sa.period) tc = 0;
+        buf.push([tSim, sa.v(tc), tc < sa.t4 ? 4 : tc < sa.t4 + 0.04 ? 0 : 3]);
+      }
+      while (buf.length && buf[0][0] < tSim - WIN - 0.1) buf.shift();
+      while (beats.length && beats[0] < tSim - WIN - 0.1) beats.shift();
+    }
+    cv = BB.canvas("#sa-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 520;
+      var box = { x: narrow ? 44 : 52, y: 30, w: w - (narrow ? 44 : 52) - (narrow ? 12 : 92), h: h - 72 };
+      var t1 = Math.max(WIN, tSim), t0 = t1 - WIN;
+      var c = BB.chart(ctx, box, { x: [t0, t1], y: [-80, 30], xTicks: [], yTicks: [-80, -60, -40, -20, 0, 20], yLabel: narrow ? "" : "막전위(mV)" });
+      lay = { c: c, box: box };
+      // 4기 구간 칠하기
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      for (var i = 1; i < buf.length; i++) if (buf[i][2] === 4) { ctx.fillStyle = BB.alpha(p.accent, 0.08); ctx.fillRect(c.X(buf[i - 1][0]), box.y, c.X(buf[i][0]) - c.X(buf[i - 1][0]) + 0.5, box.h); }
+      if (document.getElementById("sa-ghost").checked) {
+        trace(ctx, function (t) { return sa0.v(t); }, c.X, c.Y, t0, t1, BB.alpha(p.dim, 0.55), 1.4, 500);
+      }
+      ctx.restore();
+      // 역치, 이완기 전위 선
+      [[sa.thr, p.bad, "역치 " + fmt0(sa.thr) + " mV", "thr"], [sa.mdp, p.accent, "최대 이완기 전위 " + fmt0(sa.mdp), "mdp"]].forEach(function (L) {
+        var y = c.Y(L[0]);
+        ctx.strokeStyle = L[1]; ctx.setLineDash([6, 4]); ctx.lineWidth = drag === L[3] ? 2.2 : 1.4; ctx.beginPath(); ctx.moveTo(box.x, y); ctx.lineTo(box.x + box.w, y); ctx.stroke(); ctx.setLineDash([]);
+        handle(ctx, box.x + box.w, y, L[1], 7);
+        txt(ctx, L[2], box.x + 6, y + (L[3] === "thr" ? -9 : 10), { color: L[1], size: 11, weight: 600 });
+      });
+      // 막전위
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y - 2, box.w, box.h + 4); ctx.clip();
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 2.4; ctx.lineJoin = "round"; ctx.beginPath();
+      buf.forEach(function (q, k) { var x = c.X(q[0]), y = c.Y(q[1]); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke();
+      ctx.restore();
+      // 박동 표시와 구간 이름(마지막 완전한 주기)
+      beats.forEach(function (b) { var x = c.X(b); if (x < box.x) return; ctx.fillStyle = BB.color("art"); ctx.beginPath(); ctx.arc(x, box.y - 10, 4, 0, Math.PI * 2); ctx.fill(); });
+      txt(ctx, "● 박동(0기 시작)", box.x, box.y - 22, { color: BB.color("art"), size: 10.5 });
+      var lb = beats.length >= 2 ? beats[beats.length - 1] : null;
+      if (lb && !narrow) {
+        var x4 = c.X(lb - sa.t4 / 2);
+        if (x4 > box.x + 30) txt(ctx, "4기: 느린 오르막(If, Ca²⁺)", x4, c.Y(sa.mdp + (sa.thr - sa.mdp) * 0.5) - 16, { align: "center", color: p.accent, size: 11, weight: 600 });
+        txt(ctx, "0기(Ca²⁺)", c.X(lb) + 4, c.Y(8), { color: p.accent2, size: 10.5 });
+        var x3 = c.X(lb + 0.04 + 0.08); if (x3 < box.x + box.w - 30) txt(ctx, "3기(K⁺)", x3 + 6, c.Y(-10), { color: p.dim, size: 10.5 });
+      }
+      // 시간 눈금(1초 막대)
+      ctx.strokeStyle = p.dim; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(box.x, box.y + box.h + 12); ctx.lineTo(box.x + box.w / WIN, box.y + box.h + 12); ctx.stroke();
+      txt(ctx, "1초", box.x + box.w / WIN / 2, box.y + box.h + 24, { align: "center", size: 11 });
+      // 큰 숫자
+      var col = sa.hr < 40 || sa.hr > 170 ? p.bad : p.text;
+      if (narrow) { txt(ctx, fmt0(sa.hr) + " bpm", w - 12, 14, { align: "right", size: 18, mono: true, weight: 700, color: col }); }
+      else {
+        txt(ctx, "심박수", w - 46, box.y + 10, { align: "center", size: 11 });
+        txt(ctx, fmt0(sa.hr), w - 46, box.y + 40, { align: "center", size: 30, mono: true, weight: 700, color: col });
+        txt(ctx, "bpm", w - 46, box.y + 64, { align: "center", size: 11 });
+      }
+      if (sa.hr < 40) txt(ctx, "심한 서맥: 뇌로 가는 피가 모자랄 수 있다", box.x + box.w / 2, box.y + box.h - 12, { align: "center", color: p.bad, size: 12, weight: 700 });
+      if (sa.hr > 170) txt(ctx, "안정 시라면 지나치게 빠르다(운동 최대치 수준)", box.x + box.w / 2, box.y + box.h - 12, { align: "center", color: p.bad, size: 12, weight: 700 });
+    }, { aspect: 0.5, minHeight: 300, maxHeight: 360 });
+    BB.drag(cv.canvas, {
+      start: function (x, y) {
+        if (!lay) return; var c = lay.c;
+        var dT = Math.abs(y - c.Y(sa.thr)), dM = Math.abs(y - c.Y(sa.mdp));
+        drag = Math.min(dT, dM) < 18 ? (dT < dM ? "thr" : "mdp") : null;
+      },
+      move: function (x, y) {
+        if (!drag || !lay) return;
+        var v = -80 + ((lay.box.y + lay.box.h - y) / lay.box.h) * 110;
+        if (drag === "thr") thrOff = BB.clamp(v + 3 * getN(), -52, -28) + 40;
+        else mdpOff = BB.clamp(v + 10 * getA(), -72, -50) + 60;
+        calc();
+      },
+      end: function () { drag = null; },
+    });
+    BB.loop(document.getElementById("sim-sa"), function (dt) { step(dt); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 2. 전도 경로 */
+  (function () {
+    var e, mode = "normal", t = 0, events = [], cv = null, WIN = 3;
+    var ATR = 0.04, HIS = 0.03, VEN = 0.06;
+    function build() {
+      var av = getAv(), pr = ATR + av + HIS;
+      if (mode === "normal") e = BD.ecg({ hr: 72, pr: pr, hrv: 0, resp: 0, noise: 0, duration: 64 });
+      else if (mode === "avb2") e = BD.ecg({ hr: 80, rhythm: "avb2", pr: Math.max(0.14, pr), hrv: 0, resp: 0, noise: 0, duration: 64, avbRatio: 4 });
+      else e = BD.ecg({ rhythm: "avb3", atrialRate: 80, ventRate: 38, hrv: 0, resp: 0, noise: 0, duration: 64 });
+      // P파마다 흥분 사건: sa(시작), 전도되면 qrs 시작 시각
+      events = e.ps.map(function (pc) {
+        var sa = pc - 0.05, q = null;
+        if (mode !== "avb3") e.beats.forEach(function (b) { var qo = b.r - 0.045; if (qo > sa + 0.08 && qo < sa + 0.6 && q == null) q = qo; });
+        return { sa: sa, q: q };
+      });
+      var conducted = events.filter(function (ev) { return ev.q != null; });
+      var prs = conducted.slice(0, 6).map(function (ev) { return ev.q - ev.sa; });
+      BB.stat("cd-o-pr", mode === "avb3" ? "관계 없음" : mode === "avb2" ? "점점 길어짐" : fmt0(prs[0] * 1000) + "<small>ms</small>");
+      BB.stat("cd-o-ratio", mode === "normal" ? "1 : 1" : mode === "avb2" ? "4 : 3" : "80 : 38");
+    }
+    var getAv = BB.range("cd-av", function (v) { return fmt0(v * 1000) + " ms"; }, BB.debounce(function () { build(); }, 60));
+    var getSp = BB.range("cd-sp", function (v) { return v.toFixed(2) + "×"; });
+    BB.seg("cd-mode", function (v) { mode = v; build(); });
+    build();
+    function state(tt) {
+      // 가장 최근 P파 사건
+      var ev = null; for (var i = 0; i < events.length; i++) { if (events[i].sa <= tt) ev = events[i]; else break; }
+      var vb = null; e.beats.forEach(function (b) { if (b.r - 0.045 <= tt) vb = b; });
+      var o = { wave: 0, atria: false, vent: false, text: "동방결절 충전 중(4기)", esc: false };
+      if (ev) {
+        var d = tt - ev.sa;
+        var av = ev.q != null ? ev.q - ev.sa - ATR - HIS : 0.6;
+        if (d < 0.11) o.atria = true;
+        if (d < ATR) { o.wave = 0.25 * d / ATR; o.text = "심방으로 퍼짐(P파)"; }
+        else if (d < ATR + av) { o.wave = 0.25 + 0.25 * Math.min(1, (d - ATR) / av); o.text = ev.q != null ? "방실결절 지연(PR 분절)" : "방실결절에서 막힘"; if (ev.q == null && d > 0.35) { o.wave = 0; o.text = "전도 안 됨"; } }
+        else if (ev.q != null && d < ATR + av + HIS) { o.wave = 0.5 + 0.25 * (d - ATR - av) / HIS; o.text = "히스 다발"; }
+        else if (ev.q != null && d < ATR + av + HIS + VEN) { o.wave = 0.75 + 0.25 * (d - ATR - av - HIS) / VEN; o.text = "푸르키네 → 심실(QRS)"; }
+        else { o.wave = 0; }
+        if (mode === "avb3") { o.wave = d < ATR ? 0.25 * d / ATR : d < 0.3 ? 0.25 : 0; }
+      }
+      if (vb) {
+        var dv = tt - (vb.r - 0.045), rr = 60 / (mode === "avb3" ? 38 : 72), qt = 0.4 * Math.sqrt(rr) + 0.015;
+        if (dv < qt) { o.vent = true; if (dv > 0.1) o.text = dv < qt - 0.15 ? "심실 모두 흥분(ST 분절)" : "심실 회복(T파)"; if (vb.wide && dv < 0.14) { o.esc = true; o.text = "심실 예비 조율기 박동(넓은 QRS)"; } }
+      }
+      return o;
+    }
+    cv = BB.canvas("#cd-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var s = narrow ? Math.min(w * 0.24, 92) : Math.min(h * 0.27, w * 0.13);
+      var hx = narrow ? w * 0.56 : 1.25 * s + 74, hy = narrow ? 30 + 1.55 * s : h * 0.5 + 0.1 * s;
+      var st = state(t);
+      BD.heartDiagram(ctx, hx, hy, s, { lv: 0.6, rv: 0.6, la: 0.7, ra: 0.7, active: st.vent ? "ventricles" : st.atria ? "atria" : null, wave: st.wave, labels: true });
+      var nerve = BB.color("tr-4");
+      // 흥분한 부분을 빛으로
+      ctx.save(); ctx.globalCompositeOperation = "source-over";
+      if (st.atria) { ctx.fillStyle = BB.alpha(nerve, 0.28); [-0.53, 0.53].forEach(function (k) { ctx.beginPath(); ctx.ellipse(hx + k * s, hy - 0.62 * s, 0.44 * s, 0.34 * s, 0, 0, Math.PI * 2); ctx.fill(); }); }
+      if (st.vent) { ctx.fillStyle = BB.alpha(nerve, st.esc ? 0.34 : 0.22); ctx.beginPath(); ctx.ellipse(hx, hy + 0.42 * s, 0.98 * s, 0.78 * s, 0, 0, Math.PI * 2); ctx.fill(); }
+      ctx.restore();
+      // 전도 지점 이름
+      var lab = [["동방결절", -0.38, -0.86], ["방실결절", -0.08, -0.3], ["히스 다발", -0.02, -0.05], ["푸르키네", 0.0, 0.85]];
+      lab.forEach(function (L, i) {
+        var px = hx + L[1] * s, py = hy + L[2] * s, lx = hx - 1.25 * s;
+        ctx.strokeStyle = BB.alpha(p.dim, 0.6); ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(px - 4, py); ctx.lineTo(lx + 4, py); ctx.stroke();
+        txt(ctx, L[0], lx, py, { align: "right", size: 11, weight: 600, color: p.text });
+      });
+      // 심전도(스윕)
+      var eb = narrow ? { x: 16, y: hy + 1.45 * s + 26, w: w - 32, h: h - (hy + 1.45 * s + 26) - 30 } : { x: w * 0.47, y: 34, w: w * 0.53 - 16, h: h - 70 };
+      var k0 = Math.floor(t / WIN) * WIN, sw = t - k0;
+      var pp = paper(ctx, eb, 0, WIN, -0.5, 1.5);
+      var off = 2;   // 화면 시간 0 = 기록 시간 k0 + off
+      var f = function (x) { return x <= sw ? e.v(k0 + x + off) : NaN; };
+      var g = function (x) { return x > sw + 0.12 ? e.v(k0 - WIN + x + off) : NaN; };
+      trace(ctx, g, pp.X, pp.Y, 0, WIN, BB.alpha(p.text, 0.25), 1.4, 500);
+      trace(ctx, f, pp.X, pp.Y, 0, WIN, p.text, 1.8, 500);
+      var cx = pp.X(sw); ctx.fillStyle = nerve; ctx.beginPath(); ctx.arc(cx, pp.Y(e.v(k0 + sw + off)), 4, 0, Math.PI * 2); ctx.fill();
+      // 파 이름(이번 화면의 P, QRS)
+      ctx.save(); ctx.beginPath(); ctx.rect(eb.x, eb.y - 20, eb.w, eb.h + 20); ctx.clip();
+      e.ps.forEach(function (pc) { var x = pc - k0 - off; if (x > 0 && x < sw) txt(ctx, "P", pp.X(x), eb.y - 9, { align: "center", color: p.accent, size: 11, weight: 700 }); });
+      e.beats.forEach(function (b) { var x = b.r - k0 - off; if (x > 0.08 && x < sw) txt(ctx, b.wide ? "QRS(넓음)" : "QRS", pp.X(x), eb.y - 9, { align: "center", color: p.accent2, size: 11, weight: 700 }); });
+      ctx.restore();
+      txt(ctx, "심전도(유도 II 비슷한 모양) · 화면 3초", eb.x, eb.y + eb.h + 14, { size: 11 });
+      txt(ctx, st.text, narrow ? 12 : 12, 16, { size: 13, weight: 700, color: nerve === "" ? p.text : p.text });
+      BB.stat("cd-o-st", st.text);
+      if (mode === "normal" && getAv() + ATR + HIS > 0.2) txt(ctx, "PR > 200 ms: 1도 방실 차단", eb.x + eb.w - 6, eb.y + 12, { align: "right", color: p.bad, size: 12, weight: 700 });
+      if (mode === "avb3") txt(ctx, "심방 80 · 심실 38 bpm: 따로 뛴다", eb.x + eb.w - 6, eb.y + 12, { align: "right", color: p.bad, size: 12, weight: 700 });
+    }, { get height() { return viewW("cd-cv") < 560 ? 470 : 330; } });
+    BB.loop(document.getElementById("sim-conduct"), function (dt) { t += dt * getSp(); if (t > 58) t = 0; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 3. 캘리퍼 */
+  (function () {
+    var e, r, rr, cal = [0, 0], sel = null, lay = null, drag = -1, cv = null;
+    var REF = { pr: "120~200 ms", qrs: "120 ms 미만", qt: "약 350~440 ms", rr: "600~1000 ms(60~100 bpm)" };
+    function marks() {
+      var qt = 0.4 * Math.sqrt(rr);
+      return { pOn: r - 0.205, pOff: r - 0.105, qOn: r - 0.045, sOff: r + 0.045, tOn: r + qt - 0.11 - 0.11, tOff: r + qt - 0.03, rNext: r + rr };
+    }
+    function snap(k) {
+      var m = marks();
+      cal = k === "pr" ? [m.pOn, m.qOn] : k === "qrs" ? [m.qOn, m.sOff] : k === "qt" ? [m.qOn, m.tOff] : [r, m.rNext];
+      BB.stat("cp-o-ref", REF[k]);
+      out();
+    }
+    function out() {
+      var d = Math.abs(cal[1] - cal[0]);
+      BB.stat("cp-o-ms", fmt0(d * 1000) + "<small>ms</small>");
+      BB.stat("cp-o-box", (d / 0.04).toFixed(1) + " / " + (d / 0.2).toFixed(2));
+      if (cv) cv.redraw();
+    }
+    var INFO = {
+      p: "<h4>P파: 심방의 탈분극</h4><p>동방결절에서 시작한 흥분이 두 심방으로 퍼지는 동안의 작은 둥근 파. 폭 약 0.1초, 높이 0.25 mV 미만. 모든 QRS 앞에 P파가 하나씩 있어야 '동리듬'이다.</p>",
+      pr: "<h4>PR 분절: 방실결절 지연</h4><p>심방 흥분은 끝났고 심실은 아직이다. 흥분이 방실결절과 히스 다발을 천천히 지나는 동안 몸 표면에서는 전압 차가 거의 없어 평평하다. 이 사이에 심방 수축이 심실을 마저 채운다.</p>",
+      qrs: "<h4>QRS파: 심실의 탈분극</h4><p>푸르키네 섬유를 따라 심실 근육 전체가 0.1초 안에 흥분한다. 근육이 많아 가장 크고 뾰족하다. 심방의 재분극도 이 안에 묻혀 보이지 않는다. 폭이 넓으면 전도가 느린 길(다발 가지 차단, 심실에서 시작한 박동)을 의심한다.</p>",
+      st: "<h4>ST 분절: 심실 전체가 고원기</h4><p>모든 심실 세포가 흥분한 상태(활동 전위 2기)라 세포 사이 전압 차가 없어 평평하다. 심근에 피가 모자라면 이 분절이 올라가거나 내려간다. 그래서 가슴 통증이 있을 때 가장 먼저 보는 곳이다.</p>",
+      t: "<h4>T파: 심실의 재분극</h4><p>심실 세포들이 회복하는 파. 재분극은 바깥층(심외막)에서 먼저 끝나 탈분극과 순서가 반대이므로, 회복의 파인데도 QRS와 같은 위쪽 방향이다. 칼륨 농도에 민감하다.</p>",
+      tp: "<h4>TP 구간: 쉬는 시간(기준선)</h4><p>다음 P파까지 심장이 전기적으로 쉬는 동안. 이 구간이 기준선(0 mV)이다. 심박수가 빨라지면 가장 먼저 짧아진다.</p>",
+    };
+    function region(t) {
+      var m = marks();
+      if (t >= m.pOn && t < m.pOff) return "p"; if (t >= m.pOff && t < m.qOn) return "pr"; if (t >= m.qOn && t < m.sOff) return "qrs";
+      if (t >= m.sOff && t < m.tOn) return "st"; if (t >= m.tOn && t < m.tOff) return "t"; return "tp";
+    }
+    function build() {
+      var hr = getHr(); rr = 60 / hr;
+      e = BD.ecg({ hr: hr, hrv: 0, resp: 0, noise: 0, duration: 6 }); r = e.beats[2].r;
+      snap(getSnap());
+    }
+    var getHr = BB.range("cp-hr", function (v) { return v + " bpm"; }, function () { build(); });
+    var getSnap = BB.seg("cp-snap", function (v) { snap(v); });
+    build();
+    cv = BB.canvas("#cp-cv", function (ctx, w, h) {
+      var p = P(), m = marks();
+      var dur = BB.clamp(w / 360, 1.25, 2.2);
+      var t0 = r - 0.42, t1 = t0 + Math.max(dur, rr + 0.62);
+      var box = { x: 14, y: 30, w: w - 28, h: h - 76 };
+      var pp = paper(ctx, box, t0, t1, -0.5, 1.5);
+      lay = { pp: pp, box: box, t0: t0, t1: t1 };
+      // 선택 구간 칠하기
+      if (sel) {
+        var R2 = { p: [m.pOn, m.pOff], pr: [m.pOff, m.qOn], qrs: [m.qOn, m.sOff], st: [m.sOff, m.tOn], t: [m.tOn, m.tOff], tp: [m.tOff, m.rNext - 0.205] }[sel];
+        ctx.fillStyle = BB.alpha(p.accent, 0.16); ctx.fillRect(pp.X(R2[0]), box.y, pp.X(R2[1]) - pp.X(R2[0]), box.h);
+      }
+      trace(ctx, function (t) { return e.v(t); }, pp.X, pp.Y, t0, t1, p.text, 2, 900);
+      // 파 이름
+      [["P", (m.pOn + m.pOff) / 2, 0.32], ["Q", m.qOn + 0.018, -0.25], ["R", r, 1.3], ["S", r + 0.026, -0.36], ["T", r + 0.4 * Math.sqrt(rr) - 0.11, 0.5]].forEach(function (L) {
+        txt(ctx, L[0], pp.X(L[1]), pp.Y(L[2]), { align: "center", size: 12, weight: 700, color: p.accent2 });
+      });
+      // 캘리퍼
+      var col = p.accent;
+      cal.forEach(function (c, i) {
+        var x = pp.X(c); ctx.strokeStyle = col; ctx.lineWidth = drag === i ? 2.4 : 1.6;
+        ctx.beginPath(); ctx.moveTo(x, box.y); ctx.lineTo(x, box.y + box.h + 10); ctx.stroke();
+        handle(ctx, x, box.y + box.h + 18, col, 8);
+      });
+      var xa = pp.X(Math.min(cal[0], cal[1])), xb = pp.X(Math.max(cal[0], cal[1])), ym = box.y + 12;
+      ctx.strokeStyle = col; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(xa, ym); ctx.lineTo(xb, ym); ctx.stroke();
+      var d = Math.abs(cal[1] - cal[0]);
+      var lbl = fmt0(d * 1000) + " ms · 작은 칸 " + (d / 0.04).toFixed(1);
+      ctx.font = BB.font(12, false, 700); var tw = ctx.measureText(lbl).width + 10;
+      var lx = BB.clamp((xa + xb) / 2 - tw / 2, box.x + 2, box.x + box.w - tw - 2);
+      ctx.fillStyle = BB.alpha(p.bg, 0.9); ctx.fillRect(lx, ym - 22, tw, 18);
+      txt(ctx, lbl, lx + 5, ym - 13, { size: 12, weight: 700, color: col });
+      if (w >= 560) txt(ctx, "작은 칸 0.04 s · 큰 칸 0.2 s · 세로 큰 칸 0.5 mV", box.x, h - 10, { size: 10.5 });
+    }, { get height() { var w = viewW("cp-cv"); var dur = BB.clamp(w / 360, 1.25, 2.2); var pxs = (w - 28) / Math.max(dur, 60 / 72 + 0.62); return Math.round(BB.clamp(pxs * 0.4 * 2 + 76, 250, 420)); } });
+    BB.drag(cv.canvas, {
+      start: function (x, y) {
+        if (!lay) return; var pp = lay.pp;
+        var d0 = Math.abs(x - pp.X(cal[0])), d1 = Math.abs(x - pp.X(cal[1]));
+        if (y > lay.box.y + lay.box.h - 4 && Math.min(d0, d1) < 26) { drag = d0 < d1 ? 0 : 1; return; }
+        if (Math.min(d0, d1) < 8) { drag = d0 < d1 ? 0 : 1; return; }
+        drag = -1; sel = region(pp.T(x)); document.getElementById("cp-info").innerHTML = INFO[sel]; cv.redraw();
+      },
+      move: function (x) { if (drag < 0 || !lay) return; cal[drag] = BB.clamp(lay.pp.T(x), lay.t0, lay.t1); out(); },
+      end: function () { drag = -1; if (cv) cv.redraw(); },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 4. 심박수 읽기 */
+  (function () {
+    var e, shift, c1 = 1.4, seed = 3, hr = 75, reveal = false, lay = null, cv = null, mode = "sinus";
+    var R0 = 0.4, DUR = 6;
+    function build() {
+      var rnd = BB.rng(seed * 97 + 13);
+      hr = mode === "af" ? Math.round(85 + rnd() * 45) : [50, 58, 64, 75, 88, 100, 115, 136][Math.floor(rnd() * 8)];
+      e = BD.ecg({ hr: hr, rhythm: mode, hrv: 0.012, resp: 0, noise: 0.006, duration: 11, seed: seed });
+      var ref = e.beats.find(function (b) { return b.r > 0.9; });
+      shift = ref.r - R0;
+      var next = e.beats[e.beats.indexOf(ref) + 1];
+      c1 = R0 + 0.6;
+      reveal = false; document.getElementById("rt-show").textContent = "정답 보기";
+      out();
+    }
+    function out() {
+      var d = c1 - R0, big = d / 0.2, sm = d / 0.04;
+      BB.stat("rt-o-300", d > 0.05 ? fmt0(300 / big) + "<small>bpm</small>" : "—");
+      BB.stat("rt-o-1500", d > 0.05 ? fmt0(1500 / sm) + "<small>bpm</small>" : "—");
+      var n = e.beats.filter(function (b) { var s = b.r - shift; return s >= 0 && s < DUR; }).length;
+      BB.stat("rt-o-6", n + " × 10 = " + n * 10);
+      var inWin = e.beats.filter(function (b) { var s = b.r - shift; return s >= -1 && s < DUR + 1; });
+      var rrs = inWin.slice(1).map(function (b, i) { return b.r - inWin[i].r; });
+      BB.stat("rt-o-true", reveal ? fmt0(60 / BD.mean(rrs)) + "<small>bpm</small>" : "?");
+      if (cv) cv.redraw();
+    }
+    BB.seg("rt-mode", function (v) { mode = v; seed++; build(); });
+    document.getElementById("rt-new").addEventListener("click", function () { seed++; build(); });
+    document.getElementById("rt-show").addEventListener("click", function () { reveal = !reveal; this.textContent = reveal ? "정답 숨기기" : "정답 보기"; out(); });
+    build();
+    cv = BB.canvas("#rt-cv", function (ctx, w, h) {
+      var p = P(), rows = 2, per = DUR / rows;
+      var rowH = (h - 20) / rows, boxes = [];
+      for (var k = 0; k < rows; k++) {
+        var box = { x: 12, y: 40 + k * rowH, w: w - 24, h: rowH - 44 };
+        var pp = paper(ctx, box, k * per, (k + 1) * per, -0.4, 1.4);
+        boxes.push({ box: box, pp: pp, t0: k * per, t1: (k + 1) * per });
+        trace(ctx, function (s) { return e.v(s + shift); }, pp.X, pp.Y, k * per, (k + 1) * per, p.text, 1.6, 700);
+        // 300-150-100 눈금
+        if (k === 0) [300, 150, 100, 75, 60, 50, 43].forEach(function (lab, j) {
+          var s = R0 + 0.2 * (j + 1); if (s > per) return;
+          txt(ctx, String(lab), pp.X(s), box.y - 8, { align: "center", size: w < 420 ? 9.5 : 10.5, mono: true, weight: 600, color: p.bad });
+        });
+        if (k === 0) txt(ctx, "R", pp.X(R0), box.y - 8, { align: "center", size: 11, weight: 700, color: p.accent });
+        // 정답: R파 표시
+        if (reveal) e.beats.forEach(function (b) { var s = b.r - shift; if (s >= k * per && s < (k + 1) * per) { ctx.fillStyle = p.ok; ctx.beginPath(); ctx.arc(pp.X(s), pp.Y(1.3), 3.5, 0, Math.PI * 2); ctx.fill(); } });
+      }
+      lay = boxes;
+      // 캘리퍼(0.4 고정, c1 끌기)
+      [R0, c1].forEach(function (s, i) {
+        var rb = boxes[Math.min(rows - 1, Math.floor(s / per))]; if (!rb) return;
+        var x = rb.pp.X(s), col = i ? p.bad : p.accent;
+        ctx.strokeStyle = col; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(x, rb.box.y); ctx.lineTo(x, rb.box.y + rb.box.h + 4); ctx.stroke();
+        if (i) handle(ctx, x, rb.box.y + rb.box.h + 11, col, 7);
+      });
+      var d = c1 - R0;
+      var lbl = "R–R " + fmt0(d * 1000) + " ms = 큰 칸 " + (d / 0.2).toFixed(1) + " = 작은 칸 " + (d / 0.04).toFixed(0);
+      txt(ctx, lbl, 12, 10, { size: 12, weight: 700, color: p.text });
+      txt(ctx, "3초 × 2줄 = 6초", w - 12, 10, { align: "right", size: 11 });
+    }, { get height() { return viewW("rt-cv") < 560 ? 320 : 380; } });
+    BB.drag(cv.canvas, {
+      move: function (x, y) {
+        if (!lay) return;
+        var rb = lay[0]; for (var k = 0; k < lay.length; k++) if (y >= lay[k].box.y - 30) rb = lay[k];
+        c1 = BB.clamp(rb.pp.T(x), R0 + 0.1, DUR); out();
+      },
+    });
+  })();
+
+  /* ---------------------------------------------------------- 5. 유도와 벡터 */
+  (function () {
+    var t = 0, playing = true, lay = null, cv = null;
+    var LEADS = [{ n: "I", a: 0, col: "accent" }, { n: "II", a: 60, col: "ok" }, { n: "III", a: 120, col: "warn" }];
+    var getAx = BB.range("ld-ax", function (v) { return v + "°"; }, function () { out(); if (cv) cv.redraw(); });
+    var getSp = BB.range("ld-sp", function (v) { return v.toFixed(2) + "×"; });
+    var btn = document.getElementById("ld-go");
+    btn.addEventListener("click", function () { playing = !playing; btn.textContent = playing ? "일시정지" : "재생"; });
+    var g = function (x, m, s) { return Math.exp(-((x - m) * (x - m)) / (2 * s * s)); };
+    var rad = function (d) { return (d * Math.PI) / 180; };
+    /** 박동 안 시각 tb(0~0.8 s)의 심장 벡터 [x, y](화면 좌표, mV) */
+    function vec(tb) {
+      var A = getAx(), comps = [[55, 0.17 * g(tb, 0.06, 0.022)], [A + 125, 0.18 * g(tb, 0.178, 0.008)], [A, 1.35 * g(tb, 0.2, 0.011)], [A - 140, 0.42 * g(tb, 0.224, 0.009)], [A - 15, 0.34 * g(tb, 0.47, 0.055)]];
+      var x = 0, y = 0; comps.forEach(function (c) { x += c[1] * Math.cos(rad(c[0])); y += c[1] * Math.sin(rad(c[0])); });
+      return [x, y];
+    }
+    function proj(v, a) { return v[0] * Math.cos(rad(a)) + v[1] * Math.sin(rad(a)); }
+    function out() {
+      var net = LEADS.map(function (L) { var mx = 0, mn = 0; for (var tb = 0.15; tb < 0.26; tb += 0.002) { var q = proj(vec(tb), L.a); mx = Math.max(mx, q); mn = Math.min(mn, q); } return mx + mn; });
+      BB.stat("ld-o-ax", getAx() + "°");
+      BB.stat("ld-o-net", net.map(function (x) { return x.toFixed(1); }).join(" / "));
+      var A = getAx();
+      BB.stat("ld-o-cls", A >= -30 && A <= 90 ? "정상 축(−30~+90°)" : A < -30 && A >= -90 ? "왼쪽 축 편위" : A > 90 && A <= 180 ? "오른쪽 축 편위" : "극단 축(북서)");
+    }
+    out();
+    cv = BB.canvas("#ld-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560;
+      var tb = (t % 1.0);
+      var size = narrow ? Math.min(w - 40, 250) : Math.min(h - 40, w * 0.42);
+      var cx = narrow ? w / 2 : 20 + size / 2 + 10, cy = narrow ? 22 + size * 0.48 : h / 2 + 8;
+      var R = size / 2;
+      // 삼각형 꼭짓점(위가 RA, LA; 아래가 LL)
+      var RA = [cx - R * 0.866, cy - R * 0.5], LA = [cx + R * 0.866, cy - R * 0.5], LL = [cx, cy + R];
+      ctx.strokeStyle = BB.alpha(p.dim, 0.5); ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(RA[0], RA[1]); ctx.lineTo(LA[0], LA[1]); ctx.lineTo(LL[0], LL[1]); ctx.closePath(); ctx.stroke();
+      txt(ctx, "오른팔(RA)", RA[0] - 2, RA[1] - 12, { align: "left", size: 11, weight: 600 });
+      txt(ctx, "왼팔(LA)", LA[0] + 2, LA[1] - 12, { align: "right", size: 11, weight: 600 });
+      txt(ctx, "왼다리(LL)", LL[0] + 8, LL[1] + 2, { size: 11, weight: 600 });
+      // 정상 축 범위 부채
+      ctx.fillStyle = BB.alpha(p.ok, 0.08); ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, R * 0.42, rad(-30), rad(90)); ctx.closePath(); ctx.fill();
+      var sc = R * 0.42;   // 1 mV의 화면 길이
+      var v = vec(tb);
+      // 벡터 고리 자취
+      ctx.strokeStyle = BB.alpha(BB.color("art"), 0.3); ctx.lineWidth = 1.2; ctx.beginPath();
+      for (var q = 0; q <= 0.8; q += 0.002) { var vv = vec(q); var X = cx + vv[0] * sc, Y = cy + vv[1] * sc; q ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); } ctx.stroke();
+      // 유도 변 위의 그림자 막대
+      var sides = [[RA, LA, 0], [RA, LL, 1], [LA, LL, 2]];
+      var vals = LEADS.map(function (L) { return proj(v, L.a); });
+      sides.forEach(function (sd, i) {
+        var L = LEADS[i], col = p[L.col], a = rad(L.a);
+        var mx = (sd[0][0] + sd[1][0]) / 2, my = (sd[0][1] + sd[1][1]) / 2;
+        var ux = Math.cos(a), uy = Math.sin(a);
+        ctx.strokeStyle = col; ctx.lineWidth = 6; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(mx + ux * vals[i] * sc, my + uy * vals[i] * sc); ctx.stroke(); ctx.lineCap = "butt";
+        // 투영선
+        ctx.strokeStyle = BB.alpha(col, 0.35); ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
+        var nx = -uy, ny = ux, dd = (cx + v[0] * sc - mx) * nx + (cy + v[1] * sc - my) * ny;
+        ctx.beginPath(); ctx.moveTo(cx + v[0] * sc, cy + v[1] * sc); ctx.lineTo(cx + v[0] * sc - nx * dd, cy + v[1] * sc - ny * dd); ctx.stroke(); ctx.setLineDash([]);
+                var ox = mx - cx, oy = my - cy, ol = Math.hypot(ox, oy) || 1; txt(ctx, L.n, mx + (ox / ol) * 16, my + (oy / ol) * 16, { size: 12, weight: 700, color: col, align: "center" });
+      });
+      // 벡터 화살표
+      var tx = cx + v[0] * sc, ty = cy + v[1] * sc, art = BB.color("art");
+      ctx.strokeStyle = art; ctx.fillStyle = art; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(tx, ty); ctx.stroke();
+      var ang = Math.atan2(ty - cy, tx - cx), mag = Math.hypot(tx - cx, ty - cy);
+      if (mag > 8) { ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(tx - 10 * Math.cos(ang - 0.4), ty - 10 * Math.sin(ang - 0.4)); ctx.lineTo(tx - 10 * Math.cos(ang + 0.4), ty - 10 * Math.sin(ang + 0.4)); ctx.closePath(); ctx.fill(); }
+      // 축 손잡이
+      var A = rad(getAx()); handle(ctx, cx + Math.cos(A) * R * 0.78, cy + Math.sin(A) * R * 0.78, art, 7);
+      txt(ctx, "축 " + getAx() + "°", cx + Math.cos(A) * R * 0.78 + 10, cy + Math.sin(A) * R * 0.78 + (Math.sin(A) > 0 ? 12 : -12), { size: 11, weight: 700, color: art });
+      lay = { cx: cx, cy: cy, R: R };
+      // 오른쪽: 세 유도 파형
+      var tb0 = narrow ? { x: 40, y: cy + R + 26, w: w - 52, h: h - (cy + R + 26) - 14 } : { x: cx + R + 54, y: 16, w: w - (cx + R + 54) - 14, h: h - 30 };
+      var rowH = tb0.h / 3;
+      LEADS.forEach(function (L, i) {
+        var ry = tb0.y + i * rowH, col = p[L.col];
+        var Y = function (val) { return ry + rowH * 0.62 - val * rowH * 0.36; };
+        var X = function (q) { return tb0.x + (q / 0.8) * tb0.w; };
+        ctx.strokeStyle = p.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(tb0.x, Y(0)); ctx.lineTo(tb0.x + tb0.w, Y(0)); ctx.stroke();
+        ctx.strokeStyle = BB.alpha(col, 0.3); ctx.lineWidth = 1.4; ctx.beginPath();
+        for (var q2 = 0; q2 <= 0.8; q2 += 0.002) { var y = Y(proj(vec(q2), L.a)); q2 ? ctx.lineTo(X(q2), y) : ctx.moveTo(X(q2), y); } ctx.stroke();
+        ctx.strokeStyle = col; ctx.lineWidth = 2.2; ctx.beginPath();
+        for (var q3 = 0; q3 <= Math.min(tb, 0.8); q3 += 0.002) { var y3 = Y(proj(vec(q3), L.a)); q3 ? ctx.lineTo(X(q3), y3) : ctx.moveTo(X(q3), y3); } ctx.stroke();
+        if (tb <= 0.8) { ctx.fillStyle = col; ctx.beginPath(); ctx.arc(X(tb), Y(vals[i]), 4, 0, Math.PI * 2); ctx.fill(); }
+        txt(ctx, "유도 " + L.n, tb0.x - 6, ry + 10, { align: narrow ? "left" : "right", size: 12, weight: 700, color: col });
+        txt(ctx, (vals[i] >= 0 ? "+" : "") + vals[i].toFixed(2) + " mV", tb0.x + tb0.w, ry + 10, { align: "right", size: 11, mono: true, color: col });
+      });
+      txt(ctx, "II = I + III : " + vals[1].toFixed(2) + " ≈ " + (vals[0] + vals[2]).toFixed(2), narrow ? 12 : 12, h - 10, { size: 11, mono: true, color: p.dim });
+    }, { get height() { return viewW("ld-cv") < 560 ? 560 : 360; } });
+    BB.drag(cv.canvas, {
+      move: function (x, y) {
+        if (!lay) return; if (Math.hypot(x - lay.cx, y - lay.cy) > lay.R * 1.15 || Math.hypot(x - lay.cx, y - lay.cy) < 6) return;
+        var a = Math.round(Math.atan2(y - lay.cy, x - lay.cx) * 180 / Math.PI / 5) * 5;
+        if (a < -120) a += 360; if (a > 180) a -= 360; a = BB.clamp(a, -120, 180);
+        getAx.set(a);
+      },
+    });
+    BB.loop(document.getElementById("sim-leads"), function (dt) { if (playing) t += dt * getSp(); cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 6. 심박 변이 */
+  (function () {
+    var e, st, t = 40, cv = null, rsa = 0;
+    function build() {
+      var pr = hrvParams(getA(), getR());
+      e = BD.ecg(Object.assign({ duration: 200, seed: 7, noise: 0.006 }, pr));
+      var rr = e.rr.slice(0, Math.max(10, e.rr.length - 10));
+      st = BD.hrvStats(rr);
+      // 한 호흡 안 심박 폭: 호흡 주기마다 최대-최소의 평균
+      var T = 60 / getR(), spans = [];
+      for (var c0 = 10; c0 + T < 190; c0 += T) {
+        var hs = []; for (var i = 1; i < e.beats.length; i++) { var b = e.beats[i]; if (b.r >= c0 && b.r < c0 + T) hs.push(60 / (b.r - e.beats[i - 1].r)); }
+        if (hs.length > 1) spans.push(Math.max.apply(null, hs) - Math.min.apply(null, hs));
+      }
+      rsa = BD.mean(spans);
+      BB.stat("hv-o-hr", fmt0(st.hr) + "<small>bpm</small>");
+      BB.stat("hv-o-sdnn", fmt0(st.sdnn) + "<small>ms</small>");
+      BB.stat("hv-o-rmssd", fmt0(st.rmssd) + "<small>ms</small>");
+      BB.stat("hv-o-rsa", rsa.toFixed(1) + "<small>bpm</small>");
+    }
+    var d = BB.debounce(build, 80);
+    var getA = BB.range("hv-ach", function (v) { return v.toFixed(2); }, d);
+    var getR = BB.range("hv-rr", function (v) { return v + " 회/분"; }, d);
+    build();
+    function lungVol(tt) { return 0.5 - 0.5 * Math.sin((2 * Math.PI * tt * getR()) / 60); }
+    cv = BB.canvas("#hv-cv", function (ctx, w, h) {
+      var p = P(), narrow = w < 560, tr1 = BB.trace(1);
+      // 1) 심전도 띠(어두운 띠)
+      var eb = { x: 10, y: 8, w: w - 20, h: 74 };
+      BD.monitor(ctx, eb, { t: [t - 6, t], traces: [{ label: "ECG II", color: tr1, data: function (q) { return e.v(q); }, range: [-0.5, 1.4] }] });
+      // 2) 타코그램
+      var tw = narrow ? w - 20 : w * 0.66;
+      var box = { x: 56, y: eb.y + eb.h + 22, w: tw - 60, h: narrow ? 150 : h - eb.h - 62 };
+      var hrs = [], lo = 1e9, hi = 0;
+      for (var i = 1; i < e.beats.length; i++) { var b = e.beats[i]; if (b.r > t - 40 && b.r <= t) { var hh = 60 / (b.r - e.beats[i - 1].r); hrs.push([b.r, hh]); lo = Math.min(lo, hh); hi = Math.max(hi, hh); } }
+      var mid = st.hr, span = Math.max(8, (hi - lo) * 0.7 + 4);
+      var yr = [Math.floor(mid - span), Math.ceil(mid + span)];
+      var c = BB.chart(ctx, box, { x: [t - 40, t], y: yr, xTicks: [], yLabel: "순간 심박수(bpm)", yTicks: 4 });
+      // 호흡(폐 부피) 곡선, 들이쉼 띠
+      ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+      var warn = p.warn; ctx.strokeStyle = BB.alpha(warn, 0.85); ctx.lineWidth = 1.6; ctx.beginPath();
+      for (var x = 0; x <= box.w; x += 2) { var tt = t - 40 + (x / box.w) * 40, yv = box.y + box.h - 6 - lungVol(tt) * box.h * 0.35; x ? ctx.lineTo(box.x + x, yv) : ctx.moveTo(box.x + x, yv); }
+      ctx.stroke();
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 2; ctx.beginPath();
+      hrs.forEach(function (q, k) { k ? ctx.lineTo(c.X(q[0]), c.Y(q[1])) : ctx.moveTo(c.X(q[0]), c.Y(q[1])); }); ctx.stroke();
+      ctx.fillStyle = p.accent; hrs.forEach(function (q) { ctx.beginPath(); ctx.arc(c.X(q[0]), c.Y(q[1]), 2.4, 0, Math.PI * 2); ctx.fill(); });
+      ctx.restore();
+      txt(ctx, "최근 40초 · 점 하나가 한 박동", box.x + 4, box.y + 10, { size: 11 });
+      txt(ctx, "폐 부피(들이쉼 ↑)", box.x + box.w - 4, box.y + box.h - 10, { align: "right", size: 11, color: warn });
+      txt(ctx, "← 40초 전", box.x, box.y + box.h + 12, { size: 10.5 }); txt(ctx, "지금", box.x + box.w, box.y + box.h + 12, { align: "right", size: 10.5 });
+      // 3) 푸앵카레
+      var pb = narrow ? { x: 54, y: box.y + box.h + 46, w: Math.min(w - 74, 220), h: Math.min(w - 74, 220) } : { x: tw + 40, y: box.y, w: Math.min(w - tw - 56, box.h), h: Math.min(w - tw - 56, box.h) };
+      var mrr = 60 / st.hr, rg = Math.max(0.12, Math.min(0.6, st.sdnn / 1000 * 4.5));
+      var pc = BB.chart(ctx, pb, { x: [mrr - rg, mrr + rg], y: [mrr - rg, mrr + rg], xTicks: 3, yTicks: 3, xFmt: function (v) { return fmt0(v * 1000); }, yFmt: function (v) { return fmt0(v * 1000); } });
+      ctx.save(); ctx.beginPath(); ctx.rect(pb.x, pb.y, pb.w, pb.h); ctx.clip();
+      ctx.strokeStyle = BB.alpha(p.dim, 0.4); ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(pc.X(mrr - rg), pc.Y(mrr - rg)); ctx.lineTo(pc.X(mrr + rg), pc.Y(mrr + rg)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = BB.alpha(p.accent2, 0.45);
+      for (var k = 1; k < e.rr.length - 10; k++) { ctx.beginPath(); ctx.arc(pc.X(e.rr[k - 1]), pc.Y(e.rr[k]), 2, 0, Math.PI * 2); ctx.fill(); }
+      ctx.restore();
+      txt(ctx, "푸앵카레: RRₙ → RRₙ₊₁(ms)", pb.x, pb.y - 9, { size: 11, weight: 600, color: p.text });
+    }, { get height() { return viewW("hv-cv") < 560 ? 600 : 340; } });
+    BB.loop(document.getElementById("sim-hrv"), function (dt) { t += dt; if (t > 185) t = 40; cv.redraw(); });
+  })();
+
+  /* ---------------------------------------------------------- 7. 활동 전위와 QT */
+  (function () {
+    var e, r, rr, k = 1, cur = null, lay = null, cv = null, apd, tEnd, up;
+    function vEcg(tt) {
+      var rb = null; for (var i = 0; i < e.beats.length; i++) if (e.beats[i].r - 0.06 <= tt) rb = e.beats[i].r;
+      if (rb == null || k === 1 || tt <= rb + 0.05) return e.v(tt);
+      return e.v(rb + 0.05 + (tt - rb - 0.05) / k);
+    }
+    function calc() {
+      var hr = getHr(); rr = 60 / hr; k = document.getElementById("va-long").checked ? 1.3 : 1;
+      e = BD.ecg({ hr: hr, hrv: 0, resp: 0, noise: 0, duration: 6 }); r = e.beats[2].r;
+      var qtRaw = 0.4 * Math.sqrt(rr);
+      tEnd = r + 0.05 + (qtRaw - 0.03 - 0.05) * k;
+      var qt = tEnd - (r - 0.045);
+      up = r - 0.02; apd = tEnd - up;
+      var qtc = qt / Math.sqrt(rr);
+      BB.stat("va-o-rr", fmt0(rr * 1000) + "<small>ms</small>");
+      BB.stat("va-o-qt", fmt0(qt * 1000) + "<small>ms</small>");
+      BB.stat("va-o-qtc", "<span class='" + (qtc > 0.47 ? "bad-t" : "") + "'>" + fmt0(qtc * 1000) + "</span><small>ms</small>");
+      calc.qt = qt; calc.qtc = qtc;
+      if (cur == null) cur = r + 0.15;
+      if (cv) cv.redraw();
+    }
+    var getHr = BB.range("va-hr", function (v) { return v + " bpm"; }, calc);
+    document.getElementById("va-long").addEventListener("change", calc);
+    calc();
+    function ap(tt) {
+      // 가장 가까운 앞 박동의 활동 전위
+      var best = -88; e.beats.forEach(function (b) { var u = b.r - 0.02; if (tt >= u) best = BD.ventricularAP(tt - u, apd); });
+      return best;
+    }
+    function phaseName(tt) {
+      var u = null; e.beats.forEach(function (b) { if (tt >= b.r - 0.02) u = b.r - 0.02; });
+      if (u == null) return "4기(휴지)";
+      var d = tt - u, plat = apd * 0.72;
+      return d < 0.002 ? "0기(탈분극, Na⁺)" : d < 0.01 ? "1기(짧은 되돌림)" : d < plat ? "2기(고원기, Ca²⁺ ↔ K⁺)" : d < apd ? "3기(재분극, K⁺)" : "4기(휴지)";
+    }
+    cv = BB.canvas("#va-cv", function (ctx, w, h) {
+      var p = P(), t0 = r - 0.25, t1 = r + Math.max(0.75, rr + 0.25);
+      var L = 50, Rr = w - 14, topH = (h - 50) * 0.42;
+      var b1 = { x: L, y: 18, w: Rr - L, h: topH }, b2 = { x: L, y: 18 + topH + 26, w: Rr - L, h: h - topH - 76 };
+      var X = function (tt) { return L + ((tt - t0) / (t1 - t0)) * (Rr - L); };
+      lay = { X: X, T: function (x) { return t0 + ((x - L) / (Rr - L)) * (t1 - t0); }, t0: t0, t1: t1 };
+      // 위: 심전도
+      var Ye = function (v) { return b1.y + b1.h * 0.78 - v * b1.h * 0.6; };
+      ctx.strokeStyle = p.grid; ctx.beginPath(); ctx.moveTo(L, Ye(0)); ctx.lineTo(Rr, Ye(0)); ctx.stroke();
+      trace(ctx, vEcg, X, Ye, t0, t1, p.text, 2, 700);
+      txt(ctx, "심전도", 8, b1.y + 10, { size: 11, weight: 600 });
+      // 아래: 활동 전위
+      var c = BB.chart(ctx, b2, { x: [t0, t1], y: [-100, 40], xTicks: [], yTicks: [-80, -40, 0, 40] });
+      ctx.save(); ctx.translate(12, b2.y + b2.h / 2); ctx.rotate(-Math.PI / 2); txt(ctx, "막전위(mV)", 0, 0, { align: "center", size: 11 }); ctx.restore();
+      // 절대 불응기
+      var arpEnd = up; for (var q = 0; q < apd; q += 0.002) if (BD.ventricularAP(q, apd) > -55) arpEnd = up + q;
+      ctx.fillStyle = BB.alpha(p.bad, 0.1); ctx.fillRect(X(up), b2.y, X(arpEnd) - X(up), b2.h);
+      txt(ctx, "불응기(다시 흥분하지 않음)", (X(up) + X(arpEnd)) / 2, b2.y + b2.h - 10, { align: "center", size: 10.5, color: p.bad });
+      trace(ctx, ap, c.X, c.Y, t0, t1, p.accent2, 2.4, 700);
+      // QRS 시작, T 끝 연결선
+      [[r - 0.045, "QRS 시작"], [tEnd, "T 끝"]].forEach(function (m) {
+        var x = X(m[0]); ctx.strokeStyle = BB.alpha(p.accent, 0.7); ctx.setLineDash([4, 3]); ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(x, b1.y); ctx.lineTo(x, b2.y + b2.h); ctx.stroke(); ctx.setLineDash([]);
+      });
+      var yq = b1.y + b1.h + 12;
+      ctx.strokeStyle = p.accent; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(X(r - 0.045), yq); ctx.lineTo(X(tEnd), yq); ctx.stroke();
+      txt(ctx, "QT " + fmt0(calc.qt * 1000) + " ms", (X(r - 0.045) + X(tEnd)) / 2, yq - 1, { align: "center", base: "bottom", size: 11.5, weight: 700, color: p.accent });
+      // 구간 이름(활동 전위)
+      if (w > 480) {
+        txt(ctx, "0", X(up) - 6, c.Y(20), { align: "right", size: 11, weight: 700, color: p.accent2 });
+        txt(ctx, "2 고원기", X(up + apd * 0.4), c.Y(14), { align: "center", size: 11, weight: 700, color: p.accent2 });
+        txt(ctx, "3", X(up + apd * 0.9) + 8, c.Y(-40), { size: 11, weight: 700, color: p.accent2 });
+        txt(ctx, "4", X(tEnd + 0.08), c.Y(-78), { size: 11, weight: 700, color: p.accent2 });
+      }
+      // 커서
+      var cx = X(cur);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(cx, b1.y); ctx.lineTo(cx, b2.y + b2.h); ctx.stroke();
+      handle(ctx, cx, b2.y + b2.h + 14, p.text, 7);
+      ctx.fillStyle = p.accent2; ctx.beginPath(); ctx.arc(cx, c.Y(ap(cur)), 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = p.text; ctx.beginPath(); ctx.arc(cx, Ye(vEcg(cur)), 4, 0, Math.PI * 2); ctx.fill();
+      BB.stat("va-o-ph", phaseName(cur));
+      if (calc.qtc > 0.47) txt(ctx, "QTc " + fmt0(calc.qtc * 1000) + " ms: QT 연장, 위험한 심실 부정맥 위험", Rr - 4, b1.y + 8, { align: "right", size: 12, weight: 700, color: p.bad });
+      if (rr < 0.45) txt(ctx, "다음 P파가 앞 T파에 겹치기 시작한다", Rr - 4, b1.y + (calc.qtc > 0.47 ? 24 : 8), { align: "right", size: 11, color: p.warn });
+    }, { aspect: 0.62, minHeight: 360, maxHeight: 440 });
+    BB.drag(cv.canvas, { move: function (x) { if (!lay) return; cur = BB.clamp(lay.T(x), lay.t0, lay.t1); cv.redraw(); } });
+  })();
+
+  /* ---------------------------------------------------------- 8. 부정맥 갤러리 */
+  (function () {
+    var key = "sinus", e, pres = null, t = 15, W = 8, sim = null, cv = null;
+    var CFG = {
+      sinus: { o: { hr: 72 }, kick: 1 },
+      brady: { o: { hr: 40, rhythm: "brady" }, kick: 1 },
+      tachy: { o: { hr: 135 }, kick: 1 },
+      af: { o: { hr: 110, rhythm: "af" }, kick: 0 },
+      avb1: { o: { hr: 72, rhythm: "avb1" }, kick: 0.85 },
+      avb2: { o: { hr: 78, rhythm: "avb2" }, kick: 1 },
+      avb3: { o: { rhythm: "avb3" }, kick: 0.5 },
+      pvc: { o: { hr: 75, rhythm: "pvc", pvcEvery: 4 }, kick: 1 },
+      vf: { o: { rhythm: "vf" }, kick: 0 },
+    };
+    var INFO = {
+      sinus: "<h4>정상 동리듬</h4><p>모든 QRS 앞에 P파가 하나씩, 간격이 일정하다. 박출량이 박동마다 거의 같고 동맥압 맥박도 고르다.</p>",
+      brady: "<h4>동성 서맥(약 42 bpm)</h4><p>동방결절이 느리게 뛴다. 지구력 선수에게는 정상일 수 있다(큰 박출량으로 보상). 박출량을 키울 수 없는 심장이라면 심박출량이 줄어 어지러움이 생긴다.</p>",
+      tachy: "<h4>동성 빈맥(약 135 bpm)</h4><p>열, 탈수, 통증, 불안, 출혈, 운동처럼 몸이 더 많은 피를 원할 때의 정상 반응인 경우가 많다. 쉴 때 이 속도라면 이완기가 짧아 박출량이 줄어든다(<a href=\"flow.html\">7장</a>).</p>",
+      af: "<h4>심방세동</h4><p>심방이 잘게 떨기만 해 P파 대신 잔물결이 보이고, 방실결절을 불규칙하게 통과한 흥분 때문에 R–R 간격이 제멋대로다. 심방 수축이 사라지고, 짧은 간격의 박동은 덜 채워진다.</p>",
+      avb1: "<h4>1도 방실 차단</h4><p>PR 간격이 0.2초를 넘지만 모든 P파가 전도된다. 대개 증상이 없다. 심방 수축이 너무 일찍 끝나 심실 채움에 약간 덜 보탠다.</p>",
+      avb2: "<h4>2도 방실 차단(모비츠 1형, 벤케바흐)</h4><p>PR이 박동마다 점점 길어지다가 P파 하나가 전도되지 못해 QRS가 빠진다. 그 자리에서 맥박도 한 번 빠진다. 방실결절이 지쳐 가는 모습이다.</p>",
+      avb3: "<h4>3도(완전) 방실 차단</h4><p>심방의 흥분이 심실로 하나도 넘어가지 못한다. 심실은 아래쪽 예비 조율기(약 38 bpm)로 느리게 뛰고 QRS가 넓다. 심방 수축의 도움도 우연히만 받는다. 심박출량이 크게 줄어 인공 심박 조율기가 필요한 경우가 많다.</p>",
+      pvc: "<h4>심실 조기 수축</h4><p>심실의 한 곳이 먼저 흥분해 넓고 이상한 QRS가 일찍 나온다. 덜 채워진 채 짜내니 맥박이 거의 없고, 이어지는 긴 쉼(보상 휴지기) 뒤의 박동은 더 많이 채워져 크다. 가끔 생기는 것은 건강한 사람에게도 흔하다.</p>",
+      vf: "<h4>심실세동</h4><p>심실 근육이 제각각 흥분하며 떨 뿐 수축하지 못한다. 펌프가 멈춘 것이다. 몇 초 만에 혈압이 바닥으로 떨어지고 의식을 잃는다. 즉시 가슴 압박과 전기 충격(제세동)이 필요하다.</p>",
+    };
+    function build() {
+      var c = CFG[key];
+      e = BD.ecg(Object.assign({ duration: 80, hrv: 0.02, resp: 0.2, noise: 0.008, seed: 5 }, c.o));
+      // 박동별 박출량과 윈드케셀 동맥압
+      var dt = 0.005, n = Math.round(80 / dt), pr = new Float32Array(n), Pa = 80, R = 1.12, C = 1.5;
+      var beats = e.beats, svs = [], ej = [];
+      beats.forEach(function (b, i) {
+        var rrPrev = i ? b.r - beats[i - 1].r : 60 / (c.o.hr || 60);
+        var fill = Math.max(0, 1 - Math.exp(-(rrPrev - 0.27) / 0.17));
+        var kick = c.kick;
+        if (key === "avb3") { var near = e.ps.some(function (pc) { var d = b.r - pc; return d > 0.08 && d < 0.3; }); kick = near ? 1 : 0; }
+        var sv = 74 * fill * (0.82 + 0.18 * kick) / 0.995;
+        if (b.type === "pvc") sv *= 0.55;
+        if (i && beats[i - 1].type === "pvc") sv *= 1.12;
+        svs.push(sv); ej.push([b.r + 0.06, sv]);
+      });
+      var ei = 0, active = [];
+      for (var s = 0; s < n; s++) {
+        var tt = s * dt;
+        while (ei < ej.length && ej[ei][0] <= tt) { active.push([ej[ei][0], ej[ei][1]]); ei++; }
+        var q = 0, te = 0.26;
+        active = active.filter(function (a) { var d = tt - a[0]; if (d < te) { q += (a[1] * Math.PI) / (2 * te) * Math.sin((Math.PI * d) / te); return true; } return false; });
+        Pa += (dt * (q - (Pa - 6) / R)) / C;
+        pr[s] = Pa;
+      }
+      pres = pr;
+      var win = beats.filter(function (b) { return b.r > 15 && b.r < 75; }), sum = 0;
+      beats.forEach(function (b, i) { if (b.r > 15 && b.r < 75) sum += svs[i]; });
+      var co = key === "vf" ? 0 : sum / 60 / 1000 * 60;
+      var hr = key === "vf" ? null : win.length;
+      var svIn = svs.filter(function (_, i) { return beats[i].r > 15 && beats[i].r < 75; });
+      var mapv = 0; for (var s2 = Math.round(15 / dt); s2 < Math.round(75 / dt); s2++) mapv += pr[s2]; mapv /= Math.round(60 / dt);
+      sim = { co: co, hr: hr, svMin: svIn.length ? Math.min.apply(null, svIn) : 0, svMax: svIn.length ? Math.max.apply(null, svIn) : 0, map: mapv };
+      BB.stat("ar-o-hr", hr == null ? "—" : hr + "<small>bpm</small>");
+      BB.stat("ar-o-sv", key === "vf" ? "0" : fmt0(sim.svMin) + "~" + fmt0(sim.svMax) + "<small>mL</small>");
+      BB.stat("ar-o-co", "<span class='" + (co < 4 ? "bad-t" : "") + "'>" + co.toFixed(1) + "</span><small>L/min</small>");
+      BB.stat("ar-o-map", (key === "vf" ? "↓ 0으로" : fmt0(mapv)) + "<small>mmHg</small>");
+      document.getElementById("ar-info").innerHTML = INFO[key];
+      t = key === "vf" ? 15 : 15 + W;
+    }
+    document.getElementById("ar-sel").addEventListener("change", function () { key = this.value; build(); });
+    build();
+    function pAt(tt) { var i = Math.round(tt / 0.005); return i >= 0 && i < pres.length ? pres[i] : NaN; }
+    cv = BB.canvas("#ar-cv", function (ctx, w, h) {
+      var sw = (t - 15) % W, base = t - sw;
+      var map = function (f) { return function (x) { var real = x <= sw ? base + x : base - W + x; return real < 15 && x > sw ? NaN : f(real); }; };
+      // 최근 값들
+      var rs = e.beats.filter(function (b) { return b.r <= t && b.r > t - 5; });
+      var hrNow = rs.length > 1 ? 60 / ((rs[rs.length - 1].r - rs[0].r) / (rs.length - 1)) : null;
+      var lo = 1e9, hi = 0; for (var q = t - 3; q <= t; q += 0.01) { var v = pAt(q); lo = Math.min(lo, v); hi = Math.max(hi, v); }
+      var vf = key === "vf", alarmP = hi < 70;
+      BD.monitor(ctx, { x: 0, y: 0, w: w, h: h }, {
+        t: [0, W], sweep: sw, gridDt: 1,
+        traces: [
+          { label: "ECG II", color: BB.trace(1), data: map(function (q) { return e.v(q); }), range: [-0.7, 1.5] },
+          { label: "ABP mmHg", color: BB.trace(2), data: map(pAt), range: [0, 160] },
+        ],
+        numerics: [
+          { label: "HR", value: vf || hrNow == null ? "---" : fmt0(hrNow), unit: "bpm", color: BB.trace(1), alarm: vf || (hrNow != null && (hrNow < 45 || hrNow > 130)) },
+          { label: "ABP", value: fmt0(hi) + "/" + fmt0(lo), unit: "mmHg", color: BB.trace(2), alarm: alarmP, sub: "(" + fmt0((hi + 2 * lo) / 3) + ")" },
+          { label: "CO 어림", value: sim.co.toFixed(1), unit: "L/min", color: BB.trace(3), alarm: sim.co < 3.5 },
+        ],
+      });
+      if (vf) { ctx.fillStyle = "#ff4d5e"; ctx.font = BB.font(13, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText("경보: 심실세동 · 맥박 없음", 12, h / 2 + 24); }
+    }, { get height() { return viewW("ar-cv") < 560 ? 280 : 300; } });
+    BB.loop(document.getElementById("sim-arrhythmia"), function (dt) { t += dt; if (t > 74) t = key === "vf" ? 15 : 15 + W; cv.redraw(); });
+    // 본문 숫자: 심방 수축을 뺐을 때 심박출량 감소(엔진 BD.heart)
+    setTimeout(function () {
+      var a = BD.heart({ hr: 72, rs: 1.15 }), b = BD.heart({ hr: 72, rs: 1.15, atrial: 0 });
+      var c = BD.heart({ hr: 110, rs: 1.15 }), d = BD.heart({ hr: 110, rs: 1.15, atrial: 0 });
+      BB.stat("ar-kick72", "약 " + fmt0((1 - b.co / a.co) * 100) + " %(" + a.co.toFixed(2) + " → " + b.co.toFixed(2) + " L/min)");
+      BB.stat("ar-kick110", "약 " + fmt0((1 - d.co / c.co) * 100) + " %(" + c.co.toFixed(2) + " → " + d.co.toFixed(2) + " L/min)");
+    }, 400);
+  })();
+
+  /* ---------------------------------------------------------- 9. 다온 12주 */
+  (function () {
+    var weeks = [], stopMode = false, playing = false, t = 20, lay = null, cv = null;
+    function frac(w) {
+      var f12 = 1, f = (1 - Math.exp(-Math.min(w, 12) / 5)) / (1 - Math.exp(-12 / 5));
+      if (w > 12) f = stopMode ? f12 * Math.exp(-(w - 12) / 2.5) : 1;
+      return f;
+    }
+    function build() {
+      weeks = [];
+      for (var w = 0; w <= 16; w++) {
+        var ach = 0.41 + 0.105 * frac(w), pr = hrvParams(ach, 12);
+        var e = BD.ecg(Object.assign({ duration: 180, seed: 7, noise: 0.006 }, pr));
+        var st = BD.hrvStats(e.rr.slice(0, e.rr.length - 6));
+        weeks.push({ w: w, ach: ach, hr: pr.hr, sdnn: st.sdnn, rmssd: st.rmssd, e: e });
+      }
+    }
+    function out() {
+      var W = weeks[getW()];
+      BB.stat("dn-o-hr", fmt0(W.hr) + "<small>bpm</small>");
+      BB.stat("dn-o-day", (W.hr * 1440 / 10000).toFixed(1) + "<small>만 번</small>");
+      BB.stat("dn-o-sdnn", fmt0(W.sdnn) + "<small>ms</small>");
+      BB.stat("dn-o-rmssd", fmt0(W.rmssd) + "<small>ms</small>");
+    }
+    var getW = BB.range("dn-w", function (v) { return v + "주" + (v > 12 ? (stopMode ? "(중단 " + (v - 12) + "주)" : "(유지)") : ""); }, function () { out(); if (cv) cv.redraw(); });
+    BB.seg("dn-mode", function (v) { stopMode = v === "stop"; build(); getW.set(getW()); });
+    var btn = document.getElementById("dn-play");
+    btn.addEventListener("click", function () { playing = !playing; if (playing && getW() >= 12) getW.set(0); btn.textContent = playing ? "멈춤" : "12주 재생"; });
+    build(); out();
+    var acc = 0;
+    cv = BB.canvas("#dn-cv", function (ctx, w, h) {
+      var p = P(), W = weeks[getW()], narrow = w < 560;
+      var mh = narrow ? 120 : 130;
+      BD.monitor(ctx, { x: 10, y: 8, w: w - 20, h: mh }, {
+        t: [t - 6, t],
+        traces: [{ label: "ECG II · " + W.w + "주", color: BB.trace(1), data: function (q) { return W.e.v(q); }, range: [-0.5, 1.4] }],
+        numerics: [{ label: "HR", value: fmt0(W.hr), unit: "bpm", color: BB.trace(1) }, { label: "RMSSD", value: fmt0(W.rmssd), unit: "ms", color: BB.trace(3) }],
+      });
+      var box = { x: 50, y: mh + 40, w: w - 104, h: h - mh - 100 };
+      var c = BB.chart(ctx, box, { x: [0, 16], y: [55, 80], xLabel: "훈련 주", yLabel: "안정 심박수(bpm)", xTicks: [0, 2, 4, 6, 8, 10, 12, 14, 16], yTicks: [55, 60, 65, 70, 75, 80],
+        bands: [{ x0: 12, x1: 16, color: BB.alpha(stopMode ? p.warn : p.ok, 0.08) }],
+        series: [{ data: weeks.map(function (q) { return [q.w, q.hr]; }), color: p.accent, width: 2.6 }] });
+      // 오른쪽 축: RMSSD
+      var Yr = function (v) { return box.y + box.h - ((v - 20) / 60) * box.h; };
+      ctx.strokeStyle = p.accent2; ctx.lineWidth = 2.2; ctx.setLineDash([6, 4]); ctx.beginPath();
+      weeks.forEach(function (q, i) { var x = c.X(q.w), y = Yr(q.rmssd); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = p.accent2; ctx.font = BB.font(10.5, true); ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      [20, 40, 60, 80].forEach(function (v) { ctx.fillText(String(v), box.x + box.w + 6, Yr(v)); });
+      ctx.save(); ctx.translate(w - 10, box.y + box.h / 2); ctx.rotate(Math.PI / 2); txt(ctx, "RMSSD(ms, 점선)", 0, 0, { align: "center", size: 11, color: p.accent2 }); ctx.restore();
+      txt(ctx, stopMode ? "훈련 중단" : "훈련 유지", c.X(14), box.y + 10, { align: "center", size: 11, color: stopMode ? p.warn : p.ok });
+      // 현재 주
+      var x = c.X(W.w);
+      ctx.strokeStyle = p.text; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(x, box.y); ctx.lineTo(x, box.y + box.h); ctx.stroke();
+      handle(ctx, x, c.Y(W.hr), p.accent, 7);
+      ctx.fillStyle = p.accent2; ctx.beginPath(); ctx.arc(x, Yr(W.rmssd), 5, 0, Math.PI * 2); ctx.fill();
+      var lbl = fmt0(W.hr) + " bpm · RMSSD " + fmt0(W.rmssd) + " ms";
+      ctx.font = BB.font(12, false, 700); var tw = ctx.measureText(lbl).width;
+      txt(ctx, lbl, BB.clamp(x + 10, box.x + 4, box.x + box.w - tw - 4), c.Y(W.hr) - 16, { size: 12, weight: 700, color: p.text });
+      lay = { c: c, box: box };
+    }, { get height() { return viewW("dn-cv") < 560 ? 430 : 400; } });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!lay || y < lay.box.y - 20) return; var wk = Math.round(BB.clamp((x - lay.box.x) / lay.box.w * 16, 0, 16)); if (wk !== getW()) getW.set(wk); } });
+    BB.loop(document.getElementById("sim-daon-ecg"), function (dt) {
+      t += dt; if (t > 170) t = 20;
+      if (playing) { acc += dt; if (acc > 0.7) { acc = 0; if (getW() < 12) getW.set(getW() + 1); else { playing = false; btn.textContent = "12주 재생"; } } }
+      cv.redraw();
+    });
+  })();
+})();
+</script>
+</body>
+</html>
