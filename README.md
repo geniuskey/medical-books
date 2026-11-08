@@ -33,6 +33,7 @@ tools/check.py                        메타데이터·링크 정적 검사
 tools/factcheck.cjs                   각 책의 scripts/*.cjs 회귀 검사 실행
 tools/browser-check.cjs               데스크톱·모바일 브라우저 검사(Playwright)
 tools/og.mjs                          서가 공유 이미지 og.png 생성(Playwright)
+tools/anatomy-cover.mjs               AnatomyBook 표지의 몸·뼈·CT 단면 좌표를 anatomy/js 데이터에서 만들어 covers.js에 넣음
 ```
 
 ## 실행과 배포

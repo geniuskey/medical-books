@@ -19,8 +19,6 @@
 .cv-wave { transform-box: fill-box; transform-origin: left center; animation: cv-wave 1.5s ease-out infinite; }
 @keyframes cv-wave { from { opacity: 0; transform: scale(.6); } 40% { opacity: 1; } to { opacity: 0; transform: scale(1.2); } }
 .cv-slide { animation: cv-slide 1.2s linear infinite; }
-.cv-section { animation: cv-section 3.2s ease-in-out infinite alternate; }
-@keyframes cv-section { to { transform: translateY(var(--dy)); } }
 .cv-shear { animation: cv-shear 2.8s ease-in-out infinite alternate; }
 @keyframes cv-shear { to { transform: skewX(-28deg) scaleY(1.15); } }
 @keyframes cv-slide { to { transform: translateX(var(--dx)); } }
@@ -133,6 +131,14 @@
 @keyframes bs-ring { 0% { opacity: .85; transform: none; } 70% { opacity: .3; transform: scaleY(.4); } 100% { opacity: 0; transform: scaleY(.15); } }
 .bs-beat { animation: bs-beat 2.4s ease-out infinite; }
 @keyframes bs-beat { 0% { opacity: 1; } 22%, 100% { opacity: .35; } }
+
+/* skeleton (AnatomyBook): one 12 s scan from head to calf. The line rests 1.4 s at each of six heights (--y0…--y5) and moves in 0.6 s;
+   each CT slice runs the same clock shifted 2 s per height, so it shows only while the line rests there. --k (steps from the chest) starts both at the chest. */
+.an-scan { animation: an-scan 12s ease-in-out infinite; }
+@keyframes an-scan { 0%, 11.7% { transform: translateY(var(--y0)); } 16.7%, 28.3% { transform: translateY(var(--y1)); } 33.3%, 45% { transform: translateY(var(--y2)); } 50%, 61.7% { transform: translateY(var(--y3)); } 66.7%, 78.3% { transform: translateY(var(--y4)); } 83.3%, 95% { transform: translateY(var(--y5)); } 100% { transform: translateY(var(--y0)); } }
+.an-slice { animation: an-slice 12s linear infinite; }
+@keyframes an-slice { 0%, 11.7%, 100% { opacity: 1; } 14.2%, 97.5% { opacity: 0; } }
+.an-scan, .an-slice { animation-delay: calc(var(--k) * 2s - 12s); }
 
 @media (prefers-reduced-motion: reduce) { .cover-art * { animation: none !important; } .cover-art { transition: none; } }
 /* SciBook covers (science-books), MIT: the same cv- motions renamed sc- so they do not collide with the cv- set above. */
