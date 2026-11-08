@@ -7,6 +7,8 @@
    - 화면 가까이 왔을 때 model-viewer 모듈과 GLB를 불러온다(지연 로딩).
    - .model3d-parts의 버튼(data-part="재질 이름")으로 부위를 켜고 끈다. 색 칩은 모델에서 읽는다.
    - data-fade="a,b" 버튼은 그 부위를 반투명하게, data-rotate는 자동 회전, data-reset은 처음 시점.
+   - 이동(pan): Shift·Ctrl·⌘·오른쪽 버튼으로 끌거나, data-pan 버튼을 켜고 끌면 시점 중심을 옮긴다.
+     두 번 누르면 그 지점이 회전 중심이 된다.
    - 모델을 누르면 그 부위 이름(버튼 글자)을 .info-panel에 보여 준다.
    ========================================================================== */
 (function () {
@@ -143,6 +145,7 @@
         mv.jumpCameraToGoal && mv.jumpCameraToGoal();
       });
     });
+    wirePan(sim, mv);
     var info = sim.querySelector(".info-panel");
     if (info) {
       var downAt = null;
@@ -157,6 +160,57 @@
         if (l.note) info.appendChild(document.createTextNode(" · " + l.note));
       });
     }
+  }
+
+  // 끌어서 시점 중심(cameraTarget)을 화면과 나란히 옮긴다. model-viewer의 내장 pan은
+  // 오른쪽 끌기에만 걸려 있어 트랙패드·한 손가락으로는 쓸 수 없으므로 직접 처리한다.
+  function wirePan(sim, mv) {
+    var mode = false, drag = null;
+    var btn = sim.querySelector("[data-pan]");
+    function setMode(on) {
+      mode = on;
+      if (btn) btn.setAttribute("aria-pressed", on ? "true" : "false");
+      mv.style.touchAction = on ? "none" : "";
+      mv.style.cursor = on ? "move" : "";
+    }
+    if (btn) { setMode(false); btn.addEventListener("click", function () { setMode(!mode); }); }
+
+    mv.addEventListener("pointerdown", function (e) {
+      var want = e.button === 2 || (e.button === 0 && (mode || e.shiftKey || e.ctrlKey || e.metaKey));
+      if (!want || !e.isPrimary) return;
+      e.stopPropagation(); e.preventDefault();
+      drag = { id: e.pointerId, x: e.clientX, y: e.clientY };
+      try { mv.setPointerCapture(e.pointerId); } catch (_) {}
+    }, true);
+    mv.addEventListener("pointermove", function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      e.stopPropagation();
+      var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      drag.x = e.clientX; drag.y = e.clientY;
+      var o = mv.getCameraOrbit(), t = mv.getCameraTarget();
+      var fov = mv.getFieldOfView() * Math.PI / 180;
+      var k = 2 * o.radius * Math.tan(fov / 2) / Math.max(1, mv.clientHeight);
+      var st = Math.sin(o.theta), ct = Math.cos(o.theta), sp = Math.sin(o.phi), cp = Math.cos(o.phi);
+      // 화면 오른쪽 = (cosθ, 0, −sinθ), 화면 위 = (−cosφ·sinθ, sinφ, −cosφ·cosθ)
+      var x = t.x - k * (dx * ct + dy * cp * st);
+      var y = t.y + k * dy * sp;
+      var z = t.z + k * (dx * st - dy * cp * ct);
+      mv.cameraTarget = x + "m " + y + "m " + z + "m";
+      mv.jumpCameraToGoal && mv.jumpCameraToGoal();
+    }, true);
+    function end(e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      e.stopPropagation();
+      drag = null;
+      try { mv.releasePointerCapture(e.pointerId); } catch (_) {}
+    }
+    mv.addEventListener("pointerup", end, true);
+    mv.addEventListener("pointercancel", end, true);
+    mv.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+    mv.addEventListener("dblclick", function (e) {
+      var hit = mv.positionAndNormalFromPoint && mv.positionAndNormalFromPoint(e.clientX, e.clientY);
+      if (hit) mv.cameraTarget = hit.position.toString();
+    });
   }
 
   function init() {

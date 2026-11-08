@@ -84,9 +84,9 @@
 <div class="sim model3d" id="sim-xx-3d" data-model="skeleton" data-orbit="0deg 80deg auto" data-desc="갤러리 카드용 한 문장">
   <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>제목</h3></div>
   <div class="sim-body">
-    <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+    <div class="sim-view model3d-view"><span class="hint">끌기 회전 · Shift·오른쪽 끌기 이동 · 휠 확대 · 두 번 눌러 중심</span></div>
   </div>
-  <div class="model3d-parts"><button type="button" data-part="skull" title="한 줄 설명">머리뼈</button>…<span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="a,b">… 반투명</button><button type="button" data-reset>처음 시점</button></div>
+  <div class="model3d-parts"><button type="button" data-part="skull" title="한 줄 설명">머리뼈</button>…<span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="a,b">… 반투명</button><button type="button" data-pan>이동 모드</button><button type="button" data-reset>처음 시점</button></div>
   <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
   <div class="sim-note">해볼 것: ① … ② … ③ … <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
 </div>
