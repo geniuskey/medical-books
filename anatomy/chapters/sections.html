@@ -1,0 +1,768 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and AnatomyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "CT처럼 몸을 가로·관상·시상면으로 잘라 본다. 영상의 좌우 규칙, 높이별 단면 순례, CT 회색조와 창 설정, 단면 넓이를 쌓아 부피 구하기를 실제 인체 데이터로 익힌다.", "libs": ["sections"]}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>단면으로 보는 몸 · AnatomyBook</title>
+<meta name="description" content="CT처럼 몸을 가로·관상·시상면으로 잘라 본다. 영상의 좌우 규칙, 높이별 단면 순례, CT 회색조와 창 설정, 단면 넓이를 쌓아 부피 구하기를 실제 인체 데이터로 익힌다.">
+<link rel="canonical" href="https://medical.euiyun.com/anatomy/chapters/sections.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#0c8599">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AnatomyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="단면으로 보는 몸 · AnatomyBook">
+<meta property="og:description" content="CT처럼 몸을 가로·관상·시상면으로 잘라 본다. 영상의 좌우 규칙, 높이별 단면 순례, CT 회색조와 창 설정, 단면 넓이를 쌓아 부피 구하기를 실제 인체 데이터로 익힌다.">
+<meta property="og:url" content="https://medical.euiyun.com/anatomy/chapters/sections.html">
+<meta property="og:image" content="https://medical.euiyun.com/anatomy/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/anatomy/chapters/sections.html#chapter","name":"단면으로 보는 몸","headline":"단면으로 보는 몸 · AnatomyBook","description":"CT처럼 몸을 가로·관상·시상면으로 잘라 본다. 영상의 좌우 규칙, 높이별 단면 순례, CT 회색조와 창 설정, 단면 넓이를 쌓아 부피 구하기를 실제 인체 데이터로 익힌다.","url":"https://medical.euiyun.com/anatomy/chapters/sections.html","position":12,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/anatomy/og.png","dateModified":"2026-11-08","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/anatomy/#book","name":"AnatomyBook · 몸의 구조 교과서","url":"https://medical.euiyun.com/anatomy/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AnatomyBook","item":"https://medical.euiyun.com/anatomy/"},{"@type":"ListItem","position":2,"name":"12. 단면으로 보는 몸","item":"https://medical.euiyun.com/anatomy/chapters/sections.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/atlas-data.js"></script>
+<script src="../js/atlas.js"></script>
+<script src="../js/sections-data.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="anatomy"></script>
+<!--head:end-->
+<style>
+  .se-presets { display: flex; flex-wrap: wrap; gap: 4px; }
+  .se-presets button { font: inherit; font-size: 12.5px; padding: 4px 9px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); cursor: pointer; }
+  .se-presets button.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent, #fff); font-weight: 600; }
+  .se-small { font-size: 13.5px; color: var(--text-dim); margin: 4px 0 0; }
+  .map-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; border: 1px solid rgba(127,127,127,.45); }
+</style>
+</head>
+<body data-chapter="sections">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 12</div>
+    <h1>단면으로 보는 몸</h1>
+    <p class="lead">병원에서 찍는 CT와 MRI는 몸을 얇은 판으로 썰어 한 장씩 보여 준다. 처음 보는 사람에게 CT 영상은 회색 얼룩의 모음이지만, 해부학을 아는 사람에게는 지도다. 이 장은 실제 한 사람의 3D 데이터를 높이마다 잘라 보며 단면 읽는 법을 익힌다. 영상의 좌우 규칙, 높이마다 바뀌는 장기의 배치, 조직마다 다른 CT의 밝기, 그리고 단면을 쌓아 부피를 구하는 방법까지 다룬다.</p>
+    <ul class="objectives">
+      <li>CT 가로면이 발 쪽에서 올려다본 모습이라는 약속을 알고, 영상에서 환자의 오른쪽을 바로 찾는다.</li>
+      <li>눈·목·가슴·위배·배꼽·골반·넙다리 높이의 가로면에서 주요 구조를 짚는다.</li>
+      <li>CT의 밝기가 조직의 X선 흡수(하운스필드 단위)를 나타낸다는 것과 창(window) 설정의 뜻을 안다.</li>
+      <li>같은 장기가 가로면·관상면·시상면에서 어떻게 다르게 보이는지 비교한다.</li>
+      <li>단면 넓이를 두께만큼 쌓아 부피를 구하는 카발리에리 원리를 데이터로 확인한다.</li>
+    </ul>
+  </header>
+
+  <section id="why">
+    <h2>몸을 얇게 써는 이유</h2>
+    <p>3D 모델은 돌려 볼 수 있지만 속을 보려면 겉을 걷어 내야 한다. 단면은 반대다. 한 높이에서 몸을 자르면 피부부터 척주까지 그 높이에 있는 모든 것이 한 화면에 동시에 들어온다. 무엇이 무엇의 앞에 있고, 무엇이 무엇에 붙어 있는지가 그대로 보인다. 그래서 의학 영상은 거의 모두 단면이다.</p>
+    <p><span class="term">컴퓨터단층촬영</span><span class="en">(CT, Computed tomography)</span>은 몸 둘레를 돌며 X선을 쏘아 각 점이 X선을 얼마나 막는지 계산해 단면 영상을 만든다. 단층(tomo-)은 그리스어로 "자른 조각"이라는 뜻이다. <span class="term">자기공명영상</span><span class="en">(MRI, Magnetic resonance imaging)</span>은 X선 대신 자기장과 전파로 물 분자의 신호를 읽는다. 둘 다 결과는 얇은 판의 더미다.</p>
+    <p>아래 모델에서 피부와 근육을 끄고 몸을 돌려 보자. 다음 절부터는 이 몸을 높이마다 잘라 본다. 3D에서 본 장기의 위치를 기억해 두면 단면에서 그것을 찾기가 훨씬 쉽다.</p>
+
+    <div class="sim model3d" id="sim-se-3d" data-model="systems" data-orbit="0deg 80deg auto" data-desc="몸 전체 3D 모델에서 피부·근육·뼈대를 끄고 장기의 높이와 앞뒤 배치를 익혀, 단면에서 무엇이 보일지 미리 짐작한다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>자르기 전에 돌려 보기</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="skin" title="반투명한 피부">피부</button><button type="button" data-part="muscles" title="골격근">근육</button><button type="button" data-part="skeleton" title="뼈대">뼈대</button><button type="button" data-part="arteries" title="동맥">동맥</button><button type="button" data-part="organs" title="심장, 기관지, 위, 창자, 콩팥, 방광, 지라, 이자">장기</button><button type="button" data-part="liver" title="간">간</button><button type="button" data-part="brain" title="뇌">뇌</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="muscles,skeleton">근육·뼈 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 근육을 끄고 옆으로 돌려, 장기가 몸통의 앞쪽에, 콩팥과 척주가 뒤쪽에 있는 것을 본다. 가로면에서 앞뒤 순서가 그대로 보일 것이다. ② 간의 위끝이 갈비뼈 안쪽 어디까지 올라가 있는지 본다. 심장과 간이 한 높이에서 함께 잘릴 수 있을까? ③ 모델을 아래에서 올려다보는 각도로 돌려 본다. CT 가로면은 바로 이 방향에서 본 모습이다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+  </section>
+
+  <section id="orient">
+    <h2>영상의 약속: 발 쪽에서 올려다본다</h2>
+    <p>CT 가로면을 처음 볼 때 가장 많이 틀리는 것이 좌우다. 약속은 하나다. <b>가로면 영상은 누워 있는 환자를 발치에서 머리 쪽으로 올려다본 모습</b>이고, 앞(배)이 화면 위에 온다. 그러면 환자의 오른쪽은 화면의 왼쪽에 온다. 마주 보고 선 사람의 오른손이 내 왼쪽에 있는 것과 같다(<a href="language.html">1장</a>).</p>
+    <p>그래서 정상적인 배 CT에서 간은 화면 왼쪽에, 지라와 위는 화면 오른쪽에 보인다. 심장의 끝(심장끝)도 화면 오른쪽을 향한다. 환자가 엎드려 찍었거나 그림을 머리 쪽에서 본 모습으로 그렸다면 이 관계가 뒤집힌다. 아래 연습에서 영상마다 환자의 오른쪽을 찾아보자. 간과 심장끝이 가장 좋은 단서다.</p>
+
+    <div class="sim" id="sim-se-orient" data-desc="표준 CT, 머리 쪽에서 본 그림, 엎드려 찍은 영상이 섞여 나오는 가로 단면에서 환자의 오른쪽을 눌러 맞히며 영상의 좌우 약속을 익힌다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>환자의 오른쪽은 어느 쪽인가?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="se-or-cv" class="drag"></canvas><span class="hint">환자의 오른쪽 절반을 누른다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>문제 종류</span><div class="seg" id="se-or-mode"><button data-value="mix" class="on">섞어서</button><button data-value="supine">표준(바로 누움)</button><button data-value="head">머리 쪽에서 본 그림</button><button data-value="prone">엎드려 찍음</button></div></div>
+          <div class="btn-row"><button class="btn primary" id="se-or-next">다음 문제</button><button class="btn" id="se-or-reset">점수 지우기</button></div>
+          <p class="se-small">아래쪽 회색 막대는 CT 검사대다. 검사대는 늘 몸의 아래(바닥 쪽)에 있다.</p>
+        </div>
+      </div>
+      <div class="info-panel" id="se-or-info">영상 설명을 읽고 환자의 오른쪽 절반을 누른다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">맞힘</span><span class="v" id="se-or-ok">0</span></div>
+        <div class="stat"><span class="k">틀림</span><span class="v" id="se-or-no">0</span></div>
+        <div class="stat"><span class="k">이번 영상</span><span class="v" id="se-or-kind" style="font-size:16px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "표준"으로 다섯 문제를 풀며 간이 늘 화면 왼쪽에 있는 것을 확인한다. ② "엎드려 찍음"에서는 앞이 화면 아래로 가고 좌우도 바뀐다. 영상을 180도 돌린 것과 같다. ③ "섞어서"에서 단서(간, 심장끝, 위의 공기 자리)만 보고 빠르게 판단해 본다. (단면은 실제 데이터를 자른 것이고, 엎드린 자세에서 장기가 처지는 변화는 반영하지 않았다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>영상에는 대개 R이나 L 표시가 찍혀 있지만, 표시가 없어도 해부학이 답을 준다. 간이 있는 쪽이 오른쪽이다(아주 드물게 장기가 거울처럼 뒤바뀐 사람도 있다). 영상을 보면 먼저 "어느 쪽에서 본 그림인가"를 확인하고, 그다음에 단서로 좌우를 검산하는 습관을 들이자.</p>
+  </section>
+
+  <section id="tour">
+    <h2>높이별 가로면 순례</h2>
+    <p>이제 이 책의 대표 시뮬레이터다. 왼쪽의 작은 몸 지도에서 절단선을 위아래로 끌면 오른쪽에 그 높이의 단면이 나온다. 단면 위의 조직을 누르면 이름과 그 높이에서의 단면 넓이가 나온다. 아래 단추로 해부학에서 자주 보는 여덟 높이로 바로 갈 수 있다. "CT"와 "색"을 바꾸며 같은 단면을 두 가지로 읽어 보자.</p>
+
+    <div class="sim" id="sim-se-ct" data-big data-desc="CT처럼 몸을 가로·관상·시상면으로 자르는 뷰어: 몸 지도 위 절단선을 끌거나 눈·목·가슴·심장·간·콩팥·골반·넙다리 높이로 바로 가고, CT 회색조와 색을 바꾸며 단면 위 조직을 눌러 이름과 넓이를 확인한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>CT 뷰어: 몸을 한 장씩 넘기기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="se-ct-cv" class="drag"></canvas><span class="hint">왼쪽 절단선을 끌고, 단면을 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="se-ct-plane"><button data-value="axial" class="on">가로면</button><button data-value="coronal">관상면</button><button data-value="sagittal">시상면</button></div>
+          <div class="seg" id="se-ct-mode"><button data-value="ct" class="on">CT 회색</button><button data-value="color">색</button></div>
+          <label class="ctrl"><span>위치 <output id="se-ct-lev-out"></output></span><input type="range" id="se-ct-lev" min="-60" max="1630" step="10" value="1110"></label>
+          <div class="ctrl"><span>가로면 높이 바로 가기</span><div class="se-presets" id="se-ct-pre"></div></div>
+        </div>
+      </div>
+      <div class="map-legend" id="se-ct-legend"></div>
+      <div class="info-panel" id="se-ct-info">단면 위의 조직을 누르면 이름과 설명이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">자른 면</span><span class="v" id="se-ct-o-p" style="font-size:16px">—</span></div>
+        <div class="stat"><span class="k">위치</span><span class="v" id="se-ct-o-l" style="font-size:16px">—</span></div>
+        <div class="stat"><span class="k">고른 조직</span><span class="v" id="se-ct-o-k" style="font-size:16px">—</span></div>
+        <div class="stat"><span class="k">그 조직의 단면 넓이</span><span class="v" id="se-ct-o-a">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "심장" 높이에서 심장이 가운데보다 화면 오른쪽(몸의 왼쪽)으로 치우친 것을 본다. 한 칸(1 cm)씩 내려가며 심장이 사라지고 간이 나타나는 높이를 찾는다. 횡격막의 둥근 지붕 때문에 둘이 겹치는 높이가 있다. ② "간·위"에서 간(몸의 오른쪽)과 위·지라(몸의 왼쪽)를, "콩팥·배꼽"에서 척주 양옆의 콩팥을 찾는다. 콩팥은 몸의 뒤쪽 벽에 붙어 있다. ③ 관상면으로 바꿔 위치를 −90 mm 근처로 두면 간·위·창자가, −40 mm 근처로 두면 콩팥과 척주가 보인다. 시상면은 0에서 척주와 방광이 한 줄로 늘어선다. (폐는 데이터에 없어 기관지 나무의 볼록 껍질로 어림했다. 그래서 실제보다 작다. 갑상선과 목의 속목·바깥목동맥도 데이터에 없다. "몸"은 피부 안쪽에서 데이터에 따로 없는 조직 전부다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>위에서 아래로 넘겨 보면 몇 가지 규칙이 보인다. 뼈는 늘 단면의 뒤쪽 가운데(척주)에 기둥처럼 있고, 장기는 그 앞에 모인다. 가슴에서는 검은 폐가 단면의 대부분을 차지하고 심장이 가운데에서 왼쪽으로 앉아 있다. 횡격막을 지나면 오른쪽에 간, 왼쪽에 위와 지라가 나타난다. 배꼽 높이에서는 창자가 앞을, 콩팥과 큰허리근이 척주 양옆 뒤를 채운다. 골반으로 내려가면 볼기뼈가 넓게 벌어지고 그 안에 방광이 앉는다. 넙다리에서는 뼈 하나를 근육이 두껍게 감싼 단면 두 개만 남는다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>높이</th><th>대략의 척추 높이(교과서)</th><th>이 단면에서 찾을 것</th></tr></thead>
+      <tbody>
+        <tr><td>눈</td><td>머리뼈 안</td><td>눈알, 뇌의 아래쪽, 머리뼈</td></tr>
+        <tr><td>목</td><td>목뼈 C6~C7 근처</td><td>목뼈, 기관(앞), 식도(기관 뒤), 목의 근육. 갑상선은 데이터에 없다</td></tr>
+        <tr><td>가슴 위</td><td>등뼈 T3~T4 근처</td><td>대동맥활과 그 가지, 기관, 폐의 위쪽</td></tr>
+        <tr><td>심장</td><td>등뼈 T6~T8 근처</td><td>심장(가운데에서 왼쪽), 양쪽 폐, 내림대동맥, 식도</td></tr>
+        <tr><td>간·위</td><td>등뼈 T10~T11 근처</td><td>간(오른쪽), 위와 지라(왼쪽), 대동맥(척주 앞)</td></tr>
+        <tr><td>콩팥·배꼽</td><td>허리뼈 L1~L3 근처</td><td>콩팥, 이자, 큰창자, 작은창자, 큰허리근</td></tr>
+        <tr><td>골반</td><td>엉치뼈 아래, 엉덩관절 근처</td><td>볼기뼈, 방광, 곧창자, 볼기근</td></tr>
+        <tr><td>넙다리</td><td>(척추 아래)</td><td>넙다리뼈, 넙다리네갈래근(앞), 뒤넙다리근(뒤), 모음근(안쪽)</td></tr>
+      </tbody>
+    </table></div>
+    <p>척추 높이는 사람마다, 숨을 들이쉬었는지 내쉬었는지에 따라 한두 마디씩 달라진다. 표의 척추 높이는 교과서의 대략값이고, 뷰어의 높이는 이 데이터의 모델에서 그 구조들이 함께 보이는 곳을 고른 것이다.</p>
+  </section>
+
+  <section id="ct-gray">
+    <h2>CT의 회색: 조직마다 다른 밝기</h2>
+    <p>CT 영상의 밝기는 그 자리가 X선을 얼마나 막는지를 나타낸다. 이 값을 물을 0, 공기를 −1,000으로 맞춘 눈금이 <span class="term">하운스필드 단위</span><span class="en">(HU, Hounsfield unit)</span>다. CT를 처음 만든 공학자 하운스필드의 이름에서 왔다. 교과서의 대략값으로 공기는 약 −1,000, 폐는 약 −900~−500, 지방은 약 −100, 물과 쓸개즙·소변은 약 0, 근육과 간 같은 연부조직은 약 +40~+60, 조영제가 든 혈관은 약 +150~+300, 뼈는 약 +400~+1,000 이상이다.</p>
+    <p>문제는 눈금의 폭이다. −1,000부터 +1,000까지를 화면의 검정~흰색에 고르게 나누면, 차이가 수십 HU밖에 안 되는 간과 근육과 지라는 모두 같은 회색이 된다. 그래서 영상을 볼 때 <span class="term">창</span><span class="en">(Window: 폭 W, 중심 L)</span>을 정한다. 중심 L 둘레의 폭 W만 검정에서 흰색으로 펼치고, 그보다 낮으면 검정, 높으면 흰색으로 칠한다. 아래에서 창을 바꿔 보자.</p>
+
+    <div class="sim" id="sim-se-hu" data-desc="조직마다 대략의 하운스필드 값을 주고 창의 폭과 중심을 바꾸며 같은 단면을 연부조직 창, 폐 창, 뼈 창으로 다시 칠해, CT 회색조가 어떻게 정해지는지 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>창을 바꾸면 보이는 것이 달라진다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="se-hu-cv" class="drag"></canvas><span class="hint">아래 눈금의 손잡이를 끈다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>창 바로 고르기</span><div class="seg" id="se-hu-pre"><button data-value="soft" class="on">연부조직</button><button data-value="lung">폐</button><button data-value="bone">뼈</button><button data-value="full">전체</button></div></div>
+          <label class="ctrl"><span>창 폭 W <output id="se-hu-w-out"></output></span><input type="range" id="se-hu-w" min="40" max="2600" step="10" value="400"></label>
+          <label class="ctrl"><span>창 중심 L <output id="se-hu-l-out"></output></span><input type="range" id="se-hu-l" min="-1000" max="1000" step="10" value="40"></label>
+          <div class="seg" id="se-hu-lev"><button data-value="1230" class="on">가슴</button><button data-value="1080">위배</button><button data-value="1000">배꼽</button></div>
+          <label class="check"><input type="checkbox" id="se-hu-con"> 조영제 주사</label>
+        </div>
+      </div>
+      <div class="info-panel" id="se-hu-info">단면의 조직을 누르면 대략의 HU와 이 창에서의 밝기가 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">보이는 범위</span><span class="v" id="se-hu-o-r">—</span></div>
+        <div class="stat"><span class="k">검정으로 뭉친 조직</span><span class="v" id="se-hu-o-b" style="font-size:15px">—</span></div>
+        <div class="stat"><span class="k">흰색으로 뭉친 조직</span><span class="v" id="se-hu-o-w" style="font-size:15px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "전체"를 고르면 연부조직이 모두 비슷한 회색이 된다. "연부조직"(W 400, L 40)으로 바꾸면 간·지라·근육이 갈라진다. ② "폐"(W 1,500, L −600)에서는 폐의 검정 속 차이가 보이지만 장기는 모두 흰색에 가깝게 뭉친다. ③ "조영제 주사"를 켜면 혈관과 심장 안의 피가 밝아진다. 핏줄을 장기와 구별하려고 조영제를 쓰는 이유다. (HU는 교과서의 대략값을 조직마다 하나씩 준 것이다. 실제 CT에서는 같은 조직 안에서도 값이 흩어지고, 위와 창자 안의 공기·음식물은 이 데이터에 없다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>같은 촬영 자료라도 창을 바꾸면 전혀 다른 영상이 된다. 영상의학과 의사는 한 검사를 연부조직 창, 폐 창, 뼈 창으로 여러 번 본다. 이 책의 뷰어(<code>CT 회색</code> 모드)는 연부조직 창과 비슷한 고정된 밝기를 쓴다. 지방이 어둡고, 장기와 근육이 중간 회색, 뼈가 흰색인 이유다.</p>
+    <div class="callout tip"><strong>MRI는 왜 다르게 보이나</strong> MRI의 밝기는 X선 흡수가 아니라 조직 속 물과 지방의 수소 원자가 내는 신호의 세기와 그 신호가 사라지는 속도로 정해진다. 그래서 같은 MRI 검사에서도 촬영 방식(T1, T2 등)에 따라 물이 검게도 희게도 보이고, 뼈의 바깥층은 거의 검다. 단면의 해부학은 같고 색칠의 규칙만 다르다.</div>
+  </section>
+
+  <section id="planes">
+    <h2>같은 장기, 세 개의 단면</h2>
+    <p>CT는 가로면으로 찍지만 컴퓨터로 관상면과 시상면을 다시 만들 수 있다. 무릎이나 척주의 MRI는 처음부터 시상면과 관상면을 많이 쓴다. 같은 장기도 어느 면으로 자르느냐에 따라 모양이 전혀 다르다. 콩팥은 가로면에서 둥근 강낭콩의 단면이지만, 관상면에서는 위아래로 긴 강낭콩 전체가 보인다.</p>
+    <p>아래 모델과 시뮬레이터를 함께 보자. 위 3D 모델에서 장기의 모양을 확인하고, 아래에서 그 장기의 무게중심을 지나는 세 단면을 나란히 본다.</p>
+
+    <div class="sim model3d" id="sim-se-3d-abd" data-model="abdomen" data-orbit="0deg 75deg auto" data-desc="배의 장기 3D 모델에서 간·위·지라·이자·콩팥을 하나씩 남기며, 바로 아래 시뮬레이터의 세 단면과 같은 장기의 모양을 견주어 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>배의 장기를 3D로</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="liver" title="몸의 오른쪽 위">간</button><button type="button" data-part="gallbladder" title="간 아래면의 주머니">쓸개</button><button type="button" data-part="stomach" title="몸의 왼쪽 위">위</button><button type="button" data-part="spleen" title="왼쪽 뒤">지라</button><button type="button" data-part="pancreas" title="위 뒤에 가로로 누운 샘">이자</button><button type="button" data-part="smallint" title="작은창자">작은창자</button><button type="button" data-part="largeint" title="큰창자">큰창자</button><button type="button" data-part="kidneys" title="배막 뒤 척주 양옆">콩팥</button><button type="button" data-part="bladder" title="골반 안">방광</button><button type="button" data-part="skeleton" title="허리뼈·골반·아래 갈비뼈(반투명)">뼈대</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="liver,stomach">간·위 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 큰창자와 작은창자를 끄고 콩팥을 본다. 위아래로 길고, 위끝이 안쪽으로 기울어 있다. ② 간을 반투명하게 하고 옆으로 돌려 간이 앞뒤로 얼마나 두꺼운지 본다. ③ 아래 시뮬레이터에서 같은 장기를 고르고, 3D에서 본 모양이 세 단면 중 어디에 가장 잘 나오는지 찾는다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <div class="sim" id="sim-se-three" data-desc="간·콩팥·심장·위·뇌·방광 가운데 하나를 고르면 그 장기의 무게중심을 지나는 가로면·관상면·시상면을 나란히 보여 주고, 면마다 단면 넓이와 장기의 세 방향 크기를 비교한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>세 방향으로 자른 한 장기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="se-th-cv" class="drag"></canvas><span class="hint">단면을 누르면 조직 이름이 나온다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>장기</span><div class="seg" id="se-th-org"><button data-value="liver" class="on">간</button><button data-value="kidney">콩팥(오른쪽)</button><button data-value="heart">심장</button><button data-value="stomach">위</button><button data-value="brain">뇌</button><button data-value="bladder">방광</button></div></div>
+          <div class="seg" id="se-th-mode"><button data-value="color" class="on">색</button><button data-value="ct">CT 회색</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="se-th-info">단면 위를 누르면 조직 이름이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">크기 좌우 × 앞뒤 × 위아래</span><span class="v" id="se-th-o-s" style="font-size:16px">—</span></div>
+        <div class="stat"><span class="k">가장 넓게 잘린 면</span><span class="v" id="se-th-o-m" style="font-size:16px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 콩팥을 골라 가로면(둥근 단면)과 관상면(긴 강낭콩)을 견준다. 위아래 길이가 좌우 폭의 거의 두 배다. ② 간은 세 방향 모두 15 cm가 넘는 큰 덩어리라 어느 면으로 잘라도 단면이 넓다. 무게중심 높이의 가로면보다 시상면과 관상면이 더 넓게 잘리는 것을 확인한다. ③ 뇌를 고르면 시상면이 뜻밖에 작다. 정중선(x = 0)이 좌우 대뇌반구 사이의 깊은 틈(대뇌세로틈)을 지나서 뇌 조직이 조금만 잘린다. 같은 장기라도 자르는 자리 1 cm가 결과를 바꾼다. (단면은 장기의 무게중심을 지나는 면에서 가장 가까운 1 cm 간격의 면이다. 크기는 경계 상자의 변 길이다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>한 장의 단면만 보고 장기의 모양을 판단하면 틀리기 쉽다. 가로면에서 작게 보인 콩팥이 실제로 작은 것이 아니라 위아래로 길 뿐일 수 있다. 그래서 영상은 늘 여러 장을 넘기며, 필요하면 다른 면으로도 본다. 머릿속에서 단면 더미를 3D로 다시 쌓는 능력이 해부학과 영상 읽기의 핵심이다.</p>
+  </section>
+
+  <section id="cavalieri">
+    <h2>단면을 쌓아 부피 구하기</h2>
+    <p>단면 더미는 모양뿐 아니라 부피도 알려 준다. 두께 Δz인 판 하나의 부피는 단면 넓이 × 두께다. 판을 모두 더하면 전체 부피가 된다. 17세기 이탈리아 수학자 카발리에리가 정리한 생각이라 <span class="term">카발리에리 원리</span><span class="en">(Cavalieri's principle)</span>라고 부른다. 실제로 영상의학에서 장기나 종양의 부피를 잴 때 이 방법을 쓴다.</p>
+    <div class="formula">$$V \approx \sum_{i} A_i\,\Delta z$$<div class="where">\(A_i\): i번째 단면에서 그 장기의 넓이(mm²), \(\Delta z\): 단면 사이 간격(mm, 이 데이터는 10 mm), \(V\): 부피(mm³, 1,000 mm³ = 1 mL)</div></div>
+    <p>아래에서 장기를 고르고 간격을 바꿔 보자. 왼쪽 막대 하나가 판 하나다. 쌓은 부피를 3D 메시에서 직접 계산한 부피(<a href="data.html">13장</a>)와 견준다.</p>
+
+    <div class="sim" id="sim-se-cav" data-desc="간·위·지라·콩팥·심장·뇌·방광·몸 전체의 가로 단면 넓이를 1~8 cm 간격으로 쌓아 부피를 구하고, 3D 메시에서 계산한 부피와 견주어 카발리에리 원리와 그 오차를 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>단면 넓이 × 두께를 쌓으면 부피</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="se-cv-cv" class="drag"></canvas><span class="hint">막대를 눌러 그 단면을 본다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>장기</span><select id="se-cv-org">
+            <option value="liver">간</option><option value="stomach">위</option><option value="spleen">지라</option><option value="kidney">콩팥(양쪽)</option><option value="heart">심장 벽</option><option value="brain">뇌</option><option value="bladder">방광</option><option value="body">몸 전체</option>
+          </select></label>
+          <div class="ctrl"><span>단면 간격 Δz</span><div class="seg" id="se-cv-dz"><button data-value="10" class="on">1 cm</button><button data-value="20">2 cm</button><button data-value="40">4 cm</button><button data-value="80">8 cm</button></div></div>
+          <p class="se-small">간격이 넓어지면 단면 수가 줄어 계산은 빨라지지만, 판의 시작 위치에 따라 결과가 흔들린다.</p>
+        </div>
+      </div>
+      <div class="info-panel" id="se-cv-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">쓴 단면 수</span><span class="v" id="se-cv-o-n">—</span></div>
+        <div class="stat"><span class="k">쌓은 부피 ΣAΔz</span><span class="v" id="se-cv-o-v">—</span></div>
+        <div class="stat"><span class="k">메시로 잰 부피</span><span class="v" id="se-cv-o-m">—</span></div>
+        <div class="stat"><span class="k">차이</span><span class="v" id="se-cv-o-d">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 위, 지라, 콩팥을 1 cm 간격으로 쌓으면 메시 부피와 몇 % 안에서 맞는다. ② 간격을 8 cm로 넓히면 단면이 두세 장뿐이라 오차가 커진다. 작은 장기일수록 촘촘히 잘라야 한다. ③ 간과 뇌는 1 cm로도 크게 모자란다. 간은 메시가 닫혀 있지 않아(열린 메시) 몇몇 단면이 제대로 칠해지지 않고, 뇌는 이랑 수십 개의 조각을 합친 주름진 모양이라 단면 데이터를 가볍게 만들려고 면 수를 줄일 때 주름이 깎이고, 조각끼리 겹친 곳을 단면은 한 번만 센다(메시 부피는 두 번 센다). 데이터의 한계가 숫자로 드러나는 예다. <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>단면을 쌓는 방법은 메시가 깔끔하게 닫혀 있지 않아도, 장기의 모양이 아무리 구불구불해도 쓸 수 있다는 장점이 있다. 대신 단면의 간격과 단면을 그릴 때 다듬은 정도가 오차를 만든다. 13장에서는 같은 원리로 피부 껍질만 있는 몸의 부피를 구한다.</p>
+
+    <div class="casefile">
+      <div class="tag"><b>DATA</b><span>데이터로 확인하기 · 12장</span></div>
+      <h4>간은 CT 몇 장에 걸쳐 보일까?</h4>
+      <p>이 데이터의 모델에서 간은 위아래로 <b id="se-dc-h">—</b>에 걸쳐 있다. 1 cm 간격의 가로면 가운데 간이 보이는 것은 <b id="se-dc-n">—</b>이다. 흔히 쓰는 5 mm 두께로 찍는다면 그 두 배인 약 <b id="se-dc-n5">—</b>의 영상에 간이 나온다. 간의 단면이 가장 넓은 높이는 발바닥에서 <b id="se-dc-z">—</b>이고, 그 넓이는 <b id="se-dc-a">—</b>로 같은 높이 몸 단면의 <b id="se-dc-r">—</b>를 차지한다.</p>
+      <div class="clue"><div><b>데이터가 보여 준 것</b>간은 위아래로는 한 뼘이 안 되지만 좌우로 넓게 퍼진 장기라, 가장 넓은 단면에서는 몸통 단면의 큰 몫을 차지한다.</div><div><b>데이터의 한계</b>이 모델의 간은 메시가 닫혀 있지 않아 일부 단면에서 넓이가 덜 잡힌다. 숨을 들이쉬면 횡격막과 함께 간도 몇 cm 내려간다.</div><div><b>다음 장에서</b>이 책의 모든 숫자가 나온 데이터 자체를 들여다본다. 메시로 부피를 재는 방법과 그 한계.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>CT 가로면은 누운 환자를 발치에서 올려다본 모습이다. 앞이 위, 환자의 오른쪽이 화면 왼쪽이다. 간은 화면 왼쪽, 지라와 심장끝은 화면 오른쪽에 온다.</li>
+      <li>가로면에서 척주는 늘 뒤쪽 가운데에, 장기는 그 앞에 있다. 높이에 따라 폐와 심장 → 간·위·지라 → 콩팥과 창자 → 방광과 골반 → 넙다리로 바뀐다.</li>
+      <li>CT의 밝기는 X선 흡수(HU)다. 공기 약 −1,000, 지방 약 −100, 물 0, 연부조직 약 +40~60, 뼈 수백 이상. 창(폭과 중심)을 정해 보고 싶은 범위만 회색으로 펼친다.</li>
+      <li>같은 장기도 면에 따라 모양이 다르다. 한 장으로 판단하지 말고 여러 장, 여러 면을 본다.</li>
+      <li>단면 넓이 × 간격을 쌓으면 부피가 된다(카발리에리 원리). 간격이 촘촘할수록 정확하고, 데이터의 빈 곳은 오차로 드러난다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 표준 배 CT 가로면 영상에서 간은 대개 화면의 어느 쪽에 보이는가?</p>
+        <div class="opts"><button class="opt">화면 오른쪽</button><button class="opt" data-correct>화면 왼쪽</button><button class="opt">화면 위쪽 가운데</button><button class="opt">화면 아래쪽 가운데</button></div>
+        <div class="quiz-exp">가로면은 발 쪽에서 올려다본 모습이라 환자의 오른쪽이 화면 왼쪽에 온다. 간은 몸의 오른쪽에 있으므로 화면 왼쪽에 보인다.</div></div>
+      <div class="quiz-q"><p>2. CT에서 가장 어둡게(검게) 보이는 것은?</p>
+        <div class="opts"><button class="opt">지방</button><button class="opt">근육</button><button class="opt" data-correct>폐 속의 공기</button><button class="opt">뼈</button></div>
+        <div class="quiz-exp">공기는 X선을 거의 막지 않아 약 −1,000 HU로 가장 어둡다. 지방은 약 −100으로 어두운 회색, 근육은 중간 회색, 뼈는 흰색이다.</div></div>
+      <div class="quiz-q"><p>3. 간과 지라와 근육의 경계를 잘 보려면 어떤 창이 알맞은가?</p>
+        <div class="opts"><button class="opt" data-correct>폭이 좁고 중심이 약 +40 HU인 창</button><button class="opt">폭이 아주 넓고 중심이 0인 창</button><button class="opt">중심이 약 −600 HU인 창</button><button class="opt">중심이 약 +700 HU인 창</button></div>
+        <div class="quiz-exp">연부조직끼리는 HU 차이가 수십밖에 안 된다. 그 근처(약 +40)를 중심으로 좁은 폭(약 400)만 회색으로 펼쳐야 차이가 눈에 보인다. −600 중심은 폐 창, +700 근처는 뼈 창이다.</div></div>
+      <div class="quiz-q"><p>4. 콩팥의 위아래로 긴 강낭콩 모양 전체를 한 장에서 보기 가장 좋은 면은?</p>
+        <div class="opts"><button class="opt">가로면</button><button class="opt" data-correct>관상면</button><button class="opt">정중시상면</button><button class="opt">어느 면이든 같다</button></div>
+        <div class="quiz-exp">관상면은 몸을 앞뒤로 나누는 면이라 위아래·좌우가 함께 보인다. 콩팥은 척주 양옆에 있어 정중시상면에는 잡히지 않는다.</div></div>
+      <div class="quiz-q"><p>5. 어떤 장기를 1 cm 간격의 가로면 12장에서 재었더니 단면 넓이의 합이 9,000 mm²였다. 카발리에리 원리로 어림한 부피는?</p>
+        <div class="opts"><button class="opt">9 mL</button><button class="opt">12 mL</button><button class="opt" data-correct>90 mL</button><button class="opt">900 mL</button></div>
+        <div class="quiz-exp">V ≈ ΣA × Δz = 9,000 mm² × 10 mm = 90,000 mm³ = 90 mL(1 mL = 1,000 mm³). 이 모델의 지라나 콩팥 하나와 비슷한 크기다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var BONES = ["skull", "spine", "ribcage", "pelvis", "armbones_r", "armbones_l", "legbones_r", "legbones_l"];
+  var ORG = ["brain", "heart", "airway", "liver", "stomach", "spleen", "pancreas", "kidneys", "smallint", "largeint", "bladder"];
+  var RANGE = { axial: [-60, 1630], coronal: [-240, 40], sagittal: [-330, 330] };
+  var CTBG = "#9aa6bf";
+  var DESC = {
+    body: "피부와 피하 지방, 그리고 이 데이터에 따로 없는 조직(근막, 작은 혈관, 신경, 림프절 등). 지방은 물보다 X선을 덜 막아 CT에서 어두운 회색이다.",
+    lung: "폐. 이 데이터에는 폐 실질이 없어 좌우 기관지 나무를 감싸는 볼록 껍질로 어림했다. 실제 폐는 이보다 훨씬 커서 갈비뼈 안쪽을 가득 채운다. 공기가 차 있어 CT에서 검다.",
+    muscle: "골격근. 뼈에 붙어 몸을 움직인다. CT에서 중간 회색.",
+    bone: "뼈(갈비연골 포함). 칼슘이 많아 X선을 가장 많이 막으므로 CT에서 흰색이다.",
+    disc: "척추원반(추간판). 척추뼈 몸통 사이의 섬유연골 방석.",
+    brain: "뇌. 이 데이터는 겉질(회색질)과 속질(백질)을 한 덩어리로 다룬다.",
+    ventricle: "뇌실. 뇌척수액이 찬 공간이라 CT에서 뇌보다 어둡다.",
+    eye: "눈알. 속을 채운 유리체는 대부분 물이다.",
+    cord: "척수. 척주관 안을 지나는 신경 기둥. 원본에는 척수의 중심관 모양만 있어, 그것을 부풀려 척수의 굵기를 어림했다.",
+    heart: "심장 벽(심근). 단면에서 두꺼운 고리가 왼심실이다.",
+    blood: "심장 안의 피(심방과 심실의 안). 조영제를 주사하면 밝아진다.",
+    artery: "큰 동맥(대동맥, 폐동맥줄기, 온목·빗장밑·위팔·온엉덩·넙다리동맥).",
+    vein: "큰 정맥(위·아래대정맥, 팔머리정맥, 속목정맥, 문맥, 홀정맥, 엉덩·넙다리정맥).",
+    airway: "기관과 기관지. 속이 공기라 검다. 식도보다 앞에 있다.",
+    esophagus: "식도. 기관 뒤, 척주와 대동맥 앞을 지나 위로 간다.",
+    liver: "간. 몸의 오른쪽 위, 횡격막 바로 아래를 채우는 가장 큰 장기.",
+    gallbladder: "쓸개. 간 아래면에 붙은 주머니. 쓸개즙은 물에 가까워 간보다 어둡다.",
+    stomach: "위. 몸의 왼쪽 위, 횡격막 아래.",
+    spleen: "지라. 몸의 왼쪽 뒤, 위의 뒤가쪽에 있다.",
+    pancreas: "이자. 위 뒤에 가로로 누운 샘. 배막 뒤 기관이다.",
+    kidney: "콩팥. 배막 뒤, 척주 양옆의 뒤쪽 벽에 붙어 있다. 오른쪽이 조금 낮다.",
+    adrenal: "부신. 콩팥 위끝에 얹힌 작은 샘.",
+    smallint: "작은창자. 배의 가운데와 아래를 채운다.",
+    largeint: "큰창자와 곧창자. 배의 가장자리를 액자처럼 돈다.",
+    bladder: "방광. 골반 안, 두덩결합 뒤.",
+    prostate: "전립샘. 방광 바로 아래에서 요도를 감싼다.",
+  };
+  function pathR(ctx, T, rings) {
+    ctx.beginPath();
+    rings.forEach(function (r) { for (var i = 0; i < r.length; i += 2) { var x = T.X(r[i]), y = T.Y(r[i + 1]); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); } ctx.closePath(); });
+  }
+  function levLabel(plane, L) {
+    if (plane === "axial") return "발바닥에서 " + AT.fmtLen(L - AT.body.bottom) + " (키의 " + Math.round((L - AT.body.bottom) / AT.body.height * 100) + " %)";
+    if (plane === "coronal") return "y = " + L + " mm (" + (L < -110 ? "앞쪽" : L > -40 ? "뒤쪽" : "몸통 가운데") + ")";
+    return "x = " + L + " mm (" + (Math.abs(L) < 15 ? "정중선" : L < 0 ? "몸의 오른쪽" : "몸의 왼쪽") + ")";
+  }
+  function cm2(mm2) { return mm2 >= 100 ? Math.round(mm2 / 100) + " cm²" : (mm2 / 100).toFixed(1) + " cm²"; }
+
+  /* ---------------- 1. 좌우 연습 ---------------- */
+  (function () {
+    var LEVELS = [1230, 1210, 1140, 1110, 1080, 1060];
+    var KIND = { supine: "표준 CT(바로 누움, 발 쪽에서 봄)", head: "머리 쪽에서 내려다본 그림", prone: "엎드려 찍은 CT(발 쪽에서 봄)" };
+    var mode = "mix", q = null, ans = null, ok = 0, no = 0, box = null, rng = BB.rng(7);
+    var holder = $("se-or-cv").parentElement;
+    function newQ() {
+      var kinds = ["supine", "head", "prone"];
+      var k = mode === "mix" ? kinds[Math.floor(rng() * 3)] : mode;
+      var lv = LEVELS[Math.floor(rng() * LEVELS.length)];
+      if (q && q.lv === lv && q.k === k) lv = LEVELS[(LEVELS.indexOf(lv) + 1) % LEVELS.length];
+      q = { k: k, lv: lv }; ans = null;
+      BB.stat("se-or-kind", { supine: "표준", head: "머리 쪽에서", prone: "엎드림" }[k]);
+      $("se-or-info").innerHTML = "<b>" + KIND[k] + "</b>이다. 환자의 <b>오른쪽</b> 절반을 누른다.";
+      cv.redraw();
+    }
+    // 화면 왼쪽이 환자의 오른쪽인가?
+    function rightOnLeft(k) { return k === "supine"; }
+    var cv = BB.canvas("#se-or-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      box = { x: 0, y: 26, w: w, h: h - 52 };
+      ctx.fillStyle = "#050608"; ctx.fillRect(0, 0, w, h);
+      if (!q) return;
+      var T = AT.sectionFit(box, "axial", { ext: [-250, -250, 250, 50], pad: 10 });
+      var sx = q.k === "supine" ? 1 : -1, sy = q.k === "prone" ? -1 : 1;
+      ctx.save();
+      ctx.translate(w / 2, box.y + box.h / 2); ctx.scale(sx, sy); ctx.translate(-w / 2, -(box.y + box.h / 2));
+      AT.drawSection(ctx, T, "axial", q.lv, { mode: "ct", bg: false });
+      ctx.restore();
+      // CT 검사대: 늘 화면 아래(몸의 바닥 쪽). 바로 누우면 등 쪽, 엎드리면 배 쪽에 닿는다.
+      var bodyRings = AT.sectionAt("axial", q.lv)[0].rings, ys = [];
+      bodyRings.forEach(function (r) { for (var i = 1; i < r.length; i += 2) ys.push(r[i]); });
+      var yb = q.k === "prone" ? box.y + box.h / 2 - (T.Y(Math.min.apply(null, ys)) - (box.y + box.h / 2)) : T.Y(Math.max.apply(null, ys));
+      ctx.fillStyle = "#3a4152"; ctx.fillRect(w * 0.12, yb + 4, w * 0.76, 8);
+      ctx.font = BB.font(12, false, 600); ctx.fillStyle = "#c9d1e3"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(KIND[q.k], w / 2, 13);
+      if (ans) {
+        var rl = rightOnLeft(q.k);
+        ctx.fillStyle = ans.ok ? "rgba(64,192,87,.16)" : "rgba(250,82,82,.16)";
+        ctx.fillRect(ans.left ? 0 : w / 2, box.y, w / 2, box.h);
+        ctx.font = BB.font(18, true, 700);
+        ctx.fillStyle = "#69db7c"; ctx.fillText("R", rl ? 16 : w - 16, box.y + box.h / 2);
+        ctx.fillStyle = "#9aa6bf"; ctx.fillText("L", rl ? w - 16 : 16, box.y + box.h / 2);
+        ctx.font = BB.font(13, true, 700);
+        ctx.fillText(q.k === "prone" ? "P" : "A", w / 2, box.y + 8); ctx.fillText(q.k === "prone" ? "A" : "P", w / 2, box.y + box.h - 6);
+        ctx.font = BB.font(13, false, 700); ctx.fillStyle = ans.ok ? "#69db7c" : "#ff8787";
+        ctx.fillText(ans.ok ? "맞았다" : "틀렸다: 초록 R 쪽이 환자의 오른쪽", w / 2, h - 12);
+      } else {
+        ctx.strokeStyle = "rgba(200,210,230,.25)"; ctx.setLineDash([4, 5]); ctx.beginPath(); ctx.moveTo(w / 2, box.y); ctx.lineTo(w / 2, box.y + box.h); ctx.stroke(); ctx.setLineDash([]);
+        ctx.font = BB.font(12); ctx.fillStyle = "#9aa6bf"; ctx.fillText("왼쪽 절반 또는 오른쪽 절반을 누른다", w / 2, h - 12);
+      }
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    }, { get height() { return holder.clientWidth < 520 ? 330 : 380; } });
+    BB.drag(cv.canvas, { start: function (x) {
+      if (!q || ans) return;
+      var left = x < cv.w / 2, good = left === rightOnLeft(q.k);
+      ans = { left: left, ok: good };
+      if (good) ok++; else no++;
+      BB.stat("se-or-ok", ok); BB.stat("se-or-no", no);
+      var why = q.k === "supine" ? "표준 CT는 발 쪽에서 올려다본 모습이라 환자의 오른쪽이 화면 왼쪽이다." : q.k === "head" ? "머리 쪽에서 내려다보면 좌우가 표준과 반대라 환자의 오른쪽이 화면 오른쪽이다." : "엎드려 찍으면 등이 위로 가고, 발 쪽에서 보면 환자의 오른쪽이 화면 오른쪽에 온다. 표준 영상을 180도 돌린 모습이다.";
+      var clue = q.lv >= 1200 ? " 단서: 심장이 몸의 왼쪽으로 치우쳐 있다." : " 단서: 간(가장 큰 장기)이 몸의 오른쪽에 있다.";
+      $("se-or-info").innerHTML = (good ? "<b>맞았다.</b> " : "<b>틀렸다.</b> ") + why + clue;
+      cv.redraw();
+    } });
+    BB.seg("se-or-mode", function (v) { mode = v; newQ(); });
+    $("se-or-next").addEventListener("click", newQ);
+    $("se-or-reset").addEventListener("click", function () { ok = 0; no = 0; BB.stat("se-or-ok", 0); BB.stat("se-or-no", 0); newQ(); });
+    newQ();
+  })();
+
+  /* ---------------- 2. CT 뷰어 ---------------- */
+  (function () {
+    var PRE = [
+      ["eye", "눈", 1510, "눈 높이. 앞쪽에 두 눈알, 그 뒤로 뇌의 아래쪽(관자엽)과 머리뼈 바닥이 보인다. 눈알은 머리뼈의 눈확 안에 들어 있다."],
+      ["neck", "목", 1380, "목 높이. 가운데 뒤쪽의 목뼈, 그 앞의 기관(검은 고리)과 기관 바로 뒤의 식도, 둘레의 목 근육이 보인다. 이 데이터에는 갑상선과 속목·바깥목동맥이 없다."],
+      ["upper", "가슴 위", 1290, "가슴 위쪽. 대동맥활이 기관의 왼쪽 앞을 넘어가고, 양쪽에 폐의 윗부분(검은 영역)이 보인다. 팔의 단면도 양옆에 있다."],
+      ["heart", "심장", 1230, "심장 높이. 심장이 가운데에서 화면 오른쪽(몸의 왼쪽)으로 치우쳐 앉아 있고, 양쪽 폐가 둘러싼다. 척주 앞 왼쪽에 내림대동맥이 있다."],
+      ["liver", "간·위", 1110, "횡격막 바로 아래. 화면 왼쪽(몸의 오른쪽)을 간이 채우고, 화면 오른쪽에 위와 지라가 있다. 척주 바로 앞에 대동맥이 지난다."],
+      ["kidney", "콩팥·배꼽", 1000, "배 가운데 높이(배꼽 근처). 척주 양옆 뒤에 콩팥, 앞쪽에 큰창자와 작은창자가 있다. 척주 옆의 큰 근육이 큰허리근이다."],
+      ["pelvis", "골반", 810, "골반 높이. 볼기뼈가 양옆으로 벌어지고 그 안 앞쪽에 방광, 뒤쪽에 곧창자가 있다. 뒤쪽 두꺼운 근육이 큰볼기근이다."],
+      ["thigh", "넙다리", 600, "넙다리 가운데. 두 다리가 따로 잘려 각각 가운데에 넙다리뼈 하나, 앞에 넙다리네갈래근, 뒤에 뒤넙다리근, 안쪽에 모음근이 있다."],
+    ];
+    var plane = "axial", mode = "ct", lev = { axial: 1110, coronal: -100, sagittal: 0 }, sel = null, preset = "liver";
+    var Tm = null, Ts = null, split = 0, dragMap = false, mview = "front";
+    var holder = $("se-ct-cv").parentElement;
+    var pre = $("se-ct-pre");
+    pre.innerHTML = PRE.map(function (p) { return '<button type="button" data-k="' + p[0] + '"' + (p[0] === preset ? ' class="on"' : "") + ">" + p[1] + "</button>"; }).join("");
+    var levEl = $("se-ct-lev");
+    var getLev = BB.range("se-ct-lev", function (v) { return plane === "axial" ? AT.fmtLen(v - AT.body.bottom) : v + " mm"; }, function (v) { lev[plane] = v; sel = null; setPreset(null); cv.redraw(); });
+    var info = $("se-ct-info");
+    function setPreset(k) {
+      preset = k;
+      [].forEach.call(pre.children, function (b) { b.classList.toggle("on", b.dataset.k === k); });
+    }
+    function legend(secs) {
+      $("se-ct-legend").innerHTML = secs.map(function (g) {
+        var c = mode === "ct" ? AT.gray(AT.CT[g.k] != null ? AT.CT[g.k] : 0.45) : (g.k === "body" ? AT.COLORS.skin : AT.COLORS[g.k]);
+        var name = g.k === "body" ? "몸(피하 조직 등)" : g.k === "lung" ? "폐(어림)" : g.ko;
+        return '<span><i style="background:' + c + '"></i>' + name + "</span>";
+      }).join("");
+    }
+    var cv = BB.canvas("#se-ct-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      split = Math.max(96, Math.round(w * 0.27));
+      var mbox = { x: 0, y: 0, w: split, h: h }, sbox = { x: split + 4, y: 0, w: w - split - 4, h: h };
+      mview = plane === "coronal" ? "side" : "front";
+      Tm = AT.mapFit(mbox, mview, { pad: 8 });
+      AT.drawMap(ctx, Tm, mview, { layers: ["skin"].concat(BONES, ORG), alpha: 0.65 });
+      var L = lev[plane], hx, hy;
+      ctx.strokeStyle = P.bad; ctx.lineWidth = 2.5; ctx.beginPath();
+      if (plane === "axial") { var y = Tm.Y(L); ctx.moveTo(3, y); ctx.lineTo(split - 3, y); hx = split - 13; hy = y; }
+      else { var x = Tm.X(L); ctx.moveTo(x, 6); ctx.lineTo(x, h - 20); hx = x; hy = 22; }
+      ctx.stroke();
+      ctx.fillStyle = P.bg; ctx.strokeStyle = P.bad; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(hx, hy, 8, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.font = BB.font(10.5, false, 600); ctx.fillStyle = P.dim; ctx.textAlign = "center";
+      ctx.fillText(mview === "front" ? "앞모습" : "옆모습(앞이 왼쪽)", split / 2, h - 6); ctx.textAlign = "left";
+      // 단면
+      var ext = plane === "axial" ? [-345, -260, 345, 60] : plane === "coronal" ? [-345, -90, 345, 1660] : [-260, -90, 60, 1660];
+      Ts = AT.sectionFit(sbox, plane, { ext: ext, pad: 8 });
+      if (mode === "color") { ctx.fillStyle = P.surface; ctx.fillRect(sbox.x, sbox.y, sbox.w, sbox.h); }
+      var secs = AT.drawSection(ctx, Ts, plane, L, { mode: mode, highlight: sel, bg: mode === "ct" });
+      AT.orient(ctx, sbox, plane, mode === "ct" ? CTBG : P.faint);
+      AT.scaleBar(ctx, Ts, sbox.x + 14, sbox.h - 14, 100, mode === "ct" ? CTBG : P.dim);
+      ctx.font = BB.font(11.5, false, 600); ctx.fillStyle = mode === "ct" ? CTBG : P.dim; ctx.textAlign = "right";
+      ctx.fillText(AT.PLANES[plane] + (plane === "axial" ? " · 발 쪽에서 봄" : plane === "coronal" ? " · 앞에서 봄" : " · 왼쪽에서 봄"), sbox.x + sbox.w - 8, 16);
+      ctx.textAlign = "left";
+      legend(secs);
+      BB.stat("se-ct-o-p", AT.PLANES[plane]);
+      BB.stat("se-ct-o-l", levLabel(plane, L));
+      BB.stat("se-ct-o-k", sel ? (AT.sectionAt(plane, L).filter(function (g) { return g.k === sel; })[0] || { ko: "—" }).ko : "—");
+      BB.stat("se-ct-o-a", sel ? cm2(AT.sectionArea(plane, L, sel)) : "—");
+    }, { get height() { return holder.clientWidth < 520 ? 400 : 500; } });
+    function setPlane(p) {
+      plane = p; sel = null;
+      var r = RANGE[p]; levEl.min = r[0]; levEl.max = r[1];
+      getLev.set(lev[p]);
+      if (p !== "axial") setPreset(null);
+    }
+    var seg = BB.seg("se-ct-plane", function (v) { setPlane(v); info.textContent = "단면 위의 조직을 누르면 이름과 설명이 나온다."; cv.redraw(); });
+    BB.seg("se-ct-mode", function (v) { mode = v; cv.redraw(); });
+    pre.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      var p = PRE.filter(function (q) { return q[0] === b.dataset.k; })[0];
+      if (plane !== "axial") { seg.set("axial", false); setPlane("axial"); }
+      lev.axial = p[2]; getLev.set(p[2]); setPreset(p[0]);
+      info.innerHTML = "<b>" + p[1] + "</b> · " + p[3];
+      cv.redraw();
+    });
+    function fromMap(x, y) {
+      var q = Tm.inv(x, y), r = RANGE[plane];
+      var v = BB.clamp(Math.round((plane === "axial" ? q[1] : q[0]) / 10) * 10, r[0], r[1]);
+      if (v !== lev[plane]) getLev.set(v);
+    }
+    var tip = BB.tip(cv.canvas);
+    BB.drag(cv.canvas, {
+      start: function (x, y) {
+        dragMap = x < split;
+        if (dragMap) { tip.hide(); return fromMap(x, y); }
+        var r = AT.hitSection(Ts, plane, lev[plane], x, y);
+        if (!r) { sel = null; info.textContent = "단면 밖이다. 몸 안쪽을 누른다."; cv.redraw(); return; }
+        sel = r.k === "body" ? null : r.k;
+        var a = AT.sectionArea(plane, lev[plane], r.k);
+        info.innerHTML = "<b>" + (r.k === "body" ? "몸(피부 안쪽의 나머지 조직)" : r.ko) + "</b> · " + (DESC[r.k] || "") + " <span style='color:var(--text-faint)'>(이 단면에서 " + cm2(a) + ")</span>";
+        cv.redraw();
+      },
+      move: function (x, y) { if (dragMap) fromMap(x, y); },
+      end: function () { dragMap = false; },
+      hover: function (x, y) {
+        if (x < split || !Ts) { tip.hide(); return; }
+        var r = AT.hitSection(Ts, plane, lev[plane], x, y);
+        if (r) tip.show(x, y, "<b>" + (r.k === "body" ? "몸(피하 조직 등)" : r.ko) + "</b>"); else tip.hide();
+      },
+    });
+    cv.canvas.addEventListener("pointerleave", tip.hide);
+    info.innerHTML = "<b>간·위</b> · " + PRE[4][3];
+  })();
+
+  /* ---------------- 3. HU와 창 ---------------- */
+  (function () {
+    // 조직마다 교과서의 대략 HU(조영 전 / 조영 후)
+    var HU = {
+      body: [-90, -90], lung: [-800, -800], muscle: [45, 55], bone: [700, 700], disc: [80, 80], brain: [35, 40], ventricle: [5, 5], eye: [10, 10], cord: [35, 35],
+      heart: [45, 110], blood: [40, 260], artery: [40, 300], vein: [40, 180], airway: [-1000, -1000], esophagus: [40, 60], liver: [60, 110], gallbladder: [10, 10],
+      stomach: [35, 90], spleen: [45, 120], pancreas: [40, 100], kidney: [30, 160], adrenal: [30, 70], smallint: [35, 90], largeint: [25, 70], bladder: [5, 5], prostate: [40, 70],
+    };
+    var PRESET = { soft: [400, 40], lung: [1500, -600], bone: [2000, 500], full: [2000, 0] };
+    var lv = 1230, con = false, Ts = null, sbox = null, bar = null, dragging = false, sel = null;
+    var holder = $("se-hu-cv").parentElement;
+    function hu(k) { var v = HU[k] || [40, 40]; return con ? v[1] : v[0]; }
+    function grayOf(v) { var W = getW(), L = getL(); return BB.clamp((v - (L - W / 2)) / W, 0, 1); }
+    function g255(t) { var c = Math.round(t * 245 + 5); return "rgb(" + c + "," + c + "," + c + ")"; }
+    var cv = null;
+    var preSeg = BB.seg("se-hu-pre", function (v) { var p = PRESET[v]; getW.set(p[0]); getL.set(p[1]); preSeg.set(v, false); });
+    var getW = BB.range("se-hu-w", function (v) { return v + " HU"; }, function () { update(); });
+    var getL = BB.range("se-hu-l", function (v) { return (v > 0 ? "+" : "") + v + " HU"; }, function () { update(); });
+    BB.seg("se-hu-lev", function (v) { lv = Number(v); sel = null; update(); });
+    $("se-hu-con").addEventListener("change", function (e) { con = e.target.checked; update(); });
+    function update() {
+      var W = getW(), L = getL(), lo = L - W / 2, hi = L + W / 2;
+      BB.stat("se-hu-o-r", Math.round(lo) + " ~ " + (hi > 0 ? "+" : "") + Math.round(hi) + " HU");
+      var secs = AT.sectionAt("axial", lv), blk = [], wht = [];
+      secs.forEach(function (g) { var v = hu(g.k); var name = g.k === "body" ? "지방" : g.k === "lung" ? "폐" : g.ko; if (v <= lo) blk.push(name); else if (v >= hi) wht.push(name); });
+      BB.stat("se-hu-o-b", blk.length ? blk.join(", ") : "없음");
+      BB.stat("se-hu-o-w", wht.length ? wht.join(", ") : "없음");
+      if (cv) cv.redraw();
+    }
+    cv = BB.canvas("#se-hu-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      var barH = 116;
+      sbox = { x: 0, y: 0, w: w, h: h - barH };
+      ctx.fillStyle = "#050608"; ctx.fillRect(0, 0, w, h - barH);
+      var ext = lv >= 1200 ? [-330, -250, 330, 50] : [-230, -240, 230, 30];
+      Ts = AT.sectionFit(sbox, "axial", { ext: ext, pad: 8 });
+      AT.sectionAt("axial", lv).forEach(function (g) {
+        pathR(ctx, Ts, g.rings); ctx.fillStyle = g255(grayOf(hu(g.k))); ctx.fill("evenodd");
+        if (sel === g.k) { ctx.strokeStyle = "#ffd43b"; ctx.lineWidth = 2; ctx.stroke(); }
+      });
+      AT.orient(ctx, sbox, "axial", CTBG);
+      ctx.font = BB.font(11.5, true, 600); ctx.fillStyle = CTBG; ctx.textAlign = "right"; ctx.textBaseline = "top";
+      ctx.fillText("W " + getW() + " / L " + getL(), w - 10, 8); ctx.textAlign = "left";
+      // HU 눈금
+      var L0 = 22, R0 = w - 22, y0 = h - barH + 52, bh = 14, lo = -1000, hi = 1000;
+      var X = function (v) { return L0 + (BB.clamp(v, lo, hi) - lo) / (hi - lo) * (R0 - L0); };
+      for (var i = 0; i < R0 - L0; i += 2) { var v = lo + i / (R0 - L0) * (hi - lo); ctx.fillStyle = g255(grayOf(v)); ctx.fillRect(L0 + i, y0, 2, bh); }
+      ctx.strokeStyle = P.border; ctx.lineWidth = 1; ctx.strokeRect(L0, y0, R0 - L0, bh);
+      var W = getW(), L = getL();
+      ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.strokeRect(X(L - W / 2), y0 - 3, X(L + W / 2) - X(L - W / 2), bh + 6);
+      ctx.font = BB.font(10, true); ctx.fillStyle = P.dim; ctx.textAlign = "center"; ctx.textBaseline = "top";
+      [-1000, -500, 0, 500, 1000].forEach(function (t) { ctx.fillText((t > 0 ? "+" : "") + t, X(t), y0 + bh + 4); });
+      ctx.textAlign = "left"; ctx.fillText("HU", L0, y0 + bh + 18);
+      var marks = [["공기", -1000], ["폐", -800], ["지방", -90], ["물", 0], ["연부조직", 50], ["뼈", 700]];
+      if (con) marks.splice(5, 0, ["조영 혈관", 280]);
+      ctx.font = BB.font(10); ctx.textBaseline = "bottom";
+      var lastX = -99, row = 0;
+      marks.forEach(function (m) {
+        var x = X(m[1]); row = x - lastX < 40 ? row + 1 : 0; lastX = x;
+        ctx.strokeStyle = P.dim; ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y0 - 5 - row * 11); ctx.stroke();
+        ctx.fillStyle = P.text; ctx.textAlign = x < 30 ? "left" : x > w - 30 ? "right" : "center"; ctx.fillText(m[0], x, y0 - 6 - row * 11);
+      });
+      // 손잡이(창 중심)
+      var hx = X(L);
+      ctx.fillStyle = P.bg; ctx.strokeStyle = P.accent; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(hx, y0 + bh / 2, 8, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+      bar = { L0: L0, R0: R0, y0: y0, lo: lo, hi: hi };
+    }, { get height() { return holder.clientWidth < 520 ? 400 : 460; } });
+    BB.drag(cv.canvas, {
+      start: function (x, y) {
+        dragging = bar && y > bar.y0 - 30;
+        if (dragging) return;
+        var r = AT.hitSection(Ts, "axial", lv, x, y);
+        if (!r) return;
+        sel = r.k === "body" ? null : r.k;
+        var v = hu(r.k), t = grayOf(v);
+        $("se-hu-info").innerHTML = "<b>" + (r.k === "body" ? "몸(피하 지방 등)" : r.ko) + "</b> · 대략 " + (v > 0 ? "+" : "") + v + " HU → 이 창에서 " + (t <= 0 ? "검정(창의 아래 끝보다 낮다)" : t >= 1 ? "흰색(창의 위 끝보다 높다)" : "밝기 " + Math.round(t * 100) + " %의 회색") + (con && HU[r.k] && HU[r.k][0] !== HU[r.k][1] ? ". 조영제로 밝아진 값이다." : ".");
+        cv.redraw();
+      },
+      move: function (x) {
+        if (!dragging) return;
+        var v = bar.lo + BB.clamp((x - bar.L0) / (bar.R0 - bar.L0), 0, 1) * (bar.hi - bar.lo);
+        getL.set(Math.round(v / 10) * 10);
+      },
+      end: function () { dragging = false; },
+    });
+    update();
+  })();
+
+  /* ---------------- 4. 세 방향 ---------------- */
+  (function () {
+    var ORGS = {
+      liver: { p: "liver", g: "liver", ko: "간" }, kidney: { p: "kidney_r", g: "kidney", ko: "오른쪽 콩팥" }, heart: { p: "heart", g: "heart", ko: "심장(벽)" },
+      stomach: { p: "stomach", g: "stomach", ko: "위" }, brain: { p: "brain", g: "brain", ko: "뇌" }, bladder: { p: "bladder", g: "bladder", ko: "방광" },
+    };
+    var org = "liver", mode = "color", panels = [];
+    var holder = $("se-th-cv").parentElement;
+    function r10(v) { return Math.round(v / 10) * 10; }
+    var cv = BB.canvas("#se-th-cv", function (ctx, w, h) {
+      var P = BB.palette(), o = ORGS[org], p = AT.part(o.p), c = p.c, sz = AT.size(o.p);
+      var R = Math.max(sz[0], sz[1], sz[2]) * 0.5 + 45;
+      var lv = { axial: r10(c[2]), coronal: r10(c[1]), sagittal: r10(c[0]) };
+      var ext = {
+        axial: [c[0] - R, c[1] - R, c[0] + R, c[1] + R],
+        coronal: [c[0] - R, c[2] - R, c[0] + R, c[2] + R],
+        sagittal: [c[1] - R, c[2] - R, c[1] + R, c[2] + R],
+      };
+      var narrow = w < 520, gap = 6, n = 3;
+      var pw = narrow ? w : (w - gap * 2) / 3, ph = narrow ? (h - gap * 2) / 3 : h;
+      panels = [];
+      ["axial", "coronal", "sagittal"].forEach(function (pl, i) {
+        var box = narrow ? { x: 0, y: i * (ph + gap), w: w, h: ph } : { x: i * (pw + gap), y: 0, w: pw, h: h };
+        if (narrow) { box = { x: (w - Math.min(w, ph * 1.0)) / 2, y: i * (ph + gap), w: Math.min(w, ph * 1.0), h: ph }; }
+        ctx.save(); ctx.beginPath(); ctx.rect(box.x, box.y, box.w, box.h); ctx.clip();
+        ctx.fillStyle = mode === "ct" ? "#050608" : P.surface; ctx.fillRect(box.x, box.y, box.w, box.h);
+        var T = AT.sectionFit(box, pl, { ext: ext[pl], pad: 4 });
+        AT.drawSection(ctx, T, pl, lv[pl], { mode: mode, highlight: o.g, bg: false });
+        AT.orient(ctx, box, pl, mode === "ct" ? CTBG : P.faint);
+        ctx.restore();
+        var a = AT.sectionArea(pl, lv[pl], o.g);
+        ctx.font = BB.font(12, false, 700); ctx.fillStyle = mode === "ct" ? "#dfe5f2" : P.text; ctx.textBaseline = "top";
+        ctx.fillText(AT.PLANES[pl], box.x + 22, box.y + 6);
+        ctx.font = BB.font(11, true); ctx.fillStyle = mode === "ct" ? CTBG : P.dim;
+        ctx.fillText(o.ko + " " + cm2(a), box.x + 22, box.y + 22);
+        ctx.textBaseline = "alphabetic";
+        AT.scaleBar(ctx, T, box.x + box.w - 14 - 50 * T.s, box.y + box.h - 12, 50, mode === "ct" ? CTBG : P.dim);
+        panels.push({ pl: pl, T: T, lv: lv[pl], box: box, a: a });
+      });
+      BB.stat("se-th-o-s", sz.map(function (v) { return (v / 10).toFixed(1); }).join(" × ") + " cm");
+      var best = panels.slice().sort(function (a, b) { return b.a - a.a; })[0];
+      BB.stat("se-th-o-m", AT.PLANES[best.pl] + " (" + cm2(best.a) + ")");
+    }, { get height() { return holder.clientWidth < 520 ? 640 : 330; } });
+    BB.seg("se-th-org", function (v) { org = v; $("se-th-info").textContent = "단면 위를 누르면 조직 이름이 나온다."; cv.redraw(); });
+    BB.seg("se-th-mode", function (v) { mode = v; cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      var pn = panels.filter(function (q) { return x >= q.box.x && x <= q.box.x + q.box.w && y >= q.box.y && y <= q.box.y + q.box.h; })[0];
+      if (!pn) return;
+      var r = AT.hitSection(pn.T, pn.pl, pn.lv, x, y);
+      $("se-th-info").innerHTML = r ? "<b>" + (r.k === "body" ? "몸(피하 조직 등)" : r.ko) + "</b> · " + AT.PLANES[pn.pl] + "에서 누른 자리. " + (DESC[r.k] || "") : "단면 밖이다.";
+    } });
+  })();
+
+  /* ---------------- 5. 카발리에리 ---------------- */
+  (function () {
+    var ORG = {
+      liver: { g: "liver", ko: "간", vol: function () { return AT.part("liver").vol; }, wt: false },
+      stomach: { g: "stomach", ko: "위", vol: function () { return AT.part("stomach").vol; }, wt: true },
+      spleen: { g: "spleen", ko: "지라", vol: function () { return AT.part("spleen").vol; }, wt: true },
+      kidney: { g: "kidney", ko: "콩팥(양쪽)", vol: function () { return AT.part("kidney_r").vol + AT.part("kidney_l").vol; }, wt: true },
+      heart: { g: "heart", ko: "심장 벽", vol: function () { return AT.part("heart").vol; }, wt: false },
+      brain: { g: "brain", ko: "뇌", vol: function () { return AT.part("brain").vol; }, wt: true },
+      bladder: { g: "bladder", ko: "방광", vol: function () { return AT.part("bladder").vol; }, wt: true },
+      body: { g: "body", ko: "몸 전체", vol: function () { return AT.body.vol * 1000; }, wt: true, body: true },
+    };
+    var LV = AT.sectionLevels("axial"), cache = {};
+    function profile(g) {
+      if (cache[g]) return cache[g];
+      var a = LV.map(function (z) { return AT.sectionArea("axial", z, g); });
+      var lo = a.findIndex(function (v) { return v > 0; }), hi = a.length - 1 - a.slice().reverse().findIndex(function (v) { return v > 0; });
+      return (cache[g] = { a: a, lo: lo, hi: hi, max: Math.max.apply(null, a) });
+    }
+    var org = "liver", dz = 10, pick = null, chart = null, Ts = null;
+    var holder = $("se-cv-cv").parentElement;
+    var sel = $("se-cv-org");
+    function used() {
+      var pr = profile(ORG[org].g), k = dz / 10, out = [];
+      for (var i = 0; i < LV.length; i++) if (i % k === Math.floor(k / 2) % k && pr.a[i] > 0) out.push(i);
+      return out;
+    }
+    var cv = BB.canvas("#se-cv-cv", function (ctx, w, h) {
+      var P = BB.palette(), o = ORG[org], pr = profile(o.g), idx = used();
+      if (pick == null || idx.indexOf(pick) < 0) pick = idx[Math.floor(idx.length / 2)];
+      var narrow = w < 520;
+      var cbox = narrow ? { x: 0, y: 0, w: w, h: h * 0.55 } : { x: 0, y: 0, w: w * 0.55, h: h };
+      var sbox = narrow ? { x: 0, y: h * 0.55 + 4, w: w, h: h * 0.45 - 4 } : { x: w * 0.55 + 6, y: 0, w: w * 0.45 - 6, h: h };
+      var pad = 4, i0 = Math.max(0, pr.lo - 2), i1 = Math.min(LV.length - 1, pr.hi + 2);
+      var L = cbox.x + 52, R = cbox.x + cbox.w - 12, top = cbox.y + 26, bot = cbox.y + cbox.h - 34;
+      var Y = function (z) { return bot - (z - LV[i0] + 5) / (LV[i1] - LV[i0] + 10) * (bot - top); };
+      var X = function (a) { return L + a / pr.max * (R - L); };
+      ctx.fillStyle = P.text; ctx.font = BB.font(12, false, 700); ctx.textBaseline = "top";
+      ctx.fillText(o.ko + "의 가로 단면 넓이 A(z)", cbox.x + 8, cbox.y + 6);
+      // 축
+      ctx.strokeStyle = P.axis; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(L, top); ctx.lineTo(L, bot); ctx.lineTo(R, bot); ctx.stroke();
+      ctx.font = BB.font(10, true); ctx.fillStyle = P.dim; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      var span = LV[i1] - LV[i0], st = span > 1000 ? 200 : span > 300 ? 50 : span > 120 ? 20 : 10;
+      for (var z = Math.ceil(LV[i0] / st) * st; z <= LV[i1]; z += st) { ctx.fillText(((z - AT.body.bottom) / 10).toFixed(0), L - 4, Y(z)); }
+      ctx.save(); ctx.translate(cbox.x + 12, (top + bot) / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillText("발바닥에서 높이 (cm)", 0, 0); ctx.restore();
+      ctx.textAlign = "center"; ctx.textBaseline = "top";
+      [0, 0.5, 1].forEach(function (f) { ctx.fillText(Math.round(pr.max * f / 100), X(pr.max * f), bot + 4); });
+      ctx.fillText("단면 넓이 (cm²)", (L + R) / 2, bot + 18);
+      // 1 cm 윤곽선
+      ctx.strokeStyle = BB.alpha(P.dim, 0.6); ctx.lineWidth = 1; ctx.beginPath();
+      for (var i = i0; i <= i1; i++) { var px = X(pr.a[i]), py = Y(LV[i]); if (i === i0) ctx.moveTo(px, py); else ctx.lineTo(px, py); }
+      ctx.stroke();
+      // 판(막대)
+      var col = o.body ? AT.COLORS.skin : (AT.COLORS[o.g] || P.accent);
+      idx.forEach(function (i) {
+        var z = LV[i], y0 = Y(z + dz / 2), y1 = Y(z - dz / 2);
+        ctx.fillStyle = BB.alpha(col, pick === i ? 0.95 : 0.6); ctx.fillRect(L, y0, X(pr.a[i]) - L, Math.max(1, y1 - y0 - (dz > 10 ? 1 : 0)));
+        if (pick === i) { ctx.strokeStyle = P.text; ctx.lineWidth = 1.5; ctx.strokeRect(L, y0, X(pr.a[i]) - L, y1 - y0); }
+      });
+      if (pick != null) {
+        var yy = Y(LV[pick]);
+        ctx.fillStyle = P.bg; ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(X(pr.a[pick]), yy, 6, 0, 7); ctx.fill(); ctx.stroke();
+      }
+      chart = { L: L, R: R, top: top, bot: bot, Y: Y, i0: i0, i1: i1, box: cbox };
+      // 단면 보기
+      var zz = LV[pick];
+      ctx.fillStyle = "#050608"; ctx.fillRect(sbox.x, sbox.y, sbox.w, sbox.h);
+      var ext = o.body ? [-345, -260, 345, 60] : (function () {
+        var xs = [], ys = [];
+        for (var j = pr.lo; j <= pr.hi; j++) AT.sectionAt("axial", LV[j]).forEach(function (g) { if (g.k === o.g) g.rings.forEach(function (r) { for (var q = 0; q < r.length; q += 2) { xs.push(r[q]); ys.push(r[q + 1]); } }); });
+        var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs), y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys), m = 40;
+        return [x0 - m, y0 - m, x1 + m, y1 + m];
+      })();
+      Ts = AT.sectionFit(sbox, "axial", { ext: ext, pad: 6 });
+      ctx.save(); ctx.beginPath(); ctx.rect(sbox.x, sbox.y, sbox.w, sbox.h); ctx.clip();
+      AT.drawSection(ctx, Ts, "axial", zz, { mode: "ct", highlight: o.body ? null : o.g, bg: false });
+      if (o.body) { var g0 = AT.sectionAt("axial", zz)[0]; if (g0) { pathR(ctx, Ts, g0.rings); ctx.strokeStyle = "#ffd43b"; ctx.lineWidth = 2; ctx.stroke(); } }
+      ctx.restore();
+      AT.orient(ctx, sbox, "axial", CTBG);
+      ctx.font = BB.font(11.5, true); ctx.fillStyle = "#dfe5f2"; ctx.textBaseline = "top";
+      ctx.fillText("A = " + cm2(pr.a[pick]), sbox.x + 22, sbox.y + 24);
+      ctx.fillText("발바닥에서 " + AT.fmtLen(zz - AT.body.bottom), sbox.x + 22, sbox.y + 40);
+      ctx.textBaseline = "alphabetic";
+      // 계산
+      var sum = 0; idx.forEach(function (i) { sum += pr.a[i] * dz; });
+      var v = sum / 1000, m = o.vol(), d = (v - m) / m;
+      BB.stat("se-cv-o-n", idx.length + "장");
+      BB.stat("se-cv-o-v", AT.fmtVol(v));
+      BB.stat("se-cv-o-m", AT.fmtVol(m));
+      BB.stat("se-cv-o-d", (d > 0 ? "+" : "") + (d * 100).toFixed(1) + " %");
+      $("se-cv-info").innerHTML = "<b>" + o.ko + "</b> · " + (o.body ? "몸 전체는 피부 껍질의 바깥 윤곽이 감싼 넓이를 쌓는다. 비교값은 같은 피부를 2 mm마다 잘라 쌓은 값(AT.body)이다." : o.wt ? "메시가 닫혀 있어(watertight) 메시 부피를 기준값으로 믿을 수 있다." : "메시가 닫혀 있지 않아(열린 메시) 메시 부피도, 단면도 어림값이다.") + " 쓴 단면: " + idx.length + "장 × " + dz + " mm.";
+    }, { get height() { return holder.clientWidth < 520 ? 560 : 420; } });
+    sel.addEventListener("change", function () { org = sel.value; pick = null; cv.redraw(); });
+    BB.seg("se-cv-dz", function (v) { dz = Number(v); pick = null; cv.redraw(); });
+    function pickAt(x, y) {
+      if (!chart || y < chart.top - 6 || y > chart.bot + 6 || x > chart.box.x + chart.box.w) return;
+      var idx = used(), best = null, bd = 1e9;
+      idx.forEach(function (i) { var d = Math.abs(chart.Y(LV[i]) - y); if (d < bd) { bd = d; best = i; } });
+      if (best != null && best !== pick) { pick = best; cv.redraw(); }
+    }
+    BB.drag(cv.canvas, { move: pickAt });
+  })();
+
+  /* ---------------- 데이터로 확인하기 ---------------- */
+  (function () {
+    var LV = AT.sectionLevels("axial"), n = 0, best = 0, bz = 0;
+    LV.forEach(function (z) { var a = AT.sectionArea("axial", z, "liver"); if (a > 0) n++; if (a > best) { best = a; bz = z; } });
+    var lp = AT.part("liver");
+    $("se-dc-h").textContent = AT.fmtLen(lp.hi[2] - lp.lo[2]);
+    $("se-dc-n").textContent = n + "장";
+    $("se-dc-n5").textContent = (n * 2) + "장";
+    $("se-dc-z").textContent = AT.fmtLen(bz - AT.body.bottom);
+    $("se-dc-a").textContent = cm2(best);
+    $("se-dc-r").textContent = "약 " + Math.round(best / AT.sectionArea("axial", bz, "body") * 100) + " %";
+  })();
+})();
+</script>
+</body>
+</html>

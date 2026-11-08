@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://medical.euiyun.com/</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/abdomen.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/axial.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/brain.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/data.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/glossary.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/joints.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/language.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/lowerlimb.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/sections.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/skeleton.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/thorax.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/trunk.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/upperlimb.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/chapters/vessels.html</loc></url>
+  <url><loc>https://medical.euiyun.com/anatomy/sims.html</loc></url>
   <url><loc>https://medical.euiyun.com/body/</loc></url>
   <url><loc>https://medical.euiyun.com/body/chapters/breathing.html</loc></url>
   <url><loc>https://medical.euiyun.com/body/chapters/cell.html</loc></url>

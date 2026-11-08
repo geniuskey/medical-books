@@ -14,7 +14,7 @@ const books = window.MEDICAL_BOOKS;
 const live = books.filter((b) => b.status !== 'planned');
 const chapters = live.reduce((n, b) => n + (b.chapters || 0), 0);
 const simulators = Math.floor(live.reduce((n, b) => n + (b.simulators || 0), 0) / 50) * 50;
-const titles = { bodybook: '몸' };
+const titles = { bodybook: '몸', anatomybook: '구조' };
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 const base = `
@@ -39,7 +39,8 @@ const shelfCovers = books.map((b) => `<div class="book${b.status === 'planned' ?
   </div></div></div>`).join('');
 
 const shelf = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>${read('shelf.css')}</style><style>${base}
-  .case { --gap:34px; position:absolute; left:760px; top:90px; width:240px; display:grid; grid-template-columns:repeat(1,1fr); column-gap:var(--gap); row-gap:34px; }
+  /* 책이 늘면 한 줄에 나란히 세운다(최대 4권). 표지 폭은 권수에 맞춰 줄인다. */
+  .case { --gap:30px; --n:${Math.min(4, books.length)}; position:absolute; right:70px; top:${books.length > 1 ? 120 : 90}px; width:calc(min(240px, (560px - (var(--n) - 1) * var(--gap)) / var(--n)) * var(--n) + (var(--n) - 1) * var(--gap)); display:grid; grid-template-columns:repeat(var(--n),1fr); column-gap:var(--gap); row-gap:34px; }
   .book.planned .book-cover { filter:saturate(.55) brightness(.8); }
   .book-cover { padding:12% 9% 9% 13%; }
   .book-cover strong { margin-top:0; font-size:34px; white-space:nowrap; letter-spacing:-.05em; }
@@ -50,7 +51,7 @@ const shelf = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><style
     <div class="brand">${read('favicon.svg')}<span>MedicalBooks</span></div>
     <div class="eyebrow">INTERACTIVE MEDICAL TEXTBOOKS</div>
     <h1>몸의 원리는 외우지 말고,<br><span class="soft">숫자로 따라가 보며</span><br><span class="warm">배우는 의학과 건강</span></h1>
-    <p class="lead">심장과 폐, 혈당과 호르몬,<br>운동과 체중까지 한 서가에서.</p>
+    <p class="lead">심장과 폐, 혈당과 호르몬, 운동과 체중,<br>그리고 뼈와 장기의 자리까지 한 서가에서.</p>
     <div class="stats"><span><b>${live.length}</b>권 공개</span><span><b>${chapters}</b>개 장</span><span><b>${simulators.toLocaleString('ko-KR')}+</b>시뮬레이터</span></div>
   </div>
   <div class="url">medical.euiyun.com</div>

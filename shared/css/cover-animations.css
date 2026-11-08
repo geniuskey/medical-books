@@ -19,6 +19,8 @@
 .cv-wave { transform-box: fill-box; transform-origin: left center; animation: cv-wave 1.5s ease-out infinite; }
 @keyframes cv-wave { from { opacity: 0; transform: scale(.6); } 40% { opacity: 1; } to { opacity: 0; transform: scale(1.2); } }
 .cv-slide { animation: cv-slide 1.2s linear infinite; }
+.cv-section { animation: cv-section 3.2s ease-in-out infinite alternate; }
+@keyframes cv-section { to { transform: translateY(var(--dy)); } }
 .cv-shear { animation: cv-shear 2.8s ease-in-out infinite alternate; }
 @keyframes cv-shear { to { transform: skewX(-28deg) scaleY(1.15); } }
 @keyframes cv-slide { to { transform: translateX(var(--dx)); } }

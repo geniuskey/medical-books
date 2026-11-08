@@ -1,0 +1,534 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and AnatomyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "해부학 용어 200여 개를 우리말·한자어·영어로 검색하고 장별로 거르며, 방향·단면 용어 연습과 이름 맞추기, 책 전체를 아우르는 종합 퀴즈 20문항으로 몸의 지도를 점검한다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>용어집 & 종합 퀴즈 · AnatomyBook</title>
+<meta name="description" content="해부학 용어 200여 개를 우리말·한자어·영어로 검색하고 장별로 거르며, 방향·단면 용어 연습과 이름 맞추기, 책 전체를 아우르는 종합 퀴즈 20문항으로 몸의 지도를 점검한다.">
+<link rel="canonical" href="https://medical.euiyun.com/anatomy/chapters/glossary.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#0c8599">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AnatomyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="용어집 &amp; 종합 퀴즈 · AnatomyBook">
+<meta property="og:description" content="해부학 용어 200여 개를 우리말·한자어·영어로 검색하고 장별로 거르며, 방향·단면 용어 연습과 이름 맞추기, 책 전체를 아우르는 종합 퀴즈 20문항으로 몸의 지도를 점검한다.">
+<meta property="og:url" content="https://medical.euiyun.com/anatomy/chapters/glossary.html">
+<meta property="og:image" content="https://medical.euiyun.com/anatomy/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/anatomy/chapters/glossary.html#chapter","name":"용어집 & 종합 퀴즈","headline":"용어집 & 종합 퀴즈 · AnatomyBook","description":"해부학 용어 200여 개를 우리말·한자어·영어로 검색하고 장별로 거르며, 방향·단면 용어 연습과 이름 맞추기, 책 전체를 아우르는 종합 퀴즈 20문항으로 몸의 지도를 점검한다.","url":"https://medical.euiyun.com/anatomy/chapters/glossary.html","position":14,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/anatomy/og.png","dateModified":"2026-11-08","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/anatomy/#book","name":"AnatomyBook · 몸의 구조 교과서","url":"https://medical.euiyun.com/anatomy/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AnatomyBook","item":"https://medical.euiyun.com/anatomy/"},{"@type":"ListItem","position":2,"name":"14. 용어집 & 종합 퀴즈","item":"https://medical.euiyun.com/anatomy/chapters/glossary.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/atlas-data.js"></script>
+<script src="../js/atlas.js"></script>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="anatomy"></script>
+<!--head:end-->
+<style>
+  [hidden] { display: none !important; }
+  .gl-pad { padding: 14px 18px 18px; display: grid; gap: 12px; }
+  .gl-search { margin-bottom: 0 !important; width: 100%; box-sizing: border-box; font: inherit; font-size: 15px; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+  .gl-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .gl-chips button { font: inherit; font-size: 12.5px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); cursor: pointer; }
+  .gl-chips button.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent, #fff); font-weight: 600; }
+  @media (max-width: 560px) { .gl-chips .t { display: none; } }
+  .gl-count { font-size: 13px; color: var(--text-faint); font-family: var(--mono); }
+  #gl-list { max-height: min(70vh, 820px); overflow-y: auto; overscroll-behavior: contain; padding-right: 4px; }
+  .gl-item h4 { overflow-wrap: anywhere; }
+  .gl-item .abbr { font-family: var(--mono); font-size: 12px; margin-left: 6px; padding: 1px 6px; border-radius: 6px; background: var(--surface); color: var(--text-dim); }
+  .gl-item .chs a { font-size: 12px; margin-right: 10px; }
+  .gl-item mark { background: color-mix(in srgb, var(--warn) 35%, transparent); color: inherit; border-radius: 3px; padding: 0 1px; }
+  .gl-empty { padding: 24px; text-align: center; color: var(--text-dim); border: 1px dashed var(--border); border-radius: 12px; }
+  .gl-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .gl-opts .btn { width: 100%; }
+  .gl-opts .btn.right { background: color-mix(in srgb, var(--ok) 22%, transparent); border-color: var(--ok); }
+  .gl-opts .btn.wrong { background: color-mix(in srgb, var(--bad) 22%, transparent); border-color: var(--bad); }
+  .gl-q { font-size: 14.5px; margin: 0; }
+  .qz-score { position: sticky; top: calc(var(--nav-h, 56px) + 6px); z-index: 3; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; margin: 0 0 16px; display: grid; gap: 8px; box-shadow: var(--shadow); }
+  .qz-score .row { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; font-size: 14px; color: var(--text-dim); }
+  .qz-score b { font-family: var(--mono); color: var(--text); font-size: 18px; }
+  .qz-bar { height: 8px; background: var(--surface-2, var(--surface)); border-radius: 4px; overflow: hidden; display: flex; }
+  .qz-bar i { display: block; height: 100%; }
+  .qz-bar i.ok { background: var(--ok); } .qz-bar i.no { background: var(--bad); }
+  .quiz-q .qch { font-size: 12px; font-weight: 700; color: var(--accent-2); letter-spacing: .03em; margin-bottom: 4px !important; }
+</style>
+</head>
+<body data-chapter="glossary">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 14</div>
+    <h1>용어집 &amp; 종합 퀴즈</h1>
+    <p class="lead">해부학을 처음 배울 때 가장 큰 벽은 이름이다. 같은 뼈가 우리말로는 넙다리뼈, 한자어로는 대퇴골, 영어로는 femur다. 이 장은 읽는 장이 아니라 찾아보고 연습하는 장이다. 책에 나온 용어를 세 가지 이름으로 검색하고, 방향과 단면의 용어를 실제 몸 데이터 위에서 연습하고, 이름 맞추기로 세 언어를 잇고, 마지막으로 책 전체를 아우르는 20문항으로 몸의 지도를 점검한다.</p>
+    <ul class="objectives">
+      <li>책에 나온 해부학 용어를 우리말·한자어·영어·약어로 검색하고 장별로 거른다.</li>
+      <li>두 구조의 위치 관계를 위쪽·아래쪽, 앞쪽·뒤쪽, 안쪽·가쪽으로 바로 말한다.</li>
+      <li>단면 영상을 보고 가로면·관상면·시상면을 구별한다.</li>
+      <li>우리말 이름과 한자어, 영어 이름을 서로 짝짓는다.</li>
+      <li>종합 퀴즈로 뼈대·팔다리·관절·몸통·장기·뇌·혈관·단면·데이터를 점검한다.</li>
+    </ul>
+  </header>
+
+  <section id="glossary">
+    <h2>용어집</h2>
+    <p>검색창에 우리말, 한자어, 영어, 약어 무엇이든 넣어 보자. 위 막대는 장마다 용어 수다(용어 하나가 여러 장에 걸치면 그 장마다 센다). 막대나 장 단추를 누르면 그 장의 용어만 남는다. 용어 아래의 링크가 그 용어를 다룬 장이다.</p>
+    <p>우리말 이름은 뜻을 담고 있어 이름만 보고도 모양이나 자리를 짐작할 수 있다. 넙다리는 넓적다리, 노뼈의 "노"는 배를 젓는 노, 자뼈의 "자"는 길이를 재는 자, 목말뼈는 정강뼈가 목말을 타듯 올라앉은 뼈다. 한자어는 병원과 오래된 책에서 아직 흔히 쓰이므로 함께 알아 두면 좋다.</p>
+
+    <div class="sim" id="sim-gl-terms" data-desc="해부학 용어 200여 개를 우리말·한자어·영어·약어로 검색하고, 장별 용어 수 막대를 눌러 거르며, 각 용어를 다룬 장으로 바로 간다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>용어 찾기</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="gl-cv"></canvas><span class="hint">막대를 눌러 장을 고른다</span></div>
+      </div>
+      <div class="gl-pad">
+        <input type="search" class="gl-search" id="gl-q" placeholder="용어 검색: 예) 넙다리, 대퇴골, femur, 내측, HU" autocomplete="off" aria-label="용어 검색">
+        <div class="gl-chips" id="gl-chips"></div>
+        <div class="gl-count" id="gl-count"></div>
+        <div id="gl-list" class="gl-list" aria-live="polite"></div>
+      </div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">찾은 용어</span><span class="v" id="gl-o-n">—</span></div>
+        <div class="stat"><span class="k">고른 장</span><span class="v" id="gl-o-ch" style="font-size:16px">전체</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "뼈"를 검색해 우리말 뼈 이름이 얼마나 많은지 보고, "골"을 검색해 같은 뼈의 한자어 이름을 본다. ② "근"을 넣으면 근육 이름이 모양(세모근), 갈래(두갈래근), 방향(빗근), 위치(가시위근), 붙는 곳(목빗근)으로 지어진 것을 볼 수 있다(<a href="trunk.html">7장</a>). ③ 영어 "lateral"을 넣어 가쪽, 가쪽뇌실처럼 같은 낱말이 여러 장에 나오는 것을 본다.</div>
+    </div>
+  </section>
+
+  <section id="drill">
+    <h2>방향과 단면 연습</h2>
+    <p>방향 용어는 외우는 것보다 쓰는 것이 중요하다. 아래 연습은 실제 몸 데이터에서 두 구조를 골라 "B는 A보다 어느 쪽에 있나"를 묻는다. 앞모습(좌우·위아래)과 옆모습(앞뒤·위아래)을 함께 보여 주니, 두 그림을 오가며 답을 찾는다. 맞는 방향이 여러 개일 때는 그중 하나만 골라도 된다. "단면" 모드에서는 단면 영상 하나를 보고 어느 면으로 자른 것인지 맞힌다.</p>
+
+    <div class="sim" id="sim-gl-dir" data-desc="실제 몸 데이터에서 무작위로 고른 두 구조의 앞모습·옆모습을 보고 위쪽·아래쪽·앞쪽·뒤쪽·안쪽·가쪽 가운데 맞는 방향을 고르거나, 단면 하나를 보고 가로면·관상면·시상면을 맞히는 연습.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>B는 A보다 어느 쪽에 있나?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="gl-dr-cv"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="gl-dr-mode"><button data-value="dir" class="on">방향</button><button data-value="plane">단면</button></div>
+          <p class="gl-q" id="gl-dr-q"></p>
+          <div class="gl-opts" id="gl-dr-dirs">
+            <button class="btn" data-a="sup">위쪽(상)</button><button class="btn" data-a="inf">아래쪽(하)</button>
+            <button class="btn" data-a="ant">앞쪽(전)</button><button class="btn" data-a="pos">뒤쪽(후)</button>
+            <button class="btn" data-a="med">안쪽(내측)</button><button class="btn" data-a="lat">가쪽(외측)</button>
+          </div>
+          <div class="gl-opts" id="gl-dr-planes" hidden>
+            <button class="btn" data-a="axial">가로면</button><button class="btn" data-a="coronal">관상면</button><button class="btn" data-a="sagittal">시상면</button>
+          </div>
+          <div class="btn-row"><button class="btn primary" id="gl-dr-next">다음 문제</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="gl-dr-info">답을 고르면 설명이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">맞힘</span><span class="v" id="gl-dr-ok">0</span></div>
+        <div class="stat"><span class="k">틀림</span><span class="v" id="gl-dr-no">0</span></div>
+        <div class="stat"><span class="k">연속 정답</span><span class="v" id="gl-dr-st">0</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 처음 다섯 문제는 앞모습만 보고, 다음 다섯 문제는 옆모습만 보고 풀어 본다. 앞뒤는 옆모습에서만, 안쪽·가쪽은 앞모습에서만 보인다. ② 안쪽·가쪽은 좌우가 아니라 "정중선에서 얼마나 먼가"다. 오른쪽 콩팥과 지라처럼 서로 반대편에 있어도 정중선에서 더 먼 쪽이 가쪽이다. ③ "단면" 모드에서 몸의 바깥 윤곽만 보고도 면을 가려 본다. 가로면은 둥근 몸통 단면, 관상면은 앞에서 본 사람 모양, 시상면은 옆에서 본 사람 모양이다. (방향은 두 구조의 무게중심을 비교했고, 25 mm보다 작은 차이는 "거의 같다"로 본다. 짝이 있는 콩팥은 오른쪽 기준이다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>방향 용어의 반대말 짝을 기억해 두자: 위쪽·아래쪽, 앞쪽·뒤쪽, 안쪽·가쪽, 몸쪽·먼쪽, 얕은·깊은, 같은 쪽·반대쪽. 그리고 늘 기준이 있어야 한다는 것, 좌우는 늘 그 사람의 좌우라는 것(<a href="language.html">1장</a>, <a href="sections.html">12장</a>).</p>
+  </section>
+
+  <section id="match">
+    <h2>세 가지 이름 잇기</h2>
+    <p>같은 구조의 우리말·한자어·영어 이름을 짝짓는다. 왼쪽 카드를 누르고 짝이 되는 오른쪽 카드를 누른다. 한자어는 뜻을 알면 쉽다: 대퇴(大腿)는 큰 넓적다리, 상완(上腕)은 위팔, 요골(橈骨)의 요는 노, 척골(尺骨)의 척은 자, 견갑(肩胛)은 어깨, 늑(肋)은 갈비다.</p>
+
+    <div class="sim" id="sim-gl-match" data-desc="뼈·근육·장기·방향 용어의 우리말·한자어·영어 이름 다섯 쌍을 카드로 섞어 놓고, 왼쪽과 오른쪽 카드를 눌러 짝을 이으며 세 가지 이름을 익힌다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>이름 짝 맞추기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="gl-mt-cv" class="drag"></canvas><span class="hint">왼쪽 → 오른쪽 순서로 누른다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>짝</span><div class="seg" id="gl-mt-mode"><button data-value="ko-hj" class="on">우리말 ↔ 한자어</button><button data-value="ko-en">우리말 ↔ 영어</button><button data-value="hj-en">한자어 ↔ 영어</button></div></div>
+          <label class="ctrl"><span>범위</span><select id="gl-mt-set"><option value="all">책 전체</option><option value="bone">뼈</option><option value="muscle">근육</option><option value="organ">장기·뇌·혈관</option><option value="dir">방향·움직임·면</option></select></label>
+          <div class="btn-row"><button class="btn primary" id="gl-mt-new">새 문제</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="gl-mt-info">왼쪽 카드를 하나 누른다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">맞힌 짝</span><span class="v" id="gl-mt-ok">0 / 5</span></div>
+        <div class="stat"><span class="k">시도</span><span class="v" id="gl-mt-try">0</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "우리말 ↔ 한자어"에서 뼈 범위를 골라, 한자 한 글자의 뜻(대 = 큰, 상 = 위, 중 = 가운데)이 우리말 이름과 어떻게 맞물리는지 본다. ② "우리말 ↔ 영어"는 라틴어 어원을 떠올리면 쉽다. femur는 넓적다리, radius는 바퀴살, tibia는 피리라는 뜻이다. ③ 다섯 쌍을 한 번에 맞힐 때까지 "새 문제"를 눌러 본다. (카드는 이 장 용어집의 용어에서 무작위로 고른다.)</div>
+    </div>
+  </section>
+
+  <section id="final-quiz">
+    <h2>종합 퀴즈</h2>
+    <p>책 전체에서 20문항을 골랐다. 위치를 묻는 문제와 이 책의 데이터를 읽는 문제가 섞여 있다. 문제 위의 작은 글씨가 그 문제를 다룬 장이다. 위쪽 점수판이 푸는 동안 따라온다.</p>
+    <div class="qz-score" id="qz-score">
+      <div class="row"><span>맞힘 <b id="qz-ok">0</b></span><span>틀림 <b id="qz-no">0</b></span><span>남은 문제 <b id="qz-left">20</b></span><span id="qz-msg"></span><button class="btn" id="qz-reset" style="margin-left:auto">다시 풀기</button></div>
+      <div class="qz-bar"><i class="ok" id="qz-bar-ok" style="width:0"></i><i class="no" id="qz-bar-no" style="width:0"></i></div>
+    </div>
+    <div class="quiz" id="qz-list">
+      <div class="quiz-q"><p class="qch">1장 · 해부학의 언어</p><p>해부학적 자세에서 엄지손가락은 새끼손가락보다 어느 쪽에 있는가?</p><div class="opts">
+        <button class="opt">안쪽</button><button class="opt" data-correct>가쪽</button><button class="opt">뒤쪽</button><button class="opt">깊은 쪽</button></div>
+        <div class="quiz-exp">해부학적 자세에서는 손바닥이 앞을 향하므로 엄지가 정중선에서 먼 쪽, 곧 가쪽에 온다. 그래서 엄지 쪽 아래팔뼈(노뼈)가 가쪽 뼈다.</div></div>
+      <div class="quiz-q"><p class="qch">2장 · 뼈대</p><p>다음 가운데 몸통뼈대(축골격)에 속하지 않는 뼈는?</p><div class="opts">
+        <button class="opt">복장뼈</button><button class="opt">목뿔뼈</button><button class="opt" data-correct>빗장뼈</button><button class="opt">엉치뼈</button></div>
+        <div class="quiz-exp">빗장뼈는 어깨뼈와 함께 팔을 몸통에 잇는 어깨이음뼈로, 팔다리뼈대에 속한다. 복장뼈·목뿔뼈·엉치뼈는 몸통뼈대다.</div></div>
+      <div class="quiz-q"><p class="qch">3장 · 머리뼈, 척주, 가슴우리</p><p>척주에서 앞으로 볼록한 굽이(앞굽이)가 있는 곳은?</p><div class="opts">
+        <button class="opt">등과 엉치</button><button class="opt" data-correct>목과 허리</button><button class="opt">등과 허리</button><button class="opt">목과 엉치</button></div>
+        <div class="quiz-exp">목과 허리는 앞으로, 등과 엉치는 뒤로 볼록하다. 이 S자 굽이가 걷고 뛸 때 충격을 용수철처럼 받아 낸다.</div></div>
+      <div class="quiz-q"><p class="qch">3장 · 머리뼈, 척주, 가슴우리</p><p>앞끝이 복장뼈에도 위 갈비연골에도 붙지 않는 뜬갈비뼈는?</p><div class="opts">
+        <button class="opt">1·2번</button><button class="opt">6·7번</button><button class="opt">8~10번</button><button class="opt" data-correct>11·12번</button></div>
+        <div class="quiz-exp">1~7번은 참갈비뼈, 8~12번은 거짓갈비뼈이고, 그 가운데 11·12번은 앞끝이 떠 있어 뜬갈비뼈라 한다.</div></div>
+      <div class="quiz-q"><p class="qch">4장 · 팔과 손</p><p>아래팔의 두 뼈 가운데 엄지 쪽에 있어 엎침·뒤침 때 다른 뼈 둘레를 도는 뼈는?</p><div class="opts">
+        <button class="opt" data-correct>노뼈(요골)</button><button class="opt">자뼈(척골)</button><button class="opt">위팔뼈(상완골)</button><button class="opt">손배뼈(주상골)</button></div>
+        <div class="quiz-exp">노뼈는 엄지 쪽(가쪽) 뼈로, 엎침 때 자뼈 위를 엇갈려 넘어간다. 자뼈는 새끼손가락 쪽에서 팔꿈치 끝을 이룬다.</div></div>
+      <div class="quiz-q"><p class="qch">4장 · 팔과 손</p><p>돌림근띠(회전근개)를 이루는 근육이 아닌 것은?</p><div class="opts">
+        <button class="opt">가시위근</button><button class="opt">어깨밑근</button><button class="opt">작은원근</button><button class="opt" data-correct>어깨세모근</button></div>
+        <div class="quiz-exp">돌림근띠는 가시위근·가시아래근·작은원근·어깨밑근의 힘줄이다. 어깨세모근은 그 바깥을 덮는 큰 근육이다.</div></div>
+      <div class="quiz-q"><p class="qch">5장 · 다리와 발</p><p>볼기뼈를 이루는 세 뼈가 아닌 것은?</p><div class="opts">
+        <button class="opt">엉덩뼈</button><button class="opt">궁둥뼈</button><button class="opt" data-correct>엉치뼈</button><button class="opt">두덩뼈</button></div>
+        <div class="quiz-exp">볼기뼈는 엉덩뼈·궁둥뼈·두덩뼈가 사춘기 무렵 절구에서 하나로 합쳐진 뼈다. 엉치뼈는 척주의 일부로, 좌우 볼기뼈와 함께 골반을 이룬다.</div></div>
+      <div class="quiz-q"><p class="qch">5장 · 다리와 발</p><p>넙다리네갈래근이 수축하면 일어나는 주된 움직임은?</p><div class="opts">
+        <button class="opt">무릎을 굽힌다</button><button class="opt" data-correct>무릎을 편다</button><button class="opt">발꿈치를 든다</button><button class="opt">넙다리를 모은다</button></div>
+        <div class="quiz-exp">넙다리 앞의 네 갈래 근육은 무릎뼈를 거쳐 정강뼈에 붙어 무릎을 편다. 무릎을 굽히는 것은 뒤넙다리근이다.</div></div>
+      <div class="quiz-q"><p class="qch">6장 · 관절과 움직임</p><p>어깨관절과 엉덩관절 같은 절구관절의 자유도는?</p><div class="opts">
+        <button class="opt">1</button><button class="opt">2</button><button class="opt" data-correct>3</button><button class="opt">6</button></div>
+        <div class="quiz-exp">공 모양 머리가 절구 안에서 세 축(굽힘·폄, 벌림·모음, 돌림)으로 움직인다. 경첩관절은 1, 손목의 타원관절은 2다.</div></div>
+      <div class="quiz-q"><p class="qch">6장 · 관절과 움직임</p><p>손바닥이 앞(위)을 향하도록 아래팔을 돌리는 움직임은?</p><div class="opts">
+        <button class="opt">엎침</button><button class="opt">벌림</button><button class="opt">휘돌림</button><button class="opt" data-correct>뒤침</button></div>
+        <div class="quiz-exp">뒤침(회외)은 손바닥을 위로, 엎침(회내)은 아래로 돌리는 움직임이다. 해부학적 자세의 손은 뒤침 상태다.</div></div>
+      <div class="quiz-q"><p class="qch">7장 · 몸통과 목의 근육</p><p>목빗근(sternocleidomastoid)의 이름에 담긴 붙는 곳이 아닌 것은?</p><div class="opts">
+        <button class="opt">복장뼈(sterno)</button><button class="opt">빗장뼈(cleido)</button><button class="opt" data-correct>어깨뼈</button><button class="opt">꼭지돌기(mastoid)</button></div>
+        <div class="quiz-exp">sterno(복장뼈)·cleido(빗장뼈)·mastoid(관자뼈의 꼭지돌기). 근육 이름은 붙는 곳, 모양, 갈래, 방향, 위치, 작용으로 짓는다.</div></div>
+      <div class="quiz-q"><p class="qch">8장 · 가슴 안</p><p>기관이 갈라진 뒤 더 굵고 곧게 내려가, 삼킨 이물질이 더 잘 들어가는 쪽은?</p><div class="opts">
+        <button class="opt" data-correct>오른쪽 주기관지</button><button class="opt">왼쪽 주기관지</button><button class="opt">양쪽이 같다</button><button class="opt">식도</button></div>
+        <div class="quiz-exp">왼쪽 주기관지는 심장과 대동맥활을 피해 비스듬히 누워 가므로, 오른쪽이 더 굵고 짧고 곧다.</div></div>
+      <div class="quiz-q"><p class="qch">8장 · 가슴 안 · 데이터 읽기</p><p>이 책의 데이터에서 심장 벽 전체의 무게중심은 정중선에서 어느 쪽에 있었는가?</p><div class="opts">
+        <button class="opt">정확히 정중선 위</button><button class="opt">오른쪽으로 약 5 cm</button><button class="opt" data-correct>왼쪽으로 약 2 cm</button><button class="opt">왼쪽으로 약 10 cm</button></div>
+        <div class="quiz-exp">이 데이터의 모델에서 심장의 무게중심은 정중선에서 왼쪽으로 약 1.7 cm다. 심장은 가운데에 있되 왼쪽으로 기울어, 약 3분의 2가 정중선 왼쪽에 놓인다.</div></div>
+      <div class="quiz-q"><p class="qch">9장 · 배와 골반 안</p><p>오른쪽 콩팥이 왼쪽 콩팥보다 조금 낮게 있는 까닭으로 흔히 드는 것은?</p><div class="opts">
+        <button class="opt">심장이 오른쪽에 있어서</button><button class="opt" data-correct>오른쪽 위에 큰 간이 있어서</button><button class="opt">오른쪽 요관이 짧아서</button><button class="opt">지라가 오른쪽을 누르고 있어서</button></div>
+        <div class="quiz-exp">간이 배의 오른쪽 위를 차지해 오른쪽 콩팥이 아래로 밀려 있다. 이 데이터의 모델에서도 오른쪽 콩팥의 무게중심이 왼쪽보다 약 2 cm 낮다.</div></div>
+      <div class="quiz-q"><p class="qch">9장 · 배와 골반 안</p><p>배막뒤 기관이 아닌 것은?</p><div class="opts">
+        <button class="opt">콩팥</button><button class="opt">이자</button><button class="opt">아래대정맥</button><button class="opt" data-correct>위</button></div>
+        <div class="quiz-exp">위는 배막에 싸여 배막안에 매달린 기관이다. 콩팥·부신·요관·이자·샘창자 대부분·대동맥·아래대정맥은 배안의 뒷벽, 배막 뒤에 있다.</div></div>
+      <div class="quiz-q"><p class="qch">10장 · 뇌와 눈</p><p>좌우 대뇌반구를 잇는 굵은 신경섬유 다발은?</p><div class="opts">
+        <button class="opt">속섬유막</button><button class="opt" data-correct>뇌들보</button><button class="opt">시각교차</button><button class="opt">뇌줄기</button></div>
+        <div class="quiz-exp">뇌들보(뇌량)는 두 반구를 가로로 잇는다. 속섬유막은 겉질과 아래쪽(뇌줄기·척수)을 위아래로 잇는 섬유가 모인 곳이다.</div></div>
+      <div class="quiz-q"><p class="qch">11장 · 혈관의 지도</p><p>손목에서 맥박을 흔히 짚는 동맥은?</p><div class="opts">
+        <button class="opt" data-correct>노동맥</button><button class="opt">자정맥</button><button class="opt">위팔동맥</button><button class="opt">노쪽피부정맥</button></div>
+        <div class="quiz-exp">노동맥은 손목 엄지 쪽에서 노뼈 위를 얕게 지나 맥박을 짚기 좋다. 맥박은 동맥에서 짚는다.</div></div>
+      <div class="quiz-q"><p class="qch">12장 · 단면으로 보는 몸</p><p>CT에서 물이 0 HU, 공기가 약 −1,000 HU라면 지방은 대략 몇 HU인가?</p><div class="opts">
+        <button class="opt">약 −800</button><button class="opt" data-correct>약 −100</button><button class="opt">약 +50</button><button class="opt">약 +700</button></div>
+        <div class="quiz-exp">지방은 물보다 조금 덜 X선을 막아 약 −100 HU로 어두운 회색이다. +50 근처는 근육·간 같은 연부조직, +700 근처는 뼈다.</div></div>
+      <div class="quiz-q"><p class="qch">13장 · 계산하는 해부학</p><p>"넙다리뼈는 긴뼈의 한 종류다"는 BodyParts3D의 어느 관계인가?</p><div class="opts">
+        <button class="opt">part-of(부분 관계)</button><button class="opt" data-correct>is-a(종류 관계)</button><button class="opt">둘 다</button><button class="opt">어느 쪽도 아니다</button></div>
+        <div class="quiz-exp">"~의 한 종류"는 is-a다. "오른쪽 넙다리뼈는 오른다리의 일부다"가 part-of다.</div></div>
+      <div class="quiz-q"><p class="qch">13장 · 계산하는 해부학 · 데이터 읽기</p><p>피부 단면의 바깥 윤곽 넓이를 쌓아 구한 이 모델의 몸 부피에 가장 가까운 것은?</p><div class="opts">
+        <button class="opt">약 3.4 L</button><button class="opt">약 35 L</button><button class="opt" data-correct>약 70 L</button><button class="opt">약 170 L</button></div>
+        <div class="quiz-exp">이 데이터의 모델에서 몸의 부피는 약 70 L다. 3.4 L는 피부 껍질 메시의 부피를 그대로 계산한 값으로, 겉면과 속면 사이의 얇은 층만 잰 것이다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>해부학 용어는 우리말·한자어·영어 세 이름이 있다. 우리말은 뜻을, 한자어는 병원의 언어를, 영어(라틴어)는 세계의 공통어를 준다.</li>
+      <li>방향 용어는 반대말 짝과 기준으로 쓴다. 안쪽·가쪽은 좌우가 아니라 정중선에서의 거리이고, 좌우는 늘 그 사람의 좌우다.</li>
+      <li>단면은 몸의 바깥 윤곽만 보고도 가로면(몸통의 둥근 단면), 관상면(앞모습), 시상면(옆모습)을 가릴 수 있다.</li>
+      <li>이름은 모양·자리·갈래·방향·붙는 곳을 담고 있어, 뜻을 풀면 외울 것이 줄어든다.</li>
+    </ol>
+  </section>
+</main>
+
+<script src="../js/glossary-data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var CH = {}; BB.CHAPTERS.forEach(function (c) { CH[c.slug] = c; });
+  var ORDER = BB.CHAPTERS.map(function (c) { return c.slug; }).filter(function (s) { return s !== "glossary"; });
+  var TERMS = (window.BOOK_GLOSSARY && window.BOOK_GLOSSARY.terms || []).filter(function (t) { return t.chapters && t.chapters.length && CH[t.chapters[0]]; });
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function shuffle(a, rnd) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(rnd() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  var rnd = BB.rng(20261108);
+
+  /* ---------------------------------------------------------- 1. 용어 찾기 */
+  (function () {
+    var chSel = null, cv = null, lay = [];
+    var qEl = $("gl-q"), listEl = $("gl-list"), chips = $("gl-chips");
+    chips.innerHTML = '<button data-ch="" class="on">전체</button>' + ORDER.map(function (s) { return '<button data-ch="' + s + '">' + CH[s].num + '<span class="t"> ' + esc(CH[s].title.split(/[:：,]/)[0]) + "</span></button>"; }).join("");
+    chips.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; setCh(b.dataset.ch || null); });
+    function setCh(s) {
+      chSel = chSel === s ? null : s;
+      [].forEach.call(chips.children, function (b) { b.classList.toggle("on", (b.dataset.ch || null) === chSel); });
+      render();
+    }
+    function hl(text, q) {
+      var t = esc(text); if (!q) return t;
+      var i = text.toLowerCase().indexOf(q); if (i < 0) return t;
+      return esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length));
+    }
+    function matches(q) {
+      return TERMS.filter(function (t) { return !q || (t.ko + " " + t.en + " " + (t.abbr || "") + " " + t.def).toLowerCase().indexOf(q) >= 0; });
+    }
+    function render() {
+      var q = qEl.value.trim().toLowerCase();
+      var f = matches(q).filter(function (t) { return !chSel || t.chapters.indexOf(chSel) >= 0; });
+      f.sort(function (a, b) { return a.ko.localeCompare(b.ko, "ko"); });
+      $("gl-count").textContent = f.length + " / " + TERMS.length + "개";
+      BB.stat("gl-o-n", f.length + "<small>/ " + TERMS.length + "</small>");
+      BB.stat("gl-o-ch", chSel ? CH[chSel].num + "장" : "전체");
+      listEl.innerHTML = f.length ? f.map(function (t) {
+        return '<div class="gl-item"><h4>' + hl(t.ko, q) + '<span class="en">' + hl(t.en, q) + "</span>" + (t.abbr ? '<span class="abbr">' + hl(t.abbr, q) + "</span>" : "") + "</h4><p>" + hl(t.def, q) + '</p><div class="chs">' +
+          t.chapters.filter(function (s) { return CH[s]; }).map(function (s) { return '<a class="ch" href="' + s + '.html">→ ' + CH[s].num + "장 " + esc(CH[s].title) + "</a>"; }).join("") + "</div></div>";
+      }).join("") : '<div class="gl-empty">"' + esc(qEl.value) + '"에 해당하는 용어가 없다. 한자어나 영어로 검색해 보자.</div>';
+      if (cv) cv.redraw();
+    }
+    qEl.addEventListener("input", render);
+    render();
+    cv = BB.canvas("#gl-cv", function (ctx, w, h) {
+      var p = BB.palette(), q = qEl.value.trim().toLowerCase(), m = matches(q);
+      var cnt = {}, all = {};
+      TERMS.forEach(function (t) { t.chapters.forEach(function (s) { all[s] = (all[s] || 0) + 1; }); });
+      m.forEach(function (t) { t.chapters.forEach(function (s) { cnt[s] = (cnt[s] || 0) + 1; }); });
+      var mx = Math.max(10, Math.ceil(Math.max.apply(null, ORDER.map(function (s) { return all[s] || 0; })) / 10) * 10);
+      var n = ORDER.length, L = 30, R = w - 10, top = 24, bot = h - 40, slot = (R - L) / n;
+      ctx.fillStyle = p.dim; ctx.font = BB.font(11); ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("장별 용어 수" + (q ? " · 회색: 전체, 색: 검색에 걸린 것" : ""), L, 4);
+      ctx.font = BB.font(9.5, true); ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      [0, mx / 2, mx].forEach(function (v) { var y = bot - v / mx * (bot - top); ctx.strokeStyle = p.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(R, y); ctx.stroke(); ctx.fillStyle = p.dim; ctx.fillText(v, L - 4, y); });
+      lay = [];
+      ORDER.forEach(function (s, i) {
+        var x = L + i * slot + slot * 0.15, bw = slot * 0.7, st = CH[s].stage, col = st != null ? BB.segColor(BB.STAGES[st].seg) : p.accent;
+        if (!col || col === "") col = p.accent;
+        var ya = bot - (all[s] || 0) / mx * (bot - top), yc = bot - (cnt[s] || 0) / mx * (bot - top);
+        var dim = chSel && chSel !== s;
+        ctx.fillStyle = BB.alpha(p.dim, 0.18); ctx.fillRect(x, ya, bw, bot - ya);
+        ctx.fillStyle = BB.alpha(col, dim ? 0.3 : 0.85); ctx.fillRect(x, yc, bw, bot - yc);
+        if (chSel === s) { ctx.strokeStyle = p.text; ctx.lineWidth = 2; ctx.strokeRect(x - 1, ya - 1, bw + 2, bot - ya + 2); }
+        ctx.fillStyle = chSel === s ? p.text : p.dim; ctx.font = BB.font(w < 500 ? 9 : 10, true); ctx.textAlign = "center"; ctx.textBaseline = "top";
+        ctx.fillText(CH[s].num, x + bw / 2, bot + 4);
+        lay.push({ s: s, x0: L + i * slot, x1: L + (i + 1) * slot });
+      });
+      ctx.fillStyle = p.faint; ctx.font = BB.font(10); ctx.textAlign = "center"; ctx.fillText("장 번호", (L + R) / 2, bot + 20);
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    }, { aspect: 0.24, minHeight: 170, maxHeight: 210 });
+    var tip = BB.tip(cv.canvas);
+    BB.drag(cv.canvas, {
+      start: function (x) { var b = lay.filter(function (q) { return x >= q.x0 && x < q.x1; })[0]; if (b) setCh(b.s); },
+      hover: function (x) { var b = lay.filter(function (q) { return x >= q.x0 && x < q.x1; })[0]; if (!b) { tip.hide(); return; } var n = TERMS.filter(function (t) { return t.chapters.indexOf(b.s) >= 0; }).length; tip.show(x, 30, "<b>" + CH[b.s].num + " " + esc(CH[b.s].title) + "</b><small>용어 " + n + "개</small>"); },
+    });
+    cv.canvas.addEventListener("pointerleave", tip.hide);
+  })();
+
+  /* ---------------------------------------------------------- 2. 방향·단면 연습 */
+  (function () {
+    var S = [
+      ["brain", "brain", "뇌"], ["heart", "heart", "심장"], ["liver", "liver", "간"], ["stomach", "stomach", "위"], ["spleen", "spleen", "지라"],
+      ["pancreas", "pancreas", "이자"], ["gallbladder", "gallbladder", "쓸개"], ["kidneys", "kidney_r", "오른쪽 콩팥"], ["bladder", "bladder", "방광"],
+      ["airway", "trachea", "기관"], ["thymus", "thymus", "가슴샘"], ["aorta", "aorta", "대동맥"], ["smallint", "smallint", "작은창자"],
+      ["armbones_r", "humerus", "오른쪽 위팔뼈"], ["legbones_r", "femur", "오른쪽 넙다리뼈"], ["pelvis", "hipbone", "오른쪽 볼기뼈"], ["skull", "skull", "머리뼈"],
+    ];
+    var NAME = { sup: "위쪽(상)", inf: "아래쪽(하)", ant: "앞쪽(전)", pos: "뒤쪽(후)", med: "안쪽(내측)", lat: "가쪽(외측)" };
+    var PLV = { axial: [1510, 1290, 1230, 1110, 1000, 810, 600], coronal: [-150, -110, -70, -40], sagittal: [0, -60, 60, -110, 100] };
+    var BONES = ["skull", "spine", "ribcage", "pelvis", "armbones_r", "armbones_l", "legbones_r", "legbones_l"];
+    var ORG = ["brain", "heart", "airway", "liver", "stomach", "spleen", "pancreas", "gallbladder", "kidneys", "smallint", "largeint", "bladder", "aorta", "thymus"];
+    var mode = "dir", q = null, done = false, ok = 0, no = 0, streak = 0;
+    var holder = $("gl-dr-cv").parentElement, info = $("gl-dr-info");
+    function trueSet(a, b) {
+      var pa = AT.part(a[1]).c, pb = AT.part(b[1]).c, t = 25, out = {};
+      var dz = pb[2] - pa[2], dy = pa[1] - pb[1], dl = Math.abs(pb[0]) - Math.abs(pa[0]);
+      if (dz > t) out.sup = dz; if (-dz > t) out.inf = -dz;
+      if (dy > t) out.ant = dy; if (-dy > t) out.pos = -dy;
+      if (dl > t) out.lat = dl; if (-dl > t) out.med = -dl;
+      return out;
+    }
+    function newQ() {
+      done = false;
+      [].forEach.call(document.querySelectorAll("#gl-dr-dirs .btn, #gl-dr-planes .btn"), function (b) { b.classList.remove("right", "wrong"); });
+      if (mode === "dir") {
+        var a, b, ts, guard = 0;
+        do { a = S[Math.floor(rnd() * S.length)]; b = S[Math.floor(rnd() * S.length)]; ts = a === b ? {} : trueSet(a, b); } while (!Object.keys(ts).length && guard++ < 50);
+        q = { a: a, b: b, ts: ts };
+        $("gl-dr-q").innerHTML = "<b>B " + b[2] + "</b>은(는) <b>A " + a[2] + "</b>보다 어느 쪽에 있나?";
+      } else {
+        var pls = ["axial", "coronal", "sagittal"], pl = pls[Math.floor(rnd() * 3)], L = PLV[pl][Math.floor(rnd() * PLV[pl].length)];
+        q = { pl: pl, lv: L };
+        $("gl-dr-q").innerHTML = "이 단면은 어느 면으로 자른 것인가?";
+      }
+      info.textContent = "답을 고르면 설명이 나온다.";
+      cv.redraw();
+    }
+    var cv = BB.canvas("#gl-dr-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      if (!q) return;
+      if (mode === "dir" && q.a) {
+        var half = w / 2;
+        [["front", 0], ["side", half]].forEach(function (v) {
+          var box = { x: v[1], y: 18, w: half, h: h - 18 };
+          var T = AT.mapFit(box, v[0], { pad: 8 });
+          AT.drawMap(ctx, T, v[0], { layers: ["skin"].concat(BONES, ORG), highlight: [q.a[0], q.b[0]] });
+          var pa = AT.mapPoint(T, v[0], q.a[1]), pb = AT.mapPoint(T, v[0], q.b[1]);
+          ctx.strokeStyle = P.text; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(pa[0], pa[1]); ctx.lineTo(pb[0], pb[1]); ctx.stroke(); ctx.setLineDash([]);
+          [[pa, "A", P.accent], [pb, "B", P.accent2]].forEach(function (m) {
+            ctx.fillStyle = m[2]; ctx.beginPath(); ctx.arc(m[0][0], m[0][1], 9, 0, 7); ctx.fill(); ctx.strokeStyle = P.bg; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fillStyle = "#fff"; ctx.font = BB.font(11, true, 700); ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(m[1], m[0][0], m[0][1] + 0.5);
+          });
+          AT.orient(ctx, box, v[0], P.faint);
+          ctx.fillStyle = P.dim; ctx.font = BB.font(11.5, false, 600); ctx.textAlign = "center"; ctx.textBaseline = "top";
+          ctx.fillText(v[0] === "front" ? "앞모습(마주 봄)" : "옆모습(앞이 왼쪽)", v[1] + half / 2, 2);
+        });
+        ctx.strokeStyle = P.border; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(half, 18); ctx.lineTo(half, h); ctx.stroke();
+      } else if (q.pl) {
+        var box2 = { x: 0, y: 0, w: w, h: h };
+        ctx.fillStyle = P.surface; ctx.fillRect(0, 0, w, h);
+        var T2 = AT.sectionFit(box2, q.pl, { pad: 12 });
+        AT.drawSection(ctx, T2, q.pl, q.lv, { mode: "color", bg: false });
+        if (done) {
+          AT.orient(ctx, box2, q.pl, P.dim);
+          ctx.fillStyle = P.text; ctx.font = BB.font(13, false, 700); ctx.textAlign = "left"; ctx.textBaseline = "top";
+          ctx.fillText(AT.PLANES[q.pl], 12, 30);
+        } else {
+          ctx.fillStyle = P.dim; ctx.font = BB.font(11.5); ctx.textAlign = "left"; ctx.textBaseline = "top";
+          ctx.fillText("방향 표시는 답한 뒤에 나온다", 12, 8);
+        }
+      }
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    }, { get height() { return holder.clientWidth < 520 ? 360 : 420; } });
+    function answer(btn) {
+      if (done || !q) return;
+      var a = btn.dataset.a, good;
+      if (mode === "dir") {
+        good = q.ts[a] != null;
+        var list = Object.keys(q.ts).map(function (k) { return NAME[k] + " " + AT.fmtLen(q.ts[k]); }).join(", ");
+        info.innerHTML = (good ? "<b>맞았다.</b> " : "<b>틀렸다.</b> ") + q.b[2] + "은(는) " + q.a[2] + "보다 <b>" + list + "</b>에 있다(무게중심 기준)." + (q.ts.med || q.ts.lat ? " 안쪽·가쪽은 정중선에서의 거리로 판단한다." : "");
+        document.querySelectorAll("#gl-dr-dirs .btn").forEach(function (b) { if (q.ts[b.dataset.a] != null) b.classList.add("right"); });
+      } else {
+        good = a === q.pl;
+        var lvTxt = q.pl === "axial" ? "발바닥에서 " + AT.fmtLen(q.lv - AT.body.bottom) + " 높이" : q.pl === "coronal" ? "y = " + q.lv + " mm(앞뒤 위치)" : "x = " + q.lv + " mm(좌우 위치)";
+        var why = { axial: "몸을 위아래로 나눈 면이라 몸통(또는 머리·다리)의 둥근 단면이 보인다. 발 쪽에서 본 모습이다.", coronal: "몸을 앞뒤로 나눈 면이라 앞에서 본 사람 모양이 보인다. 좌우가 함께 보인다.", sagittal: "몸을 좌우로 나눈 면이라 옆에서 본 사람 모양이 보인다. 앞뒤가 함께 보인다." }[q.pl];
+        info.innerHTML = (good ? "<b>맞았다.</b> " : "<b>틀렸다.</b> ") + "<b>" + AT.PLANES[q.pl] + "</b>(" + lvTxt + "). " + why;
+        document.querySelectorAll("#gl-dr-planes .btn").forEach(function (b) { if (b.dataset.a === q.pl) b.classList.add("right"); });
+      }
+      if (!good) btn.classList.add("wrong");
+      done = true;
+      if (good) { ok++; streak++; } else { no++; streak = 0; }
+      BB.stat("gl-dr-ok", ok); BB.stat("gl-dr-no", no); BB.stat("gl-dr-st", streak);
+      cv.redraw();
+    }
+    document.querySelectorAll("#gl-dr-dirs .btn, #gl-dr-planes .btn").forEach(function (b) { b.addEventListener("click", function () { answer(b); }); });
+    BB.seg("gl-dr-mode", function (v) { mode = v; $("gl-dr-dirs").hidden = v !== "dir"; $("gl-dr-planes").hidden = v !== "plane"; newQ(); });
+    $("gl-dr-next").addEventListener("click", newQ);
+    newQ();
+  })();
+
+  /* ---------------------------------------------------------- 3. 이름 짝 맞추기 */
+  (function () {
+    var POOL = TERMS.map(function (t) {
+      var m = t.ko.match(/^(.+?)\((.+)\)$/);
+      return { ko: m ? m[1] : t.ko, hj: m && !/[a-zA-Z]|아킬레스/.test(m[2]) ? m[2] : null, en: t.en.split(",")[0].trim(), t: t };
+    }).filter(function (x) { return !/[a-zA-Z0-9]/.test(x.ko) && x.ko !== x.en; });
+    var SETS = {
+      bone: /뼈|골$|연골/, muscle: /근$|근육|근띠|힘줄/,
+      organ: /^(심|뇌|대뇌|소뇌|간|위|쓸개|지라|이자|샘창자|작은창자|큰창자|막창자|곧창자|콩팥|부신|요관|방광|전립|식도|가슴샘|시상|해마|망막|각막|수정체|눈알|대동맥|관상|온목|빗장밑|복강|위창자|넙다리동맥|노동맥|위대|아래대|큰두렁|팔오금중간|문맥|폐|홀정맥|기관)/,
+      dir: /쪽|면$|굽힘|폄|벌림|모음|돌림|엎침|뒤침|정중선/,
+    };
+    var mode = "ko-hj", set = "all", pairs = [], right = [], selL = null, matched = {}, tries = 0, flash = null, lay = null;
+    var holder = $("gl-mt-cv").parentElement, info = $("gl-mt-info");
+    function side(x, k) { return k === "ko" ? x.ko : k === "hj" ? x.hj : x.en; }
+    function newRound() {
+      var ks = mode.split("-");
+      var cand = POOL.filter(function (x) { return (ks.indexOf("hj") < 0 || x.hj) && (set === "all" || SETS[set].test(x.ko)); });
+      if (set === "bone") cand = cand.filter(function (x) { return !/근$/.test(x.ko); });
+      if (cand.length < 5) cand = POOL.filter(function (x) { return ks.indexOf("hj") < 0 || x.hj; });
+      pairs = shuffle(cand, rnd).slice(0, 5);
+      right = shuffle(pairs.map(function (x, i) { return i; }), rnd);
+      selL = null; matched = {}; tries = 0; flash = null;
+      BB.stat("gl-mt-ok", "0 / 5"); BB.stat("gl-mt-try", "0");
+      info.textContent = "왼쪽 카드를 하나 누른다.";
+      cv.redraw();
+    }
+    function fitText(ctx, text, maxW, size, bold) {
+      var s = size; ctx.font = BB.font(s, false, bold ? 700 : 500);
+      while (ctx.measureText(text).width > maxW && s > 9.5) { s -= 0.5; ctx.font = BB.font(s, false, bold ? 700 : 500); }
+      return s;
+    }
+    var cv = BB.canvas("#gl-mt-cv", function (ctx, w, h) {
+      var P = BB.palette(), ks = mode.split("-"), n = pairs.length, gap = Math.max(26, w * 0.12);
+      var cw = (w - gap - 24) / 2, xL = 12, xR = 12 + cw + gap, top = 30, rh = (h - top - 10) / Math.max(1, n), ch = Math.min(46, rh - 8);
+      var lab = { ko: "우리말", hj: "한자어", en: "영어" };
+      ctx.fillStyle = P.dim; ctx.font = BB.font(11.5, false, 600); ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(lab[ks[0]], xL + cw / 2, 14); ctx.fillText(lab[ks[1]], xR + cw / 2, 14);
+      lay = { L: [], R: [] };
+      // 이은 선
+      Object.keys(matched).forEach(function (i) {
+        var yl = top + i * rh + rh / 2, yr = top + right.indexOf(Number(i)) * rh + rh / 2;
+        ctx.strokeStyle = P.ok; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(xL + cw, yl); ctx.lineTo(xR, yr); ctx.stroke();
+      });
+      function card(x, y, text, state) {
+        BB.rrect(ctx, x, y, cw, ch, 9);
+        ctx.fillStyle = state === "ok" ? BB.alpha(P.ok, 0.18) : state === "sel" ? BB.alpha(P.accent, 0.18) : state === "bad" ? BB.alpha(P.bad, 0.2) : P.surface; ctx.fill();
+        ctx.strokeStyle = state === "ok" ? P.ok : state === "sel" ? P.accent : state === "bad" ? P.bad : P.border; ctx.lineWidth = state ? 2 : 1; ctx.stroke();
+        ctx.fillStyle = P.text; fitText(ctx, text, cw - 14, 14, state === "sel");
+        ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(text, x + cw / 2, y + ch / 2 + 0.5);
+      }
+      pairs.forEach(function (x, i) {
+        var y = top + i * rh + (rh - ch) / 2;
+        card(xL, y, side(x, ks[0]), matched[i] ? "ok" : selL === i ? "sel" : "");
+        lay.L.push({ i: i, x: xL, y: y, w: cw, h: ch });
+      });
+      right.forEach(function (pi, r) {
+        var y = top + r * rh + (rh - ch) / 2;
+        card(xR, y, side(pairs[pi], ks[1]), matched[pi] ? "ok" : flash === r ? "bad" : "");
+        lay.R.push({ i: pi, r: r, x: xR, y: y, w: cw, h: ch });
+      });
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    }, { get height() { return holder.clientWidth < 520 ? 330 : 340; } });
+    function hit(list, x, y) { return list.filter(function (c) { return x >= c.x && x <= c.x + c.w && y >= c.y && y <= c.y + c.h; })[0]; }
+    BB.drag(cv.canvas, { start: function (x, y) {
+      if (!lay) return;
+      var l = hit(lay.L, x, y);
+      if (l) { if (!matched[l.i]) { selL = l.i; info.textContent = "이제 오른쪽에서 짝을 누른다."; cv.redraw(); } return; }
+      var r = hit(lay.R, x, y);
+      if (!r || selL == null || matched[r.i]) return;
+      tries++; BB.stat("gl-mt-try", tries);
+      if (r.i === selL) {
+        matched[selL] = true; var t = pairs[selL];
+        info.innerHTML = "<b>" + esc(t.t.ko) + "</b> <span style='color:var(--text-faint)'>" + esc(t.t.en) + "</span> · " + esc(t.t.def);
+        selL = null;
+        var m = Object.keys(matched).length;
+        BB.stat("gl-mt-ok", m + " / 5");
+        if (m === pairs.length) info.innerHTML += " <b>다섯 쌍을 모두 이었다" + (tries === pairs.length ? "(한 번도 틀리지 않았다)" : "") + ". \"새 문제\"로 다시 해 보자.</b>";
+      } else {
+        flash = r.r; info.textContent = "짝이 아니다. 다른 카드를 눌러 보자.";
+        setTimeout(function () { flash = null; cv.redraw(); }, 600);
+      }
+      cv.redraw();
+    } });
+    BB.seg("gl-mt-mode", function (v) { mode = v; newRound(); });
+    $("gl-mt-set").addEventListener("change", function (e) { set = e.target.value; newRound(); });
+    $("gl-mt-new").addEventListener("click", newRound);
+    newRound();
+  })();
+
+  /* ---------------------------------------------------------- 종합 퀴즈 점수판 */
+  (function () {
+    var list = $("qz-list"), qs = list.querySelectorAll(".quiz-q"), N = qs.length, ok = 0, no = 0;
+    function show() {
+      $("qz-ok").textContent = ok; $("qz-no").textContent = no; $("qz-left").textContent = N - ok - no;
+      $("qz-bar-ok").style.width = (ok / N * 100) + "%"; $("qz-bar-no").style.width = (no / N * 100) + "%";
+      var done = ok + no;
+      $("qz-msg").textContent = done === N ? (ok >= 17 ? "훌륭하다. 몸의 지도를 꿰고 있다." : ok >= 12 ? "좋다. 틀린 문제의 장을 다시 보자." : "틀린 문제 위의 장 이름을 따라 다시 읽어 보자.") : done ? "정답률 " + Math.round(ok / done * 100) + " %" : "";
+    }
+    list.addEventListener("answered", function (e) { if (e.detail && e.detail.correct) ok++; else no++; show(); });
+    $("qz-reset").addEventListener("click", function () {
+      ok = 0; no = 0;
+      qs.forEach(function (q) { q.classList.remove("done"); q.querySelectorAll("button.opt").forEach(function (b) { b.disabled = false; b.classList.remove("right", "wrong"); }); });
+      show();
+    });
+    show();
+  })();
+})();
+</script>
+</body>
+</html>

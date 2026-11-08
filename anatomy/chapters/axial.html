@@ -1,0 +1,795 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and AnatomyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "머리뼈 22개, 목·등·허리로 이어지는 척주의 네 굽이, 아래로 갈수록 커지는 척추뼈와 척추원반, 참·거짓·뜬갈비뼈와 숨 쉴 때 움직이는 가슴우리를 인체 3D 데이터로 돌리고 자르고 잰다.", "libs": ["sections"]}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>머리뼈, 척주, 가슴우리 · AnatomyBook</title>
+<meta name="description" content="머리뼈 22개, 목·등·허리로 이어지는 척주의 네 굽이, 아래로 갈수록 커지는 척추뼈와 척추원반, 참·거짓·뜬갈비뼈와 숨 쉴 때 움직이는 가슴우리를 인체 3D 데이터로 돌리고 자르고 잰다.">
+<link rel="canonical" href="https://medical.euiyun.com/anatomy/chapters/axial.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#0c8599">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AnatomyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="머리뼈, 척주, 가슴우리 · AnatomyBook">
+<meta property="og:description" content="머리뼈 22개, 목·등·허리로 이어지는 척주의 네 굽이, 아래로 갈수록 커지는 척추뼈와 척추원반, 참·거짓·뜬갈비뼈와 숨 쉴 때 움직이는 가슴우리를 인체 3D 데이터로 돌리고 자르고 잰다.">
+<meta property="og:url" content="https://medical.euiyun.com/anatomy/chapters/axial.html">
+<meta property="og:image" content="https://medical.euiyun.com/anatomy/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/anatomy/chapters/axial.html#chapter","name":"머리뼈, 척주, 가슴우리","headline":"머리뼈, 척주, 가슴우리 · AnatomyBook","description":"머리뼈 22개, 목·등·허리로 이어지는 척주의 네 굽이, 아래로 갈수록 커지는 척추뼈와 척추원반, 참·거짓·뜬갈비뼈와 숨 쉴 때 움직이는 가슴우리를 인체 3D 데이터로 돌리고 자르고 잰다.","url":"https://medical.euiyun.com/anatomy/chapters/axial.html","position":3,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/anatomy/og.png","dateModified":"2026-11-08","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/anatomy/#book","name":"AnatomyBook · 몸의 구조 교과서","url":"https://medical.euiyun.com/anatomy/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AnatomyBook","item":"https://medical.euiyun.com/anatomy/"},{"@type":"ListItem","position":2,"name":"3. 머리뼈, 척주, 가슴우리","item":"https://medical.euiyun.com/anatomy/chapters/axial.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/atlas-data.js"></script>
+<script src="../js/atlas.js"></script>
+<script src="../js/sections-data.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="anatomy"></script>
+<!--head:end-->
+<style>
+  .vert-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin: 18px 0; }
+  .vert-grid div { padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elev); font-size: 14.5px; }
+  .vert-grid b { display: block; font-size: 15.5px; }
+  .vert-grid small { color: var(--text-dim); }
+</style>
+</head>
+<body data-chapter="axial">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 03</div>
+    <h1>머리뼈, 척주, 가슴우리</h1>
+    <p class="lead">몸통뼈대는 세 덩어리다. 뇌를 담는 상자인 머리뼈, 몸통을 세우고 척수를 감싸는 기둥인 척주, 심장과 폐를 둘러싼 바구니인 가슴우리. 세 덩어리는 모양이 다르지만 같은 원리를 따른다. 지켜야 할 것을 감싸면서도 움직일 수 있어야 한다. 이 장은 실제 한 사람의 머리뼈를 뼈 하나하나로 나누어 보고, 척추뼈 24개의 부피를 재어 아래로 갈수록 커지는 이유를 데이터로 확인하고, 숨 쉴 때 갈비뼈가 어떻게 움직이는지 계산해 본다.</p>
+    <ul class="objectives">
+      <li>머리뼈를 뇌머리뼈 8개와 얼굴뼈 14개로 나누고, 봉합과 숫구멍이 무엇인지 설명한다.</li>
+      <li>척주를 목뼈 7, 등뼈 12, 허리뼈 5, 엉치뼈, 꼬리뼈로 나누고 부위마다 척추뼈의 생김새가 다른 이유를 말한다.</li>
+      <li>척주의 네 굽이(목·허리의 앞굽이, 등·엉치의 뒤굽이)가 어떻게 생기고 왜 필요한지 설명한다.</li>
+      <li>척추뼈가 아래로 갈수록 커지는 것을 데이터로 확인하고, 위에서 누르는 몸무게와 비교한다.</li>
+      <li>참갈비뼈·거짓갈비뼈·뜬갈비뼈를 구별하고, 숨 쉴 때 가슴우리가 넓어지는 방식을 안다.</li>
+    </ul>
+  </header>
+
+  <section id="skull">
+    <h2>머리뼈: 뇌머리뼈 8, 얼굴뼈 14</h2>
+    <p><span class="term">머리뼈</span><span class="en">(두개골, Skull)</span>는 하나의 뼈처럼 보이지만 22개의 뼈가 맞물린 것이다. 뇌를 감싸는 <span class="term">뇌머리뼈</span><span class="en">(신경두개, Neurocranium)</span> 8개와 얼굴의 틀을 이루는 <span class="term">얼굴뼈</span><span class="en">(내장두개, Viscerocranium)</span> 14개다. 뇌머리뼈는 이마뼈 1, 마루뼈 2, 관자뼈 2, 뒤통수뼈 1, 나비뼈 1, 벌집뼈 1. 얼굴뼈는 위턱뼈 2, 광대뼈 2, 코뼈 2, 눈물뼈 2, 입천장뼈 2, 아래코선반 2, 보습뼈 1, 아래턱뼈 1이다.</p>
+    <p>이름은 생김새와 자리에서 왔다. "마루"는 지붕의 꼭대기, "관자"는 귀와 눈 사이의 관자놀이다. 관자뼈의 영어 temporal은 라틴어 tempus(시간)에서 왔는데, 흰머리가 먼저 나며 나이를 알려 주는 자리라서라는 설이 있다. 나비뼈(sphenoid, 쐐기 모양)는 머리뼈 바닥 한가운데에서 날개를 편 나비처럼 다른 뼈들을 이어 준다.</p>
+
+    <div class="sim model3d" id="sim-ax-skull3d" data-model="skull" data-orbit="25deg 80deg auto" data-desc="실제 인체 데이터로 만든 머리뼈를 이마뼈·마루뼈·관자뼈·뒤통수뼈·나비뼈·벌집뼈와 얼굴뼈, 아래턱뼈, 치아, 목뿔뼈로 나누어 켜고 끄며 22개의 뼈가 맞물린 모습을 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>뼈 22개가 맞물린 머리뼈</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="frontal" title="이마와 눈확의 지붕">이마뼈</button><button type="button" data-part="parietal" title="머리 꼭대기와 옆의 지붕(좌우 2개)">마루뼈</button><button type="button" data-part="temporal" title="귀 둘레. 속귀와 가운데귀가 들어 있다(좌우 2개)">관자뼈</button><button type="button" data-part="occipital" title="뒤통수와 머리뼈 바닥. 큰구멍으로 척수가 지난다">뒤통수뼈</button><button type="button" data-part="sphenoid" title="머리뼈 바닥 한가운데의 나비 모양 뼈">나비뼈</button><button type="button" data-part="ethmoid" title="두 눈확 사이, 코안의 지붕">벌집뼈</button><button type="button" data-part="zygomatic" title="광대(좌우 2개)">광대뼈</button><button type="button" data-part="maxilla" title="위턱과 입천장의 앞부분(좌우 2개)">위턱뼈</button><button type="button" data-part="facial" title="코뼈·눈물뼈·입천장뼈·아래코선반·보습뼈">작은 얼굴뼈</button><button type="button" data-part="mandible" title="유일하게 움직이는 머리뼈">아래턱뼈</button><button type="button" data-part="teeth" title="치아 28개(뼈가 아니다)">치아</button><button type="button" data-part="hyoid" title="어떤 뼈와도 관절하지 않는 뼈(머리뼈에는 넣지 않는다)">목뿔뼈</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="frontal,parietal">이마·마루뼈 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 이마뼈와 마루뼈를 반투명하게 하고 머리뼈 바닥을 내려다본다. 나비뼈가 가운데에서 앞뒤의 뼈를 잇는다. ② 아래턱뼈와 치아를 끄고 옆에서 보며 관자뼈가 귀 구멍을 둘러싼 것을 본다. ③ 목뿔뼈만 남겨 보면 다른 뼈와 떨어져 있다. 근육과 인대에만 매달려 있다. (치아는 뼈가 아니다. 이 데이터의 치아는 28개로 사랑니가 없다. 귀속뼈는 데이터에 없다.) <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <p>아래턱뼈를 빼면 머리뼈의 뼈들은 움직이지 않는 관절인 <span class="term">봉합</span><span class="en">(Suture)</span>으로 맞물려 있다. 톱니처럼 깍지를 낀 이음매다. 이마뼈와 마루뼈 사이가 관상봉합, 좌우 마루뼈 사이가 시상봉합, 마루뼈와 뒤통수뼈 사이가 람다봉합(그리스 글자 λ 모양)이다. 갓난아기는 봉합이 아직 덜 닫혀 여러 뼈가 만나는 자리에 말랑한 막만 있는 <span class="term">숫구멍</span><span class="en">(천문, Fontanelle)</span>이 있다. 가장 큰 앞숫구멍은 대개 생후 약 18~24개월에 닫힌다. 숫구멍 덕분에 머리가 좁은 산도를 지날 때 겹쳐지고, 태어난 뒤에는 커지는 뇌를 따라 머리뼈가 자란다.</p>
+    <p>머리뼈의 뼈들은 얼마나 크고 얼마나 두꺼울까? 아래 시뮬레이터에서 뼈마다 부피와 겉넓이를 재고, 둘로 평균 두께를 어림해 보자. 얇은 판의 부피는 (한쪽 면의 넓이) × (두께)이고 겉넓이는 앞뒤 두 면이므로, 두께 ≈ 2 × 부피 ÷ 겉넓이다.</p>
+
+    <div class="sim" id="sim-ax-skullvol" data-desc="옆모습 머리 지도 위의 뇌머리뼈와 아래턱뼈를 눌러 실제 데이터로 잰 부피, 겉넓이, 부피와 겉넓이로 어림한 평균 두께를 비교하고, 뇌머리뼈의 부피를 뇌의 부피와 견준다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>머리뼈는 얼마나 두꺼울까?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="sv-cv" class="drag"></canvas><span class="hint">점이나 막대를 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="sv-m"><button data-value="t" class="on">어림 두께</button><button data-value="v">부피</button><button data-value="a">겉넓이</button></div>
+          <p style="font-size:14px;color:var(--text-dim);margin:4px 0 0">어림 두께 = 2 × 부피 ÷ 겉넓이. 얇은 판일수록 잘 맞는다.</p>
+        </div>
+      </div>
+      <div class="info-panel" id="sv-info">뼈를 누르면 그 뼈의 자리와 값이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 뼈</span><span class="v" id="sv-o-k">—</span></div>
+        <div class="stat"><span class="k">값</span><span class="v" id="sv-o-v">—</span></div>
+        <div class="stat"><span class="k">뇌머리뼈 합 : 뇌</span><span class="v" id="sv-o-b">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "어림 두께"에서 마루뼈가 가장 얇은 것을 본다. 머리의 지붕은 얇은 판 두 장 사이에 해면뼈가 낀 샌드위치다. ② 관자뼈는 두께가 크게 나온다. 속귀를 품은 단단한 바위 부분(추체)이 있기 때문이다. ③ "부피"에서 뇌머리뼈의 합을 뇌와 견준다. 뇌를 감싸는 뼈의 부피는 뇌의 절반이 안 된다. (짝이 있는 마루뼈·관자뼈는 오른쪽 하나의 값이고, 합에서는 두 배로 했다. 벌집뼈는 수치 데이터에 따로 없어 합에서 빠졌다. 어림 두께는 휘고 돌기가 많은 뼈에서는 실제보다 작게 나온다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>머리의 지붕을 이루는 뼈는 평균 몇 mm 두께의 판이다. 넓은 판을 둥글게 휘면 같은 재료로도 훨씬 단단해진다. 달걀 껍데기가 얇아도 잘 깨지지 않는 것과 같다. 그래서 머리뼈는 가벼우면서도 뇌를 지킨다.</p>
+  </section>
+
+  <section id="vertebra">
+    <h2>척주: 33개 안팎의 척추뼈</h2>
+    <p><span class="term">척주</span><span class="en">(척추, Vertebral column)</span>는 척추뼈가 줄지어 쌓인 기둥이다. 목뼈 7, 등뼈 12, 허리뼈 5, 그리고 어른이 되며 하나로 붙는 엉치뼈(5개)와 꼬리뼈(3~5개). 그래서 태어날 때는 33개 안팎, 어른에서는 26개로 센다. 척주는 세 가지 일을 한다. 머리와 몸통의 무게를 골반으로 내려보내고, 척수를 감싸 지키고, 몸통을 굽히고 비틀게 한다.</p>
+    <p>전형적인 척추뼈는 앞쪽의 둥근 기둥인 <b>척추뼈몸통</b>(추체)과 뒤쪽의 고리인 <b>척추뼈고리</b>(추궁)로 이루어진다. 둘 사이의 구멍인 <b>척추뼈구멍</b>이 위아래로 이어져 척수가 지나는 척주관이 된다. 고리에서는 뒤로 <b>가시돌기</b>, 양옆으로 <b>가로돌기</b>가 뻗어 근육과 인대가 붙는다. 등을 쓰다듬을 때 만져지는 울퉁불퉁한 줄이 가시돌기다.</p>
+    <div class="vert-grid">
+      <div><b>목뼈 (C1~C7)</b>작고 가볍다. 가로돌기에 척추동맥이 지나는 구멍이 있다. C1(고리뼈)은 몸통이 없는 고리, C2(중쇠뼈)는 위로 솟은 치아돌기가 축이 되어 고개를 돌린다 <small>Cervical vertebrae</small></div>
+      <div><b>등뼈 (T1~T12)</b>몸통과 가로돌기에 갈비뼈가 관절하는 면이 있다. 가시돌기가 길고 아래로 비스듬히 겹친다 <small>Thoracic vertebrae</small></div>
+      <div><b>허리뼈 (L1~L5)</b>몸통이 가장 크고 두껍다. 가시돌기는 짧고 네모나다. 몸무게를 가장 많이 받는다 <small>Lumbar vertebrae</small></div>
+      <div><b>엉치뼈·꼬리뼈</b>엉치뼈는 5개가 붙은 삼각형 뼈로 골반의 뒤벽이 된다. 꼬리뼈는 퇴화한 꼬리의 흔적이다 <small>Sacrum · Coccyx</small></div>
+    </div>
+    <p>아래 모델에서 부위를 하나씩 켜고 끄며 목뼈에서 엉치뼈까지 척추뼈가 어떻게 달라지는지 보자. 척추뼈 사이의 파란 원반도 함께 보인다.</p>
+
+    <div class="sim model3d" id="sim-ax-spine3d" data-model="spine" data-orbit="90deg 80deg auto" data-desc="목뼈 7, 등뼈 12, 허리뼈 5, 엉치뼈와 척추원반, 척수를 켜고 끄며 옆에서 척주의 S자 굽이와 아래로 갈수록 커지는 척추뼈를 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>옆에서 본 척주</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="cervical" title="C1~C7">목뼈</button><button type="button" data-part="thoracic" title="T1~T12. 갈비뼈가 붙는다">등뼈</button><button type="button" data-part="lumbar" title="L1~L5. 가장 크다">허리뼈</button><button type="button" data-part="sacrum" title="5개가 붙은 뼈">엉치뼈</button><button type="button" data-part="discs" title="척추뼈몸통 사이의 연골 원반">척추원반</button><button type="button" data-part="spinalcord" title="척주관 안의 척수(원본은 가는 관 모양)">척수</button><button type="button" data-part="ribs" title="반투명한 갈비뼈">갈비뼈</button><button type="button" data-part="pelvis" title="반투명한 볼기뼈">볼기뼈</button><button type="button" data-part="skull" title="반투명한 머리뼈">머리뼈</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="cervical,thoracic,lumbar,sacrum">척추뼈 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 옆모습에서 목과 허리는 앞으로, 등과 엉치는 뒤로 휜 S자를 본다. ② 목뼈, 등뼈, 허리뼈를 차례로 하나만 남기고 척추뼈몸통의 굵기를 비교한다. ③ 척추뼈를 반투명하게 하고 척수가 척주관을 따라 내려가다가 허리 위쪽에서 끝나는 것을 본다. (이 데이터의 척수는 원본에 가운데관 모양만 있어 실제보다 가늘다. 꼬리뼈는 데이터에 없다.) <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+  </section>
+
+  <section id="curves">
+    <h2>척주의 네 굽이</h2>
+    <p>옆에서 본 어른의 척주는 S자 두 개를 이은 모양이다. 목과 허리는 앞으로 볼록한 <span class="term">앞굽이</span><span class="en">(전만, Lordosis)</span>, 등과 엉치는 뒤로 볼록한 <span class="term">뒤굽이</span><span class="en">(후만, Kyphosis)</span>다. 등과 엉치의 뒤굽이는 엄마 배 속에서 몸을 웅크리던 자세 그대로 태어날 때부터 있는 <b>일차 굽이</b>다. 목의 앞굽이는 아기가 고개를 가누기 시작하는 생후 3~4개월 무렵, 허리의 앞굽이는 서고 걷기 시작하는 돌 무렵에 생기는 <b>이차 굽이</b>다.</p>
+    <p>굽이가 왜 필요할까? 곧은 막대는 위에서 누르면 그대로 아래로 충격을 전한다. 휜 기둥은 용수철처럼 조금 휘었다 펴지며 충격을 흡수한다. 또 앞굽이와 뒤굽이가 번갈아 있으면 머리와 몸통의 무게중심이 골반 바로 위에 놓여, 근육을 덜 쓰고도 똑바로 설 수 있다. 아래에서 척추뼈의 무게중심을 옆모습 지도 위에 찍고, 아기에서 어른으로 굽이가 생기는 과정을 따라가 보자.</p>
+
+    <div class="sim" id="sim-ax-curve" data-desc="척추뼈 24개와 엉치뼈의 무게중심을 옆모습 지도에 찍어 척주의 네 굽이와 깊이를 재고, 슬라이더로 갓난아기의 C자 척주에서 어른의 S자 척주로 바뀌는 과정을 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>C자에서 S자로: 척주의 굽이는 언제 생기나</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cu-cv" class="drag"></canvas><span class="hint">척추뼈 점을 누른다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>자라기 <output id="cu-t-out"></output></span><input type="range" id="cu-t" min="0" max="1" step="0.01" value="1"></label>
+          <label class="check"><input type="checkbox" id="cu-chord" checked> 굽이의 현과 깊이</label>
+          <label class="check"><input type="checkbox" id="cu-plumb"> 무게중심선(귀 높이에서 내린 수직선)</label>
+        </div>
+      </div>
+      <div class="info-panel" id="cu-info">척추뼈 점을 누르면 이름과 좌표가 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">목 앞굽이</span><span class="v" id="cu-o-c">—</span></div>
+        <div class="stat"><span class="k">등 뒤굽이</span><span class="v" id="cu-o-t">—</span></div>
+        <div class="stat"><span class="k">허리 앞굽이</span><span class="v" id="cu-o-l">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 슬라이더를 0으로 내려 갓난아기의 C자 척주를 본다. 굽이는 뒤로 볼록한 하나뿐이다. ② 천천히 올리면 목의 앞굽이가 먼저, 허리의 앞굽이가 나중에 생긴다. ③ 1(어른, 이 데이터)에서 "무게중심선"을 켜고 C7과 허리뼈가 그 선 근처로 돌아오는 것을 본다. (굽이의 깊이는 각 부위의 첫 척추뼈와 끝 척추뼈를 이은 현에서 무게중심이 가장 멀리 벗어난 앞뒤 거리다. 무게중심은 가시돌기까지 포함한 척추뼈 전체의 중심이라 척추뼈몸통보다 조금 뒤에 있다. 갓난아기에서 어른까지의 중간 모양은 교육용으로 보간한 것이다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>이 사람의 척주에서 가장 깊은 굽이는 등의 뒤굽이다. 가슴우리가 붙어 있어 거의 움직이지 않는 부분이다. 목과 허리의 앞굽이는 덜 깊지만 척주에서 가장 잘 움직이는 부분이라 자세에 따라 깊이가 크게 바뀐다. 굽이가 지나치게 깊어지거나(척주뒤굽음증, 척주앞굽음증) 옆으로 휘는 것(척주옆굽음증)은 이 정상 굽이가 바뀐 상태다.</p>
+  </section>
+
+  <section id="size">
+    <h2>척추뼈는 왜 아래로 갈수록 커질까</h2>
+    <p>3D 모델에서 목뼈와 허리뼈를 나란히 놓으면 크기가 확연히 다르다. 이유는 간단하다. 아래에 있는 척추뼈일수록 그 위에 얹힌 몸무게가 많다. 목뼈는 머리만 받치지만, 다섯째 허리뼈는 머리, 두 팔, 몸통 전체를 받친다. 그렇다면 척추뼈의 크기는 위에 얹힌 몸무게에 정확히 비례할까?</p>
+    <p>데이터로 확인해 보자. 척추뼈마다 부피를 재고, 그 척추뼈의 무게중심 높이보다 위에 있는 몸의 부피도 잰다. 몸의 부피는 피부 안쪽의 가로 단면 넓이를 1 cm마다 쌓아 구한다(카발리에리의 원리, <a href="sections.html">12장</a>).</p>
+    <div class="formula">$$V_{\text{위}}(z) = \sum_{z_i \ge z} A(z_i)\,\Delta z$$<div class="where">\(A(z_i)\): 높이 \(z_i\)에서 피부 안쪽 단면 넓이(mm², 배 높이에서 약 0.07 m²), \(\Delta z\) = 10 mm. 몸의 밀도를 약 1 kg/L로 보면 \(V_{\text{위}}\)(L)가 곧 그 높이보다 위에 있는 몸무게(kg)의 어림값이다.</div></div>
+
+    <div class="sim" id="sim-ax-load" data-desc="척추뼈 C1~L5의 부피를 막대로, 각 척추뼈보다 위에 있는 몸의 부피(단면을 쌓아 계산)를 선으로 겹쳐, 척추뼈가 아래로 갈수록 커지는 것이 위에서 누르는 몸무게와 어떻게 연결되는지 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>척추뼈의 부피와 위에서 누르는 몸무게</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ld-cv" class="drag"></canvas><span class="hint">막대를 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="ld-m"><button data-value="v" class="on">부피와 하중</button><button data-value="r">하중 ÷ 부피</button></div>
+          <label class="check"><input type="checkbox" id="ld-area"> 넓이 어림(부피<sup>2/3</sup>) 겹치기</label>
+        </div>
+      </div>
+      <div class="info-panel" id="ld-info">막대를 누르면 그 척추뼈의 값이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 척추뼈</span><span class="v" id="ld-o-k">—</span></div>
+        <div class="stat"><span class="k">부피</span><span class="v" id="ld-o-v">—</span></div>
+        <div class="stat"><span class="k">그 위의 몸(어림 무게)</span><span class="v" id="ld-o-l">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 막대가 목뼈에서 허리뼈로 가며 계단처럼 커지는 것을 본다. C2가 C3보다 큰 것은 위로 솟은 치아돌기 때문이다. ② 선(위쪽 몸무게)이 등뼈 위쪽에서 가파르게 오르는 것을 본다. 두 팔과 가슴이 더해지는 높이다. ③ "하중 ÷ 부피"로 바꾸면 아래로 갈수록 커진다. 척추뼈 1 mL가 받는 몸무게가 늘어난다는 뜻이다. "넓이 어림"을 켜서 비교한다. (하중은 그 척추뼈의 무게중심 높이보다 위에 있는 피부 안쪽 전체의 부피로, 두 팔도 들어간다. 실제로 척추뼈에 걸리는 힘은 근육의 당김 때문에 이보다 훨씬 크다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>척추뼈의 부피는 하중을 따라 커지지만 하중만큼 빨리 커지지는 않는다. 그런데 몸무게를 받는 것은 부피가 아니라 척추뼈몸통의 윗면, 곧 <b>넓이</b>다. 모양이 비슷한 물체에서 넓이는 부피의 2/3제곱에 비례하므로, 부피가 5배면 넓이는 약 3배다. 실제 허리뼈는 몸통이 키보다 옆으로 넓게 퍼진 납작한 원통이라 같은 부피로도 윗면이 넓다. 그리고 허리뼈 사이의 두꺼운 원반이 그 넓은 면 전체에 압력을 고르게 나눈다.</p>
+  </section>
+
+  <section id="discs">
+    <h2>척추원반: 척추뼈 사이의 쿠션</h2>
+    <p>척추뼈몸통 사이에는 <span class="term">척추원반</span><span class="en">(추간판, Intervertebral disc)</span>이 있다. C2와 C3 사이부터 L5와 엉치뼈 사이까지 23개다(C1과 C2 사이에는 없다). 원반의 바깥은 질긴 섬유가 여러 겹 비스듬히 감긴 <b>섬유테</b>(Anulus fibrosus), 가운데는 젤리 같은 <b>속질핵</b>(Nucleus pulposus)이다. 위에서 누르면 속질핵이 사방으로 퍼지려 하고 섬유테가 그것을 붙잡아 압력을 고르게 나눈다.</p>
+    <p>원반의 두께는 척주 전체 길이의 약 4분의 1을 차지하고, 허리에서 가장 두껍다. 이 데이터에서 넷째와 다섯째 허리뼈 사이의 원반은 부피 <b id="ax-disc-v">—</b>, 위아래 두께(경계 상자) <b id="ax-disc-h">—</b>다. 원반은 낮 동안 눌려 물이 빠지고 밤에 누워 있는 동안 다시 물을 머금는다. 그래서 아침에 잰 키가 저녁보다 1 cm쯤 크다.</p>
+    <p>섬유테가 약해져 속질핵이 뒤쪽으로 비어져 나오면 바로 뒤의 척수나 신경뿌리를 누를 수 있다. 흔히 "디스크"라 부르는 추간판 탈출이 이것이다. 섬유테의 뒤쪽 가운데는 질긴 인대가 받치고 있어, 탈출은 그 옆의 뒤가쪽으로 잘 일어난다. 원반과 척수의 위치 관계는 이 장 끝의 종합 시뮬레이터에서 단면으로 볼 수 있다.</p>
+    <p class="health-note">이 장의 모델과 수치는 한 사람의 몸을 측정한 공개 데이터에서 나온 교육용 자료입니다. 통증이나 증상이 있으면 의료진과 상담하세요.</p>
+  </section>
+
+  <section id="ribcage">
+    <h2>가슴우리: 참갈비뼈, 거짓갈비뼈, 뜬갈비뼈</h2>
+    <p><span class="term">가슴우리</span><span class="en">(흉곽, Thoracic cage)</span>는 뒤의 등뼈 12개, 양옆의 갈비뼈 12쌍, 앞의 복장뼈와 갈비연골로 이루어진 바구니다. <span class="term">갈비뼈</span><span class="en">(늑골, Rib)</span>는 모두 뒤쪽 끝이 등뼈와 관절한다. 앞쪽 끝이 어디에 붙느냐로 세 무리가 나뉜다.</p>
+    <ul>
+      <li><b>참갈비뼈</b>(1~7번, True ribs): 자기 갈비연골로 <span class="term">복장뼈</span><span class="en">(흉골, Sternum)</span>에 직접 붙는다.</li>
+      <li><b>거짓갈비뼈</b>(8~10번, False ribs): 갈비연골이 바로 위의 갈비연골에 붙어 간접적으로 복장뼈에 닿는다. 이 연골들이 이어져 갈비뼈활(늑골궁)을 이룬다.</li>
+      <li><b>뜬갈비뼈</b>(11~12번, Floating ribs): 앞쪽 끝이 어디에도 붙지 않고 배벽 근육 속에 떠 있다. 거짓갈비뼈에 넣어 세기도 한다.</li>
+    </ul>
+    <p>복장뼈는 넥타이처럼 생겼다. 위의 <b>복장뼈자루</b>, 가운데의 <b>복장뼈몸통</b>, 아래 끝의 작은 <b>칼돌기</b> 세 부분이다. 자루와 몸통이 만나는 자리는 앞으로 살짝 튀어나와(복장뼈각) 손으로 만져진다. 이 높이에 2번 갈비연골이 붙으므로 갈비뼈를 셀 때의 기준점이 된다.</p>
+
+    <div class="sim model3d" id="sim-ax-rib3d" data-model="ribcage" data-orbit="20deg 80deg auto" data-desc="참갈비뼈(1~7), 거짓갈비뼈(8~10), 뜬갈비뼈(11~12)를 색으로 나누고 갈비연골, 복장뼈, 등뼈, 횡격막을 켜고 끄며 가슴우리의 구조를 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>세 가지 갈비뼈와 복장뼈</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="truerib" title="1~7번: 복장뼈에 직접 붙는다">참갈비뼈</button><button type="button" data-part="falserib" title="8~10번: 위의 갈비연골에 붙는다">거짓갈비뼈</button><button type="button" data-part="floating" title="11~12번: 앞쪽이 떠 있다">뜬갈비뼈</button><button type="button" data-part="costal" title="갈비뼈와 복장뼈를 잇는 연골">갈비연골</button><button type="button" data-part="sternum" title="복장뼈자루·몸통·칼돌기">복장뼈</button><button type="button" data-part="tspine" title="등뼈 12개">등뼈</button><button type="button" data-part="girdle" title="반투명한 빗장뼈와 어깨뼈">어깨이음뼈</button><button type="button" data-part="diaphragm" title="반투명한 횡격막">횡격막</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="truerib,falserib,floating">갈비뼈 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 갈비연골을 켜고 끄며 참갈비뼈와 거짓갈비뼈의 연골이 복장뼈에 닿는 방식이 다른 것을 본다. ② 옆으로 돌려 갈비뼈가 뒤에서 앞으로 가며 아래로 비스듬히 내려가는 것을 본다. 이 기울기가 숨 쉬기의 열쇠다. ③ 횡격막을 켜고 그 둥근 지붕이 가슴우리 안쪽으로 높이 솟아 있는 것을 본다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <p>갈비뼈는 모두 크기가 같을까? 아래에서 1번부터 12번까지 갈비뼈의 부피와 크기를 재 보자. 가슴우리가 위가 좁고 가운데가 넓은 술통 모양이라는 것이 숫자로 드러난다.</p>
+
+    <div class="sim" id="sim-ax-ribs" data-desc="갈비뼈 1~12번의 부피, 앞뒤 길이, 위아래 높이, 정중선에서의 가쪽 너비를 실제 데이터로 재 참·거짓·뜬갈비뼈 무리와 함께 비교하고, 고른 갈비뼈의 자리를 가슴우리 지도에서 확인한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>갈비뼈 12쌍, 몇 번이 가장 클까?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="rb-cv" class="drag"></canvas><span class="hint">막대를 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="rb-m"><button data-value="vol" class="on">부피</button><button data-value="ap">앞뒤 길이</button><button data-value="h">위아래 높이</button><button data-value="lat">가쪽 너비</button></div>
+        </div>
+      </div>
+      <div class="map-legend"><span><i style="background:#f0b27a"></i>참갈비뼈 1~7</span><span><i style="background:#8fbfe0"></i>거짓갈비뼈 8~10</span><span><i style="background:#9fd08f"></i>뜬갈비뼈 11~12</span></div>
+      <div class="info-panel" id="rb-info">막대를 누르면 그 갈비뼈의 값과 자리가 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 갈비뼈</span><span class="v" id="rb-o-k">—</span></div>
+        <div class="stat"><span class="k">값</span><span class="v" id="rb-o-v">—</span></div>
+        <div class="stat"><span class="k">무게중심 높이</span><span class="v" id="rb-o-z">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "부피"에서 7번이 가장 크고 1번과 12번이 가장 작은 것을 본다. ② "가쪽 너비"로 바꾸면 가슴우리가 가장 넓은 높이가 나온다. 1번 갈비뼈는 짧고 거의 수평인 작은 고리다. ③ "위아래 높이"에서 8~10번까지 아래로 갈수록 커지는 것은 아래 갈비뼈일수록 비스듬히 내려가기 때문이다. (오른쪽 갈비뼈의 값이다. 크기는 경계 상자로 잰 것이라 휜 갈비뼈의 실제 길이보다 짧다. 갈비연골은 들어가지 않는다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>위쪽 갈비뼈는 작고 둥글게 말려 목뿌리를 감싸고, 가운데 갈비뼈는 길게 뻗어 심장과 폐를 감싸고, 아래의 뜬갈비뼈는 짧아져 콩팥 뒤쪽을 살짝 덮는 데 그친다. 가슴우리의 아래 입구가 넓게 열려 있어서 배의 장기와 횡격막이 그 안으로 높이 올라와 있다(<a href="thorax.html">8장</a>).</p>
+  </section>
+
+  <section id="breathing">
+    <h2>숨 쉴 때 움직이는 가슴우리</h2>
+    <p>가슴우리는 단단한 우리가 아니라 움직이는 바구니다. 들숨에서 횡격막이 내려가면 가슴안이 위아래로 길어지고, 갈비사이근이 갈비뼈를 들어 올리면 가슴안이 앞뒤와 좌우로 넓어진다. 갈비뼈가 뒤에서 앞으로 비스듬히 내려가 있기 때문에 가능한 일이다. 비스듬한 막대를 들어 올리면 끝이 앞으로 나간다.</p>
+    <figure class="diagram">
+      <svg viewBox="0 0 500 220" role="img" aria-label="펌프 손잡이 운동과 양동이 손잡이 운동의 개념도">
+        <defs><marker id="axar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="context-stroke"/></marker></defs>
+        <g transform="translate(20,20)">
+          <text x="105" y="0" text-anchor="middle" class="lbl lbl-b">펌프 손잡이 (옆에서)</text>
+          <rect x="190" y="20" width="14" height="140" rx="4" class="f-elev s-line"/>
+          <text x="197" y="178" text-anchor="middle" class="lbl lbl-dim">등뼈</text>
+          <line x1="190" y1="60" x2="40" y2="130" class="s-dash" stroke-width="3"/>
+          <line x1="190" y1="60" x2="30" y2="105" class="s-acc" stroke-width="4" stroke-linecap="round"/>
+          <rect x="18" y="80" width="12" height="70" rx="4" class="f-acc-soft s-acc"/>
+          <text x="24" y="168" text-anchor="middle" class="lbl lbl-acc">복장뼈</text>
+          <path d="M52 140 Q30 128 34 112" class="s-acc" fill="none" stroke-width="1.6" marker-end="url(#axar)"/>
+          <text x="90" y="150" class="lbl lbl-dim">끝이 앞·위로</text>
+          <text x="10" y="196" class="lbl">위쪽 갈비뼈: 앞뒤 지름이 커진다</text>
+        </g>
+        <g transform="translate(270,20)">
+          <text x="105" y="0" text-anchor="middle" class="lbl lbl-b">양동이 손잡이 (앞에서)</text>
+          <rect x="98" y="20" width="14" height="140" rx="4" class="f-elev s-line"/>
+          <text x="105" y="178" text-anchor="middle" class="lbl lbl-dim">복장뼈 · 등뼈 축</text>
+          <path d="M98 50 Q20 110 98 120" class="s-dash" fill="none" stroke-width="3"/>
+          <path d="M98 50 Q4 86 98 120" class="s-acc" fill="none" stroke-width="4"/>
+          <path d="M112 50 Q190 110 112 120" class="s-dash" fill="none" stroke-width="3"/>
+          <path d="M112 50 Q206 86 112 120" class="s-acc" fill="none" stroke-width="4"/>
+          <path d="M44 104 L22 92" class="s-acc" stroke-width="1.6" marker-end="url(#axar)"/>
+          <path d="M166 104 L188 92" class="s-acc" stroke-width="1.6" marker-end="url(#axar)"/>
+          <text x="0" y="196" class="lbl">아래쪽 갈비뼈: 좌우 지름이 커진다</text>
+        </g>
+      </svg>
+      <figcaption><b>갈비뼈의 두 가지 움직임.</b> 점선은 날숨, 색 선은 들숨. 위쪽 갈비뼈는 뒤쪽 끝을 축으로 앞끝이 들리며 복장뼈를 앞위로 민다(펌프 손잡이). 아래쪽 갈비뼈는 앞뒤 두 끝을 잇는 축을 중심으로 가운데가 들리며 옆으로 벌어진다(양동이 손잡이).</figcaption>
+    </figure>
+    <p>펌프 손잡이 운동을 데이터로 따라가 보자. 갈비뼈마다 경계 상자의 뒤위 모서리를 뒤쪽 끝(등뼈와의 관절 근처), 앞아래 모서리를 앞쪽 끝으로 잡아 곧은 막대로 단순화했다. 이 막대를 뒤쪽 끝을 축으로 몇 도 들어 올리면 앞쪽 끝이 얼마나 앞으로 나가는지 잰다.</p>
+
+    <div class="sim" id="sim-ax-breath" data-desc="실제 갈비뼈 1~10번의 크기와 기울기로 만든 옆모습 모형에서 들숨 각도를 키우면, 비스듬한 갈비뼈가 들리며 복장뼈가 앞위로 밀려 가슴의 앞뒤 지름이 커지는 펌프 손잡이 운동을 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>갈비뼈를 들면 가슴은 얼마나 넓어질까?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="br-cv" class="drag"></canvas><span class="hint">복장뼈 손잡이를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>들숨 각도 <output id="br-a-out"></output></span><input type="range" id="br-a" min="0" max="12" step="0.5" value="0"></label>
+          <div class="btn-row"><button class="btn primary" id="br-go">숨 쉬기</button><button class="btn" id="br-stop">멈춤</button></div>
+          <label class="check"><input type="checkbox" id="br-ghost" checked> 날숨 자리 함께 보기</label>
+        </div>
+      </div>
+      <div class="info-panel" id="br-info">갈비뼈는 뒤쪽 끝을 축으로 돈다. 비스듬할수록 끝이 앞으로 많이 나간다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">복장뼈가 앞으로</span><span class="v" id="br-o-y">—</span></div>
+        <div class="stat"><span class="k">복장뼈가 위로</span><span class="v" id="br-o-z">—</span></div>
+        <div class="stat"><span class="k">6번 갈비뼈의 기울기</span><span class="v" id="br-o-s">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 들숨 각도를 천천히 올리며 복장뼈가 앞과 위로 함께 움직이는 것을 본다. ② 같은 각도에서 기울기가 큰 아래쪽 갈비뼈일수록 앞끝이 앞으로 많이 나가는 것을 본다. ③ "숨 쉬기"를 눌러 반복되는 움직임을 본다. (갈비뼈를 경계 상자의 대각선인 곧은 막대로 단순화한 모형이다. 실제 갈비뼈는 휘어 있고 갈비연골이 비틀리며, 뒤쪽 끝의 관절은 두 군데라 축이 비스듬하다. 그래서 숫자는 크기의 감을 잡는 어림값이다. 앞뒤 지름의 변화는 숨의 깊이에 따라 크게 다르다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>갈비뼈가 몇 도만 들려도 복장뼈는 앞으로 1 cm 가까이 나간다. 가슴우리의 앞뒤 지름이 그만큼 커지면 가슴안의 부피가 늘고, 폐 안의 압력이 낮아져 공기가 들어온다. 숨 쉬는 근육과 압력의 생리는 <a href="../../body/chapters/breathing.html">BodyBook</a>에서 다룬다. 해부학이 보여 주는 것은 그 바탕이 되는 구조, 곧 비스듬히 놓인 갈비뼈와 휘어지는 갈비연골이다.</p>
+  </section>
+
+  <section id="explorer">
+    <h2>종합: 척주를 따라 내려가며 자르기</h2>
+    <p>이 장의 내용을 한 화면에 모았다. 왼쪽은 몸을 정중선에서 세로로 자른 정중시상면이다. 척추뼈몸통, 원반, 척주관 안의 척수, 그 앞의 장기가 한 줄로 보인다. 빨간 선을 위아래로 끌면 오른쪽에 그 높이의 가로 단면이 나타나고, 그 높이의 척추뼈 부피와 위에서 누르는 몸무게가 함께 나온다.</p>
+
+    <div class="sim" id="sim-ax-explorer" data-big data-desc="정중시상면에서 척주를 따라 높이를 끌어 내리면 그 높이의 가로 단면(척추뼈몸통, 척추뼈구멍과 척수, 갈비뼈, 장기)과 척추뼈의 부피, 위에서 누르는 몸무게, 척주 근처 뼈의 단면 넓이를 함께 보여 주는 종합 시뮬레이터.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>척주 탐색기: 정중시상면과 가로 단면</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ex-cv" class="drag"></canvas><span class="hint">왼쪽에서 높이를 끌고, 오른쪽 단면을 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="ex-mode"><button data-value="color" class="on">색</button><button data-value="ct">CT처럼</button></div>
+          <div class="seg" id="ex-jump"><button data-value="c5">C5</button><button data-value="t6" class="on">T6</button><button data-value="l3">L3</button><button data-value="disc">L4–L5 원반</button></div>
+          <label class="check"><input type="checkbox" id="ex-lab" checked> 척추뼈 이름</label>
+        </div>
+      </div>
+      <div class="info-panel" id="ex-info">오른쪽 단면의 조직을 누르면 이름이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">높이 · 가장 가까운 척추뼈</span><span class="v" id="ex-o-k">—</span></div>
+        <div class="stat"><span class="k">척추뼈 부피 · 위쪽 몸무게</span><span class="v" id="ex-o-v">—</span></div>
+        <div class="stat"><span class="k">척주 근처 뼈 단면</span><span class="v" id="ex-o-a">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 목에서 허리까지 끌어 내리며 가로 단면의 척추뼈몸통이 점점 커지는 것을 본다. ② 등뼈 높이에서는 척추뼈 양옆에 갈비뼈가 함께 잘린다. 허리에서는 갈비뼈가 사라지고 큰 허리근이 나타난다. ③ "L4–L5 원반"을 누르면 원반(파란색) 바로 뒤에 척주관이 있다. 원반이 뒤로 비어져 나오면 무엇을 누를지 본다. ④ 시상면에서 척수가 허리 위쪽에서 끝나고 그 아래 척주관은 비어 있는 것을 본다. (단면은 1 cm 간격이다. "척주 근처 뼈"는 정중선 가까이의 뼈 단면을 합한 것으로, 등뼈 높이에서는 갈비뼈머리가 조금 들어간다. 이 데이터의 척수는 가는 관 모양이다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <div class="casefile">
+      <div class="tag"><b>DATA</b><span>데이터로 확인하기 · 3장</span></div>
+      <h4>다섯째 허리뼈는 몸무게의 몇 %를 받칠까?</h4>
+      <p>피부 안쪽의 가로 단면 넓이를 1 cm마다 쌓으면 이 사람의 몸 부피는 <b id="dc-tot">—</b>다. 그 가운데 다섯째 허리뼈(L5)의 무게중심 높이보다 위에 있는 부분은 <b id="dc-l5">—</b>로, 몸 전체의 <b id="dc-l5p">—</b>다. 머리, 두 팔, 몸통의 무게가 모두 이 한 척추뼈를 지나 엉치뼈와 골반으로 내려간다.</p>
+      <p>셋째 목뼈(C3)와 비교하면 위에서 누르는 몸의 부피는 <b id="dc-lr">—</b>배인데, 척추뼈의 부피는 <b id="dc-vr">—</b>배다. 척추뼈는 하중을 따라 커지지만 하중보다 느리게 커진다. 부피의 2/3제곱으로 어림한 넓이는 <b id="dc-ar">—</b>배에 그친다. 그만큼 아래쪽 척추뼈와 원반은 단위 넓이당 더 큰 압력을 견딘다.</p>
+      <div class="clue"><div><b>데이터가 보여 준 것</b>척추뼈는 아래로 갈수록 커지고, 그 위에 얹힌 몸무게는 더 빨리 늘어난다. L5 위에는 몸의 절반쯤이 얹혀 있다.</div><div><b>데이터의 한계</b>하중은 몸의 밀도를 약 1 kg/L로 본 정적 무게다. 서고 들고 굽힐 때 근육이 당기는 힘은 이보다 몇 배 크다. 한 사람의 몸이고 꼬리뼈는 데이터에 없다.</div><div><b>다음 장에서</b>몸통에 매달린 팔다리로 간다. 어깨이음뼈에서 손끝까지, 팔의 뼈와 근육.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>머리뼈는 뇌머리뼈 8개(이마·마루 2·관자 2·뒤통수·나비·벌집)와 얼굴뼈 14개로 이루어지고, 아래턱뼈를 빼면 봉합으로 맞물려 움직이지 않는다. 갓난아기의 숫구멍은 출산과 뇌의 성장을 위한 여유다.</li>
+      <li>척주는 목뼈 7, 등뼈 12, 허리뼈 5, 엉치뼈, 꼬리뼈로 이루어진다. 척추뼈는 몸통(무게를 받는 기둥)과 고리(척수를 감싸고 돌기에 근육이 붙는 부분)로 나뉜다.</li>
+      <li>어른의 척주에는 목·허리의 앞굽이와 등·엉치의 뒤굽이가 있다. 뒤굽이는 태어날 때부터 있는 일차 굽이, 앞굽이는 고개를 가누고 걷기 시작하며 생기는 이차 굽이다.</li>
+      <li>척추뼈는 아래로 갈수록 커진다. 이 데이터에서 L5의 부피는 C3의 약 5.6배, L5 위에 얹힌 몸은 전체의 약 절반이다. 척추원반은 섬유테와 속질핵으로 압력을 고르게 나눈다.</li>
+      <li>갈비뼈 12쌍은 앞쪽 끝이 붙는 방식에 따라 참갈비뼈(1~7), 거짓갈비뼈(8~10), 뜬갈비뼈(11~12)로 나뉜다. 가슴우리는 가운데가 넓은 술통 모양이다.</li>
+      <li>갈비뼈는 뒤에서 앞으로 비스듬히 내려가 있어서, 들숨에 들리면 복장뼈가 앞위로 밀려(펌프 손잡이) 앞뒤 지름이, 아래쪽 갈비뼈가 옆으로 벌어져(양동이 손잡이) 좌우 지름이 커진다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 첫째 목뼈(고리뼈, C1)의 가장 큰 특징은?</p>
+        <div class="opts"><button class="opt">갈비뼈와 관절하는 면이 있다</button><button class="opt" data-correct>척추뼈몸통이 없는 고리 모양이다</button><button class="opt">척추뼈 가운데 가장 크다</button><button class="opt">엉치뼈와 붙어 있다</button></div>
+        <div class="quiz-exp">고리뼈는 몸통이 없고 앞뒤 활로 된 고리다. 원래 몸통이 있을 자리에는 둘째 목뼈의 치아돌기가 솟아 있어, 고리뼈가 그 둘레를 돌며 고개를 좌우로 돌린다.</div></div>
+      <div class="quiz-q"><p>2. 다음 가운데 태어날 때부터 있는 일차 굽이는?</p>
+        <div class="opts"><button class="opt">목의 앞굽이</button><button class="opt">허리의 앞굽이</button><button class="opt" data-correct>등의 뒤굽이</button><button class="opt">모두 태어난 뒤에 생긴다</button></div>
+        <div class="quiz-exp">등과 엉치의 뒤굽이는 배 속에서 웅크린 자세 그대로인 일차 굽이다. 목의 앞굽이는 고개를 가누면서, 허리의 앞굽이는 서고 걸으면서 생기는 이차 굽이다.</div></div>
+      <div class="quiz-q"><p>3. 앞쪽 끝이 복장뼈에도 다른 갈비연골에도 붙지 않는 갈비뼈는?</p>
+        <div class="opts"><button class="opt">1~2번</button><button class="opt">8~10번</button><button class="opt">6~7번</button><button class="opt" data-correct>11~12번</button></div>
+        <div class="quiz-exp">11번과 12번은 뜬갈비뼈다. 1~7번은 복장뼈에 직접 붙는 참갈비뼈, 8~10번은 위의 갈비연골에 붙는 거짓갈비뼈다.</div></div>
+      <div class="quiz-q"><p>4. 이 장의 데이터에서 셋째 목뼈(C3)의 부피는 약 9.4 mL, 다섯째 허리뼈(L5)는 약 52.3 mL였다. 이 차이를 가장 잘 설명하는 것은?</p>
+        <div class="opts"><button class="opt" data-correct>아래쪽 척추뼈일수록 그 위에 얹힌 몸무게가 커서 몸통이 크고 넓다</button><button class="opt">허리뼈에는 갈비뼈가 붙어 있어서 크다</button><button class="opt">허리뼈는 여러 개가 붙은 뼈라서 크다</button><button class="opt">측정 오차 때문이다</button></div>
+        <div class="quiz-exp">L5는 C3의 약 5.6배다. C3는 머리만 받치지만 L5는 머리, 두 팔, 몸통 전체(이 데이터에서 몸의 약 절반)를 받친다. 갈비뼈가 붙는 것은 등뼈이고, 여러 개가 붙은 것은 엉치뼈다.</div></div>
+      <div class="quiz-q"><p>5. 들숨 때 위쪽 갈비뼈가 들리면 복장뼈는 어느 쪽으로 움직이는가?</p>
+        <div class="opts"><button class="opt">뒤쪽과 아래쪽</button><button class="opt">움직이지 않는다</button><button class="opt" data-correct>앞쪽과 위쪽</button><button class="opt">가쪽</button></div>
+        <div class="quiz-exp">갈비뼈는 뒤에서 앞으로 비스듬히 내려가 있다. 뒤쪽 끝을 축으로 앞끝이 들리면 끝이 앞과 위로 함께 움직여 복장뼈를 민다(펌프 손잡이 운동). 가슴의 앞뒤 지름이 커진다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var V = function (k) { return AT.part(k).vol; };
+  var CV = [], TV = [], LV = [], RIBS = [];
+  for (var i = 1; i <= 7; i++) CV.push("c" + i);
+  for (i = 1; i <= 12; i++) { TV.push("t" + i); RIBS.push("rib" + i); }
+  for (i = 1; i <= 5; i++) LV.push("l" + i);
+  var VERT = CV.concat(TV, LV);
+  function setT(id, t) { var e = document.getElementById(id); if (e) e.textContent = t; }
+  function shortName(k) { return k.toUpperCase(); }
+  function regionOf(k) { return k[0] === "c" ? "cervical" : k[0] === "t" ? "thoracic" : k[0] === "l" ? "lumbar" : "sacrum"; }
+  var REGCOL = { cervical: "#f0b27a", thoracic: "#e6c45a", lumbar: "#7cc46a", sacrum: "#c9a0dc" };
+
+  // 높이 z보다 위에 있는 몸의 부피(L): 피부 안쪽 가로 단면 넓이를 1 cm마다 쌓는다
+  var ABOVE = {};
+  (function () {
+    var L = AT.sectionLevels("axial"), acc = 0;
+    for (var j = L.length - 1; j >= 0; j--) { acc += AT.sectionArea("axial", L[j], "body") * 10; ABOVE[L[j]] = acc / 1e6; }
+  })();
+  var BODYL = ABOVE[AT.sectionLevels("axial")[0]];
+  function above(z) { var L = AT.sectionLevels("axial"), best = L[0]; L.forEach(function (q) { if (Math.abs(q - z) < Math.abs(best - z)) best = q; }); return ABOVE[best]; }
+
+  /* ---------------- 글 속 숫자 ---------------- */
+  setT("ax-disc-v", AT.fmtVol(V("disc_l4")));
+  setT("ax-disc-h", AT.fmtLen(AT.size("disc_l4")[2]));
+
+  /* ---------------- 머리뼈 두께 ---------------- */
+  (function () {
+    var B = [["frontal", 1], ["parietal", 2], ["temporal", 2], ["occipital", 1], ["sphenoid", 1], ["mandible", 1]];
+    var items = B.map(function (b) { var p = AT.part(b[0]); return { k: b[0], ko: p.ko, n: b[1], v: p.vol, a: p.area, t: 2 * p.vol * 1000 / (p.area * 100), neuro: b[0] !== "mandible" }; });
+    var neuroSum = items.reduce(function (s, it) { return s + (it.neuro ? it.v * it.n : 0); }, 0);
+    var met = "t", sel = "parietal", T = null, rows = [], dots = [];
+    var holder = document.getElementById("sv-cv").parentElement;
+    var COL = { frontal: "#e8c27a", parietal: "#8fbfe0", temporal: "#9fcf8f", occipital: "#c9a0dc", sphenoid: "#f09a7a", mandible: "#e6b07a" };
+    var cv = BB.canvas("#sv-cv", function (ctx, w, h) {
+      var P = BB.palette(), narrow = w < 480;
+      var mapB = narrow ? { x: 0, y: 0, w: w, h: Math.round(h * 0.46) } : { x: 0, y: 0, w: Math.round(w * 0.46), h: h };
+      var barB = narrow ? { x: 0, y: mapB.h, w: w, h: h - mapB.h } : { x: mapB.w, y: 0, w: w - mapB.w, h: h };
+      T = AT.mapFit(mapB, "side", { keys: ["skull"], zRange: [1395, 1655], margin: 26, pad: 8 });
+      ctx.save(); ctx.beginPath(); ctx.rect(mapB.x, mapB.y, mapB.w, mapB.h); ctx.clip();
+      AT.drawMap(ctx, T, "side", { layers: ["skin", "brain", "skull"], alpha: 0.55 });
+      ctx.restore();
+      dots = [];
+      items.forEach(function (it) {
+        var q = AT.mapPoint(T, "side", it.k), on = it.k === sel;
+        ctx.fillStyle = COL[it.k]; ctx.strokeStyle = on ? P.text : BB.alpha(P.text, 0.5); ctx.lineWidth = on ? 2.5 : 1;
+        ctx.beginPath(); ctx.arc(q[0], q[1], on ? 9 : 7, 0, 7); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = P.text; ctx.font = BB.font(11, false, on ? 700 : 500);
+        ctx.fillText(it.ko, q[0] + 11, q[1] + 4);
+        dots.push({ x: q[0], y: q[1], k: it.k });
+      });
+      AT.orient(ctx, mapB, "side", P.faint);
+      ctx.fillStyle = P.dim; ctx.font = BB.font(10.5); ctx.fillText("옆모습(앞이 왼쪽) · 점 = 무게중심", mapB.x + 8, mapB.y + mapB.h - 8);
+      // 막대
+      var key = met === "t" ? "t" : met === "v" ? "v" : "a";
+      var lw = 76, top = barB.y + 26, rh = (barB.h - 56) / items.length, max = Math.max.apply(null, items.map(function (it) { return it[key]; }));
+      var vw = barB.w - lw - 70;
+      ctx.fillStyle = P.dim; ctx.font = BB.font(11.5, false, 600);
+      ctx.fillText(met === "t" ? "어림 평균 두께 (mm)" : met === "v" ? "부피 (mL, 하나)" : "겉넓이 (cm², 하나)", barB.x + lw, barB.y + 16);
+      rows = [];
+      items.forEach(function (it, i) {
+        var y = top + i * rh, val = it[key], bw = Math.max(2, vw * val / max), bh = Math.min(22, rh * 0.62);
+        ctx.fillStyle = COL[it.k]; ctx.globalAlpha = it.k === sel ? 1 : 0.75;
+        ctx.fillRect(barB.x + lw, y + (rh - bh) / 2, bw, bh); ctx.globalAlpha = 1;
+        if (it.k === sel) { ctx.strokeStyle = P.text; ctx.lineWidth = 1.5; ctx.strokeRect(barB.x + lw, y + (rh - bh) / 2, bw, bh); }
+        ctx.textBaseline = "middle"; ctx.textAlign = "right"; ctx.fillStyle = it.k === sel ? P.text : P.dim; ctx.font = BB.font(12, false, it.k === sel ? 700 : 400);
+        ctx.fillText(it.ko, barB.x + lw - 6, y + rh / 2);
+        ctx.textAlign = "left"; ctx.fillStyle = P.text; ctx.font = BB.font(11.5, true);
+        ctx.fillText(met === "t" ? val.toFixed(1) : Math.round(val) + (it.n === 2 ? " ×2" : ""), barB.x + lw + bw + 5, y + rh / 2);
+        ctx.textBaseline = "alphabetic";
+        rows.push({ y0: y, y1: y + rh, x0: barB.x, k: it.k });
+      });
+    }, { get height() { return holder.clientWidth < 480 ? 520 : 400; } });
+    var info = document.getElementById("sv-info");
+    function show() {
+      var it = items.filter(function (x) { return x.k === sel; })[0];
+      BB.stat("sv-o-k", it.ko + (it.n === 2 ? " (오른쪽)" : ""));
+      BB.stat("sv-o-v", "두께 약 " + it.t.toFixed(1) + " mm · " + AT.fmtVol(it.v) + " · " + Math.round(it.a) + " cm²");
+      BB.stat("sv-o-b", AT.fmtVol(neuroSum) + " : " + AT.fmtVol(V("brain")));
+      var txt = { frontal: "이마와 눈확의 지붕. 안에 이마굴(공기 주머니)이 있다.", parietal: "머리 꼭대기의 지붕. 좌우가 시상봉합에서 만난다.", temporal: "귀 둘레. 속귀를 품은 단단한 바위 부분과 얇은 비늘 부분이 함께 있다.", occipital: "뒤통수와 머리뼈 바닥. 큰구멍으로 숨뇌와 척수가 이어진다.", sphenoid: "머리뼈 바닥 한가운데. 뇌하수체가 앉는 오목(안장)이 있다.", mandible: "얼굴뼈 가운데 유일하게 관절(턱관절)로 움직인다. 머리뼈 묶음과는 따로 쟀다." }[it.k];
+      info.innerHTML = "<b>" + it.ko + "</b> (" + AT.part(it.k).en + ") · " + txt;
+    }
+    BB.seg("sv-m", function (v) { met = v; cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      var d = dots.filter(function (q) { return Math.hypot(q.x - x, q.y - y) < 13; })[0];
+      var r = rows.filter(function (q) { return x >= q.x0 && y >= q.y0 && y < q.y1; })[0];
+      var k = d ? d.k : r ? r.k : null;
+      if (k) { sel = k; show(); cv.redraw(); }
+    } });
+    show();
+  })();
+
+  /* ---------------- 척주의 굽이 ---------------- */
+  (function () {
+    var KS = VERT.concat(["sacrum"]);
+    var ad = KS.map(function (k) { var c = AT.part(k).c; return [c[1], c[2]]; });
+    var z0 = ad[0][1], z1 = ad[ad.length - 1][1];
+    var nb = ad.map(function (q) {
+      var s = (z0 - q[1]) / (z0 - z1);
+      var yl = ad[0][0] + (ad[ad.length - 1][0] - ad[0][0]) * s;
+      return [yl - 8 + 34 * Math.sin(Math.PI * s), q[1]];
+    });
+    var tGet, T = null, cur = [], sel = null;
+    var holder = document.getElementById("cu-cv").parentElement;
+    var chordOn = document.getElementById("cu-chord"), plumbOn = document.getElementById("cu-plumb");
+    function weight(k, t) {
+      var r = regionOf(k);
+      return r === "cervical" ? BB.clamp(t / 0.45, 0, 1) : r === "lumbar" ? BB.clamp((t - 0.45) / 0.55, 0, 1) : t;
+    }
+    function depth(keys) {
+      var idx = keys.map(function (k) { return KS.indexOf(k); });
+      var a = cur[idx[0]], b = cur[idx[idx.length - 1]], best = 0, bi = idx[0];
+      idx.forEach(function (i) {
+        var q = cur[i], s = (q[1] - a[1]) / (b[1] - a[1]), yc = a[0] + (b[0] - a[0]) * s, d = q[0] - yc;
+        if (Math.abs(d) > Math.abs(best)) { best = d; bi = i; }
+      });
+      return { d: best, i: bi, a: a, b: b };
+    }
+    function fmtD(r) { return Math.abs(r.d) < 2 ? "거의 없음" : (r.d < 0 ? "앞으로 " : "뒤로 ") + Math.abs(r.d).toFixed(0) + " mm"; }
+    var cv = BB.canvas("#cu-cv", function (ctx, w, h) {
+      var P = BB.palette(), t = tGet ? tGet() : 1;
+      cur = KS.map(function (k, i) { var wv = weight(k, t); return [nb[i][0] + (ad[i][0] - nb[i][0]) * wv, ad[i][1]]; });
+      T = AT.mapFit({ x: 0, y: 0, w: w, h: h }, "side", { keys: ["spine", "skull"], zRange: [820, 1650], margin: 70, pad: 10 });
+      AT.drawMap(ctx, T, "side", { layers: ["skin", "skull", "ribcage", "pelvis"], alpha: 0.3 });
+      ctx.globalAlpha = Math.pow(t, 6);
+      AT.drawMap(ctx, T, "side", { layers: ["spine"], alpha: 0.75 });
+      ctx.globalAlpha = 1;
+      if (plumbOn.checked) {
+        var ear = AT.part("temporal").c, x = T.X(ear[1]);
+        ctx.strokeStyle = P.ok; ctx.setLineDash([6, 4]); ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(x, T.Y(ear[2])); ctx.lineTo(x, h - 4); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = P.ok; ctx.font = BB.font(11, false, 600); ctx.fillText("귀(관자뼈) 높이에서 내린 수직선", Math.min(x + 6, w - 170), T.Y(ear[2]) - 6);
+      }
+      // 사슬
+      ctx.strokeStyle = BB.alpha(P.text, 0.6); ctx.lineWidth = 2; ctx.beginPath();
+      cur.forEach(function (q, i) { var x = T.X(q[0]), y = T.Y(q[1]); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+      ctx.stroke();
+      if (chordOn.checked) {
+        [[CV, "목"], [TV, "등"], [LV, "허리"]].forEach(function (g) {
+          var r = depth(g[0]);
+          ctx.strokeStyle = P.accent; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.2;
+          ctx.beginPath(); ctx.moveTo(T.X(r.a[0]), T.Y(r.a[1])); ctx.lineTo(T.X(r.b[0]), T.Y(r.b[1])); ctx.stroke(); ctx.setLineDash([]);
+          var q = cur[r.i], s = (q[1] - r.a[1]) / (r.b[1] - r.a[1]), yc = r.a[0] + (r.b[0] - r.a[0]) * s;
+          ctx.strokeStyle = P.accent; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(T.X(yc), T.Y(q[1])); ctx.lineTo(T.X(q[0]), T.Y(q[1])); ctx.stroke();
+          var lab = g[1] + (Math.abs(r.d) < 2 ? "" : r.d < 0 ? " 앞굽이 " : " 뒤굽이 ") + (Math.abs(r.d) < 2 ? " 굽이 없음" : Math.abs(r.d).toFixed(0) + " mm");
+          ctx.font = BB.font(11.5, false, 700); ctx.fillStyle = P.accent;
+          var lx = Math.max(T.X(Math.max(yc, q[0])) + 12, T.X(-40));
+          ctx.fillText(lab, Math.min(lx, w - ctx.measureText(lab).width - 4), T.Y(q[1]) + 4);
+        });
+      }
+      cur.forEach(function (q, i) {
+        var k = KS[i], x = T.X(q[0]), y = T.Y(q[1]), on = sel === k;
+        ctx.fillStyle = REGCOL[regionOf(k)]; ctx.strokeStyle = on ? P.text : BB.alpha("#000", 0.35); ctx.lineWidth = on ? 2.5 : 1;
+        ctx.beginPath(); ctx.arc(x, y, k === "sacrum" ? 7 : on ? 6 : 4.5, 0, 7); ctx.fill(); ctx.stroke();
+      });
+      ctx.font = BB.font(10.5, true); ctx.fillStyle = P.dim;
+      ["c1", "c7", "t12", "l5"].forEach(function (k) { var q = cur[KS.indexOf(k)]; ctx.fillText(k.toUpperCase(), T.X(q[0]) - 30, T.Y(q[1]) + 4); });
+      AT.orient(ctx, { x: 0, y: 0, w: w, h: h }, "side", P.faint);
+      AT.scaleBar(ctx, T, 14, h - 16, 100, P.dim);
+      ctx.fillStyle = P.text; ctx.font = BB.font(12.5, false, 700);
+      ctx.fillText(t < 0.15 ? "갓난아기: C자 하나" : t < 0.5 ? "고개를 가누며 목의 앞굽이가 생긴다" : t < 0.98 ? "서고 걸으며 허리의 앞굽이가 생긴다" : "어른 (이 데이터)", 12, 18);
+      BB.stat("cu-o-c", fmtD(depth(CV))); BB.stat("cu-o-t", fmtD(depth(TV))); BB.stat("cu-o-l", fmtD(depth(LV)));
+    }, { get height() { return holder.clientWidth < 520 ? 460 : 500; } });
+    tGet = BB.range("cu-t", function (v) { return v < 0.15 ? "갓난아기" : v < 0.5 ? "생후 수개월" : v < 0.98 ? "걷기 시작" : "어른"; }, function () { cv.redraw(); });
+    chordOn.addEventListener("change", function () { cv.redraw(); });
+    plumbOn.addEventListener("change", function () { cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      var best = null, bd = 12;
+      cur.forEach(function (q, i) { var d = Math.hypot(T.X(q[0]) - x, T.Y(q[1]) - y); if (d < bd) { bd = d; best = i; } });
+      if (best == null) return;
+      sel = KS[best]; var p = AT.part(sel);
+      document.getElementById("cu-info").innerHTML = "<b>" + p.ko + "</b> · 무게중심 y = " + p.c[1] + " mm(앞뒤), 발바닥에서 " + AT.fmtLen(AT.heightOf(sel)) + ". 부피 " + AT.fmtVol(p.vol) + ".";
+      cv.redraw();
+    } });
+  })();
+
+  /* ---------------- 척추뼈 부피와 하중 ---------------- */
+  var LOAD = VERT.map(function (k) { var p = AT.part(k); return { k: k, v: p.vol, L: above(p.c[2]) }; });
+  (function () {
+    var met = "v", sel = "l5", B = null;
+    var holder = document.getElementById("ld-cv").parentElement;
+    var areaOn = document.getElementById("ld-area");
+    var cv = BB.canvas("#ld-cv", function (ctx, w, h) {
+      var P = BB.palette(), narrow = w < 520;
+      var box = { x: 50, y: 30, w: w - 50 - 50, h: h - 30 - 62 };
+      var labels = LOAD.map(function (d) { var s = d.k.toUpperCase(); return narrow ? (["C1", "C7", "T1", "T6", "T12", "L1", "L5"].indexOf(s) >= 0 ? s : "") : s.replace(/^([CTL])/, "$1"); });
+      var lmax = 40;
+      if (met === "v") {
+        B = BB.bars(ctx, box, { labels: labels, stacks: [{ label: "부피", color: function (i) { return REGCOL[regionOf(LOAD[i].k)]; }, data: LOAD.map(function (d) { return d.v; }) }], y: [0, 60], yLabel: "척추뼈 부피 (mL)", gap: 0.22, highlight: LOAD.findIndex(function (d) { return d.k === sel; }) });
+        // 하중 선(오른쪽 축)
+        var Y2 = function (L) { return box.y + box.h - L / lmax * box.h; };
+        ctx.strokeStyle = P.bad; ctx.lineWidth = 2.5; ctx.beginPath();
+        LOAD.forEach(function (d, i) { var x = B.X(i), y = Y2(d.L); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.stroke();
+        LOAD.forEach(function (d, i) { ctx.fillStyle = P.bad; ctx.beginPath(); ctx.arc(B.X(i), Y2(d.L), 2.6, 0, 7); ctx.fill(); });
+        ctx.fillStyle = P.bad; ctx.font = BB.font(10.5, true); ctx.textAlign = "left"; ctx.textBaseline = "middle";
+        [0, 10, 20, 30, 40].forEach(function (L) { ctx.fillText(L, box.x + box.w + 6, Y2(L)); });
+        ctx.save(); ctx.translate(w - 8, box.y + box.h / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.font = BB.font(11.5); ctx.fillText("그 위의 몸 (L ≈ kg)", 0, 0); ctx.restore();
+        if (areaOn.checked) {
+          var a0 = Math.pow(LOAD[2].v, 2 / 3);
+          ctx.strokeStyle = P.accent; ctx.setLineDash([5, 3]); ctx.lineWidth = 2; ctx.beginPath();
+          LOAD.forEach(function (d, i) { var y = B.Y(LOAD[2].v * Math.pow(d.v, 2 / 3) / a0); i ? ctx.lineTo(B.X(i), y) : ctx.moveTo(B.X(i), y); }); ctx.stroke(); ctx.setLineDash([]);
+        }
+      } else {
+        var data = LOAD.map(function (d) { return d.L / d.v * 10; });
+        B = BB.bars(ctx, box, { labels: labels, stacks: [{ label: "비", color: function (i) { return REGCOL[regionOf(LOAD[i].k)]; }, data: data }], y: [0, 9], yLabel: "부피 10 mL당 위쪽 몸 (L)", gap: 0.22, highlight: LOAD.findIndex(function (d) { return d.k === sel; }) });
+        if (areaOn.checked) {
+          var d2 = LOAD.map(function (d) { return d.L / Math.pow(d.v, 2 / 3); }), s2 = data[2] / d2[2];
+          ctx.strokeStyle = P.accent; ctx.setLineDash([5, 3]); ctx.lineWidth = 2; ctx.beginPath();
+          d2.forEach(function (q, i) { var y = B.Y(Math.min(9, q * s2)); i ? ctx.lineTo(B.X(i), y) : ctx.moveTo(B.X(i), y); }); ctx.stroke(); ctx.setLineDash([]);
+        }
+      }
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+      // 범례
+      ctx.font = BB.font(11); var lx = box.x + 4, ly = 14;
+      var leg = [["목뼈", REGCOL.cervical], ["등뼈", REGCOL.thoracic], ["허리뼈", REGCOL.lumbar]];
+      if (met === "v") leg.push(["그 위의 몸", P.bad]);
+      if (areaOn.checked) leg.push([met === "v" ? "넓이 어림(C3에 맞춤)" : "하중 ÷ 넓이 어림", P.accent]);
+      leg.forEach(function (a) { ctx.fillStyle = a[1]; ctx.fillRect(lx, ly - 8, 10, 10); ctx.fillStyle = P.dim; ctx.fillText(a[0], lx + 14, ly + 1); lx += ctx.measureText(a[0]).width + 28; if (lx > w - 90) { lx = box.x + 4; ly += 14; } });
+    }, { get height() { return holder.clientWidth < 520 ? 360 : 380; } });
+    var info = document.getElementById("ld-info");
+    function show() {
+      var d = LOAD.filter(function (x) { return x.k === sel; })[0], p = AT.part(sel), s = AT.size(sel);
+      BB.stat("ld-o-k", p.ko);
+      BB.stat("ld-o-v", AT.fmtVol(d.v));
+      BB.stat("ld-o-l", d.L.toFixed(1) + " L ≈ " + Math.round(d.L) + " kg (" + Math.round(d.L / BODYL * 100) + " %)");
+      info.innerHTML = "<b>" + p.ko + "</b> · 발바닥에서 " + AT.fmtLen(AT.heightOf(sel)) + ". 상자 크기 좌우 " + Math.round(s[0]) + " × 앞뒤 " + Math.round(s[1]) + " × 위아래 " + Math.round(s[2]) + " mm. 위쪽 몸 1 L당 척추뼈 부피 " + (d.v / d.L).toFixed(2) + " mL.";
+    }
+    BB.seg("ld-m", function (v) { met = v; cv.redraw(); });
+    areaOn.addEventListener("change", function () { cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x) { if (!B) return; var i = Math.floor((x - B.box.x) / (B.box.w / LOAD.length)); if (i >= 0 && i < LOAD.length) { sel = LOAD[i].k; show(); cv.redraw(); } } });
+    show();
+  })();
+
+  /* ---------------- 갈비뼈 12쌍 ---------------- */
+  var RIBCOL = function (i) { return i < 7 ? "#f0b27a" : i < 10 ? "#8fbfe0" : "#9fd08f"; };
+  (function () {
+    var met = "vol", sel = 6, T = null, B = null;
+    var holder = document.getElementById("rb-cv").parentElement;
+    function val(i) { var p = AT.part(RIBS[i]), s = AT.size(RIBS[i]); return met === "vol" ? p.vol : met === "ap" ? s[1] : met === "h" ? s[2] : -p.lo[0]; }
+    var cv = BB.canvas("#rb-cv", function (ctx, w, h) {
+      var P = BB.palette(), narrow = w < 520;
+      var mapB = narrow ? { x: 0, y: 0, w: w, h: Math.round(h * 0.42) } : { x: 0, y: 0, w: Math.round(w * 0.42), h: h };
+      var barB = narrow ? { x: 46, y: mapB.h + 24, w: w - 46 - 12, h: h - mapB.h - 24 - 54 } : { x: mapB.w + 50, y: 30, w: w - mapB.w - 50 - 12, h: h - 30 - 60 };
+      T = AT.mapFit(mapB, "front", { keys: ["ribcage"], zRange: [990, 1390], margin: 14, pad: 8 });
+      ctx.save(); ctx.beginPath(); ctx.rect(mapB.x, mapB.y, mapB.w, mapB.h); ctx.clip();
+      AT.drawMap(ctx, T, "front", { layers: ["skin", "spine", "ribcage"], alpha: 0.45 });
+      var p = AT.part(RIBS[sel]);
+      [1, -1].forEach(function (sg) {
+        var x0 = T.X(sg * p.lo[0]), x1 = T.X(sg * p.hi[0]), y0 = T.Y(p.hi[2]), y1 = T.Y(p.lo[2]);
+        ctx.fillStyle = BB.alpha(RIBCOL(sel), 0.35); ctx.fillRect(Math.min(x0, x1), y0, Math.abs(x1 - x0), y1 - y0);
+        ctx.strokeStyle = P.text; ctx.lineWidth = 1.5; ctx.strokeRect(Math.min(x0, x1), y0, Math.abs(x1 - x0), y1 - y0);
+        var c = AT.mapPoint(T, "front", [sg * p.c[0], p.c[1], p.c[2]]);
+        ctx.fillStyle = RIBCOL(sel); ctx.beginPath(); ctx.arc(c[0], c[1], 5, 0, 7); ctx.fill(); ctx.stroke();
+      });
+      ctx.restore();
+      AT.orient(ctx, mapB, "front", P.faint);
+      ctx.fillStyle = P.text; ctx.font = BB.font(12, false, 700); ctx.fillText((sel + 1) + "번 갈비뼈의 경계 상자", mapB.x + 8, mapB.y + 16);
+      var labs = RIBS.map(function (_, i) { return String(i + 1); });
+      var data = RIBS.map(function (_, i) { return val(i); });
+      B = BB.bars(ctx, barB, { labels: labs, stacks: [{ label: "", color: function (i) { return RIBCOL(i); }, data: data }], y: [0, Math.max.apply(null, data) * 1.15], yLabel: met === "vol" ? "부피 (mL)" : met === "lat" ? "정중선에서 가쪽 끝 (mm)" : met === "ap" ? "앞뒤 길이 (mm)" : "위아래 높이 (mm)", highlight: sel, gap: 0.22, valueFmt: function (v) { return met === "vol" ? (v < 10 ? v.toFixed(1) : Math.round(v)) : Math.round(v); } });
+      ctx.fillStyle = P.dim; ctx.font = BB.font(11); ctx.textAlign = "center";
+      ctx.fillText("갈비뼈 번호", barB.x + barB.w / 2, barB.y + barB.h + 30); ctx.textAlign = "left";
+    }, { get height() { return holder.clientWidth < 520 ? 520 : 400; } });
+    var info = document.getElementById("rb-info");
+    function show() {
+      var k = RIBS[sel], p = AT.part(k), s = AT.size(k), kind = sel < 7 ? "참갈비뼈" : sel < 10 ? "거짓갈비뼈" : "뜬갈비뼈";
+      BB.stat("rb-o-k", (sel + 1) + "번 · " + kind);
+      BB.stat("rb-o-v", met === "vol" ? AT.fmtVol(p.vol) : Math.round(val(sel)) + " mm");
+      BB.stat("rb-o-z", AT.fmtLen(AT.heightOf(k)));
+      info.innerHTML = "<b>" + (sel + 1) + "번 갈비뼈</b>(" + kind + ") · 부피 " + AT.fmtVol(p.vol) + ", 상자 크기 가쪽 " + Math.round(s[0]) + " × 앞뒤 " + Math.round(s[1]) + " × 위아래 " + Math.round(s[2]) + " mm, 정중선에서 가쪽 끝까지 " + Math.round(-p.lo[0]) + " mm.";
+    }
+    BB.seg("rb-m", function (v) { met = v; show(); cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      if (B && y > B.box.y - 20) { var i = Math.floor((x - B.box.x) / (B.box.w / 12)); if (i >= 0 && i < 12) { sel = i; show(); cv.redraw(); return; } }
+      if (!T) return;
+      var q = T.inv(x, y), best = -1;
+      RIBS.forEach(function (k, i) { var p = AT.part(k); if (q[1] >= p.lo[2] && q[1] <= p.hi[2] && Math.abs(q[0]) <= -p.lo[0] && Math.abs(q[0]) >= -p.hi[0]) { if (best < 0 || Math.abs(AT.part(RIBS[best]).c[2] - q[1]) > Math.abs(p.c[2] - q[1])) best = i; } });
+      if (best >= 0) { sel = best; show(); cv.redraw(); }
+    } });
+    show();
+  })();
+
+  /* ---------------- 숨 쉴 때의 가슴우리 ---------------- */
+  (function () {
+    var R = RIBS.slice(0, 10).map(function (k, i) {
+      var p = AT.part(k), pp = [p.hi[1], p.hi[2]], pa = [p.lo[1], p.lo[2]];
+      var dy = pa[0] - pp[0], dz = pa[1] - pp[1];
+      return { i: i, pp: pp, L: Math.hypot(dy, dz), phi: Math.atan2(dz, dy) };
+    });
+    var st = AT.part("sternum");
+    var ang = 0, playing = false, ph = 0, T = null;
+    var holder = document.getElementById("br-cv").parentElement;
+    var ghostOn = document.getElementById("br-ghost");
+    function tip(r, a) { var f = r.phi - a * Math.PI / 180; return [r.pp[0] + r.L * Math.cos(f), r.pp[1] + r.L * Math.sin(f)]; }
+    function sternShift(a) {
+      var dy = 0, dz = 0; for (var i = 1; i < 7; i++) { var t0 = tip(R[i], 0), t1 = tip(R[i], a); dy += t1[0] - t0[0]; dz += t1[1] - t0[1]; }
+      return [dy / 6, dz / 6];
+    }
+    var aGet = BB.range("br-a", function (v) { return v.toFixed(1) + "°"; }, function (v) { ang = v; cv.redraw(); });
+    var cv = BB.canvas("#br-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      T = AT.mapFit({ x: 0, y: 0, w: w, h: h }, "side", { keys: ["ribcage"], zRange: [1000, 1400], margin: 40, pad: 12 });
+      AT.drawMap(ctx, T, "side", { layers: ["skin", "spine"], alpha: 0.5 });
+      function drawSet(a, ghost) {
+        R.forEach(function (r) {
+          var e = tip(r, a);
+          ctx.strokeStyle = ghost ? BB.alpha(P.dim, 0.55) : RIBCOL(r.i); ctx.lineWidth = ghost ? 1.5 : 4; ctx.lineCap = "round";
+          if (ghost) ctx.setLineDash([4, 4]);
+          ctx.beginPath(); ctx.moveTo(T.X(r.pp[0]), T.Y(r.pp[1])); ctx.lineTo(T.X(e[0]), T.Y(e[1])); ctx.stroke();
+          ctx.setLineDash([]);
+        });
+        var s = sternShift(a);
+        var sy = (st.lo[1] + st.hi[1]) / 2 + s[0], z0 = st.lo[2] + s[1], z1 = st.hi[2] + s[1];
+        ctx.strokeStyle = ghost ? BB.alpha(P.dim, 0.55) : "#e8a0b8"; ctx.lineWidth = ghost ? 2 : 8;
+        if (ghost) ctx.setLineDash([4, 4]);
+        ctx.beginPath(); ctx.moveTo(T.X(sy), T.Y(z0)); ctx.lineTo(T.X(sy), T.Y(z1)); ctx.stroke(); ctx.setLineDash([]);
+        if (!ghost) {
+          // 갈비연골(앞끝과 복장뼈를 잇는 선)
+          ctx.strokeStyle = BB.alpha("#a8d8f0", 0.9); ctx.lineWidth = 1.5;
+          for (var i = 0; i < 7; i++) { var e = tip(R[i], a); var zz = BB.clamp(e[1] + 10, z0, z1); ctx.beginPath(); ctx.moveTo(T.X(e[0]), T.Y(e[1])); ctx.lineTo(T.X(sy), T.Y(zz)); ctx.stroke(); }
+          ctx.fillStyle = P.bg; ctx.strokeStyle = P.accent; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(T.X(sy) - 16, T.Y((z0 + z1) / 2), 8, 0, 7); ctx.fill(); ctx.stroke();
+        }
+      }
+      if (ghostOn.checked && ang > 0) drawSet(0, true);
+      drawSet(ang, false);
+      R.forEach(function (r) { ctx.fillStyle = P.text; ctx.beginPath(); ctx.arc(T.X(r.pp[0]), T.Y(r.pp[1]), 2.5, 0, 7); ctx.fill(); });
+      ctx.fillStyle = P.dim; ctx.font = BB.font(11);
+      ctx.fillText("검은 점 = 갈비뼈 뒤쪽 끝(축)", 12, h - 12);
+      ctx.font = BB.font(11, false, 600); ctx.fillStyle = "#c46a8a"; ctx.textAlign = "right";
+      ctx.fillText("복장뼈", T.X((st.lo[1] + st.hi[1]) / 2) - 28, T.Y(st.hi[2]) - 6); ctx.textAlign = "left";
+      AT.orient(ctx, { x: 0, y: 0, w: w, h: h }, "side", P.faint);
+      AT.scaleBar(ctx, T, w - 80, 34, 50, P.dim);
+      var s = sternShift(ang);
+      BB.stat("br-o-y", (-s[0]).toFixed(1) + " mm");
+      BB.stat("br-o-z", s[1].toFixed(1) + " mm");
+      BB.stat("br-o-s", "수평에서 아래로 " + (Math.abs(R[5].phi * 180 / Math.PI) > 90 ? (180 - Math.abs(R[5].phi * 180 / Math.PI)) : Math.abs(R[5].phi * 180 / Math.PI)).toFixed(0) + "°" + (ang ? " → " + ((180 - Math.abs(R[5].phi * 180 / Math.PI)) - ang).toFixed(0) + "°" : ""));
+    }, { get height() { return holder.clientWidth < 520 ? 360 : 400; } });
+    var loop = BB.loop(cv.canvas, function (dt) {
+      if (!playing) return;
+      ph += dt * 2 * Math.PI / 4;
+      ang = 5 * (1 - Math.cos(ph)) / 2 * 2; aGet.set(Math.round(ang * 2) / 2);
+    });
+    document.getElementById("br-go").addEventListener("click", function () { playing = true; });
+    document.getElementById("br-stop").addEventListener("click", function () { playing = false; });
+    ghostOn.addEventListener("change", function () { cv.redraw(); });
+    var dragging = false, y0 = 0, a0 = 0;
+    BB.drag(cv.canvas, {
+      start: function (x, y) { dragging = true; playing = false; y0 = y; a0 = ang; },
+      move: function (x, y) { if (!dragging) return; var a = BB.clamp(a0 + (y0 - y) * 0.12, 0, 12); aGet.set(Math.round(a * 2) / 2); },
+      end: function () { dragging = false; },
+    });
+    void loop;
+  })();
+
+  /* ---------------- 척주 탐색기 ---------------- */
+  (function () {
+    var KS = VERT.concat(["sacrum"]);
+    var mode = "color", lev = Math.round(AT.part("t6").c[2] / 10) * 10, Tl = null, Tr = null, sel = null, split = 0, dragging = false;
+    var holder = document.getElementById("ex-cv").parentElement;
+    var labOn = document.getElementById("ex-lab");
+    var info = document.getElementById("ex-info");
+    function ringArea(r) { var a = 0; for (var i = 0, n = r.length / 2, j = n - 1; i < n; j = i++) a += r[2 * j] * r[2 * i + 1] - r[2 * i] * r[2 * j + 1]; return Math.abs(a / 2); }
+    function spineBone(z) {
+      var g = AT.sectionAt("axial", z).filter(function (x) { return x.k === "bone"; })[0]; if (!g) return 0;
+      var rs = g.rings.filter(function (r) { var sx = 0, sy = 0, n = r.length / 2; for (var i = 0; i < r.length; i += 2) { sx += r[i]; sy += r[i + 1]; } sx /= n; sy /= n; return Math.abs(sx) < 45 && sy > -130 && sy < 60; });
+      var tot = 0;
+      rs.forEach(function (x, i) { var d = 0; rs.forEach(function (y, j) { if (i !== j && ringArea(y) > ringArea(x) && AT.inside([y], x[0], x[1])) d++; }); tot += d % 2 ? -ringArea(x) : ringArea(x); });
+      return tot;
+    }
+    function nearestV(z) { var best = KS[0]; KS.forEach(function (k) { if (Math.abs(AT.part(k).c[2] - z) < Math.abs(AT.part(best).c[2] - z)) best = k; }); return best; }
+    var cv = BB.canvas("#ex-cv", function (ctx, w, h) {
+      var P = BB.palette(), ct = mode === "ct";
+      split = Math.round(w * (w < 520 ? 0.4 : 0.36));
+      var lb = { x: 0, y: 0, w: split, h: h }, rb = { x: split + 4, y: 0, w: w - split - 4, h: h };
+      // 왼쪽: 정중시상면
+      ctx.save(); ctx.beginPath(); ctx.rect(lb.x, lb.y, lb.w, lb.h); ctx.clip();
+      ctx.fillStyle = ct ? "#050608" : P.surface; ctx.fillRect(lb.x, lb.y, lb.w, lb.h);
+      Tl = AT.sectionFit(lb, "sagittal", { ext: [-230, 830, 70, 1650], pad: 8 });
+      AT.drawSection(ctx, Tl, "sagittal", 0, { mode: mode, bg: false, highlight: sel && sel !== "body" ? sel : null });
+      if (labOn.checked) {
+        ctx.font = BB.font(10, true, 600); ctx.fillStyle = ct ? "#cfd6e4" : P.text; ctx.textAlign = "left";
+        ["c2", "c5", "t1", "t4", "t8", "t12", "l3", "l5", "sacrum"].forEach(function (k) { var p = AT.part(k); ctx.fillText(k === "sacrum" ? "S" : k.toUpperCase(), Math.min(Tl.X(p.hi[1]) + 4, lb.w - 26), Tl.Y(p.c[2]) + 3); });
+      }
+      ctx.restore();
+      var y = Tl.Y(lev);
+      ctx.strokeStyle = P.bad; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(lb.x + 2, y); ctx.lineTo(lb.x + lb.w - 2, y); ctx.stroke();
+      ctx.fillStyle = P.bg; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(lb.x + lb.w - 30, y, 7, 0, 7); ctx.fill(); ctx.stroke();
+      AT.orient(ctx, lb, "sagittal", ct ? "#9aa6bf" : P.faint);
+      ctx.font = BB.font(10.5); ctx.fillStyle = ct ? "#9aa6bf" : P.dim; ctx.fillText("정중시상면 (x = 0)", lb.x + 8, lb.y + lb.h - 22);
+      // 오른쪽: 가로 단면
+      ctx.save(); ctx.beginPath(); ctx.rect(rb.x, rb.y, rb.w, rb.h); ctx.clip();
+      ctx.fillStyle = ct ? "#050608" : P.surface; ctx.fillRect(rb.x, rb.y, rb.w, rb.h);
+      Tr = AT.sectionFit(rb, "axial", { ext: w < 520 ? [-95, -175, 95, 60] : [-150, -200, 150, 75], pad: 10 });
+      AT.drawSection(ctx, Tr, "axial", lev, { mode: mode, bg: false, highlight: sel && sel !== "body" ? sel : null });
+      ctx.restore();
+      AT.orient(ctx, rb, "axial", ct ? "#9aa6bf" : P.faint);
+      AT.scaleBar(ctx, Tr, rb.x + 14, rb.y + 58, 50, ct ? "#cfd6e4" : P.dim);
+      ctx.font = BB.font(10.5); ctx.fillStyle = ct ? "#9aa6bf" : P.dim; ctx.textAlign = "right";
+      ctx.fillText("가로 단면 · 발 쪽에서 봄", rb.x + rb.w - 8, rb.y + 26); ctx.textAlign = "left";
+      // 수치
+      var k = nearestV(lev), p = AT.part(k), L = above(p.c[2]);
+      ctx.font = BB.font(13, false, 700); ctx.fillStyle = ct ? "#fff" : P.text;
+      ctx.fillText(p.ko, rb.x + 10, rb.y + 26);
+      BB.stat("ex-o-k", AT.fmtLen(lev - AT.body.bottom) + " · " + p.ko);
+      BB.stat("ex-o-v", AT.fmtVol(p.vol) + " · 약 " + Math.round(L) + " kg");
+      BB.stat("ex-o-a", (spineBone(lev) / 100).toFixed(1) + " cm²");
+    }, { get height() { return holder.clientWidth < 520 ? 480 : 540; } });
+    function setLev(y) { var q = Tl.inv(0, y); lev = BB.clamp(Math.round(q[1] / 10) * 10, 840, 1620); cv.redraw(); }
+    var jump = BB.seg("ex-jump", function (v) {
+      lev = v === "disc" ? Math.round(AT.part("disc_l4").c[2] / 10) * 10 : Math.round(AT.part(v).c[2] / 10) * 10;
+      sel = v === "disc" ? "disc" : null; cv.redraw();
+      info.innerHTML = v === "disc" ? "<b>L4–L5 사이 원반</b> · 파란 원반 바로 뒤가 척주관이다. 원반이 뒤가쪽으로 비어져 나오면 신경뿌리를 누른다." : "오른쪽 단면의 조직을 누르면 이름이 나온다.";
+    });
+    void jump;
+    BB.seg("ex-mode", function (v) { mode = v; cv.redraw(); });
+    labOn.addEventListener("change", function () { cv.redraw(); });
+    BB.drag(cv.canvas, {
+      start: function (x, y) {
+        dragging = x < split;
+        if (dragging) return setLev(y);
+        var r = AT.hitSection(Tr, "axial", lev, x, y);
+        sel = r && r.k !== "body" ? r.k : null;
+        info.innerHTML = r ? "<b>" + r.ko + "</b>" + (r.k === "cord" ? " · 이 데이터의 척수는 가는 관 모양이라 실제보다 작게 보인다." : r.k === "bone" ? " · 척추뼈몸통은 앞, 고리와 가시돌기는 뒤. 그 사이 구멍이 척주관이다." : r.k === "disc" ? " · 척추뼈몸통 사이의 원반." : r.k === "lung" ? " · 기관지 나무로 어림한 폐 영역." : "") : "단면 밖이다.";
+        cv.redraw();
+      },
+      move: function (x, y) { if (dragging) setLev(y); },
+      end: function () { dragging = false; },
+    });
+  })();
+
+  /* ---------------- 데이터로 확인하기 ---------------- */
+  (function () {
+    var l5 = LOAD[LOAD.length - 1], c3 = LOAD[2];
+    setT("dc-tot", BODYL.toFixed(1) + " L");
+    setT("dc-l5", l5.L.toFixed(1) + " L");
+    setT("dc-l5p", "약 " + Math.round(l5.L / BODYL * 100) + " %");
+    setT("dc-lr", (l5.L / c3.L).toFixed(1));
+    setT("dc-vr", (l5.v / c3.v).toFixed(1));
+    setT("dc-ar", Math.pow(l5.v / c3.v, 2 / 3).toFixed(1));
+  })();
+})();
+</script>
+</body>
+</html>

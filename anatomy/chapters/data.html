@@ -1,0 +1,687 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and AnatomyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "이 책의 모든 숫자가 나온 BodyParts3D를 들여다본다. part-of·is-a 온톨로지, 메시로 부피·겉넓이·무게중심을 계산하는 법, 닫힌 메시와 피부 껍질 문제, 교과서값과의 비교, 데이터의 한계와 라이선스.", "libs": ["sections"]}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>계산하는 해부학 · AnatomyBook</title>
+<meta name="description" content="이 책의 모든 숫자가 나온 BodyParts3D를 들여다본다. part-of·is-a 온톨로지, 메시로 부피·겉넓이·무게중심을 계산하는 법, 닫힌 메시와 피부 껍질 문제, 교과서값과의 비교, 데이터의 한계와 라이선스.">
+<link rel="canonical" href="https://medical.euiyun.com/anatomy/chapters/data.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#0c8599">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AnatomyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="계산하는 해부학 · AnatomyBook">
+<meta property="og:description" content="이 책의 모든 숫자가 나온 BodyParts3D를 들여다본다. part-of·is-a 온톨로지, 메시로 부피·겉넓이·무게중심을 계산하는 법, 닫힌 메시와 피부 껍질 문제, 교과서값과의 비교, 데이터의 한계와 라이선스.">
+<meta property="og:url" content="https://medical.euiyun.com/anatomy/chapters/data.html">
+<meta property="og:image" content="https://medical.euiyun.com/anatomy/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/anatomy/chapters/data.html#chapter","name":"계산하는 해부학","headline":"계산하는 해부학 · AnatomyBook","description":"이 책의 모든 숫자가 나온 BodyParts3D를 들여다본다. part-of·is-a 온톨로지, 메시로 부피·겉넓이·무게중심을 계산하는 법, 닫힌 메시와 피부 껍질 문제, 교과서값과의 비교, 데이터의 한계와 라이선스.","url":"https://medical.euiyun.com/anatomy/chapters/data.html","position":13,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/anatomy/og.png","dateModified":"2026-11-08","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/anatomy/#book","name":"AnatomyBook · 몸의 구조 교과서","url":"https://medical.euiyun.com/anatomy/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AnatomyBook","item":"https://medical.euiyun.com/anatomy/"},{"@type":"ListItem","position":2,"name":"13. 계산하는 해부학","item":"https://medical.euiyun.com/anatomy/chapters/data.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/atlas-data.js"></script>
+<script src="../js/atlas.js"></script>
+<script src="../js/sections-data.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="anatomy"></script>
+<!--head:end-->
+<style>
+  .da-cite { font-size: 14px; color: var(--text-dim); border-left: 3px solid var(--border); padding: 6px 12px; margin: 12px 0; background: var(--bg-elev); border-radius: 0 8px 8px 0; overflow-wrap: anywhere; }
+  .da-attr { font-family: var(--mono); font-size: 13px; line-height: 1.6; padding: 12px 14px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); white-space: pre-wrap; overflow-wrap: anywhere; margin: 12px 0; }
+  .da-miss { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 16px; padding: 0; list-style: none; }
+  .da-miss li { font-size: 13.5px; padding: 3px 10px; border-radius: 999px; background: var(--surface); border: 1px dashed var(--border); color: var(--text-dim); }
+  .se-small { font-size: 13.5px; color: var(--text-dim); margin: 4px 0 0; }
+</style>
+</head>
+<body data-chapter="data">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 13</div>
+    <h1>계산하는 해부학</h1>
+    <p class="lead">이 책은 "넙다리뼈의 부피는 약 500 mL", "심장의 3분의 2가 정중선 왼쪽" 같은 숫자를 여러 번 말했다. 그 숫자는 어디서 왔고, 얼마나 믿을 수 있을까? 이 장은 무대 뒤로 간다. 한 사람의 몸을 수천 조각으로 나눈 데이터 BodyParts3D가 어떻게 생겼는지, 조각에 붙은 이름이 어떤 체계로 엮여 있는지, 삼각형 메시에서 부피와 겉넓이와 무게중심을 어떻게 계산하는지, 그리고 이 데이터가 말해 주지 않는 것은 무엇인지 살펴본다.</p>
+    <ul class="objectives">
+      <li>BodyParts3D가 무엇인지(누가, 무엇을, 몇 조각으로) 설명한다.</li>
+      <li>part-of(무엇의 일부인가)와 is-a(무엇의 한 종류인가) 두 계층의 차이를 예로 든다.</li>
+      <li>닫힌 삼각형 메시에서 부피·겉넓이·무게중심을 구하는 원리를 2차원 다각형으로 이해한다.</li>
+      <li>닫히지 않은 메시와 피부 껍질처럼 계산이 틀어지는 경우와 그 우회 방법을 안다.</li>
+      <li>모델값과 교과서값을 견주고, 한 사람의 데이터가 가진 한계와 편향, 재사용 조건을 말한다.</li>
+    </ul>
+  </header>
+
+  <section id="what">
+    <h2>BodyParts3D: 조각난 한 사람</h2>
+    <p><span class="term">BodyParts3D</span><span class="en">(보디파츠3D)</span>는 일본 라이프사이언스 통합 데이터베이스 센터(DBCLS, Database Center for Life Science)가 만들어 공개한 인체 3D 데이터베이스다. 한 성인 남성의 몸을 본뜬 3D 모델을 뼈·근육·장기·혈관·뇌 같은 조각으로 나누고, 조각마다 <span class="term">해부학 기초 모형</span><span class="en">(FMA, Foundational Model of Anatomy)</span>이라는 해부학 용어 체계의 개념 이름과 번호를 붙였다. FMA는 미국 워싱턴 대학교에서 만든 해부학 온톨로지로, "간", "왼쪽 위팔뼈", "대동맥활" 같은 개념마다 <code>FMA7197</code> 같은 고유 번호가 있다.</p>
+    <p>이 책이 쓴 4.0판 원본 파일을 직접 세어 보면 다음과 같다. 조각 하나는 <span class="term">요소 파일</span><span class="en">(Element file)</span> 하나, 곧 삼각형으로 이루어진 OBJ 파일 하나이고 <code>FJ3365</code>(오른쪽 넙다리뼈)처럼 번호가 붙는다.</p>
+    <div class="numbers">
+      <div><b>2,234개</b><span>요소 파일(OBJ 조각)</span></div>
+      <div><b>3,432개</b><span>개념(FMA id) — part-of 1,368 + is-a 2,905, 겹침 포함</span></div>
+      <div><b>약 668만 개</b><span>삼각형(모든 요소 합계)</span></div>
+      <div><b>1명</b><span>성인 남성</span></div>
+      <div><b id="da-n-parts">—</b><span>이 책이 계산에 쓴 구조</span></div>
+    </div>
+    <p>요소 하나는 대개 이름 붙은 가장 작은 구조 하나다. "오른쪽 넙다리뼈", "왼쪽 셋째 갈비뼈", "간의 오른엽에 있는 오른간동맥" 같은 식이다. 큰 구조는 요소를 모아 만든다. 이 책의 "간"은 요소 여러 개를 합친 것이고, "피부"는 요소 하나(삼각형 약 20만 개)다. 아래 모델은 이 책이 그 요소들을 계통별로 묶어 만든 것이다.</p>
+
+    <div class="sim model3d" id="sim-da-3d" data-model="systems" data-orbit="20deg 75deg auto" data-desc="BodyParts3D 요소 수천 개를 계통별로 묶은 몸 전체 3D 모델에서 피부, 근육, 뼈대, 동맥, 장기, 간, 뇌를 하나씩 켜고 끄며 데이터가 무엇을 담고 무엇을 빠뜨렸는지 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>요소를 계통별로 묶은 몸</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="skin" title="요소 하나로 된 피부 껍질">피부</button><button type="button" data-part="muscles" title="골격근 요소들">근육</button><button type="button" data-part="skeleton" title="뼈 요소들">뼈대</button><button type="button" data-part="arteries" title="동맥 요소들">동맥</button><button type="button" data-part="organs" title="심장, 기관지, 위, 창자, 콩팥, 방광, 지라, 이자">장기</button><button type="button" data-part="liver" title="간(요소 여러 개)">간</button><button type="button" data-part="brain" title="뇌(이랑 하나하나가 요소)">뇌</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="muscles,skeleton">근육·뼈 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 근육과 뼈대를 끄고 가슴 안을 본다. 폐가 없고 기관지 나무만 있다. 원본에 폐 실질이 없기 때문이다. ② 근육만 켜고 배 앞을 본다. 배곧은근이 없어 배 앞이 비어 보인다. ③ 피부만 켜고 확대해 본다. 피부는 두께가 있는 껍질(겉면과 속면)이다. 이 사실이 뒤에서 몸의 부피를 잴 때 문제가 된다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+    <p class="da-cite">BodyParts3D를 소개한 논문: Mitsuhashi N, Fujieda K, Tamura T, Kawamoto S, Takagi T, Okubo K. BodyParts3D: 3D structure database for anatomical concepts. <i>Nucleic Acids Research</i> 2009; 37(Database issue): D782–D785.</p>
+  </section>
+
+  <section id="ontology">
+    <h2>온톨로지: 간은 무엇의 일부인가</h2>
+    <p>조각에 이름만 붙어 있다면 그것은 사전일 뿐이다. FMA는 개념 사이의 관계를 함께 적어 둔 <span class="term">온톨로지</span><span class="en">(Ontology)</span>다. BodyParts3D는 그 관계 가운데 두 가지를 골라 개념들을 나무 모양으로 엮었다.</p>
+    <ul>
+      <li><b>part-of(부분 관계)</b>: "간은 위창자관의 일부이고, 위창자관은 소화계통의 일부이고, 소화계통은 사람 몸의 일부다." 몸을 큰 덩어리에서 작은 덩어리로 쪼개 간다. 맨 위는 <code>human body</code>(사람 몸) 하나다.</li>
+      <li><b>is-a(종류 관계)</b>: "넙다리뼈는 긴뼈의 한 종류이고, 긴뼈는 뼈 기관의 한 종류이고, 뼈 기관은 기관의 한 종류다." 무엇이 어디에 있는지가 아니라 무엇과 같은 부류인지를 따진다. 맨 위는 <code>anatomical entity</code>(해부학적 실체)다.</li>
+    </ul>
+    <p>두 나무는 같은 조각을 다르게 묶는다. part-of 나무에서 오른쪽 넙다리뼈는 오른다리의 일부이고, is-a 나무에서는 왼쪽 넙다리뼈와 함께 "넙다리뼈"라는 부류에 든다. 원본 파일에서 part-of 나무에는 관계 1,367개, is-a 나무에는 관계 2,904개가 있다. 아래에서 두 나무를 오르내려 보자.</p>
+
+    <div class="sim" id="sim-da-onto" data-desc="BodyParts3D의 part-of와 is-a 나무에서 간·심장·뇌·뼈대·콩팥·넙다리뼈를 골라 위로는 사람 몸까지, 아래로는 하위 개념까지 눌러 가며 오르내리고, 개념마다 딸린 요소 파일 수를 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>개념의 나무 오르내리기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="da-on-cv" class="drag"></canvas><span class="hint">상자를 눌러 그 개념으로 옮겨 간다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="da-on-tree"><button data-value="partof" class="on">part-of (일부)</button><button data-value="isa">is-a (종류)</button></div>
+          <label class="ctrl"><span>출발 개념</span><select id="da-on-start"></select></label>
+          <div class="btn-row"><button class="btn" id="da-on-up">한 단계 위로</button></div>
+          <p class="se-small">막대 길이는 그 개념에 딸린 요소 파일 수(로그 눈금)다. 영어는 FMA의 공식 이름이다.</p>
+        </div>
+      </div>
+      <div class="info-panel" id="da-on-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 개념</span><span class="v" id="da-on-o-c" style="font-size:16px">—</span></div>
+        <div class="stat"><span class="k">FMA id</span><span class="v" id="da-on-o-id">—</span></div>
+        <div class="stat"><span class="k">딸린 요소 파일</span><span class="v" id="da-on-o-n">—</span></div>
+        <div class="stat"><span class="k">맨 위까지 단계</span><span class="v" id="da-on-o-d">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① part-of에서 "간"을 고른다. 간 아래에 오른엽·왼엽뿐 아니라 고유간동맥, 문맥 가지, 간 속 쓸개길이 함께 있다. 간이라는 개념에는 그 속을 지나는 관도 들어간다. 이 책이 간의 부피를 잴 때 혈관과 관을 뺀 이유다. ② "심장"을 고르고 위로 올라가 본다. 중간세로칸 → 앞가슴 → 가슴 → 몸통으로, 소화계통의 간보다 훨씬 긴 길을 거쳐 사람 몸에 닿는다. 같은 나무 안에서도 쪼개는 기준이 섞여 있다. ③ is-a로 바꿔 "뼈 기관"을 고른다. 긴뼈·짧은뼈·납작뼈·불규칙뼈 같은 교과서의 뼈 분류(<a href="skeleton.html">2장</a>)가 그대로 나온다. (이 시뮬레이터는 원본의 관계 목록에서 일부 개념만 뽑아 담았다. 생략된 하위 개념은 "+N개"로 표시한다.)</div>
+    </div>
+
+    <p>part-of와 is-a를 섞으면 혼란이 생긴다. "콩팥"이라는 낱말은 is-a 나무에서 오른쪽 콩팥과 왼쪽 콩팥을 묶는 부류이지만, part-of 나무에는 "콩팥" 대신 "오른쪽 콩팥"과 "왼쪽 콩팥"만 있다. 실제 몸의 부분은 늘 구체적인 한 개이기 때문이다. 컴퓨터가 해부학을 다루려면 이렇게 "어느 관계로" 묶었는지를 분명히 해야 한다.</p>
+    <p>is-a로 묶으면 3D 모델에서도 다른 그룹이 생긴다. 아래 뼈대 모델에서 팔뼈와 다리뼈는 긴뼈, 손목뼈와 발목뼈는 짧은뼈, 머리뼈의 지붕과 어깨뼈와 복장뼈는 납작뼈, 척추뼈는 불규칙뼈다. 몸의 부위(part-of)로 묶은 단추를 눌러 가며 종류(is-a)를 찾아보자.</p>
+
+    <div class="sim model3d" id="sim-da-3d-skel" data-model="skeleton" data-orbit="0deg 80deg auto" data-desc="뼈대 3D 모델의 부위 단추(머리뼈, 척주, 가슴우리, 팔, 손, 골반, 다리, 발)를 눌러 가며 같은 뼈들을 긴뼈·짧은뼈·납작뼈·불규칙뼈라는 다른 기준(is-a)으로 다시 묶어 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>부위로 묶기, 종류로 묶기</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="skull" title="납작뼈(지붕)와 불규칙뼈(바닥·얼굴)">머리뼈</button><button type="button" data-part="spine" title="불규칙뼈">척주</button><button type="button" data-part="discs" title="뼈가 아닌 섬유연골">척추원반</button><button type="button" data-part="thorax" title="갈비뼈는 FMA에서 긴뼈로, 복장뼈는 교과서에서 납작뼈로 분류된다">가슴우리</button><button type="button" data-part="shoulder" title="빗장뼈(긴뼈)와 어깨뼈(납작뼈)">어깨이음뼈</button><button type="button" data-part="arm" title="긴뼈">팔뼈</button><button type="button" data-part="hand" title="손목뼈는 짧은뼈, 손허리뼈·손가락뼈는 긴뼈">손뼈</button><button type="button" data-part="pelvis" title="교과서는 흔히 불규칙뼈로, FMA는 납작뼈로 분류한다">볼기뼈</button><button type="button" data-part="leg" title="긴뼈, 무릎뼈는 종자뼈">다리뼈</button><button type="button" data-part="foot" title="발목뼈는 짧은뼈, 발허리뼈·발가락뼈는 긴뼈">발뼈</button><button type="button" data-part="skin" title="반투명한 피부">피부</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다. 단추 위에 마우스를 올리면 그 부위의 뼈가 어느 종류인지 나온다.</div>
+      <div class="sim-note">해볼 것: ① 팔뼈·다리뼈·손뼈·발뼈만 남긴다. 손가락뼈처럼 작아도 길쭉하면 긴뼈다. 크기가 아니라 모양이 기준이다. ② 척주만 남기면 불규칙뼈가 모인다. 볼기뼈는 교과서에 따라 불규칙뼈로 쓰기도 하지만 FMA의 is-a 나무에서는 납작뼈 아래에 있다. ③ 갈비뼈는 납작해 보이지만 FMA의 is-a 나무에서는 긴뼈 아래에 있다. 교과서마다 갈리는 분류를 데이터는 하나로 정해 두므로, 데이터를 쓸 때는 그 체계의 정의를 따라야 한다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+  </section>
+
+  <section id="mesh">
+    <h2>삼각형으로 재기: 부피, 겉넓이, 무게중심</h2>
+    <p>요소 파일 하나는 점(꼭짓점)의 좌표 목록과, 점 세 개씩을 잇는 삼각형 목록이다. 이런 모양을 <span class="term">삼각형 메시</span><span class="en">(Triangle mesh)</span>라 한다. 겉넓이는 쉽다. 삼각형 넓이를 모두 더하면 된다. 부피는 조금 영리한 방법을 쓴다. 원점과 삼각형 하나를 이으면 작은 사면체가 생긴다. 사면체의 부피를 <b>부호와 함께</b> 모두 더하면, 겉의 바깥쪽을 향한 면은 더해지고 안쪽에 겹친 부분은 빠져서 정확히 모양의 부피만 남는다. 수학에서는 발산 정리(가우스 정리)라고 부른다.</p>
+    <div class="formula">$$V = \frac{1}{6}\sum_{\text{삼각형}} \mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})$$<div class="where">\(\mathbf{a},\mathbf{b},\mathbf{c}\): 삼각형 꼭짓점의 좌표(mm, 바깥에서 볼 때 반시계 방향 순서). 사면체 하나의 부호 있는 부피가 \(\tfrac16\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})\). 합은 mm³, 1,000 mm³ = 1 mL.</div></div>
+    <p>3차원은 머릿속에 그리기 어려우니 2차원에서 같은 일을 해 보자. 다각형의 넓이는 원점과 변 하나로 만든 삼각형의 부호 있는 넓이를 모두 더해 구한다(신발끈 공식). 아래에서 꼭짓점과 원점 O를 끌어 보자.</p>
+    <div class="formula">$$A = \frac{1}{2}\sum_{i}\left(x_i\,y_{i+1} - x_{i+1}\,y_i\right)$$<div class="where">\((x_i, y_i)\): i번째 꼭짓점(반시계 방향). 마지막 점 다음은 첫 점으로 돌아간다. 무게중심도 같은 삼각형들의 무게중심을 넓이로 가중 평균해 구한다.</div></div>
+
+    <div class="sim" id="sim-da-poly" data-desc="다각형의 꼭짓점과 원점을 끌면 원점에서 변마다 만든 삼각형의 부호 있는 넓이(파랑 +, 빨강 −)가 더해져 넓이와 무게중심이 나오고, 변 하나를 지워 열린 도형을 만들면 결과가 원점 위치에 따라 흔들리는 것을 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>부호 있는 삼각형으로 넓이 재기</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="da-po-cv" class="drag"></canvas><span class="hint">꼭짓점과 원점 O를 끈다</span></div>
+        <div class="sim-controls">
+          <div class="ctrl"><span>도형</span><div class="seg" id="da-po-shape"><button data-value="convex" class="on">볼록</button><button data-value="kidney">오목(콩팥 꼴)</button></div></div>
+          <label class="check"><input type="checkbox" id="da-po-open"> 변 하나 지우기(열린 도형)</label>
+          <label class="check"><input type="checkbox" id="da-po-fan" checked> 삼각형 보이기</label>
+          <p class="se-small">한 칸은 1 cm다. 파란 삼각형은 더하고 빨간 삼각형은 뺀다.</p>
+        </div>
+      </div>
+      <div class="info-panel" id="da-po-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">넓이(부호 합)</span><span class="v" id="da-po-o-a">—</span></div>
+        <div class="stat"><span class="k">+ 합 / − 합</span><span class="v" id="da-po-o-pm">—</span></div>
+        <div class="stat"><span class="k">둘레</span><span class="v" id="da-po-o-p">—</span></div>
+        <div class="stat"><span class="k">무게중심</span><span class="v" id="da-po-o-c">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 원점 O를 도형 밖으로 멀리 끌어도 넓이가 그대로인 것을 본다. 파랑과 빨강이 함께 커져서 차이는 늘 같다. ② "오목"을 고르고 O를 오목한 곳에 두면 빨간 삼각형이 생긴다. 그래도 합은 정확하다. ③ "변 하나 지우기"를 켜고 O를 움직인다. 닫히지 않은 도형에서는 원점에 따라 넓이가 바뀐다. 열린 메시(watertight가 아닌 메시)의 부피를 믿을 수 없는 이유가 바로 이것이다.</div>
+    </div>
+
+    <p>3D도 똑같다. 메시가 빈틈없이 닫혀 있으면(<span class="term">닫힌 메시</span><span class="en">(Watertight mesh)</span>, "물이 새지 않는" 메시) 부피는 원점과 상관없이 하나로 정해진다. 구멍이 있으면 부피가 원점에 따라 달라지고, 무게중심도 마찬가지다. 그래서 이 책의 데이터 도구는 구조마다 닫힌 메시인지를 함께 기록한다. 닫히지 않은 구조는 무게중심 대신 꼭짓점 좌표의 평균을 쓰고, 부피는 어림값으로 표시한다.</p>
+    <p>이제 실제 숫자를 보자. 아래는 이 책이 BodyParts3D에서 계산한 구조들의 부피와 겉넓이다. 막대에 빗금이 있으면 열린 메시다.</p>
+
+    <div class="sim" id="sim-da-parts" data-desc="BodyParts3D에서 계산한 뼈·근육·장기의 부피, 겉넓이, 겉넓이÷부피를 큰 순서로 막대로 비교하고, 막대를 눌러 요소 수·무게중심·닫힌 메시 여부를 확인한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>메시에서 잰 숫자들</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="da-pa-cv" class="drag"></canvas><span class="hint">막대를 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="da-pa-sys"><button data-value="bone" class="on">뼈</button><button data-value="muscle">근육</button><button data-value="organ">장기·뇌·혈관</button></div>
+          <div class="seg" id="da-pa-met"><button data-value="vol" class="on">부피</button><button data-value="area">겉넓이</button><button data-value="ratio">겉넓이÷부피</button></div>
+          <p class="se-small">짝이 있는 뼈와 근육은 오른쪽 하나의 값이다. 가장 큰 18개를 보여 준다(머리뼈는 조각별로).</p>
+        </div>
+      </div>
+      <div class="info-panel" id="da-pa-info">막대를 누르면 그 구조의 자세한 값이 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">구조</span><span class="v" id="da-pa-o-k" style="font-size:16px">—</span></div>
+        <div class="stat"><span class="k">요소 수</span><span class="v" id="da-pa-o-n">—</span></div>
+        <div class="stat"><span class="k">어림 무게</span><span class="v" id="da-pa-o-m">—</span></div>
+        <div class="stat"><span class="k">닫힌 메시</span><span class="v" id="da-pa-o-w" style="font-size:16px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 뼈의 부피 1위는 넙다리뼈, 2위권에 볼기뼈와 정강뼈가 있다. 체중을 받는 뼈가 크다. ② "겉넓이÷부피"로 바꾸면 순서가 뒤집혀 작고 얇은 구조가 위로 온다. 납작한 갈비뼈와 작은 손목뼈는 부피에 비해 겉이 넓다. ③ 장기에서 간, 심장, 큰창자에 빗금이 있다. 이 셋의 부피는 메시가 닫혀 있지 않아 어림값이다. (무게는 부피에 밀도 뼈 1.9, 근육 1.06, 장기 1.05 g/mL를 곱한 어림이다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>계산 과정에는 판단이 여럿 들어간다. part-of와 is-a 두 묶음에 모양이 완전히 같은 요소(면 수와 경계 상자가 같은 중복)가 들어 있으면 하나만 쓴다(그러지 않으면 두 번 센다). 이름이 같아도 좌우 절반이나 마디처럼 모양이 다른 요소는 모두 쓴다. 간을 잴 때는 간이라는 개념에 딸린 혈관과 쓸개길을 뺀다. 뇌처럼 여러 조각(이랑 하나하나)을 합친 구조는 조각끼리 살짝 겹친 곳을 부피에서 두 번 센다. 숫자 뒤에는 늘 이런 선택이 있고, 좋은 데이터 작업은 그 선택을 기록해 둔다.</p>
+  </section>
+
+  <section id="skin">
+    <h2>피부 껍질 문제: 몸의 부피는 몇 리터인가</h2>
+    <p>몸 전체의 부피를 재고 싶다. 피부 메시의 부피를 계산하면 될까? 해 보면 <b id="da-sk-shell">—</b>가 나온다. 사람 몸이 이렇게 작을 리 없다. 이유는 피부가 <b>두께가 있는 껍질</b>이기 때문이다. 피부 메시에는 겉면과 속면이 모두 있어서, 발산 정리는 두 면 사이의 얇은 껍질 부피만 돌려준다. 겉넓이도 마찬가지로 겉면과 속면을 더한 <b id="da-sk-area">—</b>가 나온다.</p>
+    <p>해결책은 12장의 방법이다. 피부를 가로로 얇게 잘라 단면마다 <b>바깥 윤곽</b>이 감싼 넓이를 구하고 쌓는다. 속면은 바깥 윤곽 안에 들어가므로 저절로 무시된다. 겉넓이는 단면의 둘레 × 두께를 쌓아 옆면의 넓이로 어림한다. 아래에서 높이를 끌어 올리며 부피가 쌓이는 모습을 보자.</p>
+
+    <div class="sim" id="sim-da-skin" data-desc="피부 껍질을 1 cm마다 가로로 잘라 바깥 윤곽의 넓이와 둘레를 발바닥부터 쌓아 올리며 몸의 부피와 옆면 겉넓이를 구하고, 껍질 메시를 그대로 계산한 값과 비교한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>발바닥부터 쌓아 올린 몸</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="da-sk-cv" class="drag"></canvas><span class="hint">몸 지도나 그래프를 위아래로 끈다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="da-sk-met"><button data-value="vol" class="on">부피(넓이 쌓기)</button><button data-value="area">겉넓이(둘레 쌓기)</button></div>
+          <label class="ctrl"><span>높이 <output id="da-sk-z-out"></output></span><input type="range" id="da-sk-z" min="-60" max="1630" step="10" value="1630"></label>
+        </div>
+      </div>
+      <div class="info-panel" id="da-sk-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">이 높이의 단면</span><span class="v" id="da-sk-o-a">—</span></div>
+        <div class="stat"><span class="k">여기까지 쌓은 값</span><span class="v" id="da-sk-o-c">—</span></div>
+        <div class="stat"><span class="k">2 mm마다 쌓은 값(AT.body)</span><span class="v" id="da-sk-o-b">—</span></div>
+        <div class="stat"><span class="k">껍질 메시 그대로</span><span class="v" id="da-sk-o-s">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 높이를 무릎(약 50 cm)과 배꼽(약 105 cm)에 두고 쌓인 부피를 읽는다. 다리 두 개가 몸 부피의 얼마를 차지할까? ② 가장 넓은 단면을 찾는다. 이 단면에는 몸통과 두 팔이 함께 들어 있다. ③ "겉넓이"로 바꿔 끝까지 쌓은 값을 보고, 껍질 메시 겉넓이의 절반과 견준다. 옆면만 쌓아서 정수리와 발바닥, 어깨 위처럼 수평에 가까운 면은 덜 잡힌다. (단면은 1 cm 간격, 비교값은 같은 피부를 2 mm마다 잘라 계산한 값이다. 단면의 "몸"에는 데이터에 없는 폐의 공기도 들어간다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>단면을 쌓으니 몸의 부피는 약 <b id="da-sk-bv">—</b>다. 피부 껍질 하나를 두고도 무엇을 계산하느냐에 따라 숫자가 스무 배 넘게 달라진다. 데이터로 계산할 때는 늘 "이 숫자가 정확히 무엇의 값인가"를 먼저 묻는다.</p>
+  </section>
+
+  <section id="compare">
+    <h2>모델과 교과서</h2>
+    <p>한 사람의 데이터는 얼마나 "보통"일까? 아래는 모델에서 잰 값과 교과서에 흔히 실리는 성인 남성의 대표 범위를 견준 것이다. 교과서값은 모두 대략값이고 사람마다 폭이 넓다. 가운데 세로선이 교과서 범위의 가운데, 띠가 범위다.</p>
+
+    <div class="sim" id="sim-da-compare" data-desc="키, 뇌·간·콩팥 부피, 콩팥·지라·넙다리뼈 길이, 심장 무게, 방광, 폐, 몸 겉넓이를 교과서의 대략 범위와 비율 눈금 위에 견주어, 모델이 보통 범위에 드는지와 벗어나는 이유를 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>이 몸은 얼마나 보통인가?</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="da-co-cv" class="drag"></canvas><span class="hint">줄을 눌러 설명을 본다</span></div>
+      </div>
+      <div class="info-panel" id="da-co-info">줄을 누르면 모델값이 교과서 범위와 다른 이유가 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">항목</span><span class="v" id="da-co-o-k" style="font-size:16px">—</span></div>
+        <div class="stat"><span class="k">모델</span><span class="v" id="da-co-o-m">—</span></div>
+        <div class="stat"><span class="k">교과서(약)</span><span class="v" id="da-co-o-t" style="font-size:16px">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 범위 안에 드는 항목(초록 점)과 벗어나는 항목(주황 점)을 나눈다. ② 방광과 폐는 크게 벗어난다. 둘 다 "사람이 다르다"가 아니라 "데이터가 다르다"는 이유다. 눌러서 확인한다. ③ 간과 심장처럼 메시가 열린 항목은 값 자체가 어림이다. (가로축은 교과서 범위의 가운데를 1로 둔 비율의 로그 눈금이다. 교과서값은 흔히 실리는 성인 남성의 대략 범위다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>항목</th><th class="num">이 데이터의 모델</th><th>교과서(성인 남성, 약)</th><th>차이의 이유</th></tr></thead>
+      <tbody id="da-co-table"></tbody>
+    </table></div>
+  </section>
+
+  <section id="limits">
+    <h2>한계와 편향</h2>
+    <p>BodyParts3D는 훌륭한 데이터지만 만능이 아니다. 이 책의 모든 숫자에는 다음 한계가 따라붙는다.</p>
+    <ul>
+      <li><b>한 사람이다.</b> 키, 장기의 크기와 위치, 혈관이 갈라지는 모양은 사람마다 다르다. 한 사람의 값은 평균도 아니고 "정상 범위"도 아니다. 통계를 말하려면 여러 사람의 데이터가 있어야 한다.</li>
+      <li><b>성인 남성이다.</b> 여성의 골반(더 넓고 얕다), 유방, 자궁과 난소 같은 생식기관은 이 데이터로 다룰 수 없다. 어린이와 노인의 몸도 비율이 다르다. 의학의 역사에서 "표준 인체"가 오랫동안 성인 남성이었다는 편향을 이 데이터도 물려받았다.</li>
+      <li><b>빠진 구조가 있다.</b> 아래 구조는 원본에 없거나 일부만 있다.</li>
+    </ul>
+    <ul class="da-miss">
+      <li>폐 실질</li><li>갑상선</li><li>말초신경(척수신경·팔신경얼기·궁둥신경 등)</li><li>배곧은근·배속빗근·배가로근</li><li>넓은등근</li><li>얼굴 표정근</li><li>꼬리뼈</li><li>구불창자</li><li>간의 바깥 모양 일부</li><li>인대와 반달연골 대부분</li><li>여성 생식기관</li><li>갈비사이근(한쪽만)</li><li>목의 속목·바깥목동맥</li>
+    </ul>
+    <ul>
+      <li><b>메시가 다 닫혀 있지는 않다.</b> 간, 심장 벽, 큰창자 등은 열린 메시라 부피가 어림이다. 이 책의 단면에서 폐는 기관지 나무의 볼록 껍질로 대신했다.</li>
+      <li><b>한 순간의 자세다.</b> 숨을 들이쉬었는지, 방광이 찼는지, 위에 음식이 있는지, 누웠는지 섰는지에 따라 장기의 위치와 크기가 바뀐다. 데이터는 그 가운데 한 장면이다.</li>
+      <li><b>웹에 맞게 줄였다.</b> 이 책의 3D 모델은 브라우저에서 빨리 열리도록 삼각형 수를 크게 줄이고 좌표를 짧은 정수로 바꾸었다(양자화). 부피와 겉넓이는 줄이기 전의 원본 메시로 계산했지만, 단면은 줄인 메시에서 잘라 윤곽을 다듬었으므로 몇 % 차이가 난다(<a href="sections.html">12장</a>의 부피 쌓기).</li>
+    </ul>
+    <div class="callout warn"><strong>숫자를 쓸 때의 약속</strong> 이 책에서 "이 모델에서 간의 부피는 몇 L"라고 쓰면, 그것은 한 사람의 열린 메시에서 잰 값이라는 뜻이다. 교과서의 일반값은 "약"을 붙여 따로 쓴다. 둘을 섞지 않는 것이 데이터를 정직하게 쓰는 첫걸음이다.</div>
+  </section>
+
+  <section id="reuse">
+    <h2>다시 쓰기: 라이선스와 출처</h2>
+    <p>BodyParts3D는 <span class="term">크리에이티브 커먼즈 저작자표시</span><span class="en">(CC BY 4.0, Creative Commons Attribution 4.0)</span> 조건으로 배포된다. 누구나 복사하고, 고치고, 상업적으로도 쓸 수 있다. 조건은 하나, <b>원저작자를 밝히고 라이선스를 알리고 무엇을 바꿨는지 적는 것</b>이다. 이 책의 3D 모델과 단면, 수치가 모두 이 조건 아래 만들어졌고, 시뮬레이터마다 출처를 적은 이유다.</p>
+    <p>이 책의 자료를 다시 쓸 때도 같은 원칙을 따른다. 본문·그림·문제·해설은 CC BY 4.0, 실행 코드는 MIT 라이선스다. 3D 모델이나 해부 데이터를 가져다 쓴다면 BodyParts3D의 출처 표시를 함께 남긴다. 예를 들면 다음과 같다.</p>
+    <div class="da-attr">3D 모델·해부 데이터: BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International
+https://dbarchive.biosciencedbc.jp/en/bodyparts3d/ (라이선스: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html)
+변경 사항: 요소를 부위별로 묶고 색을 입혔으며 면 수를 줄였다. 부피·겉넓이·단면은 원본 메시에서 계산했다.
+본문과 시뮬레이터: AnatomyBook (geniuskey and AnatomyBook contributors), 본문 CC BY 4.0 · 코드 MIT</div>
+    <p>배포처의 <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html">라이선스 안내 페이지</a>는 현재 이 데이터베이스의 라이선스를 크리에이티브 커먼즈 저작자표시 4.0 국제(CC BY 4.0)로 밝히고, 출처 표시 문구로 "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International"을 제시한다. 원본 OBJ 파일의 머리글에는 예전 판에서 쓰던 문구(CC BY-SA 2.1 일본)가 그대로 남아 있지만, 이 책은 현재의 라이선스 안내 페이지를 따른다. 파일 속 문구와 배포 페이지가 다를 때는 배포처의 최신 안내를 확인하는 습관을 들이자. 의학 영상이나 환자 데이터와 달리 BodyParts3D는 공개를 전제로 만든 모델이라 개인정보 문제는 없지만, 실제 환자의 CT·MRI를 다룰 때는 동의와 익명화가 먼저다.</p>
+
+    <div class="casefile">
+      <div class="tag"><b>DATA</b><span>데이터로 확인하기 · 13장</span></div>
+      <h4>이 모델의 몸무게는 몇 kg일까?</h4>
+      <p>BodyParts3D에는 몸무게가 적혀 있지 않다. 그러나 이 장의 방법으로 어림할 수 있다. 피부 단면을 쌓은 몸의 부피는 <b id="da-dc-v">—</b>다. 사람 몸 전체의 평균 밀도는 물과 비슷한 약 1.0~1.06 g/mL(지방이 많을수록 낮다)이므로, 몸무게는 약 <b id="da-dc-m">—</b>로 어림된다. 키 <b id="da-dc-h">—</b>로 체질량 지수(BMI)를 구하면 약 <b id="da-dc-bmi">—</b>다. 같은 키와 몸무게로 교과서의 DuBois 공식을 쓰면 몸 겉넓이는 약 <b id="da-dc-bsa">—</b>, 단면 둘레를 쌓은 옆면 겉넓이는 <b id="da-dc-a">—</b>다.</p>
+      <div class="clue"><div><b>데이터가 보여 준 것</b>부피와 밀도라는 두 숫자만으로 데이터에 없는 몸무게를 그럴듯한 범위로 좁힐 수 있다. 이 모델은 보통 체격의 성인 남성이다.</div><div><b>데이터의 한계</b>몸의 부피에는 폐 속 공기도 들어 있고, 밀도는 체지방에 따라 달라진다. 결과는 범위로만 말할 수 있다.</div><div><b>다음 장에서</b>이 책에 나온 용어를 한곳에 모으고, 종합 퀴즈로 몸의 지도를 점검한다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>BodyParts3D는 DBCLS가 한 성인 남성의 몸을 요소 파일 2,234개로 나누고 FMA 개념 이름을 붙인 공개 3D 데이터다.</li>
+      <li>part-of는 "무엇의 일부인가", is-a는 "무엇의 한 종류인가"를 잇는다. 같은 조각도 두 나무에서 다르게 묶인다.</li>
+      <li>닫힌 삼각형 메시의 부피는 원점과 삼각형이 만드는 사면체의 부호 있는 부피를 더해 구한다. 겉넓이는 삼각형 넓이의 합이다.</li>
+      <li>메시가 열려 있으면 부피와 무게중심이 원점에 따라 흔들린다. 피부처럼 두께가 있는 껍질은 단면의 바깥 윤곽을 쌓아 몸의 부피를 구한다.</li>
+      <li>한 사람·성인 남성·빠진 구조·한 순간의 자세라는 한계를 밝히고, 모델값과 교과서값(약)을 구별해 쓴다.</li>
+      <li>CC BY 4.0 데이터는 출처와 라이선스, 바꾼 점을 밝히면 누구나 다시 쓸 수 있다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. "오른쪽 넙다리뼈는 넙다리뼈의 한 종류다"는 어떤 관계인가?</p>
+        <div class="opts"><button class="opt">part-of</button><button class="opt" data-correct>is-a</button><button class="opt">둘 다 아니다</button></div>
+        <div class="quiz-exp">"~의 한 종류"는 is-a 관계다. "오른쪽 넙다리뼈는 오른다리의 일부다"라고 하면 part-of 관계가 된다.</div></div>
+      <div class="quiz-q"><p>2. 열린 메시(watertight가 아닌 메시)의 부피를 믿기 어려운 가장 큰 이유는?</p>
+        <div class="opts"><button class="opt">삼각형이 너무 많아서</button><button class="opt">좌표 단위가 mm라서</button><button class="opt" data-correct>부호 있는 부피의 합이 원점 위치에 따라 달라져서</button><button class="opt">색이 칠해져 있지 않아서</button></div>
+        <div class="quiz-exp">닫힌 메시에서는 원점을 어디에 두어도 사면체 부피의 합이 같지만, 구멍이 있으면 상쇄가 깨져 원점에 따라 값이 바뀐다. 2차원 다각형 시뮬레이터에서 변 하나를 지웠을 때와 같다.</div></div>
+      <div class="quiz-q"><p>3. 피부 메시의 부피를 그대로 계산하면 몸의 부피보다 훨씬 작게 나오는 이유는?</p>
+        <div class="opts"><button class="opt" data-correct>피부 메시가 겉면과 속면이 있는 얇은 껍질이라 껍질의 부피만 나오기 때문</button><button class="opt">피부가 데이터에 없기 때문</button><button class="opt">피부의 밀도가 낮기 때문</button><button class="opt">좌표가 뒤집혀 있기 때문</button></div>
+        <div class="quiz-exp">발산 정리는 메시가 감싼 부피를 준다. 피부는 겉면과 속면 사이의 얇은 층만 감싸므로 그 층의 부피가 나온다. 몸의 부피는 단면의 바깥 윤곽을 쌓아 구한다.</div></div>
+      <div class="quiz-q"><p>4. 이 데이터의 모델에서 방광의 부피가 교과서의 방광 용량(약 400~600 mL)보다 훨씬 작은 이유로 가장 알맞은 것은?</p>
+        <div class="opts"><button class="opt">이 사람의 방광이 병적으로 작아서</button><button class="opt" data-correct>교과서값은 가득 찼을 때의 용량이고 모델은 한 순간(대체로 비어 있는)의 모양이라서</button><button class="opt">방광이 열린 메시라서</button><button class="opt">부피 단위를 잘못 써서</button></div>
+        <div class="quiz-exp">방광은 소변이 차면 크게 늘어나는 장기다. 데이터는 한 순간의 모양이고, 교과서의 용량은 최대로 찼을 때의 값이다. 같은 이름의 숫자라도 무엇을 잰 것인지 확인해야 한다.</div></div>
+      <div class="quiz-q"><p>5. BodyParts3D의 3D 모델을 수정해 자기 수업 자료에 쓰려 한다. CC BY 4.0에 따라 꼭 해야 할 일은?</p>
+        <div class="opts"><button class="opt">DBCLS에 사용료를 낸다</button><button class="opt">수정하지 않고 원본 그대로만 쓴다</button><button class="opt">비상업적 용도로만 쓴다</button><button class="opt" data-correct>원저작자와 라이선스를 밝히고 바꾼 점을 적는다</button></div>
+        <div class="quiz-exp">CC BY 4.0은 복제·수정·상업적 이용을 모두 허락한다. 조건은 저작자 표시, 라이선스 고지, 변경 사항 표시다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  $("da-n-parts").textContent = AT.parts.length + "개";
+
+  /* ---------------- 1. 온톨로지 ---------------- */
+  (function () {
+    // BodyParts3D 4.0 partof/isa_inclusion_relation_list.txt와 *_element_parts.txt에서 뽑은 일부(tools 밖에서 한 번 추출).
+    // node: [영어 이름, 딸린 요소 수, 담은 하위 개념, 하위 개념 전체 수, 담은 상위 개념]
+    var G = {"partof":{"FMA13362":["right lobe of liver",17,["FMA14778","FMA71857","FMA15800","FMA14338"],4,["FMA7197"]],"FMA7197":["liver",60,["FMA13363","FMA13362","FMA14772","FMA68016","FMA15414","FMA15809","FMA15810"],7,["FMA71132"]],"FMA24816":["anterior chest",128,["FMA9839"],2,["FMA9576"]],"FMA13365":["caudate lobe of liver",1,[],0,["FMA13363"]],"FMA82695":["trunk of right portal vein",1,[],0,["FMA15414"]],"FMA7483":["axial skeletal system",95,["FMA71221"],1,["FMA23876"]],"FMA72979":["integumentary system",1,[],0,["FMA20394"]],"FMA7157":["nervous system",60,["FMA55675"],1,["FMA20394"]],"FMA7187":["right lower limb",32,[],3,["FMA20394"]],"FMA7161":["cardiovascular system",627,[],7,["FMA20394"]],"FMA15810":["left hemiliver",3,["FMA15750","FMA15751"],2,["FMA7197"]],"FMA9465":["cavity of left atrium",1,[],0,["FMA7088"]],"FMA7186":["left upper limb",48,[],2,["FMA20394"]],"FMA14779":["left hepatic artery",7,[],4,["FMA13363"]],"FMA61993":["midbrain",7,["FMA83902","FMA78467"],2,["FMA50801"]],"FMA61992":["forebrain",45,["FMA62000","FMA62001"],2,["FMA50801"]],"FMA7204":["right kidney",1,[],0,["FMA71102"]],"FMA7184":["lower limb",3,[],1,["FMA20394"]],"FMA14772":["hepatic artery proper",16,[],0,["FMA7197"]],"FMA78467":["cerebral aqueduct",1,[],0,["FMA61993"]],"FMA9466":["cavity of left ventricle",1,[],0,["FMA7088"]],"FMA259209":["thoracic segment of trunk",548,["FMA9576"],2,["FMA7181"]],"FMA7482":["musculoskeletal system",138,["FMA23881"],1,["FMA20394"]],"FMA7181":["trunk",577,["FMA259209"],4,["FMA231424"]],"FMA15809":["right hemiliver",5,["FMA15748","FMA15749"],2,["FMA7197"]],"FMA23876":["skeleton (in vivo)",138,["FMA7483","FMA46565"],2,["FMA23881"]],"FMA7154":["head",143,[],2,["FMA20394"]],"FMA7160":["genital system",1,[],1,["FMA20394"]],"FMA15749":["posterior sector of right liver",2,[],2,["FMA15809"]],"FMA23881":["skeletal system",138,["FMA23876"],1,["FMA7482"]],"FMA242787":["ventricular system of brain",5,["FMA78469"],1,["FMA50801"]],"FMA53672":["neurocranium",7,[],3,["FMA46565"]],"FMA14778":["right hepatic artery",8,[],4,["FMA13362"]],"FMA9496":["fibrous skeleton of heart",3,[],0,["FMA7088"]],"FMA228642":["vasculature of body",605,[],8,["FMA20394"]],"FMA74657":["integument",1,[],1,["FMA20394"]],"FMA62003":["metencephalon",4,[],1,["FMA67687"]],"FMA7152":["alimentary system",147,["FMA71132"],3,["FMA20394"]],"FMA14338":["right hepatic vein",1,[],0,["FMA13362"]],"FMA15748":["anterior sector of right liver",3,[],2,["FMA15809"]],"FMA83902":["midbrain tectum",4,[],4,["FMA61993"]],"FMA79278":["content of middle mediastinum",85,["FMA7088"],3,["FMA9839"]],"FMA7188":["left lower limb",32,[],2,["FMA20394"]],"FMA71857":["right hepatic biliary tree",6,[],3,["FMA13362"]],"FMA9839":["middle mediastinum",85,["FMA79278"],1,["FMA24816"]],"FMA15800":["anterior inferior segmental tributary of middle hepatic vein",2,[],0,["FMA13362"]],"FMA7159":["urinary system",6,["FMA71102"],3,["FMA20394"]],"FMA62000":["telencephalon",38,[],2,["FMA61992"]],"FMA15750":["anterior sector of left liver",2,[],2,["FMA15810"]],"FMA231424":["body proper",590,["FMA7181"],3,["FMA20394"]],"FMA7185":["right upper limb",49,[],3,["FMA20394"]],"FMA53673":["viscerocranium",39,[],23,["FMA46565"]],"FMA55675":["neuraxis",60,["FMA50801"],3,["FMA7157"]],"FMA82706":["caudate lobe branch of right portal vein",1,[],0,["FMA15414"]],"FMA71858":["left hepatic biliary tree",8,[],4,["FMA13363"]],"FMA7101":["left ventricle",8,[],2,["FMA7166"]],"FMA13363":["left lobe of liver",25,["FMA15415","FMA71858","FMA14779","FMA13365","FMA14339"],5,["FMA7197"]],"FMA71132":["gastrointestinal tract",136,["FMA7197"],17,["FMA7152"]],"FMA9576":["thorax",537,["FMA24816"],4,["FMA259209"]],"FMA9668":["endocrine system",7,[],3,["FMA20394"]],"FMA62001":["diencephalon",7,[],3,["FMA61992"]],"FMA67687":["hindbrain",6,["FMA62003"],1,["FMA50801"]],"FMA46565":["skull",43,["FMA53673","FMA53672"],2,["FMA23876"]],"FMA15751":["posterior sector of left liver",1,[],1,["FMA15810"]],"FMA68016":["intrahepatic biliary tree",14,[],0,["FMA7197"]],"FMA15414":["right portal vein",9,["FMA15422","FMA15419","FMA82695","FMA82706"],4,["FMA7197"]],"FMA79063":["deep fascial system",3,[],1,["FMA20394"]],"FMA7158":["respiratory system",284,[],1,["FMA20394"]],"FMA7166":["left side of heart",36,["FMA7101","FMA7097","FMA73704"],3,["FMA7088"]],"FMA15415":["left portal vein",8,[],4,["FMA13363"]],"FMA20394":["human body",1258,["FMA7161","FMA228642","FMA231424","FMA7158","FMA7152","FMA7154","FMA7482","FMA7157","FMA7185","FMA7186","FMA7187","FMA7188","FMA9668","FMA7159","FMA7184","FMA79063","FMA7160","FMA72979","FMA74657"],19,[]],"FMA7088":["heart",83,["FMA7166","FMA9496","FMA9465","FMA9466"],4,["FMA79278"]],"FMA71221":["axial skeleton",48,[],1,["FMA7483"]],"FMA14339":["left hepatic vein",1,[],0,["FMA13363"]],"FMA71102":["right upper urinary tract",2,["FMA7204"],2,["FMA7159"]],"FMA78469":["fourth ventricle",1,[],0,["FMA242787"]],"FMA73704":["wall of left side of heart",4,[],2,["FMA7166"]],"FMA50801":["brain",59,["FMA61992","FMA61993","FMA67687","FMA242787"],4,["FMA55675"]],"FMA15419":["anterior branch of right portal vein",2,[],2,["FMA15414"]],"FMA15422":["posterior branch of right portal vein",3,[],2,["FMA15414"]],"FMA7097":["left atrium",6,[],1,["FMA7166"]]},"isa":{"FMA16202":["sacrum",1,[],0,["FMA7477"]],"FMA9611":["femur",2,["FMA24474","FMA24475"],2,["FMA7474"]],"FMA7205":["left kidney",1,[],0,["FMA7203"]],"FMA23914":["phalanx of finger",28,[],5,["FMA7474"]],"FMA54736":["inferior nasal concha",2,[],2,["FMA7477"]],"FMA67135":["anatomical structure",2166,["FMA67498"],6,["FMA67165"]],"FMA52735":["occipital bone",1,[],0,["FMA7476"]],"FMA55673":["organ with cavitated organ parts",204,["FMA5018"],2,["FMA55671"]],"FMA13321":["clavicle",2,[],2,["FMA7474"]],"FMA5018":["bone organ",203,["FMA7474","FMA7477","FMA7475","FMA7476"],4,["FMA55673"]],"FMA55670":["solid organ",402,["FMA55665","FMA55661"],2,["FMA67498"]],"FMA24492":["metatarsal bone",10,[],5,["FMA7474"]],"FMA7574":["rib",24,[],2,["FMA7474"]],"FMA7478":["pneumatized bone",6,[],4,["FMA7477"]],"FMA52734":["frontal bone",1,[],0,["FMA7476"]],"FMA7477":["irregular bone",43,["FMA9914","FMA7478","FMA52741","FMA52746","FMA52747","FMA52749","FMA54736","FMA9710","FMA16202","FMA52748"],10,["FMA5018"]],"FMA7475":["short bone",36,["FMA23889","FMA24491","FMA32672"],3,["FMA5018"]],"FMA7474":["long bone",114,["FMA23914","FMA24493","FMA7574","FMA9612","FMA24492","FMA9611","FMA13303","FMA13321","FMA23463","FMA23466","FMA24476","FMA24479"],12,["FMA5018"]],"FMA13303":["humerus",2,[],2,["FMA7474"]],"FMA67165":["material anatomical entity",2222,["FMA67135"],2,["FMA61775"]],"FMA23889":["carpal bone",16,[],2,["FMA7475"]],"FMA55672":["organ with organ cavity",43,[],9,["FMA55671"]],"FMA24493":["phalanx of toe",28,[],5,["FMA7474"]],"FMA55671":["cavitated organ",247,["FMA55673","FMA55672"],2,["FMA67498"]],"FMA61775":["physical anatomical entity",2234,["FMA67165"],2,["FMA62955"]],"FMA55663":["corticomedullary organ",5,["FMA7203"],3,["FMA55661"]],"FMA55665":["nonparenchymatous organ",386,[],6,["FMA55670"]],"FMA52749":["hyoid bone",2,[],0,["FMA7477"]],"FMA9914":["vertebra",24,[],3,["FMA7477"]],"FMA9612":["metacarpal bone",10,[],5,["FMA7474"]],"FMA32672":["sesamoid bone",6,[],2,["FMA7475"]],"FMA13394":["scapula",2,[],2,["FMA7476"]],"FMA52746":["palatine bone",2,[],2,["FMA7477"]],"FMA24474":["right femur",1,[],0,["FMA9611"]],"FMA16585":["hip bone",2,[],2,["FMA7476"]],"FMA9710":["vomer",1,[],0,["FMA7477"]],"FMA67498":["organ",649,["FMA55670","FMA55671"],2,["FMA67135"]],"FMA24491":["tarsal bone",14,[],5,["FMA7475"]],"FMA23463":["radius",2,[],2,["FMA7474"]],"FMA23466":["ulna",2,[],2,["FMA7474"]],"FMA9613":["parietal bone",2,[],2,["FMA7476"]],"FMA24475":["left femur",1,[],0,["FMA9611"]],"FMA52748":["mandible",1,[],0,["FMA7477"]],"FMA62955":["anatomical entity",2234,["FMA61775"],1,[]],"FMA55661":["parenchymatous organ",16,["FMA55663"],2,["FMA55670"]],"FMA24476":["tibia",2,[],2,["FMA7474"]],"FMA7204":["right kidney",1,[],0,["FMA7203"]],"FMA52745":["nasal bone",2,[],2,["FMA7476"]],"FMA52741":["lacrimal bone",2,[],2,["FMA7477"]],"FMA7203":["kidney",2,["FMA7204","FMA7205"],2,["FMA55663"]],"FMA7476":["flat bone",10,["FMA9613","FMA13394","FMA16585","FMA52745","FMA52734","FMA52735"],6,["FMA5018"]],"FMA52747":["zygomatic bone",2,[],2,["FMA7477"]],"FMA24479":["fibula",2,[],2,["FMA7474"]]}};
+    var KO = {
+      "human body": "사람 몸", "body proper": "몸 본체", "trunk": "몸통", "thoracic segment of trunk": "몸통의 가슴 부분", "thorax": "가슴", "anterior chest": "앞가슴",
+      "middle mediastinum": "중간세로칸", "content of middle mediastinum": "중간세로칸의 내용물", "heart": "심장", "left side of heart": "심장의 왼쪽", "left atrium": "왼심방",
+      "left ventricle": "왼심실", "wall of left side of heart": "심장 왼쪽의 벽", "cavity of left atrium": "왼심방 안", "cavity of left ventricle": "왼심실 안", "fibrous skeleton of heart": "심장의 섬유뼈대",
+      "alimentary system": "소화계통", "gastrointestinal tract": "위창자관", "liver": "간", "right lobe of liver": "간의 오른엽", "left lobe of liver": "간의 왼엽", "caudate lobe of liver": "꼬리엽",
+      "right hemiliver": "오른간", "left hemiliver": "왼간", "hepatic artery proper": "고유간동맥", "right hepatic artery": "오른간동맥", "left hepatic artery": "왼간동맥", "right portal vein": "오른문맥",
+      "left portal vein": "왼문맥", "right hepatic vein": "오른간정맥", "left hepatic vein": "왼간정맥", "intrahepatic biliary tree": "간 속 쓸개길", "right hepatic biliary tree": "오른간 쓸개길", "left hepatic biliary tree": "왼간 쓸개길",
+      "nervous system": "신경계통", "neuraxis": "중추신경축", "brain": "뇌", "forebrain": "앞뇌", "midbrain": "중간뇌", "hindbrain": "마름뇌", "telencephalon": "끝뇌(대뇌)", "diencephalon": "사이뇌",
+      "metencephalon": "뒤뇌", "midbrain tectum": "중간뇌 덮개", "ventricular system of brain": "뇌실계통", "fourth ventricle": "넷째뇌실", "cerebral aqueduct": "중간뇌수도관",
+      "musculoskeletal system": "근육뼈대계통", "skeletal system": "뼈대계통", "skeleton (in vivo)": "뼈대(살아 있는 몸)", "axial skeletal system": "몸통뼈대계통", "axial skeleton": "몸통뼈대", "skull": "머리뼈",
+      "neurocranium": "뇌머리뼈", "viscerocranium": "얼굴머리뼈", "vertebral column": "척주", "cardiovascular system": "심장혈관계통", "respiratory system": "호흡계통", "urinary system": "비뇨계통",
+      "right upper urinary tract": "오른쪽 위요로", "right kidney": "오른쪽 콩팥", "left kidney": "왼쪽 콩팥", "genital system": "생식계통", "endocrine system": "내분비계통", "integumentary system": "피부계통", "integument": "외피",
+      "head": "머리", "lower limb": "다리", "right upper limb": "오른팔", "left upper limb": "왼팔", "right lower limb": "오른다리", "left lower limb": "왼다리", "deep fascial system": "깊은 근막계통", "vasculature of body": "몸의 혈관",
+      "anatomical entity": "해부학적 실체", "physical anatomical entity": "물리적 해부학적 실체", "material anatomical entity": "물질인 해부학적 실체", "anatomical structure": "해부학적 구조", "organ": "기관",
+      "solid organ": "고형 기관", "cavitated organ": "속이 빈 기관", "parenchymatous organ": "실질 기관", "nonparenchymatous organ": "비실질 기관", "corticomedullary organ": "겉질·속질 기관", "kidney": "콩팥",
+      "organ with cavitated organ parts": "속이 빈 부분이 있는 기관", "organ with organ cavity": "기관 안 공간이 있는 기관", "bone organ": "뼈 기관", "long bone": "긴뼈", "short bone": "짧은뼈", "flat bone": "납작뼈", "irregular bone": "불규칙뼈",
+      "sesamoid bone": "종자뼈", "pneumatized bone": "공기뼈", "femur": "넙다리뼈", "right femur": "오른쪽 넙다리뼈", "left femur": "왼쪽 넙다리뼈", "humerus": "위팔뼈", "radius": "노뼈", "ulna": "자뼈", "tibia": "정강뼈", "fibula": "종아리뼈",
+      "clavicle": "빗장뼈", "rib": "갈비뼈", "metacarpal bone": "손허리뼈", "metatarsal bone": "발허리뼈", "phalanx of finger": "손가락뼈", "phalanx of toe": "발가락뼈", "carpal bone": "손목뼈", "tarsal bone": "발목뼈",
+      "frontal bone": "이마뼈", "parietal bone": "마루뼈", "occipital bone": "뒤통수뼈", "scapula": "어깨뼈", "hip bone": "볼기뼈", "sacrum": "엉치뼈", "vertebra": "척추뼈", "mandible": "아래턱뼈", "hyoid bone": "목뿔뼈",
+      "zygomatic bone": "광대뼈", "nasal bone": "코뼈", "lacrimal bone": "눈물뼈", "palatine bone": "입천장뼈", "vomer": "보습뼈", "inferior nasal concha": "아래코선반",
+    };
+    var START = {
+      partof: [["FMA7197", "간"], ["FMA7088", "심장"], ["FMA50801", "뇌"], ["FMA23876", "뼈대"], ["FMA7204", "오른쪽 콩팥"], ["FMA20394", "사람 몸(맨 위)"]],
+      isa: [["FMA5018", "뼈 기관"], ["FMA9611", "넙다리뼈"], ["FMA7203", "콩팥"], ["FMA67498", "기관"]],
+    };
+    var tree = "partof", cur = "FMA7197", hits = [];
+    var sel = $("da-on-start");
+    sel.innerHTML = ["partof", "isa"].map(function (t) { return '<optgroup label="' + (t === "partof" ? "part-of 나무" : "is-a 나무") + '">' + START[t].map(function (s) { return '<option value="' + t + ":" + s[0] + '">' + s[1] + "</option>"; }).join("") + "</optgroup>"; }).join("");
+    function fill() { sel.value = tree + ":" + cur; if (sel.selectedIndex < 0) sel.value = tree + ":" + START[tree][0][0]; }
+    function N(id) { return G[tree][id]; }
+    function ko(id) { var n = N(id); return n ? (KO[n[0]] || "") : ""; }
+    function chain(id) { var out = [id], n = N(id), guard = 0; while (n && n[4].length && guard++ < 20) { id = n[4][0]; out.unshift(id); n = N(id); } return out; }
+    var holder = $("da-on-cv").parentElement;
+    var cv = BB.canvas("#da-on-cv", function (ctx, w, h) {
+      var P = BB.palette(), ch = chain(cur), n = N(cur);
+      hits = [];
+      var pad = 12, rowH = 26, x0 = pad;
+      ctx.textBaseline = "middle";
+      // 위쪽 사슬(최대 5개, 넘치면 생략)
+      var shown = ch.slice(0, -1), skipped = 0;
+      var maxUp = 5;
+      if (shown.length > maxUp) { skipped = shown.length - maxUp; shown = [shown[0]].concat(shown.slice(-(maxUp - 1))); }
+      var y = pad + 6;
+      ctx.font = BB.font(11, false, 600); ctx.fillStyle = P.dim; ctx.fillText(tree === "partof" ? "위로: 무엇의 일부인가" : "위로: 무엇의 한 종류인가", x0, y); y += 18;
+      shown.forEach(function (id, i) {
+        var ind = Math.min(i, 6) * 12;
+        if (i === 1 && skipped) { ctx.fillStyle = P.faint; ctx.font = BB.font(11); ctx.fillText("⋮ " + skipped + "단계 생략", x0 + ind, y); y += 16; }
+        var label = (ko(id) ? ko(id) + " · " : "") + N(id)[0];
+        ctx.font = BB.font(12); var tw = Math.min(w - x0 - ind - pad, ctx.measureText(label).width + 16);
+        BB.rrect(ctx, x0 + ind, y - 10, tw, 20, 6); ctx.fillStyle = P.surface; ctx.fill(); ctx.strokeStyle = P.border; ctx.lineWidth = 1; ctx.stroke();
+        ctx.fillStyle = P.text; ctx.save(); ctx.beginPath(); ctx.rect(x0 + ind, y - 10, tw - 4, 20); ctx.clip(); ctx.fillText(label, x0 + ind + 8, y); ctx.restore();
+        hits.push({ id: id, x: x0 + ind, y: y - 10, w: tw, h: 20 });
+        y += rowH - 2;
+      });
+      // 현재 개념
+      y += 4;
+      var label = (ko(cur) ? ko(cur) + " · " : "") + n[0];
+      ctx.font = BB.font(14, false, 700); var tw = Math.min(w - 2 * pad, ctx.measureText(label).width + 22);
+      BB.rrect(ctx, x0, y - 14, tw, 28, 8); ctx.fillStyle = BB.alpha(P.accent, 0.16); ctx.fill(); ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = P.text; ctx.save(); ctx.beginPath(); ctx.rect(x0, y - 14, tw - 4, 28); ctx.clip(); ctx.fillText(label, x0 + 11, y); ctx.restore();
+      y += 26;
+      // 아래 하위 개념
+      ctx.font = BB.font(11, false, 600); ctx.fillStyle = P.dim;
+      ctx.fillText((tree === "partof" ? "아래로: 이것의 부분" : "아래로: 이것의 종류") + " (" + n[3] + "개" + (n[3] > n[2].length ? ", 그중 " + n[2].length + "개를 담음" : "") + ")", x0, y); y += 16;
+      var kids = n[2], maxRows = Math.max(1, Math.floor((h - y - 18) / 22));
+      var maxEl = Math.log10(Math.max(2, n[1]) + 1), barL = Math.min(w * 0.55, w - 140), barW = w - barL - pad - 40;
+      kids.slice(0, maxRows).forEach(function (id) {
+        var k = N(id), lab = (ko(id) ? ko(id) + " · " : "") + k[0], more = k[3] > 0;
+        ctx.font = BB.font(12); ctx.fillStyle = more ? P.accent : P.text;
+        ctx.save(); ctx.beginPath(); ctx.rect(x0, y, barL - x0 - 6, 22); ctx.clip(); ctx.textBaseline = "middle"; ctx.fillText((more ? "▸ " : "  ") + lab, x0 + 4, y + 11); ctx.restore();
+        var bw = Math.max(2, Math.log10(k[1] + 1) / maxEl * barW);
+        ctx.fillStyle = BB.alpha(P.accent2, 0.7); ctx.fillRect(barL, y + 5, bw, 12);
+        ctx.fillStyle = P.dim; ctx.font = BB.font(10.5, true); ctx.fillText(String(k[1]), barL + bw + 4, y + 11);
+        hits.push({ id: id, x: x0, y: y, w: w - 2 * pad, h: 22 });
+        y += 22;
+      });
+      if (kids.length > maxRows) { ctx.fillStyle = P.faint; ctx.font = BB.font(11); ctx.fillText("+" + (kids.length - maxRows) + "개 더", x0 + 4, y + 9); }
+      if (!kids.length) { ctx.fillStyle = P.faint; ctx.font = BB.font(12); ctx.fillText(n[3] ? "(하위 개념 " + n[3] + "개는 이 시뮬레이터에 담지 않았다)" : "(더 쪼갠 하위 개념이 없다: 요소 파일 하나)", x0 + 4, y + 9); }
+      ctx.textBaseline = "alphabetic";
+      BB.stat("da-on-o-c", ko(cur) || n[0]);
+      BB.stat("da-on-o-id", cur);
+      BB.stat("da-on-o-n", n[1] + "개");
+      BB.stat("da-on-o-d", (ch.length - 1) + "단계");
+    }, { get height() { return holder.clientWidth < 520 ? 470 : 440; } });
+    function go(id) {
+      if (!N(id)) return; cur = id;
+      var n = N(id);
+      $("da-on-info").innerHTML = "<b>" + esc(ko(id) || n[0]) + "</b> <span style='color:var(--text-faint)'>(" + esc(n[0]) + ", " + id + ")</span> · 이 개념에 딸린 요소 파일 " + n[1] + "개. " + (n[4].length > 1 ? "상위 개념이 " + n[4].length + "개라 여러 갈래로 위에 이어진다(첫째 길만 그렸다). " : "") + (tree === "partof" ? "part-of 나무에서 위로 " + (chain(id).length - 1) + "단계를 오르면 사람 몸이다." : "is-a 나무에서 위로 " + (chain(id).length - 1) + "단계를 오르면 해부학적 실체다.");
+      cv.redraw();
+    }
+    var treeSeg = BB.seg("da-on-tree", function (v) { tree = v; cur = START[v][0][0]; fill(); go(cur); });
+    sel.addEventListener("change", function () { var q = sel.value.split(":"); if (q[0] !== tree) { tree = q[0]; treeSeg.set(tree, false); } go(q[1]); });
+    $("da-on-up").addEventListener("click", function () { var n = N(cur); if (n && n[4].length) go(n[4][0]); });
+    BB.drag(cv.canvas, { start: function (x, y) { var hh = hits.filter(function (q) { return x >= q.x && x <= q.x + q.w && y >= q.y && y <= q.y + q.h; })[0]; if (hh) go(hh.id); } });
+    fill(); go(cur);
+  })();
+
+  /* ---------------- 2. 신발끈 공식 ---------------- */
+  (function () {
+    var SH = {
+      convex: [[2, 1], [7, 0.6], [9.4, 3.2], [8.2, 6.4], [4, 7], [1, 4.4]],
+      kidney: [[2.4, 1], [6.6, 0.8], [8.8, 3], [8.4, 6.2], [5.6, 7.2], [5.4, 4.6], [3.8, 4.2], [1.4, 5.6], [0.8, 3]],
+    };
+    var pts = SH.convex.map(function (p) { return p.slice(); }), O = [-0.4, -0.2], drag = null, T = null;
+    var openEl = $("da-po-open"), fanEl = $("da-po-fan");
+    var holder = $("da-po-cv").parentElement;
+    function calc() {
+      var n = pts.length, A = 0, pos = 0, neg = 0, cx = 0, cy = 0, per = 0, open = openEl.checked;
+      for (var i = 0; i < n; i++) {
+        if (open && i === n - 1) continue;
+        var a = pts[i], b = pts[(i + 1) % n];
+        var t = ((a[0] - O[0]) * (b[1] - O[1]) - (b[0] - O[0]) * (a[1] - O[1])) / 2;
+        A += t; if (t > 0) pos += t; else neg -= t;
+        cx += t * (O[0] + a[0] + b[0]) / 3; cy += t * (O[1] + a[1] + b[1]) / 3;
+        per += Math.hypot(b[0] - a[0], b[1] - a[1]);
+      }
+      return { A: A, pos: pos, neg: neg, c: A ? [cx / A, cy / A] : [0, 0], per: per, open: open };
+    }
+    var cv = BB.canvas("#da-po-cv", function (ctx, w, h) {
+      var P = BB.palette(), r = calc(), n = pts.length;
+      T = AT.fit({ x: 0, y: 0, w: w, h: h }, [-2, -1.5, 11.5, 8.5], { pad: 10 });
+      ctx.strokeStyle = P.grid; ctx.lineWidth = 1;
+      for (var gx = -2; gx <= 11; gx++) { ctx.beginPath(); ctx.moveTo(T.X(gx), T.Y(-1.5)); ctx.lineTo(T.X(gx), T.Y(8.5)); ctx.stroke(); }
+      for (var gy = -1; gy <= 8; gy++) { ctx.beginPath(); ctx.moveTo(T.X(-2), T.Y(gy)); ctx.lineTo(T.X(11.5), T.Y(gy)); ctx.stroke(); }
+      // 삼각형 부채
+      if (fanEl.checked) for (var i = 0; i < n; i++) {
+        if (r.open && i === n - 1) continue;
+        var a = pts[i], b = pts[(i + 1) % n];
+        var t = (a[0] - O[0]) * (b[1] - O[1]) - (b[0] - O[0]) * (a[1] - O[1]);
+        ctx.beginPath(); ctx.moveTo(T.X(O[0]), T.Y(O[1])); ctx.lineTo(T.X(a[0]), T.Y(a[1])); ctx.lineTo(T.X(b[0]), T.Y(b[1])); ctx.closePath();
+        ctx.fillStyle = BB.alpha(t > 0 ? P.blue : P.red, 0.16); ctx.fill();
+        ctx.strokeStyle = BB.alpha(t > 0 ? P.blue : P.red, 0.5); ctx.lineWidth = 1; ctx.stroke();
+      }
+      // 도형
+      ctx.beginPath();
+      pts.forEach(function (p, i) { if (i) ctx.lineTo(T.X(p[0]), T.Y(p[1])); else ctx.moveTo(T.X(p[0]), T.Y(p[1])); });
+      if (!r.open) ctx.closePath();
+      ctx.strokeStyle = P.text; ctx.lineWidth = 2.5; ctx.stroke();
+      if (r.open) {
+        var a2 = pts[n - 1], b2 = pts[0];
+        ctx.setLineDash([4, 5]); ctx.strokeStyle = P.bad; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(T.X(a2[0]), T.Y(a2[1])); ctx.lineTo(T.X(b2[0]), T.Y(b2[1])); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = P.bad; ctx.font = BB.font(11, false, 600); ctx.fillText("빈틈", (T.X(a2[0]) + T.X(b2[0])) / 2 + 6, (T.Y(a2[1]) + T.Y(b2[1])) / 2);
+      }
+      // 무게중심
+      if (!r.open && r.A > 0) {
+        var cx = T.X(r.c[0]), cy = T.Y(r.c[1]);
+        ctx.strokeStyle = P.accent2; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(cx - 8, cy); ctx.lineTo(cx + 8, cy); ctx.moveTo(cx, cy - 8); ctx.lineTo(cx, cy + 8); ctx.stroke();
+        ctx.fillStyle = P.accent2; ctx.font = BB.font(11, false, 700); ctx.fillText("무게중심", cx + 9, cy - 8);
+      }
+      // 손잡이
+      pts.forEach(function (p) { ctx.fillStyle = P.bg; ctx.strokeStyle = P.text; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(T.X(p[0]), T.Y(p[1]), 7, 0, 7); ctx.fill(); ctx.stroke(); });
+      ctx.fillStyle = P.bg; ctx.strokeStyle = P.accent; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(T.X(O[0]), T.Y(O[1]), 8, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = P.accent; ctx.font = BB.font(12, true, 700); ctx.fillText("O", T.X(O[0]) + 11, T.Y(O[1]) + 4);
+      ctx.fillStyle = P.dim; ctx.font = BB.font(11.5, true); ctx.textBaseline = "top";
+      ctx.fillText("넓이 = " + r.A.toFixed(2) + " cm²", 10, 8); ctx.textBaseline = "alphabetic";
+      BB.stat("da-po-o-a", r.A.toFixed(2) + " cm²");
+      BB.stat("da-po-o-pm", r.pos.toFixed(1) + " / " + r.neg.toFixed(1));
+      BB.stat("da-po-o-p", r.per.toFixed(1) + " cm" + (r.open ? " (빈틈 제외)" : ""));
+      BB.stat("da-po-o-c", r.open ? "정할 수 없다" : "(" + r.c[0].toFixed(1) + ", " + r.c[1].toFixed(1) + ")");
+      $("da-po-info").innerHTML = r.open ? "<b>열린 도형</b> · 원점 O를 움직여 보자. 넓이가 " + r.A.toFixed(2) + " cm²로 바뀐다. 빈틈 하나가 상쇄를 깨서 결과가 원점에 따라 달라진다." : "<b>닫힌 도형</b> · 원점 O에서 변마다 삼각형을 만들고 부호 있는 넓이를 더했다. 파랑(+) " + r.pos.toFixed(1) + " − 빨강(−) " + r.neg.toFixed(1) + " = " + r.A.toFixed(2) + " cm². O를 어디에 두어도 같다.";
+    }, { get height() { return holder.clientWidth < 520 ? 320 : 380; } });
+    BB.seg("da-po-shape", function (v) { pts = SH[v].map(function (p) { return p.slice(); }); cv.redraw(); });
+    openEl.addEventListener("change", function () { cv.redraw(); });
+    fanEl.addEventListener("change", function () { cv.redraw(); });
+    BB.drag(cv.canvas, {
+      start: function (x, y) {
+        drag = null; var best = 16;
+        var dO = Math.hypot(T.X(O[0]) - x, T.Y(O[1]) - y); if (dO < best) { best = dO; drag = "O"; }
+        pts.forEach(function (p, i) { var d = Math.hypot(T.X(p[0]) - x, T.Y(p[1]) - y); if (d < best) { best = d; drag = i; } });
+      },
+      move: function (x, y) {
+        if (drag == null) return;
+        var q = T.inv(x, y); q = [BB.clamp(Math.round(q[0] * 5) / 5, -2, 11.5), BB.clamp(Math.round(q[1] * 5) / 5, -1.5, 8.5)];
+        if (drag === "O") O = q; else pts[drag] = q;
+        cv.redraw();
+      },
+      end: function () { drag = null; },
+    });
+  })();
+
+  /* ---------------- 3. 메시에서 잰 숫자 ---------------- */
+  (function () {
+    var sys = "bone", met = "vol", rows = [], sel = null;
+    var holder = $("da-pa-cv").parentElement;
+    function val(p) { return met === "vol" ? p.vol : met === "area" ? p.area : p.area / p.vol; }
+    function fmt(v) { return met === "vol" ? AT.fmtVol(v) : met === "area" ? (v >= 1000 ? (v / 10000).toFixed(2) + " m²" : Math.round(v) + " cm²") : v.toFixed(1) + " /cm"; }
+    function list() {
+      var ps = sys === "organ" ? AT.parts.filter(function (p) { return p.sys === "organ" || p.sys === "nerve" || p.sys === "vessel"; }) : AT.bySys(sys);
+      ps = ps.filter(function (p) { return p.k !== "skull"; }); // 머리뼈 전체는 이마뼈·마루뼈 등의 합이라 뺀다
+      return ps.slice().sort(function (a, b) { return val(b) - val(a); }).slice(0, 18);
+    }
+    var cv = BB.canvas("#da-pa-cv", function (ctx, w, h) {
+      var P = BB.palette(), L = list(), labW = Math.min(150, w * 0.38), x0 = labW + 8, x1 = w - 70, top = 10, rh = (h - top - 8) / L.length;
+      var mx = Math.max.apply(null, L.map(val));
+      rows = [];
+      ctx.textBaseline = "middle";
+      L.forEach(function (p, i) {
+        var y = top + i * rh, v = val(p), bw = Math.max(2, v / mx * (x1 - x0));
+        var col = p.sys === "bone" ? "#c9a96a" : p.sys === "muscle" ? AT.COLORS.muscle : p.sys === "nerve" ? "#d9968a" : p.sys === "vessel" ? AT.COLORS.artery : (AT.COLORS[p.k] || AT.COLORS[p.k.replace(/_[rl]$/, "")] || P.accent);
+        ctx.fillStyle = BB.alpha(col, sel === p.k ? 1 : 0.78); ctx.fillRect(x0, y + rh * 0.15, bw, rh * 0.7);
+        if (!p.watertight) {
+          ctx.save(); ctx.beginPath(); ctx.rect(x0, y + rh * 0.15, bw, rh * 0.7); ctx.clip();
+          ctx.strokeStyle = BB.alpha(P.bg, 0.85); ctx.lineWidth = 2;
+          for (var s = -rh; s < bw + rh; s += 7) { ctx.beginPath(); ctx.moveTo(x0 + s, y + rh); ctx.lineTo(x0 + s + rh, y); ctx.stroke(); }
+          ctx.restore();
+        }
+        if (sel === p.k) { ctx.strokeStyle = P.text; ctx.lineWidth = 1.5; ctx.strokeRect(x0, y + rh * 0.15, bw, rh * 0.7); }
+        ctx.font = BB.font(w < 520 ? 11 : 12); ctx.fillStyle = sel === p.k ? P.text : P.dim; ctx.textAlign = "right";
+        ctx.save(); ctx.beginPath(); ctx.rect(0, y, labW, rh); ctx.clip(); ctx.fillText(p.ko, labW, y + rh / 2); ctx.restore();
+        ctx.textAlign = "left"; ctx.font = BB.font(10.5, true); ctx.fillStyle = P.dim; ctx.fillText(fmt(v), x0 + bw + 4, y + rh / 2);
+        rows.push({ k: p.k, y0: y, y1: y + rh });
+      });
+      ctx.textBaseline = "alphabetic";
+    }, { get height() { return holder.clientWidth < 520 ? 440 : 460; } });
+    function show(k) {
+      sel = k; var p = AT.part(k);
+      BB.stat("da-pa-o-k", p.ko); BB.stat("da-pa-o-n", p.n + "개"); BB.stat("da-pa-o-m", AT.mass(k) >= 1000 ? (AT.mass(k) / 1000).toFixed(2) + " kg" : Math.round(AT.mass(k)) + " g"); BB.stat("da-pa-o-w", p.watertight ? "예" : "아니오(어림값)");
+      $("da-pa-info").innerHTML = "<b>" + p.ko + "</b> <span style='color:var(--text-faint)'>" + p.en + "</span> · 부피 " + AT.fmtVol(p.vol) + ", 겉넓이 " + p.area + " cm², 겉넓이÷부피 " + (p.area / p.vol).toFixed(1) + " /cm. 무게중심(x, y, z) = (" + p.c.join(", ") + ") mm, 발바닥에서 " + AT.fmtLen(AT.heightOf(k)) + ". 경계 상자 " + AT.size(k).map(function (v) { return (v / 10).toFixed(1); }).join(" × ") + " cm." + (p.watertight ? "" : " 메시가 닫혀 있지 않아 무게중심은 꼭짓점 평균이다.");
+      cv.redraw();
+    }
+    BB.seg("da-pa-sys", function (v) { sys = v; sel = null; cv.redraw(); });
+    BB.seg("da-pa-met", function (v) { met = v; cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) { var r = rows.filter(function (q) { return y >= q.y0 && y < q.y1; })[0]; if (r) show(r.k); } });
+  })();
+
+  /* ---------------- 4. 피부 껍질 ---------------- */
+  (function () {
+    var LV = AT.sectionLevels("axial"), A = [], Pm = [], cumA = [], cumP = [], sa = 0, sp = 0;
+    LV.forEach(function (z, i) {
+      var g = AT.sectionAt("axial", z).filter(function (q) { return q.k === "body"; })[0];
+      var a = AT.sectionArea("axial", z, "body"), per = 0;
+      if (g) g.rings.forEach(function (r) { for (var k = 0, n = r.length / 2, j = n - 1; k < n; j = k++) per += Math.hypot(r[2 * k] - r[2 * j], r[2 * k + 1] - r[2 * j + 1]); });
+      A.push(a); Pm.push(per); sa += a * 10; sp += per * 10; cumA.push(sa); cumP.push(sp);
+    });
+    var skin = AT.part("skin");
+    $("da-sk-shell").textContent = AT.fmtVol(skin.vol);
+    $("da-sk-area").textContent = (skin.area / 10000).toFixed(2) + " m²";
+    $("da-sk-bv").textContent = AT.body.vol.toFixed(1) + " L(2 mm 간격으로 쌓은 값)";
+    var met = "vol", Tm = null, chart = null, mapW = 0;
+    var holder = $("da-sk-cv").parentElement;
+    var getZ = BB.range("da-sk-z", function (v) { return AT.fmtLen(v - AT.body.bottom); }, function () { cv.redraw(); });
+    function idxOf(z) { return AT.sectionIndex("axial", z); }
+    var cv = BB.canvas("#da-sk-cv", function (ctx, w, h) {
+      var P = BB.palette(), z = getZ(), i = idxOf(z), narrow = w < 520;
+      mapW = Math.round(w * (narrow ? 0.3 : 0.24));
+      Tm = AT.mapFit({ x: 0, y: 0, w: mapW, h: h }, "front", { pad: 8 });
+      // 쌓인 부분 칠하기: 몸 지도를 z 아래만 진하게
+      AT.drawMap(ctx, Tm, "front", { layers: ["skin"] });
+      ctx.save(); ctx.beginPath(); ctx.rect(0, Tm.Y(z), mapW, h); ctx.clip();
+      AT.drawMap(ctx, Tm, "front", { layers: ["skin"], skin: BB.alpha(P.accent, 0.35) });
+      ctx.restore();
+      var y = Tm.Y(z);
+      ctx.strokeStyle = P.bad; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(2, y); ctx.lineTo(mapW - 2, y); ctx.stroke();
+      ctx.fillStyle = P.bg; ctx.strokeStyle = P.bad; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(mapW - 12, y, 8, 0, 7); ctx.fill(); ctx.stroke();
+      // 그래프: 세로축 높이, 가로축 단면값(막대 윤곽)과 누적값(선)
+      var L = mapW + 44, R = w - 14, top = 30, bot = h - 34;
+      var Y = function (zz) { return Tm.Y(zz); };
+      var vals = met === "vol" ? A : Pm, cum = met === "vol" ? cumA : cumP;
+      var vmax = Math.max.apply(null, vals), cmax = cum[cum.length - 1];
+      var X = function (v) { return L + v / vmax * (R - L); }, XC = function (v) { return L + v / cmax * (R - L); };
+      ctx.strokeStyle = P.axis; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(L, Y(LV[LV.length - 1]) - 4); ctx.lineTo(L, Y(LV[0]) + 4); ctx.stroke();
+      ctx.font = BB.font(10, true); ctx.fillStyle = P.dim; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      for (var hh = 0; hh <= 1700; hh += 200) { var zz = hh + AT.body.bottom; if (zz > LV[LV.length - 1]) break; ctx.fillText((hh / 1000).toFixed(1), L - 4, Y(zz)); ctx.strokeStyle = P.grid; ctx.beginPath(); ctx.moveTo(L, Y(zz)); ctx.lineTo(R, Y(zz)); ctx.stroke(); }
+      ctx.save(); ctx.translate(mapW + 14, (top + bot) / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillText("발바닥에서 높이 (m)", 0, 0); ctx.restore();
+      // 단면값 채움
+      function prof() { ctx.beginPath(); ctx.moveTo(L, Y(LV[0])); for (var k = 0; k < LV.length; k++) ctx.lineTo(X(vals[k]), Y(LV[k])); ctx.lineTo(L, Y(LV[LV.length - 1])); ctx.closePath(); }
+      prof(); ctx.fillStyle = BB.alpha(AT.COLORS.skin, 0.35); ctx.fill();
+      ctx.save(); ctx.beginPath(); ctx.rect(L, Y(z), R - L, h); ctx.clip();
+      prof(); ctx.fillStyle = BB.alpha(P.accent, 0.3); ctx.fill(); ctx.restore();
+      // 누적선
+      ctx.strokeStyle = P.accent; ctx.lineWidth = 2.2; ctx.beginPath();
+      for (var m = 0; m <= i; m++) { var px = XC(cum[m]), py = Y(LV[m]); if (m) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
+      ctx.stroke();
+      ctx.strokeStyle = BB.alpha(P.accent, 0.3); ctx.setLineDash([3, 4]); ctx.beginPath();
+      for (m = i; m < LV.length; m++) { px = XC(cum[m]); py = Y(LV[m]); if (m > i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
+      ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = P.bg; ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(XC(cum[i]), Y(LV[i]), 6, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.strokeStyle = P.bad; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(R, y); ctx.stroke();
+      // 범례
+      ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.font = BB.font(11);
+      ctx.fillStyle = BB.alpha(AT.COLORS.skin, 0.9); ctx.fillRect(L, 6, 10, 10); ctx.fillStyle = P.dim; ctx.fillText(met === "vol" ? "단면 넓이 A(z)" : "단면 둘레 P(z)", L + 14, 5);
+      var lx = L + (narrow ? 0 : 120), ly = narrow ? 19 : 5;
+      ctx.strokeStyle = P.accent; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(lx, ly + 6); ctx.lineTo(lx + 12, ly + 6); ctx.stroke();
+      ctx.fillStyle = P.dim; ctx.fillText(met === "vol" ? "아래부터 쌓은 부피" : "아래부터 쌓은 옆면 넓이", lx + 16, ly);
+      ctx.textBaseline = "alphabetic";
+      chart = { L: L };
+      var a = vals[i];
+      BB.stat("da-sk-o-a", met === "vol" ? Math.round(a / 100) + " cm²" : (a / 10).toFixed(0) + " cm 둘레");
+      BB.stat("da-sk-o-c", met === "vol" ? (cum[i] / 1e6).toFixed(1) + " L" : (cum[i] / 1e6).toFixed(2) + " m²");
+      BB.stat("da-sk-o-b", met === "vol" ? AT.body.vol.toFixed(1) + " L" : AT.body.area.toFixed(2) + " m²");
+      BB.stat("da-sk-o-s", met === "vol" ? AT.fmtVol(skin.vol) : (skin.area / 10000).toFixed(2) + " m² (절반 " + (skin.area / 20000).toFixed(2) + ")");
+      var frac = cum[i] / cum[cum.length - 1];
+      $("da-sk-info").innerHTML = "발바닥에서 <b>" + AT.fmtLen(z - AT.body.bottom) + "</b>까지 쌓은 " + (met === "vol" ? "부피는 " + (cum[i] / 1e6).toFixed(1) + " L로 몸 전체(1 cm 간격 " + (cumA[cumA.length - 1] / 1e6).toFixed(1) + " L)의 " : "옆면 넓이는 " + (cum[i] / 1e6).toFixed(2) + " m²로 전체(" + (cumP[cumP.length - 1] / 1e6).toFixed(2) + " m²)의 ") + Math.round(frac * 100) + " %다.";
+    }, { get height() { return holder.clientWidth < 520 ? 420 : 460; } });
+    BB.seg("da-sk-met", function (v) { met = v; cv.redraw(); });
+    BB.drag(cv.canvas, { move: function (x, y) { if (!Tm) return; var q = Tm.inv(x, y); var v = BB.clamp(Math.round(q[1] / 10) * 10, -60, 1630); if (v !== getZ()) getZ.set(v); } });
+  })();
+
+  /* ---------------- 5. 모델과 교과서 ---------------- */
+  (function () {
+    var LV = AT.sectionLevels("axial"), lung = 0;
+    LV.forEach(function (z) { lung += AT.sectionArea("axial", z, "lung") * 10; });
+    lung /= 1000;
+    var sp = AT.size("spleen");
+    var ITEMS = [
+      { k: "키", m: AT.body.height / 10, u: "cm", lo: 165, hi: 183, t: "약 165~183 cm", why: "보통 범위 안이다. 한국 성인 남성의 평균(약 172~174 cm)과도 비슷하다.", d: 1 },
+      { k: "뇌 부피", m: AT.part("brain").vol, u: "mL", lo: 1100, hi: 1400, t: "약 1.1~1.4 L", why: "범위 안이다. 뇌척수액과 뇌를 싸는 막은 이 값에 들어 있지 않다." },
+      { k: "간 부피", m: AT.part("liver").vol, u: "mL", lo: 1200, hi: 1700, t: "약 1.2~1.7 L", why: "범위 안이지만 메시가 닫혀 있지 않아 값 자체가 어림이다. 데이터에는 간의 바깥 모양 일부가 빠져 있다.", open: true },
+      { k: "콩팥 부피(오른쪽)", m: AT.part("kidney_r").vol, u: "mL", lo: 120, hi: 170, t: "약 120~170 mL", why: "조금 작다. 콩팥 크기는 사람마다 차이가 크고, 측정법(영상, 해부 뒤 무게)에 따라서도 다르다." },
+      { k: "콩팥 길이(오른쪽)", m: AT.size("kidney_r")[2] / 10, u: "cm", lo: 10, hi: 12, t: "약 10~12 cm", why: "범위 안이다. 경계 상자의 위아래 길이로 쟀다(콩팥은 조금 비스듬해 실제 긴 축은 약간 더 길다).", d: 1 },
+      { k: "지라 길이", m: Math.max(sp[0], sp[1], sp[2]) / 10, u: "cm", lo: 10, hi: 13, t: "약 10~13 cm", why: "조금 작다. 경계 상자의 가장 긴 변으로 쟀는데, 지라는 비스듬히 누워 있어 실제 긴 축보다 짧게 잡힌다.", d: 1 },
+      { k: "심장 무게(벽)", m: AT.mass("heart"), u: "g", lo: 250, hi: 350, t: "약 250~350 g", why: "조금 작다. 심장 벽만의 부피에 밀도 1.05를 곱했고, 판막·큰 혈관 뿌리는 빠졌으며 메시도 열려 있다.", open: true },
+      { k: "넙다리뼈 길이", m: AT.size("femur")[2] / 10, u: "cm", lo: 40, hi: 50, t: "약 40~50 cm(키의 약 26 %)", why: "범위 안이다. 키에 대한 비율(" + Math.round(AT.size("femur")[2] / AT.body.height * 100) + " %)도 교과서와 비슷하다.", d: 1 },
+      { k: "방광 부피", m: AT.part("bladder").vol, u: "mL", lo: 400, hi: 600, t: "가득 찼을 때 약 400~600 mL", why: "크게 작다. 교과서값은 최대 용량이고, 데이터는 소변이 조금 든 한 순간의 모양이다. 사람이 다른 것이 아니라 잰 것이 다르다." },
+      { k: "폐 부피", m: lung, u: "mL", lo: 5000, hi: 6500, t: "총폐용량 약 5~6.5 L", why: "크게 작다. 데이터에 폐 실질이 없어 기관지 나무의 볼록 껍질로 어림한 값이다. 데이터가 빠진 것을 그대로 보여 준다." },
+      { k: "몸 겉넓이", m: AT.body.area, u: "m²", lo: 1.7, hi: 2.0, t: "약 1.7~2.0 m²(DuBois 공식)", why: "조금 작다. 단면 둘레만 쌓아 옆면만 잡혔고, 정수리·발바닥·어깨 위처럼 수평에 가까운 면이 빠졌다.", d: 2 },
+    ];
+    function f(it, v) { return (it.d != null ? v.toFixed(it.d) : v >= 1000 ? Math.round(v).toLocaleString() : Math.round(v)) + " " + it.u; }
+    $("da-co-table").innerHTML = ITEMS.map(function (it) { return "<tr><td>" + it.k + '</td><td class="num">' + f(it, it.m) + (it.open ? " (어림)" : "") + "</td><td>" + it.t + "</td><td>" + it.why + "</td></tr>"; }).join("");
+    var sel = null, rows = [];
+    var holder = $("da-co-cv").parentElement;
+    var cv = BB.canvas("#da-co-cv", function (ctx, w, h) {
+      var P = BB.palette(), narrow = w < 520, labW = narrow ? 104 : 150, L = labW + 12, R = w - 26, top = 30, bot = h - 28, rh = (bot - top) / ITEMS.length;
+      var lmin = Math.log(0.2), lmax = Math.log(2.2), X = function (r) { return L + (Math.log(BB.clamp(r, 0.2, 2.2)) - lmin) / (lmax - lmin) * (R - L); };
+      ctx.font = BB.font(10, true); ctx.fillStyle = P.dim; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      [0.25, 0.5, 1, 1.5, 2].forEach(function (r) { var x = X(r); ctx.strokeStyle = r === 1 ? P.axis : P.grid; ctx.lineWidth = r === 1 ? 1.5 : 1; ctx.beginPath(); ctx.moveTo(x, top - 4); ctx.lineTo(x, bot); ctx.stroke(); ctx.fillText("×" + r, x, top - 12); });
+      ctx.textAlign = "left"; ctx.fillText("가로축: 모델 ÷ 교과서 범위의 가운데 (로그 눈금)", 8, bot + 14);
+      ctx.font = BB.font(11); ctx.fillStyle = P.dim;
+      ctx.fillText("◀ 작다", 8, top - 12);
+      rows = [];
+      ITEMS.forEach(function (it, i) {
+        var y = top + i * rh + rh / 2, mid = (it.lo + it.hi) / 2, r = it.m / mid, inR = it.m >= it.lo && it.m <= it.hi;
+        if (sel === i) { ctx.fillStyle = BB.alpha(P.accent, 0.1); ctx.fillRect(0, y - rh / 2, w, rh); }
+        ctx.fillStyle = BB.alpha(P.ok, 0.25); ctx.fillRect(X(it.lo / mid), y - 6, X(it.hi / mid) - X(it.lo / mid), 12);
+        ctx.strokeStyle = BB.alpha(P.ok, 0.7); ctx.lineWidth = 1; ctx.strokeRect(X(it.lo / mid), y - 6, X(it.hi / mid) - X(it.lo / mid), 12);
+        var x = X(r), col = inR ? P.ok : P.warn;
+        ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y, 6, 0, 7); ctx.fill(); ctx.strokeStyle = P.bg; ctx.lineWidth = 1.5; ctx.stroke();
+        if (it.open) { ctx.strokeStyle = col; ctx.setLineDash([2, 2]); ctx.beginPath(); ctx.arc(x, y, 9, 0, 7); ctx.stroke(); ctx.setLineDash([]); }
+        if (r < 0.2) { ctx.fillStyle = col; ctx.font = BB.font(10, true); ctx.textAlign = "left"; ctx.fillText("◀ ×" + r.toFixed(2), x + 9, y); }
+        ctx.font = BB.font(narrow ? 11 : 12); ctx.textAlign = "right"; ctx.fillStyle = sel === i ? P.text : P.dim;
+        ctx.save(); ctx.beginPath(); ctx.rect(0, y - rh / 2, labW + 4, rh); ctx.clip(); ctx.fillText(it.k, labW, y); ctx.restore();
+        rows.push({ i: i, y0: y - rh / 2, y1: y + rh / 2 });
+      });
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    }, { get height() { return holder.clientWidth < 520 ? 440 : 420; } });
+    function show(i) {
+      sel = i; var it = ITEMS[i];
+      BB.stat("da-co-o-k", it.k); BB.stat("da-co-o-m", f(it, it.m)); BB.stat("da-co-o-t", it.t);
+      $("da-co-info").innerHTML = "<b>" + it.k + "</b> · 모델 " + f(it, it.m) + (it.open ? "(열린 메시, 어림)" : "") + " / 교과서 " + it.t + ". " + it.why;
+      cv.redraw();
+    }
+    BB.drag(cv.canvas, { start: function (x, y) { var r = rows.filter(function (q) { return y >= q.y0 && y < q.y1; })[0]; if (r) show(r.i); } });
+  })();
+
+  /* ---------------- 데이터로 확인하기 ---------------- */
+  (function () {
+    var V = AT.body.vol, H = AT.body.height / 1000;
+    var m0 = V * 1.0, m1 = V * 1.06;
+    $("da-dc-v").textContent = V.toFixed(1) + " L";
+    $("da-dc-m").textContent = Math.round(m0) + "~" + Math.round(m1) + " kg";
+    $("da-dc-h").textContent = (AT.body.height / 10).toFixed(1) + " cm";
+    $("da-dc-bmi").textContent = (m0 / (H * H)).toFixed(1) + "~" + (m1 / (H * H)).toFixed(1) + " kg/m²";
+    var bsa = function (m) { return 0.007184 * Math.pow(m, 0.425) * Math.pow(AT.body.height / 10, 0.725); };
+    $("da-dc-bsa").textContent = bsa(m0).toFixed(2) + "~" + bsa(m1).toFixed(2) + " m²";
+    $("da-dc-a").textContent = AT.body.area.toFixed(2) + " m²";
+  })();
+})();
+</script>
+</body>
+</html>

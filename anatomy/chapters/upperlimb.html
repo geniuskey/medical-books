@@ -1,0 +1,977 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and AnatomyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "빗장뼈와 어깨뼈에서 손끝까지. 팔의 뼈 30여 개와 손목뼈 8개, 돌림근띠와 팔의 근육 무리, 엎침·뒤침을 실제 인체 3D 데이터로 돌리고 재 본다."}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>팔과 손 · AnatomyBook</title>
+<meta name="description" content="빗장뼈와 어깨뼈에서 손끝까지. 팔의 뼈 30여 개와 손목뼈 8개, 돌림근띠와 팔의 근육 무리, 엎침·뒤침을 실제 인체 3D 데이터로 돌리고 재 본다.">
+<link rel="canonical" href="https://medical.euiyun.com/anatomy/chapters/upperlimb.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#0c8599">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AnatomyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="팔과 손 · AnatomyBook">
+<meta property="og:description" content="빗장뼈와 어깨뼈에서 손끝까지. 팔의 뼈 30여 개와 손목뼈 8개, 돌림근띠와 팔의 근육 무리, 엎침·뒤침을 실제 인체 3D 데이터로 돌리고 재 본다.">
+<meta property="og:url" content="https://medical.euiyun.com/anatomy/chapters/upperlimb.html">
+<meta property="og:image" content="https://medical.euiyun.com/anatomy/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/anatomy/chapters/upperlimb.html#chapter","name":"팔과 손","headline":"팔과 손 · AnatomyBook","description":"빗장뼈와 어깨뼈에서 손끝까지. 팔의 뼈 30여 개와 손목뼈 8개, 돌림근띠와 팔의 근육 무리, 엎침·뒤침을 실제 인체 3D 데이터로 돌리고 재 본다.","url":"https://medical.euiyun.com/anatomy/chapters/upperlimb.html","position":4,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/anatomy/og.png","dateModified":"2026-11-08","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/anatomy/#book","name":"AnatomyBook · 몸의 구조 교과서","url":"https://medical.euiyun.com/anatomy/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AnatomyBook","item":"https://medical.euiyun.com/anatomy/"},{"@type":"ListItem","position":2,"name":"4. 팔과 손","item":"https://medical.euiyun.com/anatomy/chapters/upperlimb.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/atlas-data.js"></script>
+<script src="../js/atlas.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="anatomy"></script>
+<!--head:end-->
+<style>
+  .seg-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin: 18px 0; }
+  .seg-grid div { padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elev); font-size: 14.5px; }
+  .seg-grid b { display: block; font-size: 15.5px; }
+  .seg-grid small { color: var(--text-dim); }
+</style>
+</head>
+<body data-chapter="upperlimb">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 04</div>
+    <h1>팔과 손</h1>
+    <p class="lead">컵을 집어 입으로 가져가는 동작 하나에 어깨, 팔꿈치, 아래팔, 손목, 손가락이 모두 움직인다. 팔은 몸을 받치는 일에서 풀려나 손을 공간의 아무 곳에나 데려다 놓는 일에 특화된 기관이다. 그 대가로 어깨는 몸에서 가장 잘 빠지는 관절이 되었다. 이 장은 빗장뼈에서 손끝까지 팔의 뼈와 근육을 실제 한 사람의 3D 데이터로 돌려 보고, 길이와 부피를 재고, 아래팔의 두 뼈가 엇갈리는 모습을 직접 비틀어 본다.</p>
+    <ul class="objectives">
+      <li>팔을 어깨이음뼈·위팔·아래팔·손의 네 마디로 나누고, 각 마디의 뼈 이름과 길이 비율을 말한다.</li>
+      <li>어깨이음뼈(빗장뼈·어깨뼈)가 팔을 몸통에 매다는 방식과, 팔을 들 때 어깨뼈가 함께 도는 이유를 설명한다.</li>
+      <li>돌림근띠 네 근육의 자리와, 어깨세모근과 짝을 이루어 위팔뼈 머리를 붙잡는 원리를 안다.</li>
+      <li>위팔과 아래팔의 근육을 앞(굽힘)·뒤(폄) 무리로 나누고, 모델 데이터로 크기를 비교한다.</li>
+      <li>엎침과 뒤침에서 노뼈가 자뼈를 넘어가는 모습과 손목뼈 8개의 배열을 설명한다.</li>
+    </ul>
+  </header>
+
+  <section id="overview">
+    <h2>어깨에서 손끝까지: 팔의 네 마디</h2>
+    <p>팔은 네 마디로 나뉜다. 몸통에 붙는 <b>어깨이음뼈</b>, 어깨와 팔꿈치 사이의 <b>위팔</b>, 팔꿈치와 손목 사이의 <b>아래팔</b>, 그리고 <b>손</b>이다. 마디마다 뼈의 수가 늘어난다. 위팔에는 <span class="term">위팔뼈</span><span class="en">(상완골, Humerus)</span> 하나, 아래팔에는 <span class="term">노뼈</span><span class="en">(요골, Radius)</span>와 <span class="term">자뼈</span><span class="en">(척골, Ulna)</span> 둘, 손에는 27개가 있다. "하나, 둘, 여럿"으로 늘어나는 이 설계는 다리도 똑같아서, <a href="lowerlimb.html">5장</a>에서 다시 만난다.</p>
+    <p>우리말 이름에는 위치가 들어 있다. 노뼈는 엄지 쪽(가쪽)에 있는 뼈로, 배의 노처럼 아래팔을 돌릴 때 크게 움직인다는 데서 왔다. 자뼈는 새끼손가락 쪽(안쪽)에 있는 곧은 뼈로, 옛날에 길이를 재는 자로 썼던 아래팔 길이와 관련된 이름이다. 해부학적 자세(손바닥이 앞)에서는 두 뼈가 나란하다.</p>
+    <p>먼저 오른팔 하나를 3D로 돌려 보자. 이 모델은 몸의 오른쪽 팔만 담았고, 근육을 무리별로 묶었다. 근육을 하나씩 끄면 뼈대가 드러난다.</p>
+
+    <div class="sim model3d" id="ul-3d" data-model="upperlimb" data-orbit="20deg 78deg auto" data-desc="실제 인체 데이터로 만든 오른팔 3D 모델에서 어깨세모근, 돌림근띠, 위팔과 아래팔의 굽힘근·폄근, 손의 근육을 하나씩 끄며 팔의 뼈대까지 들어가 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 오른팔: 근육 무리와 뼈</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="deltoid" title="어깨를 덮는 세모꼴 근육. 팔을 벌린다">어깨세모근</button><button type="button" data-part="pectoral" title="큰가슴근·작은가슴근·빗장밑근">가슴근</button><button type="button" data-part="back" title="등세모근·마름근·어깨올림근·앞톱니근·큰원근(반투명)">등·어깨 근육</button><button type="button" data-part="cuff" title="가시위근·가시아래근·작은원근·어깨밑근">돌림근띠</button><button type="button" data-part="armflex" title="위팔두갈래근·위팔근·부리위팔근">위팔 앞 굽힘근</button><button type="button" data-part="armext" title="위팔세갈래근·팔꿈치근">위팔 뒤 폄근</button><button type="button" data-part="forearmflex" title="손목과 손가락을 굽히는 아래팔 앞쪽 근육">아래팔 굽힘근</button><button type="button" data-part="forearmext" title="손목과 손가락을 펴는 아래팔 뒤쪽 근육(위팔노근·뒤침근 포함)">아래팔 폄근</button><button type="button" data-part="handm" title="엄지두덩·새끼두덩·뼈사이근 등 손 안의 근육">손의 근육</button><button type="button" data-part="bones" title="빗장뼈·어깨뼈·위팔뼈·노뼈·자뼈·손뼈">뼈</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="deltoid,pectoral,armflex,armext,forearmflex,forearmext">근육 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 어깨세모근과 가슴근을 끄고, 그 아래에서 위팔뼈 머리를 감싸는 돌림근띠를 찾는다. ② 위팔 앞 굽힘근과 뒤 폄근을 번갈아 끄며 위팔뼈를 사이에 두고 앞뒤로 나뉜 것을 본다. ③ 모델을 돌려 아래팔 굽힘근이 손바닥 쪽, 폄근이 손등 쪽에 있는 것을 확인한다. (인대와 말초신경은 데이터에 없다. 넓은등근도 빠져 있다.) <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <div class="seg-grid">
+      <div><b>어깨이음뼈</b>빗장뼈 1 · 어깨뼈 1 <small>상지대, Pectoral girdle</small></div>
+      <div><b>위팔</b>위팔뼈 1 <small>상완, Arm (brachium)</small></div>
+      <div><b>아래팔</b>노뼈 1 · 자뼈 1 <small>전완, Forearm</small></div>
+      <div><b>손</b>손목뼈 8 · 손허리뼈 5 · 손가락뼈 14 <small>수, Hand</small></div>
+    </div>
+    <p>한쪽 팔에 뼈가 32개, 양쪽이면 64개다. 몸 전체 뼈 206개의 3분의 1에 가깝고, 그 대부분(54개)이 두 손에 있다. 아래 지도에서 마디별 뼈를 눌러 길이와 부피를 재 보자. 길이는 이 모델에서 뼈를 감싸는 상자의 위아래 크기(빗장뼈는 좌우 크기)다.</p>
+
+    <div class="sim" id="ul-len" data-desc="오른팔 뼈 지도에서 빗장뼈, 어깨뼈, 위팔뼈, 노뼈, 자뼈, 손목뼈, 손허리뼈, 손가락뼈를 누르거나 막대를 골라 실제 데이터의 길이와 부피, 키에 대한 비율을 비교한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>팔의 마디는 얼마나 긴가?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="len-cv" class="drag"></canvas><span class="hint">뼈의 점이나 막대를 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="len-mode"><button data-value="len" class="on">길이</button><button data-value="vol">부피</button></div>
+          <p style="font-size:14px;color:var(--text-dim);margin:4px 0 0">손목뼈 8개, 손허리뼈 5개, 손가락뼈 14개는 각각 한 묶음으로 잰다.</p>
+        </div>
+      </div>
+      <div class="info-panel" id="len-info">뼈를 누른다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 뼈</span><span class="v" id="len-o-n">—</span></div>
+        <div class="stat"><span class="k">길이</span><span class="v" id="len-o-l">—</span></div>
+        <div class="stat"><span class="k">부피 · 어림 무게</span><span class="v" id="len-o-v">—</span></div>
+        <div class="stat"><span class="k">키 대비</span><span class="v" id="len-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 위팔뼈, 자뼈, 손을 차례로 눌러 위팔 : 아래팔 : 손의 길이 비율을 어림한다. ② "부피"로 바꿔 손뼈 27개를 다 합친 부피가 위팔뼈 하나와 비교해 얼마인지 본다. ③ 노뼈와 자뼈 중 어느 쪽이 더 긴지, 어느 쪽이 팔꿈치 쪽으로 더 올라가는지 본다. (길이는 경계 상자 크기라 비스듬히 놓인 뼈는 실제보다 조금 짧거나 길게 나온다. 손가락은 살짝 굽어 있어 위아래 길이가 실제보다 짧다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>위팔뼈는 키의 약 18 %, 자뼈는 약 14 %다. 자뼈가 노뼈보다 길고 팔꿈치 쪽으로 더 올라가는데, 팔꿈치 뒤에서 만져지는 뾰족한 끝(팔꿈치머리, olecranon)이 자뼈의 윗끝이다. 반대로 손목에서는 노뼈가 넓고 자뼈가 가늘다. 팔꿈치는 자뼈가, 손목은 노뼈가 주로 맡는다. 이 엇갈린 분업이 아래팔을 비틀 수 있게 하는 열쇠다.</p>
+  </section>
+
+  <section id="girdle">
+    <h2>어깨이음뼈: 팔을 매다는 고리</h2>
+    <p>팔은 몸통에 <span class="term">어깨이음뼈</span><span class="en">(상지대, Pectoral girdle)</span>로 붙는다. 앞의 <span class="term">빗장뼈</span><span class="en">(쇄골, Clavicle)</span>와 뒤의 <span class="term">어깨뼈</span><span class="en">(견갑골, Scapula)</span>다. 놀랍게도 팔과 몸통뼈대 사이의 뼈끼리의 연결은 단 하나, 빗장뼈 안쪽 끝과 복장뼈가 만나는 <span class="term">복장빗장관절</span><span class="en">(흉쇄관절, Sternoclavicular joint)</span>뿐이다. 어깨뼈는 갈비뼈 위에 근육으로만 매달려 미끄러진다.</p>
+    <p>빗장(門 빗장)은 문을 걸어 잠그는 가로막대다. 빗장뼈는 이름처럼 가로로 누워 어깨를 몸통에서 일정한 거리로 밀어내는 버팀대 구실을 한다. 그래서 넘어지며 손을 짚으면 힘이 빗장뼈로 몰려, 몸에서 가장 흔히 부러지는 뼈 가운데 하나가 된다. 어깨뼈는 세모난 넓은 판으로, 바깥쪽 위 모서리의 얕은 접시인 <span class="term">관절오목</span><span class="en">(관절와, Glenoid cavity)</span>에 위팔뼈 머리가 얹힌다. 어깨뼈의 등쪽 능선(어깨뼈가시)이 바깥으로 이어져 어깨 꼭대기의 <span class="term">어깨봉우리</span><span class="en">(견봉, Acromion)</span>가 되고, 여기서 빗장뼈와 만난다.</p>
+    <p>아래 모델은 오른쪽 어깨만 확대했다. 처음 시점은 등 쪽이다. 어깨뼈가시를 경계로 위와 아래에 근육이 하나씩 자리한 것을 보자.</p>
+
+    <div class="sim model3d" id="ul-shoulder3d" data-model="shoulder" data-orbit="200deg 75deg auto" data-desc="오른쪽 어깨 3D 모델을 등 쪽과 앞쪽에서 돌려 보며 빗장뼈, 어깨뼈, 위팔뼈 머리와 이를 감싸는 돌림근띠 네 근육(가시위근, 가시아래근, 작은원근, 어깨밑근)의 자리를 찾는다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 오른쪽 어깨와 돌림근띠</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="deltoid" title="어깨를 덮는 근육(반투명)">어깨세모근</button><button type="button" data-part="supraspinatus" title="어깨뼈가시 위의 오목에서 위팔뼈 머리 꼭대기로">가시위근</button><button type="button" data-part="infraspinatus" title="어깨뼈가시 아래의 넓은 면에서 위팔뼈 머리 뒤로">가시아래근</button><button type="button" data-part="teresminor" title="가시아래근 아래의 가는 원기둥 근육">작은원근</button><button type="button" data-part="subscapularis" title="어깨뼈의 앞면(갈비뼈 쪽)에서 위팔뼈 머리 앞으로">어깨밑근</button><button type="button" data-part="biceps" title="위팔두갈래근의 윗부분. 긴갈래 힘줄이 관절 안을 지난다">위팔두갈래근</button><button type="button" data-part="scapula" title="어깨뼈">어깨뼈</button><button type="button" data-part="clavicle" title="빗장뼈">빗장뼈</button><button type="button" data-part="humerus" title="위팔뼈의 윗부분">위팔뼈</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="deltoid,infraspinatus,teresminor">뒤쪽 근육 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 어깨세모근을 끄고 위팔뼈 머리를 위·뒤·앞에서 감싸는 근육 네 개를 찾는다. ② 모델을 앞으로 돌려 어깨뼈의 앞면(갈비뼈 쪽)을 덮은 어깨밑근을 본다. ③ 어깨봉우리 바로 아래 좁은 틈을 가시위근 힘줄이 지나가는 것을 본다. 팔을 들 때 이 힘줄이 끼일 수 있는 자리다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <p>어깨뼈가 갈비뼈 위를 미끄러질 수 있다는 것은 큰 장점이다. 팔을 머리 위로 끝까지 들어 올릴 때, 위팔뼈만 관절오목 위에서 도는 것이 아니라 어깨뼈 자체가 바깥 위로 돌아 관절오목을 위로 향하게 한다. 교과서는 팔을 옆으로 180° 드는 동안 약 120°는 어깨관절(오목위팔관절)이, 약 60°는 어깨뼈의 회전이 맡는다고 설명한다. 이 2 : 1의 협동을 <span class="term">어깨위팔 리듬</span><span class="en">(Scapulohumeral rhythm)</span>이라 한다.</p>
+    <p>아래에서 손끝을 끌어 팔을 옆으로 들어 보자. 뒤에서 본 모습이다. 어깨뼈를 근육으로 묶어 고정하면 팔을 얼마나 들 수 있는지도 확인한다.</p>
+
+    <div class="sim" id="ul-rhythm" data-desc="뒤에서 본 몸에서 손끝을 끌어 팔을 옆으로 0~180° 들면, 어깨관절의 회전과 어깨뼈의 위쪽 돌림이 약 2 : 1로 나뉘는 어깨위팔 리듬을 보고, 어깨뼈를 고정했을 때의 한계를 비교한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>팔을 머리 위로 들 때 어깨뼈는 얼마나 도나?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="rh-cv" class="drag"></canvas><span class="hint">손끝의 손잡이를 끈다</span></div>
+        <div class="sim-controls">
+          <label class="check"><input type="checkbox" id="rh-fix"> 어깨뼈 고정(위팔만 움직임)</label>
+          <div class="btn-row"><button class="btn" id="rh-90">90°</button><button class="btn" id="rh-180">180°</button><button class="btn" id="rh-0">내리기</button></div>
+          <p style="font-size:14px;color:var(--text-dim);margin:4px 0 0">뒤에서 본 모습이라 몸의 오른쪽(움직이는 팔)이 화면 오른쪽에 있다.</p>
+        </div>
+      </div>
+      <div class="info-panel" id="rh-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">팔 전체 벌림</span><span class="v" id="rh-o-t">—</span></div>
+        <div class="stat"><span class="k">어깨관절(오목위팔)</span><span class="v" id="rh-o-g">—</span></div>
+        <div class="stat"><span class="k">어깨뼈 위쪽 돌림</span><span class="v" id="rh-o-s">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 팔을 90°까지 들며 어깨뼈 아래각(세모의 아래 꼭짓점)이 가쪽으로 움직이는 것을 본다. ② 180°까지 들어 어깨관절과 어깨뼈의 몫이 약 2 : 1인 것을 확인한다. ③ "어깨뼈 고정"을 켜고 다시 들어 본다. 위팔만으로는 약 120°에서 멈춘다. (비율은 교과서의 대표값을 단순화한 것으로, 실제로는 들기 시작할 때 어깨뼈가 거의 움직이지 않는 등 사람과 자세마다 다르다. 어깨뼈와 위팔뼈의 길이 비는 데이터에서 가져왔다.)</div>
+    </div>
+
+    <p>어깨뼈를 돌리는 것은 등세모근(승모근)과 <span class="term">앞톱니근</span><span class="en">(전거근, Serratus anterior)</span>이다. 앞톱니근은 갈비뼈 옆면에서 톱니 모양으로 시작해 어깨뼈 안쪽 모서리에 붙어, 어깨뼈를 갈비뼈에 밀착시키고 앞으로 끌어당긴다. 이 근육이 약해지면 어깨뼈 안쪽 모서리가 날개처럼 들린다. 이 데이터의 모델에서 앞톱니근의 부피는 <b id="ul-serr">—</b>로, 어깨세모근 <b id="ul-delt">—</b>의 절반쯤이다. 이 두 근육의 자세한 모양은 <a href="trunk.html">7장</a>에서 몸통 근육과 함께 본다.</p>
+  </section>
+
+  <section id="cuff">
+    <h2>돌림근띠: 얕은 접시 위의 공을 붙잡는 근육</h2>
+    <p>어깨관절의 관절오목은 위팔뼈 머리에 비해 아주 작다. 흔히 골프공을 티 위에 얹은 모양에 비유한다. 관절오목이 머리의 약 3분의 1밖에 감싸지 못하니 움직임은 자유롭지만, 뼈의 모양만으로는 머리를 붙잡아 둘 수 없다. 그 일을 맡은 것이 <span class="term">돌림근띠</span><span class="en">(회전근개, Rotator cuff)</span>다.</p>
+    <p>돌림근띠는 어깨뼈에서 시작해 위팔뼈 머리를 위·뒤·앞에서 감싸는 근육 네 개다. 어깨뼈가시 위의 <span class="term">가시위근</span><span class="en">(극상근, Supraspinatus)</span>, 가시 아래의 <span class="term">가시아래근</span><span class="en">(극하근, Infraspinatus)</span>과 <span class="term">작은원근</span><span class="en">(소원근, Teres minor)</span>, 어깨뼈 앞면의 <span class="term">어깨밑근</span><span class="en">(견갑하근, Subscapularis)</span>. 영어 머리글자를 따 SITS 근육이라고도 한다. 이름 그대로 위팔을 안쪽·가쪽으로 돌리기도 하지만, 가장 중요한 일은 네 힘줄이 띠처럼 머리를 감싸 <b>관절오목 쪽으로 눌러 주는 것</b>이다.</p>
+    <p>왜 누르는 힘이 필요할까? 팔을 몸 옆에 내린 채 <span class="term">어깨세모근</span><span class="en">(삼각근, Deltoid)</span>이 수축하면, 그 힘은 거의 수직으로 위를 향한다. 혼자 일하면 위팔뼈 머리를 위로 끌어올려 어깨봉우리에 부딪히게 할 뿐이다. 돌림근띠가 머리를 안쪽 아래로 눌러 주어야 두 힘이 합쳐져 머리가 제자리에서 돈다. 아래에서 두 힘의 균형을 바꿔 보자.</p>
+
+    <div class="sim" id="ul-couple" data-desc="앞에서 본 어깨관절에서 팔을 든 각도와 돌림근띠의 힘을 바꾸며 어깨세모근의 힘과 더한 알짜 힘이 관절오목 안을 향하는지, 위팔뼈 머리가 위로 밀려 어깨봉우리에 부딪히는지 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>어깨세모근 혼자서는 팔을 들 수 없다</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cp-cv" class="drag"></canvas><span class="hint">위팔뼈를 끌어 팔을 든다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>팔을 든 각도 <output id="cp-a-out"></output></span><input type="range" id="cp-a" min="0" max="90" step="1" value="10"></label>
+          <label class="ctrl"><span>돌림근띠 힘 <output id="cp-c-out"></output></span><input type="range" id="cp-c" min="0" max="150" step="1" value="100"></label>
+          <div class="btn-row"><button class="btn" id="cp-tear">돌림근띠 파열</button><button class="btn" id="cp-re">정상</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="cp-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">알짜 힘의 방향</span><span class="v" id="cp-o-g">—</span></div>
+        <div class="stat"><span class="k">관절오목이 받아 주는 범위</span><span class="v" id="cp-o-r">±37°</span></div>
+        <div class="stat"><span class="k">위팔뼈 머리</span><span class="v" id="cp-o-s">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 팔을 10°쯤 든 채 돌림근띠 힘을 0으로 내린다. 알짜 힘이 위로 향해 머리가 어깨봉우리 쪽으로 밀려 올라간다. ② 힘을 다시 올려 알짜 힘의 화살표가 관절오목(초록 부채꼴) 안으로 들어오는 지점을 찾는다. ③ 팔을 60° 이상 들면 어깨세모근 자체가 머리를 누르는 쪽으로 돌아, 돌림근띠의 몫이 줄어드는 것을 본다. (힘의 크기는 어깨세모근을 100으로 둔 상대값이고, 근육 부피는 이 데이터의 값이다. 작은원근은 데이터에 따로 없어 부피 합에서 빠졌다.)</div>
+    </div>
+
+    <p>관절오목이 받아 줄 수 있는 범위(초록 부채꼴) 안으로 알짜 힘이 향해야 머리가 제자리에 머문다. 이렇게 서로 다른 방향의 두 힘이 짝을 이루어 한 가지 움직임을 만드는 것을 <b>짝힘</b>(force couple)이라 한다. 큰 근육(어깨세모근)이 움직임을 만들고 작은 근육(돌림근띠)이 관절을 안정시키는 분업은 몸 곳곳에서 되풀이된다.</p>
+    <p>가시위근 힘줄은 어깨봉우리 아래의 좁은 틈을 지나기 때문에 팔을 반복해서 들어 올리는 일을 하면 닳거나 끼이기 쉽다. 돌림근띠가 찢어지면 시뮬레이터의 "파열"처럼 팔을 들기 시작하는 것부터 어려워진다. 이 모델에서 가시위근은 <b id="ul-supra">—</b>, 가시아래근은 <b id="ul-infra">—</b>, 어깨밑근은 <b id="ul-subs">—</b>이다. 교과서는 흔히 어깨밑근을 돌림근띠 가운데 가장 크다고 쓰는데, 이 모델에서는 가시아래근이 더 크게 나온다. 한 사람의 데이터이고, 근육의 경계를 어디서 자르느냐에 따라 부피가 달라진다는 것을 기억하자.</p>
+    <p class="health-note">이 장의 모델과 수치는 한 사람의 몸을 측정한 공개 데이터에서 나온 교육용 자료입니다. 어깨의 통증, 팔을 들기 어려움, 손저림 같은 증상이 있으면 의료진과 상담하세요.</p>
+  </section>
+
+  <section id="arm">
+    <h2>위팔과 팔꿈치: 앞은 굽히고 뒤는 편다</h2>
+    <p>위팔의 근육은 위팔뼈를 사이에 두고 <b>앞 무리</b>와 <b>뒤 무리</b>로 나뉜다. 두 무리 사이에는 근육사이막이라는 질긴 막이 있어, 각 무리는 자기 칸(구획, compartment)에 들어 있다. 앞칸에는 팔꿈치를 굽히는 <span class="term">위팔두갈래근</span><span class="en">(상완이두근, Biceps brachii)</span>과 그 밑의 <span class="term">위팔근</span><span class="en">(상완근, Brachialis)</span>이, 뒤칸에는 팔꿈치를 펴는 <span class="term">위팔세갈래근</span><span class="en">(상완삼두근, Triceps brachii)</span>이 있다. "두갈래"는 시작하는 머리(갈래)가 둘, "세갈래"는 셋이라는 뜻이다.</p>
+    <p>굽힘의 주인공은 사실 위팔두갈래근이 아니라 그 밑의 위팔근이다. 위팔근은 자뼈에 붙어 아래팔이 어떤 방향으로 돌아가 있든 늘 팔꿈치를 굽힌다. 위팔두갈래근은 노뼈에 붙어 있어서 굽히는 동시에 아래팔을 뒤치기(손바닥을 위로) 하는 힘이 세다. 병뚜껑을 오른손으로 돌려 닫을 때 위팔두갈래근이 불룩해지는 이유다. 아래팔 가쪽의 <span class="term">위팔노근</span><span class="en">(상완요골근, Brachioradialis)</span>은 엄지를 위로 한 중간 자세에서 굽힘을 돕는다.</p>
+    <p>팔과 어깨의 근육을 데이터로 재 보자. 지도 위의 점은 각 근육의 무게중심이고, 점의 크기는 부피에 비례한다.</p>
+
+    <div class="sim" id="ul-muscles" data-desc="오른팔 지도 위에 어깨·위팔·아래팔 근육의 무게중심을 부피에 비례한 점으로 찍고, 앞칸(굽힘)과 뒤칸(폄) 무리별 막대로 실제 데이터의 부피와 무게를 비교한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>굽히는 근육과 펴는 근육, 어느 쪽이 클까?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="mu-cv" class="drag"></canvas><span class="hint">점이나 막대를 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="mu-mode"><button data-value="vol" class="on">부피(mL)</button><button data-value="mass">무게(g)</button></div>
+          <div class="seg" id="mu-view"><button data-value="front" class="on">앞모습</button><button data-value="side">옆모습</button></div>
+          <p style="font-size:14px;color:var(--text-dim);margin:4px 0 0">옆모습은 앞이 화면 왼쪽이다. 굽힘근과 폄근이 앞뒤로 갈린다.</p>
+        </div>
+      </div>
+      <div class="info-panel" id="mu-info">근육을 누른다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">위팔 앞칸(두갈래근+위팔근)</span><span class="v" id="mu-o-f">—</span></div>
+        <div class="stat"><span class="k">위팔 뒤칸(세갈래근)</span><span class="v" id="mu-o-e">—</span></div>
+        <div class="stat"><span class="k">뒤 ÷ 앞</span><span class="v" id="mu-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 옆모습으로 바꿔 위팔두갈래근(앞)과 위팔세갈래근(뒤)의 점이 위팔뼈를 사이에 두고 앞뒤로 갈린 것을 본다. ② 앞칸과 뒤칸의 부피를 비교한다. 펴는 근육 하나가 굽히는 근육 둘을 합친 것보다 크다. ③ 위팔노근까지 굽힘근에 더하면 어떻게 되는지 어림한다. (이 데이터에는 아래팔의 손목·손가락 근육이 하나하나 들어 있지 않아 위팔노근만 보인다. 무게는 근육 밀도 1.06 g/mL를 곱한 값.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>이 모델에서 위팔세갈래근은 위팔 앞칸의 두 근육을 합친 것보다 약 1.3배 크다. 우리는 흔히 "알통"(위팔두갈래근)을 팔 근육의 대표로 여기지만, 위팔의 부피는 뒤쪽이 더 크다. 팔굽혀펴기나 물건을 밀어내는 일, 넘어질 때 몸을 받치는 일은 모두 팔꿈치를 펴는 일이다. 반면 굽힘근은 위팔노근까지 합쳐야 세갈래근과 비슷해진다. 근육이 뼈의 어디에 붙느냐에 따라 같은 부피로 낼 수 있는 힘이 달라지는 이야기는 <a href="joints.html">6장</a>의 지렛대에서 계산한다.</p>
+    <p>팔꿈치 앞의 오목한 곳을 <span class="term">팔오금</span><span class="en">(주와, Cubital fossa)</span>이라 한다. 위팔두갈래근 힘줄, 위팔동맥, 정중신경이 이 삼각형의 공간을 지나고, 그 얕은 곳에는 채혈에 쓰는 팔오금중간정맥이 비스듬히 건너간다. 혈압을 잴 때 청진기를 대는 자리도 여기다. 혈관의 경로는 <a href="vessels.html">11장</a>에서 따라간다. 팔꿈치 안쪽 뒤의 튀어나온 뼈(위팔뼈의 안쪽위관절융기) 뒤로는 자신경이 피부 바로 밑을 지나, 부딪히면 새끼손가락까지 찌릿하다. 이 데이터에는 말초신경이 없어 글로만 적는다.</p>
+  </section>
+
+  <section id="forearm">
+    <h2>아래팔: 두 뼈가 엇갈린다</h2>
+    <p>열쇠를 돌리거나 국자로 국을 뜰 때, 손바닥이 위를 향했다가 아래를 향한다. 손목이 도는 것처럼 느껴지지만 실제로 도는 것은 <b>아래팔</b>이다. 손바닥이 앞(또는 위)을 향하게 돌리는 것을 <span class="term">뒤침</span><span class="en">(회외, Supination)</span>, 뒤(또는 아래)를 향하게 돌리는 것을 <span class="term">엎침</span><span class="en">(회내, Pronation)</span>이라 한다. 우리말 이름은 손바닥을 엎고 뒤집는 모습 그대로다.</p>
+    <p>이 움직임에서 자뼈는 거의 제자리에 있고, 노뼈가 자뼈 둘레를 돈다. 팔꿈치 쪽에서는 노뼈의 둥근 머리가 고리처럼 생긴 인대 안에서 제자리 돌기를 하고, 손목 쪽에서는 노뼈의 넓은 아래끝이 자뼈 머리를 축으로 반 바퀴 가까이 휘돈다. 손은 노뼈 아래끝에 붙어 있으니 함께 따라 돈다. 엎침 자세에서는 두 뼈가 X자로 엇갈린다.</p>
+
+    <div class="sim" id="ul-pron" data-desc="앞에서 본 오른쪽 아래팔에서 손목의 손잡이를 좌우로 끌어 뒤침에서 엎침까지 돌리면, 노뼈의 아래끝이 자뼈 앞을 지나 X자로 엇갈리는 모습과 손바닥 방향, 끝에서 본 회전 각도를 함께 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>손바닥을 뒤집으면 노뼈는 어디로 가나?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="pr-cv" class="drag"></canvas><span class="hint">손목의 손잡이를 좌우로 끈다</span></div>
+        <div class="sim-controls">
+          <label class="ctrl"><span>중간 자세에서의 회전 <output id="pr-a-out"></output></span><input type="range" id="pr-a" min="-85" max="85" step="1" value="-85"></label>
+          <div class="btn-row"><button class="btn" id="pr-sup">뒤침 끝</button><button class="btn" id="pr-mid">중간</button><button class="btn" id="pr-pro">엎침 끝</button></div>
+          <p style="font-size:14px;color:var(--text-dim);margin:4px 0 0">−는 뒤침(손바닥이 앞), +는 엎침(손바닥이 뒤). 0은 엄지가 앞을 향한 중간 자세다.</p>
+        </div>
+      </div>
+      <div class="info-panel" id="pr-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">자세</span><span class="v" id="pr-o-n">—</span></div>
+        <div class="stat"><span class="k">손바닥</span><span class="v" id="pr-o-p">—</span></div>
+        <div class="stat"><span class="k">두 뼈</span><span class="v" id="pr-o-x">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 뒤침 끝(해부학적 자세)에서 노뼈와 자뼈가 나란한 것을 본다. ② 손잡이를 오른쪽으로 끌어 엎침 끝까지 돌린다. 노뼈 아래끝이 자뼈 앞을 지나 안쪽으로 건너가고, 오른쪽 위 작은 그림에서 노뼈가 자뼈 둘레를 반 바퀴 가까이 도는 것을 본다. ③ 내 오른팔을 앞으로 뻗고 왼손으로 팔꿈치를 잡은 채 손바닥을 뒤집어 보면, 위팔은 돌지 않는다. (뼈의 길이 비는 데이터의 노뼈·자뼈 값, 가동 범위는 교과서의 대표값 약 85°씩. 그림은 앞에서 본 오른팔이라 엄지 쪽(가쪽)이 화면 왼쪽이다.)</div>
+    </div>
+
+    <p>엎침과 뒤침은 중간 자세(엄지가 앞)에서 각각 약 80~90°, 합쳐서 약 160~180°다. 어깨를 함께 돌리면 손바닥을 거의 한 바퀴 돌릴 수 있다. 엎치는 근육(원엎침근, 네모엎침근)보다 뒤치는 근육(위팔두갈래근, 뒤침근)이 훨씬 강하다. 나사가 대부분 오른손으로 시계 방향(뒤침 방향)으로 돌려 조이게 만들어진 것과 잘 맞는다.</p>
+    <p>아래팔의 근육은 위팔과 마찬가지로 앞칸과 뒤칸으로 나뉜다. 앞칸(손바닥 쪽)의 근육은 대부분 위팔뼈 <b>안쪽</b>위관절융기에서 시작해 손목과 손가락을 굽히고, 뒤칸(손등 쪽)의 근육은 <b>가쪽</b>위관절융기에서 시작해 손목과 손가락을 편다. 근육의 배는 아래팔 위쪽에 모여 있고 손목에 가까워지면 가는 힘줄만 남는다. 그래서 손목은 가늘고, 손가락을 움직이는 힘의 대부분은 아래팔에서 온다. 앞의 3D 모델에서 아래팔 굽힘근과 폄근을 다시 켜 보면 손목 쪽이 힘줄로 가늘어지는 것이 보인다.</p>
+  </section>
+
+  <section id="hand">
+    <h2>손: 27개의 뼈와 손목뼈 8개</h2>
+    <p>손에는 뼈가 27개 있다. 손목에 작은 <span class="term">손목뼈</span><span class="en">(수근골, Carpal bones)</span> 8개, 손바닥에 <span class="term">손허리뼈</span><span class="en">(중수골, Metacarpals)</span> 5개, 손가락에 <span class="term">손가락뼈</span><span class="en">(지골, Phalanges)</span> 14개다. 손가락마다 첫마디·중간마디·끝마디 세 개씩이고 엄지만 두 개(첫마디·끝마디)다. 손허리는 "손의 허리", 곧 손바닥 가운데 부분이라는 뜻이다.</p>
+    <p>손목뼈 8개는 4개씩 두 줄로 놓인다. 몸쪽 줄은 엄지 쪽부터 <span class="term">손배뼈</span><span class="en">(주상골, Scaphoid)</span>, <span class="term">반달뼈</span><span class="en">(월상골, Lunate)</span>, <span class="term">세모뼈</span><span class="en">(삼각골, Triquetrum)</span>, <span class="term">콩알뼈</span><span class="en">(두상골, Pisiform)</span>이고, 먼쪽 줄은 <span class="term">큰마름뼈</span><span class="en">(대능형골, Trapezium)</span>, <span class="term">작은마름뼈</span><span class="en">(소능형골, Trapezoid)</span>, <span class="term">알머리뼈</span><span class="en">(유두골, Capitate)</span>, <span class="term">갈고리뼈</span><span class="en">(유구골, Hamate)</span>다. 이름은 모두 모양에서 왔다. 배, 반달, 세모, 콩알, 마름모, 둥근 머리, 갈고리. 앞 글자만 따서 "배·반·세·콩, 큰·작·알·갈"로 외우면 된다.</p>
+    <p>아래 3D 모델은 오른손을 손바닥 쪽에서 본다. 손목뼈를 하나씩 끄고 켜며 자리를 찾아보자.</p>
+
+    <div class="sim model3d" id="ul-hand3d" data-model="hand" data-orbit="0deg 80deg auto" data-desc="오른손 3D 모델에서 손목뼈 8개(손배뼈, 반달뼈, 세모뼈, 콩알뼈, 큰마름뼈, 작은마름뼈, 알머리뼈, 갈고리뼈)와 손허리뼈, 손가락뼈를 하나씩 켜고 끄며 두 줄의 배열을 확인한다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 오른손의 뼈</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="scaphoid" title="몸쪽 줄, 엄지 쪽. 배 모양. 넘어질 때 잘 부러진다">손배뼈</button><button type="button" data-part="lunate" title="몸쪽 줄. 반달 모양">반달뼈</button><button type="button" data-part="triquetral" title="몸쪽 줄. 세모 모양">세모뼈</button><button type="button" data-part="pisiform" title="세모뼈 앞에 얹힌 콩알 모양 종자뼈">콩알뼈</button><button type="button" data-part="trapezium" title="먼쪽 줄, 엄지 손허리뼈와 안장관절을 이룬다">큰마름뼈</button><button type="button" data-part="trapezoid" title="먼쪽 줄. 집게손가락 손허리뼈와 만난다">작은마름뼈</button><button type="button" data-part="capitate" title="먼쪽 줄 가운데, 손목뼈 가운데 가장 크다">알머리뼈</button><button type="button" data-part="hamate" title="먼쪽 줄, 새끼 쪽. 손바닥 쪽으로 갈고리가 나온다">갈고리뼈</button><button type="button" data-part="metacarpals" title="손바닥의 뼈 5개">손허리뼈</button><button type="button" data-part="proximal" title="손가락 첫마디뼈 5개">첫마디뼈</button><button type="button" data-part="middle" title="중간마디뼈 4개(엄지에는 없다)">중간마디뼈</button><button type="button" data-part="distal" title="끝마디뼈 5개">끝마디뼈</button><button type="button" data-part="forearm" title="노뼈와 자뼈의 아래끝(반투명)">노뼈·자뼈</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="metacarpals,proximal,middle,distal">손가락 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 손허리뼈와 손가락뼈를 반투명하게 하고, 손목뼈가 4개씩 두 줄로 놓인 것을 본다. ② 노뼈와 만나는 것은 몸쪽 줄의 손배뼈와 반달뼈다. 넘어지며 손바닥을 짚으면 힘이 손배뼈로 몰린다. ③ 엄지 손허리뼈와 큰마름뼈가 만나는 곳을 돌려 보며, 말안장처럼 두 방향으로 휜 관절면을 찾는다. <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <p>이제 데이터로 손목뼈를 하나씩 짚어 보자. 아래 그림은 각 손목뼈의 무게중심을 손바닥 쪽에서 본 위치에 찍고, 원의 크기를 부피에 맞춘 것이다. "순서 맞히기"에서는 엄지 쪽 몸쪽 줄부터 차례로 눌러 본다.</p>
+
+    <div class="sim" id="ul-carpal" data-desc="오른손 손목뼈 8개를 실제 데이터의 무게중심 위치와 부피 크기로 그리고, 눌러서 이름의 뜻과 부피를 확인하거나 엄지 쪽 몸쪽 줄부터 차례로 누르는 순서 맞히기를 한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>손목뼈 8개: 배·반·세·콩, 큰·작·알·갈</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ca-cv" class="drag"></canvas><span class="hint">손목뼈를 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="ca-mode"><button data-value="look" class="on">둘러보기</button><button data-value="quiz">순서 맞히기</button></div>
+          <label class="check"><input type="checkbox" id="ca-name" checked> 이름 보이기</label>
+          <div class="btn-row"><button class="btn" id="ca-re">처음부터</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="ca-info">손목뼈를 누른다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 뼈</span><span class="v" id="ca-o-n">—</span></div>
+        <div class="stat"><span class="k">부피</span><span class="v" id="ca-o-v">—</span></div>
+        <div class="stat"><span class="k">순서 맞히기</span><span class="v" id="ca-o-q">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 둘러보기에서 가장 큰 손목뼈(알머리뼈)와 가장 작은 손목뼈(콩알뼈)를 찾는다. ② "순서 맞히기"로 바꿔 이름을 끄고, 손배뼈부터 갈고리뼈까지 8개를 순서대로 누른다. ③ 콩알뼈가 세모뼈 바로 앞(손바닥 쪽)에 얹혀 있는 것을 본다. 위치가 겹쳐 그림에서는 조금 옆으로 비켜 그렸다. (앞에서 본 오른손이라 엄지 쪽이 화면 왼쪽이다. 원은 실제 모양이 아니라 부피가 같은 공의 크기를 줄여 그린 것.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>손목뼈 여덟 개를 모두 합쳐도 부피가 <b id="ul-carp">—</b>로 작은 숟가락 몇 개 분량이다. 손목뼈들은 손바닥 쪽으로 오목한 아치를 이루고, 그 위를 질긴 인대(굽힘근지지띠)가 덮어 터널을 만든다. 이것이 <span class="term">손목굴</span><span class="en">(수근관, Carpal tunnel)</span>이다. 손가락을 굽히는 힘줄 9개와 정중신경이 이 좁은 터널을 함께 지나기 때문에, 터널 안이 붓거나 좁아지면 신경이 눌려 엄지·집게·가운데손가락이 저린다. 이 데이터에는 굽힘근지지띠와 정중신경이 없어 터널은 3D 모델에서 손목뼈의 오목한 아치로만 볼 수 있다.</p>
+    <p>손의 근육은 아래팔에서 힘줄로 내려오는 <b>바깥근육</b>(큰 힘)과 손 안에 있는 <b>속근육</b>(섬세한 조절)으로 나뉜다. 엄지 뿌리의 불룩한 살 <span class="term">엄지두덩</span><span class="en">(무지구, Thenar eminence)</span>과 새끼손가락 쪽의 <span class="term">새끼두덩</span><span class="en">(소지구, Hypothenar eminence)</span>이 속근육 무리다. 엄지가 다른 손가락 끝과 마주 닿는 <b>맞섬</b>(opposition)은 엄지두덩 근육과 큰마름뼈의 안장관절이 함께 만든다. 관절의 모양과 자유도는 <a href="joints.html">6장</a>에서 다룬다.</p>
+  </section>
+
+  <section id="atlas">
+    <h2>데이터로 보는 팔 한 짝</h2>
+    <p>지금까지 마디별로 본 뼈와 근육을 한 지도 위에 모아 보자. 아래 종합 시뮬레이터는 이 데이터에 있는 오른팔의 뼈와 근육을 모두 무게중심 위치에 찍었다. 누르면 이름, 부피, 어림 무게, 위팔뼈에서 본 방향이 나온다. 오른쪽 막대는 팔 한 짝에 든 뼈와 근육의 총량이다.</p>
+
+    <div class="sim" id="ul-atlas" data-big data-desc="오른팔의 뼈 13묶음과 근육 9개를 실제 데이터의 무게중심 위치와 부피 크기로 지도 위에 찍고, 눌러서 이름·부피·무게·위팔뼈에서 본 방향을 확인하며 팔 한 짝의 뼈와 근육 총량, 교과서의 팔 무게와 비교한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>팔 한 짝의 데이터 지도</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="at-cv" class="drag"></canvas><span class="hint">점을 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="at-show"><button data-value="all" class="on">모두</button><button data-value="bone">뼈</button><button data-value="muscle">근육</button></div>
+          <div class="seg" id="at-view"><button data-value="front" class="on">앞모습</button><button data-value="side">옆모습</button></div>
+          <label class="check"><input type="checkbox" id="at-lab"> 이름 모두 보이기</label>
+        </div>
+      </div>
+      <div class="info-panel" id="at-info">점을 누르면 그 구조의 데이터가 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">뼈(32개) 합</span><span class="v" id="at-o-b">—</span></div>
+        <div class="stat"><span class="k">근육(9개) 합</span><span class="v" id="at-o-m">—</span></div>
+        <div class="stat"><span class="k">합친 무게</span><span class="v" id="at-o-t">—</span></div>
+        <div class="stat"><span class="k">교과서: 팔 한 짝</span><span class="v" id="at-o-x">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "뼈"만 켜고 가장 큰 점(위팔뼈)과 손 쪽의 작은 점들을 비교한다. ② "근육"만 켜고 옆모습으로 바꿔, 큰가슴근(앞)과 가시아래근(뒤)이 몸통 쪽에 붙어 있는 것을 본다. 팔을 움직이는 근육 상당수는 몸통에서 시작한다. ③ 오른쪽 막대의 합친 무게를 교과서의 팔 무게(체중의 약 5 %)와 비교하고, 그 차이가 어디서 오는지 생각한다. (근육은 이 데이터에 따로 있는 9개뿐이다. 아래팔·손의 근육, 넓은등근, 피부와 지방, 혈액이 빠져 있다. 체중은 데이터의 몸 부피에 밀도 약 1 kg/L를 곱해 어림했다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>데이터에 있는 뼈와 근육만 더하면 <b id="ul-sum">—</b>으로, 교과서가 말하는 팔 한 짝의 무게(체중의 약 5 %)의 <b id="ul-sumpct">—</b>다. 그런데 이 합에는 큰가슴근처럼 몸통 앞면을 넓게 덮는 근육이 통째로 들어 있어 실제 "팔"보다 넉넉하게 센 몫이 있고, 반대로 아래팔과 손의 근육 수십 개, 피부, 지방, 혈액, 힘줄과 인대는 빠져 있다. 두 오차가 섞여 있으니 이 숫자는 "팔 무게의 측정값"이 아니라 "데이터에 든 것의 합"이다. 데이터가 말해 주는 것과 말해 주지 못하는 것을 구별하는 습관은 이 책 전체에서 중요하다.</p>
+
+    <div class="casefile">
+      <div class="tag"><b>DATA</b><span>데이터로 확인하기 · 4장</span></div>
+      <h4>손뼈 27개를 다 합쳐도 위팔뼈 하나의 3분의 1</h4>
+      <p>이 모델에서 위팔뼈 하나의 부피는 <b id="dc-hum">—</b>다. 손의 뼈 27개(손목뼈 8 + 손허리뼈 5 + 손가락뼈 14)를 모두 더하면 <b id="dc-hand">—</b>로, 위팔뼈의 <b id="dc-ratio">—</b>다. 손목뼈 8개만 더하면 <b id="dc-carp">—</b>, 그중 가장 큰 알머리뼈는 <b id="dc-cap">—</b>, 가장 작은 콩알뼈는 <b id="dc-pis">—</b>이다.</p>
+      <p>뼈의 개수와 부피는 거꾸로 간다. 팔 한 짝의 뼈 32개 가운데 27개(84 %)가 손에 있지만, 부피로는 손이 팔 뼈 전체의 <b id="dc-handpct">—</b>에 그친다. 손은 작은 뼈를 많이 두어 관절을 늘리고, 그 관절 덕분에 쥐고 집고 돌리는 섬세한 움직임을 얻는다. 위팔뼈는 크고 긴 뼈 하나로 지렛대 팔을 길게 만든다.</p>
+      <div class="clue"><div><b>데이터가 보여 준 것</b>개수의 84 %가 손에, 부피의 대부분은 위팔뼈·어깨뼈·노뼈·자뼈에 있다. 뼈의 수는 움직임의 자유를, 크기는 힘과 지렛대를 반영한다.</div><div><b>데이터의 한계</b>한 사람의 뼈다. 종자뼈(엄지 쪽 작은 뼈)는 사람마다 있고 없고가 다르다. 인대와 연골이 빠져 있어 관절 사이의 틈은 실제보다 비어 보인다.</div><div><b>다음 장에서</b>같은 설계(하나·둘·여럿)를 가진 다리가 체중을 받치려고 얼마나 커졌는지 잰다.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>팔은 어깨이음뼈(빗장뼈·어깨뼈), 위팔(위팔뼈), 아래팔(노뼈·자뼈), 손(27개)의 네 마디다. 한 짝에 뼈가 32개다.</li>
+      <li>팔과 몸통뼈대를 잇는 뼈의 관절은 복장빗장관절 하나뿐이다. 어깨뼈는 근육으로 갈비뼈 위에 매달려 미끄러지며, 팔을 들 때 함께 돈다(팔 180° = 어깨관절 약 120° + 어깨뼈 약 60°).</li>
+      <li>어깨관절은 얕은 관절오목 때문에 자유롭지만 불안정하다. 돌림근띠(가시위근·가시아래근·작은원근·어깨밑근)가 머리를 관절오목에 눌러 어깨세모근과 짝힘을 이룬다.</li>
+      <li>위팔과 아래팔의 근육은 앞칸(굽힘)과 뒤칸(폄)으로 나뉜다. 이 모델에서 위팔세갈래근은 위팔두갈래근과 위팔근을 합친 것보다 크다.</li>
+      <li>엎침·뒤침은 노뼈가 제자리의 자뼈 둘레를 도는 움직임이다. 엎침에서는 두 뼈가 X자로 엇갈린다.</li>
+      <li>손목뼈 8개는 두 줄이다: 배·반·세·콩(몸쪽), 큰·작·알·갈(먼쪽). 손목굴로 손가락 굽힘근 힘줄과 정중신경이 지난다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 팔(위팔뼈·어깨뼈·빗장뼈)과 몸통뼈대 사이를 뼈끼리 직접 잇는 관절은?</p>
+        <div class="opts"><button class="opt">어깨관절(오목위팔관절)</button><button class="opt">어깨뼈와 갈비뼈 사이의 관절</button><button class="opt" data-correct>복장빗장관절</button><button class="opt">어깨봉우리빗장관절</button></div>
+        <div class="quiz-exp">빗장뼈 안쪽 끝과 복장뼈가 만나는 복장빗장관절이 유일한 뼈 연결이다. 어깨뼈와 갈비뼈 사이에는 관절이 아니라 근육(앞톱니근 등)이 있어, 어깨뼈가 미끄러질 수 있다.</div></div>
+      <div class="quiz-q"><p>2. 해부학적 자세에서 오른쪽 아래팔의 두 뼈 가운데 엄지 쪽(가쪽)에 있고, 엎침 때 다른 뼈 둘레를 도는 뼈는?</p>
+        <div class="opts"><button class="opt" data-correct>노뼈</button><button class="opt">자뼈</button><button class="opt">위팔뼈</button><button class="opt">손배뼈</button></div>
+        <div class="quiz-exp">노뼈는 엄지 쪽에 있고 손목 쪽 끝이 넓다. 엎침에서는 자뼈가 거의 제자리에 있고 노뼈의 아래끝이 자뼈 앞을 지나 안쪽으로 건너가 두 뼈가 X자로 엇갈린다.</div></div>
+      <div class="quiz-q"><p>3. 팔을 몸 옆에 내린 상태에서 돌림근띠가 끊어지면 어깨세모근만으로 팔을 들기 어려운 까닭은?</p>
+        <div class="opts"><button class="opt">어깨세모근이 팔을 모으는 근육이라서</button><button class="opt" data-correct>어깨세모근의 힘이 거의 위를 향해 위팔뼈 머리를 끌어올리기만 하기 때문에</button><button class="opt">어깨세모근이 아래팔에 붙어 있어서</button><button class="opt">어깨뼈가 고정되기 때문에</button></div>
+        <div class="quiz-exp">팔을 내린 자세에서 어깨세모근의 당김선은 거의 수직이다. 돌림근띠가 머리를 관절오목 쪽으로 눌러 줘야 두 힘의 합이 관절오목 안을 향해 머리가 제자리에서 돈다(짝힘).</div></div>
+      <div class="quiz-q"><p>4. 손목뼈 몸쪽 줄을 엄지 쪽부터 바르게 나열한 것은?</p>
+        <div class="opts"><button class="opt">큰마름뼈 – 작은마름뼈 – 알머리뼈 – 갈고리뼈</button><button class="opt">반달뼈 – 손배뼈 – 콩알뼈 – 세모뼈</button><button class="opt">손배뼈 – 알머리뼈 – 세모뼈 – 갈고리뼈</button><button class="opt" data-correct>손배뼈 – 반달뼈 – 세모뼈 – 콩알뼈</button></div>
+        <div class="quiz-exp">몸쪽 줄은 배·반·세·콩(손배뼈, 반달뼈, 세모뼈, 콩알뼈), 먼쪽 줄은 큰·작·알·갈(큰마름뼈, 작은마름뼈, 알머리뼈, 갈고리뼈)이다. 콩알뼈는 세모뼈 앞에 얹힌 종자뼈다.</div></div>
+      <div class="quiz-q"><p>5. 이 장의 데이터에서 위팔 앞칸의 굽힘근(위팔두갈래근+위팔근)과 뒤칸의 위팔세갈래근 부피를 비교한 결과로 옳은 것은?</p>
+        <div class="opts"><button class="opt">앞칸이 뒤칸의 약 2배다</button><button class="opt">둘이 정확히 같다</button><button class="opt" data-correct>뒤칸(세갈래근)이 앞칸보다 약 1.3배 크다</button><button class="opt">데이터에 위팔세갈래근이 없다</button></div>
+        <div class="quiz-exp">이 모델에서 위팔두갈래근은 약 169 mL, 위팔근은 약 77 mL, 위팔세갈래근은 약 327 mL다. 뒤칸이 앞칸 합계(약 246 mL)의 약 1.3배다. 위팔노근(약 79 mL)까지 굽힘근에 더하면 거의 같아진다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var DEG = Math.PI / 180;
+  function handle(ctx, x, y, P, col) {
+    ctx.beginPath(); ctx.arc(x, y, 9, 0, 7); ctx.fillStyle = P.bg; ctx.fill();
+    ctx.strokeStyle = col || P.accent; ctx.lineWidth = 2.5; ctx.stroke();
+    ctx.beginPath(); ctx.arc(x, y, 3, 0, 7); ctx.fillStyle = col || P.accent; ctx.fill();
+  }
+  function text(ctx, s, x, y, o) {
+    o = o || {};
+    ctx.font = BB.font(o.size || 12, o.mono, o.weight); ctx.fillStyle = o.color || BB.palette().text;
+    ctx.textAlign = o.align || "left"; ctx.textBaseline = o.base || "alphabetic";
+    ctx.fillText(s, x, y); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+  }
+  function arrow(ctx, x0, y0, x1, y1, col, wdt) {
+    var a = Math.atan2(y1 - y0, x1 - x0), L = Math.hypot(x1 - x0, y1 - y0); if (L < 2) return;
+    var hl = Math.min(11, L * 0.4);
+    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = wdt || 3;
+    ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1 - Math.cos(a) * hl * 0.7, y1 - Math.sin(a) * hl * 0.7); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x1 - Math.cos(a - 0.4) * hl, y1 - Math.sin(a - 0.4) * hl); ctx.lineTo(x1 - Math.cos(a + 0.4) * hl, y1 - Math.sin(a + 0.4) * hl); ctx.closePath(); ctx.fill();
+  }
+  // 여러 구조를 한 묶음으로: 부피 합, 경계 상자, 부피 가중 무게중심
+  function group(keys, ko) {
+    var lo = [1e9, 1e9, 1e9], hi = [-1e9, -1e9, -1e9], c = [0, 0, 0], v = 0;
+    keys.forEach(function (k) {
+      var p = AT.part(k);
+      for (var i = 0; i < 3; i++) { lo[i] = Math.min(lo[i], p.lo[i]); hi[i] = Math.max(hi[i], p.hi[i]); c[i] += p.c[i] * p.vol; }
+      v += p.vol;
+    });
+    return { ko: ko, vol: v, lo: lo, hi: hi, c: c.map(function (x) { return x / v; }), sys: AT.part(keys[0]).sys, n: keys.length };
+  }
+  var CARP = ["scaphoid", "lunate", "triquetral", "pisiform", "trapezium", "trapezoid", "capitate", "hamate"];
+  var AXI = { front: 0, side: 1 };
+  function H(id, narrow, wide) { var holder = document.getElementById(id).parentElement; return { get height() { return holder.clientWidth < 520 ? narrow : wide; } }; }
+
+  /* ---------------- 팔 마디의 길이 ---------------- */
+  (function () {
+    var carp = group(CARP, "손목뼈(8개)");
+    function P_(k, ax) { var p = AT.part(k); return { k: k, ko: p.ko, vol: p.vol, lo: p.lo, hi: p.hi, c: p.c, ax: ax }; }
+    var SEG = [P_("clavicle", 0), P_("scapula", 2), P_("humerus", 2), P_("ulna", 2), P_("radius", 2),
+      Object.assign({ k: "carpals", ax: 2 }, carp), P_("metacarpals", 2), P_("fingers", 2)];
+    SEG.forEach(function (s) { s.len = s.hi[s.ax] - s.lo[s.ax]; });
+    var sel = 2, mode = "len", T = null, bars = [], narrow = false;
+    var cv = BB.canvas("#len-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      narrow = w < 560;
+      var mb = narrow ? { x: 0, y: 0, w: w, h: h * 0.52 } : { x: 0, y: 0, w: w * 0.4, h: h };
+      var bb = narrow ? { x: 8, y: h * 0.52 + 6, w: w - 16, h: h * 0.48 - 30 } : { x: w * 0.4 + 14, y: 14, w: w * 0.6 - 24, h: h - 28 };
+      ctx.save(); ctx.beginPath(); ctx.rect(mb.x, mb.y, mb.w, mb.h); ctx.clip();
+      T = AT.mapFit(mb, "front", { keys: ["armbones_r"], margin: 25, pad: 10 });
+      AT.drawMap(ctx, T, "front", { layers: ["skin", "ribcage", "spine", "armbones_r"], alpha: 0.75 });
+      SEG.forEach(function (s, i) {
+        var q = AT.mapPoint(T, "front", s.c), on = i === sel;
+        ctx.beginPath(); ctx.arc(q[0], q[1], on ? 7 : 4.5, 0, 7);
+        ctx.fillStyle = on ? P.accent : BB.alpha(P.text, 0.55); ctx.fill();
+        if (on) { ctx.strokeStyle = P.bg; ctx.lineWidth = 2; ctx.stroke(); }
+      });
+      var s = SEG[sel];
+      ctx.strokeStyle = P.accent; ctx.lineWidth = 2;
+      if (s.ax === 2) {
+        var bx = T.X(s.lo[0]) - 10, y0 = T.Y(s.hi[2]), y1 = T.Y(s.lo[2]);
+        ctx.beginPath(); ctx.moveTo(bx + 5, y0); ctx.lineTo(bx, y0); ctx.lineTo(bx, y1); ctx.lineTo(bx + 5, y1); ctx.stroke();
+        text(ctx, AT.fmtLen(s.len), bx - 4, (y0 + y1) / 2, { align: "right", base: "middle", mono: true, color: P.accent, weight: 700, size: 11 });
+      } else {
+        var by = T.Y(s.hi[2]) - 8, x0 = T.X(s.lo[0]), x1 = T.X(s.hi[0]);
+        ctx.beginPath(); ctx.moveTo(x0, by + 5); ctx.lineTo(x0, by); ctx.lineTo(x1, by); ctx.lineTo(x1, by + 5); ctx.stroke();
+        text(ctx, AT.fmtLen(s.len), (x0 + x1) / 2, by - 4, { align: "center", mono: true, color: P.accent, weight: 700, size: 11 });
+      }
+      AT.orient(ctx, mb, "front", P.faint);
+      ctx.restore();
+      // 막대
+      var vals = SEG.map(function (s) { return mode === "len" ? s.len : s.vol; });
+      var max = Math.max.apply(null, vals), rowH = bb.h / SEG.length, lw = narrow ? 92 : 104;
+      bars = [];
+      text(ctx, mode === "len" ? "길이(mm) · 위아래 크기(빗장뼈는 좌우)" : "부피(mL)", bb.x + lw, bb.y - 2, { color: P.dim, size: 11, base: "bottom" });
+      SEG.forEach(function (s, i) {
+        var y = bb.y + i * rowH + 4, bh = Math.max(8, rowH - 10), bw = (bb.w - lw - 58) * vals[i] / max;
+        bars.push({ i: i, x: bb.x, y: y - 2, w: bb.w, h: rowH });
+        if (i === sel) { ctx.fillStyle = BB.alpha(P.accent, 0.1); ctx.fillRect(bb.x, y - 3, bb.w, rowH - 2); }
+        text(ctx, s.ko, bb.x + lw - 8, y + bh / 2, { align: "right", base: "middle", size: 12, color: i === sel ? P.text : P.dim, weight: i === sel ? 700 : 400 });
+        ctx.fillStyle = i === sel ? P.accent : BB.alpha(AT.COLORS.bone, 0.95);
+        ctx.fillRect(bb.x + lw, y, Math.max(2, bw), bh);
+        ctx.strokeStyle = BB.alpha(P.text, 0.25); ctx.lineWidth = 1; ctx.strokeRect(bb.x + lw, y, Math.max(2, bw), bh);
+        text(ctx, mode === "len" ? Math.round(vals[i]) + "" : (vals[i] >= 10 ? Math.round(vals[i]) : vals[i].toFixed(1)) + "", bb.x + lw + bw + 6, y + bh / 2, { base: "middle", mono: true, size: 11, color: P.text });
+      });
+    }, H("len-cv", 560, 420));
+    function update() {
+      var s = SEG[sel];
+      BB.stat("len-o-n", s.ko);
+      BB.stat("len-o-l", AT.fmtLen(s.len));
+      BB.stat("len-o-v", AT.fmtVol(s.vol) + " · " + Math.round(s.vol * AT.DENSITY.bone) + " g");
+      BB.stat("len-o-r", (s.len / AT.body.height * 100).toFixed(1) + " %");
+      var hum = SEG[2], uln = SEG[3];
+      var extra = { humerus: "위팔뼈는 이 모델 키(" + AT.fmtLen(AT.body.height) + ")의 " + Math.round(hum.len / AT.body.height * 100) + " %다.",
+        ulna: "자뼈가 노뼈보다 " + Math.round(uln.len - SEG[4].len) + " mm 길고, 윗끝(팔꿈치머리)이 팔꿈치 뒤로 솟아 있다.",
+        radius: "노뼈는 자뼈보다 짧지만 손목 쪽 끝이 넓어, 손목관절의 대부분을 맡는다.",
+        carpals: "8개를 합쳐도 위팔뼈의 " + Math.round(carp.vol / hum.vol * 100) + " %다.",
+        clavicle: "가로로 누운 버팀대. 좌우 크기로 쟀다.",
+        scapula: "세모난 판. 갈비뼈 위를 근육으로 미끄러진다.",
+        metacarpals: "손바닥의 뼈 5개. 위아래 크기로 쟀다.",
+        fingers: "14개. 손가락이 살짝 굽어 있어 위아래 크기가 실제 길이보다 짧다." }[s.k];
+      document.getElementById("len-info").innerHTML = "<b>" + s.ko + "</b> · " + extra;
+    }
+    BB.seg("len-mode", function (v) { mode = v; cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      var best = -1, bd = 26;
+      SEG.forEach(function (s, i) { var q = AT.mapPoint(T, "front", s.c), d = Math.hypot(q[0] - x, q[1] - y); if (d < bd) { bd = d; best = i; } });
+      if (best < 0) bars.forEach(function (b) { if (x >= b.x && x <= b.x + b.w && y >= b.y && y < b.y + b.h) best = b.i; });
+      if (best >= 0) { sel = best; update(); cv.redraw(); }
+    } });
+    update();
+  })();
+
+  /* ---------------- 어깨위팔 리듬 ---------------- */
+  (function () {
+    var th = 0, fix = document.getElementById("rh-fix");
+    var LH = AT.size("humerus")[2], LS = AT.size("scapula")[2], LF = AT.size("ulna")[2] + 80;
+    var geo = null;
+    function scapRot(t) { return fix.checked ? 0 : t / 3; }
+    function maxT() { return fix.checked ? 120 : 180; }
+    var cv = BB.canvas("#rh-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      var s = Math.min(w / 1050, (h - 20) / 1400);  // px/mm
+      var cx = w * 0.34, sy = h * 0.5;       // 척주 중심, 어깨 높이
+      function W(x, y) { return [cx + x * s, sy - y * s]; }
+      // 몸통(뒤에서)
+      ctx.fillStyle = BB.alpha(AT.COLORS.skin, BB.isDark() ? 0.16 : 0.26); ctx.strokeStyle = BB.alpha(P.text, 0.35); ctx.lineWidth = 1;
+      var tl = W(-175, 40), br = W(175, -420);
+      BB.rrect(ctx, tl[0], tl[1], br[0] - tl[0], br[1] - tl[1], 40 * s); ctx.fill(); ctx.stroke();
+      var hd = W(0, 150); ctx.beginPath(); ctx.arc(hd[0], hd[1], 85 * s, 0, 7); ctx.fill(); ctx.stroke();
+      var nk = W(-40, 75); ctx.fillRect(nk[0], nk[1], 80 * s, 40 * s);
+      // 척주
+      ctx.strokeStyle = BB.alpha(AT.COLORS.spine, 0.9); ctx.lineWidth = 6 * s + 2; ctx.setLineDash([6 * s + 2, 3]);
+      var a = W(0, 70), b = W(0, -420); ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); ctx.setLineDash([]);
+      // 어깨뼈(로컬 좌표, 피벗 = 어깨뼈가시 뿌리 근처)
+      var beta = scapRot(th), piv = [55, -10];
+      var loc = [[0, 40], [8, -LS + 40], [100, 18]]; // 위각, 아래각, 가쪽각(관절오목)
+      function rot(p, ang, sign) { var dx = p[0] - 10, dy = p[1] + 10, c = Math.cos(ang * sign), sn = Math.sin(ang * sign); return [10 + dx * c - dy * sn, -10 + dx * sn + dy * c]; }
+      function scap(side, ang) {
+        var pts = loc.map(function (p) { var q = rot(p, ang * DEG, 1); return [piv[0] + q[0], piv[1] + q[1]]; });
+        if (side < 0) pts = pts.map(function (p) { return [-p[0], p[1]]; });
+        return pts;
+      }
+      function drawScap(pts, on) {
+        ctx.beginPath(); pts.forEach(function (p, i) { var q = W(p[0], p[1]); if (i) ctx.lineTo(q[0], q[1]); else ctx.moveTo(q[0], q[1]); }); ctx.closePath();
+        ctx.fillStyle = BB.alpha(AT.COLORS.bone, on ? 0.95 : 0.6); ctx.fill(); ctx.strokeStyle = BB.alpha(P.text, 0.5); ctx.lineWidth = 1.2; ctx.stroke();
+        // 어깨뼈가시
+        var sp0 = pts[0], sp2 = pts[2], m = [sp0[0] + (pts[1][0] - sp0[0]) * 0.18, sp0[1] + (pts[1][1] - sp0[1]) * 0.18];
+        var q0 = W(m[0], m[1]), q1 = W(sp2[0], sp2[1] + 6); ctx.strokeStyle = BB.alpha(P.text, 0.45); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(q0[0], q0[1]); ctx.lineTo(q1[0], q1[1]); ctx.stroke();
+      }
+      var Ls = scap(-1, 0), Rs = scap(1, beta);
+      drawScap(Ls, false); drawScap(Rs, true);
+      function limb(G, ang, col) {
+        var u = [Math.sin(ang * DEG), -Math.cos(ang * DEG)];
+        var E = [G[0] + u[0] * LH, G[1] + u[1] * LH], Hd = [E[0] + u[0] * LF, E[1] + u[1] * LF];
+        var g = W(G[0], G[1]), e = W(E[0], E[1]), hh = W(Hd[0], Hd[1]);
+        ctx.strokeStyle = BB.alpha(AT.COLORS.skin, 0.55); ctx.lineCap = "round"; ctx.lineWidth = 70 * s;
+        ctx.beginPath(); ctx.moveTo(g[0], g[1]); ctx.lineTo(e[0], e[1]); ctx.lineTo(hh[0], hh[1]); ctx.stroke();
+        ctx.strokeStyle = col; ctx.lineWidth = 10 * s + 2;
+        ctx.beginPath(); ctx.moveTo(g[0], g[1]); ctx.lineTo(e[0], e[1]); ctx.stroke();
+        ctx.lineWidth = 7 * s + 2; ctx.beginPath(); ctx.moveTo(e[0], e[1]); ctx.lineTo(hh[0], hh[1]); ctx.stroke(); ctx.lineCap = "butt";
+        return { g: g, hand: hh };
+      }
+      var Lg = Ls[2], Rg = Rs[2];
+      limb([Lg[0] + 6, Lg[1] - 6], 0, BB.alpha(AT.COLORS.bone, 0.7));
+      var R = limb([Rg[0] - 6, Rg[1] - 6], th, AT.COLORS.bone);
+      // 각도 호
+      var g = R.g, r1 = 62;
+      ctx.strokeStyle = P.faint; ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(g[0], g[1]); ctx.lineTo(g[0], g[1] + r1 + 24); ctx.stroke(); ctx.setLineDash([]);
+      ctx.strokeStyle = P.accent; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(g[0], g[1], r1, Math.PI / 2 - th * DEG, Math.PI / 2, false); ctx.stroke();
+      var mid = Math.PI / 2 - th * DEG / 2;
+      text(ctx, Math.round(th) + "°", g[0] + Math.cos(mid) * (r1 + 16), g[1] + Math.sin(mid) * (r1 + 16), { align: "center", base: "middle", mono: true, weight: 700, color: P.accent });
+      // 어깨뼈 회전 표시(아래각에서 수직선과 비교)
+      var ia = W(Rs[1][0], Rs[1][1]), ia0 = scap(1, 0)[1], ia0s = W(ia0[0], ia0[1]);
+      if (beta > 0.5) {
+        ctx.strokeStyle = P.accent2; ctx.lineWidth = 2; ctx.setLineDash([3, 3]);
+        ctx.beginPath(); ctx.arc(ia0s[0], ia0s[1], 5, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+        arrow(ctx, ia0s[0], ia0s[1], ia[0], ia[1], P.accent2, 2);
+      }
+      text(ctx, "어깨뼈 " + Math.round(beta) + "°", Math.min(ia[0], ia0s[0]) - 10, ia[1] + 4, { color: P.accent2, weight: 700, size: 12, align: "right" });
+      handle(ctx, R.hand[0], R.hand[1], P);
+      geo = { g: g, s: s };
+      text(ctx, "뒤에서 본 모습", 10, 18, { color: P.dim, size: 12, weight: 600 });
+      text(ctx, "L", 10, h / 2, { color: P.faint, mono: true, weight: 700, base: "middle" });
+      text(ctx, "R", w - 12, h / 2, { color: P.ok, mono: true, weight: 700, base: "middle", align: "right" });
+      if (fix.checked && th >= 119.5) text(ctx, "위팔만으로는 여기까지(약 120°)", w / 2, h - 12, { color: P.bad, align: "center", weight: 700 });
+    }, H("rh-cv", 360, 420));
+    function update() {
+      var b = scapRot(th);
+      BB.stat("rh-o-t", Math.round(th) + "°"); BB.stat("rh-o-g", Math.round(th - b) + "°"); BB.stat("rh-o-s", Math.round(b) + "°");
+      document.getElementById("rh-info").innerHTML = fix.checked
+        ? "어깨뼈를 묶어 두었다. 위팔뼈만 관절오목 위에서 돌아 약 120°에서 위팔뼈의 큰결절이 어깨봉우리에 걸린다."
+        : th < 1 ? "팔을 내린 자세. 손끝의 손잡이를 위로 끌어 팔을 옆으로 든다."
+        : "팔 " + Math.round(th) + "° = 어깨관절 " + Math.round(th - b) + "° + 어깨뼈 " + Math.round(b) + "°. 어깨뼈가 돌아 관절오목이 위를 향하니 위팔뼈가 더 높이 올라갈 수 있다.";
+      cv.redraw();
+    }
+    function setT(v) { th = BB.clamp(v, 0, maxT()); update(); }
+    BB.drag(cv.canvas, { move: function (x, y) {
+      if (!geo) return;
+      var dx = x - geo.g[0], dy = y - geo.g[1];
+      var a = Math.atan2(dx, dy) / DEG; // 0 = 아래, 90 = 가쪽, 180 = 위
+      if (a < -20) a = a < -90 ? 180 : 0;
+      setT(a);
+    } });
+    fix.addEventListener("change", function () { setT(th); });
+    document.getElementById("rh-90").addEventListener("click", function () { setT(90); });
+    document.getElementById("rh-180").addEventListener("click", function () { setT(180); });
+    document.getElementById("rh-0").addEventListener("click", function () { setT(0); });
+    update();
+  })();
+
+  /* ---------------- 짝힘: 어깨세모근 + 돌림근띠 ---------------- */
+  (function () {
+    var LH = AT.size("humerus")[2], RH = 24, GL = 37;
+    var cuffVol = AT.part("supraspinatus").vol + AT.part("infraspinatus").vol + AT.part("subscapularis").vol, delVol = AT.part("deltoid").vol;
+    var T = null;
+    var aGet = BB.range("cp-a", function (v) { return v + "°"; }, function () { update(); });
+    var cGet = BB.range("cp-c", function (v) { return v + "%"; }, function () { update(); });
+    function solve() {
+      var a = aGet() * DEG, c = cGet() / 100;
+      var u = [Math.sin(a), -Math.cos(a)];
+      var I = [u[0] * LH * 0.45, u[1] * LH * 0.45], A = [8, 46];
+      var d = [A[0] - I[0], A[1] - I[1]], dl = Math.hypot(d[0], d[1]); d = [d[0] / dl, d[1] / dl];
+      var cd = [-0.944, -0.33];
+      var N = [d[0] + c * cd[0], d[1] + c * cd[1]];
+      var g = Math.atan2(N[1], -N[0]) / DEG; // 0 = 관절오목 정면, + = 위로
+      var shift = BB.clamp((Math.abs(g) - GL) / 40, 0, 1) * 9 * Math.sign(g);
+      return { u: u, I: I, A: A, d: d, cd: cd, c: c, N: N, g: g, shift: shift };
+    }
+    var cv = BB.canvas("#cp-cv", function (ctx, w, h) {
+      var P = BB.palette(), S = solve();
+      var s = Math.min(w / 330, h / 320), ox = w * 0.42, oy = h * 0.46;
+      function W(x, y) { return [ox + x * s, oy - y * s]; }
+      T = { W: W, s: s };
+      // 어깨뼈(관절오목 + 몸통 쪽 판)
+      ctx.fillStyle = BB.alpha(AT.COLORS.bone, 0.75); ctx.strokeStyle = BB.alpha(P.text, 0.45); ctx.lineWidth = 1.2;
+      ctx.beginPath(); var p0 = W(-RH - 4, 30); ctx.moveTo(p0[0], p0[1]);
+      for (var t = 180 - GL; t <= 180 + GL; t += 4) { var q = W(Math.cos(t * DEG) * (RH + 1.5), Math.sin(t * DEG) * (RH + 1.5)); ctx.lineTo(q[0], q[1]); }
+      var p1 = W(-RH - 4, -30), p2 = W(-150, -170), p3 = W(-150, 60); ctx.lineTo(p1[0], p1[1]); ctx.lineTo(p2[0], p2[1]); ctx.lineTo(p3[0], p3[1]); ctx.closePath(); ctx.fill(); ctx.stroke();
+      // 어깨봉우리
+      var ac = W(-60, 52), ac2 = W(38, 40); ctx.fillStyle = BB.alpha(AT.COLORS.bone, 0.85);
+      BB.rrect(ctx, ac[0], ac[1], ac2[0] - ac[0], 10 * s, 4 * s); ctx.fill(); ctx.stroke();
+      text(ctx, "어깨봉우리", ac[0] + 4, ac[1] - 6, { size: 11, color: P.dim });
+      text(ctx, "관절오목", W(-RH - 8, 0)[0] - 4, W(0, -RH - 14)[1], { size: 11, color: P.dim, align: "right" });
+      // 관절오목이 받아 주는 부채꼴
+      var hc = W(0, S.shift);
+      ctx.fillStyle = BB.alpha(P.ok, 0.13); ctx.beginPath(); ctx.moveTo(hc[0], hc[1]);
+      ctx.arc(hc[0], hc[1], 120 * s, Math.PI - GL * DEG, Math.PI + GL * DEG); ctx.closePath(); ctx.fill();
+      // 위팔뼈
+      var E = W(S.u[0] * 240, S.u[1] * 240 + S.shift);
+      ctx.strokeStyle = AT.COLORS.bone; ctx.lineCap = "round"; ctx.lineWidth = 20 * s; ctx.beginPath(); ctx.moveTo(hc[0], hc[1]); ctx.lineTo(E[0], E[1]); ctx.stroke(); ctx.lineCap = "butt";
+      ctx.beginPath(); ctx.arc(hc[0], hc[1], RH * s, 0, 7); ctx.fillStyle = AT.COLORS.bone; ctx.fill(); ctx.strokeStyle = BB.alpha(P.text, 0.5); ctx.lineWidth = 1.2; ctx.stroke();
+      // 어깨세모근 당김선
+      var Ip = W(S.I[0], S.I[1] + S.shift), Ap = W(S.A[0], S.A[1]);
+      ctx.strokeStyle = BB.alpha(AT.COLORS.muscle, 0.75); ctx.lineWidth = 9 * s; ctx.beginPath(); ctx.moveTo(Ip[0], Ip[1]); ctx.lineTo(Ap[0], Ap[1]); ctx.stroke();
+      text(ctx, "어깨세모근", Ip[0] + 10, Ip[1] + 4, { size: 12, weight: 700, color: AT.COLORS.muscle });
+      // 힘 벡터(머리 중심에서)
+      var F = 72 * s;
+      arrow(ctx, hc[0], hc[1], hc[0] + S.d[0] * F, hc[1] - S.d[1] * F, AT.COLORS.muscle, 3);
+      if (S.c > 0.01) arrow(ctx, hc[0], hc[1], hc[0] + S.cd[0] * F * S.c, hc[1] - S.cd[1] * F * S.c, P.accent2, 3);
+      var Nl = Math.hypot(S.N[0], S.N[1]);
+      var ok = Math.abs(S.g) <= GL;
+      arrow(ctx, hc[0], hc[1], hc[0] + S.N[0] * F, hc[1] - S.N[1] * F, ok ? P.ok : P.bad, 4);
+      text(ctx, "알짜 힘", hc[0] + S.N[0] * F + (S.N[0] < 0 ? -6 : 6), hc[1] - S.N[1] * F - 6, { weight: 700, color: ok ? P.ok : P.bad, align: S.N[0] < 0 ? "right" : "left" });
+      if (S.c > 0.01) text(ctx, "돌림근띠", hc[0] + S.cd[0] * F * S.c - 6, hc[1] - S.cd[1] * F * S.c + 14, { size: 12, weight: 700, color: P.accent2, align: "right" });
+      var Eh = W(S.u[0] * 165, S.u[1] * 165 + S.shift);
+      handle(ctx, Eh[0], Eh[1], P);
+      // 범례·데이터
+      var ly = 42;
+      text(ctx, "앞에서 본 오른쪽 어깨(가쪽 = 화면 오른쪽)", 10, 18, { size: 12, color: P.dim, weight: 600 });
+      text(ctx, "부피(이 모델): 어깨세모근 " + AT.fmtVol(delVol) + " · 돌림근띠 세 근육 " + AT.fmtVol(cuffVol), w - 10, ly + 20, { size: 11, color: P.dim, align: "right" });
+      var bw = Math.min(w - 20, 260); ctx.save(); ctx.translate(w - 10 - bw - 10, 0);
+      ctx.fillStyle = AT.COLORS.muscle; ctx.fillRect(10, ly - 2, bw * delVol / (delVol + cuffVol), 8);
+      ctx.fillStyle = P.accent2; ctx.fillRect(10 + bw * delVol / (delVol + cuffVol), ly - 2, bw * cuffVol / (delVol + cuffVol), 8);
+      ctx.restore();
+    }, H("cp-cv", 360, 400));
+    function update() {
+      var S = solve();
+      var ok = Math.abs(S.g) <= GL;
+      BB.stat("cp-o-g", (S.g >= 0 ? "위로 " : "아래로 ") + Math.abs(Math.round(S.g)) + "°");
+      BB.stat("cp-o-s", ok ? "관절오목 안에서 돈다" : S.g > 0 ? "위로 밀려 올라간다" : "아래로 밀린다");
+      document.getElementById("cp-info").innerHTML = ok
+        ? "알짜 힘이 관절오목(초록 부채꼴) 안을 향한다. 머리가 오목에 눌린 채 돌 수 있다."
+        : S.g > 0 ? "알짜 힘이 관절오목의 위 가장자리를 벗어났다. 위팔뼈 머리가 위로 미끄러져 어깨봉우리 밑의 힘줄을 누른다(충돌)."
+        : "돌림근띠의 힘이 지나쳐 머리가 아래로 밀린다.";
+      cv.redraw();
+    }
+    document.getElementById("cp-tear").addEventListener("click", function () { cGet.set(15); });
+    document.getElementById("cp-re").addEventListener("click", function () { cGet.set(100); });
+    BB.drag(cv.canvas, { move: function (x, y) {
+      if (!T) return;
+      var o = T.W(0, 0), a = Math.atan2(x - o[0], y - o[1]) / DEG;
+      if (a < -10) return;
+      aGet.set(Math.round(BB.clamp(a, 0, 90)));
+    } });
+    update();
+  })();
+
+  /* ---------------- 팔의 근육 부피 ---------------- */
+  (function () {
+    var M = [
+      { k: "deltoid", g: "어깨", act: "팔을 벌린다(가운데 섬유). 앞 섬유는 굽히고, 뒤 섬유는 편다." },
+      { k: "pecmajor", g: "어깨", act: "가슴에서 위팔뼈로. 팔을 모으고 안쪽으로 돌리며 앞으로 굽힌다." },
+      { k: "supraspinatus", g: "돌림근띠", act: "어깨뼈가시 위. 팔을 벌리기 시작하고 머리를 관절오목에 누른다." },
+      { k: "infraspinatus", g: "돌림근띠", act: "어깨뼈가시 아래. 팔을 가쪽으로 돌린다." },
+      { k: "subscapularis", g: "돌림근띠", act: "어깨뼈 앞면. 팔을 안쪽으로 돌린다." },
+      { k: "biceps", g: "위팔 앞", act: "두 갈래로 어깨뼈에서 시작해 노뼈에 붙는다. 팔꿈치를 굽히고 아래팔을 뒤친다." },
+      { k: "brachialis", g: "위팔 앞", act: "위팔뼈 앞에서 자뼈로. 아래팔의 방향과 상관없이 팔꿈치를 굽히는 주된 근육." },
+      { k: "triceps", g: "위팔 뒤", act: "세 갈래가 모여 자뼈의 팔꿈치머리에 붙는다. 팔꿈치를 편다." },
+      { k: "brachioradialis", g: "아래팔", act: "위팔뼈 가쪽 아래에서 노뼈 끝으로. 엄지를 위로 한 자세에서 팔꿈치 굽힘을 돕는다." },
+    ];
+    M.forEach(function (m) { var p = AT.part(m.k); m.ko = p.ko; m.en = p.en; m.vol = p.vol; m.c = p.c; });
+    var GC = { "어깨": "#c4574a", "돌림근띠": "#d9822b", "위팔 앞": "#3b8fd9", "위팔 뒤": "#8a5cc7", "아래팔": "#3aa17e" };
+    var sel = 5, mode = "vol", view = "front", T = null, rows = [];
+    var cv = BB.canvas("#mu-cv", function (ctx, w, h) {
+      var P = BB.palette(), narrow = w < 560;
+      var mb = narrow ? { x: 0, y: 0, w: w, h: h * 0.5 } : { x: 0, y: 0, w: w * 0.38, h: h };
+      var bb = narrow ? { x: 6, y: h * 0.5 + 24, w: w - 12, h: h * 0.5 - 48 } : { x: w * 0.38 + 12, y: 30, w: w * 0.62 - 20, h: h - 40 };
+      ctx.save(); ctx.beginPath(); ctx.rect(mb.x, mb.y, mb.w, mb.h); ctx.clip();
+      T = AT.mapFit(mb, view, { keys: ["armbones_r"], margin: 30, pad: 10 });
+      AT.drawMap(ctx, T, view, { layers: ["skin", "ribcage", "spine", "armbones_r"], alpha: 0.6 });
+      var mx = Math.max.apply(null, M.map(function (m) { return m.vol; }));
+      M.forEach(function (m, i) {
+        var q = AT.mapPoint(T, view, m.c), r = 4 + 13 * Math.sqrt(m.vol / mx);
+        ctx.beginPath(); ctx.arc(q[0], q[1], r, 0, 7);
+        ctx.fillStyle = BB.alpha(GC[m.g], i === sel ? 0.95 : 0.55); ctx.fill();
+        ctx.strokeStyle = i === sel ? P.text : P.bg; ctx.lineWidth = i === sel ? 2.5 : 1; ctx.stroke();
+      });
+      var s = M[sel], q = AT.mapPoint(T, view, s.c);
+      text(ctx, s.ko, q[0] + 14, q[1] - 10, { weight: 700, size: 12 });
+      AT.orient(ctx, mb, view, P.faint);
+      ctx.restore();
+      // 막대
+      var f = mode === "vol" ? 1 : AT.DENSITY.muscle;
+      var mx2 = Math.max.apply(null, M.map(function (m) { return m.vol * f; }));
+      var lw = narrow ? 84 : 96, rowH = bb.h / M.length;
+      rows = [];
+      text(ctx, mode === "vol" ? "부피(mL)" : "무게(g)", bb.x + lw - 8, bb.y - 10, { color: P.dim, size: 11, align: "right" });
+      M.forEach(function (m, i) {
+        var y = bb.y + i * rowH, bh = Math.max(8, rowH - 9), v = m.vol * f, bw = (bb.w - lw - 46) * v / mx2;
+        rows.push({ i: i, y0: y, y1: y + rowH });
+        if (i === sel) { ctx.fillStyle = BB.alpha(P.accent, 0.1); ctx.fillRect(bb.x, y - 2, bb.w, rowH - 2); }
+        text(ctx, m.ko, bb.x + lw - 8, y + bh / 2, { align: "right", base: "middle", size: 12, color: i === sel ? P.text : P.dim, weight: i === sel ? 700 : 400 });
+        ctx.fillStyle = GC[m.g]; ctx.globalAlpha = i === sel ? 1 : 0.75; ctx.fillRect(bb.x + lw, y, Math.max(2, bw), bh); ctx.globalAlpha = 1;
+        text(ctx, Math.round(v) + "", bb.x + lw + bw + 5, y + bh / 2, { base: "middle", mono: true, size: 11 });
+      });
+      // 범례
+      var lx = bb.x + lw, ly = bb.y - 10;
+      if (!narrow) Object.keys(GC).forEach(function (g) {
+        ctx.fillStyle = GC[g]; ctx.fillRect(lx, ly - 9, 10, 10);
+        text(ctx, g, lx + 13, ly, { size: 11, color: P.dim }); lx += ctx.measureText(g).width + 24;
+      });
+    }, H("mu-cv", 600, 420));
+    function update() {
+      var m = M[sel];
+      document.getElementById("mu-info").innerHTML = "<b>" + m.ko + "</b> <span style=\"color:var(--text-dim)\">(" + m.en + " · " + m.g + ")</span> · " + AT.fmtVol(m.vol) + ", 약 " + Math.round(m.vol * AT.DENSITY.muscle) + " g. " + m.act;
+      cv.redraw();
+    }
+    var fl = AT.part("biceps").vol + AT.part("brachialis").vol, ex = AT.part("triceps").vol;
+    BB.stat("mu-o-f", AT.fmtVol(fl)); BB.stat("mu-o-e", AT.fmtVol(ex)); BB.stat("mu-o-r", (ex / fl).toFixed(2) + "배");
+    BB.seg("mu-mode", function (v) { mode = v; cv.redraw(); });
+    BB.seg("mu-view", function (v) { view = v; cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      var best = -1, bd = 22;
+      M.forEach(function (m, i) { var q = AT.mapPoint(T, view, m.c), d = Math.hypot(q[0] - x, q[1] - y); if (d < bd) { bd = d; best = i; } });
+      if (best < 0) rows.forEach(function (r) { if (y >= r.y0 && y < r.y1) best = r.i; });
+      if (best < 0) return;
+      sel = best; update();
+    } });
+    update();
+  })();
+
+  /* ---------------- 엎침과 뒤침 ---------------- */
+  (function () {
+    var LU = AT.size("ulna")[2], LR = AT.size("radius")[2];
+    var geo = null;
+    var aGet = BB.range("pr-a", function (v) { return (v > 0 ? "+" : "") + v + "°"; }, function () { update(); });
+    function psi() { return aGet() + 85; } // 0 = 뒤침 끝, 170 = 엎침 끝
+    var cv = BB.canvas("#pr-cv", function (ctx, w, h) {
+      var P = BB.palette(), ps = psi() * DEG;
+      var nar = w < 420, s = (h - (nar ? 190 : 150)) / LU, xu = (nar ? w * 0.34 : w * 0.40) + 30 * s, top = nar ? 44 : 30, gap = 34 * s + 10;
+      var yW = top + LU * s; // 손목 높이
+      // 위팔(끝만)
+      ctx.fillStyle = BB.alpha(AT.COLORS.skin, BB.isDark() ? 0.16 : 0.25);
+      BB.rrect(ctx, xu - gap - 30, top - 26, gap + 60, 36, 12); ctx.fill();
+      text(ctx, "팔꿈치", xu - gap - 36, top + 4, { align: "right", size: 11, color: P.dim });
+      // 자뼈(안쪽, 화면 오른쪽): 위가 넓고 아래가 가늘다
+      function bone(x0, y0, x1, y1, w0, w1, col) {
+        var a = Math.atan2(y1 - y0, x1 - x0) + Math.PI / 2, c = Math.cos(a), sn = Math.sin(a);
+        ctx.beginPath();
+        ctx.moveTo(x0 + c * w0, y0 + sn * w0); ctx.lineTo(x1 + c * w1, y1 + sn * w1);
+        ctx.arc(x1, y1, w1, a, a + Math.PI); ctx.lineTo(x0 - c * w0, y0 - sn * w0); ctx.arc(x0, y0, w0, a + Math.PI, a + 2 * Math.PI);
+        ctx.closePath(); ctx.fillStyle = col; ctx.fill(); ctx.strokeStyle = BB.alpha(P.text, 0.5); ctx.lineWidth = 1.2; ctx.stroke();
+      }
+      var rTop = top + (LU - LR) * s;
+      var xr0 = xu - gap * 0.75;                         // 노뼈 머리(제자리에서 돈다)
+      var xr1 = xu - gap * Math.cos(ps), zr = Math.sin(ps); // 노뼈 아래끝(자뼈 머리 둘레를 돈다)
+      bone(xu, top, xu, yW, 9 * s + 4, 4 * s + 2, BB.alpha(AT.COLORS.armbones_r, 0.95));
+      bone(xr0, rTop, xr1, yW, 5 * s + 2, 10 * s + 4, zr > 0.05 ? "#e9dca8" : BB.alpha(AT.COLORS.armbones_r, 0.95));
+      text(ctx, "자뼈", xu + 9 * s + 10, top + 30, { size: 12, weight: 700 });
+      text(ctx, "노뼈", xr0 - 5 * s - 10, rTop + 30, { size: 12, weight: 700, align: "right" });
+      // 손(앞에서 본 모습)
+      var hc = (xr1 + xu) / 2, hw = Math.max(0.22, Math.abs(Math.cos(ps))) * (gap + 26 * s), palm = Math.cos(ps) > 0;
+      var hy = yW + 8;
+      ctx.fillStyle = palm ? BB.alpha(AT.COLORS.skin, 0.8) : BB.alpha("#b48a6e", 0.85);
+      BB.rrect(ctx, hc - hw, hy, 2 * hw, 70 * s + 30, 10); ctx.fill(); ctx.strokeStyle = BB.alpha(P.text, 0.45); ctx.stroke();
+      // 엄지: 노뼈 쪽
+      var side = xr1 < xu - 2 ? -1 : xr1 > xu + 2 ? 1 : 0;
+      var tx = side === 0 ? hc : hc + side * (hw + 6);
+      ctx.beginPath(); ctx.ellipse(tx, hy + 22 * s + 14, 7, 16 * s + 8, side * 0.35, 0, 7);
+      ctx.fillStyle = BB.alpha(AT.COLORS.skin, 0.95); ctx.fill(); ctx.stroke();
+      text(ctx, "엄지", tx + (side <= 0 ? -10 : 10), hy + 22 * s + 14, { size: 11, color: P.dim, align: side <= 0 ? "right" : "left", base: "middle" });
+      text(ctx, palm ? "손바닥이 보인다" : "손등이 보인다", hc, hy + 70 * s + 48, { align: "center", size: 12, weight: 700, color: palm ? P.ok : P.warn });
+      handle(ctx, xr1, yW, P);
+      geo = { xu: xu, gap: gap, yW: yW };
+      // 끝에서 본 그림(손 쪽에서 팔꿈치 쪽을 올려다봄)
+      var R = Math.min(56, w * 0.1), ix = w - R - 26, iy = R + 34;
+      ctx.strokeStyle = P.faint; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(ix, iy, R, Math.PI, 2 * Math.PI + 0.1); ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(ix, iy, 8, 0, 7); ctx.fillStyle = AT.COLORS.armbones_r; ctx.fill(); ctx.strokeStyle = BB.alpha(P.text, 0.5); ctx.stroke();
+      var rx = ix - R * Math.cos(ps), ry = iy - R * Math.sin(ps);
+      ctx.strokeStyle = P.accent; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(ix, iy, R, Math.PI, Math.PI + ps); ctx.stroke();
+      ctx.beginPath(); ctx.arc(rx, ry, 11, 0, 7); ctx.fillStyle = "#e9dca8"; ctx.fill(); ctx.strokeStyle = BB.alpha(P.text, 0.5); ctx.lineWidth = 1; ctx.stroke();
+      text(ctx, "노", rx, ry + 1, { align: "center", base: "middle", size: 11, weight: 700, color: "#333" });
+      text(ctx, "자", ix, iy + 1, { align: "center", base: "middle", size: 10, weight: 700, color: "#333" });
+      text(ctx, "앞", ix, iy - R - 14, { align: "center", size: 11, color: P.dim });
+      text(ctx, "가쪽", ix - R - 4, iy + 16, { align: "center", size: 11, color: P.dim });
+      text(ctx, "안쪽", ix + R + 4, iy + 16, { align: "center", size: 11, color: P.dim });
+      text(ctx, "손목을 끝에서 본 모습", ix, iy + 34, { align: "center", size: 11, color: P.dim });
+      text(ctx, "앞에서 본 오른쪽 아래팔", 10, nar ? h - 10 : 16, { size: 11, color: P.dim });
+    }, H("pr-cv", 440, 420));
+    function update() {
+      var a = aGet();
+      var name = a < -10 ? "뒤침 " + (-a) + "°" : a > 10 ? "엎침 " + a + "°" : "중간 자세";
+      BB.stat("pr-o-n", name);
+      BB.stat("pr-o-p", a < -10 ? "앞(위)을 향한다" : a > 10 ? "뒤(아래)를 향한다" : "몸 쪽(안쪽)을 향한다");
+      BB.stat("pr-o-x", a > 0 ? "X자로 엇갈림" : "거의 나란함");
+      document.getElementById("pr-info").innerHTML = a <= -80 ? "해부학적 자세(뒤침 끝). 노뼈와 자뼈가 나란하고 손바닥이 앞을 향한다."
+        : a >= 80 ? "엎침 끝. 노뼈 아래끝이 자뼈 앞을 지나 안쪽으로 건너가, 두 뼈가 X자로 엇갈렸다. 엄지가 안쪽(화면 오른쪽)으로 갔다."
+        : "노뼈의 아래끝이 자뼈 머리를 축으로 돈다. 자뼈는 제자리에 있다. 손은 노뼈를 따라 함께 돈다.";
+      cv.redraw();
+    }
+    document.getElementById("pr-sup").addEventListener("click", function () { aGet.set(-85); });
+    document.getElementById("pr-mid").addEventListener("click", function () { aGet.set(0); });
+    document.getElementById("pr-pro").addEventListener("click", function () { aGet.set(85); });
+    BB.drag(cv.canvas, { move: function (x) {
+      if (!geo) return;
+      var c = BB.clamp((geo.xu - x) / geo.gap, -1, 1), p = Math.acos(c) / DEG;
+      aGet.set(Math.round(BB.clamp(p, 0, 170) - 85));
+    } });
+    update();
+  })();
+
+  /* ---------------- 손목뼈 8개 ---------------- */
+  (function () {
+    var INFO = {
+      scaphoid: ["몸쪽 줄 1", "배(舟) 모양. 그리스어 skaphe(작은 배). 넘어질 때 가장 잘 부러지는 손목뼈."],
+      lunate: ["몸쪽 줄 2", "반달(月) 모양. 라틴어 luna(달). 노뼈와 마주 닿는다."],
+      triquetral: ["몸쪽 줄 3", "세모(三角) 모양. 라틴어 triquetrus(세 모서리)."],
+      pisiform: ["몸쪽 줄 4", "완두콩(豆) 모양. 라틴어 pisum(완두). 세모뼈 앞에 얹힌 종자뼈."],
+      trapezium: ["먼쪽 줄 1", "마름모(사다리꼴) 모양. 엄지 손허리뼈와 안장관절을 이룬다."],
+      trapezoid: ["먼쪽 줄 2", "작은 마름모. 집게손가락 손허리뼈와 만난다."],
+      capitate: ["먼쪽 줄 3", "둥근 머리(頭). 라틴어 caput(머리). 손목뼈 가운데 가장 크다."],
+      hamate: ["먼쪽 줄 4", "갈고리(鉤). 라틴어 hamus(갈고리). 손바닥 쪽으로 갈고리가 튀어나온다."],
+    };
+    var B = CARP.map(function (k) { var p = AT.part(k); return { k: k, ko: p.ko, vol: p.vol, c: p.c.slice() }; });
+    // 콩알뼈는 세모뼈 바로 앞에 겹치므로 그림에서만 안쪽 아래로 비켜 그린다
+    B[3].draw = [B[3].c[0] + 9, B[3].c[2] - 9];
+    var sel = -1, mode = "look", step = 0, wrong = 0, T = null, done = false;
+    var nameOn = document.getElementById("ca-name");
+    var cv = BB.canvas("#ca-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      var box = { x: 0, y: 0, w: w, h: h };
+      T = AT.fit(box, [-292, 762, -218, 822], { pad: 18 });
+      // 배경: 팔뼈 윤곽(손목 부근)
+      ctx.save(); ctx.beginPath(); ctx.rect(0, 0, w, h); ctx.clip();
+      AT.drawMap(ctx, T, "front", { layers: ["armbones_r"], alpha: 0.18 });
+      ctx.restore();
+      // 노뼈·자뼈 끝, 손허리뼈 방향 표시
+      text(ctx, "↑ 노뼈", T.X(AT.part("radius").c[0] - 8), 18, { color: P.dim, size: 12, align: "center" });
+      text(ctx, "↑ 자뼈", T.X(AT.part("ulna").lo[0] + 18), 18, { color: P.dim, size: 12, align: "center" });
+      text(ctx, "↓ 손허리뼈·손가락", w / 2, h - 8, { color: P.dim, size: 12, align: "center" });
+      text(ctx, "엄지 쪽(가쪽)", 10, h / 2, { color: P.dim, size: 11 });
+      text(ctx, "새끼 쪽(안쪽)", w - 10, h / 2, { color: P.dim, size: 11, align: "right" });
+      // 줄 표시
+      B.forEach(function (b, i) {
+        var x = T.X(b.draw ? b.draw[0] : b.c[0]), y = T.Y(b.draw ? b.draw[1] : b.c[2]);
+        var r = Math.cbrt(b.vol * 1000) * 0.5 * T.s * 0.95;
+        if (b.draw) { ctx.strokeStyle = P.faint; ctx.setLineDash([3, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(T.X(b.c[0]), T.Y(b.c[2])); ctx.lineTo(x, y); ctx.stroke(); ctx.setLineDash([]); }
+        var answered = mode === "quiz" && i < step;
+        ctx.beginPath(); ctx.arc(x, y, r, 0, 7);
+        ctx.fillStyle = i === sel ? P.accent : answered ? BB.alpha(P.ok, 0.75) : BB.alpha(AT.COLORS.bone, i < 4 ? 0.95 : 0.8);
+        ctx.fill(); ctx.strokeStyle = i === sel ? P.text : BB.alpha(P.text, 0.45); ctx.lineWidth = i === sel ? 2.5 : 1.2; ctx.stroke();
+        b.sx = x; b.sy = y; b.r = r;
+        var show = mode === "look" ? nameOn.checked || i === sel : answered || (nameOn.checked && false);
+        if (show) {
+          ctx.font = BB.font(12, false, 700);
+          var tw = ctx.measureText(b.ko).width;
+          ctx.fillStyle = BB.alpha(P.bg, 0.8); ctx.fillRect(x - tw / 2 - 3, y - 9, tw + 6, 17);
+          text(ctx, b.ko, x, y, { align: "center", base: "middle", weight: 700, size: 12, color: P.text });
+        }
+      });
+      if (mode === "quiz") {
+        var msg = done ? "8개 모두 맞혔다! 틀린 횟수 " + wrong : "다음: " + (step + 1) + "번째 (" + (step < 4 ? "몸쪽" : "먼쪽") + " 줄, 엄지 쪽부터)";
+        text(ctx, msg, w / 2, 40, { align: "center", weight: 700, color: done ? P.ok : P.accent });
+      }
+      AT.scaleBar(ctx, T, 16, h - 26, 10, P.dim);
+    }, H("ca-cv", 340, 400));
+    function update() {
+      BB.stat("ca-o-q", mode === "quiz" ? step + " / 8" + (wrong ? " (틀림 " + wrong + ")" : "") : "—");
+      if (sel < 0) { BB.stat("ca-o-n", "—"); BB.stat("ca-o-v", "—"); }
+      else { var b = B[sel]; BB.stat("ca-o-n", b.ko); BB.stat("ca-o-v", AT.fmtVol(b.vol)); }
+      cv.redraw();
+    }
+    BB.seg("ca-mode", function (v) { mode = v; step = 0; wrong = 0; done = false; sel = -1; nameOn.checked = v === "look"; update();
+      document.getElementById("ca-info").innerHTML = v === "quiz" ? "엄지 쪽 몸쪽 줄(손배뼈)부터 갈고리뼈까지 차례로 누른다." : "손목뼈를 누른다."; });
+    nameOn.addEventListener("change", function () { cv.redraw(); });
+    document.getElementById("ca-re").addEventListener("click", function () { step = 0; wrong = 0; done = false; sel = -1; update(); });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      var hit = -1, bd = 1e9;
+      B.forEach(function (b, i) { var d = Math.hypot(b.sx - x, b.sy - y); if (d < b.r + 4 && d < bd) { bd = d; hit = i; } });
+      if (hit < 0) return;
+      var b = B[hit], info = document.getElementById("ca-info");
+      if (mode === "quiz" && !done) {
+        if (hit === step) { step++; sel = -1; info.innerHTML = "맞다: <b>" + b.ko + "</b>. " + INFO[b.k][1]; if (step === 8) done = true; }
+        else { wrong++; sel = hit; info.innerHTML = "그 뼈는 <b>" + b.ko + "</b>(" + INFO[b.k][0] + ")이다. " + (step + 1) + "번째 뼈를 다시 찾는다."; }
+      } else {
+        sel = hit;
+        info.innerHTML = "<b>" + b.ko + "</b> (" + AT.part(b.k).en + ", " + INFO[b.k][0] + ") · " + INFO[b.k][1];
+      }
+      update();
+    } });
+    update();
+  })();
+
+  /* ---------------- 팔 한 짝의 데이터 지도 ---------------- */
+  (function () {
+    var BK = ["clavicle", "scapula", "humerus", "radius", "ulna"].concat(CARP, ["metacarpals", "fingers"]);
+    var MK = ["deltoid", "pecmajor", "supraspinatus", "infraspinatus", "subscapularis", "biceps", "brachialis", "triceps", "brachioradialis"];
+    var ITEMS = BK.concat(MK).map(function (k) { return AT.part(k); });
+    var show = "all", view = "front", sel = "humerus", T = null, labAll = document.getElementById("at-lab");
+    var bVol = BK.reduce(function (s, k) { return s + AT.part(k).vol; }, 0), mVol = MK.reduce(function (s, k) { return s + AT.part(k).vol; }, 0);
+    var bM = bVol * AT.DENSITY.bone, mM = mVol * AT.DENSITY.muscle, bodyKg = AT.body.vol;
+    var cv = BB.canvas("#at-cv", function (ctx, w, h) {
+      var P = BB.palette(), narrow = w < 600;
+      var mb = narrow ? { x: 0, y: 0, w: w, h: h - 120 } : { x: 0, y: 0, w: w * 0.6, h: h };
+      var sb = narrow ? { x: 14, y: h - 112, w: w - 28, h: 104 } : { x: w * 0.6 + 16, y: 30, w: w * 0.4 - 30, h: h - 60 };
+      ctx.save(); ctx.beginPath(); ctx.rect(mb.x, mb.y, mb.w, mb.h); ctx.clip();
+      T = AT.mapFit(mb, view, { keys: ["armbones_r"], margin: 40, pad: 10 });
+      AT.drawMap(ctx, T, view, { layers: ["skin", "ribcage", "spine", "armbones_r"], alpha: 0.4 });
+      var mx = 470;
+      ITEMS.forEach(function (p) {
+        if (show !== "all" && p.sys !== show) return;
+        var q = AT.mapPoint(T, view, p.c), r = 3 + 15 * Math.sqrt(p.vol / mx), on = p.k === sel;
+        ctx.beginPath(); ctx.arc(q[0], q[1], r, 0, 7);
+        ctx.fillStyle = BB.alpha(p.sys === "bone" ? "#c9b46a" : AT.COLORS.muscle, on ? 0.95 : 0.6); ctx.fill();
+        ctx.strokeStyle = on ? P.text : BB.alpha(P.bg, 0.9); ctx.lineWidth = on ? 2.5 : 1; ctx.stroke();
+        if (labAll.checked || on) {
+          ctx.font = BB.font(11, false, on ? 700 : 400); var tw = ctx.measureText(p.ko).width;
+          ctx.fillStyle = BB.alpha(P.bg, 0.75); ctx.fillRect(q[0] + r + 2, q[1] - 7, tw + 4, 14);
+          text(ctx, p.ko, q[0] + r + 4, q[1], { base: "middle", size: 11, weight: on ? 700 : 400 });
+        }
+      });
+      AT.orient(ctx, mb, view, P.faint);
+      AT.scaleBar(ctx, T, 14, mb.h - 14, 100, P.dim);
+      ctx.restore();
+      // 요약 막대: 뼈·근육·교과서 팔 무게
+      var tb = bodyKg * 1000 * 0.05, items = [["뼈 32개", bM, "#c9b46a"], ["근육 9개", mM, AT.COLORS.muscle], ["교과서 팔 한 짝(체중의 약 5 %)", tb, P.faint]];
+      var mxv = tb * 1.05, bh = narrow ? 18 : 26, gap = narrow ? 14 : 30;
+      text(ctx, "무게(g)", sb.x, sb.y - 10, { size: 11, color: P.dim });
+      items.forEach(function (it, i) {
+        var y = sb.y + i * (bh + gap) + (narrow ? 4 : 10);
+        text(ctx, it[0], sb.x, y - 3, { size: 12, color: P.dim });
+        if (i < 2) {
+          ctx.fillStyle = it[2]; ctx.fillRect(sb.x, y, sb.w * it[1] / mxv, bh * 0.7);
+        } else {
+          ctx.fillStyle = "#c9b46a"; ctx.fillRect(sb.x, y, sb.w * bM / mxv, bh * 0.7);
+          ctx.fillStyle = AT.COLORS.muscle; ctx.fillRect(sb.x + sb.w * bM / mxv, y, sb.w * mM / mxv, bh * 0.7);
+          ctx.strokeStyle = P.dim; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.5; ctx.strokeRect(sb.x, y, sb.w * it[1] / mxv, bh * 0.7); ctx.setLineDash([]);
+        }
+        var ex = sb.x + sb.w * it[1] / mxv, inside = ex + 54 > sb.x + sb.w;
+        text(ctx, Math.round(it[1]) + " g", inside ? ex - 4 : ex + 4, y + bh * 0.35, { base: "middle", mono: true, size: 11, align: inside ? "right" : "left", color: inside ? "#222" : P.text, weight: 700 });
+      });
+      if (!narrow) {
+        var yy = sb.y + 3 * (bh + gap) + 20;
+        ctx.font = BB.font(12);
+        ctx.fillStyle = P.dim;
+        BB.wrapText(ctx, "데이터의 뼈+근육은 교과서 팔 무게의 " + Math.round((bM + mM) / tb * 100) + " %. 큰가슴근 같은 몸통 쪽 근육은 들어 있고, 아래팔·손 근육, 피부, 지방, 혈액은 빠져 있다.", sb.x, yy, sb.w, 17, 5);
+      }
+    }, H("at-cv", 560, 500));
+    function update() {
+      var p = AT.part(sel), info = document.getElementById("at-info");
+      var rel = sel === "humerus" ? "" : " · 위팔뼈보다 " + AT.relation("humerus", sel).join(", ") + "에 있다";
+      var len = AT.size(sel)[2];
+      info.innerHTML = "<b>" + p.ko + "</b> <span style=\"color:var(--text-dim)\">(" + p.en + ")</span> · 부피 " + AT.fmtVol(p.vol) + ", 어림 무게 " + Math.round(AT.mass(sel)) + " g, 위아래 길이 " + AT.fmtLen(len) + rel + ".";
+      cv.redraw();
+    }
+    BB.stat("at-o-b", AT.fmtVol(bVol) + " · " + Math.round(bM) + " g");
+    BB.stat("at-o-m", AT.fmtVol(mVol) + " · " + Math.round(mM) + " g");
+    BB.stat("at-o-t", ((bM + mM) / 1000).toFixed(2) + " kg");
+    BB.stat("at-o-x", "약 " + (bodyKg * 0.05).toFixed(1) + " kg");
+    BB.seg("at-show", function (v) { show = v; cv.redraw(); });
+    BB.seg("at-view", function (v) { view = v; cv.redraw(); });
+    labAll.addEventListener("change", function () { cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      var best = null, bd = 18;
+      ITEMS.forEach(function (p) { if (show !== "all" && p.sys !== show) return; var q = AT.mapPoint(T, view, p.c), d = Math.hypot(q[0] - x, q[1] - y); if (d < bd) { bd = d; best = p.k; } });
+      if (best) { sel = best; update(); }
+    } });
+    update();
+  })();
+
+  /* ---------------- 글 속 숫자 ---------------- */
+  (function () {
+    function set(id, s) { var el = document.getElementById(id); if (el) el.textContent = s; }
+    var p = AT.part, carp = CARP.reduce(function (s, k) { return s + p(k).vol; }, 0);
+    var hand = carp + p("metacarpals").vol + p("fingers").vol;
+    var arm = ["clavicle", "scapula", "humerus", "radius", "ulna"].reduce(function (s, k) { return s + p(k).vol; }, 0) + hand;
+    set("ul-serr", AT.fmtVol(p("serratus").vol)); set("ul-delt", AT.fmtVol(p("deltoid").vol));
+    set("ul-supra", AT.fmtVol(p("supraspinatus").vol)); set("ul-infra", AT.fmtVol(p("infraspinatus").vol)); set("ul-subs", AT.fmtVol(p("subscapularis").vol));
+    set("ul-carp", AT.fmtVol(carp));
+    set("dc-hum", AT.fmtVol(p("humerus").vol)); set("dc-hand", AT.fmtVol(hand)); set("dc-ratio", "약 " + Math.round(hand / p("humerus").vol * 100) + " %");
+    set("dc-carp", AT.fmtVol(carp)); set("dc-cap", AT.fmtVol(p("capitate").vol)); set("dc-pis", AT.fmtVol(p("pisiform").vol));
+    set("dc-handpct", "약 " + Math.round(hand / arm * 100) + " %");
+    var mus = ["deltoid", "pecmajor", "supraspinatus", "infraspinatus", "subscapularis", "biceps", "brachialis", "triceps", "brachioradialis"].reduce(function (s, k) { return s + p(k).vol; }, 0);
+    var kg = (arm * AT.DENSITY.bone + mus * AT.DENSITY.muscle) / 1000;
+    set("ul-sum", "약 " + kg.toFixed(1) + " kg"); set("ul-sumpct", "약 " + Math.round(kg / (AT.body.vol * 0.05) * 100) + " %");
+  })();
+})();
+</script>
+</body>
+</html>

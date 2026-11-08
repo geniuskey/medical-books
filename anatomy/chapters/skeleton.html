@@ -1,0 +1,914 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and AnatomyBook contributors.
+     Executable code: MIT (see ../LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see ../LICENSE.md). -->
+<html lang="ko">
+<head>
+<!--head:start {"desc": "몸통뼈대 80개와 팔다리뼈대 126개, 긴뼈·짧은뼈·납작뼈·불규칙뼈·종자뼈, 뼈가 하는 일, 실제 뼈의 부피와 무게, 넙다리뼈로 키를 어림하는 법을 인체 3D 데이터로 세고 잰다.", "libs": ["sections"]}-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>뼈대: 206개의 뼈 · AnatomyBook</title>
+<meta name="description" content="몸통뼈대 80개와 팔다리뼈대 126개, 긴뼈·짧은뼈·납작뼈·불규칙뼈·종자뼈, 뼈가 하는 일, 실제 뼈의 부피와 무게, 넙다리뼈로 키를 어림하는 법을 인체 3D 데이터로 세고 잰다.">
+<link rel="canonical" href="https://medical.euiyun.com/anatomy/chapters/skeleton.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#0c8599">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AnatomyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="뼈대: 206개의 뼈 · AnatomyBook">
+<meta property="og:description" content="몸통뼈대 80개와 팔다리뼈대 126개, 긴뼈·짧은뼈·납작뼈·불규칙뼈·종자뼈, 뼈가 하는 일, 실제 뼈의 부피와 무게, 넙다리뼈로 키를 어림하는 법을 인체 3D 데이터로 세고 잰다.">
+<meta property="og:url" content="https://medical.euiyun.com/anatomy/chapters/skeleton.html">
+<meta property="og:image" content="https://medical.euiyun.com/anatomy/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Chapter","LearningResource"],"@id":"https://medical.euiyun.com/anatomy/chapters/skeleton.html#chapter","name":"뼈대: 206개의 뼈","headline":"뼈대: 206개의 뼈 · AnatomyBook","description":"몸통뼈대 80개와 팔다리뼈대 126개, 긴뼈·짧은뼈·납작뼈·불규칙뼈·종자뼈, 뼈가 하는 일, 실제 뼈의 부피와 무게, 넙다리뼈로 키를 어림하는 법을 인체 3D 데이터로 세고 잰다.","url":"https://medical.euiyun.com/anatomy/chapters/skeleton.html","position":2,"inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","image":"https://medical.euiyun.com/anatomy/og.png","dateModified":"2026-11-08","isPartOf":{"@type":"Book","@id":"https://medical.euiyun.com/anatomy/#book","name":"AnatomyBook · 몸의 구조 교과서","url":"https://medical.euiyun.com/anatomy/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AnatomyBook","item":"https://medical.euiyun.com/anatomy/"},{"@type":"ListItem","position":2,"name":"2. 뼈대: 206개의 뼈","item":"https://medical.euiyun.com/anatomy/chapters/skeleton.html"}]}]}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/common.js"></script>
+<script src="../js/atlas-data.js"></script>
+<script src="../js/atlas.js"></script>
+<script src="../js/sections-data.js"></script>
+<script src="../js/anatomy3d.js" defer></script>
+<link rel="stylesheet" href="../../shared/css/book-shell.css">
+<script defer src="../../shared/js/book-shell.js" data-book="anatomy"></script>
+<!--head:end-->
+<style>
+  .shape-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin: 18px 0; }
+  .shape-grid div { padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elev); font-size: 14.5px; }
+  .shape-grid b { display: block; font-size: 15.5px; }
+  .shape-grid small { color: var(--text-dim); }
+</style>
+</head>
+<body data-chapter="skeleton">
+<main class="chapter">
+  <header class="chapter-hero">
+    <div class="eyebrow">Chapter 02</div>
+    <h1>뼈대: 206개의 뼈</h1>
+    <p class="lead">어른의 뼈는 206개라고들 한다. 그런데 갓난아기는 그보다 훨씬 많은 뼈 조각을 갖고 태어나고, 어떤 사람은 발에 작은 뼈가 몇 개 더 있다. 206은 어떻게 센 숫자일까? 이 장은 실제 한 사람의 뼈대를 3D로 돌려 보며 뼈를 몸통과 팔다리로 나누고, 모양으로 나누고, 부피와 무게를 직접 잰다. 그리고 넙다리뼈 하나로 그 사람의 키를 어림해 본다.</p>
+    <ul class="objectives">
+      <li>뼈대를 몸통뼈대(80개)와 팔다리뼈대(126개)로 나누고 각각에 속하는 뼈를 말한다.</li>
+      <li>뼈를 긴뼈·짧은뼈·납작뼈·불규칙뼈·종자뼈로 분류하고, 모양이 하는 일과 어떻게 이어지는지 설명한다.</li>
+      <li>뼈가 하는 다섯 가지 일과 긴뼈의 각 부분(뼈몸통, 뼈끝, 골수공간)을 안다.</li>
+      <li>실제 데이터로 뼈의 부피와 무게를 비교하고, 뼈대가 몸무게에서 차지하는 몫을 어림한다.</li>
+      <li>뼈의 개수가 나이와 사람에 따라 달라지는 이유(합쳐짐, 종자뼈, 덧뼈)를 설명한다.</li>
+    </ul>
+  </header>
+
+  <section id="whole">
+    <h2>뼈대 한눈에</h2>
+    <p><span class="term">뼈대</span><span class="en">(골격, Skeleton)</span>는 몸을 받치는 뼈와 그 뼈를 잇는 연골·인대를 함께 이르는 말이다. 그리스어 skeletos는 "말라 버린 것"이라는 뜻이다. 하지만 살아 있는 뼈는 마른 막대기가 아니다. 피가 흐르고, 늘 허물어지고 다시 지어지며, 피를 만드는 골수를 품은 살아 있는 기관이다.</p>
+    <p>아래 모델은 <a href="language.html">1장</a>에서 본 그 사람의 뼈대만 따로 꺼낸 것이다. 부위마다 색을 달리했다. 버튼으로 부위를 하나씩 끄고 켜면서 몸의 축을 이루는 뼈와 그 축에 매달린 뼈를 구별해 보자.</p>
+
+    <div class="sim model3d" id="sim-sk-3d" data-model="skeleton" data-orbit="0deg 80deg auto" data-desc="실제 인체 데이터로 만든 뼈대 전체를 머리뼈, 척주, 가슴우리, 어깨이음뼈, 팔, 손, 골반, 다리, 발로 나누어 켜고 끄며 몸통뼈대와 팔다리뼈대를 구별한다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>3D로 보는 뼈대 전체</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="skull" title="머리뼈와 아래턱뼈, 목뿔뼈">머리뼈</button><button type="button" data-part="spine" title="목뼈 7, 등뼈 12, 허리뼈 5, 엉치뼈">척주</button><button type="button" data-part="discs" title="척추뼈 사이의 연골 원반">척추원반</button><button type="button" data-part="thorax" title="갈비뼈 12쌍, 갈비연골, 복장뼈">가슴우리</button><button type="button" data-part="shoulder" title="빗장뼈와 어깨뼈">어깨이음뼈</button><button type="button" data-part="arm" title="위팔뼈, 노뼈, 자뼈">팔뼈</button><button type="button" data-part="hand" title="손목뼈 8, 손허리뼈 5, 손가락뼈 14 (한쪽)">손뼈</button><button type="button" data-part="pelvis" title="좌우 볼기뼈">볼기뼈</button><button type="button" data-part="leg" title="넙다리뼈, 무릎뼈, 정강뼈, 종아리뼈">다리뼈</button><button type="button" data-part="foot" title="발목뼈 7, 발허리뼈 5, 발가락뼈 14와 종자뼈 (한쪽)">발뼈</button><button type="button" data-part="skin" title="반투명한 피부">피부</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="thorax,pelvis">가슴우리·골반 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 어깨이음뼈, 팔뼈, 손뼈, 볼기뼈, 다리뼈, 발뼈를 모두 끈다. 남은 머리뼈·척주·가슴우리가 몸의 세로축, 곧 몸통뼈대다. ② 반대로 그 셋을 끄고 팔다리만 남기면 어깨와 골반에서 몸통에 매달려 있던 뼈들이 보인다. ③ 옆으로 돌려 척주가 곧은 막대가 아니라 S자로 휘어 있는 것을 본다(<a href="axial.html">3장</a>). (이 데이터에는 꼬리뼈와 귀속뼈가 없다.) <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <p>머리부터 엉치까지 이어진 축과, 그 축의 두 군데(어깨와 골반)에 매달린 네 개의 팔다리. 사람 뼈대의 설계는 이 한 문장으로 요약된다. 해부학은 이 구분을 그대로 이름으로 삼는다.</p>
+  </section>
+
+  <section id="divisions">
+    <h2>몸통뼈대 80, 팔다리뼈대 126</h2>
+    <p><span class="term">몸통뼈대</span><span class="en">(축골격, Axial skeleton)</span>는 몸의 세로축을 이루는 뼈다. 머리뼈, 귀속뼈, 목뿔뼈, 척주, 가슴우리가 여기에 든다. 뇌·척수·심장·폐처럼 망가지면 안 되는 기관을 둘러싸 지키는 일이 주된 임무다. <span class="term">팔다리뼈대</span><span class="en">(부속골격, Appendicular skeleton)</span>는 팔과 다리의 뼈, 그리고 그것을 몸통에 붙이는 <b>어깨이음뼈</b>(빗장뼈·어깨뼈)와 <b>골반이음뼈</b>(볼기뼈)다. 움직이는 일이 주된 임무다.</p>
+    <p>교과서의 206개는 이 둘을 합친 숫자다. 아래 지도에서 몸통뼈대와 팔다리뼈대를 번갈아 골라 보고, 부위를 눌러 그 부위에 뼈가 몇 개 있는지, 이 사람의 데이터에서 부피가 얼마인지 확인해 보자.</p>
+
+    <div class="sim" id="sim-sk-count" data-desc="뼈대 지도에서 몸통뼈대와 팔다리뼈대를 골라 부위별 뼈의 개수(교과서 80 + 126)와 실제 데이터에서 잰 부피를 나란히 비교한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>뼈는 몸통에 많을까, 팔다리에 많을까?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="cnt-cv" class="drag"></canvas><span class="hint">부위를 눌러 본다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="cnt-mode"><button data-value="axial" class="on">몸통뼈대</button><button data-value="app">팔다리뼈대</button><button data-value="all">모두</button></div>
+          <div class="seg" id="cnt-metric"><button data-value="n" class="on">개수로</button><button data-value="v">부피로</button></div>
+          <p style="font-size:14px;color:var(--text-dim);margin:4px 0 0">오른쪽 막대는 고른 기준(개수 또는 부피)으로 몸통뼈대와 팔다리뼈대를 나눈 몫이다.</p>
+        </div>
+      </div>
+      <div class="info-panel" id="cnt-info">부위를 누르면 그 부위의 뼈가 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 부위</span><span class="v" id="cnt-o-r">—</span></div>
+        <div class="stat"><span class="k">뼈 개수(교과서)</span><span class="v" id="cnt-o-n">—</span></div>
+        <div class="stat"><span class="k">부피(이 데이터)</span><span class="v" id="cnt-o-v">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "개수로"에서 팔다리뼈대가 126개로 더 많은 것을 본다. 손과 발만 해도 한쪽에 27개, 26개다. ② "부피로"로 바꾸면 비율이 어떻게 바뀌는지 본다. ③ 팔과 다리를 차례로 눌러 개수는 비슷한데(32개, 30개) 부피는 크게 다른 것을 확인한다. (짝이 있는 뼈는 오른쪽을 재서 두 배로 했다. 꼬리뼈와 귀속뼈는 데이터에 없어 부피에서 빠졌다. 머리뼈 메시는 닫혀 있지 않아 부피가 어림값이다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>개수로는 팔다리뼈대가 몸통뼈대의 1.5배쯤 되지만, 그 많은 개수의 절반 가까이는 손과 발의 작은 뼈다. 손 한쪽의 뼈 27개를 다 합쳐도 이 사람의 데이터에서 <b id="sk-hand-v">—</b>로, 넙다리뼈 하나(<b id="sk-fem-v">—</b>)의 10분의 1 남짓이다. 뼈의 개수는 그 부위가 얼마나 <b>섬세하게 움직이는지</b>를, 부피는 얼마나 <b>큰 힘을 받는지</b>를 반영한다.</p>
+  </section>
+
+  <section id="shapes">
+    <h2>뼈의 다섯 가지 모양</h2>
+    <p>해부학은 뼈를 모양으로도 나눈다. 모양은 그 뼈가 하는 일을 드러낸다. 길쭉한 막대는 지렛대가 되고, 넓은 판은 무언가를 덮어 지키고, 작은 덩어리 여럿은 힘을 흩어 받으며 조금씩 미끄러진다.</p>
+    <figure class="diagram">
+      <svg viewBox="0 0 500 190" role="img" aria-label="뼈의 다섯 가지 모양을 단순한 도형으로 나타낸 분류표: 긴뼈, 짧은뼈, 납작뼈, 불규칙뼈, 종자뼈">
+        <g transform="translate(50,20)">
+          <circle cx="0" cy="16" r="11" class="f-surface s-line"/><circle cx="0" cy="104" r="11" class="f-surface s-line"/>
+          <rect x="-6" y="18" width="12" height="84" rx="5" class="f-surface s-line"/>
+          <text x="0" y="140" text-anchor="middle" class="lbl lbl-b">긴뼈</text><text x="0" y="158" text-anchor="middle" class="lbl lbl-dim">넙다리뼈, 손가락뼈</text>
+        </g>
+        <g transform="translate(150,20)">
+          <rect x="-22" y="40" width="44" height="40" rx="10" class="f-surface s-line"/>
+          <text x="0" y="140" text-anchor="middle" class="lbl lbl-b">짧은뼈</text><text x="0" y="158" text-anchor="middle" class="lbl lbl-dim">손목뼈, 발목뼈</text>
+        </g>
+        <g transform="translate(250,20)">
+          <path d="M-36 76 Q0 30 36 76 L36 84 Q0 40 -36 84 Z" class="f-surface s-line"/>
+          <text x="0" y="140" text-anchor="middle" class="lbl lbl-b">납작뼈</text><text x="0" y="158" text-anchor="middle" class="lbl lbl-dim">마루뼈, 복장뼈, 갈비뼈</text>
+        </g>
+        <g transform="translate(350,20)">
+          <path d="M-18 50 h36 v22 h-36 Z M-6 72 h12 l4 14 l14 -6 l4 8 l-18 10 h-20 l-18 -10 l4 -8 l14 6 Z M-3 96 h6 v20 h-6 Z" class="f-surface s-line"/>
+          <text x="0" y="140" text-anchor="middle" class="lbl lbl-b">불규칙뼈</text><text x="0" y="158" text-anchor="middle" class="lbl lbl-dim">척추뼈, 나비뼈</text>
+        </g>
+        <g transform="translate(450,20)">
+          <line x1="0" y1="8" x2="0" y2="112" class="s-acc" stroke-width="6" stroke-linecap="round"/>
+          <ellipse cx="0" cy="60" rx="15" ry="20" class="f-surface s-line"/>
+          <text x="0" y="140" text-anchor="middle" class="lbl lbl-b">종자뼈</text><text x="0" y="158" text-anchor="middle" class="lbl lbl-dim">무릎뼈 (힘줄 속)</text>
+        </g>
+      </svg>
+      <figcaption><b>뼈의 다섯 가지 모양.</b> 모양을 단순한 도형으로 나타낸 분류표다. 종자뼈는 힘줄(색 띠) 속에 박혀 자란다.</figcaption>
+    </figure>
+    <div class="shape-grid">
+      <div><b>긴뼈</b>길이가 폭보다 훨씬 긴 막대. 양 끝이 굵다. 지렛대가 되어 움직임을 크게 만든다 <small>장골, Long bone</small></div>
+      <div><b>짧은뼈</b>길이와 폭이 비슷한 덩어리. 여럿이 모여 힘을 나누어 받는다 <small>단골, Short bone</small></div>
+      <div><b>납작뼈</b>얇고 넓은 판. 장기를 덮어 지키고 근육이 넓게 붙는다 <small>편평골, Flat bone</small></div>
+      <div><b>불규칙뼈</b>어느 쪽에도 들지 않는 복잡한 모양. 돌기마다 할 일이 따로 있다 <small>불규칙골, Irregular bone</small></div>
+      <div><b>종자뼈</b>힘줄 속에서 생긴 씨앗 모양의 뼈. 힘줄을 뼈에서 띄워 지렛대 팔을 늘린다 <small>종자골, Sesamoid bone</small></div>
+    </div>
+    <p>모양은 눈으로만 가르는 것이 아니다. 3D 데이터에서는 숫자로 잴 수 있다. 각 뼈를 감싸는 상자의 가장 긴 변과 둘째 변의 비(<b>길쭉함</b>), 그리고 부피와 겉넓이로 어림한 <b>평균 두께</b>(2 × 부피 ÷ 겉넓이)를 가장 긴 변으로 나눈 값(<b>상대 두께</b>)을 그래프에 찍으면 다섯 무리가 제자리를 찾아간다. 먼저 "맞히기"로 뼈 이름만 보고 모양을 골라 본 뒤, "정답 보기"로 그래프 위의 위치를 확인하자.</p>
+
+    <div class="sim" id="sim-sk-shape" data-desc="뼈 이름과 위치를 보고 긴뼈·짧은뼈·납작뼈·불규칙뼈·종자뼈 가운데 하나를 고르는 분류 게임. 실제 데이터로 잰 길쭉함과 상대 두께 그래프 위에서 다섯 무리가 어떻게 갈리는지 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>이 뼈는 어떤 모양일까? 숫자로 가르는 뼈의 모양</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="shp-cv" class="drag"></canvas></div>
+        <div class="sim-controls">
+          <div class="seg" id="shp-mode"><button data-value="quiz" class="on">맞히기</button><button data-value="all">정답 보기</button></div>
+          <div class="btn-row" id="shp-btns"><button class="btn" data-shape="long">긴뼈</button><button class="btn" data-shape="short">짧은뼈</button><button class="btn" data-shape="flat">납작뼈</button><button class="btn" data-shape="irregular">불규칙뼈</button><button class="btn" data-shape="sesamoid">종자뼈</button></div>
+          <div class="btn-row"><button class="btn" id="shp-re">처음부터</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="shp-info">왼쪽 지도에 표시된 뼈의 모양을 고른다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">맞힌 수</span><span class="v" id="shp-o-s">—</span></div>
+        <div class="stat"><span class="k">고른 뼈의 길쭉함</span><span class="v" id="shp-o-e">—</span></div>
+        <div class="stat"><span class="k">어림 평균 두께</span><span class="v" id="shp-o-t">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 맞히기를 다 마친 뒤 "정답 보기"로 바꿔 긴뼈(오른쪽), 짧은뼈·종자뼈(위), 납작뼈(아래 왼쪽)가 갈리는 것을 본다. ② 빗장뼈를 찾아 누른다. 긴뼈인데도 길쭉함이 작다. S자로 휘고 비스듬히 놓여 상자가 뚱뚱해졌기 때문이다. ③ 갈비뼈와 머리뼈의 판은 상대 두께가 아주 작다. (상자는 좌표축에 나란한 경계 상자라 휘거나 비스듬한 뼈는 길쭉함이 작게 나온다. 여러 개를 묶은 손허리뼈·손가락뼈 등은 뺐다. 모양 분류는 교과서마다 조금 다르다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>그래프의 오른쪽 끝을 차지한 긴뼈는 팔다리에만 있고, 위쪽의 덩어리 뼈는 손목과 발목에 모여 있다. 반대로 아래쪽의 얇은 판은 머리와 가슴에 있다. 지키는 뼈는 납작하고, 움직이는 뼈는 길다. 모양만 보아도 그 뼈가 몸통뼈대인지 팔다리뼈대인지 대개 짐작할 수 있다.</p>
+  </section>
+
+  <section id="structure">
+    <h2>뼈가 하는 일과 긴뼈의 구조</h2>
+    <p>뼈는 다섯 가지 일을 한다. ① <b>지지</b>: 몸의 틀이 되어 무게를 받친다. ② <b>보호</b>: 머리뼈는 뇌를, 가슴우리는 심장과 폐를, 척주는 척수를 감싼다. ③ <b>운동</b>: 근육이 붙어 당기는 지렛대가 된다(<a href="joints.html">6장</a>). ④ <b>저장</b>: 몸의 칼슘 대부분을 저장했다가 피 속 칼슘이 모자라면 내어 준다. ⑤ <b>피 만들기</b>: 뼈 속의 <span class="term">적색골수</span><span class="en">(Red bone marrow)</span>가 적혈구·백혈구·혈소판을 만든다. 어른에서는 주로 납작뼈와 척추뼈, 긴뼈의 몸쪽 끝에 남아 있다. 저장과 피 만들기의 생리는 <a href="../../body/">BodyBook</a>에 맡기고, 여기서는 구조를 본다.</p>
+    <p>긴뼈는 가운데의 가는 대롱인 <span class="term">뼈몸통</span><span class="en">(골간, Diaphysis)</span>과 양 끝의 굵은 <span class="term">뼈끝</span><span class="en">(골단, Epiphysis)</span>으로 나뉜다. 뼈몸통의 벽은 빽빽한 <b>치밀뼈</b>(Compact bone)이고 속은 비어 있어 <b>골수공간</b>을 이룬다. 뼈끝은 스펀지처럼 구멍이 많은 <b>해면뼈</b>(Spongy bone)로 차 있고, 관절면은 매끄러운 <b>관절연골</b>로 덮여 있다. 자라는 동안에는 뼈몸통과 뼈끝 사이에 연골판인 <span class="term">성장판</span><span class="en">(골단판, Epiphyseal plate)</span>이 있어 여기서 뼈가 길어진다. 뼈의 겉은 신경과 혈관이 풍부한 <b>뼈막</b>(골막, Periosteum)이 싸고 있다.</p>
+    <p>왜 양 끝이 굵을까? 관절에서는 두 뼈가 맞닿아 몸무게를 주고받는다. 접촉 면이 넓을수록 같은 힘이 넓게 퍼져 압력이 작아진다. 아래 시뮬레이터로 오른다리를 발목에서 엉덩관절까지 가로로 잘라 올라가며 뼈 단면의 넓이를 재 보자.</p>
+
+    <div class="sim" id="sim-sk-femsec" data-desc="오른다리를 발목에서 엉덩관절까지 가로로 잘라 올라가며 뼈 단면의 넓이를 재, 긴뼈의 몸통은 가늘고 관절 근처의 뼈끝은 넓게 퍼지는 것을 실제 데이터로 확인한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>뼈몸통은 가늘고 뼈끝은 넓다</h3></div>
+      <div class="sim-body">
+        <div class="sim-view"><canvas id="fs-cv" class="drag"></canvas><span class="hint">빨간 절단선을 위아래로 끈다</span></div>
+      </div>
+      <div class="map-legend"><span><i style="background:#e6d6ad"></i>뼈</span><span><i style="background:#c4574a"></i>근육</span><span><i style="background:#e0463a"></i>동맥</span><span><i style="background:#4466cc"></i>정맥</span><span><i style="background:rgba(217,180,154,.5)"></i>피부·피하 지방 등</span></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">높이(발바닥에서)</span><span class="v" id="fs-o-z">—</span></div>
+        <div class="stat"><span class="k">오른다리 뼈 단면 넓이</span><span class="v" id="fs-o-a">—</span></div>
+        <div class="stat"><span class="k">단면에서 뼈의 몫</span><span class="v" id="fs-o-f">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 절단선을 넙다리 한가운데에 둔다. 뼈 단면은 동전 몇 개만 하고 둘레는 온통 근육이다. ② 무릎 높이로 내리면 뼈 단면이 몇 배로 넓어진다. 넙다리뼈와 정강뼈의 뼈끝이 맞닿는 자리다. ③ 정강이 한가운데와 발목도 비교한다. (이 데이터의 뼈는 겉면만 있는 메시라 단면이 속까지 꽉 찬 것으로 칠해진다. 실제 뼈몸통 속에는 골수공간이 있다. 엉덩관절 높이에서는 볼기뼈도 함께 잘린다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>그래프의 봉우리는 무릎, 발목, 엉덩관절에 있다. 관절에서 뼈가 넓어지는 것은 압력을 줄이기 위해서이고, 뼈몸통이 가는 대롱인 것은 무게를 줄이기 위해서다. 같은 양의 재료라면 속이 찬 막대보다 속이 빈 대롱이 휘는 힘에 더 잘 버틴다. 자전거 틀이 관으로 된 것과 같은 이치다.</p>
+  </section>
+
+  <section id="weight">
+    <h2>뼈의 부피와 무게</h2>
+    <p>살아 있는 뼈의 밀도는 약 1.9 g/mL로, 물의 두 배쯤 된다. 3D 데이터는 뼈마다 부피를 주므로 여기에 밀도를 곱하면 무게를 어림할 수 있다. 이 사람의 뼈대 전체(짝이 있는 뼈는 오른쪽을 두 배)를 더하면 다음과 같다.</p>
+    <div class="numbers">
+      <div><b id="sk-n-vol">—</b><span>뼈대 전체의 부피(이 데이터)</span></div>
+      <div><b id="sk-n-mass">—</b><span>밀도 1.9 g/mL로 어림한 무게</span></div>
+      <div><b id="sk-n-frac">—</b><span>몸무게에서 뼈대의 몫(몸의 밀도를 약 1.04 g/mL로 잡을 때)</span></div>
+      <div><b id="sk-n-fem">—</b><span>넙다리뼈 하나의 어림 무게</span></div>
+    </div>
+    <p>교과서는 살아 있는 사람의 뼈대가 몸무게의 약 15 %라고 쓴다. 데이터로 어림한 값도 그 근처다. 그러면 어떤 뼈가 이 무게를 많이 차지할까? 아래 막대에서 큰 뼈부터 차례로 늘어놓아 보자.</p>
+
+    <div class="sim" id="sim-sk-vol" data-desc="실제 데이터로 잰 뼈의 부피와 어림 무게를 큰 순서로 늘어놓고, 몸통뼈대와 팔다리뼈대로 걸러 어떤 뼈가 뼈대의 무게를 차지하는지 본다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>가장 무거운 뼈는? 뼈 부피 순위</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="vol-cv" class="drag"></canvas><span class="hint">막대를 누르면 설명이 나온다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="vol-f"><button data-value="all" class="on">모두</button><button data-value="axial">몸통뼈대</button><button data-value="app">팔다리뼈대</button></div>
+          <div class="seg" id="vol-m"><button data-value="v" class="on">부피</button><button data-value="g">무게</button></div>
+          <label class="ctrl"><span>보여 줄 뼈 <output id="vol-n-out"></output></span><input type="range" id="vol-n" min="8" max="30" step="1" value="14"></label>
+        </div>
+      </div>
+      <div class="info-panel" id="vol-info">막대를 누르면 그 뼈의 크기와 위치가 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 뼈</span><span class="v" id="vol-o-k">—</span></div>
+        <div class="stat"><span class="k">값</span><span class="v" id="vol-o-v">—</span></div>
+        <div class="stat"><span class="k">뼈대 전체 중(한쪽 기준)</span><span class="v" id="vol-o-p">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① 맨 위의 "머리뼈 묶음"은 아래턱을 뺀 머리뼈 여러 개를 합친 값이다. 그것을 빼면 하나짜리 뼈로는 넙다리뼈, 볼기뼈, 정강뼈가 1~3위다. 모두 몸무게를 땅으로 내려보내는 길에 있다. ② "몸통뼈대"로 거르면 엉치뼈가 허리뼈보다 훨씬 큰 것을 본다. 척주가 골반에 얹히는 자리다. ③ 개수를 30으로 늘려 척추뼈가 아래로 갈수록 커지는지 본다(<a href="axial.html">3장</a>). (짝이 있는 뼈는 한쪽 값이다. "머리뼈 묶음"은 아래턱을 뺀 머리뼈 전체이고, 메시가 닫혀 있지 않아 어림값이다. 손허리뼈·손가락뼈·발허리뼈·발가락뼈·쐐기뼈는 묶음으로 쟀다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>넙다리뼈 두 개가 뼈대 전체 부피의 약 <b id="sk-fem-share">—</b>를 차지한다. 볼기뼈와 정강뼈까지 더하면 다리와 골반이 뼈대의 거의 절반이다. 뼈의 크기는 그 뼈가 견디는 힘을 따라간다. 서 있는 동안 이 뼈들은 몸무게 전부를 땅까지 전한다.</p>
+  </section>
+
+  <section id="proportion">
+    <h2>뼈의 비율: 넙다리뼈와 키</h2>
+    <p><span class="term">넙다리뼈</span><span class="en">(대퇴골, Femur)</span>는 몸에서 가장 길고 무거운 뼈다. "넙다리"는 넓적다리, femur는 라틴어로 "넓적다리"라는 뜻이다. 사람의 몸은 대체로 비례가 일정해서 넙다리뼈의 길이는 키의 약 4분의 1(26~27 %)이다. 이 사람의 데이터에서 넙다리뼈의 위아래 길이는 <b id="sk-fem-len">—</b>, 키는 <b id="sk-height">—</b>이므로 비율은 <b id="sk-fem-r">—</b>다.</p>
+    <p>이 비례 덕분에 뼈 하나로 키를 어림할 수 있다. 법의학과 고고학에서는 발굴된 긴뼈의 길이를 회귀식에 넣어 생전의 키를 추정한다. 아래는 널리 쓰이는 식(Trotter와 Gleser, 미국 백인 남성 자료)의 한 예다.</p>
+    <div class="formula">$$\text{키(cm)} \approx 2.38 \times F + 61.41 \;\pm 3.3$$<div class="where">\(F\): 넙다리뼈의 길이(cm, 대표값 약 45 cm). ±3.3 cm는 같은 뼈 길이에서 실제 키가 흩어지는 폭(표준오차)이다. 뼈마다, 성별과 집단마다 식이 따로 있다.</div></div>
+
+    <div class="sim" id="sim-sk-height" data-desc="넙다리뼈·정강뼈·종아리뼈·위팔뼈의 길이를 법의학 회귀식에 넣어 키를 어림하고, 실제 데이터 모델의 뼈 길이로 추정한 키를 그 사람의 실제 키와 비교한다.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>뼈 하나로 키를 맞힐 수 있을까?</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="ht-cv" class="drag"></canvas><span class="hint">손잡이를 좌우로 끌어 뼈 길이를 바꾼다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="ht-bone"><button data-value="femur" class="on">넙다리뼈</button><button data-value="tibia">정강뼈</button><button data-value="fibula">종아리뼈</button><button data-value="humerus">위팔뼈</button></div>
+          <div class="btn-row"><button class="btn" id="ht-model">이 모델의 뼈 길이로</button></div>
+        </div>
+      </div>
+      <div class="info-panel" id="ht-info"></div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">뼈 길이</span><span class="v" id="ht-o-l">—</span></div>
+        <div class="stat"><span class="k">추정한 키</span><span class="v" id="ht-o-h">—</span></div>
+        <div class="stat"><span class="k">이 모델의 실제 키</span><span class="v" id="ht-o-r">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "이 모델의 뼈 길이로"를 눌러 넙다리뼈로 추정한 키가 실제 키와 얼마나 가까운지 본다. ② 위팔뼈로 바꾸면 추정이 몇 cm 낮게 나온다. 팔은 몸 옆에서 조금 벌어져 비스듬히 놓여 있어서 위아래 길이가 실제 뼈 길이보다 짧게 잡히기 때문이다. ③ 띠의 폭을 비교한다. 다리뼈의 식이 팔뼈보다 좁다. 키는 다리 길이와 더 단단히 묶여 있다. (회귀식: Trotter와 Gleser가 미국 백인 남성 자료로 만든 식. 넙다리뼈 2.38F+61.41±3.27, 정강뼈 2.52T+78.62±3.37, 종아리뼈 2.68Fi+71.78±3.29, 위팔뼈 3.08H+70.45±4.05. 모델의 뼈 길이는 경계 상자의 위아래 길이다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <p>다른 나라 사람의 자료로 만든 식인데도 넙다리뼈 하나로 이 사람의 키를 몇 cm 안쪽으로 맞힌다. 사람의 비율이 그만큼 일정하다는 뜻이다. 그래도 같은 뼈 길이에서 실제 키는 위아래로 3 cm 넘게 흩어진다. 한 사람의 몸에서 잰 숫자는 늘 이 흩어짐 속의 한 점이다.</p>
+  </section>
+
+  <section id="counting">
+    <h2>206개는 고정된 숫자가 아니다</h2>
+    <p>206은 "보통의 어른"을 센 숫자다. 실제 뼈의 개수는 나이와 사람에 따라 달라진다. 이유는 세 가지다.</p>
+    <p><b>첫째, 합쳐짐.</b> 갓난아기는 약 270~300개의 뼈 조각을 갖고 태어난다. 자라면서 여러 조각이 하나로 붙는다. 볼기뼈는 엉덩뼈·궁둥뼈·두덩뼈 세 조각이 사춘기 무렵 절구(관절오목)에서 붙어 하나가 되고, 엉치뼈는 척추뼈 다섯 개가 20대까지 붙어 생긴다. 긴뼈의 뼈끝도 성장판이 닫히면서 뼈몸통과 한 덩어리가 된다. 갓난아기의 머리뼈 사이에는 아직 뼈가 덜 된 막 부분인 <b>숫구멍</b>(천문)이 있어 머리가 산도를 지날 때 모양을 조금 바꿀 수 있다.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>합쳐지는 뼈</th><th>처음 조각</th><th>합쳐지는 때(대략)</th></tr></thead>
+      <tbody>
+        <tr><td>볼기뼈</td><td>엉덩뼈·궁둥뼈·두덩뼈 3개</td><td>약 15~17세</td></tr>
+        <tr><td>엉치뼈</td><td>엉치척추뼈 5개</td><td>사춘기에 시작해 약 25세 무렵까지</td></tr>
+        <tr><td>꼬리뼈</td><td>꼬리척추뼈 3~5개</td><td>어른이 되면서 하나 또는 둘로</td></tr>
+        <tr><td>이마뼈</td><td>좌우 2개</td><td>약 1~2세</td></tr>
+        <tr><td>복장뼈</td><td>복장뼈자루·몸통·칼돌기</td><td>몸통 부분은 어른이 되며 붙고, 자루와 칼돌기는 늦게 붙거나 따로 남기도 한다</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>둘째, 종자뼈.</b> 힘줄 속에서 자라는 종자뼈는 개수가 사람마다 다르다. 206에는 무릎뼈 2개만 들어간다. 그러나 대부분의 사람은 엄지발가락 뿌리 아래에 콩알만 한 종자뼈 두 개가 있고, 엄지손가락에도 있는 경우가 많다. 이 데이터의 발 모델에도 종자뼈가 들어 있다. <b>셋째, 덧뼈와 변이.</b> 머리뼈 봉합 사이에 작은 뼈(봉합뼈)가 끼거나, 일곱째 목뼈에 작은 갈비뼈(목갈비)가 붙거나, 다섯째 허리뼈가 엉치뼈에 붙어 허리뼈가 넷처럼 보이는 사람도 있다.</p>
+    <p>개수가 가장 많은 곳은 손과 발이다. 두 곳만으로 206개의 절반이 넘는다(손 54개, 발 52개). 아래 두 모델을 돌려 보며 짧은뼈(손목뼈·발목뼈)와 긴뼈(손허리뼈·손가락뼈)가 어떻게 줄지어 있는지 비교하자.</p>
+
+    <div class="sim model3d" id="sim-sk-hand" data-model="hand" data-orbit="0deg 75deg auto" data-desc="오른손의 뼈 27개(손목뼈 8, 손허리뼈 5, 손가락뼈 14)를 하나씩 켜고 끄며 짧은뼈와 긴뼈, 종자뼈처럼 힘줄 속에 놓인 콩알뼈를 찾아본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>손 한쪽에 뼈 27개</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="scaphoid" title="손목뼈 중 엄지 쪽 몸쪽 줄. 넘어질 때 잘 다친다">손배뼈</button><button type="button" data-part="lunate" title="반달 모양 손목뼈">반달뼈</button><button type="button" data-part="triquetral" title="세모 모양 손목뼈">세모뼈</button><button type="button" data-part="pisiform" title="자쪽손목굽힘근 힘줄 속의 콩알 모양 뼈">콩알뼈</button><button type="button" data-part="trapezium" title="엄지 손허리뼈와 만나는 손목뼈">큰마름뼈</button><button type="button" data-part="trapezoid" title="둘째 손허리뼈와 만나는 손목뼈">작은마름뼈</button><button type="button" data-part="capitate" title="가장 큰 손목뼈">알머리뼈</button><button type="button" data-part="hamate" title="갈고리 돌기가 있는 손목뼈">갈고리뼈</button><button type="button" data-part="metacarpals" title="손바닥의 긴뼈 5개">손허리뼈</button><button type="button" data-part="proximal" title="손가락의 첫마디 5개">첫마디뼈</button><button type="button" data-part="middle" title="엄지에는 없다(4개)">중간마디뼈</button><button type="button" data-part="distal" title="손끝 마디 5개">끝마디뼈</button><button type="button" data-part="forearm" title="노뼈와 자뼈의 먼쪽 끝">아래팔 끝</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="metacarpals,proximal,middle,distal">손허리·손가락 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 손허리뼈와 손가락뼈를 반투명하게 하고 손목뼈 8개가 몸쪽 줄 4개, 먼쪽 줄 4개로 놓인 것을 센다. ② 콩알뼈만 켜고 끄며 다른 손목뼈 앞에 얹혀 있는 것을 본다. 힘줄 속에서 생겨 종자뼈로도 분류된다. ③ 엄지에는 중간마디뼈가 없어 손가락뼈가 14개인 것을 확인한다. (오른손만 들어 있다.) <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <div class="sim model3d" id="sim-sk-foot" data-model="foot" data-orbit="-60deg 70deg auto" data-desc="오른발의 뼈 26개(발목뼈 7, 발허리뼈 5, 발가락뼈 14)와 엄지발가락 아래의 종자뼈를 켜고 끄며, 몸무게를 받는 발꿈치뼈와 목말뼈가 손목뼈보다 얼마나 큰지 본다.">
+      <div class="sim-head"><span class="sim-tag three">3D MODEL</span><h3>발 한쪽에 뼈 26개, 그리고 종자뼈</h3></div>
+      <div class="sim-body">
+        <div class="sim-view model3d-view"><span class="hint">끌어서 돌리고, 휠·두 손가락으로 확대한다</span></div>
+      </div>
+      <div class="model3d-parts"><button type="button" data-part="talus" title="정강뼈와 발 사이에서 몸무게를 받는 뼈">목말뼈</button><button type="button" data-part="calcaneus" title="가장 큰 발목뼈. 발꿈치">발꿈치뼈</button><button type="button" data-part="navicular" title="배 모양 발목뼈">발배뼈</button><button type="button" data-part="cuboid" title="주사위 모양 발목뼈">입방뼈</button><button type="button" data-part="cuneiforms" title="쐐기 모양 발목뼈 3개">쐐기뼈</button><button type="button" data-part="metatarsals" title="발등의 긴뼈 5개">발허리뼈</button><button type="button" data-part="phalanges" title="발가락뼈 14개와 엄지발가락 아래 종자뼈">발가락뼈·종자뼈</button><button type="button" data-part="tendon" title="아킬레스힘줄과 긴발바닥인대">힘줄·인대</button><button type="button" data-part="leg" title="정강뼈와 종아리뼈의 먼쪽 끝">종아리 끝</button><span class="sep"></span><button type="button" data-rotate>자동 회전</button><button type="button" data-fade="talus,calcaneus">목말·발꿈치 반투명</button><button type="button" data-reset>처음 시점</button></div>
+      <div class="info-panel">모델을 누르면 그 부위의 이름이 여기에 나온다.</div>
+      <div class="sim-note">해볼 것: ① 발을 아래에서 올려다보도록 돌려 엄지발가락 뿌리 아래의 작은 종자뼈 두 개를 찾는다. 206개에는 들어가지 않는 뼈다. ② 발꿈치뼈와 목말뼈를 손목뼈와 비교한다. 이 데이터에서 발꿈치뼈 하나가 손목뼈 8개를 다 합친 것보다 몇 배 크다. ③ 옆에서 보며 발뼈가 땅에 납작하게 깔리지 않고 활처럼 휜 것을 본다(발의 아치, <a href="lowerlimb.html">5장</a>). (오른발만 들어 있다.) <span class="sim-credit">3D 모델: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 부위별로 색을 입히고 면 수를 줄였다. 뷰어: model-viewer(Apache-2.0).</span></div>
+    </div>
+
+    <p>손과 발은 뼈의 개수가 거의 같지만 쓰임이 다르다. 이 데이터에서 손 한쪽 뼈의 부피는 <b id="sk-hand-v2">—</b>, 발 한쪽은 <b id="sk-foot-v">—</b>로 세 배가 넘는다. 손은 작은 뼈를 많이 두어 섬세하게 움직이고, 발은 같은 설계를 크고 단단하게 만들어 몸무게를 받는다.</p>
+  </section>
+
+  <section id="atlas">
+    <h2>종합: 206개를 세고, 재고, 나누기</h2>
+    <p>이 장에서 쓴 세 가지 잣대(몸통과 팔다리, 부위, 모양)를 한 화면에 모았다. 왼쪽 뼈대 지도의 점 하나하나가 데이터에 있는 뼈이고, 점의 크기는 부피에 비례한다. 오른쪽 도넛은 206개를 고른 잣대로 나눈 몫이다. "부피로"를 고르면 같은 잣대로 데이터의 부피를 나눈다.</p>
+
+    <div class="sim" id="sim-sk-atlas" data-big data-desc="뼈대 지도 위의 뼈마다 점을 찍고(크기는 실제 부피), 206개를 몸통·팔다리, 부위, 모양으로 나눈 몫을 개수와 부피로 바꿔 가며 비교하는 종합 시뮬레이터.">
+      <div class="sim-head"><span class="sim-tag">SIMULATOR</span><h3>뼈대 종합 지도: 206개를 세 가지 잣대로</h3></div>
+      <div class="sim-body side">
+        <div class="sim-view"><canvas id="at-cv" class="drag"></canvas><span class="hint">점이나 도넛 조각을 누른다</span></div>
+        <div class="sim-controls">
+          <div class="seg" id="at-g"><button data-value="div" class="on">몸통·팔다리</button><button data-value="reg">부위</button><button data-value="shape">모양</button></div>
+          <div class="seg" id="at-m"><button data-value="n" class="on">개수로</button><button data-value="v">부피로</button></div>
+          <label class="check"><input type="checkbox" id="at-lab" checked> 무리 이름 표시</label>
+        </div>
+      </div>
+      <div class="info-panel" id="at-info">점을 누르면 그 뼈의 이름, 개수, 부피가 나온다.</div>
+      <div class="sim-readout">
+        <div class="stat"><span class="k">고른 무리</span><span class="v" id="at-o-g">—</span></div>
+        <div class="stat"><span class="k">개수(교과서)</span><span class="v" id="at-o-n">—</span></div>
+        <div class="stat"><span class="k">부피(이 데이터, 양쪽)</span><span class="v" id="at-o-v">—</span></div>
+      </div>
+      <div class="sim-note">해볼 것: ① "모양"에서 긴뼈가 개수로는 90개(약 44 %)인데 부피로는 그보다 훨씬 큰 몫인 것을 본다. ② "부위"에서 팔과 다리를 비교한다. 개수는 64개와 60개로 비슷하지만 부피는 크게 다르다. ③ 도넛의 "종자뼈" 조각을 눌러 지도에서 무릎뼈와 콩알뼈의 점이 강조되는 것을 본다. (벌집뼈·코뼈·눈물뼈·보습뼈·위턱뼈·광대뼈·입천장뼈·아래코선반은 3D 모델에는 있지만 수치 데이터에서는 "머리뼈 묶음"에 섞여 있어 따로 점이 없고, 귀속뼈와 꼬리뼈는 아예 없다. 얼굴뼈 등의 부피는 머리뼈 묶음에서 따로 잰 뼈를 뺀 나머지로 어림했다. 모양 분류는 이 책의 분류다.) <span class="sim-credit">데이터: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">BodyParts3D</a>, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>에서 계산.</span></div>
+    </div>
+
+    <div class="casefile">
+      <div class="tag"><b>DATA</b><span>데이터로 확인하기 · 2장</span></div>
+      <h4>뼈대는 몸무게의 몇 %일까?</h4>
+      <p>이 사람의 뼈를 모두 더하면 부피 <b id="dc-vol">—</b>다. 몸통뼈대가 <b id="dc-ax">—</b>, 팔다리뼈대가 <b id="dc-ap">—</b>로, 개수(80 : 126)와 비슷하게 팔다리 쪽이 많다. 살아 있는 뼈의 밀도 약 1.9 g/mL를 곱하면 약 <b id="dc-mass">—</b>. 피부 안쪽을 2 mm마다 잘라 쌓은 몸의 부피 <b id="dc-body">—</b>에 몸의 평균 밀도 약 1.04 g/mL를 곱한 몸무게와 견주면 뼈대의 몫은 <b id="dc-frac">—</b>다. 교과서의 "약 15 %"와 맞는다.</p>
+      <p>부피로만 보면 뼈는 몸의 <b id="dc-vfrac">—</b>밖에 안 된다. 그런데 무게로는 그 두 배쯤 된다. 뼈의 밀도가 몸의 평균 밀도의 두 배에 가깝기 때문이다.</p>
+      <div class="clue"><div><b>데이터가 보여 준 것</b>뼈대의 무게는 교과서값과 맞고, 그 무게의 거의 절반은 다리와 골반이 차지한다.</div><div><b>데이터의 한계</b>밀도는 한 값으로 어림했다(실제로는 치밀뼈와 해면뼈, 나이에 따라 다르다). 꼬리뼈·귀속뼈가 없고 머리뼈 메시는 닫혀 있지 않다. 한 사람의 몸이다.</div><div><b>다음 장에서</b>몸통뼈대를 확대한다. 머리뼈 22개, 아래로 갈수록 커지는 척추뼈, 숨 쉴 때 움직이는 가슴우리.</div></div>
+    </div>
+  </section>
+
+  <section class="keypoints" id="summary">
+    <h2>핵심 정리</h2>
+    <ol>
+      <li>어른의 뼈는 보통 206개다. 몸의 축을 이루는 몸통뼈대 80개(머리뼈·귀속뼈·목뿔뼈·척주·가슴우리)와 팔다리뼈대 126개(어깨이음뼈·팔·손·볼기뼈·다리·발)로 나뉜다.</li>
+      <li>몸통뼈대는 주로 지키고, 팔다리뼈대는 주로 움직인다. 팔다리뼈대의 개수 절반 가까이는 손과 발의 작은 뼈다.</li>
+      <li>뼈는 모양으로 긴뼈·짧은뼈·납작뼈·불규칙뼈·종자뼈로 나뉜다. 모양은 하는 일(지렛대, 힘 나누기, 덮어 지키기, 힘줄 띄우기)을 반영한다.</li>
+      <li>뼈는 지지, 보호, 운동, 칼슘 저장, 피 만들기를 한다. 긴뼈는 속이 빈 뼈몸통과 해면뼈로 찬 뼈끝으로 이루어지고, 관절 쪽 뼈끝이 넓어 압력을 줄인다.</li>
+      <li>이 데이터에서 뼈대의 부피는 약 5.5 L, 어림 무게는 약 10 kg으로 몸무게의 약 15 %다. 넙다리뼈 하나가 가장 크다.</li>
+      <li>넙다리뼈의 길이는 키의 약 4분의 1이어서 긴뼈 하나로 키를 어림할 수 있다. 뼈의 개수는 합쳐짐, 종자뼈, 덧뼈 때문에 나이와 사람마다 달라진다.</li>
+    </ol>
+  </section>
+
+  <section class="quiz-sec" id="quiz">
+    <h2>확인 퀴즈</h2>
+    <div class="quiz">
+      <div class="quiz-q"><p>1. 다음 가운데 몸통뼈대에 속하지 <b>않는</b> 뼈는?</p>
+        <div class="opts"><button class="opt">복장뼈</button><button class="opt">목뿔뼈</button><button class="opt" data-correct>빗장뼈</button><button class="opt">엉치뼈</button></div>
+        <div class="quiz-exp">빗장뼈는 어깨뼈와 함께 팔을 몸통에 붙이는 어깨이음뼈로, 팔다리뼈대에 속한다. 복장뼈(가슴우리), 목뿔뼈, 엉치뼈(척주)는 몸통뼈대다.</div></div>
+      <div class="quiz-q"><p>2. 무릎뼈는 어떤 모양의 뼈로 분류되는가?</p>
+        <div class="opts"><button class="opt">짧은뼈</button><button class="opt" data-correct>종자뼈</button><button class="opt">납작뼈</button><button class="opt">불규칙뼈</button></div>
+        <div class="quiz-exp">무릎뼈는 넙다리네갈래근의 힘줄 속에서 생긴 몸에서 가장 큰 종자뼈다. 힘줄을 넙다리뼈에서 띄워 무릎을 펴는 지렛대 팔을 늘린다.</div></div>
+      <div class="quiz-q"><p>3. 이 장의 데이터에서 넙다리뼈의 위아래 길이는 약 46.6 cm, 그 사람의 키는 약 171.9 cm였다. 넙다리뼈는 키의 약 몇 %인가?</p>
+        <div class="opts"><button class="opt">약 17 %</button><button class="opt">약 37 %</button><button class="opt">약 50 %</button><button class="opt" data-correct>약 27 %</button></div>
+        <div class="quiz-exp">46.6 ÷ 171.9 ≈ 0.271. 교과서의 "키의 약 4분의 1(26~27 %)"과 맞는다. 이 비례가 있어 법의학에서 넙다리뼈 하나로 키를 어림한다.</div></div>
+      <div class="quiz-q"><p>4. 갓난아기의 뼈 조각이 어른의 206개보다 많은 가장 큰 이유는?</p>
+        <div class="opts"><button class="opt" data-correct>여러 조각으로 시작한 뼈(볼기뼈, 엉치뼈, 긴뼈의 뼈끝 등)가 자라면서 하나로 합쳐지기 때문</button><button class="opt">자라면서 일부 뼈가 흡수되어 사라지기 때문</button><button class="opt">어른이 되면 종자뼈가 모두 없어지기 때문</button><button class="opt">갓난아기는 갈비뼈가 더 많기 때문</button></div>
+        <div class="quiz-exp">볼기뼈는 세 조각, 엉치뼈는 척추뼈 다섯 개가 붙어 생기고, 긴뼈의 뼈끝도 성장판이 닫히며 뼈몸통과 하나가 된다. 그래서 갓난아기의 약 270~300개가 어른의 약 206개로 준다.</div></div>
+      <div class="quiz-q"><p>5. 이 장의 데이터에서 뼈대 전체 부피 가운데 팔다리뼈대가 차지하는 비율에 가장 가까운 것은?</p>
+        <div class="opts"><button class="opt">약 20 %</button><button class="opt">약 40 %</button><button class="opt" data-correct>약 60 %</button><button class="opt">약 90 %</button></div>
+        <div class="quiz-exp">몸통뼈대 약 2.0 L, 팔다리뼈대 약 3.5 L로 팔다리뼈대가 약 63 %다. 개수의 비율(126 ÷ 206 ≈ 61 %)과 비슷하지만, 이유는 다르다. 개수는 손발의 작은 뼈가, 부피는 다리의 큰 뼈가 끌어올린다.</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var V = function (k) { return AT.part(k).vol; };
+  var RIBS = [], CV = [], TV = [], LV = [];
+  for (var i = 1; i <= 12; i++) { RIBS.push("rib" + i); TV.push("t" + i); }
+  for (i = 1; i <= 7; i++) CV.push("c" + i);
+  for (i = 1; i <= 5; i++) LV.push("l" + i);
+  var VERT = CV.concat(TV, LV);
+  var CARP = ["scaphoid", "lunate", "triquetral", "pisiform", "trapezium", "trapezoid", "capitate", "hamate"];
+  var ARM = ["clavicle", "scapula", "humerus", "radius", "ulna"].concat(CARP, ["metacarpals", "fingers"]);
+  var LEG = ["femur", "patella", "tibia", "fibula", "talus", "calcaneus", "navicular", "cuboid", "cuneiforms", "metatarsals", "toes"];
+  var TARS = ["talus", "calcaneus", "navicular", "cuboid", "cuneiforms", "metatarsals", "toes"];
+  function sum(a) { return a.reduce(function (t, k) { return t + V(k); }, 0); }
+  var AXV = V("skull") + V("mandible") + V("hyoid") + sum(VERT) + V("sacrum") + V("sternum") + 2 * sum(RIBS);
+  var APV = 2 * (sum(ARM) + V("hipbone") + sum(LEG));
+  var TOT = AXV + APV;
+  var BODYKG = AT.body.vol * 1.04;
+  function setT(id, t) { var e = document.getElementById(id); if (e) e.textContent = t; }
+  function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + " kg" : Math.round(g) + " g"; }
+  function pct(x) { return (x * 100).toFixed(x < 0.1 ? 1 : 0) + " %"; }
+
+  /* ---------------- 글 속 숫자 ---------------- */
+  setT("sk-hand-v", AT.fmtVol(sum(CARP) + V("metacarpals") + V("fingers")));
+  setT("sk-hand-v2", AT.fmtVol(sum(CARP) + V("metacarpals") + V("fingers")));
+  setT("sk-foot-v", AT.fmtVol(sum(TARS)));
+  setT("sk-fem-v", AT.fmtVol(V("femur")));
+  setT("sk-n-vol", AT.fmtVol(TOT));
+  setT("sk-n-mass", "약 " + kg(TOT * 1.9));
+  setT("sk-n-frac", "약 " + pct(TOT * 1.9 / 1000 / BODYKG));
+  setT("sk-n-fem", "약 " + kg(AT.mass("femur")));
+  setT("sk-fem-share", pct(2 * V("femur") / TOT));
+  setT("sk-fem-len", (AT.size("femur")[2] / 10).toFixed(1) + " cm");
+  setT("sk-height", (AT.body.height / 10).toFixed(1) + " cm");
+  setT("sk-fem-r", "약 " + (AT.size("femur")[2] / AT.body.height * 100).toFixed(1) + " %");
+
+  /* ---------------- 몸통뼈대와 팔다리뼈대 ---------------- */
+  (function () {
+    var REG = {
+      skull: { ax: 1, name: "머리", n: 29, v: V("skull") + V("mandible") + V("hyoid"), txt: "머리뼈 22개(뇌머리뼈 8 + 얼굴뼈 14), 귀속뼈 6개(좌우 망치뼈·모루뼈·등자뼈), 목뿔뼈 1개. 뇌와 눈, 속귀를 감싼다." },
+      spine: { ax: 1, name: "척주", n: 26, v: sum(VERT) + V("sacrum"), txt: "목뼈 7, 등뼈 12, 허리뼈 5, 엉치뼈 1(5개가 붙은 것), 꼬리뼈 1(3~5개가 붙은 것). 척수를 감싸고 몸통을 세운다. (꼬리뼈는 데이터에 없다)" },
+      ribcage: { ax: 1, name: "가슴우리", n: 25, v: 2 * sum(RIBS) + V("sternum"), txt: "갈비뼈 12쌍(24개)과 복장뼈 1개. 심장과 폐를 감싸고 숨 쉴 때 움직인다." },
+      armbones_r: { ax: 0, name: "오른팔", n: 32, v: sum(ARM), txt: "빗장뼈·어깨뼈(어깨이음뼈) 2, 위팔뼈 1, 노뼈·자뼈 2, 손목뼈 8, 손허리뼈 5, 손가락뼈 14." },
+      armbones_l: { ax: 0, name: "왼팔", n: 32, v: sum(ARM), txt: "오른팔과 같은 32개. (데이터는 오른쪽 값을 그대로 썼다)" },
+      pelvis: { ax: 0, name: "볼기뼈(골반이음뼈)", n: 2, v: 2 * V("hipbone"), txt: "좌우 볼기뼈 2개. 다리를 몸통(엉치뼈)에 잇는다. 엉치뼈와 함께 골반을 이룬다." },
+      legbones_r: { ax: 0, name: "오른다리", n: 30, v: sum(LEG), txt: "넙다리뼈 1, 무릎뼈 1, 정강뼈·종아리뼈 2, 발목뼈 7, 발허리뼈 5, 발가락뼈 14." },
+      legbones_l: { ax: 0, name: "왼다리", n: 30, v: sum(LEG), txt: "오른다리와 같은 30개. (데이터는 오른쪽 값을 그대로 썼다)" },
+    };
+    var KEYS = Object.keys(REG);
+    var mode = "axial", metric = "n", sel = null, T = null, split = 0;
+    var holder = document.getElementById("cnt-cv").parentElement;
+    var info = document.getElementById("cnt-info");
+    var cv = BB.canvas("#cnt-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      var narrow = w < 480;
+      split = Math.round(w * (narrow ? 0.5 : 0.52));
+      T = AT.mapFit({ x: 0, y: 0, w: split, h: h }, "front", { pad: 10 });
+      var hl = sel ? [sel] : KEYS.filter(function (k) { return mode === "all" || (mode === "axial") === !!REG[k].ax; });
+      AT.drawMap(ctx, T, "front", { layers: ["skin"].concat(KEYS), highlight: hl });
+      AT.orient(ctx, { x: 0, y: 0, w: split, h: h }, "front", P.faint);
+      // 오른쪽: 집계
+      var x0 = split + 10, cw = w - x0 - 10, y = 18;
+      var axN = 80, apN = 126, axS = metric === "n" ? axN : AXV, apS = metric === "n" ? apN : APV, tot = axS + apS;
+      ctx.textBaseline = "alphabetic";
+      ctx.font = BB.font(narrow ? 11 : 12, false, 600); ctx.fillStyle = P.dim;
+      ctx.fillText(metric === "n" ? "뼈의 개수(교과서, 어른)" : "뼈의 부피(이 데이터, 양쪽)", x0, y + 4);
+      y += 16;
+      // 비율 막대
+      var bh = 22, fa = axS / tot;
+      ctx.fillStyle = BB.alpha(P.accent, mode === "app" ? 0.3 : 0.9); ctx.fillRect(x0, y, cw * fa, bh);
+      ctx.fillStyle = BB.alpha(P.accent2, mode === "axial" ? 0.3 : 0.9); ctx.fillRect(x0 + cw * fa, y, cw * (1 - fa), bh);
+      ctx.fillStyle = "#fff"; ctx.font = BB.font(11, true, 700); ctx.textBaseline = "middle";
+      ctx.textAlign = "center";
+      ctx.fillText(Math.round(fa * 100) + "%", x0 + cw * fa / 2, y + bh / 2);
+      ctx.fillText(Math.round((1 - fa) * 100) + "%", x0 + cw * fa + cw * (1 - fa) / 2, y + bh / 2);
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+      y += bh + 22;
+      function block(title, total, rows, col, on) {
+        ctx.globalAlpha = on ? 1 : 0.45;
+        ctx.fillStyle = col; ctx.font = BB.font(narrow ? 13 : 15, false, 800);
+        ctx.fillText(title, x0, y);
+        ctx.font = BB.font(narrow ? 13 : 15, true, 800); ctx.textAlign = "right";
+        ctx.fillText(total, x0 + cw, y); ctx.textAlign = "left";
+        y += narrow ? 18 : 21;
+        ctx.font = BB.font(narrow ? 11 : 12.5);
+        rows.forEach(function (r) {
+          var isSel = sel && r[2].indexOf(sel) >= 0;
+          ctx.fillStyle = isSel ? P.text : P.dim;
+          ctx.font = BB.font(narrow ? 11 : 12.5, false, isSel ? 700 : 400);
+          ctx.fillText(r[0], x0 + 8, y);
+          ctx.textAlign = "right"; ctx.font = BB.font(narrow ? 11 : 12.5, true, isSel ? 700 : 400); ctx.fillText(r[1], x0 + cw, y); ctx.textAlign = "left";
+          y += narrow ? 16 : 19;
+        });
+        ctx.globalAlpha = 1;
+        y += 12;
+      }
+      function val(keys) { var n = 0, v = 0; keys.forEach(function (k) { n += REG[k].n; v += REG[k].v; }); return metric === "n" ? n + "개" : AT.fmtVol(v); }
+      block("몸통뼈대", metric === "n" ? "80개" : AT.fmtVol(AXV), [["머리", val(["skull"]), ["skull"]], ["척주", val(["spine"]), ["spine"]], ["가슴우리", val(["ribcage"]), ["ribcage"]]], P.accent, mode !== "app");
+      block("팔다리뼈대", metric === "n" ? "126개" : AT.fmtVol(APV), [["팔 (양쪽)", val(["armbones_r", "armbones_l"]), ["armbones_r", "armbones_l"]], ["볼기뼈", val(["pelvis"]), ["pelvis"]], ["다리 (양쪽)", val(["legbones_r", "legbones_l"]), ["legbones_r", "legbones_l"]]], P.accent2, mode !== "axial");
+      ctx.fillStyle = P.faint; ctx.font = BB.font(11);
+      BB.wrapText(ctx, metric === "n" ? "합계 206개" : "합계 " + AT.fmtVol(TOT) + " (꼬리뼈·귀속뼈 없음)", x0, Math.min(y, h - 24), cw, 14, 2);
+    }, { get height() { return holder.clientWidth < 520 ? 400 : 440; } });
+    function show() {
+      if (!sel) { BB.stat("cnt-o-r", "—"); BB.stat("cnt-o-n", "—"); BB.stat("cnt-o-v", "—"); info.textContent = "부위를 누르면 그 부위의 뼈가 나온다."; return; }
+      var r = REG[sel];
+      BB.stat("cnt-o-r", r.name + " · " + (r.ax ? "몸통뼈대" : "팔다리뼈대"));
+      BB.stat("cnt-o-n", r.n + "개");
+      BB.stat("cnt-o-v", AT.fmtVol(r.v) + " (" + pct(r.v / TOT) + ")");
+      info.innerHTML = "<b>" + r.name + "</b>: " + r.txt;
+    }
+    BB.seg("cnt-mode", function (v) { mode = v; sel = null; show(); cv.redraw(); });
+    BB.seg("cnt-metric", function (v) { metric = v; cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      if (x > split) return;
+      var k = AT.hitMap(T, "front", x, y, KEYS);
+      sel = k; if (k) mode = REG[k].ax ? "axial" : "app";
+      show(); cv.redraw();
+    } });
+  })();
+
+  /* ---------------- 뼈의 모양 ---------------- */
+  var SHAPE = {
+    long: ["humerus", "radius", "ulna", "femur", "tibia", "fibula", "clavicle"],
+    short: ["scaphoid", "lunate", "triquetral", "trapezium", "trapezoid", "capitate", "hamate", "talus", "calcaneus", "navicular", "cuboid"],
+    sesamoid: ["patella", "pisiform"],
+    flat: ["frontal", "parietal", "occipital", "sternum", "scapula"].concat(RIBS),
+    irregular: ["temporal", "sphenoid", "mandible", "hyoid"].concat(VERT, ["sacrum", "hipbone"]),
+  };
+  var SHAPE_KO = { long: "긴뼈", short: "짧은뼈", flat: "납작뼈", irregular: "불규칙뼈", sesamoid: "종자뼈" };
+  var SHAPES = ["long", "short", "flat", "irregular", "sesamoid"];
+  function shapeColor(s, P) { return { long: P.accent, short: P.warn, flat: P.ok, irregular: P.accent2, sesamoid: P.bad }[s]; }
+  (function () {
+    var pts = [];
+    SHAPES.forEach(function (s) {
+      SHAPE[s].forEach(function (k) {
+        var p = AT.part(k), d = AT.size(k).slice().sort(function (a, b) { return b - a; });
+        var t = 2 * p.vol * 1000 / (p.area * 100);
+        pts.push({ k: k, ko: p.ko, s: s, e: d[0] / d[1], t: t, rt: t / d[0] * 100, L: d[0] });
+      });
+    });
+    var rnd = BB.rng(7), order = [];
+    function reset() {
+      order = pts.map(function (_, i) { return i; });
+      for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(rnd() * (i + 1)); var t = order[i]; order[i] = order[j]; order[j] = t; }
+      // 앞쪽에는 대표적인 뼈를 섞어 둔다
+      var first = ["femur", "parietal", "patella", "capitate", "l3", "rib6", "tibia", "calcaneus"].map(function (k) { return pts.findIndex(function (p) { return p.k === k; }); });
+      order = first.concat(order.filter(function (i) { return first.indexOf(i) < 0; }));
+      pts.forEach(function (p) { p.ans = null; });
+      cur = 0; score = 0; tried = 0; picked = null;
+    }
+    var mode = "quiz", cur = 0, score = 0, tried = 0, picked = null, Tm = null, C = null, hov = null;
+    var holder = document.getElementById("shp-cv").parentElement;
+    var info = document.getElementById("shp-info");
+    var tip = BB.tip("#shp-cv");
+    reset();
+    function target() { return mode === "quiz" && cur < order.length ? pts[order[cur]] : picked; }
+    var cv = BB.canvas("#shp-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      var mw = Math.max(86, Math.round(w * 0.24));
+      Tm = AT.mapFit({ x: 0, y: 0, w: mw, h: h - 10 }, "front", { pad: 6 });
+      AT.drawMap(ctx, Tm, "front", { layers: ["skin", "skull", "spine", "ribcage", "armbones_r", "armbones_l", "pelvis", "legbones_r", "legbones_l"], alpha: 0.55 });
+      var tg = target();
+      if (tg) {
+        var q = AT.mapPoint(Tm, "front", tg.k);
+        ctx.strokeStyle = P.bad; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(q[0], q[1], 9, 0, 7); ctx.stroke();
+        ctx.fillStyle = P.bad; ctx.beginPath(); ctx.arc(q[0], q[1], 3, 0, 7); ctx.fill();
+      }
+      ctx.fillStyle = P.dim; ctx.font = BB.font(10.5); ctx.textAlign = "center";
+      ctx.fillText("오른쪽 뼈", mw / 2, h - 4); ctx.textAlign = "left";
+      // 산점도
+      var bx = mw + 50, box = { x: bx, y: 30, w: w - bx - 12, h: h - 30 - 50 };
+      C = BB.chart(ctx, box, { x: [0.9, 12], logX: true, y: [0, 32], xTicks: [1, 2, 3, 5, 10], xFmt: function (v) { return v + "×"; }, yFmt: function (v) { return v + "%"; }, xLabel: "길쭉함 (가장 긴 변 ÷ 둘째 변, 로그)", yLabel: "상대 두께" });
+      // 영역 이름
+      ctx.font = BB.font(11, false, 600);
+      [["짧은·종자뼈", 1.0, 30, P.warn], ["납작뼈", 1.0, 1.4, P.ok], ["긴뼈", 4.2, 12, P.accent]].forEach(function (a) {
+        if (mode !== "all") return;
+        ctx.fillStyle = BB.alpha(a[3], 0.85); ctx.textBaseline = "top"; ctx.fillText(a[0], C.X(a[1]) + 4, C.Y(a[2]));
+      });
+      ctx.textBaseline = "alphabetic";
+      pts.forEach(function (p) {
+        var x = C.X(p.e), y = C.Y(p.rt), known = mode === "all" || p.ans;
+        ctx.fillStyle = known ? shapeColor(p.s, P) : BB.alpha(P.dim, 0.35);
+        ctx.beginPath(); ctx.arc(x, y, known ? 4.5 : 3.5, 0, 7); ctx.fill();
+        if (p.ans === "wrong") { ctx.strokeStyle = P.text; ctx.lineWidth = 1; ctx.stroke(); }
+      });
+      if (tg) {
+        var x = C.X(tg.e), y = C.Y(tg.rt);
+        ctx.strokeStyle = P.bad; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, 9, 0, 7); ctx.stroke();
+        if (mode === "all") { ctx.fillStyle = P.text; ctx.font = BB.font(12, false, 700); ctx.fillText(tg.ko, Math.min(x + 11, w - 70), y - 10); }
+      }
+      // 제목
+      ctx.fillStyle = P.text; ctx.font = BB.font(13, false, 700);
+      var title = mode === "quiz" ? (cur < order.length ? "이 뼈는? " + pts[order[cur]].ko : "끝! " + score + " / " + tried) : "점을 누르면 이름이 나온다";
+      ctx.fillText(title, bx, 18);
+      if (mode === "all") {
+        var lx = w - 12; ctx.font = BB.font(11); ctx.textAlign = "right";
+        SHAPES.slice().reverse().forEach(function (s) { var tw = ctx.measureText(SHAPE_KO[s]).width; ctx.fillStyle = P.dim; ctx.fillText(SHAPE_KO[s], lx, 18); ctx.fillStyle = shapeColor(s, P); ctx.beginPath(); ctx.arc(lx - tw - 7, 14, 4, 0, 7); ctx.fill(); lx -= tw + 20; });
+        ctx.textAlign = "left";
+        if (lx < bx + 140) { /* 좁으면 제목만 */ }
+      }
+    }, { get height() { return holder.clientWidth < 520 ? 400 : 420; } });
+    function stats(p) {
+      BB.stat("shp-o-s", score + " / " + tried);
+      BB.stat("shp-o-e", p ? p.e.toFixed(2) + "×" : "—");
+      BB.stat("shp-o-t", p ? p.t.toFixed(1) + " mm (가장 긴 변 " + AT.fmtLen(p.L) + ")" : "—");
+    }
+    function answer(s) {
+      if (mode !== "quiz" || cur >= order.length) return;
+      var p = pts[order[cur]], ok = p.s === s;
+      tried++; if (ok) score++;
+      p.ans = ok ? "ok" : "wrong";
+      info.innerHTML = (ok ? "맞다. " : "아니다. ") + "<b>" + p.ko + "</b>은(는) <b>" + SHAPE_KO[p.s] + "</b>다. 길쭉함 " + p.e.toFixed(2) + "×, 상대 두께 " + p.rt.toFixed(1) + " %." + (p.k === "clavicle" ? " 빗장뼈는 S자로 휘어 상자로 재면 길쭉하지 않지만 구조는 긴뼈다." : p.k === "pisiform" ? " 콩알뼈는 손목뼈이면서 힘줄 속에 있어 종자뼈로도 분류한다." : "");
+      stats(p);
+      cur++;
+      cv.redraw();
+    }
+    [].forEach.call(document.querySelectorAll("#shp-btns .btn"), function (b) { b.addEventListener("click", function () { answer(b.dataset.shape); }); });
+    document.getElementById("shp-re").addEventListener("click", function () { reset(); stats(null); info.textContent = "왼쪽 지도에 표시된 뼈의 모양을 고른다."; cv.redraw(); });
+    BB.seg("shp-mode", function (v) { mode = v; picked = null; cv.redraw(); info.textContent = v === "all" ? "점을 누르면 그 뼈의 이름과 값이 나온다." : "왼쪽 지도에 표시된 뼈의 모양을 고른다."; });
+    function near(x, y) {
+      if (!C) return null;
+      var best = null, bd = 12;
+      pts.forEach(function (p) { var d = Math.hypot(C.X(p.e) - x, C.Y(p.rt) - y); if (d < bd) { bd = d; best = p; } });
+      return best;
+    }
+    BB.drag(cv.canvas, {
+      start: function (x, y) {
+        var p = near(x, y); if (!p) return;
+        if (mode === "all" || p.ans) { picked = p; mode === "all" && (info.innerHTML = "<b>" + p.ko + "</b> · " + SHAPE_KO[p.s] + ". 길쭉함 " + p.e.toFixed(2) + "×, 어림 평균 두께 " + p.t.toFixed(1) + " mm, 상대 두께 " + p.rt.toFixed(1) + " %."); stats(p); cv.redraw(); }
+      },
+      hover: function (x, y) {
+        var p = near(x, y);
+        if (p && (mode === "all" || p.ans)) tip.show(x, y, "<b>" + p.ko + "</b><br>" + SHAPE_KO[p.s]); else tip.hide();
+      },
+    });
+    cv.canvas.addEventListener("pointerleave", tip.hide);
+    stats(null);
+  })();
+
+  /* ---------------- 다리를 따라 올라가는 단면 ---------------- */
+  (function () {
+    function ringArea(r) { var a = 0; for (var i = 0, n = r.length / 2, j = n - 1; i < n; j = i++) a += r[2 * j] * r[2 * i + 1] - r[2 * i] * r[2 * j + 1]; return Math.abs(a / 2); }
+    function cx(r) { var s = 0; for (var i = 0; i < r.length; i += 2) s += r[i]; return s / (r.length / 2); }
+    function areaOf(rings) {
+      var rs = rings.map(function (r) { return { a: ringArea(r), r: r }; }), tot = 0;
+      rs.forEach(function (x, i) { var d = 0; rs.forEach(function (y, j) { if (i !== j && y.a > x.a && AT.inside([y.r], x.r[0], x.r[1])) d++; }); tot += d % 2 ? -x.a : x.a; });
+      return tot;
+    }
+    function rightRings(g) { return g ? g.rings.filter(function (r) { var c = cx(r); return c < 0 && c > -215; }) : []; }
+    var Z0 = -60, Z1 = 790, prof = [];
+    function measure(z) {
+      var sec = AT.sectionAt("axial", z);
+      var b = sec.filter(function (g) { return g.k === "bone"; })[0], body = sec.filter(function (g) { return g.k === "body"; })[0];
+      var ba = areaOf(rightRings(b)), bo = z < 680 ? areaOf(rightRings(body)) : 0;
+      return { z: z, a: ba, f: bo ? ba / bo : null };
+    }
+    for (var z = Z0; z <= Z1; z += 10) prof.push(measure(z));
+    var lev = 580, Tm = null, Ts = null, C = null, layout = null, dragging = false;
+    var holder = document.getElementById("fs-cv").parentElement;
+    var cv = BB.canvas("#fs-cv", function (ctx, w, h) {
+      var P = BB.palette(), narrow = w < 560;
+      var mapB, secB, chB;
+      if (narrow) { mapB = { x: 0, y: 0, w: Math.round(w * 0.3), h: Math.round(h * 0.56) }; chB = { x: mapB.w, y: 0, w: w - mapB.w, h: mapB.h }; secB = { x: 0, y: mapB.h + 4, w: w, h: h - mapB.h - 4 }; }
+      else { mapB = { x: 0, y: 0, w: Math.round(w * 0.2), h: h }; secB = { x: mapB.w + 4, y: 0, w: Math.round(w * 0.42), h: h }; chB = { x: secB.x + secB.w + 4, y: 0, w: w - secB.x - secB.w - 4, h: h }; }
+      layout = { mapB: mapB, secB: secB, chB: chB };
+      // 지도
+      ctx.save(); ctx.beginPath(); ctx.rect(mapB.x, mapB.y, mapB.w, mapB.h); ctx.clip();
+      Tm = AT.fit({ x: mapB.x, y: mapB.y, w: mapB.w, h: mapB.h - 34 }, [-200, Z0 - 30, 10, Z1 + 30], { pad: 8 });
+      AT.drawMap(ctx, Tm, "front", { layers: ["skin", "pelvis", "spine", "legbones_r"], highlight: "legbones_r" });
+      ctx.restore();
+      var yy = Tm.Y(lev);
+      ctx.strokeStyle = P.bad; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(mapB.x + 2, yy); ctx.lineTo(mapB.x + mapB.w - 2, yy); ctx.stroke();
+      ctx.fillStyle = P.bg; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(mapB.x + mapB.w - 12, yy, 7, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = P.dim; ctx.font = BB.font(10.5); ctx.fillText("오른다리 앞모습", mapB.x + 4, mapB.y + 12);
+      // 그래프(세로축 = 높이, 지도와 같은 눈금)
+      var gx = chB.x + 30, gw = chB.w - 44;
+      var amax = 4000;
+      ctx.strokeStyle = P.grid; ctx.lineWidth = 1; ctx.font = BB.font(10.5, true); ctx.fillStyle = P.dim; ctx.textAlign = "center";
+      [0, 10, 20, 30, 40].forEach(function (c) { var x = gx + gw * c * 100 / amax; ctx.beginPath(); ctx.moveTo(x, Tm.Y(Z1)); ctx.lineTo(x, Tm.Y(Z0)); ctx.stroke(); ctx.fillText(c, x, Tm.Y(Z0) + 12); });
+      ctx.fillText("뼈 단면 넓이 (cm²)", gx + gw / 2, Tm.Y(Z0) + 27);
+      ctx.textAlign = "right";
+      [0, 200, 400, 600, 800].forEach(function (hz) { var y = Tm.Y(hz + AT.body.bottom); if (y < chB.y + 6 || y > chB.y + chB.h - 6) return; ctx.fillText((hz / 10) + "", gx - 4, y + 3); });
+      ctx.save(); ctx.translate(chB.x + 8, (Tm.Y(Z0) + Tm.Y(Z1)) / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.font = BB.font(10.5); ctx.fillText("높이 (cm)", 0, 0); ctx.restore();
+      ctx.textAlign = "left";
+      ctx.strokeStyle = P.axis; ctx.beginPath(); ctx.moveTo(gx, Tm.Y(Z1)); ctx.lineTo(gx, Tm.Y(Z0)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(gx, Tm.Y(prof[0].z));
+      prof.forEach(function (p) { ctx.lineTo(gx + gw * Math.min(p.a, amax) / amax, Tm.Y(p.z)); });
+      ctx.lineTo(gx, Tm.Y(prof[prof.length - 1].z)); ctx.closePath();
+      ctx.fillStyle = BB.alpha(AT.COLORS.bone, 0.55); ctx.fill();
+      ctx.strokeStyle = BB.isDark() ? AT.COLORS.bone : "#a8925a"; ctx.lineWidth = 1.5; ctx.stroke();
+      C = { gx: gx, gw: gw, amax: amax };
+      // 이름표
+      ctx.font = BB.font(10.5, false, 600); ctx.fillStyle = P.text;
+      var lab = [[AT.part("patella").c[2], "무릎"], [AT.part("femur").c[2] + 30, "넙다리뼈 몸통"], [AT.part("tibia").c[2], "정강뼈 몸통"], [AT.part("talus").c[2] + 10, "발목"], [AT.part("femur").hi[2] - 40, "엉덩관절"]];
+      lab.forEach(function (l) {
+        var p = prof.reduce(function (b, q) { return Math.abs(q.z - l[0]) < Math.abs(b.z - l[0]) ? q : b; });
+        var x = gx + gw * Math.min(p.a, amax) / amax + 5;
+        ctx.fillText(l[1], Math.min(x, chB.x + chB.w - ctx.measureText(l[1]).width - 2), Tm.Y(l[0]) + 3);
+      });
+      ctx.strokeStyle = P.bad; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(chB.x, yy); ctx.lineTo(chB.x + chB.w, yy); ctx.stroke(); ctx.setLineDash([]);
+      // 단면
+      Ts = AT.sectionFit(secB, "axial", { ext: [-205, -215, 15, 30], pad: 16 });
+      ctx.fillStyle = P.surface; ctx.fillRect(secB.x, secB.y, secB.w, secB.h);
+      ctx.save(); ctx.beginPath(); ctx.rect(secB.x, secB.y, Math.min(secB.w, Ts.X(8) - secB.x), secB.h); ctx.clip();
+      AT.drawSection(ctx, Ts, "axial", lev, { mode: "color", highlight: "bone", bg: false });
+      ctx.restore();
+      AT.orient(ctx, secB, "axial", P.faint);
+      AT.scaleBar(ctx, Ts, secB.x + 14, secB.y + secB.h - 14, 50, P.dim);
+      ctx.fillStyle = P.dim; ctx.font = BB.font(10.5); ctx.textAlign = "right";
+      ctx.fillText("가로 단면 · 발 쪽에서 봄", secB.x + secB.w - 8, secB.y + 26); ctx.textAlign = "left";
+      var m = prof.reduce(function (b, q) { return Math.abs(q.z - lev) < Math.abs(b.z - lev) ? q : b; });
+      BB.stat("fs-o-z", AT.fmtLen(lev - AT.body.bottom));
+      BB.stat("fs-o-a", (m.a / 100).toFixed(1) + " cm²");
+      BB.stat("fs-o-f", m.f == null ? "— (몸통과 이어진 높이)" : pct(m.f));
+    }, { get height() { return holder.clientWidth < 560 ? 600 : 440; } });
+    function setLev(y) { var q = Tm.inv(0, y); lev = BB.clamp(Math.round(q[1] / 10) * 10, Z0, Z1); cv.redraw(); }
+    BB.drag(cv.canvas, {
+      start: function (x, y) { var L = layout; dragging = !(x >= L.secB.x && x <= L.secB.x + L.secB.w && y >= L.secB.y && y <= L.secB.y + L.secB.h); if (dragging) setLev(y); },
+      move: function (x, y) { if (dragging) setLev(y); },
+      end: function () { dragging = false; },
+    });
+  })();
+
+  /* ---------------- 뼈 부피 순위 ---------------- */
+  (function () {
+    var L = [["skull", "머리뼈 묶음", 1], ["mandible", null, 1], ["hyoid", null, 1]];
+    VERT.forEach(function (k) { L.push([k, AT.part(k).ko.replace(/ \(.+\)/, ""), 1]); });
+    L.push(["sacrum", null, 1], ["sternum", null, 1]);
+    RIBS.forEach(function (k) { L.push([k, null, 1]); });
+    ARM.concat(["hipbone"], LEG).forEach(function (k) { L.push([k, null, 0]); });
+    var items = L.map(function (a) { var p = AT.part(a[0]); return { k: a[0], ko: a[1] || p.ko, ax: a[2], v: p.vol, g: AT.mass(a[0]) }; });
+    var filt = "all", met = "v", sel = "femur", rows = [];
+    var holder = document.getElementById("vol-cv").parentElement;
+    var nGet = BB.range("vol-n", function (v) { return v + "개"; }, function () { cv.redraw(); });
+    var cv = BB.canvas("#vol-cv", function (ctx, w, h) {
+      var P = BB.palette();
+      var list = items.filter(function (it) { return filt === "all" || (filt === "axial") === !!it.ax; }).sort(function (a, b) { return b.v - a.v; }).slice(0, nGet());
+      var narrow = w < 480, lw = narrow ? 92 : 128, top = 26, bot = 14, rh = (h - top - bot) / list.length;
+      var max = list[0][met === "v" ? "v" : "g"], vw = w - lw - (narrow ? 58 : 76);
+      ctx.fillStyle = P.dim; ctx.font = BB.font(11.5, false, 600);
+      ctx.fillText(met === "v" ? "부피 (mL, 한쪽)" : "어림 무게 (g, 밀도 1.9 g/mL)", lw, 16);
+      rows = [];
+      list.forEach(function (it, i) {
+        var y = top + i * rh, val = met === "v" ? it.v : it.g, bw = Math.max(1, vw * val / max);
+        var bh = Math.max(3, Math.min(18, rh * 0.72));
+        ctx.globalAlpha = sel && sel !== it.k ? 0.7 : 1;
+        ctx.fillStyle = it.ax ? P.accent : P.accent2;
+        ctx.fillRect(lw, y + (rh - bh) / 2, bw, bh);
+        ctx.globalAlpha = 1;
+        if (sel === it.k) { ctx.strokeStyle = P.text; ctx.lineWidth = 1.5; ctx.strokeRect(lw - 1, y + (rh - bh) / 2 - 1, bw + 2, bh + 2); }
+        var fs = Math.min(12, Math.max(9.5, rh * 0.7));
+        ctx.font = BB.font(fs, false, sel === it.k ? 700 : 400); ctx.fillStyle = sel === it.k ? P.text : P.dim; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+        var name = it.ko.length > (narrow ? 7 : 11) ? it.ko.slice(0, narrow ? 6 : 10) + "…" : it.ko;
+        ctx.fillText(name, lw - 6, y + rh / 2);
+        ctx.textAlign = "left"; ctx.font = BB.font(fs, true); ctx.fillStyle = P.text;
+        ctx.fillText(met === "v" ? (val >= 10 ? Math.round(val) : val.toFixed(1)) : Math.round(val), lw + bw + 4, y + rh / 2);
+        rows.push({ y0: y, y1: y + rh, k: it.k });
+      });
+      ctx.textBaseline = "alphabetic";
+      // 범례
+      ctx.font = BB.font(11); var lx = w - 8; ctx.textAlign = "right";
+      [["팔다리뼈대", P.accent2], ["몸통뼈대", P.accent]].forEach(function (a) { ctx.fillStyle = P.dim; ctx.fillText(a[0], lx, 16); var tw = ctx.measureText(a[0]).width; ctx.fillStyle = a[1]; ctx.fillRect(lx - tw - 14, 7, 10, 10); lx -= tw + 24; });
+      ctx.textAlign = "left";
+    }, { get height() { return holder.clientWidth < 520 ? 420 : 440; } });
+    var info = document.getElementById("vol-info");
+    function show() {
+      var it = items.filter(function (x) { return x.k === sel; })[0]; if (!it) return;
+      var p = AT.part(it.k), s = AT.size(it.k);
+      BB.stat("vol-o-k", it.ko);
+      BB.stat("vol-o-v", AT.fmtVol(it.v) + " · 약 " + kg(it.g));
+      BB.stat("vol-o-p", pct(it.v / TOT));
+      info.innerHTML = "<b>" + it.ko + "</b> (" + p.en + ") · " + (it.ax ? "몸통뼈대" : "팔다리뼈대") + ". 상자 크기 좌우 " + Math.round(s[0]) + " × 앞뒤 " + Math.round(s[1]) + " × 위아래 " + Math.round(s[2]) + " mm, 무게중심 높이 " + AT.fmtLen(AT.heightOf(it.k)) + "." + (it.k === "skull" ? " 메시가 닫혀 있지 않아 부피는 어림값이다." : "");
+    }
+    BB.seg("vol-f", function (v) { filt = v; cv.redraw(); });
+    BB.seg("vol-m", function (v) { met = v; cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) { var r = rows.filter(function (q) { return y >= q.y0 && y < q.y1; })[0]; if (r) { sel = r.k; show(); cv.redraw(); } } });
+    show();
+  })();
+
+  /* ---------------- 뼈 길이로 키 어림 ---------------- */
+  (function () {
+    var F = {
+      femur: { ko: "넙다리뼈", a: 2.38, b: 61.41, se: 3.27 },
+      tibia: { ko: "정강뼈", a: 2.52, b: 78.62, se: 3.37 },
+      fibula: { ko: "종아리뼈", a: 2.68, b: 71.78, se: 3.29 },
+      humerus: { ko: "위팔뼈", a: 3.08, b: 70.45, se: 4.05 },
+    };
+    var bone = "femur", len = AT.size("femur")[2] / 10, C = null;
+    var realH = AT.body.height / 10;
+    var holder = document.getElementById("ht-cv").parentElement;
+    var cv = BB.canvas("#ht-cv", function (ctx, w, h) {
+      var P = BB.palette(), f = F[bone];
+      var mlen = AT.size(bone)[2] / 10;
+      var x0 = bone === "humerus" ? 22 : 28, x1 = bone === "humerus" ? 42 : 56;
+      len = BB.clamp(len, x0, x1);
+      var line = [[x0, f.a * x0 + f.b], [x1, f.a * x1 + f.b]];
+      var hi = line.map(function (q) { return [q[0], q[1] + f.se]; }), lo = line.map(function (q) { return [q[0], q[1] - f.se]; });
+      C = BB.chart(ctx, { x: 58, y: 18, w: w - 58 - 16, h: h - 18 - 50 }, {
+        x: [x0, x1], y: [140, 205], xLabel: f.ko + " 길이 (cm)", yLabel: "키 (cm)",
+        series: [{ data: hi, color: BB.alpha(P.accent, 0.35), width: 1, dash: [3, 3] }, { data: lo, color: BB.alpha(P.accent, 0.35), width: 1, dash: [3, 3] }, { data: line, color: P.accent, width: 2.5 }],
+        hlines: [{ y: realH, color: P.ok, label: "이 모델의 실제 키 " + realH.toFixed(1) + " cm" }],
+      });
+      // ±SE 띠
+      ctx.save(); ctx.beginPath(); ctx.rect(C.box.x, C.box.y, C.box.w, C.box.h); ctx.clip();
+      ctx.fillStyle = BB.alpha(P.accent, 0.1);
+      ctx.beginPath(); ctx.moveTo(C.X(x0), C.Y(hi[0][1])); ctx.lineTo(C.X(x1), C.Y(hi[1][1])); ctx.lineTo(C.X(x1), C.Y(lo[1][1])); ctx.lineTo(C.X(x0), C.Y(lo[0][1])); ctx.closePath(); ctx.fill();
+      ctx.restore();
+      // 모델 뼈 길이
+      ctx.strokeStyle = P.warn; ctx.setLineDash([2, 3]); ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.moveTo(C.X(mlen), C.box.y); ctx.lineTo(C.X(mlen), C.box.y + C.box.h); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = P.warn; ctx.font = BB.font(11, false, 600); ctx.textAlign = mlen > (x0 + x1) / 2 ? "right" : "left";
+      ctx.fillText("이 모델의 " + f.ko + " " + mlen.toFixed(1) + " cm", C.X(mlen) + (ctx.textAlign === "right" ? -5 : 5), C.box.y + C.box.h - 8);
+      ctx.textAlign = "left";
+      // 손잡이
+      var est = f.a * len + f.b, px = C.X(len), py = C.Y(est);
+      ctx.strokeStyle = P.text; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.moveTo(px, C.box.y + C.box.h); ctx.lineTo(px, py); ctx.lineTo(C.box.x, py); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = P.bg; ctx.strokeStyle = P.accent; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(px, py, 8, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = P.text; ctx.font = BB.font(12, true, 700);
+      var lab = est.toFixed(1) + " cm";
+      ctx.textAlign = "right"; ctx.fillText(lab, Math.max(px - 12, C.box.x + ctx.measureText(lab).width + 4), py - 12); ctx.textAlign = "left";
+      ctx.fillStyle = P.dim; ctx.font = BB.font(11.5, true);
+      ctx.fillText("키 ≈ " + f.a + " × 길이 + " + f.b + "  (±" + f.se + ")", C.box.x + 8, C.box.y + 14);
+      BB.stat("ht-o-l", len.toFixed(1) + " cm (키의 " + (len / est * 100).toFixed(1) + " %)");
+      BB.stat("ht-o-h", est.toFixed(1) + " ± " + f.se + " cm");
+      BB.stat("ht-o-r", realH.toFixed(1) + " cm");
+      var d = (f.a * mlen + f.b) - realH;
+      document.getElementById("ht-info").innerHTML = "이 모델의 " + f.ko + "(위아래 길이 " + mlen.toFixed(1) + " cm)로 추정하면 <b>" + (f.a * mlen + f.b).toFixed(1) + " cm</b>, 실제 키와 <b>" + (d >= 0 ? "+" : "") + d.toFixed(1) + " cm</b> 차이." + (Math.abs(d) > f.se ? " 표준오차 범위 밖이다." : " 표준오차 범위 안이다.");
+    }, { get height() { return holder.clientWidth < 520 ? 340 : 380; } });
+    BB.seg("ht-bone", function (v) { bone = v; len = AT.size(v)[2] / 10; cv.redraw(); });
+    document.getElementById("ht-model").addEventListener("click", function () { len = AT.size(bone)[2] / 10; cv.redraw(); });
+    BB.drag(cv.canvas, { move: function (x) { if (!C) return; var x0 = bone === "humerus" ? 22 : 28, x1 = bone === "humerus" ? 42 : 56; len = BB.clamp(x0 + (x - C.box.x) / C.box.w * (x1 - x0), x0, x1); cv.redraw(); } });
+  })();
+
+  /* ---------------- 종합 지도 ---------------- */
+  (function () {
+    var REMV = V("skull") - (V("frontal") + 2 * V("parietal") + V("occipital") + 2 * V("temporal") + V("sphenoid"));
+    // [key, 이름, 개수(양쪽 합), 부위, 모양, 짝]
+    var B = [
+      ["frontal", "이마뼈", 1, "head", "flat", 0], ["parietal", "마루뼈", 2, "head", "flat", 1], ["occipital", "뒤통수뼈", 1, "head", "flat", 0],
+      ["temporal", "관자뼈", 2, "head", "irregular", 1], ["sphenoid", "나비뼈", 1, "head", "irregular", 0],
+      [null, "벌집뼈", 1, "head", "irregular", 0], [null, "코뼈·눈물뼈·보습뼈", 5, "head", "flat", 0],
+      ["@face", "위턱뼈·광대뼈·입천장뼈·아래코선반", 8, "head", "irregular", 0],
+      ["mandible", "아래턱뼈", 1, "head", "irregular", 0], [null, "귀속뼈(망치·모루·등자뼈)", 6, "head", "irregular", 0], ["hyoid", "목뿔뼈", 1, "head", "irregular", 0],
+    ];
+    VERT.forEach(function (k) { B.push([k, AT.part(k).ko, 1, "spine", "irregular", 0]); });
+    B.push(["sacrum", "엉치뼈", 1, "spine", "irregular", 0], [null, "꼬리뼈", 1, "spine", "irregular", 0]);
+    RIBS.forEach(function (k, i) { B.push([k, (i + 1) + "번 갈비뼈", 2, "chest", "flat", 1]); });
+    B.push(["sternum", "복장뼈", 1, "chest", "flat", 0]);
+    B.push(["clavicle", "빗장뼈", 2, "arm", "long", 1], ["scapula", "어깨뼈", 2, "arm", "flat", 1], ["humerus", "위팔뼈", 2, "arm", "long", 1], ["radius", "노뼈", 2, "arm", "long", 1], ["ulna", "자뼈", 2, "arm", "long", 1]);
+    CARP.forEach(function (k) { B.push([k, AT.part(k).ko, 2, "arm", k === "pisiform" ? "sesamoid" : "short", 1]); });
+    B.push(["metacarpals", "손허리뼈", 10, "arm", "long", 1], ["fingers", "손가락뼈", 28, "arm", "long", 1]);
+    B.push(["hipbone", "볼기뼈", 2, "pelvis", "irregular", 1]);
+    B.push(["femur", "넙다리뼈", 2, "leg", "long", 1], ["patella", "무릎뼈", 2, "leg", "sesamoid", 1], ["tibia", "정강뼈", 2, "leg", "long", 1], ["fibula", "종아리뼈", 2, "leg", "long", 1]);
+    ["talus", "calcaneus", "navicular", "cuboid"].forEach(function (k) { B.push([k, AT.part(k).ko, 2, "leg", "short", 1]); });
+    B.push(["cuneiforms", "쐐기뼈", 6, "leg", "short", 1], ["metatarsals", "발허리뼈", 10, "leg", "long", 1], ["toes", "발가락뼈", 28, "leg", "long", 1]);
+    var items = B.map(function (a) {
+      var vol = a[0] === "@face" ? REMV : a[0] ? V(a[0]) * (a[5] ? 2 : 1) : 0;
+      return { k: a[0], ko: a[1], n: a[2], reg: a[3], shape: a[4], pair: a[5], vol: vol, ax: a[3] === "head" || a[3] === "spine" || a[3] === "chest" };
+    });
+    var GROUPS = {
+      div: [["ax", "몸통뼈대"], ["ap", "팔다리뼈대"]],
+      reg: [["head", "머리"], ["spine", "척주"], ["chest", "가슴우리"], ["arm", "팔(어깨이음뼈 포함)"], ["pelvis", "볼기뼈"], ["leg", "다리"]],
+      shape: SHAPES.map(function (s) { return [s, SHAPE_KO[s]]; }),
+    };
+    function gOf(it) { return grp === "div" ? (it.ax ? "ax" : "ap") : grp === "reg" ? it.reg : it.shape; }
+    function gCol(g, P) {
+      if (grp === "div") return g === "ax" ? P.accent : P.accent2;
+      if (grp === "shape") return shapeColor(g, P);
+      var i = GROUPS.reg.findIndex(function (x) { return x[0] === g; });
+      return [P.accent, P.warn, P.ok, P.accent2, P.bad, BB.isDark() ? "#b197fc" : "#7048e8"][i];
+    }
+    var grp = "div", met = "n", selG = null, selI = null, T = null, dn = null, dots = [];
+    var holder = document.getElementById("at-cv").parentElement;
+    var labOn = document.getElementById("at-lab");
+    var cv = BB.canvas("#at-cv", function (ctx, w, h) {
+      var P = BB.palette(), narrow = w < 560;
+      var mapB = narrow ? { x: 0, y: 0, w: w * 0.46, h: h } : { x: 0, y: 0, w: w * 0.42, h: h };
+      T = AT.mapFit(mapB, "front", { pad: 10 });
+      AT.drawMap(ctx, T, "front", { layers: ["skin", "skull", "spine", "ribcage", "armbones_r", "armbones_l", "pelvis", "legbones_r", "legbones_l"], alpha: 0.35 });
+      dots = [];
+      items.forEach(function (it, idx) {
+        if (!it.k) return;
+        var key = it.k === "@face" ? "skull" : it.k, c = AT.part(key).c.slice();
+        if (it.k === "@face") c = [c[0], c[1], c[2] - 45];
+        var cs = it.pair ? [c, [-c[0], c[1], c[2]]] : [c];
+        var r = 2 + Math.sqrt(it.vol / (it.pair ? 2 : 1)) * 0.38 * T.s / 0.3;
+        r = BB.clamp(r, 2, 13);
+        cs.forEach(function (q) {
+          var pt = AT.mapPoint(T, "front", q), g = gOf(it), dim = selG && selG !== g;
+          ctx.globalAlpha = dim ? 0.18 : 0.9;
+          ctx.fillStyle = gCol(g, P); ctx.beginPath(); ctx.arc(pt[0], pt[1], r, 0, 7); ctx.fill();
+          ctx.globalAlpha = 1;
+          if (selI === idx) { ctx.strokeStyle = P.text; ctx.lineWidth = 2; ctx.stroke(); }
+          dots.push({ x: pt[0], y: pt[1], r: r, i: idx });
+        });
+      });
+      AT.orient(ctx, mapB, "front", P.faint);
+      // 도넛
+      var gs = GROUPS[grp];
+      var vals = gs.map(function (g) { return items.reduce(function (t, it) { return t + (gOf(it) === g[0] ? (met === "n" ? it.n : it.vol) : 0); }, 0); });
+      var tot = vals.reduce(function (a, b) { return a + b; }, 0);
+      var rx = mapB.w + (w - mapB.w) / 2, legendH = (labOn.checked ? gs.length * 17 + 8 : 0);
+      var R = Math.min((w - mapB.w) / 2 - 12, (h - legendH - 20) / 2 - 6);
+      var cy = 12 + R + 4;
+      dn = BB.donut(ctx, rx, cy, R, gs.map(function (g, i) { return { label: g[1], value: vals[i], color: gCol(g[0], P) }; }), {
+        inner: 0.58, highlight: selG ? gs.findIndex(function (g) { return g[0] === selG; }) : null,
+        center: { big: met === "n" ? tot + "개" : AT.fmtVol(tot), small: met === "n" ? "교과서" : "이 데이터" },
+      });
+      if (labOn.checked) {
+        var ly = cy + R + 20;
+        ctx.font = BB.font(narrow ? 11 : 12); ctx.textBaseline = "middle";
+        gs.forEach(function (g, i) {
+          var x = mapB.w + 10;
+          ctx.globalAlpha = selG && selG !== g[0] ? 0.45 : 1;
+          ctx.fillStyle = gCol(g[0], P); ctx.fillRect(x, ly - 5, 10, 10);
+          ctx.fillStyle = P.text; ctx.textAlign = "left"; ctx.fillText(g[1], x + 15, ly);
+          ctx.textAlign = "right"; ctx.font = BB.font(narrow ? 11 : 12, true);
+          ctx.fillText((met === "n" ? vals[i] + "개" : AT.fmtVol(vals[i])) + " · " + Math.round(vals[i] / tot * 100) + "%", w - 8, ly);
+          ctx.font = BB.font(narrow ? 11 : 12); ctx.globalAlpha = 1;
+          ly += 17;
+        });
+        ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+      }
+      dn.vals = vals; dn.gs = gs;
+    }, { get height() { return holder.clientWidth < 560 ? 460 : 500; } });
+    var info = document.getElementById("at-info");
+    function showG() {
+      if (!selG) { BB.stat("at-o-g", "—"); BB.stat("at-o-n", "—"); BB.stat("at-o-v", "—"); return; }
+      var n = 0, v = 0, name = GROUPS[grp].filter(function (g) { return g[0] === selG; })[0][1];
+      items.forEach(function (it) { if (gOf(it) === selG) { n += it.n; v += it.vol; } });
+      BB.stat("at-o-g", name); BB.stat("at-o-n", n + "개 (" + Math.round(n / 206 * 100) + "%)"); BB.stat("at-o-v", AT.fmtVol(v) + " (" + Math.round(v / TOT * 100) + "%)");
+    }
+    BB.seg("at-g", function (v) { grp = v; selG = null; selI = null; showG(); cv.redraw(); });
+    BB.seg("at-m", function (v) { met = v; cv.redraw(); });
+    labOn.addEventListener("change", function () { cv.redraw(); });
+    BB.drag(cv.canvas, { start: function (x, y) {
+      var gi = dn ? dn.hit(x, y) : -1;
+      if (gi >= 0) { var g = GROUPS[grp][gi][0]; selG = selG === g ? null : g; selI = null; showG(); cv.redraw(); return; }
+      var best = null, bd = 14;
+      dots.forEach(function (d) { var dd = Math.hypot(d.x - x, d.y - y) - d.r; if (dd < bd) { bd = dd; best = d; } });
+      if (!best) return;
+      selI = best.i; var it = items[best.i]; selG = gOf(it); showG();
+      info.innerHTML = "<b>" + it.ko + "</b> · " + (it.ax ? "몸통뼈대" : "팔다리뼈대") + " · " + SHAPE_KO[it.shape] + ". 교과서 개수 " + it.n + "개" + (it.pair ? "(양쪽)" : "") + ", 이 데이터의 부피 " + AT.fmtVol(it.vol) + (it.pair ? "(양쪽 합)" : "") + "." + (it.k === "@face" ? " 머리뼈 묶음에서 따로 잰 뼈를 뺀 나머지로 어림했다(벌집뼈·코뼈 등 포함)." : "");
+      cv.redraw();
+    } });
+  })();
+
+  /* ---------------- 데이터로 확인하기 ---------------- */
+  setT("dc-vol", AT.fmtVol(TOT));
+  setT("dc-ax", AT.fmtVol(AXV) + "(" + pct(AXV / TOT) + ")");
+  setT("dc-ap", AT.fmtVol(APV) + "(" + pct(APV / TOT) + ")");
+  setT("dc-mass", kg(TOT * 1.9));
+  setT("dc-body", AT.body.vol.toFixed(1) + " L");
+  setT("dc-frac", "약 " + pct(TOT * 1.9 / 1000 / BODYKG));
+  setT("dc-vfrac", "약 " + pct(TOT / 1000 / AT.body.vol));
+})();
+</script>
+</body>
+</html>

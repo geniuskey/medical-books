@@ -725,6 +725,17 @@
       s += `<path class="cv-hit" d="M140 64 116 40c-14-14 4-34 18-20l6 6 6-6c14-14 32 6 18 20Z" fill="${W}" fill-opacity=".75" stroke="${W}" stroke-width="1.4"/>`;
       return svg(s);
     },
+    // 척주와 갈비뼈, 가로로 지나가는 단면선이 위아래로 훑는다
+    skeleton() {
+      let s = "";
+      range(4).forEach((k) => { s += `<path d="M10 ${30 + k * 24}H196" stroke="${W}" stroke-opacity=".1"/>`; });
+      s += `<circle cx="138" cy="22" r="11" fill="none" stroke="${W}" stroke-width="1.6"/>`;
+      range(9).forEach((k) => { const y = 38 + k * 8.6; s += `<rect x="133" y="${y}" width="10" height="6" rx="2" fill="${W}" fill-opacity=".8"/>`; });
+      range(5).forEach((k) => { const y = 44 + k * 9, w = 34 - Math.abs(k - 1.5) * 4; s += `<path d="M133 ${y}c-${w * 0.6} 2-${w} 8-${w} 14M143 ${y}c${w * 0.6} 2 ${w} 8 ${w} 14" fill="none" stroke="${W}" stroke-opacity=".75" stroke-width="1.5" stroke-linecap="round"/>`; });
+      s += `<path d="M114 118c6-10 42-10 48 0" fill="none" stroke="${W}" stroke-opacity=".8" stroke-width="1.6"/>`;
+      s += `<g class="cv-section" style="--dy:76px"><path d="M86 30H190" stroke="#7ee0ec" stroke-width="2" stroke-dasharray="5 4"/></g>`;
+      return svg(s);
+    },
     // 오선과 음표, 아래에서 스펙트럼 막대가 출렁인다
     music() {
       const r = rnd(11); let s = "";

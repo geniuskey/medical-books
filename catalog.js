@@ -25,5 +25,31 @@ window.MEDICAL_BOOKS = [
     "legacyUrl": null,
     "chapters": 21,
     "simulators": 182
+  },
+  {
+    "id": "anatomybook",
+    "title": "AnatomyBook",
+    "subtitle": "몸의 구조 교과서",
+    "headline": "돌려 보고 잘라 보는 몸",
+    "description": "뼈, 근육, 장기, 뇌, 혈관. 몸 안에는 무엇이 어디에 있나. 실제 인체 데이터(BodyParts3D)로 만든 3D 모델을 돌려 보고, CT처럼 잘라 보고, 부피와 거리를 직접 계산하며 배웁니다.",
+    "stage": "structure",
+    "status": "writing",
+    "color": "#0c8599",
+    "colorDark": "#3bc9db",
+    "topics": [
+      "뼈대",
+      "관절·근육",
+      "가슴·배의 장기",
+      "뇌와 눈",
+      "혈관 지도",
+      "단면 해부"
+    ],
+    "motif": "skeleton",
+    "code": "ANA",
+    "slug": "anatomy",
+    "url": "anatomy/",
+    "legacyUrl": null,
+    "chapters": 14,
+    "simulators": 75
   }
 ];

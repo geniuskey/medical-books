@@ -7,9 +7,10 @@
   const groups = [
     { id: "all", label: "전체", stages: [] },
     { id: "body", label: "몸의 원리", stages: ["body"] },
+    { id: "structure", label: "몸의 구조", stages: ["structure"] },
   ];
   // 세로 표지에는 books 포털처럼 짧은 이름을 쓴다.
-  const coverTitles = { bodybook: "몸" };
+  const coverTitles = { bodybook: "몸", anatomybook: "구조" };
   const esc = (value) => String(value || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const count = (group) => books.filter((b) => group.id === "all" || group.stages.includes(b.stage)).length;
   const groupOf = (book) => groups.find((g) => g.stages.includes(book.stage)) || groups[0];

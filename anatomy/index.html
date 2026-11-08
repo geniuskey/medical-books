@@ -1,0 +1,216 @@
+<!doctype html>
+<!-- Copyright (c) 2026 geniuskey and AnatomyBook contributors.
+     Executable code: MIT (see LICENSE-MIT).
+     Text, illustrations, questions and explanations: CC-BY-4.0 (see LICENSE.md). -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AnatomyBook · 몸의 구조 교과서</title>
+<meta name="description" content="뼈, 근육, 장기, 뇌, 혈관. 몸 안에 무엇이 어디에 어떤 모양으로 있나. 실제 인체 데이터(BodyParts3D)로 만든 3D 모델을 돌려 보고, CT처럼 잘라 보고, 부피와 거리를 직접 계산하며 배우는 인터랙티브 해부학 교과서.">
+<link rel="canonical" href="https://medical.euiyun.com/anatomy/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#0c8599">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AnatomyBook">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="AnatomyBook · 몸의 구조 교과서">
+<meta property="og:description" content="실제 인체 데이터로 만든 3D 모델을 돌려 보고, CT처럼 잘라 보고, 부피와 거리를 계산하며 배우는 해부학 교과서.">
+<meta property="og:url" content="https://medical.euiyun.com/anatomy/">
+<meta property="og:image" content="https://medical.euiyun.com/anatomy/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://medical.euiyun.com/anatomy/#site","name":"AnatomyBook","alternateName":"아나토미북","url":"https://medical.euiyun.com/anatomy/","inLanguage":"ko"},{"@type":["Book","LearningResource"],"@id":"https://medical.euiyun.com/anatomy/#book","name":"AnatomyBook · 몸의 구조 교과서","url":"https://medical.euiyun.com/anatomy/","inLanguage":"ko","isAccessibleForFree":true,"learningResourceType":"인터랙티브 교재","educationalLevel":"일반 성인","license":"https://creativecommons.org/licenses/by/4.0/","dateModified":"2026-11-08","hasPart":[{"@type":"Chapter","name":"해부학의 언어","position":1,"url":"https://medical.euiyun.com/anatomy/chapters/language.html"},{"@type":"Chapter","name":"뼈대: 206개의 뼈","position":2,"url":"https://medical.euiyun.com/anatomy/chapters/skeleton.html"},{"@type":"Chapter","name":"머리뼈, 척주, 가슴우리","position":3,"url":"https://medical.euiyun.com/anatomy/chapters/axial.html"},{"@type":"Chapter","name":"팔과 손","position":4,"url":"https://medical.euiyun.com/anatomy/chapters/upperlimb.html"},{"@type":"Chapter","name":"다리와 발","position":5,"url":"https://medical.euiyun.com/anatomy/chapters/lowerlimb.html"},{"@type":"Chapter","name":"관절과 움직임","position":6,"url":"https://medical.euiyun.com/anatomy/chapters/joints.html"},{"@type":"Chapter","name":"몸통과 목의 근육","position":7,"url":"https://medical.euiyun.com/anatomy/chapters/trunk.html"},{"@type":"Chapter","name":"가슴 안: 심장과 폐의 자리","position":8,"url":"https://medical.euiyun.com/anatomy/chapters/thorax.html"},{"@type":"Chapter","name":"배와 골반 안","position":9,"url":"https://medical.euiyun.com/anatomy/chapters/abdomen.html"},{"@type":"Chapter","name":"뇌와 눈","position":10,"url":"https://medical.euiyun.com/anatomy/chapters/brain.html"},{"@type":"Chapter","name":"혈관의 지도","position":11,"url":"https://medical.euiyun.com/anatomy/chapters/vessels.html"},{"@type":"Chapter","name":"단면으로 보는 몸","position":12,"url":"https://medical.euiyun.com/anatomy/chapters/sections.html"},{"@type":"Chapter","name":"계산하는 해부학","position":13,"url":"https://medical.euiyun.com/anatomy/chapters/data.html"},{"@type":"Chapter","name":"용어집 & 종합 퀴즈","position":14,"url":"https://medical.euiyun.com/anatomy/chapters/glossary.html"}]}]}</script>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/common.js"></script>
+<script src="js/atlas-data.js"></script>
+<script src="js/atlas.js"></script>
+<style>
+  .hero-sim { border-radius: 20px; border: 1px solid var(--border); background: var(--bg-elev); overflow: hidden; box-shadow: var(--shadow); }
+  .hero-sim .view { position: relative; background: var(--canvas-bg); }
+  .hero-sim canvas { display: block; width: 100%; touch-action: pan-y; }
+  .hero-sim .ctl { display: grid; gap: 10px; padding: 14px 16px 16px; border-top: 1px solid var(--border); }
+  .hero-sim .cap { font-size: 14px; color: var(--text-dim); min-height: 44px; line-height: 1.55; }
+  .hero-sim .cap b { color: var(--text); }
+  .hero-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+  .hero-badges span { font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-dim); background: var(--bg-elev); }
+  .trail { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+  .trail > div { padding: 16px; border-radius: 12px; background: var(--bg-elev); border: 1px solid var(--border); border-top: 4px solid var(--c); }
+  .trail b { display: block; font-size: 17px; margin: 0 0 2px; }
+  .trail small { display: block; font-family: var(--mono); font-size: 11px; color: var(--text-faint); margin-bottom: 8px; letter-spacing: .06em; }
+  .trail p { margin: 0 0 10px; font-size: 14px; color: var(--text-dim); line-height: 1.55; }
+  .trail .steps, .path .steps { display: flex; flex-wrap: wrap; gap: 6px; }
+  .trail .steps a, .path .steps a { font-family: var(--mono); font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .trail .steps a:hover, .path .steps a:hover { text-decoration: none; filter: brightness(1.1); }
+  .paths { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .path { padding: 18px 20px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-elev); }
+  .path h3 { margin: 0 0 6px; font-size: 17px; }
+  .path p { margin: 0 0 10px; color: var(--text-dim); font-size: 14.5px; }
+  .source { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); padding: 22px; border-radius: var(--radius); border: 1px solid var(--border); border-left: 4px solid var(--accent); background: var(--bg-elev); }
+  @media (min-width: 760px) { .source { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); } }
+  .source p { margin: 0 0 10px; color: var(--text-dim); }
+  .source dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14.5px; align-content: start; }
+  .source dt { color: var(--text-dim); }
+  .source dd { margin: 0; font-family: var(--mono); font-size: 13.5px; color: var(--text); text-align: right; }
+  .series { display: flex; flex-wrap: wrap; gap: 10px; }
+  .series a { padding: 10px 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); font-weight: 600; font-size: 15px; }
+  .series a small { display: block; font-weight: 400; color: var(--text-dim); font-size: 13px; }
+  .series a:hover { text-decoration: none; border-color: var(--accent); }
+  .disclaimer { font-size: 14px; color: var(--text-dim); }
+</style>
+<link rel="stylesheet" href="../shared/css/book-shell.css">
+<script defer src="../shared/js/book-shell.js" data-book="anatomy"></script>
+</head>
+<body data-root="">
+<section class="home-hero">
+  <div class="inner">
+    <div>
+      <div class="eyebrow">Interactive Anatomy Textbook</div>
+      <h1>뼈, 근육, 장기, 뇌.<br><span class="grad">몸 안에는 무엇이 어디에 있나</span></h1>
+      <p>간은 몸의 오른쪽 위, 갈비뼈 뒤에 숨어 있다. 심장은 한가운데가 아니라 왼쪽으로 기울어 있고, 콩팥은 배가 아니라 등에 붙어 있다. 이 교과서는 실제 사람의 몸을 측정해 만든 3D 데이터로 몸의 구조를 배운다. <strong>돌려 보고, 잘라 보고, 재 본다.</strong> 넙다리뼈의 부피는 얼마인지, 뇌에서 발끝까지는 몇 cm인지, 배꼽 높이를 CT로 자르면 무엇이 보이는지.</p>
+      <div class="cta">
+        <a class="primary" href="chapters/language.html">1장부터 시작하기 →</a>
+        <a class="ghost" href="sims.html">시뮬레이터 갤러리</a>
+      </div>
+      <div class="hero-badges">
+        <span>14개 챕터</span><span id="sim-count">3D 모델 21개</span><span>모든 수치는 실제 데이터에서 계산</span><span>CT처럼 잘라 보는 단면</span>
+      </div>
+    </div>
+    <div class="hero-sim" id="hero">
+      <div class="view"><canvas id="hero-cv" class="drag"></canvas></div>
+      <div class="ctl">
+        <div class="seg" id="hero-view"><button data-value="front" class="on">앞모습</button><button data-value="side">옆모습</button></div>
+        <div class="cap" id="hero-cap">몸 지도 위의 뼈나 장기를 눌러 보자. 이름과 함께 실제 데이터로 잰 부피와 높이가 나온다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section">
+  <h2>숫자로 보는 몸의 구조</h2>
+  <p class="sub">이 책의 숫자는 교과서 대표값이 아니라, 한 성인 남성의 몸을 측정해 만든 3D 데이터에서 직접 계산한 값입니다.</p>
+  <div class="numbers" id="nums"></div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>책의 다섯 갈래</h2>
+  <p class="sub">1장에서 해부학의 언어(방향과 단면)를 익히고, 뼈대에서 시작해 팔다리, 몸통, 머리와 연결망으로 나아갑니다. 마지막 두 장은 몸을 자르고 계산합니다.</p>
+  <div class="trail" id="trail"></div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>데이터: BodyParts3D</h2>
+  <div class="source">
+    <div>
+      <p><strong style="color:var(--text)">BodyParts3D</strong>는 일본 라이프사이언스 통합 데이터베이스 센터(DBCLS)가 만든 인체 해부 3D 데이터베이스입니다. 한 성인 남성 몸의 뼈, 근육, 장기, 혈관, 뇌를 수천 개의 3D 조각으로 나누고, 조각마다 해부학 용어 체계(FMA)의 이름을 붙였습니다. "간"이라는 낱말이 구체적인 모양과 위치를 가진 데이터가 되는 셈입니다.</p>
+      <p>이 책의 3D 모델, 몸 지도, CT 같은 단면, 부피·거리 계산은 모두 이 데이터에서 나왔습니다. 그래서 그림은 한 사람의 몸이고, 실제 사람마다 크기와 모양이 다릅니다. 데이터에 없는 부분(폐 실질, 갑상선, 말초신경 등)도 있습니다. 그런 한계 자체도 13장에서 다룹니다.</p>
+      <p style="font-size:13px">BodyParts3D, © The Database Center for Life Science, <a href="https://creativecommons.org/licenses/by/4.0/deed.ko">CC BY 4.0</a>. 원본: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/">dbarchive.biosciencedbc.jp</a></p>
+    </div>
+    <dl id="facts"></dl>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>전체 챕터</h2>
+  <p class="sub">각 장은 일상의 질문 → 3D 모델로 위치 잡기 → 시뮬레이터로 재고 비교하기 → 원리 → 데이터로 확인하기 → 퀴즈 순서로 구성됩니다.</p>
+  <div class="ch-grid" id="chgrid"></div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>추천 학습 경로</h2>
+  <p class="sub">궁금한 것부터 읽어도 됩니다.</p>
+  <div class="paths">
+    <div class="path"><h3>해부학이 처음이라면</h3><p>방향과 단면의 말, 뼈대의 큰 그림, 장기의 자리.</p><div class="steps"><a href="chapters/language.html">01</a><a href="chapters/skeleton.html">02</a><a href="chapters/thorax.html">08</a><a href="chapters/abdomen.html">09</a></div></div>
+    <div class="path"><h3>운동과 자세가 궁금하다면</h3><p>척주의 굽이, 관절의 움직임, 팔다리와 몸통의 근육.</p><div class="steps"><a href="chapters/axial.html">03</a><a href="chapters/joints.html">06</a><a href="chapters/lowerlimb.html">05</a><a href="chapters/trunk.html">07</a></div></div>
+    <div class="path"><h3>CT·MRI를 읽고 싶다면</h3><p>단면의 방향, 높이마다 보이는 장기, 영상의 좌우.</p><div class="steps"><a href="chapters/language.html">01</a><a href="chapters/sections.html">12</a><a href="chapters/abdomen.html">09</a><a href="chapters/brain.html">10</a></div></div>
+    <div class="path"><h3>데이터와 계산이 좋다면</h3><p>부피, 거리, 좌표, 해부학 온톨로지.</p><div class="steps"><a href="chapters/data.html">13</a><a href="chapters/skeleton.html">02</a><a href="chapters/vessels.html">11</a></div></div>
+    <div class="path"><h3>시뮬레이터부터</h3><p>글 없이 바로 돌려 보고 잘라 보기.</p><div class="steps"><a href="sims.html">갤러리</a><a href="chapters/sections.html">12 단면</a></div></div>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>이 사이트 사용법</h2>
+  <div class="flow">
+    <div><b>돌리기</b>3D 모델은 끌어서 돌리고, 휠이나 두 손가락으로 확대합니다. 부위 버튼으로 켜고 끄고, 반투명하게 해 안을 봅니다.</div>
+    <div><b>누르기</b>몸 지도와 단면 위의 구조를 누르면 이름과 실제 수치가 나옵니다.</div>
+    <div><b>재기</b>두 구조 사이의 거리, 부피, 높이를 직접 재고 다른 구조와 비교합니다.</div>
+    <div><b>자르기</b>몸을 가로·세로로 잘라 CT와 MRI처럼 봅니다.</div>
+    <div><b>시뮬레이터만</b>상단의 "시뮬레이터만" 버튼으로 글을 숨기고 모델과 실험만 볼 수 있습니다.</div>
+  </div>
+  <p class="disclaimer" style="margin-top:20px">이 사이트의 모델과 수치는 한 성인 남성의 몸을 측정한 공개 데이터에서 나왔으며, 사람마다 크기·모양·위치가 다릅니다. 교육용이며 진단·치료 같은 의학적 판단의 근거가 아닙니다. 증상이 있으면 의료진과 상담하세요.</p>
+</section>
+
+<section class="home-section" style="padding-top:0">
+  <h2>함께 읽으면 좋은 교과서</h2>
+  <p class="sub">같은 서가의 책입니다.</p>
+  <div class="series">
+    <a href="../body/">BodyBook<small>몸의 원리 · 몸은 어떻게 돌아가나</small></a>
+    <a href="https://books.euiyun.com/">전체 책<small>books.euiyun.com</small></a>
+  </div>
+</section>
+
+<script src="js/sims.js"></script>
+<script>
+(function () {
+  "use strict";
+  document.getElementById("chgrid").innerHTML = BB.CHAPTERS.map(function (c) {
+    return '<a class="ch-card" href="chapters/' + c.slug + '.html"><span class="num">CHAPTER ' + c.num + "</span><h3>" + c.title + "</h3><p>" + c.desc + '</p><span class="tags">' +
+      c.tags.map(function (t) { return '<span class="' + (t === "sim" ? "sim" : "") + '">' + (t === "sim" ? "시뮬레이터" : t) + "</span>"; }).join("") + "</span></a>";
+  }).join("");
+  if (window.BB_SIMS && window.BB_SIMS.length > 20) document.getElementById("sim-count").textContent = window.BB_SIMS.length + "개 시뮬레이터·3D 모델";
+
+  var about = [
+    "몸을 받치고 지키는 206개의 뼈. 머리뼈, 척주, 가슴우리의 모양과 크기.",
+    "어깨에서 손끝, 골반에서 발끝까지. 뼈와 근육, 관절이 만드는 움직임.",
+    "몸통을 세우는 근육, 가슴과 배와 골반 안에 장기가 놓인 자리.",
+    "뇌와 눈의 구조, 온몸을 잇는 동맥과 정맥의 길.",
+    "몸을 잘라 보는 단면 해부, 그리고 3D 데이터로 하는 해부학 계산.",
+  ];
+  document.getElementById("trail").innerHTML = BB.STAGES.map(function (st, i) {
+    var chs = BB.CHAPTERS.filter(function (c) { return c.stage === i; });
+    return '<div style="--c:var(--seg-' + st.seg + ')"><b>' + st.name + "</b><small>" + st.en.toUpperCase() + "</small><p>" + about[i] + '</p><div class="steps">' +
+      chs.map(function (c) { return '<a href="chapters/' + c.slug + '.html" title="' + c.title + '">' + c.num + "</a>"; }).join("") + "</div></div>";
+  }).join("");
+
+  // 숫자 상자: 모두 데이터에서 계산
+  var p = AT.part, B = AT.body;
+  var nums = [
+    [AT.fmtVol(p("brain").vol), "뇌 전체의 부피. 무게로는 약 " + (AT.mass("brain") / 1000).toFixed(1) + " kg"],
+    [AT.fmtVol(p("liver").vol), "몸에서 가장 큰 장기인 간. 오른쪽 갈비뼈 뒤에 들어 있다"],
+    [AT.fmtLen(AT.size("femur")[2]), "넙다리뼈의 길이. 키(" + AT.fmtLen(B.height) + ")의 약 " + Math.round(AT.size("femur")[2] / B.height * 100) + " %"],
+    [AT.fmtVol(p("kidney_r").vol), "콩팥 하나의 부피. 주먹만 한 크기로 등 쪽에 붙어 있다"],
+    [B.vol.toFixed(0) + " L", "몸 전체의 부피. 피부를 2 mm마다 잘라 단면 넓이를 쌓아 계산했다"],
+    [AT.fmtVol(p("lens").vol), "눈의 수정체 하나. 이 데이터에서 가장 작은 구조 가운데 하나"],
+  ];
+  document.getElementById("nums").innerHTML = nums.map(function (n) { return "<div><b>" + n[0] + "</b><span>" + n[1] + "</span></div>"; }).join("");
+  var facts = [["모델", "성인 남성 1명"], ["키(모델)", AT.fmtLen(B.height)], ["몸의 부피", B.vol.toFixed(1) + " L"], ["구조 수(이 책)", AT.parts.length + "개"], ["3D 모델", "21개"], ["단면", "가로·관상·시상 1 cm 간격"], ["좌표 단위", "mm"]];
+  document.getElementById("facts").innerHTML = facts.map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>"; }).join("");
+
+  // 히어로: 누르는 몸 지도
+  var view = "front", sel = null, T = null;
+  var LAYERS = ["skin", "skull", "spine", "ribcage", "pelvis", "armbones_r", "armbones_l", "legbones_r", "legbones_l", "brain", "airway", "heart", "liver", "stomach", "spleen", "kidneys", "smallint", "largeint", "bladder"];
+  var INFO = { skull: "skull", spine: null, ribcage: null, pelvis: "hipbone", armbones_r: "humerus", armbones_l: "humerus", legbones_r: "femur", legbones_l: "femur", brain: "brain", heart: "heart", liver: "liver", stomach: "stomach", spleen: "spleen", kidneys: "kidney_r", smallint: "smallint", largeint: "largeint", bladder: "bladder", airway: "trachea" };
+  var holder = document.getElementById("hero-cv").parentElement;
+  var cv = BB.canvas("#hero-cv", function (ctx, w, h) {
+    var P = BB.palette();
+    T = AT.mapFit({ x: 0, y: 0, w: w, h: h }, view, { pad: 12 });
+    AT.drawMap(ctx, T, view, { layers: LAYERS, highlight: sel });
+    AT.orient(ctx, { x: 0, y: 0, w: w, h: h }, view, P.faint);
+    AT.scaleBar(ctx, T, 16, h - 18, 500, P.dim);
+  }, { get height() { return holder.clientWidth < 520 ? 420 : 460; } });
+  BB.seg("hero-view", function (v) { view = v; cv.redraw(); });
+  var cap = document.getElementById("hero-cap");
+  BB.drag(cv.canvas, {
+    start: function (x, y) {
+      var k = AT.hitMap(T, view, x, y, LAYERS.slice(1));
+      sel = k; cv.redraw();
+      if (!k) { cap.innerHTML = "몸 지도 위의 뼈나 장기를 눌러 보자. 이름과 함께 실제 데이터로 잰 부피와 높이가 나온다."; return; }
+      var name = AT.mapNames[k], q = INFO[k] && p(INFO[k]);
+      cap.innerHTML = "<b>" + name + "</b>" + (q ? " · " + q.ko + " 부피 " + AT.fmtVol(q.vol) + ", 무게중심의 높이 발바닥에서 약 " + AT.fmtLen(AT.heightOf(q.k)) : "") + (k.indexOf("_l") > 0 ? " (수치는 오른쪽 기준)" : "");
+    },
+  });
+})();
+</script>
+</body>
+</html>
