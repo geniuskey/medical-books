@@ -120,6 +120,9 @@ ARTERY, VEIN = "#d4423a", "#3d63c4"
 BONE = "#ece3cf"
 BONES = ["FMA23876", r"^(Left|Right) (femur|tibia|fibula|humerus|radius|ulna|patella|calcaneus|talus|navicular|cuboid|(medial|intermediate|lateral) cuneiform|scaphoid|lunate|triquetral|pisiform|trapezium|trapezoid|capitate|hamate|\w+ meta(carpal|tarsal) bone)$", r"^(Proximal|Middle|Distal) phalanx of (left|right) "]
 NOT_BONE = [r"choroid|cornea|iris$|lens$|sclera|vitreous|lacrimal gland|chamber of|Suspensory"]
+# 골격근 전체: FMA에서 근육은 세 갈래로 흩어져 있다. 근육 기관(FMA5022), 근육 기관의 구역(FMA10474: 넙다리네갈래근의 네 갈래,
+# 어깨세모근·큰가슴근의 부분 등), 기관의 갈래(FMA45729: 위팔두갈래근·장딴지근·넙다리두갈래근의 갈래 등). 등세모근의 부분 일부는 따로 맞춘다.
+MUSCLES = ["FMA5022", "FMA10474", "FMA45729", r"part of (left |right )?trapezius$"]
 
 MODELS = {
     "heart": dict(groups=[
@@ -206,7 +209,40 @@ MODELS = {
     ]),
     "muscles": dict(groups=[
         dict(key="skeleton", sel=BONES, exclude=NOT_BONE, color=BONE, faces=50000),
-        dict(key="muscles", sel=["FMA5022"], color="#b54a3f", faces=90000, rough=0.45),
+        dict(key="muscles", sel=MUSCLES, color="#b54a3f", faces=90000, rough=0.45),
+    ]),
+    # 11장 다온의 허벅지: 달리기에 쓰는 다리 근육(양쪽)
+    "legs": dict(groups=[
+        dict(key="quads", sel=[r"rectus femoris$|vastus (lateralis|medialis|intermedius)$"], color="#d0563f", faces=14000, rough=0.45),
+        dict(key="hamstrings", sel=[r"biceps femoris$|semitendinosus$|semimembranosus$"], color="#9c3b6a", faces=9000, rough=0.45),
+        dict(key="glutes", sel=[r"gluteus (maximus|medius|minimus)$|tensor fasciae latae$"], color="#c9784a", faces=9000, rough=0.45),
+        dict(key="iliopsoas", sel=[r"psoas major$|iliacus$"], color="#b0864a", faces=4000, rough=0.45),
+        dict(key="adductors", sel=[r"adductor (longus|brevis|magnus|minimus)$|gracilis$|pectineus$|sartorius$"], color="#8f6fb8", faces=9000, rough=0.45),
+        dict(key="calf", sel=[r"gastrocnemius$|soleus$|plantaris$|calcaneal tendon$"], color="#3f8fb0", faces=9000, rough=0.45),
+        dict(key="shin", sel=[r"tibialis anterior$|extensor (digitorum|hallucis) longus$|fibularis (longus|brevis|tertius)$"], color="#4caf7a", faces=6000, rough=0.45),
+        dict(key="bones", sel=[r"^(Left|Right) (hip bone|femur|patella|tibia|fibula|calcaneus|talus|navicular bone of foot|cuboid bone|(medial|intermediate|lateral) cuneiform bone|\w+ metatarsal bone)$", r"^Sacrum$", r"phalanx of (left|right) (big|second|third|fourth|little) toe$"], color=BONE, faces=14000),
+    ], box=[(-400, -400, -100), (400, 400, 1000)]),
+    # 8장 숨은 압력 차이로 들어온다: 들숨·날숨 근육
+    "breathmuscles": dict(groups=[
+        dict(key="diaphragm", sel=[r"^Diaphragm$"], color="#d0563f", faces=9000, rough=0.45),
+        dict(key="extic", sel=[r"External intercostal muscle$"], color="#e08a4f", faces=9000, rough=0.45),
+        dict(key="intic", sel=[r"(Internal|Innermost) intercostal muscle$"], color="#4f86c6", faces=9000, rough=0.45),
+        dict(key="scalenes", sel=[r"scalenus (anterior|medius|posterior)$"], color="#c9a23f", faces=3000, rough=0.45),
+        dict(key="scm", sel=[r"sternocleidomastoid$"], color="#b7793a", faces=3000, rough=0.45),
+        dict(key="abdominal", sel=[r"external oblique$"], color="#5b9ec9", alpha=0.5, faces=6000, rough=0.45),
+        dict(key="ribs", sel=["FMA7480", r"costal cartilage$|^Manubrium$|^Body of sternum$|^Xiphoid process$"], color=BONE, alpha=0.45, faces=14000),
+        dict(key="spine", sel=[r"(cervical|thoracic|lumbar) vertebra$|^Atlas$|^Axis$"], color=BONE, alpha=0.45, faces=8000),
+    ], box=[(-400, -400, 860), (400, 400, 1560)]),
+    # 10장 숨을 쉬게 하는 것: 호흡 중추와 화학 수용체의 자리
+    "breathcontrol": dict(groups=[
+        dict(key="medulla", sel=[r"^Medulla oblongata$"], color="#ff5f7a", faces=3000),
+        dict(key="pons", sel=[r"^Pons$"], color="#f2a33a", faces=3000),
+        dict(key="carotid", sel=[r"common carotid artery$"], color="#e0463a", faces=3000),  # 원본의 속목동맥은 머리뼈 바닥부터만 있어 뺐다
+        dict(key="aorta", sel=[r"^Ascending aorta$|^Arch of aorta$|Brachiocephalic artery$"], color="#c23a32", faces=3000, clip=[(-300, -400, 1170), (300, 400, 1400)]),
+        dict(key="airway", sel=[r"^Trachea$|main bronchus"], color="#ece2cc", faces=3000),
+        dict(key="diaphragm", sel=[r"^Diaphragm$"], color="#c7705c", alpha=0.3, faces=5000),
+        dict(key="heart", sel=[r"^Wall of (ventricle|right atrium|left atrium)$"], color="#b8463c", alpha=0.5, faces=4000),
+        dict(key="brain", sel=["FMA50801"], color="#e6c9bd", alpha=0.2, faces=9000),
     ]),
 }
 

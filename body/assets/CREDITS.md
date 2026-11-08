@@ -12,6 +12,8 @@ BodyBook 본문(CC BY 4.0)과 같은 조건으로 다시 쓸 수 있지만, 쓸 
   면 수를 줄이고(quadric decimation), 축을 glTF(Y 위)로 바꾸고, glTF 바이너리로 저장해 좌표를 양자화했다.
   생성 스크립트: `tools/bp3d_models.py`(MIT).
 - 원본 데이터에 폐 실질과 갑상선 표면 모델이 없어 폐 모델은 기관지 나무와 폐혈관으로, 내분비 모델은 갑상선 없이 만들었다.
+- 골격근은 FMA에서 세 갈래로 흩어져 있어(근육 기관, 근육 기관의 구역, 기관의 갈래) 모두 묶었다. 예전 모델에는 넙다리네갈래근·어깨세모근·위팔두갈래근 등의 갈래와 부분이 빠져 있었다.
+- 원본 데이터에 갈비사이근이 한쪽만 있고 배곧은근·배속빗근·배가로근, 말초신경(가로막신경 등), 목 부분의 속목동맥·바깥목동맥이 없어 호흡근·호흡 조절 모델에서 빠졌다.
 - 화면에 띄우는 뷰어는 Google의 [model-viewer](https://modelviewer.dev/)(Apache-2.0)를 CDN에서 불러온다.
 
 | 파일 | 쓰는 장 |
@@ -25,6 +27,9 @@ BodyBook 본문(CC BY 4.0)과 같은 조건으로 다시 쓸 수 있지만, 쓸 
 | `3d/endocrine.glb` | 17 hormone |
 | `3d/urinary.glb` | 18 kidney |
 | `3d/body.glb` | 01 overview |
+| `3d/breathmuscles.glb` | 08 lungs |
+| `3d/breathcontrol.glb` | 10 breathing |
+| `3d/legs.glb` | 11 muscle |
 
 ## 그림 (`figures/openstax-ap-*.webp`)
 
