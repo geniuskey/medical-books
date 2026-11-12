@@ -53,3 +53,28 @@ window.MEDICAL_BOOKS = [
     "simulators": 75
   }
 ];
+window.MEDICAL_MAP = {
+  "title": "몸을 이해하고 일상을 돌보기",
+  "desc": "뼈·근육·장기의 구조를 익히고 심장·폐·근육·호르몬의 작동과 연결을 배우며 몸의 원리를 이해합니다.",
+  "groups": [
+    {
+      "id": "structure",
+      "name": "몸의 구조",
+      "en": "Anatomy",
+      "desc": "뼈·근육·장기가 놓인 자리와 생김새"
+    },
+    {
+      "id": "body",
+      "name": "몸의 원리",
+      "en": "Physiology",
+      "desc": "심장·폐·근육·호르몬이 작동하는 방식"
+    }
+  ],
+  "links": [
+    [
+      "anatomybook",
+      "bodybook",
+      "구조의 생김새에서 그 구조가 일하는 방식으로"
+    ]
+  ]
+};

@@ -1,0 +1,88 @@
+{
+  "format": "euiyun-shelf/1",
+  "shelf": {
+    "id": "medicalbooks",
+    "title": "MedicalBooks",
+    "url": "https://medical.euiyun.com/",
+    "field": "health"
+  },
+  "map": {
+    "title": "몸을 이해하고 일상을 돌보기",
+    "desc": "뼈·근육·장기의 구조를 익히고 심장·폐·근육·호르몬의 작동과 연결을 배우며 몸의 원리를 이해합니다.",
+    "groups": [
+      {
+        "id": "structure",
+        "name": "몸의 구조",
+        "en": "Anatomy",
+        "desc": "뼈·근육·장기가 놓인 자리와 생김새"
+      },
+      {
+        "id": "body",
+        "name": "몸의 원리",
+        "en": "Physiology",
+        "desc": "심장·폐·근육·호르몬이 작동하는 방식"
+      }
+    ],
+    "links": [
+      [
+        "anatomybook",
+        "bodybook",
+        "구조의 생김새에서 그 구조가 일하는 방식으로"
+      ]
+    ]
+  },
+  "books": [
+    {
+      "id": "bodybook",
+      "title": "BodyBook",
+      "subtitle": "몸의 원리 교과서",
+      "headline": "숫자로 돌려 보는 몸",
+      "description": "심장, 폐, 근육, 호르몬. 몸은 어떻게 돌아가나. 심박수와 혈류, 호흡과 산소 운반, 근육의 힘, 에너지 대사, 혈당과 인슐린, 호르몬 피드백 루프와 체온 조절까지 — 하나로 이어진 생리 엔진을 직접 돌려 보며 배웁니다.",
+      "stage": "body",
+      "status": "published",
+      "color": "#d6336c",
+      "colorDark": "#f783ac",
+      "topics": [
+        "심박수·혈류",
+        "호흡·산소 운반",
+        "근육·운동",
+        "에너지 대사",
+        "혈당·인슐린",
+        "호르몬 피드백"
+      ],
+      "motif": "heart",
+      "code": "BOD",
+      "slug": "body",
+      "url": "body/",
+      "legacyUrl": null,
+      "chapters": 21,
+      "simulators": 182
+    },
+    {
+      "id": "anatomybook",
+      "title": "AnatomyBook",
+      "subtitle": "몸의 구조 교과서",
+      "headline": "돌려 보고 잘라 보는 몸",
+      "description": "뼈, 근육, 장기, 뇌, 혈관. 몸 안에는 무엇이 어디에 있나. 실제 인체 데이터(BodyParts3D)로 만든 3D 모델을 돌려 보고, CT처럼 잘라 보고, 부피와 거리를 직접 계산하며 배웁니다.",
+      "stage": "structure",
+      "status": "published",
+      "color": "#0c8599",
+      "colorDark": "#3bc9db",
+      "topics": [
+        "뼈대",
+        "관절·근육",
+        "가슴·배의 장기",
+        "뇌와 눈",
+        "혈관 지도",
+        "단면 해부"
+      ],
+      "motif": "skeleton",
+      "code": "ANA",
+      "slug": "anatomy",
+      "url": "anatomy/",
+      "legacyUrl": null,
+      "chapters": 14,
+      "simulators": 75
+    }
+  ]
+}

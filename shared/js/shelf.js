@@ -4,11 +4,10 @@
   "use strict";
   const books = window.MEDICAL_BOOKS || [];
   const byId = new Map(books.map((b) => [b.id, b]));
-  const groups = [
-    { id: "all", label: "전체", stages: [] },
-    { id: "body", label: "몸의 원리", stages: ["body"] },
-    { id: "structure", label: "몸의 구조", stages: ["structure"] },
-  ];
+  // 분야 버튼과 서가 지도는 book.json의 map(catalog.js의 MEDICAL_MAP)에서 만든다.
+  const shelfMap = window.MEDICAL_MAP || { groups: [], links: [] };
+  const groups = [{ id: "all", label: "전체", stages: [] },
+    ...shelfMap.groups.map((g) => ({ id: g.id, label: g.name, stages: [g.id] }))];
   // 세로 표지에는 books 포털처럼 짧은 이름을 쓴다.
   const coverTitles = { bodybook: "몸", anatomybook: "구조" };
   const esc = (value) => String(value || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -69,6 +68,14 @@
   });
   search.addEventListener("input", render);
   search.addEventListener("keydown", (event) => { if (event.key === "Escape") { search.value = ""; render(); } });
+
+  // 서가 지도: 묶음을 읽는 순서대로 잇고, 책 사이 연결은 한 줄씩 적는다.
+  const mapEl = document.getElementById("shelf-map");
+  if (mapEl && shelfMap.groups.length) {
+    const chip = (id) => { const b = byId.get(id); return b ? `<a data-book="${esc(b.id)}" href="${esc(b.url)}">${esc(titleOf(b))}</a>` : ""; };
+    mapEl.innerHTML = `<ol class="map-groups">${shelfMap.groups.map((g, i) => `<li><small>${String(i + 1).padStart(2, "0")} · ${esc(g.en)}</small><b>${esc(g.name)}</b><p>${esc(g.desc)}</p><div class="path">${books.filter((b) => b.stage === g.id).map((b) => chip(b.id)).join("")}</div></li>`).join("")}</ol>`
+      + (shelfMap.links.length ? `<ul class="map-links">${shelfMap.links.map(([a, b, reason]) => `<li><span class="path">${chip(a)}<i aria-label="에서">→</i>${chip(b)}</span>${esc(reason)}</li>`).join("")}</ul>` : "");
+  }
 
   // 실험 카드와 읽는 순서 칩에 책 색과 코드를 입힌다.
   document.querySelectorAll(".experiment[data-book], .path a[data-book]").forEach((el) => {

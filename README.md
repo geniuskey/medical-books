@@ -18,6 +18,7 @@
 ```text
 index.html, shelf.css                  서가 홈: 책장·검색, 대표 실험, 읽는 순서
 catalog.js                            생성된 책 목록(직접 수정하지 않음)
+catalog.json                          생성된 책 목록과 서가 지도(books.euiyun.com이 읽음, 직접 수정하지 않음)
 book.json                             서가 메타데이터, 각 책의 book.json 목록
 roadmap.json                          준비 중인 책
 migration/books.json                  책마다 slug·서가 정보(표지 motif·색·서가 분야)와 원본 저장소, 가져올 때 쓴 주소 바꾸기 규칙
@@ -26,7 +27,7 @@ shared/js/covers.js                   SVG 책 표지(geniuskey/books 포털 코�
 shared/js/book-shell.js               모든 책 상단 바·서랍의 ‘의학 서가’ 연결
 shared/img/sims/                      홈 ‘직접 해보기’의 시뮬레이터 화면
 {slug}/                               각 책의 본문, 계산 엔진, 3D 모델·그림(assets/), 책별 회귀 검사(scripts/)
-tools/sync-catalog.py                 catalog.js 생성(migration/books.json + roadmap.json, 장·시뮬레이터 수는 소스에서 셈)
+tools/sync-catalog.py                 catalog.js·catalog.json 생성(migration/books.json + roadmap.json + book.json의 map, 장·시뮬레이터 수는 소스에서 셈)
 tools/sync-sitemap.py                 루트 사이트맵 생성
 tools/build.mjs                       정적 배포물(.book-dist/) 생성, 분석 태그 추가
 tools/check.py                        메타데이터·링크 정적 검사
@@ -50,7 +51,7 @@ node tools/browser-check.cjs            # Playwright 필요(PW_PATH 또는 ../bo
 
 BodyBook은 가져올 때의 canonical·Open Graph·구조화 데이터와 CDN 의존성(model-viewer 등)을 그대로 씁니다(주소만 `medical.euiyun.com/body/`로 바꿈). 책 안의 `tools/` 스크립트는 개별 저장소 시절의 도구로, 서가 빌드에는 쓰지 않습니다.
 
-책·장·시뮬레이터 수가 바뀌면 `npm run catalog`, `npm run sitemap`, `node tools/og.mjs`로 목록과 공유 이미지를 갱신합니다.
+책·장·시뮬레이터 수가 바뀌면 `npm run catalog`, `npm run sitemap`, `node tools/og.mjs`로 목록과 공유 이미지를 갱신합니다. 서가 지도(분야 버튼과 ‘읽는 순서’ 위의 지도)는 `book.json`의 `map`에서 고칩니다. 묶음 `id`는 책의 `stage`와 같고, 모든 책은 한 묶음에 들어가야 합니다. 바꾼 뒤 books 저장소에서 `python3 tools/sync-books.py`를 실행하면 books.euiyun.com 지식 지도에도 반영됩니다.
 
 ## 가져온 책
 
