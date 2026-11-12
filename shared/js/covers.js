@@ -1,5 +1,5 @@
-/* Copyright (c) 2026 geniuskey and euiyun books contributors.
-   Reused from geniuskey/books under the MIT License (see ../../LICENSE-MIT). */
+/* Copyright (c) 2026 geniuskey and euiyun books contributors. MIT. 원본은 books 저장소 js/covers.js이며,
+   서가에는 tools/sync-shelf-kit.py가 shared/js/covers.js로 복사한다. */
 /* 책 표지 일러스트. books.json의 motif 이름 → SVG 문자열 (viewBox 0 0 200 130, 흰 선 위주).
    애니메이션은 css의 .cv-* 클래스가 담당하고, 카드에 마우스를 올렸을 때만 움직인다. */
 (function () {
@@ -725,10 +725,7 @@
       s += `<path class="cv-hit" d="M140 64 116 40c-14-14 4-34 18-20l6 6 6-6c14-14 32 6 18 20Z" fill="${W}" fill-opacity=".75" stroke="${W}" stroke-width="1.4"/>`;
       return svg(s);
     },
-    // 엑스선으로 본 사람(앞모습)과 CT 화면(AnatomyBook). 가로 단면선이 머리·가슴·배·골반·허벅지·종아리 여섯 높이에 차례로 머물고,
-    // 오른쪽 화면에는 그 높이의 실제 가로 단면이 CT 밝기로 뜬다(몸의 오른쪽이 화면 왼쪽, 앞이 위). 멈춰 있을 때는 가슴(심장과 폐)이고,
-    // 움직임도 가슴에서 시작한다(--k: 가슴에서 몇 칸째인가, 시간은 css의 .an-*가 정한다).
-    // 몸·뼈·단면 좌표는 tools/anatomy-cover.mjs가 BodyParts3D(© DBCLS, CC BY 4.0)에서 만든 ANATOMY(이 파일 맨 아래)다.
+    // 해부학: 뼈대 위로 CT 단면선이 오르내리고, 오른쪽에 가슴 높이 가로 단면이 보인다
     skeleton() {
       const A = ANATOMY, rest = 1, [px, py, pw, ph] = A.panel, y = A.slices[rest].y, scan = "#7ee0ec";
       const ct = (v) => "#" + [3, 24, 30].map((c) => Math.round(c + (255 - c) * v).toString(16).padStart(2, "0")).join(""); // 검은 화면 → 흰 뼈

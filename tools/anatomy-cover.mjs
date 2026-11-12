@@ -3,7 +3,8 @@
 // - 왼쪽: 앞에서 본 몸의 윤곽(skin)과 뼈(머리뼈에는 눈구멍을 뚫는다)
 // - 오른쪽 화면: 여섯 높이(머리·가슴·배·골반·허벅지·종아리)의 가로 단면을 CT 밝기(AT.CT와 같은 값)별로 묶은 경로
 // 좌표는 표지 viewBox(200×130)를 Q 단위로 나눈 정수이고(그릴 때 scale(Q)), 경로는 상대 좌표로 줄여 쓴다.
-// 결과는 shared/js/covers.js의 `const ANATOMY = …;` 한 줄을 바꾼다.
+// 결과는 표지 원본인 books 저장소(형제 폴더) js/covers.js의 `const ANATOMY = …;` 한 줄을 바꾼다.
+// 그 뒤 books에서 python3 tools/sync-shelf-kit.py로 이 서가의 shared/js/covers.js에 복사한다.
 import { readFileSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
@@ -88,9 +89,9 @@ const slices = LEVELS.map((z) => {
 });
 
 const data = { q: Q, fig: [+X(lo).toFixed(1), +X(hi).toFixed(1)], panel: PANEL, skin, bones, slices };
-const file = join(root, 'shared/js/covers.js'), src = readFileSync(file, 'utf8');
+const file = join(root, '../books/js/covers.js'), src = readFileSync(file, 'utf8');
 const line = /^ {2}const ANATOMY = .*;$/m;
-if (!line.test(src)) throw new Error('shared/js/covers.js에 `  const ANATOMY = …;` 줄이 없습니다');
+if (!line.test(src)) throw new Error('../books/js/covers.js에 `  const ANATOMY = …;` 줄이 없습니다');
 writeFileSync(file, src.replace(line, () => `  const ANATOMY = ${JSON.stringify(data)};`));
 const bytes = JSON.stringify(data).length;
 console.log(`covers.js ANATOMY: ${(bytes / 1024).toFixed(1)} KB, levels ${slices.map((x) => x.z).join(' ')} mm, slice scale ${cs.toFixed(3)}`);
