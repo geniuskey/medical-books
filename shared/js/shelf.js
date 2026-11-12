@@ -73,7 +73,7 @@
   const mapEl = document.getElementById("shelf-map");
   if (mapEl && shelfMap.groups.length) {
     const chip = (id) => { const b = byId.get(id); return b ? `<a data-book="${esc(b.id)}" href="${esc(b.url)}">${esc(titleOf(b))}</a>` : ""; };
-    mapEl.innerHTML = `<ol class="map-groups">${shelfMap.groups.map((g, i) => `<li><small>${String(i + 1).padStart(2, "0")} · ${esc(g.en)}</small><b>${esc(g.name)}</b><p>${esc(g.desc)}</p><div class="path">${books.filter((b) => b.stage === g.id).map((b) => chip(b.id)).join("")}</div></li>`).join("")}</ol>`
+    mapEl.innerHTML = `<ol class="map-groups${shelfMap.groups.length > 4 ? " wide" : ""}">${shelfMap.groups.map((g, i) => { const n = books.filter((b) => (g.stages || [g.id]).includes(b.stage)).length; return `<li${n > 6 ? ' class="big"' : ""} style="--n:${n}"><small>${String(i + 1).padStart(2, "0")} · ${esc(g.en)}</small><b>${esc(g.name)}</b><p>${esc(g.desc)}</p><div class="path">${books.filter((b) => (g.stages || [g.id]).includes(b.stage)).map((b) => chip(b.id)).join("")}</div></li>`; }).join("")}</ol>`
       + (shelfMap.links.length ? (() => {
         // 연결이 많으면 접어 두어 첫 화면을 지도 묶음에 쓴다.
         const list = `<ul class="map-links">${shelfMap.links.map(([a, b, reason]) => `<li><span class="path">${chip(a)}<i aria-label="에서">→</i>${chip(b)}</span>${esc(reason)}</li>`).join("")}</ul>`;
