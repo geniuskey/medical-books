@@ -1,15 +1,18 @@
-/* Copyright (c) 2026 geniuskey and MedicalBooks contributors. MIT. */
+/* Copyright (c) 2026 geniuskey and euiyun books contributors. MIT. */
+/* 공통 파일: books 저장소 tools/shelf-kit/shelf.js가 원본이다. 고칠 때는 원본을 고치고 tools/sync-shelf-kit.py로 배포한다. */
 /* 서가 홈: 분야·검색으로 고르는 책장, 대표 실험 덱, 읽는 순서 칩, 테마 전환 */
 (function () {
   "use strict";
-  const books = window.MEDICAL_BOOKS || [];
+  // 서가마다 다른 값은 catalog.js의 window.SHELF(book.json에서 생성)에 있다.
+  const shelf = window.SHELF || {};
+  const books = shelf.books || [];
   const byId = new Map(books.map((b) => [b.id, b]));
-  // 분야 버튼과 서가 지도는 book.json의 map(catalog.js의 MEDICAL_MAP)에서 만든다.
-  const shelfMap = window.MEDICAL_MAP || { groups: [], links: [] };
+  // 분야 버튼과 서가 지도는 book.json의 map에서 만든다. 묶음 하나가 stage 여러 개를 담을 수 있다.
+  const shelfMap = shelf.map || { groups: [], links: [] };
   const groups = [{ id: "all", label: "전체", stages: [] },
-    ...shelfMap.groups.map((g) => ({ id: g.id, label: g.name, stages: [g.id] }))];
+    ...shelfMap.groups.map((g) => ({ id: g.id, label: g.name, stages: g.stages || [g.id] }))];
   // 세로 표지에는 books 포털처럼 짧은 이름을 쓴다.
-  const coverTitles = { bodybook: "몸", anatomybook: "구조" };
+  const coverTitles = shelf.coverTitles || {};
   const esc = (value) => String(value || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const count = (group) => books.filter((b) => group.id === "all" || group.stages.includes(b.stage)).length;
   const groupOf = (book) => groups.find((g) => g.stages.includes(book.stage)) || groups[0];
@@ -120,14 +123,15 @@
 
   const moon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
   const sun = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"/></svg>';
+  const themeKey = (shelf.url ? new URL(shelf.url).hostname.split(".")[0] : "shelf") + "-theme";
   const theme = document.getElementById("theme");
   const dark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
   function paintTheme() { theme.innerHTML = dark() ? sun : moon; theme.setAttribute("aria-label", dark() ? "라이트 모드로 전환" : "다크 모드로 전환"); }
-  theme.addEventListener("click", () => { const value = dark() ? "light" : "dark"; document.documentElement.dataset.theme = value; try { localStorage.setItem("medical-theme", value); } catch (e) {} paintTheme(); });
+  theme.addEventListener("click", () => { const value = dark() ? "light" : "dark"; document.documentElement.dataset.theme = value; try { localStorage.setItem(themeKey, value); } catch (e) {} paintTheme(); });
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paintTheme);
   paintTheme(); render();
 
   const structured = document.createElement("script"); structured.type = "application/ld+json";
-  structured.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "BookSeries", name: "MedicalBooks", url: "https://medical.euiyun.com/", inLanguage: "ko", hasPart: books.filter(b => b.status !== "planned").map((b) => ({ "@type": "Book", name: b.title + " · " + b.subtitle, url: new URL(b.url, "https://medical.euiyun.com/").href })) });
+  structured.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "BookSeries", name: shelf.title, url: shelf.url, inLanguage: "ko", hasPart: books.filter(b => b.status !== "planned").map((b) => ({ "@type": "Book", name: b.title + " · " + b.subtitle, url: new URL(b.url, shelf.url).href })) });
   document.head.append(structured);
 })();

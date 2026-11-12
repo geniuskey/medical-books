@@ -78,3 +78,12 @@ window.MEDICAL_MAP = {
     ]
   ]
 };
+window.SHELF = Object.assign({
+  "id": "medicalbooks",
+  "title": "MedicalBooks",
+  "url": "https://medical.euiyun.com/",
+  "coverTitles": {
+    "bodybook": "몸",
+    "anatomybook": "구조"
+  }
+}, { books: window.MEDICAL_BOOKS, map: window.MEDICAL_MAP });

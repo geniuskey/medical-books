@@ -1,5 +1,5 @@
-/* Copyright (c) 2026 geniuskey and SemiBooks contributors. MIT. */
-/* 서가 홈. books 포털의 어두운 서재와 세로 표지를 따르되, 반도체 서가는 밤의 클린룸 천장 격자와 스테인리스 선반으로 꾸민다. */
+/* Copyright (c) 2026 geniuskey and euiyun books contributors. MIT. */
+/* 서가 홈 공통 스타일. 원본은 books 저장소 tools/shelf-kit/shelf.css이며 tools/sync-shelf-kit.py로 배포한다. */
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap");
 :root { --bg:#f6f7fb; --bg-elev:#fff; --surface:#eef1f7; --border:#d6dce8; --text:#141a26; --text-dim:#566178; --text-faint:#6f7b91; --accent:#2f5f96; --accent-2:#d9480f; --shadow:#0f172a; --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace; color-scheme:light; }
@@ -197,7 +197,7 @@ a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:under
   .book-cover:hover, .experiment:nth-child(even), .experiment:hover, .experiment:focus-visible { transform:none; }
 }
 
-/* MoneyBooks: forthcoming volumes are non-interactive; the experiment deck keeps the SemiBooks fan layout. */
+/* Forthcoming volumes are non-interactive; the experiment deck keeps the SemiBooks fan layout. */
 .planned .book-cover { cursor:default; }
 .planned .book-cover:hover { transform:none; }
 @media(min-width:1001px) {
