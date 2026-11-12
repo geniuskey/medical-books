@@ -30,7 +30,9 @@
   function card(book) {
     const title = titleOf(book), writing = book.status === "writing";
     if (book.status === "planned") return `<article class="book planned" data-book="${esc(book.id)}" style="--c:${esc(book.color)}"><div class="book-stand"><div class="book-cover" aria-label="${esc(title)} · 준비 예정"><span class="book-top"><small>${esc(groupOf(book).label)}</small><b>준비 예정</b></span><strong>${esc(title)}</strong><span class="book-art" aria-hidden="true">${window.coverArt(book.motif)}</span><span class="book-foot"><span>${esc(book.title)}</span><span>${esc(book.code)}</span></span></div></div><div class="book-label"><p>${esc(book.headline)}</p><div class="book-meta"><span>준비 예정 · 아직 공개되지 않았습니다</span></div></div></article>`;
-    const meta = `<span>${book.chapters || 0}장</span>${writing ? '<span class="writing">집필 중</span>' : ""}${book.legacyUrl ? `<a href="${esc(book.legacyUrl)}" target="_blank" rel="noopener" aria-label="${esc(book.title)} 기존 사이트에서 읽기 (새 탭)">기존 사이트 ↗</a>` : ""}`;
+    // 본문 검색(서가의 search.js)이 있으면 책마다 찾은 건수를 붙인다. readLink는 book.json의 서가 설정이다.
+    const found = window.SHELF_SEARCH_HITS?.get(book.slug);
+    const meta = `${found ? `<span class="found">본문 ${found.toLocaleString("ko-KR")}건</span>` : ""}<span>${book.chapters || 0}장</span>${writing ? '<span class="writing">집필 중</span>' : ""}${book.legacyUrl ? `<a href="${esc(book.legacyUrl)}" target="_blank" rel="noopener" aria-label="${esc(book.title)} 기존 사이트에서 읽기 (새 탭)">기존 사이트 ↗</a>` : ""}${shelf.readLink ? `<a href="${esc(book.url)}" aria-label="${esc(book.title)} 읽기">읽기 →</a>` : ""}`;
     return `<article class="book${writing ? " writing" : ""}" data-book="${esc(book.id)}" style="--c:${esc(book.color || "#2f5f96")}">
       <div class="book-stand"><a class="book-cover" href="${esc(book.url)}" aria-label="${esc(title)} · ${esc(book.title)}${writing ? " (집필 중)" : ""} 읽기">
         <span class="book-top"><small>${esc(groupOf(book).label)}</small>${writing ? "<b>집필 중</b>" : ""}</span>
@@ -55,8 +57,11 @@
   function render() {
     const group = groups.find((g) => g.id === selected);
     const words = search.value.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-    const hits = books.filter((b) => (selected === "all" || group.stages.includes(b.stage)) && words.every((word) =>
-      [b.title, b.subtitle, titleOf(b), b.headline, b.description, ...(b.topics || [])].join(" ").toLocaleLowerCase().includes(word)));
+    const found = window.SHELF_SEARCH_HITS;
+    const hits = books.filter((b) => (selected === "all" || group.stages.includes(b.stage)) && (found?.get(b.slug) || words.every((word) =>
+      [b.title, b.subtitle, titleOf(b), b.headline, b.description, ...(b.topics || [])].join(" ").toLocaleLowerCase().includes(word))));
+    // 본문 검색이 지금 고른 분야 안에서 찾도록 stage를 알려 준다.
+    document.getElementById("filters").dataset.stages = group.stages.join(",");
     grid.innerHTML = hits.map(card).join("");
     fillShelf();
     document.getElementById("book-count").textContent = `${hits.length} / ${books.length}권`;
@@ -69,7 +74,9 @@
     selected = button.dataset.filter;
     render();
   });
-  search.addEventListener("input", render);
+  // 본문 검색(ShelfSearch)이 있으면 결과가 나올 때(shelf:search) 다시 그린다.
+  search.addEventListener("input", () => { if (!window.ShelfSearch) render(); });
+  document.addEventListener("shelf:search", render);
   search.addEventListener("keydown", (event) => { if (event.key === "Escape") { search.value = ""; render(); } });
 
   // 서가 지도: 묶음을 읽는 순서대로 잇고, 책 사이 연결은 한 줄씩 적는다.
